@@ -334,7 +334,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-02-23T23:48:24+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-02-23T23:50:56+08:00">
                 2018-02-23
               </time>
             
@@ -362,7 +362,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  127
+                  123
                 </span>
               
 
@@ -401,7 +401,9 @@
       
         
           
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">-bash: ./install.sh: /bin/bash: bad interpreter: Operation not permitted</span><br><span class="line">出现这个问题的主要原因是：-rwxrwxrwx@  文件的属性最后带个@，这个@代表的是更多的一些属性，具体含义不太清楚，但有它就是执行不了</span><br><span class="line">解决：可以用这个命令来去除这个属性：xattr -d com.apple.quarantine ./*</span><br><span class="line">后来进入目录发现目录下面的文件还是带有@属性，我们到根目录加一个-r就好了：xattr -d -r com.apple.quarantine ./*</span><br></pre></td></tr></table></figure>
+            <blockquote>
+<p>-bash: ./install.sh: /bin/bash: bad interpreter: Operation not permitted<br>出现这个问题的主要原因是：-rwxrwxrwx@  文件的属性最后带个@，这个@代表的是更多的一些属性，具体含义不太清楚，但有它就是执行不了<br>解决：可以用这个命令来去除这个属性：<code>xattr -d com.apple.quarantine ./*</code><br>后来进入目录发现目录下面的文件还是带有@属性，我们到根目录加一个-r就好了：<code>xattr -d -r com.apple.quarantine ./*</code></p>
+</blockquote>
 
           
         
@@ -1157,7 +1159,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">274</span>
+    <span title="Site words total count">270</span>
   
 </div>
 

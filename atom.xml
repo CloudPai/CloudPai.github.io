@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cloudpai.site/"/>
-  <updated>2018-02-23T15:48:24.778Z</updated>
+  <updated>2018-02-23T15:50:56.534Z</updated>
   <id>http://cloudpai.site/</id>
   
   <author>
@@ -21,13 +21,14 @@
     <link href="http://cloudpai.site/2018/02/23/2018-02-23-1/"/>
     <id>http://cloudpai.site/2018/02/23/2018-02-23-1/</id>
     <published>2018-02-23T15:39:30.186Z</published>
-    <updated>2018-02-23T15:48:24.778Z</updated>
+    <updated>2018-02-23T15:50:56.534Z</updated>
     
     <summary type="html">
     
       
       
-        &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class
+        &lt;blockquote&gt;
+&lt;p&gt;-bash: ./install.sh: /bin/bash: bad interpreter: Operation not permitted&lt;br&gt;出现这个问题的主要原因是：-rwxrwxrwx@  文件的属性最后带个@，这个@代表的是更多的一
       
     
     </summary>
