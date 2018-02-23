@@ -5,9 +5,9 @@
   <subtitle>个人博客</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://yoursite.com/"/>
+  <link href="http://cloudpai.site/"/>
   <updated>2018-02-23T08:06:56.881Z</updated>
-  <id>http://yoursite.com/</id>
+  <id>http://cloudpai.site/</id>
   
   <author>
     <name>CloudPai</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>test</title>
-    <link href="http://yoursite.com/2018/02/22/test/"/>
-    <id>http://yoursite.com/2018/02/22/test/</id>
+    <link href="http://cloudpai.site/2018/02/22/test/"/>
+    <id>http://cloudpai.site/2018/02/22/test/</id>
     <published>2018-02-22T14:40:09.677Z</published>
     <updated>2018-02-23T08:06:56.881Z</updated>
     
@@ -41,8 +41,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="http://yoursite.com/2018/02/22/hello-world/"/>
-    <id>http://yoursite.com/2018/02/22/hello-world/</id>
+    <link href="http://cloudpai.site/2018/02/22/hello-world/"/>
+    <id>http://cloudpai.site/2018/02/22/hello-world/</id>
     <published>2018-02-22T14:27:20.902Z</published>
     <updated>2018-02-22T14:27:20.905Z</updated>
     
