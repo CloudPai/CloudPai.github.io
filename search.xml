@@ -18,7 +18,8 @@
     <url>%2F2018%2F02%2F22%2Ftest%2F</url>
     <content type="text"><![CDATA[photos: 修改博客音乐播放器歌曲路径：/Blog/themes/hexo-theme-next-master/layout/_macro/sidebar.swig]]></content>
       <tags>
-        <tag>测试标签1, 测试标签2</tag>
+        <tag>tag1</tag>
+        <tag>tag2</tag>
       </tags>
   </entry>
   <entry>
