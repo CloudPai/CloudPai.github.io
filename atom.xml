@@ -60,29 +60,6 @@
   </entry>
   
   <entry>
-    <title>test</title>
-    <link href="http://cloudpai.site/2018/02/22/test/"/>
-    <id>http://cloudpai.site/2018/02/22/test/</id>
-    <published>2018-02-22T14:40:09.677Z</published>
-    <updated>2018-02-23T15:33:56.432Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;title: 测试文章 &lt;/p&gt;
-&lt;p&gt;date: 2017-05-03 17:47 &lt;/p&gt;
-&lt;p&gt;categories: [测试分类1, 测试分类2, 测试分类3] &lt;/p&gt;
-&lt;p&gt;tags: [测试标签1, 测试标签2, 测试标签3] &lt;/p&gt;
-&lt;p&gt;photos: 
-      
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
     <title>Hello World</title>
     <link href="http://cloudpai.site/2018/02/22/hello-world/"/>
     <id>http://cloudpai.site/2018/02/22/hello-world/</id>
