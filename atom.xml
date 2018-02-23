@@ -60,6 +60,28 @@
   </entry>
   
   <entry>
+    <title>测试文章</title>
+    <link href="http://cloudpai.site/2018/02/22/test/"/>
+    <id>http://cloudpai.site/2018/02/22/test/</id>
+    <published>2018-02-22T14:40:09.677Z</published>
+    <updated>2018-02-23T16:15:56.235Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;photos: &lt;img src=&quot;http://p4lmrb1gp.bkt.clouddn.com/15193992802410.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;修改博客音乐播放器歌曲路径：&lt;br&gt;/Blog/themes/hexo-theme-next-mast
+      
+    
+    </summary>
+    
+    
+      <category term="测试标签1, 测试标签2" scheme="http://cloudpai.site/tags/%E6%B5%8B%E8%AF%95%E6%A0%87%E7%AD%BE1-%E6%B5%8B%E8%AF%95%E6%A0%87%E7%AD%BE2/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Hello World</title>
     <link href="http://cloudpai.site/2018/02/22/hello-world/"/>
     <id>http://cloudpai.site/2018/02/22/hello-world/</id>
