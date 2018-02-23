@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>CloudPai</title>
+  
+  <subtitle>个人博客</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2018-02-23T08:06:56.881Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>CloudPai</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>test</title>
+    <link href="http://yoursite.com/2018/02/22/test/"/>
+    <id>http://yoursite.com/2018/02/22/test/</id>
+    <published>2018-02-22T14:40:09.677Z</published>
+    <updated>2018-02-23T08:06:56.881Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;title: 测试文章 &lt;/p&gt;
+&lt;p&gt;date: 2017-05-03 17:47 &lt;/p&gt;
+&lt;p&gt;categories: [测试分类1, 测试分类2, 测试分类3] &lt;/p&gt;
+&lt;p&gt;tags: [测试标签1, 测试标签2, 测试标签3] &lt;/p&gt;
+&lt;p&gt;photos: 
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://yoursite.com/2018/02/22/hello-world/"/>
+    <id>http://yoursite.com/2018/02/22/hello-world/</id>
+    <published>2018-02-22T14:27:20.902Z</published>
+    <updated>2018-02-22T14:27:20.905Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+</feed>
