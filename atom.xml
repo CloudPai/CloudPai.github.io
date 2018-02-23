@@ -60,26 +60,26 @@
   </entry>
   
   <entry>
-    <title>测试文章</title>
+    <title>搭建博客过程杂记</title>
     <link href="http://cloudpai.site/2018/02/22/test/"/>
     <id>http://cloudpai.site/2018/02/22/test/</id>
     <published>2018-02-22T14:40:09.677Z</published>
-    <updated>2018-02-23T16:17:29.836Z</updated>
+    <updated>2018-02-23T16:20:04.868Z</updated>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;photos: &lt;img src=&quot;http://p4lmrb1gp.bkt.clouddn.com/15193992802410.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;修改博客音乐播放器歌曲路径：&lt;br&gt;/Blog/themes/hexo-theme-next-mast
+        &lt;p&gt;修改博客音乐播放器歌曲路径：&lt;br&gt;/Blog/themes/hexo-theme-next-master/layout/_macro/sidebar.swig&lt;/p&gt;
+
       
     
     </summary>
     
     
-      <category term="tag1" scheme="http://cloudpai.site/tags/tag1/"/>
+      <category term="markdown" scheme="http://cloudpai.site/tags/markdown/"/>
     
-      <category term="tag2" scheme="http://cloudpai.site/tags/tag2/"/>
+      <category term="杂记" scheme="http://cloudpai.site/tags/%E6%9D%82%E8%AE%B0/"/>
     
   </entry>
   

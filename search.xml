@@ -14,12 +14,12 @@
     <content type="text"><![CDATA[local picture：]]></content>
   </entry>
   <entry>
-    <title><![CDATA[测试文章]]></title>
+    <title><![CDATA[搭建博客过程杂记]]></title>
     <url>%2F2018%2F02%2F22%2Ftest%2F</url>
-    <content type="text"><![CDATA[photos: 修改博客音乐播放器歌曲路径：/Blog/themes/hexo-theme-next-master/layout/_macro/sidebar.swig]]></content>
+    <content type="text"><![CDATA[修改博客音乐播放器歌曲路径：/Blog/themes/hexo-theme-next-master/layout/_macro/sidebar.swig]]></content>
       <tags>
-        <tag>tag1</tag>
-        <tag>tag2</tag>
+        <tag>markdown</tag>
+        <tag>杂记</tag>
       </tags>
   </entry>
   <entry>
