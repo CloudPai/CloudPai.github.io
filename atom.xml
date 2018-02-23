@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cloudpai.site/"/>
-  <updated>2018-02-23T15:50:56.534Z</updated>
+  <updated>2018-02-23T18:10:26.967Z</updated>
   <id>http://cloudpai.site/</id>
   
   <author>
@@ -17,88 +17,73 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>mac执行shell脚本遇到的错误处理</title>
-    <link href="http://cloudpai.site/2018/02/23/2018-02-23-1/"/>
-    <id>http://cloudpai.site/2018/02/23/2018-02-23-1/</id>
-    <published>2018-02-23T15:39:30.186Z</published>
-    <updated>2018-02-23T15:50:56.534Z</updated>
+    <title>🎵记录点滴生活</title>
+    <link href="http://cloudpai.site/2018/02/24/2018-02-24/"/>
+    <id>http://cloudpai.site/2018/02/24/2018-02-24/</id>
+    <published>2018-02-23T16:25:26.787Z</published>
+    <updated>2018-02-23T18:10:26.967Z</updated>
     
     <summary type="html">
     
       
       
-        &lt;blockquote&gt;
-&lt;p&gt;-bash: ./install.sh: /bin/bash: bad interpreter: Operation not permitted&lt;br&gt;出现这个问题的主要原因是：-rwxrwxrwx@  文件的属性最后带个@，这个@代表的是更多的一
+        &lt;p&gt;&lt;img src=&quot;http://p4lmrb1gp.bkt.clouddn.com/秒速五厘米.gif&quot; alt=&quot;秒速五厘米&quot;&gt; &lt;/p&gt;
+&lt;center&gt;&lt;br&gt;&lt;strong&gt;记录点滴生活&lt;br&gt;《BINGBIAN病变》&lt;br&gt;歌曲不错，曲调有些忧伤&lt;/strong
       
     
     </summary>
     
     
-      <category term="mac" scheme="http://cloudpai.site/tags/mac/"/>
+      <category term="杂记" scheme="http://cloudpai.site/tags/%E6%9D%82%E8%AE%B0/"/>
+    
+      <category term="音乐" scheme="http://cloudpai.site/tags/%E9%9F%B3%E4%B9%90/"/>
     
   </entry>
   
   <entry>
-    <title>图床测试2233</title>
-    <link href="http://cloudpai.site/2018/02/23/2018-02-23/"/>
-    <id>http://cloudpai.site/2018/02/23/2018-02-23/</id>
-    <published>2018-02-23T10:56:00.193Z</published>
-    <updated>2018-02-23T15:22:02.615Z</updated>
+    <title>我的blog自动发布脚本</title>
+    <link href="http://cloudpai.site/2018/02/23/mac%E6%89%A7%E8%A1%8Cshell%E8%84%9A%E6%9C%AC%E9%81%87%E5%88%B0%E7%9A%84%E9%94%99%E8%AF%AF%E5%A4%84%E7%90%86/"/>
+    <id>http://cloudpai.site/2018/02/23/mac执行shell脚本遇到的错误处理/</id>
+    <published>2018-02-23T15:39:30.186Z</published>
+    <updated>2018-02-23T16:37:21.020Z</updated>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;&lt;strong&gt;local picture：&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://p4lmrb1gp.bkt.clouddn.com/15193870553280.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://p4l
+        &lt;p&gt;遇到的坑：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;-bash: ./install.sh: /bin/bash: bad interpreter: Operation not permitted&lt;/strong&gt;&lt;br&gt;出现这个问题的主要原因是：-rwxr
       
     
     </summary>
     
+    
+      <category term="shell" scheme="http://cloudpai.site/tags/shell/"/>
     
   </entry>
   
   <entry>
     <title>搭建博客过程杂记</title>
-    <link href="http://cloudpai.site/2018/02/22/test/"/>
-    <id>http://cloudpai.site/2018/02/22/test/</id>
+    <link href="http://cloudpai.site/2018/02/22/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E8%BF%87%E7%A8%8B%E6%9D%82%E8%AE%B0/"/>
+    <id>http://cloudpai.site/2018/02/22/搭建博客过程杂记/</id>
     <published>2018-02-22T14:40:09.677Z</published>
-    <updated>2018-02-23T16:20:04.868Z</updated>
+    <updated>2018-02-23T18:12:36.985Z</updated>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;修改博客音乐播放器歌曲路径：&lt;br&gt;/Blog/themes/hexo-theme-next-master/layout/_macro/sidebar.swig&lt;/p&gt;
-
+        &lt;p&gt;网易云音乐外链获取：见官网&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;修改博客音乐播放器歌曲路径：&lt;br&gt;&lt;code&gt;/Blog/themes/hexo-theme-next-master/layout/_macro/sidebar.swig&lt;/code&gt;&lt;/p&gt;
+&lt;/blo
       
     
     </summary>
     
     
-      <category term="markdown" scheme="http://cloudpai.site/tags/markdown/"/>
-    
-      <category term="杂记" scheme="http://cloudpai.site/tags/%E6%9D%82%E8%AE%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="http://cloudpai.site/2018/02/22/hello-world/"/>
-    <id>http://cloudpai.site/2018/02/22/hello-world/</id>
-    <published>2018-02-22T14:27:20.902Z</published>
-    <updated>2018-02-22T14:27:20.905Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.
-      
-    
-    </summary>
-    
+      <category term="blog" scheme="http://cloudpai.site/tags/blog/"/>
     
   </entry>
   
