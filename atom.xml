@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cloudpai.site/"/>
-  <updated>2018-02-24T05:32:30.042Z</updated>
+  <updated>2018-02-23T18:10:26.000Z</updated>
   <id>http://cloudpai.site/</id>
   
   <author>
@@ -17,33 +17,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>测试mac和ios 同步 更新存储位置 检测未发布文档是否显示</title>
-    <link href="http://cloudpai.site/2018/02/24/2018-02-24-1/"/>
-    <id>http://cloudpai.site/2018/02/24/2018-02-24-1/</id>
-    <published>2018-02-24T04:56:24.423Z</published>
-    <updated>2018-02-24T05:32:30.042Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;p&gt;&lt;strong&gt;测试成功后显示图片：&lt;/strong&gt;&lt;br&gt;&lt;img src=&quot;http://p4lmrb1gp.bkt.clouddn.com/15194482924386.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-
-      
-    
-    </summary>
-    
-    
-      <category term="test" scheme="http://cloudpai.site/tags/test/"/>
-    
-  </entry>
-  
-  <entry>
     <title>🎵记录点滴生活</title>
     <link href="http://cloudpai.site/2018/02/24/2018-02-24/"/>
     <id>http://cloudpai.site/2018/02/24/2018-02-24/</id>
-    <published>2018-02-23T16:25:26.787Z</published>
-    <updated>2018-02-23T18:10:26.967Z</updated>
+    <published>2018-02-23T16:25:26.000Z</published>
+    <updated>2018-02-23T18:10:26.000Z</updated>
     
     <summary type="html">
     
@@ -90,7 +68,7 @@
     <link href="http://cloudpai.site/2018/02/22/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E8%BF%87%E7%A8%8B%E6%9D%82%E8%AE%B0/"/>
     <id>http://cloudpai.site/2018/02/22/搭建博客过程杂记/</id>
     <published>2018-02-22T14:40:09.677Z</published>
-    <updated>2018-02-24T04:56:20.658Z</updated>
+    <updated>2018-02-24T08:40:11.278Z</updated>
     
     <summary type="html">
     
