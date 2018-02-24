@@ -27,8 +27,8 @@
     
       
       
-        &lt;p&gt;&lt;img src=&quot;http://p4lmrb1gp.bkt.clouddn.com/秒速五厘米.gif&quot; alt=&quot;秒速五厘米&quot;&gt; &lt;/p&gt;
-&lt;center&gt;&lt;br&gt;&lt;strong&gt;记录点滴生活&lt;br&gt;《BINGBIAN病变》&lt;br&gt;歌曲不错，曲调有些忧伤&lt;/strong
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;img src=&quot;http://p4lmrb1gp.bkt.clouddn.com/秒速五厘米.gif&quot; alt=&quot;秒速五厘米&quot;&gt; &lt;/p&gt;
+&lt;center&gt;&lt;br&gt;&lt;st
       
     
     </summary>
@@ -51,9 +51,9 @@
     
       
       
-        &lt;p&gt;遇到的坑：&lt;/p&gt;
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;遇到的坑：&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;-bash: ./install.sh: /bin/bash: bad interpreter: Operation not permitted&lt;/strong&gt;&lt;br&gt;出现这个问题的主要原因是：-rwxr
+&lt;p&gt;&lt;strong&gt;-bash: ./install.sh: /bin/bash: bad interpreter: Oper
       
     
     </summary>
@@ -68,16 +68,15 @@
     <link href="http://cloudpai.site/2018/02/22/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E8%BF%87%E7%A8%8B%E6%9D%82%E8%AE%B0/"/>
     <id>http://cloudpai.site/2018/02/22/搭建博客过程杂记/</id>
     <published>2018-02-22T14:40:09.677Z</published>
-    <updated>2018-02-24T19:31:55.621Z</updated>
+    <updated>2018-02-24T19:44:55.072Z</updated>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;网易云音乐外链获取：见官网&lt;/p&gt;
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;网易云音乐外链获取：见官网&lt;/p&gt;
 &lt;blockquote&gt;
-&lt;p&gt;修改博客音乐播放器歌曲路径：&lt;br&gt;&lt;code&gt;/Blog/themes/hexo-theme-next-master/layout/_macro/sidebar.swig&lt;/code&gt;&lt;/p&gt;
-&lt;/blo
+&lt;p&gt;修改博客音乐播放器歌曲路径：&lt;br&gt;&lt;code&gt;/Blog/themes/hexo-theme-next-
       
     
     </summary>

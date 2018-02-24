@@ -81,19 +81,19 @@
 
 
 
-<meta name="description" content="网易云音乐外链获取：见官网  修改博客音乐播放器歌曲路径：/Blog/themes/hexo-theme-next-master/layout/_macro/sidebar.swig    qq音乐外链获取：http://www.qqmusic.cc/插入音频播放器代码：1&amp;lt;audio src=&amp;quot;http://mp3.qqmusic.cc/yq/211758246.mp3&amp;quot">
+<meta name="description" content="网易云音乐外链获取：见官网  修改博客音乐播放器歌曲路径：/Blog/themes/hexo-theme-next-master/layout/_macro/sidebar.swig    qq音乐外链获取：http://www.qqmusic.cc/插入音频播放器代码：1&amp;lt;audio src=&amp;quot;http://mp3.qqmusic.cc/yq/211758246.mp3&amp;quo">
 <meta name="keywords" content="blog">
 <meta property="og:type" content="article">
 <meta property="og:title" content="搭建博客过程杂记">
 <meta property="og:url" content="http://cloudpai.site/2018/02/22/搭建博客过程杂记/index.html">
 <meta property="og:site_name" content="CloudPai">
-<meta property="og:description" content="网易云音乐外链获取：见官网  修改博客音乐播放器歌曲路径：/Blog/themes/hexo-theme-next-master/layout/_macro/sidebar.swig    qq音乐外链获取：http://www.qqmusic.cc/插入音频播放器代码：1&amp;lt;audio src=&amp;quot;http://mp3.qqmusic.cc/yq/211758246.mp3&amp;quot">
+<meta property="og:description" content="网易云音乐外链获取：见官网  修改博客音乐播放器歌曲路径：/Blog/themes/hexo-theme-next-master/layout/_macro/sidebar.swig    qq音乐外链获取：http://www.qqmusic.cc/插入音频播放器代码：1&amp;lt;audio src=&amp;quot;http://mp3.qqmusic.cc/yq/211758246.mp3&amp;quo">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15194719834852.jpg">
-<meta property="og:updated_time" content="2018-02-24T19:31:55.621Z">
+<meta property="og:updated_time" content="2018-02-24T19:44:55.072Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搭建博客过程杂记">
-<meta name="twitter:description" content="网易云音乐外链获取：见官网  修改博客音乐播放器歌曲路径：/Blog/themes/hexo-theme-next-master/layout/_macro/sidebar.swig    qq音乐外链获取：http://www.qqmusic.cc/插入音频播放器代码：1&amp;lt;audio src=&amp;quot;http://mp3.qqmusic.cc/yq/211758246.mp3&amp;quot">
+<meta name="twitter:description" content="网易云音乐外链获取：见官网  修改博客音乐播放器歌曲路径：/Blog/themes/hexo-theme-next-master/layout/_macro/sidebar.swig    qq音乐外链获取：http://www.qqmusic.cc/插入音频播放器代码：1&amp;lt;audio src=&amp;quot;http://mp3.qqmusic.cc/yq/211758246.mp3&amp;quo">
 <meta name="twitter:image" content="http://p4lmrb1gp.bkt.clouddn.com/15194719834852.jpg">
 
 
@@ -336,7 +336,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-02-25T03:31:55+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-02-25T03:44:55+08:00">
                 2018-02-25
               </time>
             
@@ -401,7 +401,7 @@
       
 
       
-        <p>网易云音乐外链获取：见官网</p>
+        <script src="/assets/js/APlayer.min.js"> </script><p>网易云音乐外链获取：见官网</p>
 <blockquote>
 <p>修改博客音乐播放器歌曲路径：<br><code>/Blog/themes/hexo-theme-next-master/layout/_macro/sidebar.swig</code></p>
 </blockquote>
@@ -422,10 +422,21 @@
 <div class="aplayer" data-id="22773511" data-server="netease" data-type="song" data-mode="single"></div>
 
 
-
-
-
-
+<div id="aplayer0" class="aplayer" style="margin-bottom: 20px;"></div>
+		<script>
+			new APlayer({
+				element: document.getElementById("aplayer0"),
+				narrow: false,
+				autoplay: false,
+				showlrc: 0,
+				music: {
+					title: "大连理工的日志",
+					author: "凌分贝",
+					url: "http://p4lmrb1gp.bkt.clouddn.com/%E5%A4%A7%E8%BF%9E%E7%90%86%E5%B7%A5%E7%9A%84%E6%97%A5%E5%AD%90.mp3",
+					pic: "https://xxx.com/1.jpg",
+				}
+			});
+		</script>
 
       
     </div>
@@ -773,8 +784,6 @@
   
 
 
-  
-
 
 
 
@@ -813,11 +822,6 @@
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 

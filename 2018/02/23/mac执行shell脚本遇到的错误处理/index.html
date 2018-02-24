@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="遇到的坑：  -bash: ./install.sh: /bin/bash: bad interpreter: Operation not permitted出现这个问题的主要原因是：-rwxrwxrwx@  文件的属性最后带个@，这个@代表的是更多的一些属性，具体含义不太清楚，但有它就是执行不了解决：可以用这个命令来去除这个属性：xattr -d com.apple.quarantine ./*">
+<meta name="description" content="遇到的坑：  -bash: ./install.sh: /bin/bash: bad interpreter: Operation not permitted出现这个问题的主要原因是：-rwxrwxrwx@  文件的属性最后带个@，这个@代表的是更多的一些属性，具体含义不太清楚，但有它就是执行不了解决：可以用这个命令来去除这个属性：xattr -d com.apple.quarantine ./">
 <meta name="keywords" content="shell">
 <meta property="og:type" content="article">
 <meta property="og:title" content="我的blog自动发布脚本">
 <meta property="og:url" content="http://cloudpai.site/2018/02/23/mac执行shell脚本遇到的错误处理/index.html">
 <meta property="og:site_name" content="CloudPai">
-<meta property="og:description" content="遇到的坑：  -bash: ./install.sh: /bin/bash: bad interpreter: Operation not permitted出现这个问题的主要原因是：-rwxrwxrwx@  文件的属性最后带个@，这个@代表的是更多的一些属性，具体含义不太清楚，但有它就是执行不了解决：可以用这个命令来去除这个属性：xattr -d com.apple.quarantine ./*">
+<meta property="og:description" content="遇到的坑：  -bash: ./install.sh: /bin/bash: bad interpreter: Operation not permitted出现这个问题的主要原因是：-rwxrwxrwx@  文件的属性最后带个@，这个@代表的是更多的一些属性，具体含义不太清楚，但有它就是执行不了解决：可以用这个命令来去除这个属性：xattr -d com.apple.quarantine ./">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-02-23T16:37:21.020Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="我的blog自动发布脚本">
-<meta name="twitter:description" content="遇到的坑：  -bash: ./install.sh: /bin/bash: bad interpreter: Operation not permitted出现这个问题的主要原因是：-rwxrwxrwx@  文件的属性最后带个@，这个@代表的是更多的一些属性，具体含义不太清楚，但有它就是执行不了解决：可以用这个命令来去除这个属性：xattr -d com.apple.quarantine ./*">
+<meta name="twitter:description" content="遇到的坑：  -bash: ./install.sh: /bin/bash: bad interpreter: Operation not permitted出现这个问题的主要原因是：-rwxrwxrwx@  文件的属性最后带个@，这个@代表的是更多的一些属性，具体含义不太清楚，但有它就是执行不了解决：可以用这个命令来去除这个属性：xattr -d com.apple.quarantine ./">
 
 
 
@@ -399,7 +399,7 @@
       
 
       
-        <p>遇到的坑：</p>
+        <script src="/assets/js/APlayer.min.js"> </script><p>遇到的坑：</p>
 <blockquote>
 <p><strong>-bash: ./install.sh: /bin/bash: bad interpreter: Operation not permitted</strong><br>出现这个问题的主要原因是：-rwxrwxrwx@  文件的属性最后带个@，这个@代表的是更多的一些属性，具体含义不太清楚，但有它就是执行不了<br>解决：可以用这个命令来去除这个属性：<code>xattr -d com.apple.quarantine ./*</code><br>后来进入目录发现目录下面的文件还是带有@属性，我们到根目录加一个-r就好了：<code>xattr -d -r com.apple.quarantine ./*</code></p>
 </blockquote>
@@ -757,8 +757,6 @@
   
 
 
-  
-
 
 
 
@@ -797,11 +795,6 @@
   
   
     <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
   
 
 
