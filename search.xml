@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[博客样式改进杂记]]></title>
+    <url>%2F2018%2F02%2F26%2F2018-02-26%2F</url>
+    <content type="text"><![CDATA[评论区样式修改：文件位置：themes/next/source/css/_common/components/comments.styl 修改内容： 1234.comments &#123; background white; opacity:0.8;&#125;]]></content>
+      <tags>
+        <tag>blog</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[🎵记录点滴生活]]></title>
     <url>%2F2018%2F02%2F24%2F2018-02-24%2F</url>
     <content type="text"><![CDATA[记录点滴生活《BINGBIAN病变》歌曲不错，曲调有些忧伤]]></content>
@@ -18,9 +26,9 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[搭建博客过程杂记]]></title>
+    <title><![CDATA[博客插入音频、视频]]></title>
     <url>%2F2018%2F02%2F22%2F%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2%E8%BF%87%E7%A8%8B%E6%9D%82%E8%AE%B0%2F</url>
-    <content type="text"><![CDATA[网易云音乐外链获取：见官网 修改博客音乐播放器歌曲路径：/Blog/themes/hexo-theme-next-master/layout/_macro/sidebar.swig qq音乐外链获取：http://www.qqmusic.cc/插入音频播放器代码：1&lt;audio src=&quot;http://mp3.qqmusic.cc/yq/211758246.mp3&quot; controls=&quot;controls&quot;&gt;&lt;/audio&gt; 插入图片：有尺寸要求时：1&lt;img src=&quot;http://p4lmrb1gp.bkt.clouddn.com/15194033640468.jpg&quot; width=&quot;80%&quot; height=&quot;80%&quot;&gt; 无尺寸要求时：1![](http://p4lmrb1gp.bkt.clouddn.com/15194033640468.jpg) 排版： 居中：1&lt;center&gt; &lt;/center&gt; 博客里插入视频：123&lt;video src=&quot;http://lxqncdn.miaopai.com/stream/BvmaXK2X49guVi4ehlOjjQ__.mp4&quot; width=&quot;100%&quot; height=&quot;100%&quot; controls=&quot;controls&quot;&gt;Your browser does not support the video tag.&lt;/video&gt; 为了避免后期外链失效，可以将视频、音频图片等资源传至七牛云等cdn服务器上，从中获取外链。 new APlayer({ element: document.getElementById("aplayer0"), narrow: false, autoplay: false, showlrc: 0, music: { title: "大连理工的日志", author: "凌分贝", url: "http://p4lmrb1gp.bkt.clouddn.com/%E5%A4%A7%E8%BF%9E%E7%90%86%E5%B7%A5%E7%9A%84%E6%97%A5%E5%AD%90.mp3", pic: "https://xxx.com/1.jpg", } });]]></content>
+    <content type="text"><![CDATA[为了避免后期外链失效，可以将视频、音频图片等资源传至七牛云等cdn服务器上，从中获取外链。 常用排版：居中：1&lt;center&gt; &lt;/center&gt; 插入图片：有尺寸要求时：1&lt;img src=&quot;http://p4lmrb1gp.bkt.clouddn.com/15194033640468.jpg&quot; width=&quot;80%&quot; height=&quot;80%&quot;&gt; 无尺寸要求时快速插入（md格式）：1![](http://p4lmrb1gp.bkt.clouddn.com/15194033640468.jpg) 插入音乐网易云音乐外链获取：见官网修改博客音乐播放器歌曲路径：/Blog/themes/hexo-theme-next-master/layout/_macro/sidebar.swig qq音乐外链获取： http://www.qqmusic.cc/插入音频播放器代码： 1&lt;audio src=&quot;http://mp3.qqmusic.cc/yq/211758246.mp3&quot; controls=&quot;controls&quot;&gt;&lt;/audio&gt; hexo-tag-aplayer：博客中插入自定义音乐 安装成功后，在 Markdown 文档中添加比如添加如下代码使用hexo-tag-aplayer var ap = new APlayer({ element: document.getElementById("aplayer0"), narrow: false, autoplay: false, showlrc: 0, music: { title: "大连理工的日子", author: "凌分贝", url: "http://p4lmrb1gp.bkt.clouddn.com/%E5%A4%A7%E8%BF%9E%E7%90%86%E5%B7%A5%E7%9A%84%E6%97%A5%E5%AD%90.mp3", pic: "", } }); window.aplayers || (window.aplayers = []); window.aplayers.push(ap); 1&#123;% aplayer title author url [picture_url, narrow, autoplay, width:xxx, lrc:xxx] %&#125; 插入视频：video 标签： 123&lt;video src=&quot;http://lxqncdn.miaopai.com/stream/BvmaXK2X49guVi4ehlOjjQ__.mp4&quot; width=&quot;100%&quot; height=&quot;100%&quot; controls=&quot;controls&quot;&gt;Your browser does not support the video tag.&lt;/video&gt; embed标签： 1&lt;embed src=&quot;http://player.youku.com/player.php/Type/Folder/Fid/27690810/Ob/1/sid/XMTY1MTI3NjMyNA==/v.swf&quot; quality=&quot;high&quot; width=&quot;480&quot; height=&quot;400&quot; align=&quot;middle&quot; allowScriptAccess=&quot;always&quot; allowFullScreen=&quot;true&quot; mode=&quot;transparent&quot; type=&quot;application/x-shockwave-flash&quot;&gt;&lt;/embed&gt; iframe标签： 1&lt;iframe height=498 width=510 src=&quot;http://player.youku.com/embed/XMTY1MTI3NjMyNA==&quot; frameborder=0 allowfullscreen&gt;&lt;/iframe&gt;]]></content>
       <tags>
         <tag>blog</tag>
       </tags>
