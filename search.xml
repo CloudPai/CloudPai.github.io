@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[博客样式改进杂记]]></title>
+    <title><![CDATA[需要进行的改进]]></title>
     <url>%2F2018%2F02%2F26%2F2018-02-26%2F</url>
+    <content type="text"><![CDATA[TODO： 博客发布前自动自动备份到git上 修改aplayer参数实现歌词显示]]></content>
+      <tags>
+        <tag>blog</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[博客样式改进杂记]]></title>
+    <url>%2F2018%2F02%2F26%2F%E5%8D%9A%E5%AE%A2%E6%A0%B7%E5%BC%8F%E6%94%B9%E8%BF%9B%E6%9D%82%E8%AE%B0%2F</url>
     <content type="text"><![CDATA[评论区样式修改：文件位置：themes/next/source/css/_common/components/comments.styl 修改内容： 1234.comments &#123; background white; opacity:0.8;&#125;]]></content>
       <tags>
         <tag>blog</tag>
@@ -10,7 +18,7 @@
   </entry>
   <entry>
     <title><![CDATA[🎵记录点滴生活]]></title>
-    <url>%2F2018%2F02%2F24%2F2018-02-24%2F</url>
+    <url>%2F2018%2F02%2F24%2F%F0%9F%8E%B5%E8%AE%B0%E5%BD%95%E7%82%B9%E6%BB%B4%E7%94%9F%E6%B4%BB%2F</url>
     <content type="text"><![CDATA[记录点滴生活《BINGBIAN病变》歌曲不错，曲调有些忧伤]]></content>
       <tags>
         <tag>杂记</tag>
