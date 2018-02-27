@@ -1185,36 +1185,34 @@
   <!-- <!-- <script src="https://cdn.bootcss.com/aplayer/1.6.0/APlayer.min.js"></script>
 
 <script src="https://api.i-meto.com/music/player.js"></script> --> -->
+  
   <!--移动端判断，是否引入背景-->
   <script>
-  var browser={
-  versions:function(){
-  var u = navigator.userAgent, app = navigator.appVersion;
-  return {//移动终端浏览器版本信息
-  trident: u.indexOf('Trident') > -1, //IE内核
-  presto: u.indexOf('Presto') > -1, //opera内核
-  webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
-  gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
-  mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
-  ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
-  android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
-  iPhone: u.indexOf('iPhone') > -1 , //是否为iPhone或者QQHD浏览器
-  iPad: u.indexOf('iPad') > -1, //是否iPad
-  webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
-  };
-  }(),
-  language:(navigator.browserLanguage || navigator.language).toLowerCase()
-  }
-   
-  if(browser.versions.mobile || browser.versions.ios || browser.versions.android ||
-  browser.versions.iPhone || browser.versions.iPad){
-   
-  }else{
-  document.write("<script type=\'text/javascript\' src=\'/js/src/particle.js\'><\/script>");
-  }
-   
+  var browser={  
+      versions:function(){   
+             var u = navigator.userAgent, app = navigator.appVersion;   
+             return {//移动终端浏览器版本信息
+                  trident: u.indexOf('Trident') > -1, //IE内核
+                  presto: u.indexOf('Presto') > -1, //opera内核
+                  webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                  gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                  mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                  ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                  android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                  iPhone: u.indexOf('iPhone') > -1 , //是否为iPhone或者QQHD浏览器
+                  iPad: u.indexOf('iPad') > -1, //是否iPad
+                  webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+              };  
+           }(),  
+           language:(navigator.browserLanguage || navigator.language).toLowerCase()  
+  }   
+    if(browser.versions.mobile || browser.versions.ios || browser.versions.android ||   
+      browser.versions.iPhone || browser.versions.iPad){        
+               
+    }else{
+    document.write("<script type=\'text/javascript\'  src=\'/js/src/particle.js\'><\/script>");
+    }
   </script>
-
 
   
 <script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":-80,"vOffset":-50},"mobile":{"show":false,"scale":0.2},"react":{"opacityDefault":1,"opacityOnHover":0.2}});</script></body>
