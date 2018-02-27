@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[需要进行的改进]]></title>
     <url>%2F2018%2F02%2F26%2F2018-02-26%2F</url>
-    <content type="text"><![CDATA[TODO： [ ] 博客发布前自动自动备份到git上 [ ] 禁止移动端的背景图片加载，以加快移动端载入速度 学习 Alfred workflow实现打开重启任意应用 学习如何在只修改博客内容的情况下只更新部分md文件，而不是生成全部文件？？貌似不行]]></content>
+    <content type="text"><![CDATA[TODO： 博客发布前自动自动备份到git上 禁止移动端的背景图片加载，以加快移动端载入速度 学习 Alfred workflow实现打开重启任意应用 学习如何在只修改博客内容的情况下只更新部分md文件，而不是生成全部文件？？貌似不行]]></content>
       <tags>
         <tag>blog</tag>
       </tags>
