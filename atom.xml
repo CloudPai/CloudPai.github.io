@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cloudpai.site/"/>
-  <updated>2018-02-27T16:31:37.029Z</updated>
+  <updated>2018-02-28T12:05:05.889Z</updated>
   <id>http://cloudpai.site/</id>
   
   <author>
@@ -15,6 +15,55 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>git操作</title>
+    <link href="http://cloudpai.site/2018/02/28/2018-02-28-1/"/>
+    <id>http://cloudpai.site/2018/02/28/2018-02-28-1/</id>
+    <published>2018-02-28T08:53:34.222Z</published>
+    <updated>2018-02-28T12:05:05.889Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;blockquote&gt;
+&lt;p&gt;创建的仓库：默认master&lt;br&gt;克隆的仓库：默认origin（源）&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;code&gt;git add&lt;/co
+      
+    
+    </summary>
+    
+    
+      <category term="git" scheme="http://cloudpai.site/tags/git/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mac使用</title>
+    <link href="http://cloudpai.site/2018/02/28/2018-02-28/"/>
+    <id>http://cloudpai.site/2018/02/28/2018-02-28/</id>
+    <published>2018-02-28T05:02:15.788Z</published>
+    <updated>2018-02-28T05:22:35.348Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;blockquote&gt;
+&lt;p&gt;Mac系统如何显示隐藏文件？&lt;br&gt;以”.”开头的隐藏文件如何在MAC系统下显示？&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;blockquote&gt;
+&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="mac" scheme="http://cloudpai.site/tags/mac/"/>
+    
+  </entry>
   
   <entry>
     <title>需要进行的改进</title>
