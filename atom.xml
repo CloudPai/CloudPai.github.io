@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cloudpai.site/"/>
-  <updated>2018-02-28T16:26:14.421Z</updated>
+  <updated>2018-02-28T16:59:36.751Z</updated>
   <id>http://cloudpai.site/</id>
   
   <author>
@@ -17,18 +17,18 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>blog通过git备份与恢复的最优操作（test1）</title>
+    <title>blog通过git备份与恢复的最优操作</title>
     <link href="http://cloudpai.site/2018/02/28/blog%E9%80%9A%E8%BF%87git%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D%E7%9A%84%E6%9C%80%E4%BC%98%E6%93%8D%E4%BD%9C/"/>
     <id>http://cloudpai.site/2018/02/28/blog通过git备份与恢复的最优操作/</id>
     <published>2018-02-28T13:32:23.871Z</published>
-    <updated>2018-02-28T16:26:14.421Z</updated>
+    <updated>2018-02-28T16:59:36.751Z</updated>
     
     <summary type="html">
     
       
       
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;引言&lt;/strong&gt;：&lt;br&gt;Hexo生成的文件里面是有一个.gitignore的，所以它的本意应该也是想我们把这些文件放到Git
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;img src=&quot;http://p4lmrb1gp.bkt.clouddn.com/15198371703544.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;blockquote&gt;
       
     
     </summary>
