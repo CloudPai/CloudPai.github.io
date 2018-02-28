@@ -288,6 +288,220 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/02/28/blog通过git备份与恢复的最优操作/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CloudPai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudPai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/28/blog通过git备份与恢复的最优操作/" itemprop="url">blog通过git备份与恢复的最优操作</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-28T21:32:23+08:00">
+                2018-02-28
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-02-28T22:28:42+08:00">
+                2018-02-28
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/02/28/blog通过git备份与恢复的最优操作/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/02/28/blog通过git备份与恢复的最优操作/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  730
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <script src="/assets/js/APlayer.min.js"> </script><blockquote>
+<p><strong>引言</strong>：<br>Hexo生成的文件里面是有一个.gitignore的，所以它的本意应该也是想我们把这些文件放到GitHub上存放的。这个时候就可以用分支的思路！一个分支用来存放Hexo生成的网站原始的文件，另一个分支用来存放生成的静态网页。特别简洁。</p>
+</blockquote>
+<h1 id="关于搭建的流程"><a href="#关于搭建的流程" class="headerlink" title="关于搭建的流程"></a>关于搭建的流程</h1><ol>
+<li>创建仓库，<a href="http://CrazyMilk.github.io；" target="_blank" rel="noopener">http://CrazyMilk.github.io；</a></li>
+<li>创建两个分支：master 与 hexo；</li>
+<li>设置hexo为默认分支（因为我们只需要手动管理这个分支上的Hexo网站文件）；</li>
+<li>使用git clone <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:CrazyMilk/CrazyMilk.github.io.git拷贝仓库；</li>
+<li>在本地<a href="http://CrazyMilk.github.io" target="_blank" rel="noopener">http://CrazyMilk.github.io</a> 仓库新建一个文件后，进入文件中。在该文件夹下通过Git bash依次执行npm install hexo、hexo init、npm install 和 npm install hexo-deployer-git（此时当前分支应显示为hexo）;</li>
+<li>修改_config.yml中的deploy参数，分支应为master；</li>
+<li>依次执行git add .、git commit -m “…”、git push origin hexo提交网站相关的文件；</li>
+<li>执行hexo g -d生成网站并部署到GitHub上。这样一来，在GitHub上的<a href="http://CrazyMilk.github.io仓库就有两个分支，一个hexo分支用来存放网站的原始文件，一个master分支用来存放生成的静态网页。" target="_blank" rel="noopener">http://CrazyMilk.github.io仓库就有两个分支，一个hexo分支用来存放网站的原始文件，一个master分支用来存放生成的静态网页。</a></li>
+</ol>
+<h1 id="关于日常的改动流程"><a href="#关于日常的改动流程" class="headerlink" title="关于日常的改动流程"></a>关于日常的改动流程</h1><blockquote>
+<p>在本地对博客进行修改（添加新博文、修改样式等等）后，通过下面的流程进行管理。</p>
+</blockquote>
+<ol>
+<li>依次执行git add .、git commit -m “…”、git push origin hexo指令将改动推送到GitHub（此时当前分支应为hexo）；</li>
+<li>然后才执行hexo g -d发布网站到master分支上。虽然两个过程顺序调转一般不会有问题，不过逻辑上这样的顺序是绝对没问题的（例如突然死机要重装了，悲催….的情况，调转顺序就有问题了）。</li>
+</ol>
+<h1 id="本地资料丢失后的流程当重装电脑之后，或者想在其他电脑上修改博客，"><a href="#本地资料丢失后的流程当重装电脑之后，或者想在其他电脑上修改博客，" class="headerlink" title="本地资料丢失后的流程当重装电脑之后，或者想在其他电脑上修改博客，"></a>本地资料丢失后的流程当重装电脑之后，或者想在其他电脑上修改博客，</h1><p>可以使用下列步骤：</p>
+<ol>
+<li><p>使用git clone <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:CrazyMilk/CrazyMilk.github.io.git拷贝仓库（默认分支为hexo）；</p>
+</li>
+<li><p>在本地新拷贝的<a href="http://CrazyMilk.github.io文件夹下通过Git" target="_blank" rel="noopener">http://CrazyMilk.github.io文件夹下通过Git</a> bash依次执行下列指令：npm install hexo、npm install、npm install hexo-deployer-git（记得，不需要hexo init这条指令）。</p>
+<blockquote>
+<p>其实只要把hexo和需要每个插件都写入到package.json中（平常安装时加–save参数会自动写入），那么git clone下来之后，只要一句npm install就能装好hexo和所有的依赖，开箱即用 ^_^</p>
+</blockquote>
+</li>
+</ol>
+<h1 id="迁移源码库"><a href="#迁移源码库" class="headerlink" title="迁移源码库"></a>迁移源码库</h1><p>一开始用了该方法，后来意识到备份到github分支的博客源码也是public的，后来改为备份到开源中国git私有库了</p>
+<hr>
+<p><a href="https://crazymilk.github.io/2015/12/28/GitHub-Pages-Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" target="_blank" rel="noopener">参考1：GitHub Pages + Hexo搭建博客</a><br><a href="https://www.zhihu.com/question/21193762/answer/79109280" target="_blank" rel="noopener">参考2：使用hexo，如果换了电脑怎么更新博客？ - CrazyMilk的回答 - 知乎</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+
+     
+    
+
+
+    
+
+    
+
+    
+
+
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/02/28/2018-02-28-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1174,7 +1388,7 @@
             <script src="/assets/js/APlayer.min.js"> </script><p><img src="http://p4lmrb1gp.bkt.clouddn.com/秒速五厘米.gif" alt="秒速五厘米"> </p>
 <p><center><br><strong>记录点滴生活<br>《BINGBIAN病变》<br>歌曲不错，曲调有些忧伤</strong><br></center></p>
 <p><center><br><!--<audio src="http://mp3.qqmusic.cc/yq/211758246.mp3" controls="controls"></audio>
-</center>--><br><div id="aplayer1" class="aplayer" style="margin-bottom: 20px;width:100%;"><pre class="aplayer-lrc-content">[00:00.21]罗之豪 - BINGBIAN病变
+</center>--><br><div id="aplayer0" class="aplayer" style="margin-bottom: 20px;width:100%;"><pre class="aplayer-lrc-content">[00:00.21]罗之豪 - BINGBIAN病变
 [00:01.87]词：Cubi/Fi9
 [00:02.76]曲：Jurrivh
 [00:03.72]混音：Fi9
@@ -1234,7 +1448,7 @@
 [03:07.64]又浑浊了几岁</pre></div>
 		<script>
 			var ap = new APlayer({
-				element: document.getElementById("aplayer1"),
+				element: document.getElementById("aplayer0"),
 				narrow: false,
 				autoplay: false,
 				showlrc: 2,
@@ -1635,7 +1849,7 @@
 <h5 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">title ：音乐标题</span><br><span class="line">author：音乐作者</span><br><span class="line">url：音乐文件网址</span><br><span class="line">picture_url：可选，音乐图片网址</span><br><span class="line">narrow：可选，窄款式</span><br><span class="line">autoplay：可选，自动播放音乐，不支持移动浏览器</span><br><span class="line">width:xxx：可选，前缀width:，播放器宽度（默认值：100％）</span><br><span class="line">lrc:xxx：可选，前缀lrc:，LRC文件url</span><br></pre></td></tr></table></figure>
 <p>示例:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% aplayer &quot;Caffeine&quot; &quot;Jeff Williams&quot; &quot;caffeine.mp3&quot; &quot;picture.jpg&quot; &quot;lrc:caffeine.txt&quot; %&#125;</span><br></pre></td></tr></table></figure>
-<div id="aplayer0" class="aplayer" style="margin-bottom: 20px;width:100%;"><pre class="aplayer-lrc-content">[ti:春意红包 (Vocaloid Ver.)]
+<div id="aplayer1" class="aplayer" style="margin-bottom: 20px;width:100%;"><pre class="aplayer-lrc-content">[ti:春意红包 (Vocaloid Ver.)]
 [ar:乐正绫/心华/洛天依]
 [al:春意红包]
 [by:]
@@ -1728,7 +1942,7 @@
 [04:32.97]红绳绕 拆开春意大红包</pre></div>
 		<script>
 			var ap = new APlayer({
-				element: document.getElementById("aplayer0"),
+				element: document.getElementById("aplayer1"),
 				narrow: false,
 				autoplay: false,
 				showlrc: 2,
@@ -1849,7 +2063,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1980,7 +2194,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">3.2k</span>
+    <span title="Site words total count">3.9k</span>
   
 </div>
 
