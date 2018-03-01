@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cloudpai.site/"/>
-  <updated>2018-02-28T16:59:36.751Z</updated>
+  <updated>2018-03-01T11:25:24.331Z</updated>
   <id>http://cloudpai.site/</id>
   
   <author>
@@ -15,6 +15,51 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>blogs 上的标签tag参数</title>
+    <link href="http://cloudpai.site/2018/03/01/2018-03-01/"/>
+    <id>http://cloudpai.site/2018/03/01/2018-03-01/</id>
+    <published>2018-03-01T11:25:11.000Z</published>
+    <updated>2018-03-01T11:25:24.331Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/s
+      
+    
+    </summary>
+    
+    
+      <category term="mac" scheme="http://cloudpai.site/tags/mac/"/>
+    
+      <category term="blog" scheme="http://cloudpai.site/tags/blog/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>需要进行的改进</title>
+    <link href="http://cloudpai.site/2018/03/01/%E9%9C%80%E8%A6%81%E8%BF%9B%E8%A1%8C%E7%9A%84%E6%94%B9%E8%BF%9B/"/>
+    <id>http://cloudpai.site/2018/03/01/需要进行的改进/</id>
+    <published>2018-02-28T16:00:00.000Z</published>
+    <updated>2018-03-01T11:25:57.202Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h3 id=&quot;TODO：&quot;&gt;&lt;a href=&quot;#TODO：&quot; class=&quot;headerlink&quot; title=&quot;TODO：&quot;&gt;&lt;/a&gt;TODO：&lt;/h3&gt;&lt;ul&gt;
+&lt;li st
+      
+    
+    </summary>
+    
+    
+      <category term="blog" scheme="http://cloudpai.site/tags/blog/"/>
+    
+  </entry>
   
   <entry>
     <title>blog通过git备份与恢复的最优操作</title>
@@ -43,7 +88,7 @@
     <link href="http://cloudpai.site/2018/02/28/2018-02-28-1/"/>
     <id>http://cloudpai.site/2018/02/28/2018-02-28-1/</id>
     <published>2018-02-28T08:53:34.222Z</published>
-    <updated>2018-02-28T12:05:05.889Z</updated>
+    <updated>2018-03-01T11:26:32.109Z</updated>
     
     <summary type="html">
     
@@ -84,28 +129,6 @@
     
     
       <category term="mac" scheme="http://cloudpai.site/tags/mac/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>需要进行的改进</title>
-    <link href="http://cloudpai.site/2018/02/26/%E9%9C%80%E8%A6%81%E8%BF%9B%E8%A1%8C%E7%9A%84%E6%94%B9%E8%BF%9B/"/>
-    <id>http://cloudpai.site/2018/02/26/需要进行的改进/</id>
-    <published>2018-02-26T15:59:29.629Z</published>
-    <updated>2018-02-28T17:15:44.740Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h3 id=&quot;TODO：&quot;&gt;&lt;a href=&quot;#TODO：&quot; class=&quot;headerlink&quot; title=&quot;TODO：&quot;&gt;&lt;/a&gt;TODO：&lt;/h3&gt;&lt;ul&gt;
-&lt;li st
-      
-    
-    </summary>
-    
-    
-      <category term="blog" scheme="http://cloudpai.site/tags/blog/"/>
     
   </entry>
   
