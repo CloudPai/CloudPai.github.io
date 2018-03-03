@@ -3,7 +3,7 @@
   <entry>
     <title><![CDATA[workflow工作流]]></title>
     <url>%2F2018%2F03%2F04%2F2018-03-04%2F</url>
-    <content type="text"><![CDATA[工作流脚本测试：测试成功~]]></content>
+    <content type="text"><![CDATA[工作流脚本测试：测试成功~晚安~~]]></content>
       <tags>
         <tag>scratch</tag>
       </tags>
@@ -42,19 +42,19 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[mac使用]]></title>
-    <url>%2F2018%2F02%2F28%2F2018-02-28%2F</url>
-    <content type="text"><![CDATA[Mac系统如何显示隐藏文件？以”.”开头的隐藏文件如何在MAC系统下显示？ 答：Command+Shift+. 可以显示隐藏文件、文件夹，再按一次，恢复隐藏；finder下使用Command+Shift+G 可以前往任何文件夹，包括隐藏文件夹。 显示 隐藏文件 1234567显示全部文件defaults write com.apple.finder AppleShowAllFiles -bool trueosascript -e &apos;tell application &quot;Finder&quot; to quit&apos;不显示全部文件defaults write com.apple.finder AppleShowAllFiles -bool falseosascript -e &apos;tell application &quot;Finder&quot; to quit&apos;]]></content>
-      <tags>
-        <tag>mac</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[git操作]]></title>
     <url>%2F2018%2F02%2F28%2F2018-02-28-1%2F</url>
     <content type="text"><![CDATA[创建的仓库：默认master克隆的仓库：默认origin（源） git add 开始跟踪一个新文件git status显示git状态 git commit提交更新 git diff：比较工作区和缓存区的不同。git diff --cached：比较缓存区和仓库的不同。 git pull 命令自动抓取数据下来，然后将远端分支自动合并到本地仓库中当前分支 git push [remote-name] [branch-name] 如果要把本地的 master 分支推送到 origin 服务器上（再次说明下，克隆操作会自动使用默认的 master 和 origin 名字），可以运行下面的命令：git push origin master git log显示从最近到最远的提交日志。包含每个提交的SHA1校验和、作者的名字和邮箱、提交时间以及提交说明等。gitk使用图形化工具查阅提交历史 git commit --amend修改最后一次提交 git reset HEAD &lt;file&gt;...取消已经暂存的文件 Git 分支git branch创建一个新的分支 git commit -a -m &#39;made other changes&#39; 提交分支git mergetool调用一个可视化的合并工具并引导你解决所有冲突 git学习链接]]></content>
       <tags>
         <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[mac使用]]></title>
+    <url>%2F2018%2F02%2F28%2F2018-02-28%2F</url>
+    <content type="text"><![CDATA[Mac系统如何显示隐藏文件？以”.”开头的隐藏文件如何在MAC系统下显示？ 答：Command+Shift+. 可以显示隐藏文件、文件夹，再按一次，恢复隐藏；finder下使用Command+Shift+G 可以前往任何文件夹，包括隐藏文件夹。 显示 隐藏文件 1234567显示全部文件defaults write com.apple.finder AppleShowAllFiles -bool trueosascript -e &apos;tell application &quot;Finder&quot; to quit&apos;不显示全部文件defaults write com.apple.finder AppleShowAllFiles -bool falseosascript -e &apos;tell application &quot;Finder&quot; to quit&apos;]]></content>
+      <tags>
+        <tag>mac</tag>
       </tags>
   </entry>
   <entry>
