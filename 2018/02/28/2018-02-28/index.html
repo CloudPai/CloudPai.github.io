@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="Mac系统如何显示隐藏文件？以”.”开头的隐藏文件如何在MAC系统下显示？   答：Command+Shift+. 可以显示隐藏文件、文件夹，再按一次，恢复隐藏；finder下使用Command+Shift+G 可以前往任何文件夹，包括隐藏文件夹。      显示 隐藏文件 1234567显示全部文件defaults write com.apple.finder AppleShowAllFil">
+<meta name="description" content="Mac系统如何显示隐藏文件？以”.”开头的隐藏文件如何在MAC系统下显示？   答：Command+Shift+. 可以显示隐藏文件、文件夹，再按一次，恢复隐藏；finder下使用Command+Shift+G 可以前往任何文件夹，包括隐藏文件夹。      显示 隐藏文件 1234567#显示全部文件defaults write com.apple.finder AppleShowAllFi">
 <meta name="keywords" content="mac">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mac使用">
 <meta property="og:url" content="http://cloudpai.site/2018/02/28/2018-02-28/index.html">
 <meta property="og:site_name" content="CloudPai">
-<meta property="og:description" content="Mac系统如何显示隐藏文件？以”.”开头的隐藏文件如何在MAC系统下显示？   答：Command+Shift+. 可以显示隐藏文件、文件夹，再按一次，恢复隐藏；finder下使用Command+Shift+G 可以前往任何文件夹，包括隐藏文件夹。      显示 隐藏文件 1234567显示全部文件defaults write com.apple.finder AppleShowAllFil">
+<meta property="og:description" content="Mac系统如何显示隐藏文件？以”.”开头的隐藏文件如何在MAC系统下显示？   答：Command+Shift+. 可以显示隐藏文件、文件夹，再按一次，恢复隐藏；finder下使用Command+Shift+G 可以前往任何文件夹，包括隐藏文件夹。      显示 隐藏文件 1234567#显示全部文件defaults write com.apple.finder AppleShowAllFi">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-01T11:32:49.875Z">
+<meta property="og:updated_time" content="2018-03-04T13:24:25.837Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mac使用">
-<meta name="twitter:description" content="Mac系统如何显示隐藏文件？以”.”开头的隐藏文件如何在MAC系统下显示？   答：Command+Shift+. 可以显示隐藏文件、文件夹，再按一次，恢复隐藏；finder下使用Command+Shift+G 可以前往任何文件夹，包括隐藏文件夹。      显示 隐藏文件 1234567显示全部文件defaults write com.apple.finder AppleShowAllFil">
+<meta name="twitter:description" content="Mac系统如何显示隐藏文件？以”.”开头的隐藏文件如何在MAC系统下显示？   答：Command+Shift+. 可以显示隐藏文件、文件夹，再按一次，恢复隐藏；finder下使用Command+Shift+G 可以前往任何文件夹，包括隐藏文件夹。      显示 隐藏文件 1234567#显示全部文件defaults write com.apple.finder AppleShowAllFi">
 
 
 
@@ -334,8 +334,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-01T19:32:49+08:00">
-                2018-03-01
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-04T21:24:25+08:00">
+                2018-03-04
               </time>
             
           </span>
@@ -417,7 +417,7 @@
 <p>答：<br>Command+Shift+. 可以显示隐藏文件、文件夹，再按一次，恢复隐藏；<br>finder下使用Command+Shift+G 可以前往任何文件夹，包括隐藏文件夹。    </p>
 </blockquote>
 <p>显示 隐藏文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">显示全部文件</span><br><span class="line">defaults write com.apple.finder AppleShowAllFiles -bool true</span><br><span class="line">osascript -e &apos;tell application &quot;Finder&quot; to quit&apos;</span><br><span class="line"></span><br><span class="line">不显示全部文件</span><br><span class="line">defaults write com.apple.finder AppleShowAllFiles -bool false</span><br><span class="line">osascript -e &apos;tell application &quot;Finder&quot; to quit&apos;</span><br></pre></td></tr></table></figure>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#显示全部文件</span></span><br><span class="line">defaults write com.apple.finder AppleShowAllFiles -bool <span class="literal">true</span></span><br><span class="line">osascript -e <span class="string">'tell application "Finder" to quit'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#不显示全部文件</span></span><br><span class="line">defaults write com.apple.finder AppleShowAllFiles -bool <span class="literal">false</span></span><br><span class="line">osascript -e <span class="string">'tell application "Finder" to quit'</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
