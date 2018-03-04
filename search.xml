@@ -42,11 +42,11 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[blog通过git备份与恢复的最优操作]]></title>
-    <url>%2F2018%2F02%2F28%2Fblog%E9%80%9A%E8%BF%87git%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D%E7%9A%84%E6%9C%80%E4%BC%98%E6%93%8D%E4%BD%9C%2F</url>
-    <content type="text"><![CDATA[引言：Hexo生成的文件里面是有一个.gitignore的，所以它的本意应该也是想我们把这些文件放到GitHub上存放的。这个时候就可以用分支的思路！一个分支用来存放Hexo生成的网站原始的文件，另一个分支用来存放生成的静态网页。特别简洁。 关于搭建的流程 创建仓库，http://CrazyMilk.github.io； 创建两个分支：master 与 hexo； 设置hexo为默认分支（因为我们只需要手动管理这个分支上的Hexo网站文件）； 使用git clone git@github.com:CrazyMilk/CrazyMilk.github.io.git拷贝仓库； 在本地http://CrazyMilk.github.io 仓库新建一个文件后，进入文件中。在该文件夹下通过Git bash依次执行npm install hexo、hexo init、npm install 和 npm install hexo-deployer-git（此时当前分支应显示为hexo）; 修改_config.yml中的deploy参数，分支应为master； 依次执行git add .、git commit -m “…”、git push origin hexo提交网站相关的文件； 执行hexo g -d生成网站并部署到GitHub上。这样一来，在GitHub上的http://CrazyMilk.github.io仓库就有两个分支，一个hexo分支用来存放网站的原始文件，一个master分支用来存放生成的静态网页。 关于日常的改动流程 在本地对博客进行修改（添加新博文、修改样式等等）后，通过下面的流程进行管理。 依次执行git add .、git commit -m “…”、git push origin hexo指令将改动推送到GitHub（此时当前分支应为hexo）； 然后才执行hexo g -d发布网站到master分支上。虽然两个过程顺序调转一般不会有问题，不过逻辑上这样的顺序是绝对没问题的（例如突然死机要重装了，悲催….的情况，调转顺序就有问题了）。 本地资料丢失后的流程当重装电脑之后，或者想在其他电脑上修改博客，可以使用下列步骤： 使用git clone git@github.com:CrazyMilk/CrazyMilk.github.io.git拷贝仓库（默认分支为hexo）； 在本地新拷贝的http://CrazyMilk.github.io文件夹下通过Git bash依次执行下列指令：npm install hexo、npm install、npm install hexo-deployer-git（记得，不需要hexo init这条指令）。 其实只要把hexo和需要每个插件都写入到package.json中（平常安装时加–save参数会自动写入），那么git clone下来之后，只要一句npm install就能装好hexo和所有的依赖，开箱即用 ^_^ 迁移源码库一开始用了该方法，后来意识到备份到github分支的博客源码也是public的，后来改为备份到开源中国git私有库了 参考1：GitHub Pages + Hexo搭建博客参考2：使用hexo，如果换了电脑怎么更新博客？ - CrazyMilk的回答 - 知乎]]></content>
+    <title><![CDATA[git操作]]></title>
+    <url>%2F2018%2F02%2F28%2F2018-02-28-1%2F</url>
+    <content type="text"><![CDATA[创建的仓库：默认master克隆的仓库：默认origin（源） git add 开始跟踪一个新文件git status显示git状态 git commit提交更新 git diff：比较工作区和缓存区的不同。git diff --cached：比较缓存区和仓库的不同。 git pull 命令自动抓取数据下来，然后将远端分支自动合并到本地仓库中当前分支 git push [remote-name] [branch-name] 如果要把本地的 master 分支推送到 origin 服务器上（再次说明下，克隆操作会自动使用默认的 master 和 origin 名字），可以运行下面的命令：git push origin master git log显示从最近到最远的提交日志。包含每个提交的SHA1校验和、作者的名字和邮箱、提交时间以及提交说明等。gitk使用图形化工具查阅提交历史 git commit --amend修改最后一次提交 git reset HEAD &lt;file&gt;...取消已经暂存的文件 Git 分支git branch创建一个新的分支 git commit -a -m &#39;made other changes&#39; 提交分支git mergetool调用一个可视化的合并工具并引导你解决所有冲突 git学习链接]]></content>
       <tags>
-        <tag>blog</tag>
+        <tag>git</tag>
       </tags>
   </entry>
   <entry>
@@ -58,11 +58,11 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[git操作]]></title>
-    <url>%2F2018%2F02%2F28%2F2018-02-28-1%2F</url>
-    <content type="text"><![CDATA[创建的仓库：默认master克隆的仓库：默认origin（源） git add 开始跟踪一个新文件git status显示git状态 git commit提交更新 git diff：比较工作区和缓存区的不同。git diff --cached：比较缓存区和仓库的不同。 git pull 命令自动抓取数据下来，然后将远端分支自动合并到本地仓库中当前分支 git push [remote-name] [branch-name] 如果要把本地的 master 分支推送到 origin 服务器上（再次说明下，克隆操作会自动使用默认的 master 和 origin 名字），可以运行下面的命令：git push origin master git log显示从最近到最远的提交日志。包含每个提交的SHA1校验和、作者的名字和邮箱、提交时间以及提交说明等。gitk使用图形化工具查阅提交历史 git commit --amend修改最后一次提交 git reset HEAD &lt;file&gt;...取消已经暂存的文件 Git 分支git branch创建一个新的分支 git commit -a -m &#39;made other changes&#39; 提交分支git mergetool调用一个可视化的合并工具并引导你解决所有冲突 git学习链接]]></content>
+    <title><![CDATA[blog通过git备份与恢复的最优操作]]></title>
+    <url>%2F2018%2F02%2F28%2Fblog%E9%80%9A%E8%BF%87git%E5%A4%87%E4%BB%BD%E4%B8%8E%E6%81%A2%E5%A4%8D%E7%9A%84%E6%9C%80%E4%BC%98%E6%93%8D%E4%BD%9C%2F</url>
+    <content type="text"><![CDATA[引言：Hexo生成的文件里面是有一个.gitignore的，所以它的本意应该也是想我们把这些文件放到GitHub上存放的。这个时候就可以用分支的思路！一个分支用来存放Hexo生成的网站原始的文件，另一个分支用来存放生成的静态网页。特别简洁。 关于搭建的流程 创建仓库，http://CrazyMilk.github.io； 创建两个分支：master 与 hexo； 设置hexo为默认分支（因为我们只需要手动管理这个分支上的Hexo网站文件）； 使用git clone git@github.com:CrazyMilk/CrazyMilk.github.io.git拷贝仓库； 在本地http://CrazyMilk.github.io 仓库新建一个文件后，进入文件中。在该文件夹下通过Git bash依次执行npm install hexo、hexo init、npm install 和 npm install hexo-deployer-git（此时当前分支应显示为hexo）; 修改_config.yml中的deploy参数，分支应为master； 依次执行git add .、git commit -m “…”、git push origin hexo提交网站相关的文件； 执行hexo g -d生成网站并部署到GitHub上。这样一来，在GitHub上的http://CrazyMilk.github.io仓库就有两个分支，一个hexo分支用来存放网站的原始文件，一个master分支用来存放生成的静态网页。 关于日常的改动流程 在本地对博客进行修改（添加新博文、修改样式等等）后，通过下面的流程进行管理。 依次执行git add .、git commit -m “…”、git push origin hexo指令将改动推送到GitHub（此时当前分支应为hexo）； 然后才执行hexo g -d发布网站到master分支上。虽然两个过程顺序调转一般不会有问题，不过逻辑上这样的顺序是绝对没问题的（例如突然死机要重装了，悲催….的情况，调转顺序就有问题了）。 本地资料丢失后的流程当重装电脑之后，或者想在其他电脑上修改博客，可以使用下列步骤： 使用git clone git@github.com:CrazyMilk/CrazyMilk.github.io.git拷贝仓库（默认分支为hexo）； 在本地新拷贝的http://CrazyMilk.github.io文件夹下通过Git bash依次执行下列指令：npm install hexo、npm install、npm install hexo-deployer-git（记得，不需要hexo init这条指令）。 其实只要把hexo和需要每个插件都写入到package.json中（平常安装时加–save参数会自动写入），那么git clone下来之后，只要一句npm install就能装好hexo和所有的依赖，开箱即用 ^_^ 迁移源码库一开始用了该方法，后来意识到备份到github分支的博客源码也是public的，后来改为备份到开源中国git私有库了 参考1：GitHub Pages + Hexo搭建博客参考2：使用hexo，如果换了电脑怎么更新博客？ - CrazyMilk的回答 - 知乎]]></content>
       <tags>
-        <tag>git</tag>
+        <tag>blog</tag>
       </tags>
   </entry>
   <entry>
