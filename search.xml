@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title></title>
+    <title><![CDATA[《深入理解java虚拟机》学习笔记]]></title>
     <url>%2F2018%2F03%2F05%2F2018-03-05-2%2F</url>
-    <content type="text"><![CDATA[title: 《深入理解java虚拟机》学习笔记tag: JVM date: 2018-03-05 22:55:31全书核心分布： ###第二章 Java内存区域与内存溢出异常第二章结构： Java 虚拟机在执行 Java 程序的过程中会把它所管理的内存划分为若干个不同的数据区域。这些区域都有各自的用途，以及创建和销毁时间。根据 《Java 虚拟机规范》的规定，Java 虚拟机所管理的内存将会包括以下几个运行时数据区域。参考：https://www.jianshu.com/p/989c90f339b9 2.1 - 程序计数器（Program Counter Register） 概述：该区域是一块较小的内存空间，它可以看作是当前线程所执行的字节码的 行号指示器。 作用：通过改变计数器的值来选取下一条需要执行的字节码指令。（分支、循环、跳转、异常处理、线程恢复等）基础功能都依赖与其完成。 特点：1.线程私有：因为 Java 虚拟机的多线程是通过线程轮流切换并分配处理器执行时间来实现的，在某一时刻，只会执行一条线程。因此，为了线程切换后能恢复到正确的执行位置，每条线程都需要有一个独立的程序计数器。2.无内存溢出：如果线程正在执行的是一个 Java 方法，这个计数器记录的是正在 执行的虚拟机字节码指令的地址；如果正在执行的是 Native 方法（本地方法，一个调用非Java代码的接口），这个计数器值则为空（Undefined）。此内存区域是唯一一个在 Java 虚拟机程序规范中没有规定任何 OutOfMemoryError情况的区域。（个人理解：参考C++理解是：当线程中调用native方法的时候，当前线程应当会被阻塞，重新启动一个新的线程，那么计数器为空则不会影响新线程的计数器，相互独立。当前线程应当会被阻塞，直到另外一个线程执行结束。当然参数也会被保留）]]></content>
+    <content type="text"><![CDATA[全书核心分布： ###第二章 Java内存区域与内存溢出异常第二章结构： Java 虚拟机在执行 Java 程序的过程中会把它所管理的内存划分为若干个不同的数据区域。这些区域都有各自的用途，以及创建和销毁时间。根据 《Java 虚拟机规范》的规定，Java 虚拟机所管理的内存将会包括以下几个运行时数据区域。参考：https://www.jianshu.com/p/989c90f339b9 2.1 - 程序计数器（Program Counter Register） 概述：该区域是一块较小的内存空间，它可以看作是当前线程所执行的字节码的 行号指示器。 作用：通过改变计数器的值来选取下一条需要执行的字节码指令。（分支、循环、跳转、异常处理、线程恢复等）基础功能都依赖与其完成。 特点：1.线程私有：因为 Java 虚拟机的多线程是通过线程轮流切换并分配处理器执行时间来实现的，在某一时刻，只会执行一条线程。因此，为了线程切换后能恢复到正确的执行位置，每条线程都需要有一个独立的程序计数器。2.无内存溢出：如果线程正在执行的是一个 Java 方法，这个计数器记录的是正在 执行的虚拟机字节码指令的地址；如果正在执行的是 Native 方法（本地方法，一个调用非Java代码的接口），这个计数器值则为空（Undefined）。此内存区域是唯一一个在 Java 虚拟机程序规范中没有规定任何 OutOfMemoryError情况的区域。（个人理解：参考C++理解是：当线程中调用native方法的时候，当前线程应当会被阻塞，重新启动一个新的线程，那么计数器为空则不会影响新线程的计数器，相互独立。当前线程应当会被阻塞，直到另外一个线程执行结束。当然参数也会被保留）]]></content>
+      <tags>
+        <tag>JVM</tag>
+      </tags>
   </entry>
   <entry>
-    <title></title>
+    <title><![CDATA[Java1.8 帮助文档]]></title>
     <url>%2F2018%2F03%2F05%2F2018-03-05-1%2F</url>
-    <content type="text"><![CDATA[title: Java1.8 帮助文档tag: java date: 2018-03-05 20:18:30java 1.6 帮助文档中文链接：http://download.csdn.net/detail/qw599186875/9608735英文Java1.8 帮助文档英文中文 – 谷歌版在线版: https://blog.fondme.cn/apidoc/jdk-1.8-google/下载链接：http://download.csdn.net/detail/qw599186875/9802192]]></content>
+    <content type="text"><![CDATA[java 1.6 帮助文档中文链接：http://download.csdn.net/detail/qw599186875/9608735英文Java1.8 帮助文档英文中文 – 谷歌版在线版: https://blog.fondme.cn/apidoc/jdk-1.8-google/下载链接：http://download.csdn.net/detail/qw599186875/9802192]]></content>
+      <tags>
+        <tag>java</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[大型网站架构技能图谱（Java版）]]></title>
@@ -62,11 +68,11 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[mac使用]]></title>
-    <url>%2F2018%2F02%2F28%2F2018-02-28%2F</url>
-    <content type="text"><![CDATA[Mac系统如何显示隐藏文件？以”.”开头的隐藏文件如何在MAC系统下显示？ 答：Command+Shift+. 可以显示隐藏文件、文件夹，再按一次，恢复隐藏；finder下使用Command+Shift+G 可以前往任何文件夹，包括隐藏文件夹。 显示 隐藏文件 1234567#显示全部文件defaults write com.apple.finder AppleShowAllFiles -bool trueosascript -e 'tell application "Finder" to quit'#不显示全部文件defaults write com.apple.finder AppleShowAllFiles -bool falseosascript -e 'tell application "Finder" to quit']]></content>
+    <title><![CDATA[git操作]]></title>
+    <url>%2F2018%2F02%2F28%2F2018-02-28-1%2F</url>
+    <content type="text"><![CDATA[创建的仓库：默认master克隆的仓库：默认origin（源） git add 开始跟踪一个新文件git status显示git状态 git commit提交更新 git diff：比较工作区和缓存区的不同。git diff --cached：比较缓存区和仓库的不同。 git pull 命令自动抓取数据下来，然后将远端分支自动合并到本地仓库中当前分支 git push [remote-name] [branch-name] 如果要把本地的 master 分支推送到 origin 服务器上（再次说明下，克隆操作会自动使用默认的 master 和 origin 名字），可以运行下面的命令：git push origin master git log显示从最近到最远的提交日志。包含每个提交的SHA1校验和、作者的名字和邮箱、提交时间以及提交说明等。gitk使用图形化工具查阅提交历史 git commit --amend修改最后一次提交 git reset HEAD &lt;file&gt;...取消已经暂存的文件 Git 分支git branch创建一个新的分支 git commit -a -m &#39;made other changes&#39; 提交分支git mergetool调用一个可视化的合并工具并引导你解决所有冲突 git学习链接]]></content>
       <tags>
-        <tag>mac</tag>
+        <tag>git</tag>
       </tags>
   </entry>
   <entry>
@@ -78,11 +84,11 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[git操作]]></title>
-    <url>%2F2018%2F02%2F28%2F2018-02-28-1%2F</url>
-    <content type="text"><![CDATA[创建的仓库：默认master克隆的仓库：默认origin（源） git add 开始跟踪一个新文件git status显示git状态 git commit提交更新 git diff：比较工作区和缓存区的不同。git diff --cached：比较缓存区和仓库的不同。 git pull 命令自动抓取数据下来，然后将远端分支自动合并到本地仓库中当前分支 git push [remote-name] [branch-name] 如果要把本地的 master 分支推送到 origin 服务器上（再次说明下，克隆操作会自动使用默认的 master 和 origin 名字），可以运行下面的命令：git push origin master git log显示从最近到最远的提交日志。包含每个提交的SHA1校验和、作者的名字和邮箱、提交时间以及提交说明等。gitk使用图形化工具查阅提交历史 git commit --amend修改最后一次提交 git reset HEAD &lt;file&gt;...取消已经暂存的文件 Git 分支git branch创建一个新的分支 git commit -a -m &#39;made other changes&#39; 提交分支git mergetool调用一个可视化的合并工具并引导你解决所有冲突 git学习链接]]></content>
+    <title><![CDATA[mac使用]]></title>
+    <url>%2F2018%2F02%2F28%2F2018-02-28%2F</url>
+    <content type="text"><![CDATA[Mac系统如何显示隐藏文件？以”.”开头的隐藏文件如何在MAC系统下显示？ 答：Command+Shift+. 可以显示隐藏文件、文件夹，再按一次，恢复隐藏；finder下使用Command+Shift+G 可以前往任何文件夹，包括隐藏文件夹。 显示 隐藏文件 1234567#显示全部文件defaults write com.apple.finder AppleShowAllFiles -bool trueosascript -e 'tell application "Finder" to quit'#不显示全部文件defaults write com.apple.finder AppleShowAllFiles -bool falseosascript -e 'tell application "Finder" to quit']]></content>
       <tags>
-        <tag>git</tag>
+        <tag>mac</tag>
       </tags>
   </entry>
   <entry>
