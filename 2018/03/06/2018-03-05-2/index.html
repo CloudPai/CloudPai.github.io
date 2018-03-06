@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="cloudpai, blogs" />
+  <meta name="keywords" content="JVM," />
 
 
 
@@ -81,16 +81,26 @@
 
 
 
-<meta name="description" content="加油(๑•̀ㅂ•́)و✧加油">
-<meta property="og:type" content="website">
-<meta property="og:title" content="CloudPai">
-<meta property="og:url" content="http://cloudpai.site/index.html">
+<meta name="description" content="第二章 Java内存区域与内存溢出异常第二章结构：  Java 虚拟机在执行 Java 程序的过程中会把它所管理的内存划分为若干个不同的数据区域。这些区域都有各自的用途，以及创建和销毁时间。根据 《Java 虚拟机规范》的规定，Java 虚拟机所管理的内存将会包括以下几个运行时数据区域。参考：https://www.jianshu.com/p/989c90f339b9  2.2 运行时数据区域具">
+<meta name="keywords" content="JVM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《深入理解java虚拟机》学习笔记之二">
+<meta property="og:url" content="http://cloudpai.site/2018/03/06/2018-03-05-2/index.html">
 <meta property="og:site_name" content="CloudPai">
-<meta property="og:description" content="加油(๑•̀ㅂ•́)و✧加油">
+<meta property="og:description" content="第二章 Java内存区域与内存溢出异常第二章结构：  Java 虚拟机在执行 Java 程序的过程中会把它所管理的内存划分为若干个不同的数据区域。这些区域都有各自的用途，以及创建和销毁时间。根据 《Java 虚拟机规范》的规定，Java 虚拟机所管理的内存将会包括以下几个运行时数据区域。参考：https://www.jianshu.com/p/989c90f339b9  2.2 运行时数据区域具">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15202671970955.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15202686255613.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15202986588747.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15203204212521.jpg">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1034114-5cced3a20d9c6e60.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1034114-6f949a74bab70a22.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1034114-06c1b1fe66628350.gif">
+<meta property="og:updated_time" content="2018-03-06T17:21:35.056Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CloudPai">
-<meta name="twitter:description" content="加油(๑•̀ㅂ•́)و✧加油">
+<meta name="twitter:title" content="《深入理解java虚拟机》学习笔记之二">
+<meta name="twitter:description" content="第二章 Java内存区域与内存溢出异常第二章结构：  Java 虚拟机在执行 Java 程序的过程中会把它所管理的内存划分为若干个不同的数据区域。这些区域都有各自的用途，以及创建和销毁时间。根据 《Java 虚拟机规范》的规定，Java 虚拟机所管理的内存将会包括以下几个运行时数据区域。参考：https://www.jianshu.com/p/989c90f339b9  2.2 运行时数据区域具">
+<meta name="twitter:image" content="http://p4lmrb1gp.bkt.clouddn.com/15202671970955.jpg">
 
 
 
@@ -120,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://cloudpai.site/"/>
+  <link rel="canonical" href="http://cloudpai.site/2018/03/06/2018-03-05-2/"/>
 
 
 
 
 
-  <title>CloudPai</title>
+  <title>《深入理解java虚拟机》学习笔记之二 | CloudPai</title>
   
 
 
@@ -154,8 +164,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -273,9 +282,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -305,9 +314,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/06/2018-03-05-2/" itemprop="url">《深入理解java虚拟机》学习笔记之二</a></h1>
+          <h1 class="post-title" itemprop="name headline">《深入理解java虚拟机》学习笔记之二</h1>
         
 
         <div class="post-meta">
@@ -411,9 +418,7 @@
       
 
       
-        
-          
-            <script src="/assets/js/APlayer.min.js"> </script><h1 id="第二章-Java内存区域与内存溢出异常"><a href="#第二章-Java内存区域与内存溢出异常" class="headerlink" title="第二章 Java内存区域与内存溢出异常"></a>第二章 Java内存区域与内存溢出异常</h1><p>第二章结构：<br><img src="http://p4lmrb1gp.bkt.clouddn.com/15202671970955.jpg" alt=""></p>
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="第二章-Java内存区域与内存溢出异常"><a href="#第二章-Java内存区域与内存溢出异常" class="headerlink" title="第二章 Java内存区域与内存溢出异常"></a>第二章 Java内存区域与内存溢出异常</h1><p>第二章结构：<br><img src="http://p4lmrb1gp.bkt.clouddn.com/15202671970955.jpg" alt=""></p>
 <blockquote>
 <p>Java 虚拟机在执行 Java 程序的过程中会把它所管理的内存划分为若干个不同的数据区域。这些区域都有各自的用途，以及创建和销毁时间。根据 《Java 虚拟机规范》的规定，Java 虚拟机所管理的内存将会包括以下几个运行时数据区域。<br>参考：<br><a href="https://www.jianshu.com/p/989c90f339b9" target="_blank" rel="noopener">https://www.jianshu.com/p/989c90f339b9</a></p>
 </blockquote>
@@ -800,8 +805,6 @@
 <p>如果你觉得我的分享对你有帮助的话，请在下面👇随手点个喜欢 💖，你的肯定才是我最大的动力，感谢。</p>
 </blockquote>
 
-          
-        
       
     </div>
     
@@ -811,1549 +814,37 @@
 
      
     
-
-
-    
-
-    
-
-    
-
-
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/03/05/2018-03-06/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CloudPai">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="CloudPai">
-    </span>
-
-    
-      <header class="post-header">
-
+      <div>
         
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/05/2018-03-06/" itemprop="url">《深入理解java虚拟机》学习笔记之一</a></h1>
-        
+    <div style="text-align:center;color: #ccc;font-size:14px;">
+        ------ 本文结束<i class="fa fa-paw"></i>感谢您的阅读 ------</div>
 
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-05T22:55:31+08:00">
-                2018-03-05
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-07T01:19:47+08:00">
-                2018-03-07
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/03/05/2018-03-06/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/03/05/2018-03-06/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  1,950
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  9
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <script src="/assets/js/APlayer.min.js"> </script><p>全书核心分布：<br><img src="http://p4lmrb1gp.bkt.clouddn.com/15202617182331.jpg" alt=""></p>
-<hr>
-<h1 id="第一章-走近JAVA"><a href="#第一章-走近JAVA" class="headerlink" title="第一章 走近JAVA"></a>第一章 走近JAVA</h1><h2 id="1-6-实战：自己编译JDK-已成功编译"><a href="#1-6-实战：自己编译JDK-已成功编译" class="headerlink" title="1.6 实战：自己编译JDK(已成功编译)"></a>1.6 实战：自己编译JDK(已成功编译)</h2><blockquote>
-<p>疑问：</p>
-<ol>
-<li>将JDK源码进行编译是做了点什么？是将JDK中的.java文件编译成.class文件吗？</li>
-<li>JDK中包含开发工具包和JVM，作者编译完JDK以后，用的还是原来包中的JVM吗？</li>
-<li>我们平常使用的JDK，例如JDK1.7中，里面的文件是以.java形式存在的还是以.class形式存在的，或者是以.java形式存在，要用的时候再用JVM去编译的?<br>答：</li>
-<li>JDK是c/c++写的, 编译就是把JDK编译成可以运行的状态,   可运行的意思是指可以编译运行.java文件.  而一般情况下官方下载的JDK都是已经帮你编译好而已.</li>
-<li>作者可以用自己编译的, 也可以用官方编译好的. 这个要看书中的说明了</li>
-<li>JDK是c/c++写的, 里面和其他c++程序没什么区别,  windows下面是一堆dll和一堆exe.  你说的.java文件是JDK的功能之一,  帮你编译java文件成class,  JVM是运行class文件的容器</li>
-</ol>
-</blockquote>
-<hr>
-<h3 id="一-环境："><a href="#一-环境：" class="headerlink" title="一 环境："></a>一 环境：</h3><blockquote>
-<p>操作系统：CentOS6.8<br>计划编译的jdk: openjdk7<br>现成的jdk: java version “1.6.0_25”(Java HotSpot(TM) 64-Bit Server VM (build 20.0-b11, mixed mode))<br><a href="http://www.oracle.com/technetwork/java/javase/downloads/java-archive-downloads-javase6-419409.html" target="_blank" rel="noopener">jdk6下载链接</a><br>如果你当前的系统版本不是这个，没关系，只要下载上述版本安装rpm（默认安装到<code>/usr/java</code>路径下）(不必配置环境变量)即可</p>
-</blockquote>
-<h3 id="二-编译前准备工作如下"><a href="#二-编译前准备工作如下" class="headerlink" title="二 编译前准备工作如下"></a>二 编译前准备工作如下</h3><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">yum install -y mercurial</span><br><span class="line">yum install -y ant ant-nodeps</span><br><span class="line">yum install -y libX11* libX*</span><br><span class="line">yum install -y libXi-devel libXtst-devel libXt-devel freetype* </span><br><span class="line">yum install -y alsa-lib-devel cups-devel</span><br><span class="line">yum install -y gcc gcc-c++</span><br></pre></td></tr></table></figure>
-<h3 id="三-下载计划编译的openjdk7"><a href="#三-下载计划编译的openjdk7" class="headerlink" title="三 下载计划编译的openjdk7"></a>三 下载计划编译的openjdk7</h3><p>(jdk源码网站：<a href="http://hg.openjdk.java.net/jdk7u/" target="_blank" rel="noopener">http://hg.openjdk.java.net/jdk7u/</a> ， 你值得收藏)</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hg <span class="built_in">clone</span> http://hg.openjdk.java.net/jdk7u/jdk7u-dev</span><br><span class="line"><span class="built_in">cd</span> jdk7u-dev</span><br><span class="line">chmod 755 get_source.sh </span><br><span class="line">./get_source.sh</span><br></pre></td></tr></table></figure>
-<h3 id="四-编译"><a href="#四-编译" class="headerlink" title="四 编译"></a>四 编译</h3><h4 id="4-1准备好编译环境"><a href="#4-1准备好编译环境" class="headerlink" title="4.1准备好编译环境"></a>4.1准备好编译环境</h4><p>相关参数解释如下：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> LANG=C</span><br><span class="line"><span class="comment">#Bootstrap JDK的安装路径，必须设置</span></span><br><span class="line"><span class="built_in">export</span> ALT_BOOTDIR=/<span class="built_in">export</span>/servers/jdk1.6.0_25/</span><br><span class="line"><span class="comment">#允许自动下载依赖</span></span><br><span class="line"><span class="built_in">export</span> ALLOW_DOWNLOADS=<span class="literal">true</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#并行编译的线数，设置和cpu的数量一致即可</span></span><br><span class="line"><span class="built_in">export</span> HOTSPOT_BUILD_JOBS=2</span><br><span class="line"><span class="built_in">export</span> ALT_PATALLER_COMPILE_JOBS=2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#比较本次build出来的映像与先前版本的差异，这对我们来说没有意义，</span></span><br><span class="line"><span class="built_in">export</span> SKIP_COMPARE_IMAGES=<span class="literal">true</span></span><br><span class="line"><span class="comment">#使用预编译头文件，不加这个编译会更慢一些</span></span><br><span class="line"><span class="built_in">export</span> USE_PRECOMPILED_HEADER=<span class="literal">true</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#指定要编译的内容</span></span><br><span class="line"><span class="built_in">export</span> BUILD_LANGTOOLS=<span class="literal">true</span></span><br><span class="line"><span class="built_in">export</span> BUILD_HOTSPOT=<span class="literal">true</span></span><br><span class="line"><span class="built_in">export</span> BUILD_JDK=<span class="literal">true</span></span><br><span class="line"><span class="built_in">export</span> BUILD_JAXP=<span class="literal">false</span></span><br><span class="line"><span class="built_in">export</span> BUILD_JAXWS=<span class="literal">false</span></span><br><span class="line"><span class="built_in">export</span> BUILD_CORBA=<span class="literal">false</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#要编译的版本</span></span><br><span class="line"><span class="comment">#export SKIP_DEBUG_BUILD=false</span></span><br><span class="line"><span class="comment">#export SKIP_FASTDEBUG_BUILD=true</span></span><br><span class="line"><span class="built_in">export</span> DEBUG_NAME=debug</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#可以避开javaws和浏览器Java插件之类的部分build</span></span><br><span class="line">BUILD_DEPLOY=<span class="literal">false</span></span><br><span class="line"><span class="comment">#设置成false就不会build出包装包，因为包装包里有些奇怪的依赖</span></span><br><span class="line"><span class="comment">#但是即使不build出它也已经能得到完整的JDK映像，所以还是别build它好了</span></span><br><span class="line">BUILD_INSTALL=<span class="literal">false</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#编译结果存放的路径</span></span><br><span class="line"><span class="built_in">export</span> ALT_OUTPUTDIR=/root/temp/jdk7u </span><br><span class="line"></span><br><span class="line"></span><br><span class="line">WARNINGS_ARE_ERRORS=</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#卸载环境变量，避免诡异的事情发生</span></span><br><span class="line"><span class="built_in">unset</span> JAVA_HOME</span><br><span class="line"><span class="built_in">unset</span> CLASSPATH</span><br><span class="line"><span class="built_in">unset</span> JAVA_OPTS</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#make 2&gt;&amp;1 | tee $ALT_OUTPUTDIR/build.log</span></span><br></pre></td></tr></table></figure>
-<p>好了，我们将上面一系列的环境变量，创建环境文件VAR来统一管理吧<br><code>vi VAR</code></p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> LANG=C</span><br><span class="line"><span class="built_in">export</span> ALT_BOOTDIR=/usr/java/jdk1.6.0_25</span><br><span class="line"><span class="built_in">export</span> ALLOW_DOWNLOADS=<span class="literal">true</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> HOTSPOT_BUILD_JOBS=2</span><br><span class="line"><span class="built_in">export</span> ALT_PATALLER_COMPILE_JOBS=2</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> SKIP_COMPARE_IMAGES=<span class="literal">true</span></span><br><span class="line"><span class="built_in">export</span> USE_PRECOMPILED_HEADER=<span class="literal">true</span></span><br><span class="line"><span class="built_in">export</span> BUILD_LANGTOOLS=<span class="literal">true</span></span><br><span class="line"><span class="built_in">export</span> BUILD_HOTSPOT=<span class="literal">true</span></span><br><span class="line"><span class="built_in">export</span> BUILD_JDK=<span class="literal">true</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> BUILD_JAXP=<span class="literal">true</span></span><br><span class="line"><span class="built_in">export</span> BUILD_JAXWS=<span class="literal">true</span></span><br><span class="line"><span class="built_in">export</span> BUILD_CORBA=<span class="literal">true</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#export SKIP_DEBUG_BUILD=false</span></span><br><span class="line"><span class="comment">#export SKIP_FASTDEBUG_BUILD=true</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">BUILD_DEPLOY=<span class="literal">false</span></span><br><span class="line">BUILD_INSTALL=<span class="literal">false</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> ALT_OUTPUTDIR=/root/temp/jdk7u </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">#export CORBA_DIST=$ALT_OUTPUTDIR/corba/dist</span></span><br><span class="line"><span class="comment">#export JAXP_DIST=$ALT_OUTPUTDIR/jaxp/dist</span></span><br><span class="line"><span class="comment">#export JAXWS_DIST=$ALT_OUTPUTDIR/jaxws/dist</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">unset</span> JAVA_HOME</span><br><span class="line"><span class="built_in">unset</span> CLASSPATH</span><br><span class="line"><span class="built_in">unset</span> JAVA_OPTS</span><br></pre></td></tr></table></figure>
-<p>使之生效<br><code>. VAR</code> </p>
-<h4 id="4-2检测设置是否全部正确"><a href="#4-2检测设置是否全部正确" class="headerlink" title="4.2检测设置是否全部正确"></a>4.2检测设置是否全部正确</h4><p><code>make sanity</code><br>当看到如下输出时则表示成功</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">Build Machine Information:</span><br><span class="line">   build machine = workstation.centos.vbird</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Build Directory Structure:</span><br><span class="line">   CWD = /root/temp/jdk7u-dev</span><br><span class="line">   TOPDIR = .</span><br><span class="line">   LANGTOOLS_TOPDIR = ./langtools</span><br><span class="line">   JAXP_TOPDIR = ./jaxp</span><br><span class="line">   JAXWS_TOPDIR = ./jaxws</span><br><span class="line">   CORBA_TOPDIR = ./corba</span><br><span class="line">   HOTSPOT_TOPDIR = ./hotspot</span><br><span class="line">   JDK_TOPDIR = ./jdk</span><br><span class="line">   ……</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Sanity check passed.</span><br></pre></td></tr></table></figure>
-<h4 id="4-3真正开始编译"><a href="#4-3真正开始编译" class="headerlink" title="4.3真正开始编译"></a>4.3真正开始编译</h4><p><code>make</code> (命令等同于make all)</p>
-<p>成功的标志</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#-- Build times ----------</span></span><br><span class="line">Target all_product_build</span><br><span class="line">Start 2018-03-06 21:03:26</span><br><span class="line">End   2018-03-06 21:20:09</span><br><span class="line">00:02:02 corba</span><br><span class="line">00:05:08 hotspot</span><br><span class="line">00:00:16 jaxp</span><br><span class="line">00:00:19 jaxws</span><br><span class="line">00:08:34 jdk</span><br><span class="line">00:00:23 langtools</span><br><span class="line">00:16:43 TOTAL</span><br><span class="line">-------------------------</span><br><span class="line">make[1]: Leaving directory `/home/cloudpai/Downloads/jdk7u-dev<span class="string">'</span></span><br></pre></td></tr></table></figure>
-<h4 id="4-4测试自己编译出来的jdk吧"><a href="#4-4测试自己编译出来的jdk吧" class="headerlink" title="4.4测试自己编译出来的jdk吧"></a>4.4测试自己编译出来的jdk吧</h4><p>正确编译后，可以执行如下命令验证</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[cloudpai@hadoop000 bin]$ /home/cloudpai/app/jdk7u/j2sdk-image/bin/java -version</span><br><span class="line">openjdk version <span class="string">"1.7.0-internal"</span></span><br><span class="line">OpenJDK Runtime Environment (build 1.7.0-internal-cloudpai_2018_03_06_21_03-b00)</span><br><span class="line">OpenJDK 64-Bit Server VM (build 24.80-b07, mixed mode)</span><br></pre></td></tr></table></figure>
-<p>OK，到些就大功告成了。</p>
-<h3 id="五-可能出现的错误"><a href="#五-可能出现的错误" class="headerlink" title="五 可能出现的错误"></a>五 可能出现的错误</h3><p><code>/usr/bin/ld: cannot find -lX11
-collect2: ld returned 1 exit status</code><br>解决办法<br><code>yum install -y libX11*</code></p>
-<p><code>/bin/sh: line 0: cd: /NOT-SET/re/jdk/1.7.0/promoted/latest/binaries/linux-amd64: No such file or directory
-make[4]: *** [/root/temp/jdk7u/tmp/java/components_imported] Error 1</code>解决办法<br>VAR文件确认执行过了，正确的姿势<br><code>. VAR</code></p>
-<blockquote>
-<p>参考博客：<a href="http://blog.csdn.net/hl_java/article/details/76691321" target="_blank" rel="noopener">http://blog.csdn.net/hl_java/article/details/76691321</a></p>
-</blockquote>
-<hr>
-<p>由1.6.4得我们得到了自己的虚拟机1.7.0-internal-cloudpai_2018_03_06_21_03-b00</p>
-<p>现在我们要将JVM运行起来：</p>
-<p>在大多数时候，如果我们并不关心JDK中HotSpot虚拟机以外的内容，只想单独编译 HotSpot虚拟机的话（例如调试虚拟机时，每次改动程序都执行整个OpenJDK的Makefile，速 度肯定受不了），那么使用hotspot/make目录下的Makefile进行替换即可，其他参数设置与前 面是一致的，这时候虚拟机的输出结果存放在build/hotspot/outputdir/bsd_amd64_compiler2目录(在不同机器上，最后一个目录名称会有所差别，bsd表示Mac OS系统（内核为 FreeBSD），amd64表示是64位JDK（32位是x86），compiler2表示是Server VM（Client VM表 示是compiler1）。) 中，进入后可以见到以下几个目录。</p>
-<p>在路径：<code>/home/cloudpai/app/jdk7u/hotspot/outputdir/linux_amd64_compiler2</code></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[cloudpai@hadoop000 linux_amd64_compiler2]$ ll</span><br><span class="line">total 48</span><br><span class="line">drwxrwxr-x. 2 cloudpai cloudpai  4096 Mar  6 21:06 debug</span><br><span class="line">drwxrwxr-x. 2 cloudpai cloudpai  4096 Mar  6 21:06 fastdebug</span><br><span class="line">drwxrwxr-x. 7 cloudpai cloudpai  4096 Mar  6 21:06 generated</span><br><span class="line">drwxrwxr-x. 2 cloudpai cloudpai  4096 Mar  6 21:06 jvmg</span><br><span class="line">drwxrwxr-x. 2 cloudpai cloudpai  4096 Mar  6 21:06 optimized</span><br><span class="line">drwxrwxr-x. 3 cloudpai cloudpai 20480 Mar  6 21:11 product</span><br><span class="line">drwxrwxr-x. 2 cloudpai cloudpai  4096 Mar  6 21:06 profiled</span><br><span class="line">-rw-rw-r--. 1 cloudpai cloudpai  1778 Mar  6 21:06 shared_dirs.lst</span><br></pre></td></tr></table></figure>
-<p>这些目录对应了不同的优化级别，优化级别越高，性能自然就越好，但是输出代码与源 码的差距就越大，难于调试，具体哪个目录有内容，取决于make命令后面的参数。</p>
-<p>在编译结束之后、运行虚拟机之前，还要手工编辑目录下的env.sh文件，这个文件由编 译脚本自动产生，用于设置虚拟机的环境变量，里面已经发布了“JAVA_HOME、 CLASSPATH、HOTSPOT_BUILD_USER”3个环境变量，</p>
-<p>还要在在<strong>product</strong>下边（看网上都是在jvmg下边，可我的jvmg下边没有gamma，不知道什么情况）的env.sh下加入：</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> JAVA_HOME=/usr/java/jdk1.6.0_25</span><br><span class="line"><span class="built_in">export</span> PATH=<span class="variable">$JAVA_HOME</span>/bin:<span class="variable">$PATH</span></span><br><span class="line"></span><br><span class="line">LD_LIBRARY_PATH=.:<span class="variable">$&#123;JAVA_HOME&#125;</span>/jre/lib/amd64/native_threads:<span class="variable">$&#123;JAVA_HOME&#125;</span>/jre/lib/amd64:</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH</span><br></pre></td></tr></table></figure>
-<p>然后执行以下命令启动虚拟机（这时的启动器名为gamma），输出版本号。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">../env.sh </span><br><span class="line">./gamma-version</span><br></pre></td></tr></table></figure>
-<p>最后运行虚拟机成功！！</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[cloudpai@hadoop000 product]$ ./gamma -version</span><br><span class="line">Using java runtime at: /usr/java/jdk1.6.0_25/jre</span><br><span class="line">java version &quot;1.6.0_25&quot;</span><br><span class="line">Java(TM) SE Runtime Environment (build 1.6.0_25-b06)</span><br><span class="line">OpenJDK 64-Bit Server VM (build 24.80-b07, mixed mode)</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="1-6-5-JVM-在IDE工具中进行源码调试"><a href="#1-6-5-JVM-在IDE工具中进行源码调试" class="headerlink" title="1.6.5 JVM 在IDE工具中进行源码调试"></a>1.6.5 JVM 在IDE工具中进行源码调试</h3>
-          
-        
-      
-    </div>
-    
-    
-    
-
-
-     
-    
-
-
-    
-
-    
-
-    
-
-
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/03/05/2018-03-05-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CloudPai">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="CloudPai">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/05/2018-03-05-1/" itemprop="url">Java1.8 帮助文档</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-05T20:18:30+08:00">
-                2018-03-05
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-06T01:23:39+08:00">
-                2018-03-06
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/03/05/2018-03-05-1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/03/05/2018-03-05-1/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  56
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <script src="/assets/js/APlayer.min.js"> </script><p>java 1.6 帮助文档<br>中文<br>链接：<a href="http://download.csdn.net/detail/qw599186875/9608735" target="_blank" rel="noopener">http://download.csdn.net/detail/qw599186875/9608735</a><br>英文<br>Java1.8 帮助文档<br>英文<br>中文 – 谷歌版<br>在线版: <a href="https://blog.fondme.cn/apidoc/jdk-1.8-google/" target="_blank" rel="noopener">https://blog.fondme.cn/apidoc/jdk-1.8-google/</a><br>下载链接：<a href="http://download.csdn.net/detail/qw599186875/9802192" target="_blank" rel="noopener">http://download.csdn.net/detail/qw599186875/9802192</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-
-     
-    
-
-
-    
-
-    
-
-    
-
-
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/03/05/2018-03-05/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CloudPai">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="CloudPai">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/05/2018-03-05/" itemprop="url">大型网站架构技能图谱（Java版）</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-05T00:44:27+08:00">
-                2018-03-05
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-05T00:47:52+08:00">
-                2018-03-05
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/03/05/2018-03-05/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/03/05/2018-03-05/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  7
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <script src="/assets/js/APlayer.min.js"> </script><p><img src="http://p4lmrb1gp.bkt.clouddn.com/大型网站架构技能图谱（Java版）.jpg" alt="大型网站架构技能图谱（Java版）"><br>每天都要有进步！</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-
-     
-    
-
-
-    
-
-    
-
-    
-
-
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/03/04/2018-03-04/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CloudPai">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="CloudPai">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/04/2018-03-04/" itemprop="url">workflow工作流</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-04T00:09:36+08:00">
-                2018-03-04
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-06T01:23:10+08:00">
-                2018-03-06
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/03/04/2018-03-04/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/03/04/2018-03-04/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  13
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <script src="/assets/js/APlayer.min.js"> </script><p>工作流脚本测试：<br><img src="http://p4lmrb1gp.bkt.clouddn.com/15200933690230.jpg" alt=""><br>测试成功~<br>晚安~~</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-
-     
-    
-
-
-    
-
-    
-
+      </div>
     
 
 
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/03/02/2018-03-02/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CloudPai">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="CloudPai">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/02/2018-03-02/" itemprop="url">Scratch编程探究</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-02T09:33:21+08:00">
-                2018-03-02
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-04T00:07:55+08:00">
-                2018-03-04
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/03/02/2018-03-02/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/03/02/2018-03-02/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  42
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <script src="/assets/js/APlayer.min.js"> </script><p><img src="http://p4lmrb1gp.bkt.clouddn.com/15199545617715.jpg" alt=""></p>
-<hr>
-<p>转载自：<br>儿童使用Scratch编程时，与程序员在工作中的编程有什么区别？ - Milo Yip的回答 - 知乎<br><a href="https://www.zhihu.com/question/42012520/answer/310430799" target="_blank" rel="noopener">https://www.zhihu.com/question/42012520/answer/310430799</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-
-     
-    
-
-
-    
-
-    
-
-    
-
-
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/03/01/2018-03-01-1/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CloudPai">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="CloudPai">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/01/2018-03-01-1/" itemprop="url">2018拜年祭单品</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-01T22:42:56+08:00">
-                2018-03-01
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-01T22:45:25+08:00">
-                2018-03-01
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/03/01/2018-03-01-1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/03/01/2018-03-01-1/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  190
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <script src="/assets/js/APlayer.min.js"> </script><p>2018拜年祭单品传送门：</p>
-<p>1.【逆浪千秋】av20204904</p>
-<p>2.【如果我的一生只需要做一件事 — Bilibili Zeitgeist 2017】av20203478</p>
-<p>3.【梦想小剧场-遗失的宝物】av20203610</p>
-<p>4.【口袋竞技场ー冰与铁之歌】av20203938</p>
-<p>5.【相遇day by day】av20203945</p>
-<p>6.【上海一夜】av20204014</p>
-<p>7.【神鬼恋曲】av20204051</p>
-<p>8.【UP主的奇妙冒险之勇者传说】av20204517</p>
-<p>9.【我的破烂之掀起波澜】av20204332</p>
-<p>10.【palette】av20204403</p>
-<p>11.【广告高手】av20204701</p>
-<p>12.【滑稽君大冒险】av20204534</p>
-<p>13.【journey】av20204614</p>
-<p>14.【全靠我勤劳的手】av20204705</p>
-<p>15.【演奏区的偷心计划】av20204824</p>
-<p>16.【乒乓帝国】av20205319</p>
-<p>17.【鬼畜大战之真相黎明】av20205316</p>
-<p>18.【如何翻拍一个CG短片】av20205314</p>
-<p>19.【坦克大战】av20205375</p>
-<p>20.【星空花火】av20203411</p>
-<p>彩蛋【举头三尺有神明】av16201808</p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-
-     
-    
-
-
-    
-
-    
-
-    
-
-
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/03/01/2018-03-01/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CloudPai">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="CloudPai">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/01/2018-03-01/" itemprop="url">blogs 上的标签tag参数</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-01T19:25:11+08:00">
-                2018-03-01
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-04T21:24:52+08:00">
-                2018-03-04
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/03/01/2018-03-01/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/03/01/2018-03-01/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  42
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <script src="/assets/js/APlayer.min.js"> </script><figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">---</span><br><span class="line">title: Mac终端翻墙</span><br><span class="line">tags: Linux&amp;Unix</span><br><span class="line">categories: Linux&amp;Unix</span><br><span class="line">comments: true</span><br><span class="line">abbrlink: 745a6d7</span><br><span class="line">date: 2016-11-24 18:26:33</span><br><span class="line">updated: 2016-11-24 18:26:33</span><br><span class="line">copyright: true</span><br><span class="line">---</span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-
-     
-    
-
-
-    
-
-    
-
-    
-
-
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
     
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/03/01/需要进行的改进/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CloudPai">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="CloudPai">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/03/01/需要进行的改进/" itemprop="url">需要进行的改进</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-01T00:00:00+08:00">
-                2018-03-01
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-04T01:22:11+08:00">
-                2018-03-04
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/03/01/需要进行的改进/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/03/01/需要进行的改进/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  34
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
     
 
-    
     
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <script src="/assets/js/APlayer.min.js"> </script><h3 id="TODO："><a href="#TODO：" class="headerlink" title="TODO："></a>TODO：</h3><ul>
-<li style="list-style: none"><input type="checkbox" checked> 测试git的备份功能</li>
-<li style="list-style: none"><input type="checkbox" checked> 学习 Alfred workflow实现打开重启任意应用</li>
-<li style="list-style: none"><input type="checkbox" checked> 脚本实现清理浏览器缓存</li>
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    CloudPai
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://cloudpai.site/2018/03/06/2018-03-05-2/" title="《深入理解java虚拟机》学习笔记之二">http://cloudpai.site/2018/03/06/2018-03-05-2/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
 </ul>
 
-          
-        
-      
-    </div>
-    
-    
-    
-
-
-     
-    
-
-
-    
-
-    
-
+      </div>
     
 
 
@@ -2361,203 +852,36 @@ make[4]: *** [/root/temp/jdk7u/tmp/java/components_imported] Error 1</code>解�
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/02/28/2018-02-28/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CloudPai">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="CloudPai">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/28/2018-02-28/" itemprop="url">mac使用</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-28T00:00:00+08:00">
-                2018-02-28
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-04T21:24:25+08:00">
-                2018-03-04
-              </time>
-            
-          </span>
-
+        <div class="post-tags">
           
-
+            <a href="/tags/JVM/" rel="tag"><i class="fa fa-tag"></i> JVM</a>
           
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/02/28/2018-02-28/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/02/28/2018-02-28/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  128
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <script src="/assets/js/APlayer.min.js"> </script><blockquote>
-<p>Mac系统如何显示隐藏文件？<br>以”.”开头的隐藏文件如何在MAC系统下显示？</p>
-</blockquote>
-<blockquote>
-<p>答：<br>Command+Shift+. 可以显示隐藏文件、文件夹，再按一次，恢复隐藏；<br>finder下使用Command+Shift+G 可以前往任何文件夹，包括隐藏文件夹。    </p>
-</blockquote>
-<p>显示 隐藏文件</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#显示全部文件</span></span><br><span class="line">defaults write com.apple.finder AppleShowAllFiles -bool <span class="literal">true</span></span><br><span class="line">osascript -e <span class="string">'tell application "Finder" to quit'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#不显示全部文件</span></span><br><span class="line">defaults write com.apple.finder AppleShowAllFiles -bool <span class="literal">false</span></span><br><span class="line">osascript -e <span class="string">'tell application "Finder" to quit'</span></span><br></pre></td></tr></table></figure>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-
-     
-    
-
-
-    
-
-    
-
-    
-
-
-
-
-    <footer class="post-footer">
-      
-
-      
-
       
 
       
       
-        <div class="post-eof"></div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/05/2018-03-06/" rel="next" title="《深入理解java虚拟机》学习笔记之一">
+                <i class="fa fa-chevron-left"></i> 《深入理解java虚拟机》学习笔记之一
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
       
     </footer>
   </div>
@@ -2567,14 +891,11 @@ make[4]: *** [/root/temp/jdk7u/tmp/java/components_imported] Error 1</code>解�
   </article>
 
 
-    
-  </section>
 
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
-
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -2582,6 +903,20 @@ make[4]: *** [/root/temp/jdk7u/tmp/java/components_imported] Error 1</code>解�
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -2607,8 +942,17 @@ make[4]: *** [/root/temp/jdk7u/tmp/java/components_imported] Error 1</code>解�
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -2729,6 +1073,22 @@ make[4]: *** [/root/temp/jdk7u/tmp/java/components_imported] Error 1</code>解�
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第二章-Java内存区域与内存溢出异常"><span class="nav-number">1.</span> <span class="nav-text">第二章 Java内存区域与内存溢出异常</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-运行时数据区域"><span class="nav-number">1.1.</span> <span class="nav-text">2.2 运行时数据区域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-程序计数器（Program-Counter-Register）"><span class="nav-number">1.1.1.</span> <span class="nav-text">2.2.1 程序计数器（Program Counter Register）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-Java-虚拟机栈（Java-Virtual-Machine-Stacks）"><span class="nav-number">1.1.2.</span> <span class="nav-text">2.2.2 Java 虚拟机栈（Java Virtual Machine Stacks）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-3-本地方法栈（Native-Method-Stack）"><span class="nav-number">1.1.3.</span> <span class="nav-text">2.2.3 本地方法栈（Native Method Stack）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-4-Java-堆（Java-Heap）"><span class="nav-number">1.1.4.</span> <span class="nav-text">2.2.4 Java 堆（Java Heap）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-5-方法区（Method-Area）"><span class="nav-number">1.1.5.</span> <span class="nav-text">2.2.5 方法区（Method Area）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-6-运行时常量池（Runtime-Constant-Pool）"><span class="nav-number">1.1.6.</span> <span class="nav-text">2.2.6 运行时常量池（Runtime Constant Pool）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-7-直接内存（Direct-Memory）"><span class="nav-number">1.1.7.</span> <span class="nav-text">2.2.7 直接内存（Direct Memory）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-HotSpot-虚拟机对象探秘"><span class="nav-number">1.2.</span> <span class="nav-text">2.3 HotSpot 虚拟机对象探秘</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-1-对象的创建"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.3.1 对象的创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-2对象的内存布局"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.3.2对象的内存布局</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-1-对象头（Header）"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">2.3.2.1 对象头（Header）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-2-实例数据（Instance-Data）"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">2.3.2.2 实例数据（Instance Data）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-3-对齐填充（Padding）"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">2.3.2.3 对齐填充（Padding）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-3-对象的访问定位"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3.3 对象的访问定位</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-实战：OutOfMemoryError-异常"><span class="nav-number">1.3.</span> <span class="nav-text">2.4 实战：OutOfMemoryError 异常</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#VM-Args-设置"><span class="nav-number">1.3.1.</span> <span class="nav-text">VM Args 设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-Java-堆溢出"><span class="nav-number">1.3.2.</span> <span class="nav-text">4.1 - Java 堆溢出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-虚拟机栈和本地方法栈溢出"><span class="nav-number">1.3.3.</span> <span class="nav-text">4.2 - 虚拟机栈和本地方法栈溢出</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2-1-StackOverflowError"><span class="nav-number">1.3.3.0.1.</span> <span class="nav-text">4.2.1 - StackOverflowError</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2-2-OutOfMemoryError"><span class="nav-number">1.3.3.0.2.</span> <span class="nav-text">4.2.2 - OutOfMemoryError</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-方法区和运行时常量池溢出"><span class="nav-number">1.3.4.</span> <span class="nav-text">4.3 - 方法区和运行时常量池溢出</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-3-1-OutOfMemoryError"><span class="nav-number">1.3.4.0.1.</span> <span class="nav-text">4.3.1 - OutOfMemoryError</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-3-2-String-常量池测试"><span class="nav-number">1.3.4.0.2.</span> <span class="nav-text">4.3.2 - String 常量池测试</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-3-3-测试设计思路"><span class="nav-number">1.3.4.0.3.</span> <span class="nav-text">4.3.3 - 测试设计思路</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-3-4-总结"><span class="nav-number">1.3.4.0.4.</span> <span class="nav-text">4.3.4 - 总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-本机直接内存溢出"><span class="nav-number">1.3.5.</span> <span class="nav-text">4.4 - 本机直接内存溢出</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#悄悄话-🌈"><span class="nav-number">2.</span> <span class="nav-text">悄悄话 🌈</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#彩蛋-🐣"><span class="nav-number">2.0.1.</span> <span class="nav-text">彩蛋 🐣</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#最近在拜读同名一书-《深入理解-Java-虚拟机》并会与大家分享我的读书笔记-深入理解-Java-虚拟机，有兴趣的朋友可以一同交流进步。"><span class="nav-number">2.0.1.0.1.</span> <span class="nav-text">最近在拜读同名一书 《深入理解 Java 虚拟机》并会与大家分享我的读书笔记 深入理解 Java 虚拟机，有兴趣的朋友可以一同交流进步。</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -2885,6 +1245,10 @@ make[4]: *** [/root/temp/jdk7u/tmp/java/components_imported] Error 1</code>解�
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -2902,6 +1266,18 @@ make[4]: *** [/root/temp/jdk7u/tmp/java/components_imported] Error 1</code>解�
       <script id="dsq-count-scr" src="https://cloudpai.disqus.com/count.js" async></script>
     
 
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://cloudpai.site/2018/03/06/2018-03-05-2/';
+          this.page.identifier = '2018/03/06/2018-03-05-2/';
+          this.page.title = '《深入理解java虚拟机》学习笔记之二';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cloudpai.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
     
 
   
