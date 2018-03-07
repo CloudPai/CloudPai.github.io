@@ -81,13 +81,13 @@
 
 
 
-<meta name="description" content="第二章 Java内存区域与内存溢出异常第二章结构：  Java 虚拟机在执行 Java 程序的过程中会把它所管理的内存划分为若干个不同的数据区域。这些区域都有各自的用途，以及创建和销毁时间。根据 《Java 虚拟机规范》的规定，Java 虚拟机所管理的内存将会包括以下几个运行时数据区域。参考：https://www.jianshu.com/p/989c90f339b9  2.2 运行时数据区域具">
+<meta name="description" content="第二章 Java内存区域与内存溢出异常第二章结构：      Java 虚拟机在执行 Java 程序的过程中会把它所管理的内存划分为若干个不同的数据区域。这些区域都有各自的用途，以及创建和销毁时间。根据 《Java 虚拟机规范》的规定，Java 虚拟机所管理的内存将会包括以下几个运行时数据区域。参考：https://www.jianshu.com/p/989c90f339b9  2.2 运行时数">
 <meta name="keywords" content="JVM">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《深入理解java虚拟机》学习笔记之二">
 <meta property="og:url" content="http://cloudpai.site/2018/03/06/2018-03-05-2/index.html">
 <meta property="og:site_name" content="CloudPai">
-<meta property="og:description" content="第二章 Java内存区域与内存溢出异常第二章结构：  Java 虚拟机在执行 Java 程序的过程中会把它所管理的内存划分为若干个不同的数据区域。这些区域都有各自的用途，以及创建和销毁时间。根据 《Java 虚拟机规范》的规定，Java 虚拟机所管理的内存将会包括以下几个运行时数据区域。参考：https://www.jianshu.com/p/989c90f339b9  2.2 运行时数据区域具">
+<meta property="og:description" content="第二章 Java内存区域与内存溢出异常第二章结构：      Java 虚拟机在执行 Java 程序的过程中会把它所管理的内存划分为若干个不同的数据区域。这些区域都有各自的用途，以及创建和销毁时间。根据 《Java 虚拟机规范》的规定，Java 虚拟机所管理的内存将会包括以下几个运行时数据区域。参考：https://www.jianshu.com/p/989c90f339b9  2.2 运行时数">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15202671970955.jpg">
 <meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15202686255613.jpg">
@@ -96,10 +96,10 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1034114-5cced3a20d9c6e60.png">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1034114-6f949a74bab70a22.png">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1034114-06c1b1fe66628350.gif">
-<meta property="og:updated_time" content="2018-03-06T17:21:35.056Z">
+<meta property="og:updated_time" content="2018-03-07T15:34:21.273Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《深入理解java虚拟机》学习笔记之二">
-<meta name="twitter:description" content="第二章 Java内存区域与内存溢出异常第二章结构：  Java 虚拟机在执行 Java 程序的过程中会把它所管理的内存划分为若干个不同的数据区域。这些区域都有各自的用途，以及创建和销毁时间。根据 《Java 虚拟机规范》的规定，Java 虚拟机所管理的内存将会包括以下几个运行时数据区域。参考：https://www.jianshu.com/p/989c90f339b9  2.2 运行时数据区域具">
+<meta name="twitter:description" content="第二章 Java内存区域与内存溢出异常第二章结构：      Java 虚拟机在执行 Java 程序的过程中会把它所管理的内存划分为若干个不同的数据区域。这些区域都有各自的用途，以及创建和销毁时间。根据 《Java 虚拟机规范》的规定，Java 虚拟机所管理的内存将会包括以下几个运行时数据区域。参考：https://www.jianshu.com/p/989c90f339b9  2.2 运行时数">
 <meta name="twitter:image" content="http://p4lmrb1gp.bkt.clouddn.com/15202671970955.jpg">
 
 
@@ -342,7 +342,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-07T01:21:35+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-07T23:34:21+08:00">
                 2018-03-07
               </time>
             
@@ -381,7 +381,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  8,171
+                  7,678
                 </span>
               
 
@@ -397,7 +397,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  30
+                  28
                 </span>
               
             </div>
@@ -418,7 +418,7 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="第二章-Java内存区域与内存溢出异常"><a href="#第二章-Java内存区域与内存溢出异常" class="headerlink" title="第二章 Java内存区域与内存溢出异常"></a>第二章 Java内存区域与内存溢出异常</h1><p>第二章结构：<br><img src="http://p4lmrb1gp.bkt.clouddn.com/15202671970955.jpg" alt=""></p>
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="第二章-Java内存区域与内存溢出异常"><a href="#第二章-Java内存区域与内存溢出异常" class="headerlink" title="第二章 Java内存区域与内存溢出异常"></a>第二章 Java内存区域与内存溢出异常</h1><p>第二章结构：<br>    <img src="http://p4lmrb1gp.bkt.clouddn.com/15202671970955.jpg" alt=""></p>
 <blockquote>
 <p>Java 虚拟机在执行 Java 程序的过程中会把它所管理的内存划分为若干个不同的数据区域。这些区域都有各自的用途，以及创建和销毁时间。根据 《Java 虚拟机规范》的规定，Java 虚拟机所管理的内存将会包括以下几个运行时数据区域。<br>参考：<br><a href="https://www.jianshu.com/p/989c90f339b9" target="_blank" rel="noopener">https://www.jianshu.com/p/989c90f339b9</a></p>
 </blockquote>
@@ -671,16 +671,20 @@
 <ul>
 <li>测试代码：</li>
 </ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">private static class OOMObject &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;</span><br><span class="line">    List&lt;OOMObject&gt; list = new ArrayList&lt;&gt;();</span><br><span class="line">    while (true) &#123;</span><br><span class="line">        list.add(new OOMObject());</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import java.util.*;</span><br><span class="line"></span><br><span class="line">public class Main &#123;</span><br><span class="line"></span><br><span class="line">    private static class OOMObject &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        List&lt;OOMObject&gt; list = new ArrayList&lt;OOMObject&gt;();</span><br><span class="line">        while (true) &#123;</span><br><span class="line">            list.add(new OOMObject());</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>运行结果：</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java.lang.OutOfMemoryError: Java heap space</span><br></pre></td></tr></table></figure>
 <ul>
 <li>分析：Java 堆内存的 OOM 异常是时机应用中常见的内存溢出异常情况。当出现 Java 堆内存溢出时，异常堆栈信息 <code>java.lang.OutOfMemoryError</code> 会跟着进一步提示 <code>Java heap space</code>。</li>
-<li>解决方式<br>1. 堆转储快照：要解决这个区域的异常，一般的手段是先通过内存映像分析工具对 Dump 出来的堆转储快找进行分析，重点是确认内存中的对象是否是必要的，也就是要分清楚到底是出现了内存泄露（Memory Leak）还是内存溢出（Memory Overflow）。<br>2. 内存泄露：进一步通过工具查看泄露对象到 CG Roots 的引用链，于是就能找到内存泄露对象是通过怎样的路径与 GC Roots 相关联并导致垃圾收集器无法自动回收它们的。掌握了泄露对象的类型信息以及 GC Roots 引用链的信息，就可以比较准确地定位出泄露代码的位置。<br>3. 内存溢出：如果不存在泄露，换句话说，就是内存中的对象确实都必须还活着，那就应当检查虚拟机的堆参数（<code>-Xmx</code> 与 <code>-Xms</code>），与机器物理内存对象看是否还可以调大，从代码上检查是否存在某些对象生命周期过长、持有状态过长的情况，尝试减少程序运行期的内存消耗。</li>
+<li>解决方式</li>
 </ul>
+<ol>
+<li>堆转储快照：要解决这个区域的异常，一般的手段是先通过内存映像分析工具对 Dump 出来的堆转储快照进行分析，重点是确认内存中的对象是否是必要的，也就是要分清楚到底是出现了<strong>内存泄露</strong>（Memory Leak）还是<strong>内存溢出</strong>（Memory Overflow）。</li>
+<li>内存泄露：进一步通过工具查看泄露对象到 CG Roots 的引用链，于是就能找到内存泄露对象是通过怎样的路径与 GC Roots 相关联并导致垃圾收集器无法自动回收它们的。掌握了泄露对象的类型信息以及 GC Roots 引用链的信息，就可以比较准确地定位出泄露代码的位置。</li>
+<li>内存溢出：如果不存在泄露，换句话说，就是内存中的对象确实都必须还活着，那就应当检查虚拟机的堆参数（<code>-Xmx</code> 与 <code>-Xms</code>），与机器物理内存对象看是否还可以调大，从代码上检查是否存在某些对象生命周期过长、持有状态过长的情况，尝试减少程序运行期的内存消耗。</li>
+</ol>
 <h3 id="4-2-虚拟机栈和本地方法栈溢出"><a href="#4-2-虚拟机栈和本地方法栈溢出" class="headerlink" title="4.2 - 虚拟机栈和本地方法栈溢出"></a>4.2 - 虚拟机栈和本地方法栈溢出</h3><ul>
 <li>概述：由于在 HotSpot 虚拟机中并不区分虚拟机栈和本地方法栈，因此，对于 HotSpot 来说，虽然 <code>-Xoos</code> 参数（设置本地方法栈大小）存在，但实际上是无效的，栈容量只由 <code>-Xss</code> 参数设定。关于虚拟机栈和本地方法栈，在 Java 虚拟机规范中描述了两种异常。</li>
 </ul>
@@ -790,19 +794,8 @@
 <li>分析：由 DirectMemory 导致的内存溢出，一个明显的特征是在 Heap Dump 文件中不会看到明显的异常，如果发现 OOM 之后 Dump 文件很小，而程序中又直接或间接使用了 NIO，那就可以考虑检查一下是不是这方面的原因。</li>
 </ul>
 <hr>
-<h1 id="悄悄话-🌈"><a href="#悄悄话-🌈" class="headerlink" title="悄悄话 🌈"></a>悄悄话 🌈</h1><ul>
-<li><em>和大家说一声抱歉，这么久才完成了我的第二篇读书笔记，其中大家可以看到，文字性的内容多是一方面，原作者的阐述中是有很大一部分是比较严谨性的且全面性的，这也导致了行文中的内容分类是比较模糊的，这篇读书笔记是我在整理过了一遍之后再次按照内容分类整理出来的。目的是将原本散碎的知识点根据不同部分规整到一起，其中也深深体会到了原作者著书的不宜。</em></li>
-<li><em>上一篇读书笔记发布至今大概一周，每天都能看到阅读量和点赞数的提升，这时刻提醒我要继续写出更多、更高质量的文章来和大家分享，同时也衷心感谢关注和支持我的简友，如果没有你们我真不知道能不能完成我后续的文章。</em></li>
-<li><em>关于 《深入理解 Java 虚拟机》的写作最近可能要放缓了，因为马上要开学了，需要投入到全新的知识的学习中去，但我答应大家一定会在空余时间尽量完成该专题的写作。还有是之前欠大家的 《JavaSE 成长之路》的部分内容我会在这几天中尽力补全，也请大家继续关注。</em></li>
-<li><em>之前关注了我的 <a href="https://www.jianshu.com/collection/a017738f6f45" target="_blank" rel="noopener">JavaSE 成长之路</a> 专题的小伙伴，接下来的几天我也会将我之前的笔记整理出来陆续发布到这个专题之中，希望能和大家多多交流。</em></li>
-</ul>
-<hr>
-<h3 id="彩蛋-🐣"><a href="#彩蛋-🐣" class="headerlink" title="彩蛋 🐣"></a>彩蛋 🐣</h3><ul>
-<li><h5 id="最近在拜读同名一书-《深入理解-Java-虚拟机》并会与大家分享我的读书笔记-深入理解-Java-虚拟机，有兴趣的朋友可以一同交流进步。"><a href="#最近在拜读同名一书-《深入理解-Java-虚拟机》并会与大家分享我的读书笔记-深入理解-Java-虚拟机，有兴趣的朋友可以一同交流进步。" class="headerlink" title="最近在拜读同名一书 《深入理解 Java 虚拟机》并会与大家分享我的读书笔记 深入理解 Java 虚拟机，有兴趣的朋友可以一同交流进步。"></a>最近在拜读同名一书 《深入理解 Java 虚拟机》并会与大家分享我的读书笔记 <a href="https://www.jianshu.com/c/4e444ac4f30d" target="_blank" rel="noopener">深入理解 Java 虚拟机</a>，有兴趣的朋友可以一同交流进步。</h5></li>
-</ul>
-<hr>
 <blockquote>
-<p>如果你觉得我的分享对你有帮助的话，请在下面👇随手点个喜欢 💖，你的肯定才是我最大的动力，感谢。</p>
+<p>参考:<a href="https://www.jianshu.com/p/989c90f339b9" target="_blank" rel="noopener">https://www.jianshu.com/p/989c90f339b9</a></p>
 </blockquote>
 
       
@@ -1083,7 +1076,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第二章-Java内存区域与内存溢出异常"><span class="nav-number">1.</span> <span class="nav-text">第二章 Java内存区域与内存溢出异常</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-运行时数据区域"><span class="nav-number">1.1.</span> <span class="nav-text">2.2 运行时数据区域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-程序计数器（Program-Counter-Register）"><span class="nav-number">1.1.1.</span> <span class="nav-text">2.2.1 程序计数器（Program Counter Register）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-Java-虚拟机栈（Java-Virtual-Machine-Stacks）"><span class="nav-number">1.1.2.</span> <span class="nav-text">2.2.2 Java 虚拟机栈（Java Virtual Machine Stacks）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-3-本地方法栈（Native-Method-Stack）"><span class="nav-number">1.1.3.</span> <span class="nav-text">2.2.3 本地方法栈（Native Method Stack）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-4-Java-堆（Java-Heap）"><span class="nav-number">1.1.4.</span> <span class="nav-text">2.2.4 Java 堆（Java Heap）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-5-方法区（Method-Area）"><span class="nav-number">1.1.5.</span> <span class="nav-text">2.2.5 方法区（Method Area）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-6-运行时常量池（Runtime-Constant-Pool）"><span class="nav-number">1.1.6.</span> <span class="nav-text">2.2.6 运行时常量池（Runtime Constant Pool）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-7-直接内存（Direct-Memory）"><span class="nav-number">1.1.7.</span> <span class="nav-text">2.2.7 直接内存（Direct Memory）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-HotSpot-虚拟机对象探秘"><span class="nav-number">1.2.</span> <span class="nav-text">2.3 HotSpot 虚拟机对象探秘</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-1-对象的创建"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.3.1 对象的创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-2对象的内存布局"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.3.2对象的内存布局</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-1-对象头（Header）"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">2.3.2.1 对象头（Header）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-2-实例数据（Instance-Data）"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">2.3.2.2 实例数据（Instance Data）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-3-对齐填充（Padding）"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">2.3.2.3 对齐填充（Padding）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-3-对象的访问定位"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3.3 对象的访问定位</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-实战：OutOfMemoryError-异常"><span class="nav-number">1.3.</span> <span class="nav-text">2.4 实战：OutOfMemoryError 异常</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#VM-Args-设置"><span class="nav-number">1.3.1.</span> <span class="nav-text">VM Args 设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-Java-堆溢出"><span class="nav-number">1.3.2.</span> <span class="nav-text">4.1 - Java 堆溢出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-虚拟机栈和本地方法栈溢出"><span class="nav-number">1.3.3.</span> <span class="nav-text">4.2 - 虚拟机栈和本地方法栈溢出</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2-1-StackOverflowError"><span class="nav-number">1.3.3.0.1.</span> <span class="nav-text">4.2.1 - StackOverflowError</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2-2-OutOfMemoryError"><span class="nav-number">1.3.3.0.2.</span> <span class="nav-text">4.2.2 - OutOfMemoryError</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-方法区和运行时常量池溢出"><span class="nav-number">1.3.4.</span> <span class="nav-text">4.3 - 方法区和运行时常量池溢出</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-3-1-OutOfMemoryError"><span class="nav-number">1.3.4.0.1.</span> <span class="nav-text">4.3.1 - OutOfMemoryError</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-3-2-String-常量池测试"><span class="nav-number">1.3.4.0.2.</span> <span class="nav-text">4.3.2 - String 常量池测试</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-3-3-测试设计思路"><span class="nav-number">1.3.4.0.3.</span> <span class="nav-text">4.3.3 - 测试设计思路</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-3-4-总结"><span class="nav-number">1.3.4.0.4.</span> <span class="nav-text">4.3.4 - 总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-本机直接内存溢出"><span class="nav-number">1.3.5.</span> <span class="nav-text">4.4 - 本机直接内存溢出</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#悄悄话-🌈"><span class="nav-number">2.</span> <span class="nav-text">悄悄话 🌈</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#彩蛋-🐣"><span class="nav-number">2.0.1.</span> <span class="nav-text">彩蛋 🐣</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#最近在拜读同名一书-《深入理解-Java-虚拟机》并会与大家分享我的读书笔记-深入理解-Java-虚拟机，有兴趣的朋友可以一同交流进步。"><span class="nav-number">2.0.1.0.1.</span> <span class="nav-text">最近在拜读同名一书 《深入理解 Java 虚拟机》并会与大家分享我的读书笔记 深入理解 Java 虚拟机，有兴趣的朋友可以一同交流进步。</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第二章-Java内存区域与内存溢出异常"><span class="nav-number">1.</span> <span class="nav-text">第二章 Java内存区域与内存溢出异常</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-运行时数据区域"><span class="nav-number">1.1.</span> <span class="nav-text">2.2 运行时数据区域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-程序计数器（Program-Counter-Register）"><span class="nav-number">1.1.1.</span> <span class="nav-text">2.2.1 程序计数器（Program Counter Register）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-Java-虚拟机栈（Java-Virtual-Machine-Stacks）"><span class="nav-number">1.1.2.</span> <span class="nav-text">2.2.2 Java 虚拟机栈（Java Virtual Machine Stacks）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-3-本地方法栈（Native-Method-Stack）"><span class="nav-number">1.1.3.</span> <span class="nav-text">2.2.3 本地方法栈（Native Method Stack）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-4-Java-堆（Java-Heap）"><span class="nav-number">1.1.4.</span> <span class="nav-text">2.2.4 Java 堆（Java Heap）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-5-方法区（Method-Area）"><span class="nav-number">1.1.5.</span> <span class="nav-text">2.2.5 方法区（Method Area）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-6-运行时常量池（Runtime-Constant-Pool）"><span class="nav-number">1.1.6.</span> <span class="nav-text">2.2.6 运行时常量池（Runtime Constant Pool）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-7-直接内存（Direct-Memory）"><span class="nav-number">1.1.7.</span> <span class="nav-text">2.2.7 直接内存（Direct Memory）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-HotSpot-虚拟机对象探秘"><span class="nav-number">1.2.</span> <span class="nav-text">2.3 HotSpot 虚拟机对象探秘</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-1-对象的创建"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.3.1 对象的创建</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-2对象的内存布局"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.3.2对象的内存布局</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-1-对象头（Header）"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">2.3.2.1 对象头（Header）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-2-实例数据（Instance-Data）"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">2.3.2.2 实例数据（Instance Data）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-2-3-对齐填充（Padding）"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">2.3.2.3 对齐填充（Padding）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-3-对象的访问定位"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3.3 对象的访问定位</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-实战：OutOfMemoryError-异常"><span class="nav-number">1.3.</span> <span class="nav-text">2.4 实战：OutOfMemoryError 异常</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#VM-Args-设置"><span class="nav-number">1.3.1.</span> <span class="nav-text">VM Args 设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-Java-堆溢出"><span class="nav-number">1.3.2.</span> <span class="nav-text">4.1 - Java 堆溢出</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-虚拟机栈和本地方法栈溢出"><span class="nav-number">1.3.3.</span> <span class="nav-text">4.2 - 虚拟机栈和本地方法栈溢出</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2-1-StackOverflowError"><span class="nav-number">1.3.3.0.1.</span> <span class="nav-text">4.2.1 - StackOverflowError</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-2-2-OutOfMemoryError"><span class="nav-number">1.3.3.0.2.</span> <span class="nav-text">4.2.2 - OutOfMemoryError</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-方法区和运行时常量池溢出"><span class="nav-number">1.3.4.</span> <span class="nav-text">4.3 - 方法区和运行时常量池溢出</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#4-3-1-OutOfMemoryError"><span class="nav-number">1.3.4.0.1.</span> <span class="nav-text">4.3.1 - OutOfMemoryError</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-3-2-String-常量池测试"><span class="nav-number">1.3.4.0.2.</span> <span class="nav-text">4.3.2 - String 常量池测试</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-3-3-测试设计思路"><span class="nav-number">1.3.4.0.3.</span> <span class="nav-text">4.3.3 - 测试设计思路</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-3-4-总结"><span class="nav-number">1.3.4.0.4.</span> <span class="nav-text">4.3.4 - 总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-4-本机直接内存溢出"><span class="nav-number">1.3.5.</span> <span class="nav-text">4.4 - 本机直接内存溢出</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -1118,7 +1111,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">14.4k</span>
+    <span title="Site words total count">14.1k</span>
   
 </div>
 
