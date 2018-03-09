@@ -288,6 +288,241 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/03/08/2018-03-08/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CloudPai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudPai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/08/2018-03-08/" itemprop="url">处理数据可视化</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-08T18:22:18+08:00">
+                2018-03-08
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-09T10:17:11+08:00">
+                2018-03-09
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/08/2018-03-08/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/03/08/2018-03-08/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  816
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <script src="/assets/js/APlayer.min.js"> </script><ul>
+<li>根据现有数据集进行数据表查询集构建：</li>
+<li>galleryproduction 左外联结 production:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT scratch_api_production.id,scratch_api_galleryproduction.production_id,scratch_api_production.name</span><br><span class="line">FROM scratch_api_galleryproduction </span><br><span class="line">LEFT JOIN scratch_api_production</span><br><span class="line">ON scratch_api_production.id=scratch_api_galleryproduction.production_id</span><br></pre></td></tr></table></figure>
+<ul>
+<li>production 左外联结 user:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT scratch_api_production.author_id,scratch_api_user.baseuser_ptr_id,scratch_api_user.sex,scratch_api_user.grade</span><br><span class="line">FROM scratch_api_production </span><br><span class="line">LEFT JOIN scratch_api_user </span><br><span class="line">ON scratch_api_production.author_id=scratch_api_user.baseuser_ptr_id</span><br></pre></td></tr></table></figure>
+<p>再构建三联表：</p>
+<ul>
+<li><strong>galleryproduction左外联结production左外联结user</strong></li>
+</ul>
+<p>三表联结查询模版：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> username,psw,gname,tel </span><br><span class="line"><span class="keyword">from</span> (t1 <span class="keyword">left</span> <span class="keyword">join</span> t2 <span class="keyword">on</span> t1.t1_id=t2.t1_id) </span><br><span class="line"><span class="keyword">left</span> <span class="keyword">join</span> t3 <span class="keyword">on</span> t1.t1_id=t3.t1_id</span><br></pre></td></tr></table></figure>
+<p>我根据业务流程实现的sql查询：</p>
+<ul>
+<li>查询某专题活动中的所有信息</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT *</span><br><span class="line">FROM (scratch_api_galleryproduction LEFT JOIN scratch_api_production ON scratch_api_galleryproduction.production_id=scratch_api_production.id)</span><br><span class="line">LEFT JOIN scratch_api_user ON scratch_api_production.author_id = scratch_api_user.baseuser_ptr_id</span><br><span class="line">WHERE scratch_api_galleryproduction.gallery_id = &apos;c8d29756ce4d4e72900dcee34b3b6925&apos; and scratch_api_galleryproduction.admin_checked = 1</span><br></pre></td></tr></table></figure>
+<p>然后使用阿里云的DataV进行数据可视化:</p>
+<p>需要对接接口：</p>
+<ul>
+<li>查询点赞数最多作品排行：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT scratch_api_production.like,scratch_api_production.name </span><br><span class="line">FROM (scratch_api_galleryproduction LEFT JOIN scratch_api_production ON scratch_api_galleryproduction.production_id=scratch_api_production.id)</span><br><span class="line">LEFT JOIN scratch_api_user ON scratch_api_production.author_id = scratch_api_user.baseuser_ptr_id</span><br><span class="line">WHERE scratch_api_galleryproduction.gallery_id = &apos;c8d29756ce4d4e72900dcee34b3b6925&apos; AND sex=&apos;男&apos;</span><br><span class="line">ORDER BY scratch_api_production.like DESC</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查询结果集中的男女人数</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">SELECT sex as 性别, COUNT(sex) AS &apos;人数&apos;</span><br><span class="line">FROM (scratch_api_galleryproduction LEFT JOIN scratch_api_production ON scratch_api_galleryproduction.production_id=scratch_api_production.id)</span><br><span class="line">LEFT JOIN scratch_api_user ON scratch_api_production.author_id = scratch_api_user.baseuser_ptr_id</span><br><span class="line">WHERE scratch_api_galleryproduction.gallery_id = &apos;c8d29756ce4d4e72900dcee34b3b6925&apos; and scratch_api_galleryproduction.admin_checked = 1  AND sex=&apos;男&apos;</span><br><span class="line">UNION</span><br><span class="line">SELECT sex as 性别, COUNT(sex) AS &apos;人数&apos;</span><br><span class="line">FROM (scratch_api_galleryproduction LEFT JOIN scratch_api_production ON scratch_api_galleryproduction.production_id=scratch_api_production.id)</span><br><span class="line">LEFT JOIN scratch_api_user ON scratch_api_production.author_id = scratch_api_user.baseuser_ptr_id</span><br><span class="line">WHERE scratch_api_galleryproduction.gallery_id = &apos;c8d29756ce4d4e72900dcee34b3b6925&apos; and scratch_api_galleryproduction.admin_checked = 1 AND sex=&apos;女&apos;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查询某专题活动学校参与度排名</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">SELECT  scratch_api_user.school_id ,COUNT(*)</span><br><span class="line">FROM (scratch_api_galleryproduction LEFT JOIN scratch_api_production ON scratch_api_galleryproduction.production_id=scratch_api_production.id)</span><br><span class="line">LEFT JOIN scratch_api_user ON scratch_api_production.author_id = scratch_api_user.baseuser_ptr_id</span><br><span class="line">WHERE scratch_api_galleryproduction.gallery_id = &apos;c8d29756ce4d4e72900dcee34b3b6925&apos; and scratch_api_galleryproduction.admin_checked = 1 and scratch_api_user.school_id is not NULL</span><br><span class="line">GROUP BY scratch_api_user.school_id</span><br><span class="line">order by count(*) desc</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查询某专题活动中的参与性别</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">SELECT scratch_api_user.sex</span><br><span class="line">FROM (scratch_api_galleryproduction LEFT JOIN scratch_api_production ON scratch_api_galleryproduction.production_id=scratch_api_production.id)</span><br><span class="line">LEFT JOIN scratch_api_user ON scratch_api_production.author_id = scratch_api_user.baseuser_ptr_id</span><br><span class="line">WHERE scratch_api_galleryproduction.gallery_id = &apos;c8d29756ce4d4e72900dcee34b3b6925&apos;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查询年级占比</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">SELECT  scratch_api_user.grade ,COUNT(*)</span><br><span class="line">FROM (scratch_api_galleryproduction LEFT JOIN scratch_api_production ON scratch_api_galleryproduction.production_id=scratch_api_production.id)</span><br><span class="line">LEFT JOIN scratch_api_user ON scratch_api_production.author_id = scratch_api_user.baseuser_ptr_id</span><br><span class="line">WHERE scratch_api_galleryproduction.gallery_id = &apos;c8d29756ce4d4e72900dcee34b3b6925&apos; and scratch_api_galleryproduction.admin_checked = 1 and scratch_api_user.grade is not NULL</span><br><span class="line">GROUP BY scratch_api_user.grade</span><br><span class="line">order by count(*) desc</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查询学校占比</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">SELECT  scratch_api_user.school_id ,COUNT(*)</span><br><span class="line">FROM (scratch_api_galleryproduction LEFT JOIN scratch_api_production ON scratch_api_galleryproduction.production_id=scratch_api_production.id)</span><br><span class="line">LEFT JOIN scratch_api_user ON scratch_api_production.author_id = scratch_api_user.baseuser_ptr_id</span><br><span class="line">WHERE scratch_api_galleryproduction.gallery_id = &apos;c8d29756ce4d4e72900dcee34b3b6925&apos; and scratch_api_galleryproduction.admin_checked = 1 and scratch_api_user.school_id is not NULL</span><br><span class="line">GROUP BY scratch_api_user.school_id</span><br><span class="line">order by count(*) desc</span><br></pre></td></tr></table></figure>
+<ul>
+<li>查询作品提交时间</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">SELECT  DATE_FORMAT(scratch_api_production.update_time,&quot;%Y/%m/%e&quot;) as &apos;日期&apos;,count(*) as &apos;当日投票数&apos;</span><br><span class="line">FROM (scratch_api_galleryproduction LEFT JOIN scratch_api_production ON scratch_api_galleryproduction.production_id=scratch_api_production.id)</span><br><span class="line">LEFT JOIN scratch_api_user ON scratch_api_production.author_id = scratch_api_user.baseuser_ptr_id</span><br><span class="line">WHERE scratch_api_galleryproduction.gallery_id = &apos;c8d29756ce4d4e72900dcee34b3b6925&apos; and scratch_api_galleryproduction.admin_checked = 1</span><br><span class="line">GROUP BY DATE_FORMAT(scratch_api_production.update_time,&quot;%Y/%m/%e&quot;)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>义乌市首届Scratch编程周实时数据状态网址(动态页面):<a href="http://datav.aliyun.com/share/07ef37b235d9763bd364f344912d1a05" target="_blank" rel="noopener">http://datav.aliyun.com/share/07ef37b235d9763bd364f344912d1a05</a><br>大数据可视化说明:<br>大数据屏幕：1920*1080（可修改）最高实时更新频率：1min/次<br>正常显示的预览效果参考（静态截图）：<a href="http://p4lmrb1gp.bkt.clouddn.com/15205615855957.jpg" target="_blank" rel="noopener">http://p4lmrb1gp.bkt.clouddn.com/15205615855957.jpg</a><br>本机上如果不是上述参考效果请检查自己的浏览器如下:<br>推荐电脑上预览：首选谷歌 Chrome 浏览器版本56以上，其他浏览器则需更新至最新版并开启极速（chrome内核）模式，不要使用IE浏览器，否则无法正常显示。<br>不推荐手机上预览：无法按默认长宽比例展示</p>
+</blockquote>
+<p>预览效果：<br><img src="http://p4lmrb1gp.bkt.clouddn.com/15205615855957.jpg" alt=""></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+
+     
+    
+
+
+    
+
+    
+
+    
+
+
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/03/06/2018-03-05-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2390,221 +2625,6 @@ make[4]: *** [/root/temp/jdk7u/tmp/java/components_imported] Error 1</code>解�
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/02/28/blog通过git备份与恢复的最优操作/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="CloudPai">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="CloudPai">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/02/28/blog通过git备份与恢复的最优操作/" itemprop="url">blog通过git备份与恢复的最优操作</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-28T00:00:00+08:00">
-                2018-02-28
-              </time>
-            
-
-            
-              <span class="post-meta-divider">|</span>
-            
-
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-check-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">更新于&#58;</span>
-              
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-01T19:32:32+08:00">
-                2018-03-01
-              </time>
-            
-          </span>
-
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2018/02/28/blog通过git备份与恢复的最优操作/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/02/28/blog通过git备份与恢复的最优操作/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  730
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  3
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <script src="/assets/js/APlayer.min.js"> </script><p><img src="http://p4lmrb1gp.bkt.clouddn.com/15198371703544.jpg" alt=""></p>
-<blockquote>
-<p><strong>引言</strong>：<br>Hexo生成的文件里面是有一个.gitignore的，所以它的本意应该也是想我们把这些文件放到GitHub上存放的。这个时候就可以用分支的思路！一个分支用来存放Hexo生成的网站原始的文件，另一个分支用来存放生成的静态网页。特别简洁。</p>
-</blockquote>
-<h1 id="关于搭建的流程"><a href="#关于搭建的流程" class="headerlink" title="关于搭建的流程"></a>关于搭建的流程</h1><ol>
-<li>创建仓库，<a href="http://CrazyMilk.github.io；" target="_blank" rel="noopener">http://CrazyMilk.github.io；</a></li>
-<li>创建两个分支：master 与 hexo；</li>
-<li>设置hexo为默认分支（因为我们只需要手动管理这个分支上的Hexo网站文件）；</li>
-<li>使用git clone <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:CrazyMilk/CrazyMilk.github.io.git拷贝仓库；</li>
-<li>在本地<a href="http://CrazyMilk.github.io" target="_blank" rel="noopener">http://CrazyMilk.github.io</a> 仓库新建一个文件后，进入文件中。在该文件夹下通过Git bash依次执行npm install hexo、hexo init、npm install 和 npm install hexo-deployer-git（此时当前分支应显示为hexo）;</li>
-<li>修改_config.yml中的deploy参数，分支应为master；</li>
-<li>依次执行git add .、git commit -m “…”、git push origin hexo提交网站相关的文件；</li>
-<li>执行hexo g -d生成网站并部署到GitHub上。这样一来，在GitHub上的<a href="http://CrazyMilk.github.io仓库就有两个分支，一个hexo分支用来存放网站的原始文件，一个master分支用来存放生成的静态网页。" target="_blank" rel="noopener">http://CrazyMilk.github.io仓库就有两个分支，一个hexo分支用来存放网站的原始文件，一个master分支用来存放生成的静态网页。</a></li>
-</ol>
-<h1 id="关于日常的改动流程"><a href="#关于日常的改动流程" class="headerlink" title="关于日常的改动流程"></a>关于日常的改动流程</h1><blockquote>
-<p>在本地对博客进行修改（添加新博文、修改样式等等）后，通过下面的流程进行管理。</p>
-</blockquote>
-<ol>
-<li>依次执行git add .、git commit -m “…”、git push origin hexo指令将改动推送到GitHub（此时当前分支应为hexo）；</li>
-<li>然后才执行hexo g -d发布网站到master分支上。虽然两个过程顺序调转一般不会有问题，不过逻辑上这样的顺序是绝对没问题的（例如突然死机要重装了，悲催….的情况，调转顺序就有问题了）。</li>
-</ol>
-<h1 id="本地资料丢失后的流程当重装电脑之后，或者想在其他电脑上修改博客，"><a href="#本地资料丢失后的流程当重装电脑之后，或者想在其他电脑上修改博客，" class="headerlink" title="本地资料丢失后的流程当重装电脑之后，或者想在其他电脑上修改博客，"></a>本地资料丢失后的流程当重装电脑之后，或者想在其他电脑上修改博客，</h1><p>可以使用下列步骤：</p>
-<ol>
-<li><p>使用git clone <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:CrazyMilk/CrazyMilk.github.io.git拷贝仓库（默认分支为hexo）；</p>
-</li>
-<li><p>在本地新拷贝的<a href="http://CrazyMilk.github.io文件夹下通过Git" target="_blank" rel="noopener">http://CrazyMilk.github.io文件夹下通过Git</a> bash依次执行下列指令：npm install hexo、npm install、npm install hexo-deployer-git（记得，不需要hexo init这条指令）。</p>
-<blockquote>
-<p>其实只要把hexo和需要每个插件都写入到package.json中（平常安装时加–save参数会自动写入），那么git clone下来之后，只要一句npm install就能装好hexo和所有的依赖，开箱即用 ^_^</p>
-</blockquote>
-</li>
-</ol>
-<h1 id="迁移源码库"><a href="#迁移源码库" class="headerlink" title="迁移源码库"></a>迁移源码库</h1><p>一开始用了该方法，后来意识到备份到github分支的博客源码也是public的，后来改为备份到开源中国git私有库了</p>
-<hr>
-<p><a href="https://crazymilk.github.io/2015/12/28/GitHub-Pages-Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" target="_blank" rel="noopener">参考1：GitHub Pages + Hexo搭建博客</a><br><a href="https://www.zhihu.com/question/21193762/answer/79109280" target="_blank" rel="noopener">参考2：使用hexo，如果换了电脑怎么更新博客？ - CrazyMilk的回答 - 知乎</a></p>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-
-     
-    
-
-
-    
-
-    
-
-    
-
-
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
   </section>
 
   
@@ -2664,7 +2684,7 @@ make[4]: *** [/root/temp/jdk7u/tmp/java/components_imported] Error 1</code>解�
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">16</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2686,7 +2706,7 @@ make[4]: *** [/root/temp/jdk7u/tmp/java/components_imported] Error 1</code>解�
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">13</span>
+                  <span class="site-state-item-count">15</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -2795,7 +2815,7 @@ make[4]: *** [/root/temp/jdk7u/tmp/java/components_imported] Error 1</code>解�
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">14.1k</span>
+    <span title="Site words total count">15.0k</span>
   
 </div>
 
