@@ -288,7 +288,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/02/28/blog通过git备份与恢复的最优操作/">
+    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/03/01/需要进行的改进/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CloudPai">
@@ -307,7 +307,7 @@
         
           <h1 class="post-title" itemprop="name headline">
                 
-                <a class="post-title-link" href="/2018/02/28/blog通过git备份与恢复的最优操作/" itemprop="url">blog通过git备份与恢复的最优操作</a></h1>
+                <a class="post-title-link" href="/2018/03/01/需要进行的改进/" itemprop="url">需要进行的改进</a></h1>
         
 
         <div class="post-meta">
@@ -319,8 +319,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-28T00:00:00+08:00">
-                2018-02-28
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-01T00:00:00+08:00">
+                2018-03-01
               </time>
             
 
@@ -335,8 +335,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-01T19:32:32+08:00">
-                2018-03-01
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-04T01:22:11+08:00">
+                2018-03-04
               </time>
             
           </span>
@@ -350,9 +350,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/02/28/blog通过git备份与恢复的最优操作/#comments" itemprop="discussionUrl">
+                <a href="/2018/03/01/需要进行的改进/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/02/28/blog通过git备份与恢复的最优操作/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/03/01/需要进行的改进/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -374,7 +374,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  730
+                  34
                 </span>
               
 
@@ -390,7 +390,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3
+                  1
                 </span>
               
             </div>
@@ -413,42 +413,20 @@
       
         
           
-            <script src="/assets/js/APlayer.min.js"> </script><p><img src="http://p4lmrb1gp.bkt.clouddn.com/15198371703544.jpg" alt=""></p>
-<blockquote>
-<p><strong>引言</strong>：<br>Hexo生成的文件里面是有一个.gitignore的，所以它的本意应该也是想我们把这些文件放到GitHub上存放的。这个时候就可以用分支的思路！一个分支用来存放Hexo生成的网站原始的文件，另一个分支用来存放生成的静态网页。特别简洁。</p>
-</blockquote>
-<h1 id="关于搭建的流程"><a href="#关于搭建的流程" class="headerlink" title="关于搭建的流程"></a>关于搭建的流程</h1><ol>
-<li>创建仓库，<a href="http://CrazyMilk.github.io；" target="_blank" rel="noopener">http://CrazyMilk.github.io；</a></li>
-<li>创建两个分支：master 与 hexo；</li>
-<li>设置hexo为默认分支（因为我们只需要手动管理这个分支上的Hexo网站文件）；</li>
-<li>使用git clone <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:CrazyMilk/CrazyMilk.github.io.git拷贝仓库；</li>
-<li>在本地<a href="http://CrazyMilk.github.io" target="_blank" rel="noopener">http://CrazyMilk.github.io</a> 仓库新建一个文件后，进入文件中。在该文件夹下通过Git bash依次执行npm install hexo、hexo init、npm install 和 npm install hexo-deployer-git（此时当前分支应显示为hexo）;</li>
-<li>修改_config.yml中的deploy参数，分支应为master；</li>
-<li>依次执行git add .、git commit -m “…”、git push origin hexo提交网站相关的文件；</li>
-<li>执行hexo g -d生成网站并部署到GitHub上。这样一来，在GitHub上的<a href="http://CrazyMilk.github.io仓库就有两个分支，一个hexo分支用来存放网站的原始文件，一个master分支用来存放生成的静态网页。" target="_blank" rel="noopener">http://CrazyMilk.github.io仓库就有两个分支，一个hexo分支用来存放网站的原始文件，一个master分支用来存放生成的静态网页。</a></li>
-</ol>
-<h1 id="关于日常的改动流程"><a href="#关于日常的改动流程" class="headerlink" title="关于日常的改动流程"></a>关于日常的改动流程</h1><blockquote>
-<p>在本地对博客进行修改（添加新博文、修改样式等等）后，通过下面的流程进行管理。</p>
-</blockquote>
-<ol>
-<li>依次执行git add .、git commit -m “…”、git push origin hexo指令将改动推送到GitHub（此时当前分支应为hexo）；</li>
-<li>然后才执行hexo g -d发布网站到master分支上。虽然两个过程顺序调转一般不会有问题，不过逻辑上这样的顺序是绝对没问题的（例如突然死机要重装了，悲催….的情况，调转顺序就有问题了）。</li>
-</ol>
-<h1 id="本地资料丢失后的流程当重装电脑之后，或者想在其他电脑上修改博客，"><a href="#本地资料丢失后的流程当重装电脑之后，或者想在其他电脑上修改博客，" class="headerlink" title="本地资料丢失后的流程当重装电脑之后，或者想在其他电脑上修改博客，"></a>本地资料丢失后的流程当重装电脑之后，或者想在其他电脑上修改博客，</h1><p>可以使用下列步骤：</p>
-<ol>
-<li><p>使用git clone <a href="mailto:git@github.com" target="_blank" rel="noopener">git@github.com</a>:CrazyMilk/CrazyMilk.github.io.git拷贝仓库（默认分支为hexo）；</p>
-</li>
-<li><p>在本地新拷贝的<a href="http://CrazyMilk.github.io文件夹下通过Git" target="_blank" rel="noopener">http://CrazyMilk.github.io文件夹下通过Git</a> bash依次执行下列指令：npm install hexo、npm install、npm install hexo-deployer-git（记得，不需要hexo init这条指令）。</p>
-<blockquote>
-<p>其实只要把hexo和需要每个插件都写入到package.json中（平常安装时加–save参数会自动写入），那么git clone下来之后，只要一句npm install就能装好hexo和所有的依赖，开箱即用 ^_^</p>
-</blockquote>
-</li>
-</ol>
-<h1 id="迁移源码库"><a href="#迁移源码库" class="headerlink" title="迁移源码库"></a>迁移源码库</h1><p>一开始用了该方法，后来意识到备份到github分支的博客源码也是public的，后来改为备份到开源中国git私有库了</p>
-<hr>
-<p><a href="https://crazymilk.github.io/2015/12/28/GitHub-Pages-Hexo%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2/" target="_blank" rel="noopener">参考1：GitHub Pages + Hexo搭建博客</a><br><a href="https://www.zhihu.com/question/21193762/answer/79109280" target="_blank" rel="noopener">参考2：使用hexo，如果换了电脑怎么更新博客？ - CrazyMilk的回答 - 知乎</a></p>
+           TODO：
+ 测试git的备份功能
+ 学习 Alfred workflow实现打开重启任意应用
+ 脚本实现清理浏览器缓存
+
 
           
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/01/需要进行的改进/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -628,22 +606,21 @@
       
         
           
-            <script src="/assets/js/APlayer.min.js"> </script><blockquote>
-<p>创建的仓库：默认master<br>克隆的仓库：默认origin（源）</p>
-</blockquote>
-<p><code>git add</code> 开始跟踪一个新文件<br><code>git status</code>显示git状态</p>
-<p><code>git commit</code>提交更新</p>
-<p><code>git diff</code>：比较工作区和缓存区的不同。<br><code>git diff --cached</code>：比较缓存区和仓库的不同。</p>
-<p><code>git pull</code> 命令自动抓取数据下来，然后将远端分支自动合并到本地仓库中当前分支</p>
-<p><code>git push [remote-name] [branch-name]</code> 如果要把本地的 master 分支推送到 origin 服务器上（再次说明下，克隆操作会自动使用默认的 master 和 origin 名字），可以运行下面的命令：<br><code>git push origin master</code></p>
-<p><code>git log</code>显示从最近到最远的提交日志。包含每个提交的SHA1校验和、作者的名字和邮箱、提交时间以及提交说明等。<br><code>gitk</code>使用图形化工具查阅提交历史</p>
-<p><code>git commit --amend</code>修改最后一次提交</p>
-<p><code>git reset HEAD &lt;file&gt;...</code>取消已经暂存的文件</p>
-<h3 id="Git-分支"><a href="#Git-分支" class="headerlink" title="Git 分支"></a>Git 分支</h3><p><code>git branch</code>创建一个新的分支</p>
-<p><code>git commit -a -m &#39;made other changes&#39;</code> 提交分支<br><code>git mergetool</code>调用一个可视化的合并工具并引导你解决所有冲突</p>
-<p><a href="https://git-scm.com/book/zh/v2/Git-%E5%88%86%E6%94%AF-%E5%88%86%E6%94%AF%E7%AE%80%E4%BB%8B" target="_blank" rel="noopener">git学习链接</a></p>
+           
+创建的仓库：默认master克隆的仓库：默认origin（源）
 
-          
+git add 开始跟踪一个新文件git status显示git状态
+git commit提交更新
+git diff：比较工作区和缓存区的不同。git diff --cached：比较缓存区和仓库的不同。
+git pull 命令自
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/02/28/2018-02-28-1/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -823,16 +800,215 @@
       
         
           
-            <script src="/assets/js/APlayer.min.js"> </script><blockquote>
-<p>Mac系统如何显示隐藏文件？<br>以”.”开头的隐藏文件如何在MAC系统下显示？</p>
-</blockquote>
-<blockquote>
-<p>答：<br>Command+Shift+. 可以显示隐藏文件、文件夹，再按一次，恢复隐藏；<br>finder下使用Command+Shift+G 可以前往任何文件夹，包括隐藏文件夹。    </p>
-</blockquote>
-<p>显示 隐藏文件</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#显示全部文件</span></span><br><span class="line">defaults write com.apple.finder AppleShowAllFiles -bool <span class="literal">true</span></span><br><span class="line">osascript -e <span class="string">'tell application "Finder" to quit'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#不显示全部文件</span></span><br><span class="line">defaults write com.apple.finder AppleShowAllFiles -bool <span class="literal">false</span></span><br><span class="line">osascript -e <span class="string">'tell application "Finder" to quit'</span></span><br></pre></td></tr></table></figure>
+           
+Mac系统如何显示隐藏文件？以”.”开头的隐藏文件如何在MAC系统下显示？
+
+
+答：Command+Shift+. 可以显示隐藏文件、文件夹，再按一次，恢复隐藏；finder下使用Command+Shift+G 可以前往任何文件夹，包括隐藏文件夹。    
+
+显示 隐藏文件
+1234567#显示
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/02/28/2018-02-28/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+
+     
+    
+
+
+    
+
+    
+
+    
+
+
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/02/28/blog通过git备份与恢复的最优操作/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CloudPai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudPai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/02/28/blog通过git备份与恢复的最优操作/" itemprop="url">blog通过git备份与恢复的最优操作</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-28T00:00:00+08:00">
+                2018-02-28
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-01T19:32:32+08:00">
+                2018-03-01
+              </time>
+            
+          </span>
 
           
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/02/28/blog通过git备份与恢复的最优操作/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/02/28/blog通过git备份与恢复的最优操作/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  730
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+           
+
+引言：Hexo生成的文件里面是有一个.gitignore的，所以它的本意应该也是想我们把这些文件放到GitHub上存放的。这个时候就可以用分支的思路！一个分支用来存放Hexo生成的网站原始的文件，另一个分支用来存放生成的静态网页。特别简洁。
+
+关于搭建的流程
+创建仓库，http://Crazy
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/02/28/blog通过git备份与恢复的最优操作/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1012,14 +1188,19 @@
       
         
           
-            <script src="/assets/js/APlayer.min.js"> </script><h3 id="评论区样式修改："><a href="#评论区样式修改：" class="headerlink" title="评论区样式修改："></a>评论区样式修改：</h3><p>文件位置：<code>themes/next/source/css/_common/components/comments.styl</code></p>
-<p>修改内容：</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.comments</span> &#123; </span><br><span class="line">  background white;</span><br><span class="line">  <span class="selector-tag">opacity</span><span class="selector-pseudo">:0.8</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="移动端不加载背景图"><a href="#移动端不加载背景图" class="headerlink" title="移动端不加载背景图"></a>移动端不加载背景图</h3><p>一点优化，移动端不加载背景图。<br>在<code>_layout.swig</code>底部<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":-80,"vOffset":-50},"mobile":{"show":false,"scale":0.2},"react":{"opacityDefault":1,"opacityOnHover":0.2}});</script>标签前，加上移动端浏览器内核判断语句，当为PC端浏览器时，加载背景js</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--移动端判断，是否引入背景--&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">var</span> browser=&#123;  </span><br><span class="line">    versions:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;   </span><br><span class="line">           <span class="keyword">var</span> u = navigator.userAgent, app = navigator.appVersion;   </span><br><span class="line">           <span class="keyword">return</span> &#123;<span class="comment">//移动终端浏览器版本信息</span></span><br><span class="line">                trident: u.indexOf(<span class="string">'Trident'</span>) &gt; <span class="number">-1</span>, <span class="comment">//IE内核</span></span><br><span class="line">                presto: u.indexOf(<span class="string">'Presto'</span>) &gt; <span class="number">-1</span>, <span class="comment">//opera内核</span></span><br><span class="line">                webKit: u.indexOf(<span class="string">'AppleWebKit'</span>) &gt; <span class="number">-1</span>, <span class="comment">//苹果、谷歌内核</span></span><br><span class="line">                gecko: u.indexOf(<span class="string">'Gecko'</span>) &gt; <span class="number">-1</span> &amp;&amp; u.indexOf(<span class="string">'KHTML'</span>) == <span class="number">-1</span>, <span class="comment">//火狐内核</span></span><br><span class="line">                mobile: !!u.match(<span class="regexp">/AppleWebKit.*Mobile.*/</span>), <span class="comment">//是否为移动终端</span></span><br><span class="line">                ios: !!u.match(<span class="regexp">/\(i[^;]+;( U;)? CPU.+Mac OS X/</span>), <span class="comment">//ios终端</span></span><br><span class="line">                android: u.indexOf(<span class="string">'Android'</span>) &gt; <span class="number">-1</span> || u.indexOf(<span class="string">'Linux'</span>) &gt; <span class="number">-1</span>, <span class="comment">//android终端或者uc浏览器</span></span><br><span class="line">                iPhone: u.indexOf(<span class="string">'iPhone'</span>) &gt; <span class="number">-1</span> , <span class="comment">//是否为iPhone或者QQHD浏览器</span></span><br><span class="line">                iPad: u.indexOf(<span class="string">'iPad'</span>) &gt; <span class="number">-1</span>, <span class="comment">//是否iPad</span></span><br><span class="line">                webApp: u.indexOf(<span class="string">'Safari'</span>) == <span class="number">-1</span> <span class="comment">//是否web应该程序，没有头部与底部</span></span><br><span class="line">            &#125;;  </span><br><span class="line">         &#125;(),  </span><br><span class="line">         language:(navigator.browserLanguage || navigator.language).toLowerCase()  </span><br><span class="line">&#125;   </span><br><span class="line">  <span class="keyword">if</span>(browser.versions.mobile || browser.versions.ios || browser.versions.android ||   </span><br><span class="line">    browser.versions.iPhone || browser.versions.iPad)&#123;        </span><br><span class="line">             </span><br><span class="line">  &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">	<span class="built_in">document</span>.write(<span class="string">"&lt;script type=\'text/javascript\'  src=\'/js/src/particle.js\'&gt;&lt;\/script&gt;"</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+           评论区样式修改：文件位置：themes/next/source/css/_common/components/comments.styl
+修改内容：
+1234.comments &#123;   background white;  opacity:0.8;&#125;
 
-          
+移动端不加载背景图一点优
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/02/27/博客样式改进杂记/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1199,86 +1380,22 @@
       
         
           
-            <script src="/assets/js/APlayer.min.js"> </script><p><img src="http://p4lmrb1gp.bkt.clouddn.com/秒速五厘米.gif" alt="秒速五厘米"> </p>
-<p><center><br><strong>记录点滴生活<br>《BINGBIAN病变》<br>歌曲不错，曲调有些忧伤</strong><br></center></p>
-<p><center><br><!--<audio src="http://mp3.qqmusic.cc/yq/211758246.mp3" controls="controls"></audio>
-</center>--><br><div id="aplayer0" class="aplayer" style="margin-bottom: 20px;width:100%;"><pre class="aplayer-lrc-content">[00:00.21]罗之豪 - BINGBIAN病变
+            
+记录点滴生活《BINGBIAN病变》歌曲不错，曲调有些忧伤
+
+-->[00:00.21]罗之豪 - BINGBIAN病变
 [00:01.87]词：Cubi/Fi9
 [00:02.76]曲：Jurrivh
 [00:03.72]混音：Fi9
-[00:19.36][02:01.33][03:09.30]有天我睡醒看到我的身边没有你
-[00:23.52][02:05.53][03:13.50]在我的右边是你曾经喜欢的玩具
-[00:27.75][02:09.76][03:17.66]可当我站起身来在房间里寻找你
-[00:32.04][02:14.00][03:21.93]留下的只有带着你味道的一封信
-[00:36.50][02:18.48][03:26.35]就在昨天还一起看我们的照片
-[00:40.47][02:22.48][03:30.46]可现在让我感觉像烂剧里的主演
-[00:44.74][02:26.71][03:34.69]为什么这种事情会发生在我身边
-[00:48.97][02:31.00][03:38.92]是不是老天没能看到对你的疯癫
-[00:54.46]还想着 创造你的宇宙
-[00:56.53]但现在 已经被我清空
-[00:58.57]你让我 整个人都冰冻
-[01:00.68]还怎么 再次为你心动
-[01:02.88]Wake me 不是你的意愿
-[01:04.97]离开我 开始新的起点
-[01:07.12]可能我 还会对你贪恋
-[01:09.30]谁让你 曾经让我疯癫
-[01:11.18]疯癫 那也是过去的画面
-[01:14.54]看往后的几天
-[01:16.72]我猜你也不会出现
-[01:18.78]我回想这几年
-[01:20.93]就像是要命的病变
-[01:23.16]你可能听不见
-[01:25.16]来自我对你的挂念
-[01:27.53]可能有点累
-[01:28.85]觉得对不对这是第几次在为你宿醉
-[01:31.98]没了我肩膀
-[01:33.08]你在谁身旁买的礼物变成了灰
-[01:35.99]曾经我多想
-[01:37.25]把你变漂亮看着别人羡慕你的模样
-[01:40.50]没关系有小熊陪着你看月亮
-[01:44.40]我已经看到跟你断电的过程
-[01:46.96]但我假装看不见
-[01:48.76]是不是要我变得像个厉鬼
-[01:50.96]才能进入你的世界
-[01:52.95]为什么不说再见
-[01:54.31]我猜你应该是不小心的忘记
-[01:57.04]都无所谓也有点累
-[01:59.09]也可以开始新的记忆
-[02:35.19]我不能够停止啊
-[02:37.43]这些年我对你的疯癫
-[02:39.49]戴上那条围巾吧
-[02:41.59]在每个寒风刺骨的冬天
-[02:43.92]每次送你回家你抱着我
-[02:45.63]不经意间又触碰到你的手
-[02:48.10]你穿裙子眨眼睛 望着我
-[02:50.52]让我每次心动的瞬间
-[02:52.49]那条十字路口
-[02:54.39]始终有你身上的气味
-[02:57.00]车水马龙过后的路灯下的身影
-[03:00.10]又会是谁
-[03:00.83]他想说我真的
-[03:02.01]喜欢你但是每次欲言又闭嘴
-[03:05.57]那时荒唐的男孩
-[03:07.64]又浑浊了几岁</pre></div>
-		<script>
-			var ap = new APlayer({
-				element: document.getElementById("aplayer0"),
-				narrow: false,
-				autoplay: false,
-				showlrc: 2,
-				music: {
-					title: "BINGBIAN病变",
-					author: "Cubi / Fi9江澈",
-					url: "http://p4lmrb1gp.bkt.clouddn.com/Cubi,Aydo$,BRGang%20-%20BINGBIAN%E7%97%85%E5%8F%98.mp3",
-					pic: "http://p4lmrb1gp.bkt.clouddn.com/BINGBIAN%E7%97%85%E5%8F%98.jpg",
-				}
-			});
-			window.aplayers || (window.aplayers = []);
-			window.aplayers.push(ap);
-		</script></center></p>
-<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15194033640468.jpg" width="80%" height="80%"></p>
-
-          
+[00:19.36][02:01.33][03:09.3
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/02/24/🎵记录点滴生活/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1458,15 +1575,17 @@
       
         
           
-            <script src="/assets/js/APlayer.min.js"> </script><p>遇到的坑：</p>
-<blockquote>
-<p><strong>-bash: ./install.sh: /bin/bash: bad interpreter: Operation not permitted</strong><br>出现这个问题的主要原因是：-rwxrwxrwx@  文件的属性最后带个@，这个@代表的是更多的一些属性，具体含义不太清楚，但有它就是执行不了<br>解决：可以用这个命令来去除这个属性：<code>xattr -d com.apple.quarantine ./*</code><br>后来进入目录发现目录下面的文件还是带有@属性，我们到根目录加一个-r就好了：<code>xattr -d -r com.apple.quarantine ./*</code></p>
-</blockquote>
-<hr>
-<p>我的blog自动发布脚本:blog_publish.sh</p>
-<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">say <span class="string">"blogs updating"</span></span><br><span class="line"><span class="built_in">cd</span> /Users/pailiu/Library/Mobile\ Documents/iCloud~com~coderforart~iOS~MWeb/Documents/mweb_documents_library/Blog</span><br><span class="line">hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br><span class="line">say <span class="string">"blogs published"</span></span><br><span class="line">rm -rf /Users/pailiu/Library/Caches/Google/Chrome/Profile\ 1/*</span><br><span class="line">open -a <span class="string">"/Applications/Google Chrome.app"</span> <span class="string">'http://cloudpai.site/'</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># hexo server</span></span><br></pre></td></tr></table></figure>
+           遇到的坑：
 
-          
+-bash: ./install.sh: /bin/bash: bad interpreter: Operation not permitted出现这个问题的主要原因是：-rwxrwxrwx@  文件的属性最后带个@，这个@代表的是更多的一些属性，具体含义不太清楚，但有它就是执行不了
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/02/23/mac执行shell脚本遇到的错误处理/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1646,144 +1765,20 @@
       
         
           
-            <script src="/assets/js/APlayer.min.js"> </script><p><strong>为了避免后期外链失效，可以将视频、音频图片等资源传至七牛云等cdn服务器上，从中获取外链。</strong></p>
-<h2 id=""><a href="#" class="headerlink" title=""></a><img src="http://p4lmrb1gp.bkt.clouddn.com/15194719834852.jpg" alt=""></h2><h3 id="常用排版："><a href="#常用排版：" class="headerlink" title="常用排版："></a>常用排版：</h3><p>居中：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">center</span>&gt;</span> <span class="tag">&lt;/<span class="name">center</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="插入图片："><a href="#插入图片：" class="headerlink" title="插入图片："></a>插入图片：</h3><p>有尺寸要求时：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"http://p4lmrb1gp.bkt.clouddn.com/15194033640468.jpg"</span> <span class="attr">width</span>=<span class="string">"80%"</span> <span class="attr">height</span>=<span class="string">"80%"</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>无尺寸要求时快速插入（md格式）：</p>
-<figure class="highlight md"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">![](http://p4lmrb1gp.bkt.clouddn.com/15194033640468.jpg)</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="插入音乐"><a href="#插入音乐" class="headerlink" title="插入音乐"></a>插入音乐</h3><h4 id="网易云音乐外链获取：见官网"><a href="#网易云音乐外链获取：见官网" class="headerlink" title="网易云音乐外链获取：见官网"></a>网易云音乐外链获取：见官网</h4><p>修改博客音乐播放器歌曲路径：<br><code>/Blog/themes/hexo-theme-next-master/layout/_macro/sidebar.swig</code></p>
-<h4 id="qq音乐外链获取："><a href="#qq音乐外链获取：" class="headerlink" title="qq音乐外链获取："></a>qq音乐外链获取：</h4><blockquote>
-<p><a href="http://www.qqmusic.cc/" target="_blank" rel="noopener">http://www.qqmusic.cc/</a><br>插入音频播放器代码：</p>
-</blockquote>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">audio</span> <span class="attr">src</span>=<span class="string">"http://mp3.qqmusic.cc/yq/211758246.mp3"</span> <span class="attr">controls</span>=<span class="string">"controls"</span>&gt;</span><span class="tag">&lt;/<span class="name">audio</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h4 id="hexo-tag-aplayer：博客中插入自定义音乐"><a href="#hexo-tag-aplayer：博客中插入自定义音乐" class="headerlink" title="hexo-tag-aplayer：博客中插入自定义音乐"></a>hexo-tag-aplayer：博客中插入自定义音乐</h4><blockquote>
-<p>安装成功后，在 Markdown 文档中添加<br>比如添加如下代码使用hexo-tag-aplayer </p>
-</blockquote>
-<h5 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">title ：音乐标题</span><br><span class="line">author：音乐作者</span><br><span class="line">url：音乐文件网址</span><br><span class="line">picture_url：可选，音乐图片网址</span><br><span class="line">narrow：可选，窄款式</span><br><span class="line">autoplay：可选，自动播放音乐，不支持移动浏览器</span><br><span class="line">width:xxx：可选，前缀width:，播放器宽度（默认值：100％）</span><br><span class="line">lrc:xxx：可选，前缀lrc:，LRC文件url</span><br></pre></td></tr></table></figure>
-<p>示例:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;% aplayer &quot;Caffeine&quot; &quot;Jeff Williams&quot; &quot;caffeine.mp3&quot; &quot;picture.jpg&quot; &quot;lrc:caffeine.txt&quot; %&#125;</span><br></pre></td></tr></table></figure>
-<div id="aplayer1" class="aplayer" style="margin-bottom: 20px;width:100%;"><pre class="aplayer-lrc-content">[ti:春意红包 (Vocaloid Ver.)]
-[ar:乐正绫/心华/洛天依]
-[al:春意红包]
-[by:]
-[offset:0]
-[00:00.29]春意红包 (Vocaloid Ver.) - 乐正绫/心华/洛天依
-[00:00.89]词：泠鸢YOUSA
-[00:01.05]曲：Wing翼
-[00:01.18]编曲：Wing翼
-[00:01.95]小麦面包饺 喜色上眉梢
-[00:05.78]点柳翠 画春晓
-[00:08.85]
-[00:10.08]找旧样铜板穿一串吉兆
-[00:14.20]把春意装满红包
-[00:17.86]
-[00:37.11]廊下的小阿妹摇头晃脑
-[00:41.25]望着瓦上的碎嘴家雀
-[00:44.76]
-[00:45.56]问它们春日的鸟儿 何时才能到
-[00:49.81]
-[00:50.35]穿街搜巷沿路找
-[00:53.26]
-[00:53.76]看邻家的老人摘下毡帽
-[00:57.88]虽是脱去冬衣还尚早
-[01:01.89]宰鸡鸭 起炉灶 揭开自家陈酿
-[01:07.91]偷偷尝一瓢
-[01:09.81]
-[01:13.01]大鬼叫 小鬼叫 邪祟吓得跌倒
-[01:16.73]该用什么清扫 锣鼓鞭炮
-[01:20.58]
-[01:21.30]小孩儿 快来瞧 别再人堆胡闹
-[01:24.85]
-[01:25.43]只有听话乖巧 来年才能长高
-[01:29.08]
-[01:30.21]和纸浆 采朱砂 攒一摞春联叠好
-[01:34.25]剪金花 染红料
-[01:36.24]再糊一个四方小包
-[01:37.98]
-[01:38.56]对花调 抄童谣 写一串吉祥安好
-[01:42.51]扶正了封面 画上春来到
-[01:46.14]一片翠色葱葱明快又跳跃
-[01:50.13]几瓣海棠山茶花儿相映笑
-[01:54.29]再蘸浓墨潦草添只燕子闹
-[01:58.48]红绳绕 来封一个大红包
-[02:02.83]
-[02:19.34]找一张晒烫的板凳歇脚
-[02:22.80]
-[02:23.58]看你眼下又布满操劳
-[02:27.59]编织橙黄蓝绿把烦恼全部忘掉
-[02:32.00]
-[02:32.65]抬手捧一把红枣
-[02:34.70]
-[02:35.97]骗怕生的小妹点灯睡觉
-[02:40.05]会有鬼祟在夜晚来到
-[02:43.55]
-[02:44.13]她慌张 我偷笑 连说不怕不怕
-[02:50.16]让我去赶跑
-[02:52.62]
-[02:55.34]左搭肩 右帮腔
-[02:57.19]挤兑迟来的大忙人
-[02:59.59]礼物未到 人怎能到
-[03:03.02]
-[03:03.62]表嫂吵 大舅闹 连天地喳喳叫
-[03:07.03]
-[03:07.71]我装作听不到 盘坐把碗沿敲
-[03:11.35]
-[03:12.37]踩高跷 抓花包 撩一挂红衣鞭炮
-[03:16.52]打年糕 串辣椒
-[03:18.59]抹花我的胭脂粉膏
-[03:20.67]侃八卦 讲小道 等杯中茶酒减少
-[03:24.79]将手上红包 塞进你棉袄
-[03:28.05]
-[03:28.60]你送吉祥如意 幸福快来到
-[03:32.57]我送百年顺遂 不怕被火烧
-[03:36.57]再求来年生辰 添一分美貌
-[03:40.74]拱手摇 同鞠一躬对眼笑
-[03:44.55]
-[03:47.29]小麦面包饺 喜色上眉梢
-[03:51.29]点柳翠 画春晓
-[03:55.45]找旧样铜板穿一串吉兆
-[03:59.58]把春意赠与明朝
-[04:03.12]
-[04:04.16]左搭肩 右帮腔 热闹话不见少
-[04:08.24]你来蒸 我来挑 塞满嘴的玉米包
-[04:12.41]干柴烧 火焰高 烦心事已寥寥
-[04:16.05]
-[04:16.66]眯眼瞧 把红包塞进你棉袄
-[04:20.59]一片翠色葱葱 明快又跳跃
-[04:24.66]几瓣海棠山茶 花儿相映笑
-[04:28.80]封着吉祥如意 幸福快来到
-[04:32.97]红绳绕 拆开春意大红包</pre></div>
-		<script>
-			var ap = new APlayer({
-				element: document.getElementById("aplayer1"),
-				narrow: false,
-				autoplay: false,
-				showlrc: 2,
-				music: {
-					title: "春意红包",
-					author: "三无MarBlue,祖娅纳惜,泠鸢yousa",
-					url: "http://p4lmrb1gp.bkt.clouddn.com/%E4%B8%89%E6%97%A0MarBlue,%E7%A5%96%E5%A8%85%E7%BA%B3%E6%83%9C,%E6%B3%A0%E9%B8%A2yousa%20-%20%E6%98%A5%E6%84%8F%E7%BA%A2%E5%8C%85.mp3",
-					pic: "http://p4lmrb1gp.bkt.clouddn.com/%E6%98%A5%E6%84%8F%E7%BA%A2%E5%8C%85.jpg",
-				}
-			});
-			window.aplayers || (window.aplayers = []);
-			window.aplayers.push(ap);
-		</script>
-<h5 id="播放列表"><a href="#播放列表" class="headerlink" title="播放列表"></a>播放列表</h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">&#123;% aplayerlist %&#125;</span><br><span class="line">&#123;</span><br><span class="line">    "narrow": false,                 // Optional, narrow style</span><br><span class="line">    "autoplay": true,                // Optional, autoplay song(s), not supported by mobile browsers</span><br><span class="line">    "mode": "random",                // Optional, play mode, can be `random` `single` `circulation`(loop) `order`(no loop), default: `circulation`</span><br><span class="line">    "showlrc": 3,                    // Optional, show lrc, can be 1, 2, 3</span><br><span class="line">    "mutex": true,                   // Optional, pause other players when this player playing</span><br><span class="line">    "theme": "#e6d0b2",	             // Optional, theme color, default: #b7daff</span><br><span class="line">    "preload": "metadata",           // Optional, the way to load music, can be 'none' 'metadata' 'auto', default: 'auto'</span><br><span class="line">    "listmaxheight": "513px",        // Optional, max height of play list</span><br><span class="line">    "music": [</span><br><span class="line">        &#123;</span><br><span class="line">            "title": "CoCo",</span><br><span class="line">            "author": "Jeff Williams",</span><br><span class="line">            "url": "caffeine.mp3",</span><br><span class="line">            "pic": "caffeine.jpeg",</span><br><span class="line">            "lrc": "caffeine.txt"</span><br><span class="line">        &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">            "title": "アイロニ",</span><br><span class="line">            "author": "鹿乃",</span><br><span class="line">            "url": "irony.mp3",</span><br><span class="line">            "pic": "irony.jpg"</span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br><span class="line">&#123;% endaplayerlist %&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="插入视频："><a href="#插入视频：" class="headerlink" title="插入视频："></a>插入视频：</h3><p>video 标签：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">video</span> <span class="attr">src</span>=<span class="string">"http://lxqncdn.miaopai.com/stream/BvmaXK2X49guVi4ehlOjjQ__.mp4"</span> <span class="attr">width</span>=<span class="string">"100%"</span> <span class="attr">height</span>=<span class="string">"100%"</span> <span class="attr">controls</span>=<span class="string">"controls"</span>&gt;</span></span><br><span class="line">Your browser does not support the video tag.</span><br><span class="line"><span class="tag">&lt;/<span class="name">video</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>embed标签：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">embed</span> <span class="attr">src</span>=<span class="string">"http://player.youku.com/player.php/Type/Folder/Fid/27690810/Ob/1/sid/XMTY1MTI3NjMyNA==/v.swf"</span> <span class="attr">quality</span>=<span class="string">"high"</span> <span class="attr">width</span>=<span class="string">"480"</span> <span class="attr">height</span>=<span class="string">"400"</span> <span class="attr">align</span>=<span class="string">"middle"</span> <span class="attr">allowScriptAccess</span>=<span class="string">"always"</span> <span class="attr">allowFullScreen</span>=<span class="string">"true"</span> <span class="attr">mode</span>=<span class="string">"transparent"</span> <span class="attr">type</span>=<span class="string">"application/x-shockwave-flash"</span>&gt;</span><span class="tag">&lt;/<span class="name">embed</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>iframe标签：</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">iframe</span> <span class="attr">height</span>=<span class="string">498</span> <span class="attr">width</span>=<span class="string">510</span> <span class="attr">src</span>=<span class="string">"http://player.youku.com/embed/XMTY1MTI3NjMyNA=="</span> <span class="attr">frameborder</span>=<span class="string">0</span> <span class="attr">allowfullscreen</span>&gt;</span><span class="tag">&lt;/<span class="name">iframe</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<hr>
+           为了避免后期外链失效，可以将视频、音频图片等资源传至七牛云等cdn服务器上，从中获取外链。
+常用排版：居中：
+1&lt;center&gt; &lt;/center&gt;
 
-          
+插入图片：有尺寸要求时：
+1&lt;img src="http://p4lmrb1gp.bkt.clouddn.com/1
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/02/22/搭建博客过程杂记/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1884,7 +1879,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">18</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2015,7 +2010,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">15.0k</span>
+    <span title="Site words total count">15.5k</span>
   
 </div>
 
