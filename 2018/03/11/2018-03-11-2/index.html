@@ -81,13 +81,13 @@
 
 
 
-<meta name="description" content="第三部分 虚拟机执行子系统第六章 类文件结构代码编译的结果从本地机器码转变为字节码，是存储格式发展的一小步，却是编程语言发展的一大步。 6.1 概述由于最近十年内虚拟机以及大量建立在虚拟机之上的程序语言如雨后春笋般出现并蓬勃发展，将我们编写的程序编译成二进制本地机器码（Native Code）已不再是唯一的选择，越来越多的程序语言选择了操作系统和机器指令集无关的、平台中立的格式作为程序编译后的存">
+<meta name="description" content="第三部分 虚拟机执行子系统第六章 类文件结构（了解）代码编译的结果从本地机器码转变为字节码，是存储格式发展的一小步，却是编程语言发展的一大步。 6.1 概述由于最近十年内虚拟机以及大量建立在虚拟机之上的程序语言如雨后春笋般出现并蓬勃发展，将我们编写的程序编译成二进制本地机器码（Native Code）已不再是唯一的选择，越来越多的程序语言选择了操作系统和机器指令集无关的、平台中立的格式作为程序编">
 <meta name="keywords" content="JVM">
 <meta property="og:type" content="article">
 <meta property="og:title" content="《深入理解java虚拟机》学习笔记之六">
 <meta property="og:url" content="http://cloudpai.site/2018/03/11/2018-03-11-2/index.html">
 <meta property="og:site_name" content="CloudPai">
-<meta property="og:description" content="第三部分 虚拟机执行子系统第六章 类文件结构代码编译的结果从本地机器码转变为字节码，是存储格式发展的一小步，却是编程语言发展的一大步。 6.1 概述由于最近十年内虚拟机以及大量建立在虚拟机之上的程序语言如雨后春笋般出现并蓬勃发展，将我们编写的程序编译成二进制本地机器码（Native Code）已不再是唯一的选择，越来越多的程序语言选择了操作系统和机器指令集无关的、平台中立的格式作为程序编译后的存">
+<meta property="og:description" content="第三部分 虚拟机执行子系统第六章 类文件结构（了解）代码编译的结果从本地机器码转变为字节码，是存储格式发展的一小步，却是编程语言发展的一大步。 6.1 概述由于最近十年内虚拟机以及大量建立在虚拟机之上的程序语言如雨后春笋般出现并蓬勃发展，将我们编写的程序编译成二进制本地机器码（Native Code）已不再是唯一的选择，越来越多的程序语言选择了操作系统和机器指令集无关的、平台中立的格式作为程序编">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://oi46mo3on.bkt.clouddn.com/10_deep_in_jvm/class_for_other_languages.png">
 <meta property="og:image" content="http://oi46mo3on.bkt.clouddn.com/10_deep_in_jvm/class_file_format.png">
@@ -112,10 +112,10 @@
 <meta property="og:image" content="http://oi46mo3on.bkt.clouddn.com/10_deep_in_jvm/class_file_attrs_deprecated.png">
 <meta property="og:image" content="http://oi46mo3on.bkt.clouddn.com/10_deep_in_jvm/class_file_attrs_stackmaptable.png">
 <meta property="og:image" content="http://oi46mo3on.bkt.clouddn.com/10_deep_in_jvm/class_file_attrs_signature.png">
-<meta property="og:updated_time" content="2018-03-11T09:31:44.807Z">
+<meta property="og:updated_time" content="2018-03-11T11:36:10.943Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《深入理解java虚拟机》学习笔记之六">
-<meta name="twitter:description" content="第三部分 虚拟机执行子系统第六章 类文件结构代码编译的结果从本地机器码转变为字节码，是存储格式发展的一小步，却是编程语言发展的一大步。 6.1 概述由于最近十年内虚拟机以及大量建立在虚拟机之上的程序语言如雨后春笋般出现并蓬勃发展，将我们编写的程序编译成二进制本地机器码（Native Code）已不再是唯一的选择，越来越多的程序语言选择了操作系统和机器指令集无关的、平台中立的格式作为程序编译后的存">
+<meta name="twitter:description" content="第三部分 虚拟机执行子系统第六章 类文件结构（了解）代码编译的结果从本地机器码转变为字节码，是存储格式发展的一小步，却是编程语言发展的一大步。 6.1 概述由于最近十年内虚拟机以及大量建立在虚拟机之上的程序语言如雨后春笋般出现并蓬勃发展，将我们编写的程序编译成二进制本地机器码（Native Code）已不再是唯一的选择，越来越多的程序语言选择了操作系统和机器指令集无关的、平台中立的格式作为程序编">
 <meta name="twitter:image" content="http://oi46mo3on.bkt.clouddn.com/10_deep_in_jvm/class_for_other_languages.png">
 
 
@@ -358,7 +358,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-11T17:31:44+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-11T19:36:10+08:00">
                 2018-03-11
               </time>
             
@@ -397,7 +397,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  5,206
+                  5,208
                 </span>
               
 
@@ -434,7 +434,7 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="第三部分-虚拟机执行子系统"><a href="#第三部分-虚拟机执行子系统" class="headerlink" title="第三部分 虚拟机执行子系统"></a>第三部分 虚拟机执行子系统</h1><h1 id="第六章-类文件结构"><a href="#第六章-类文件结构" class="headerlink" title="第六章 类文件结构"></a>第六章 类文件结构</h1><p>代码编译的结果从本地机器码转变为字节码，是存储格式发展的一小步，却是编程语言发展的一大步。</p>
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="第三部分-虚拟机执行子系统"><a href="#第三部分-虚拟机执行子系统" class="headerlink" title="第三部分 虚拟机执行子系统"></a>第三部分 虚拟机执行子系统</h1><h1 id="第六章-类文件结构（了解）"><a href="#第六章-类文件结构（了解）" class="headerlink" title="第六章 类文件结构（了解）"></a>第六章 类文件结构（了解）</h1><p>代码编译的结果从本地机器码转变为字节码，是存储格式发展的一小步，却是编程语言发展的一大步。</p>
 <h2 id="6-1-概述"><a href="#6-1-概述" class="headerlink" title="6.1 概述"></a>6.1 概述</h2><p>由于最近十年内虚拟机以及大量建立在虚拟机之上的程序语言如雨后春笋般出现并蓬勃发展，将我们编写的程序编译成二进制本地机器码（Native Code）已不再是唯一的选择，越来越多的程序语言选择了操作系统和机器指令集无关的、平台中立的格式作为程序编译后的存储格式。</p>
 <h2 id="6-2-无关性的基石"><a href="#6-2-无关性的基石" class="headerlink" title="6.2 无关性的基石"></a>6.2 无关性的基石</h2><ul>
 <li>Java 刚诞生的宣传口号：一次编写，到处运行（Write Once, Run Anywhere）。其最终实现在操作系统的应用层：Sun 公司以及其他虚拟机提供商发布了许多可以运行在各种不同平台的虚拟机，这些虚拟机都可以载入和执行同一种平台无关的字节码。</li>
@@ -652,6 +652,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2018/03/11/2018-03-11-3/" rel="prev" title="《深入理解java虚拟机》学习笔记之七">
+                《深入理解java虚拟机》学习笔记之七 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -746,7 +750,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">22</span>
+                  <span class="site-state-item-count">27</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -858,7 +862,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第三部分-虚拟机执行子系统"><span class="nav-text">第三部分 虚拟机执行子系统</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第六章-类文件结构"><span class="nav-text">第六章 类文件结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-概述"><span class="nav-text">6.1 概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-无关性的基石"><span class="nav-text">6.2 无关性的基石</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-3-Class-类文件的结构"><span class="nav-text">6.3 Class 类文件的结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-1-魔数和版本"><span class="nav-text">6.3.1 魔数和版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-2-常量池"><span class="nav-text">6.3.2 常量池</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-3-访问标志"><span class="nav-text">6.3.3 访问标志</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-4-类索引、父类索引与接口索引集合"><span class="nav-text">6.3.4 类索引、父类索引与接口索引集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-5-字段表集合"><span class="nav-text">6.3.5 字段表集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-6-方法表集合"><span class="nav-text">6.3.6 方法表集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-7-属性表集合"><span class="nav-text">6.3.7 属性表集合</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-7-1-Code-属性"><span class="nav-text">6.3.7.1 Code 属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-7-2-Exceptions-属性"><span class="nav-text">6.3.7.2 Exceptions 属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-7-3-LineNumberTable-属性"><span class="nav-text">6.3.7.3 LineNumberTable 属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-7-4-LocalVariableTable-属性"><span class="nav-text">6.3.7.4 LocalVariableTable 属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-7-5-SourceFile-属性"><span class="nav-text">6.3.7.5 SourceFile 属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-7-6-ConstantValue-属性"><span class="nav-text">6.3.7.6 ConstantValue 属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-7-7-InnerClass-属性"><span class="nav-text">6.3.7.7 InnerClass 属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-7-8-Deprecated-及-Synthetic-属性"><span class="nav-text">6.3.7.8 Deprecated 及 Synthetic 属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-7-9-StackMapTable-属性"><span class="nav-text">6.3.7.9 StackMapTable 属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-7-10-Signature-属性"><span class="nav-text">6.3.7.10 Signature 属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-7-11-BootstrapMethods-属性"><span class="nav-text">6.3.7.11 BootstrapMethods 属性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-4-字节码指令简介"><span class="nav-text">6.4 字节码指令简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-5-公有设计和私有实现"><span class="nav-text">6.5 公有设计和私有实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-6-Class-文件结构的发展"><span class="nav-text">6.6 Class 文件结构的发展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-7-本章小结"><span class="nav-text">6.7 本章小结</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第三部分-虚拟机执行子系统"><span class="nav-text">第三部分 虚拟机执行子系统</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第六章-类文件结构（了解）"><span class="nav-text">第六章 类文件结构（了解）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-概述"><span class="nav-text">6.1 概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2-无关性的基石"><span class="nav-text">6.2 无关性的基石</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-3-Class-类文件的结构"><span class="nav-text">6.3 Class 类文件的结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-1-魔数和版本"><span class="nav-text">6.3.1 魔数和版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-2-常量池"><span class="nav-text">6.3.2 常量池</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-3-访问标志"><span class="nav-text">6.3.3 访问标志</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-4-类索引、父类索引与接口索引集合"><span class="nav-text">6.3.4 类索引、父类索引与接口索引集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-5-字段表集合"><span class="nav-text">6.3.5 字段表集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-6-方法表集合"><span class="nav-text">6.3.6 方法表集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-3-7-属性表集合"><span class="nav-text">6.3.7 属性表集合</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-7-1-Code-属性"><span class="nav-text">6.3.7.1 Code 属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-7-2-Exceptions-属性"><span class="nav-text">6.3.7.2 Exceptions 属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-7-3-LineNumberTable-属性"><span class="nav-text">6.3.7.3 LineNumberTable 属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-7-4-LocalVariableTable-属性"><span class="nav-text">6.3.7.4 LocalVariableTable 属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-7-5-SourceFile-属性"><span class="nav-text">6.3.7.5 SourceFile 属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-7-6-ConstantValue-属性"><span class="nav-text">6.3.7.6 ConstantValue 属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-7-7-InnerClass-属性"><span class="nav-text">6.3.7.7 InnerClass 属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-7-8-Deprecated-及-Synthetic-属性"><span class="nav-text">6.3.7.8 Deprecated 及 Synthetic 属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-7-9-StackMapTable-属性"><span class="nav-text">6.3.7.9 StackMapTable 属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-7-10-Signature-属性"><span class="nav-text">6.3.7.10 Signature 属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-3-7-11-BootstrapMethods-属性"><span class="nav-text">6.3.7.11 BootstrapMethods 属性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-4-字节码指令简介"><span class="nav-text">6.4 字节码指令简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-5-公有设计和私有实现"><span class="nav-text">6.5 公有设计和私有实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-6-Class-文件结构的发展"><span class="nav-text">6.6 Class 文件结构的发展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-7-本章小结"><span class="nav-text">6.7 本章小结</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -893,7 +897,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">36.3k</span>
+    <span title="Site words total count">52.6k</span>
   
 </div>
 
