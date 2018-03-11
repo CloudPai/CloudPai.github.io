@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="cloudpai, blogs" />
+  <meta name="keywords" content="JVM," />
 
 
 
@@ -81,16 +81,18 @@
 
 
 
-<meta name="description" content="加油(๑•̀ㅂ•́)و✧加油">
-<meta property="og:type" content="website">
-<meta property="og:title" content="CloudPai">
-<meta property="og:url" content="http://cloudpai.site/archives/2018/02/index.html">
+<meta name="description" content="JVM 小工具在 ${JAVA_HOME}/bin / 目录下 Sun/Oracle 给我们提供了一些处理应用程序性能问题、定位故障的工具, 包含    bin 描述 功能     jps 打印 Hotspot VM 进程 VMID、JVM 参数、main()函数参数、主类名 / Jar 路径   jstat 查看 Hotspot VM 运行时信息 类加载、内存、GC[可分代查看]、JIT 编译">
+<meta name="keywords" content="JVM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《深入理解java虚拟机》学习笔记之四">
+<meta property="og:url" content="http://cloudpai.site/2018/03/11/2018-03-11/index.html">
 <meta property="og:site_name" content="CloudPai">
-<meta property="og:description" content="加油(๑•̀ㅂ•́)و✧加油">
+<meta property="og:description" content="JVM 小工具在 ${JAVA_HOME}/bin / 目录下 Sun/Oracle 给我们提供了一些处理应用程序性能问题、定位故障的工具, 包含    bin 描述 功能     jps 打印 Hotspot VM 进程 VMID、JVM 参数、main()函数参数、主类名 / Jar 路径   jstat 查看 Hotspot VM 运行时信息 类加载、内存、GC[可分代查看]、JIT 编译">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-11T02:57:41.483Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="CloudPai">
-<meta name="twitter:description" content="加油(๑•̀ㅂ•́)و✧加油">
+<meta name="twitter:title" content="《深入理解java虚拟机》学习笔记之四">
+<meta name="twitter:description" content="JVM 小工具在 ${JAVA_HOME}/bin / 目录下 Sun/Oracle 给我们提供了一些处理应用程序性能问题、定位故障的工具, 包含    bin 描述 功能     jps 打印 Hotspot VM 进程 VMID、JVM 参数、main()函数参数、主类名 / Jar 路径   jstat 查看 Hotspot VM 运行时信息 类加载、内存、GC[可分代查看]、JIT 编译">
 
 
 
@@ -120,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://cloudpai.site/archives/2018/02/"/>
+  <link rel="canonical" href="http://cloudpai.site/2018/03/11/2018-03-11/"/>
 
 
 
 
 
-  <title>归档 | CloudPai</title>
+  <title>《深入理解java虚拟机》学习笔记之四 | CloudPai</title>
   
 
 
@@ -154,7 +156,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -273,296 +275,473 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/03/11/2018-03-11/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CloudPai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudPai">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">《深入理解java虚拟机》学习笔记之四</h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-11T10:15:27+08:00">
+                2018-03-11
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-11T10:57:41+08:00">
+                2018-03-11
+              </time>
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 22 篇日志。 继续努力。
-      </span>
 
-      
-
-        
-        
-        
-
-        
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2018">2018</h1>
-          </div>
-        
-        
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/11/2018-03-11/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/03/11/2018-03-11/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
 
-        
+          
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/02/28/2018-02-28-1/" itemprop="url">
+          
+            <div class="post-wordcount">
               
-                <span itemprop="name">git操作</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,105
+                </span>
               
-            </a>
-        
-      </h2>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-02-28T00:00:00+08:00"
-              content="2018-02-28" >
-          02-28
-        </time>
-      </div>
+              
+                <span class="post-meta-divider">|</span>
+              
 
-    </header>
-  </article>
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
 
+          
 
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/02/28/2018-02-28/" itemprop="url">
-              
-                <span itemprop="name">mac使用</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-02-28T00:00:00+08:00"
-              content="2018-02-28" >
-          02-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/02/28/blog通过git备份与恢复的最优操作/" itemprop="url">
-              
-                <span itemprop="name">blog通过git备份与恢复的最优操作</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-02-28T00:00:00+08:00"
-              content="2018-02-28" >
-          02-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="JVM-小工具"><a href="#JVM-小工具" class="headerlink" title="JVM 小工具"></a>JVM 小工具</h1><p>在 ${JAVA_HOME}/bin / 目录下 Sun/Oracle 给我们提供了一些处理应用程序性能问题、定位故障的工具, 包含</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">bin</th>
+<th style="text-align:left">描述</th>
+<th style="text-align:left">功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">jps</td>
+<td style="text-align:left">打印 Hotspot VM 进程</td>
+<td style="text-align:left">VMID、JVM 参数、<code>main()</code>函数参数、主类名 / Jar 路径</td>
+</tr>
+<tr>
+<td style="text-align:center">jstat</td>
+<td style="text-align:left">查看 Hotspot VM <strong>运行时</strong>信息</td>
+<td style="text-align:left">类加载、内存、GC[<strong>可分代查看</strong>]、JIT 编译</td>
+</tr>
+<tr>
+<td style="text-align:center">jinfo</td>
+<td style="text-align:left">查看和修改虚拟机各项配置</td>
+<td style="text-align:left"><code>-flag name=value</code></td>
+</tr>
+<tr>
+<td style="text-align:center">jmap</td>
+<td style="text-align:left">heapdump: 生成 VM 堆转储快照、查询 finalize 执行队列、Java 堆和永久代详细信息</td>
+<td style="text-align:left"><code>jmap -dump:live,format=b,file=heap.bin [VMID]</code></td>
+</tr>
+<tr>
+<td style="text-align:center">jstack</td>
+<td style="text-align:left">查看 VM 当前时刻的线程快照: 当前 VM 内每一条线程正在执行的方法堆栈集合</td>
+<td style="text-align:left"><code>Thread.getAllStackTraces()</code>提供了类似的功能</td>
+</tr>
+<tr>
+<td style="text-align:center">javap</td>
+<td style="text-align:left">查看经 javac 之后产生的 JVM 字节码代码</td>
+<td style="text-align:left">自动解析<code>.class</code>文件, 避免了去理解 class 文件格式以及手动解析 class 文件内容</td>
+</tr>
+<tr>
+<td style="text-align:center">jcmd</td>
+<td style="text-align:left">一个多功能工具, 可以用来导出堆, 查看 Java 进程、导出线程信息、 执行 GC、查看性能相关数据等</td>
+<td style="text-align:left">几乎集合了 jps、jstat、jinfo、jmap、jstack 所有功能</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong><em>jconsole</em></strong></td>
+<td style="text-align:left">基于 JMX 的可视化监视、管理工具</td>
+<td style="text-align:left">可以查看内存、线程、类、CPU 信息, 以及对 JMX MBean 进行管理</td>
+</tr>
+<tr>
+<td style="text-align:center"><strong><em>jvisualvm</em></strong></td>
+<td style="text-align:left">JDK 中最强大运行监视和故障处理工具</td>
+<td style="text-align:left">可以监控内存泄露、跟踪垃圾回收、执行时内存分析、CPU 分析、线程分析…</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-2-JDK-命令行工具"><a href="#4-2-JDK-命令行工具" class="headerlink" title="4.2 JDK 命令行工具"></a>4.2 JDK 命令行工具</h2><table>
+<thead>
+<tr>
+<th>名称</th>
+<th>主要作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>jps</td>
+<td>JVM Process Status Tool，显示指定系统内所有 HotSpot 虚拟机进程</td>
+</tr>
+<tr>
+<td>jstat</td>
+<td>JVM Statistics Monitoring Tool，用于手机 HotSpot 虚拟机各方面运行数据</td>
+</tr>
+<tr>
+<td>jinfo</td>
+<td>Configuration Info For Java，显示虚拟机配置信息</td>
+</tr>
+<tr>
+<td>jmap</td>
+<td>Memory Map For Java，生成虚拟机内存转储快照（heapdumap 文件）</td>
+</tr>
+<tr>
+<td>jhat</td>
+<td>JVM Heap Dump Brower，用于分析 heapdump 文件</td>
+</tr>
+<tr>
+<td>jstack</td>
+<td>Stack Trace For Java，显示虚拟机线程快照</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4-2-1-jps：虚拟机进程状况工具"><a href="#4-2-1-jps：虚拟机进程状况工具" class="headerlink" title="4.2.1 jps：虚拟机进程状况工具"></a>4.2.1 jps：虚拟机进程状况工具</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jps [options] [hostid]</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-q</td>
+<td>只输出 LVMID，省略主类名称</td>
+</tr>
+<tr>
+<td>-m</td>
+<td>输出虚拟机进程启动时传递给主类 main() 函数的参数</td>
+</tr>
+<tr>
+<td>-l</td>
+<td>输出主类全名，如果进程执行的是 jar 包，输出 jar 路径</td>
+</tr>
+<tr>
+<td>-v</td>
+<td>输出虚拟机启动时的 JVM 参数</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4-2-2-jstat：虚拟机统计信息监视工具"><a href="#4-2-2-jstat：虚拟机统计信息监视工具" class="headerlink" title="4.2.2 jstat：虚拟机统计信息监视工具"></a>4.2.2 jstat：虚拟机统计信息监视工具</h3><h4 id="主要查询-3-类信息："><a href="#主要查询-3-类信息：" class="headerlink" title="主要查询 3 类信息："></a>主要查询 3 类信息：</h4><ul>
+<li>类装载</li>
+<li>垃圾收集</li>
+<li>运行期编译</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jstat [ option vmid [interval [s|ms] [count]] ]</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-class</td>
+<td>监视类装载、卸载数量、总空间及类装载所耗费的时间</td>
+</tr>
+<tr>
+<td>-gc</td>
+<td>监视 Java 堆状况，包括 Eden 区，2 个 survivor 区、老年代、永久代等的容量、已用空间、GC 时间合计等信息</td>
+</tr>
+<tr>
+<td>-gccapacity</td>
+<td>与 - gc 基本相同，主要关注 Java 堆各个区域使用到的最大和最小空间</td>
+</tr>
+<tr>
+<td>-gcutil</td>
+<td>与 - gc 基本相同，主要关注已使用空间占总空间百分比</td>
+</tr>
+<tr>
+<td>-gccause</td>
+<td>与 - gcutil 基本相同，但是会额外输出导致上一次 gc 产生的原因</td>
+</tr>
+<tr>
+<td>-gcnew</td>
+<td>监视新生代 GC 状况</td>
+</tr>
+<tr>
+<td>-gcnewcapacity</td>
+<td>监视内容与 - gcnew 一样，主要关注使用到的最大和最小空间</td>
+</tr>
+<tr>
+<td>-gcold</td>
+<td>监视老年代 GC 情况</td>
+</tr>
+<tr>
+<td>-gcoldcapacity</td>
+</tr>
+<tr>
+<td>-compiler</td>
+<td>输出 JIT 编译器编译过的方法、耗时等信息</td>
+</tr>
+<tr>
+<td>-printcompilation</td>
+<td>输出已经被 JIT 编译的方法</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4-2-3-jinfo：Java-配置信息工具"><a href="#4-2-3-jinfo：Java-配置信息工具" class="headerlink" title="4.2.3 jinfo：Java 配置信息工具"></a>4.2.3 jinfo：Java 配置信息工具</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jinfo [option] pid</span><br></pre></td></tr></table></figure>
+<h3 id="4-2-4-jmap：Java-内存映像工具"><a href="#4-2-4-jmap：Java-内存映像工具" class="headerlink" title="4.2.4 jmap：Java 内存映像工具"></a>4.2.4 jmap：Java 内存映像工具</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jmap [option] vmid</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-dump</td>
+<td>生成 Java 堆转储快照。格式：-dump:[live,]format=b,file=<filename>，其中 live 子参数说明是否只 dump 出存活的对象</filename></td>
+</tr>
+<tr>
+<td>-finalizerinfo</td>
+<td>在 F-Queue 中等待 Finalizer 线程执行 finalize 方法的对象。只在 Linux/Solaris 下有效</td>
+</tr>
+<tr>
+<td>-heap</td>
+<td>显示 Java 堆详细信息，如使用哪种回收期、参数配置、分代状况等。只在 Linux/Solaris 下有效</td>
+</tr>
+<tr>
+<td>-histo</td>
+<td>显示堆中对象统计信息，包括类、实例数量和合计总量</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4-2-5-jhat：虚拟机堆转储快照分析工具"><a href="#4-2-5-jhat：虚拟机堆转储快照分析工具" class="headerlink" title="4.2.5 jhat：虚拟机堆转储快照分析工具"></a>4.2.5 jhat：虚拟机堆转储快照分析工具</h3><h3 id="4-2-6-jstack：Java-堆栈跟踪工具"><a href="#4-2-6-jstack：Java-堆栈跟踪工具" class="headerlink" title="4.2.6 jstack：Java 堆栈跟踪工具"></a>4.2.6 jstack：Java 堆栈跟踪工具</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jstack [option] vmid</span><br></pre></td></tr></table></figure>
+<table>
+<thead>
+<tr>
+<th>参数</th>
+<th>功能</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-F</td>
+<td>强制输出</td>
+</tr>
+<tr>
+<td>-l</td>
+<td>除堆栈外，显示关于锁的附加信息</td>
+</tr>
+<tr>
+<td>-m</td>
+<td>如果调用了本地方法的话，可以显示 C/C++ 的堆栈</td>
+</tr>
+</tbody>
+</table>
+<h2 id="4-3-JDK-可视化工具"><a href="#4-3-JDK-可视化工具" class="headerlink" title="4.3 JDK 可视化工具"></a>4.3 JDK 可视化工具</h2><h3 id="4-3-1-JConsole：Java-监视与管理控制台"><a href="#4-3-1-JConsole：Java-监视与管理控制台" class="headerlink" title="4.3.1 JConsole：Java 监视与管理控制台"></a>4.3.1 JConsole：Java 监视与管理控制台</h3><h3 id="4-3-2-VisualVm：多合一故障处理工具"><a href="#4-3-2-VisualVm：多合一故障处理工具" class="headerlink" title="4.3.2 VisualVm：多合一故障处理工具"></a>4.3.2 VisualVm：多合一故障处理工具</h3><ul>
+<li>下载地址：<a href="https://link.jianshu.com?t=http://visualvm.github.io/download.html" target="_blank" rel="noopener">http://visualvm.github.io/download.html</a></li>
+<li>插件中心：<a href="https://link.jianshu.com?t=https://visualvm.github.io/pluginscenters.html" target="_blank" rel="noopener">https://visualvm.github.io/pluginscenters.html</a></li>
+</ul>
+<hr>
+<blockquote>
+<p>参考：<a href="https://www.jianshu.com/p/c56884715567?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation" target="_blank" rel="noopener">https://www.jianshu.com/p/c56884715567?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=seo_notes&amp;utm_source=recommendation</a></p>
+</blockquote>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/02/27/博客样式改进杂记/" itemprop="url">
-              
-                <span itemprop="name">博客样式改进杂记</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-02-27T00:00:00+08:00"
-              content="2018-02-27" >
-          02-27
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/02/24/🎵记录点滴生活/" itemprop="url">
-              
-                <span itemprop="name">🎵记录点滴生活</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-02-24T00:00:00+08:00"
-              content="2018-02-24" >
-          02-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/02/23/mac执行shell脚本遇到的错误处理/" itemprop="url">
-              
-                <span itemprop="name">我的blog自动发布脚本</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-02-23T00:00:00+08:00"
-              content="2018-02-23" >
-          02-23
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2018/02/22/搭建博客过程杂记/" itemprop="url">
-              
-                <span itemprop="name">博客插入音频、视频</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2018-02-22T00:00:00+08:00"
-              content="2018-02-22" >
-          02-22
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+
+     
+    
+      <div>
+        
+    <div style="text-align:center;color: #ccc;font-size:14px;">
+        ------ 本文结束<i class="fa fa-paw"></i>感谢您的阅读 ------</div>
+
+      </div>
+    
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    CloudPai
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://cloudpai.site/2018/03/11/2018-03-11/" title="《深入理解java虚拟机》学习笔记之四">http://cloudpai.site/2018/03/11/2018-03-11/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JVM/" rel="tag"><i class="fa fa-tag"></i> JVM</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/10/2018-03-10/" rel="next" title="《深入理解java虚拟机》学习笔记之三">
+                <i class="fa fa-chevron-left"></i> 《深入理解java虚拟机》学习笔记之三
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/11/2018-03-11-1/" rel="prev" title="《深入理解java虚拟机》学习笔记之五">
+                《深入理解java虚拟机》学习笔记之五 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -570,6 +749,20 @@
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -595,8 +788,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -717,6 +919,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JVM-小工具"><span class="nav-number">1.</span> <span class="nav-text">JVM 小工具</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-JDK-命令行工具"><span class="nav-number">1.1.</span> <span class="nav-text">4.2 JDK 命令行工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-1-jps：虚拟机进程状况工具"><span class="nav-number">1.1.1.</span> <span class="nav-text">4.2.1 jps：虚拟机进程状况工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-2-jstat：虚拟机统计信息监视工具"><span class="nav-number">1.1.2.</span> <span class="nav-text">4.2.2 jstat：虚拟机统计信息监视工具</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#主要查询-3-类信息："><span class="nav-number">1.1.2.1.</span> <span class="nav-text">主要查询 3 类信息：</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-3-jinfo：Java-配置信息工具"><span class="nav-number">1.1.3.</span> <span class="nav-text">4.2.3 jinfo：Java 配置信息工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-4-jmap：Java-内存映像工具"><span class="nav-number">1.1.4.</span> <span class="nav-text">4.2.4 jmap：Java 内存映像工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-5-jhat：虚拟机堆转储快照分析工具"><span class="nav-number">1.1.5.</span> <span class="nav-text">4.2.5 jhat：虚拟机堆转储快照分析工具</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-6-jstack：Java-堆栈跟踪工具"><span class="nav-number">1.1.6.</span> <span class="nav-text">4.2.6 jstack：Java 堆栈跟踪工具</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-JDK-可视化工具"><span class="nav-number">1.2.</span> <span class="nav-text">4.3 JDK 可视化工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-1-JConsole：Java-监视与管理控制台"><span class="nav-number">1.2.1.</span> <span class="nav-text">4.3.1 JConsole：Java 监视与管理控制台</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-2-VisualVm：多合一故障处理工具"><span class="nav-number">1.2.2.</span> <span class="nav-text">4.3.2 VisualVm：多合一故障处理工具</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -873,6 +1091,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -890,6 +1112,18 @@
       <script id="dsq-count-scr" src="https://cloudpai.disqus.com/count.js" async></script>
     
 
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://cloudpai.site/2018/03/11/2018-03-11/';
+          this.page.identifier = '2018/03/11/2018-03-11/';
+          this.page.title = '《深入理解java虚拟机》学习笔记之四';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cloudpai.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
     
 
   

@@ -103,7 +103,7 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/650075-0f74222185d67afc.jpg">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/650075-b50cffd6ed9e15df.jpg">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/650075-6c9c9253495eb757.jpg">
-<meta property="og:updated_time" content="2018-03-10T17:00:31.385Z">
+<meta property="og:updated_time" content="2018-03-11T02:20:26.950Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《深入理解java虚拟机》学习笔记之三">
 <meta name="twitter:description" content="第三章 垃圾收集器与内存分配策略3.2 判断对象是否存活3.2.1 引用计数算法 (Reference Counting) 非主流  3.2.2 可达性分析算法 (GC Roots Analysis) 主流用这个判断 在主流的商用程序语言中 (Java 和 C#)，都是使用可达性分析算法判断对象是否存活的。这个算法的基本思路就是通过一系列名为”GC Roots” 的对象作为起始点，从这些节点开始">
@@ -349,7 +349,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-11T01:00:31+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-11T10:20:26+08:00">
                 2018-03-11
               </time>
             
@@ -388,7 +388,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  11,411
+                  11,053
                 </span>
               
 
@@ -404,7 +404,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  42
+                  40
                 </span>
               
             </div>
@@ -594,64 +594,7 @@
 <li><p><strong>筛选回收（Live Data Counting and Evacuation）</strong><br>筛选回收阶段首先对各个 Region 的回收价值和成本进行排序，根据用户所期望的 GC 停顿时间来制定回收计划，这个阶段其实也可以做到与用户程序一起并发执行，但是因为只回收一部分 Region，时间是用户可控制的，而且停顿用户线程将大幅提高收集效率。</p>
 </li>
 </ul>
-<h3 id="3-5-8、GC-相关参数总结"><a href="#3-5-8、GC-相关参数总结" class="headerlink" title="3.5.8、GC 相关参数总结"></a>3.5.8、GC 相关参数总结</h3><h4 id="JVM-小工具"><a href="#JVM-小工具" class="headerlink" title="JVM 小工具"></a>JVM 小工具</h4><p>在 ${JAVA_HOME}/bin / 目录下 Sun/Oracle 给我们提供了一些处理应用程序性能问题、定位故障的工具, 包含</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">bin</th>
-<th style="text-align:left">描述</th>
-<th style="text-align:left">功能</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">jps</td>
-<td style="text-align:left">打印 Hotspot VM 进程</td>
-<td style="text-align:left">VMID、JVM 参数、<code>main()</code>函数参数、主类名 / Jar 路径</td>
-</tr>
-<tr>
-<td style="text-align:center">jstat</td>
-<td style="text-align:left">查看 Hotspot VM <strong>运行时</strong>信息</td>
-<td style="text-align:left">类加载、内存、GC[<strong>可分代查看</strong>]、JIT 编译</td>
-</tr>
-<tr>
-<td style="text-align:center">jinfo</td>
-<td style="text-align:left">查看和修改虚拟机各项配置</td>
-<td style="text-align:left"><code>-flag name=value</code></td>
-</tr>
-<tr>
-<td style="text-align:center">jmap</td>
-<td style="text-align:left">heapdump: 生成 VM 堆转储快照、查询 finalize 执行队列、Java 堆和永久代详细信息</td>
-<td style="text-align:left"><code>jmap -dump:live,format=b,file=heap.bin [VMID]</code></td>
-</tr>
-<tr>
-<td style="text-align:center">jstack</td>
-<td style="text-align:left">查看 VM 当前时刻的线程快照: 当前 VM 内每一条线程正在执行的方法堆栈集合</td>
-<td style="text-align:left"><code>Thread.getAllStackTraces()</code>提供了类似的功能</td>
-</tr>
-<tr>
-<td style="text-align:center">javap</td>
-<td style="text-align:left">查看经 javac 之后产生的 JVM 字节码代码</td>
-<td style="text-align:left">自动解析<code>.class</code>文件, 避免了去理解 class 文件格式以及手动解析 class 文件内容</td>
-</tr>
-<tr>
-<td style="text-align:center">jcmd</td>
-<td style="text-align:left">一个多功能工具, 可以用来导出堆, 查看 Java 进程、导出线程信息、 执行 GC、查看性能相关数据等</td>
-<td style="text-align:left">几乎集合了 jps、jstat、jinfo、jmap、jstack 所有功能</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong><em>jconsole</em></strong></td>
-<td style="text-align:left">基于 JMX 的可视化监视、管理工具</td>
-<td style="text-align:left">可以查看内存、线程、类、CPU 信息, 以及对 JMX MBean 进行管理</td>
-</tr>
-<tr>
-<td style="text-align:center"><strong><em>jvisualvm</em></strong></td>
-<td style="text-align:left">JDK 中最强大运行监视和故障处理工具</td>
-<td style="text-align:left">可以监控内存泄露、跟踪垃圾回收、执行时内存分析、CPU 分析、线程分析…</td>
-</tr>
-</tbody>
-</table>
-<h4 id="VM-常用参数整理"><a href="#VM-常用参数整理" class="headerlink" title="VM 常用参数整理"></a>VM 常用参数整理</h4><table>
+<h3 id="3-5-8、GC-相关参数总结"><a href="#3-5-8、GC-相关参数总结" class="headerlink" title="3.5.8、GC 相关参数总结"></a>3.5.8、GC 相关参数总结</h3><h4 id="VM-常用参数整理"><a href="#VM-常用参数整理" class="headerlink" title="VM 常用参数整理"></a>VM 常用参数整理</h4><table>
 <thead>
 <tr>
 <th style="text-align:left">参数</th>
@@ -1047,6 +990,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2018/03/11/2018-03-11/" rel="prev" title="《深入理解java虚拟机》学习笔记之四">
+                《深入理解java虚拟机》学习笔记之四 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -1141,7 +1088,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">19</span>
+                  <span class="site-state-item-count">22</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1253,7 +1200,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第三章-垃圾收集器与内存分配策略"><span class="nav-number">1.</span> <span class="nav-text">第三章 垃圾收集器与内存分配策略</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-判断对象是否存活"><span class="nav-number">1.1.</span> <span class="nav-text">3.2 判断对象是否存活</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-1-引用计数算法-Reference-Counting"><span class="nav-number">1.1.1.</span> <span class="nav-text">3.2.1 引用计数算法 (Reference Counting)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-2-可达性分析算法-GC-Roots-Analysis"><span class="nav-number">1.1.2.</span> <span class="nav-text">3.2.2 可达性分析算法 (GC Roots Analysis)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-3-引用"><span class="nav-number">1.1.3.</span> <span class="nav-text">3.2.3 引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-4-finalize-方法最终判定对象是否存活"><span class="nav-number">1.1.4.</span> <span class="nav-text">3.2.4 finalize() 方法最终判定对象是否存活</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-5回收方法区"><span class="nav-number">1.1.5.</span> <span class="nav-text">3.2.5回收方法区</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-垃圾收集算法（本书重点中的重点）"><span class="nav-number">1.2.</span> <span class="nav-text">3.3 垃圾收集算法（本书重点中的重点）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-1-标记-清除算法-Mark-Sweep"><span class="nav-number">1.2.1.</span> <span class="nav-text">3.3.1 标记 - 清除算法 (Mark-Sweep)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-2-复制算法-Copying"><span class="nav-number">1.2.2.</span> <span class="nav-text">3.3.2 复制算法 (Copying)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-3-标记-整理算法-Mark-Compact"><span class="nav-number">1.2.3.</span> <span class="nav-text">3.3.3 标记 - 整理算法 (Mark-Compact)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-4-代收集算法-Generational-Collecting"><span class="nav-number">1.2.4.</span> <span class="nav-text">3.3.4 代收集算法 (Generational Collecting)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-HotSpot的算法实现"><span class="nav-number">1.3.</span> <span class="nav-text">3.4 HotSpot的算法实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-1-枚举根节点"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">3.4.1 枚举根节点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-2-安全点"><span class="nav-number">1.3.0.2.</span> <span class="nav-text">3.4.2 安全点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-3-安全区域"><span class="nav-number">1.3.0.3.</span> <span class="nav-text">3.4.3 安全区域</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-垃圾收集器"><span class="nav-number">1.4.</span> <span class="nav-text">3.5 垃圾收集器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-1-Serial-收集器"><span class="nav-number">1.4.1.</span> <span class="nav-text">3.5.1 Serial 收集器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-2-ParNew-收集器"><span class="nav-number">1.4.2.</span> <span class="nav-text">3.5.2 ParNew 收集器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-3-Parallel-Scavenge-收集器"><span class="nav-number">1.4.3.</span> <span class="nav-text">3.5.3 Parallel Scavenge 收集器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-4-Serial-Old-收集器"><span class="nav-number">1.4.4.</span> <span class="nav-text">3.5.4 Serial Old 收集器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-5-Parallel-Old-收集器"><span class="nav-number">1.4.5.</span> <span class="nav-text">3.5.5 Parallel Old 收集器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-6-CMS-Concurrent-Mark-Sweep-收集器"><span class="nav-number">1.4.6.</span> <span class="nav-text">3.5.6 CMS(Concurrent Mark Sweep) 收集器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-7-G1-收集器"><span class="nav-number">1.4.7.</span> <span class="nav-text">3.5.7 G1 收集器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-8、GC-相关参数总结"><span class="nav-number">1.4.8.</span> <span class="nav-text">3.5.8、GC 相关参数总结</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#JVM-小工具"><span class="nav-number">1.4.8.1.</span> <span class="nav-text">JVM 小工具</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#VM-常用参数整理"><span class="nav-number">1.4.8.2.</span> <span class="nav-text">VM 常用参数整理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#垃圾收集器参数总结"><span class="nav-number">1.4.8.3.</span> <span class="nav-text">垃圾收集器参数总结</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常用的收集器组合"><span class="nav-number">1.4.8.4.</span> <span class="nav-text">常用的收集器组合</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6-内存分配与回收策略（重点）"><span class="nav-number">1.5.</span> <span class="nav-text">3.6 内存分配与回收策略（重点）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-6-1-对象优先在-Eden-分配"><span class="nav-number">1.5.1.</span> <span class="nav-text">3.6.1 对象优先在 Eden 分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-6-2-大对象直接进入老年代"><span class="nav-number">1.5.2.</span> <span class="nav-text">3.6.2 大对象直接进入老年代</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-6-3-长期存活的对象将进入老年代"><span class="nav-number">1.5.3.</span> <span class="nav-text">3.6.3 长期存活的对象将进入老年代</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-6-4-动态对象年龄判定"><span class="nav-number">1.5.4.</span> <span class="nav-text">3.6.4 动态对象年龄判定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-6-5-空间分配担保"><span class="nav-number">1.5.5.</span> <span class="nav-text">3.6.5 空间分配担保</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第三章-垃圾收集器与内存分配策略"><span class="nav-number">1.</span> <span class="nav-text">第三章 垃圾收集器与内存分配策略</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-判断对象是否存活"><span class="nav-number">1.1.</span> <span class="nav-text">3.2 判断对象是否存活</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-1-引用计数算法-Reference-Counting"><span class="nav-number">1.1.1.</span> <span class="nav-text">3.2.1 引用计数算法 (Reference Counting)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-2-可达性分析算法-GC-Roots-Analysis"><span class="nav-number">1.1.2.</span> <span class="nav-text">3.2.2 可达性分析算法 (GC Roots Analysis)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-3-引用"><span class="nav-number">1.1.3.</span> <span class="nav-text">3.2.3 引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-4-finalize-方法最终判定对象是否存活"><span class="nav-number">1.1.4.</span> <span class="nav-text">3.2.4 finalize() 方法最终判定对象是否存活</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-5回收方法区"><span class="nav-number">1.1.5.</span> <span class="nav-text">3.2.5回收方法区</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-垃圾收集算法（本书重点中的重点）"><span class="nav-number">1.2.</span> <span class="nav-text">3.3 垃圾收集算法（本书重点中的重点）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-1-标记-清除算法-Mark-Sweep"><span class="nav-number">1.2.1.</span> <span class="nav-text">3.3.1 标记 - 清除算法 (Mark-Sweep)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-2-复制算法-Copying"><span class="nav-number">1.2.2.</span> <span class="nav-text">3.3.2 复制算法 (Copying)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-3-标记-整理算法-Mark-Compact"><span class="nav-number">1.2.3.</span> <span class="nav-text">3.3.3 标记 - 整理算法 (Mark-Compact)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-4-代收集算法-Generational-Collecting"><span class="nav-number">1.2.4.</span> <span class="nav-text">3.3.4 代收集算法 (Generational Collecting)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-HotSpot的算法实现"><span class="nav-number">1.3.</span> <span class="nav-text">3.4 HotSpot的算法实现</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-1-枚举根节点"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">3.4.1 枚举根节点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-2-安全点"><span class="nav-number">1.3.0.2.</span> <span class="nav-text">3.4.2 安全点</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-4-3-安全区域"><span class="nav-number">1.3.0.3.</span> <span class="nav-text">3.4.3 安全区域</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-垃圾收集器"><span class="nav-number">1.4.</span> <span class="nav-text">3.5 垃圾收集器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-1-Serial-收集器"><span class="nav-number">1.4.1.</span> <span class="nav-text">3.5.1 Serial 收集器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-2-ParNew-收集器"><span class="nav-number">1.4.2.</span> <span class="nav-text">3.5.2 ParNew 收集器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-3-Parallel-Scavenge-收集器"><span class="nav-number">1.4.3.</span> <span class="nav-text">3.5.3 Parallel Scavenge 收集器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-4-Serial-Old-收集器"><span class="nav-number">1.4.4.</span> <span class="nav-text">3.5.4 Serial Old 收集器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-5-Parallel-Old-收集器"><span class="nav-number">1.4.5.</span> <span class="nav-text">3.5.5 Parallel Old 收集器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-6-CMS-Concurrent-Mark-Sweep-收集器"><span class="nav-number">1.4.6.</span> <span class="nav-text">3.5.6 CMS(Concurrent Mark Sweep) 收集器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-7-G1-收集器"><span class="nav-number">1.4.7.</span> <span class="nav-text">3.5.7 G1 收集器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-8、GC-相关参数总结"><span class="nav-number">1.4.8.</span> <span class="nav-text">3.5.8、GC 相关参数总结</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#VM-常用参数整理"><span class="nav-number">1.4.8.1.</span> <span class="nav-text">VM 常用参数整理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#垃圾收集器参数总结"><span class="nav-number">1.4.8.2.</span> <span class="nav-text">垃圾收集器参数总结</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常用的收集器组合"><span class="nav-number">1.4.8.3.</span> <span class="nav-text">常用的收集器组合</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-6-内存分配与回收策略（重点）"><span class="nav-number">1.5.</span> <span class="nav-text">3.6 内存分配与回收策略（重点）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-6-1-对象优先在-Eden-分配"><span class="nav-number">1.5.1.</span> <span class="nav-text">3.6.1 对象优先在 Eden 分配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-6-2-大对象直接进入老年代"><span class="nav-number">1.5.2.</span> <span class="nav-text">3.6.2 大对象直接进入老年代</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-6-3-长期存活的对象将进入老年代"><span class="nav-number">1.5.3.</span> <span class="nav-text">3.6.3 长期存活的对象将进入老年代</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-6-4-动态对象年龄判定"><span class="nav-number">1.5.4.</span> <span class="nav-text">3.6.4 动态对象年龄判定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-6-5-空间分配担保"><span class="nav-number">1.5.5.</span> <span class="nav-text">3.6.5 空间分配担保</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -1288,7 +1235,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">28.1k</span>
+    <span title="Site words total count">36.3k</span>
   
 </div>
 
