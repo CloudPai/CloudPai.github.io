@@ -84,16 +84,16 @@
 <meta name="description" content="第七章 虚拟机类加载机制（重点）7.1 概述 虚拟机把描述类的数据从 Class 文件加载到内存，并对数据进行校验、转换解析和初始化，最终形成可以被虚拟机直接使用的 Java 类型，这就是虚拟机的类加载机制。 在 Java 语言里面，类型的加载、连接和初始化过程都是在程序运行期间完成，这虽然增量一些性能开销，但是会为 Java 应用程序提供高度的灵活性。  7.2 类加载的时机  类的整个生命周">
 <meta name="keywords" content="JVM">
 <meta property="og:type" content="article">
-<meta property="og:title" content="《深入理解java虚拟机》学习笔记之七">
+<meta property="og:title" content="《深入理解java虚拟机》学习笔记之七（虚拟机类加载机制，重点）">
 <meta property="og:url" content="http://cloudpai.site/2018/03/11/2018-03-11-3/index.html">
 <meta property="og:site_name" content="CloudPai">
 <meta property="og:description" content="第七章 虚拟机类加载机制（重点）7.1 概述 虚拟机把描述类的数据从 Class 文件加载到内存，并对数据进行校验、转换解析和初始化，最终形成可以被虚拟机直接使用的 Java 类型，这就是虚拟机的类加载机制。 在 Java 语言里面，类型的加载、连接和初始化过程都是在程序运行期间完成，这虽然增量一些性能开销，但是会为 Java 应用程序提供高度的灵活性。  7.2 类加载的时机  类的整个生命周">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15207793144006.jpg">
 <meta property="og:image" content="http://oi46mo3on.bkt.clouddn.com/10_deep_in_jvm/classloader_extend.png">
-<meta property="og:updated_time" content="2018-03-11T14:47:15.659Z">
+<meta property="og:updated_time" content="2018-03-12T14:15:56.129Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="《深入理解java虚拟机》学习笔记之七">
+<meta name="twitter:title" content="《深入理解java虚拟机》学习笔记之七（虚拟机类加载机制，重点）">
 <meta name="twitter:description" content="第七章 虚拟机类加载机制（重点）7.1 概述 虚拟机把描述类的数据从 Class 文件加载到内存，并对数据进行校验、转换解析和初始化，最终形成可以被虚拟机直接使用的 Java 类型，这就是虚拟机的类加载机制。 在 Java 语言里面，类型的加载、连接和初始化过程都是在程序运行期间完成，这虽然增量一些性能开销，但是会为 Java 应用程序提供高度的灵活性。  7.2 类加载的时机  类的整个生命周">
 <meta name="twitter:image" content="http://p4lmrb1gp.bkt.clouddn.com/15207793144006.jpg">
 
@@ -131,7 +131,7 @@
 
 
 
-  <title>《深入理解java虚拟机》学习笔记之七 | CloudPai</title>
+  <title>《深入理解java虚拟机》学习笔记之七（虚拟机类加载机制，重点） | CloudPai</title>
   
 
 
@@ -309,7 +309,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">《深入理解java虚拟机》学习笔记之七</h1>
+          <h1 class="post-title" itemprop="name headline">《深入理解java虚拟机》学习笔记之七（虚拟机类加载机制，重点）</h1>
         
 
         <div class="post-meta">
@@ -337,8 +337,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-11T22:47:15+08:00">
-                2018-03-11
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-12T22:15:56+08:00">
+                2018-03-12
               </time>
             
           </span>
@@ -504,7 +504,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://cloudpai.site/2018/03/11/2018-03-11-3/" title="《深入理解java虚拟机》学习笔记之七">http://cloudpai.site/2018/03/11/2018-03-11-3/</a>
+    <a href="http://cloudpai.site/2018/03/11/2018-03-11-3/" title="《深入理解java虚拟机》学习笔记之七（虚拟机类加载机制，重点）">http://cloudpai.site/2018/03/11/2018-03-11-3/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -545,7 +545,7 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/03/12/2018-03-11-4/" rel="prev" title="《深入理解java虚拟机》学习笔记之八">
+              <a href="/2018/03/11/2018-03-11-4/" rel="prev" title="《深入理解java虚拟机》学习笔记之八">
                 《深入理解java虚拟机》学习笔记之八 <i class="fa fa-chevron-right"></i>
               </a>
             
@@ -643,7 +643,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -665,7 +665,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -790,7 +790,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">52.6k</span>
+    <span title="Site words total count">70.1k</span>
   
 </div>
 
@@ -943,7 +943,7 @@
         var disqus_config = function () {
           this.page.url = 'http://cloudpai.site/2018/03/11/2018-03-11-3/';
           this.page.identifier = '2018/03/11/2018-03-11-3/';
-          this.page.title = '《深入理解java虚拟机》学习笔记之七';
+          this.page.title = '《深入理解java虚拟机》学习笔记之七（虚拟机类加载机制，重点）';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://cloudpai.disqus.com/embed.js';

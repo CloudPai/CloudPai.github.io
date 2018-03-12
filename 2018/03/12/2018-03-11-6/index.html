@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="数据可视化,DataV," />
+  <meta name="keywords" content="JVM," />
 
 
 
@@ -81,20 +81,25 @@
 
 
 
-<meta name="description" content="根据现有数据集进行数据表查询集构建： galleryproduction 左外联结 production:  1234SELECT scratch_api_production.id,scratch_api_galleryproduction.production_id,scratch_api_production.nameFROM scratch_api_galleryproduction">
-<meta name="keywords" content="数据可视化,DataV">
+<meta name="description" content="第四部分 程序编译与代码优化第十章 早期（编译器）优化10.1 概述 前端编译器（或叫编译器前端）：把.java 文件转变为.class 文件的过程，比如 Sun 的 javac、Eclipse JDT 中的 ECJ； 后端运行编译器（JIT 编译器）：把字节码转变为机器码的过程，比如 HotSpot VM 的 C1、C2 编译器； 静态提前编译器（AOT 编译器）：直接把 *.java 文件编">
+<meta name="keywords" content="JVM">
 <meta property="og:type" content="article">
-<meta property="og:title" content="处理数据可视化">
-<meta property="og:url" content="http://cloudpai.site/2018/03/08/2018-03-08/index.html">
+<meta property="og:title" content="《深入理解java虚拟机》学习笔记之十&amp;十一">
+<meta property="og:url" content="http://cloudpai.site/2018/03/12/2018-03-11-6/index.html">
 <meta property="og:site_name" content="CloudPai">
-<meta property="og:description" content="根据现有数据集进行数据表查询集构建： galleryproduction 左外联结 production:  1234SELECT scratch_api_production.id,scratch_api_galleryproduction.production_id,scratch_api_production.nameFROM scratch_api_galleryproduction">
+<meta property="og:description" content="第四部分 程序编译与代码优化第十章 早期（编译器）优化10.1 概述 前端编译器（或叫编译器前端）：把.java 文件转变为.class 文件的过程，比如 Sun 的 javac、Eclipse JDT 中的 ECJ； 后端运行编译器（JIT 编译器）：把字节码转变为机器码的过程，比如 HotSpot VM 的 C1、C2 编译器； 静态提前编译器（AOT 编译器）：直接把 *.java 文件编">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15205615855957.jpg">
-<meta property="og:updated_time" content="2018-03-09T06:49:54.926Z">
+<meta property="og:image" content="http://oi46mo3on.bkt.clouddn.com/10_deep_in_jvm/javac_compiler.png">
+<meta property="og:image" content="http://oi46mo3on.bkt.clouddn.com/10_deep_in_jvm/javac_jit.png">
+<meta property="og:image" content="http://oi46mo3on.bkt.clouddn.com/10_deep_in_jvm/javac_client_compiler.png">
+<meta property="og:image" content="http://oi46mo3on.bkt.clouddn.com/10_deep_in_jvm/javac_jit_viewer.png">
+<meta property="og:image" content="http://oi46mo3on.bkt.clouddn.com/10_deep_in_jvm/javac_jit_tech1.png">
+<meta property="og:image" content="http://oi46mo3on.bkt.clouddn.com/10_deep_in_jvm/javac_jit_tech2.png">
+<meta property="og:updated_time" content="2018-03-12T14:21:08.017Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="处理数据可视化">
-<meta name="twitter:description" content="根据现有数据集进行数据表查询集构建： galleryproduction 左外联结 production:  1234SELECT scratch_api_production.id,scratch_api_galleryproduction.production_id,scratch_api_production.nameFROM scratch_api_galleryproduction">
-<meta name="twitter:image" content="http://p4lmrb1gp.bkt.clouddn.com/15205615855957.jpg">
+<meta name="twitter:title" content="《深入理解java虚拟机》学习笔记之十&amp;十一">
+<meta name="twitter:description" content="第四部分 程序编译与代码优化第十章 早期（编译器）优化10.1 概述 前端编译器（或叫编译器前端）：把.java 文件转变为.class 文件的过程，比如 Sun 的 javac、Eclipse JDT 中的 ECJ； 后端运行编译器（JIT 编译器）：把字节码转变为机器码的过程，比如 HotSpot VM 的 C1、C2 编译器； 静态提前编译器（AOT 编译器）：直接把 *.java 文件编">
+<meta name="twitter:image" content="http://oi46mo3on.bkt.clouddn.com/10_deep_in_jvm/javac_compiler.png">
 
 
 
@@ -124,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://cloudpai.site/2018/03/08/2018-03-08/"/>
+  <link rel="canonical" href="http://cloudpai.site/2018/03/12/2018-03-11-6/"/>
 
 
 
 
 
-  <title>处理数据可视化 | CloudPai</title>
+  <title>《深入理解java虚拟机》学习笔记之十&十一 | CloudPai</title>
   
 
 
@@ -291,7 +296,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/03/08/2018-03-08/">
+    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/03/12/2018-03-11-6/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CloudPai">
@@ -308,7 +313,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">处理数据可视化</h1>
+          <h1 class="post-title" itemprop="name headline">《深入理解java虚拟机》学习笔记之十&十一</h1>
         
 
         <div class="post-meta">
@@ -320,8 +325,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-08T18:22:18+08:00">
-                2018-03-08
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-12T00:31:00+08:00">
+                2018-03-12
               </time>
             
 
@@ -336,8 +341,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-09T14:49:54+08:00">
-                2018-03-09
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-12T22:21:08+08:00">
+                2018-03-12
               </time>
             
           </span>
@@ -351,9 +356,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/03/08/2018-03-08/#comments" itemprop="discussionUrl">
+                <a href="/2018/03/12/2018-03-11-6/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/03/08/2018-03-08/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/03/12/2018-03-11-6/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -375,7 +380,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  885
+                  3,723
                 </span>
               
 
@@ -391,7 +396,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  4
+                  13
                 </span>
               
             </div>
@@ -412,64 +417,106 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><ul>
-<li>根据现有数据集进行数据表查询集构建：</li>
-<li>galleryproduction 左外联结 production:</li>
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="第四部分-程序编译与代码优化"><a href="#第四部分-程序编译与代码优化" class="headerlink" title="第四部分 程序编译与代码优化"></a>第四部分 程序编译与代码优化</h1><h1 id="第十章-早期（编译器）优化"><a href="#第十章-早期（编译器）优化" class="headerlink" title="第十章 早期（编译器）优化"></a>第十章 早期（编译器）优化</h1><h2 id="10-1-概述"><a href="#10-1-概述" class="headerlink" title="10.1 概述"></a>10.1 概述</h2><ul>
+<li>前端编译器（或叫编译器前端）：把<em>.java 文件转变为</em>.class 文件的过程，比如 Sun 的 javac、Eclipse JDT 中的 ECJ；</li>
+<li>后端运行编译器（JIT 编译器）：把字节码转变为机器码的过程，比如 HotSpot VM 的 C1、C2 编译器；</li>
+<li>静态提前编译器（AOT 编译器）：直接把 *.java 文件编译成本地机器代码的过程，比如 GNU Compiler for the Java；</li>
+<li>本章主要针对第一类，把第二类的编译过程留到下一章讨论；</li>
+<li>javac 这类编译器对代码运行效率几乎没有任何优化措施，虚拟机设计团队把对性能的优化集中到了后端的即时编译器中，这样那些不是由 javac 产生的 Class 文件也同样能享受到编译器优化所带来的好处；</li>
+<li>javac 做了许多针对 Java 语言编码过程的优化措施来改善程序员的编码风格和提高编码效率；可以说，Java 中即时编译器在运行期的优化过程对于程序运行来说更重要，而前端编译器在编译器的优化过程对于程序编码来说关系更加密切；</li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> scratch_api_production.id,scratch_api_galleryproduction.production_id,scratch_api_production.name</span><br><span class="line"><span class="keyword">FROM</span> scratch_api_galleryproduction </span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> scratch_api_production</span><br><span class="line"><span class="keyword">ON</span> scratch_api_production.id=scratch_api_galleryproduction.production_id</span><br></pre></td></tr></table></figure>
+<h2 id="10-2-javac-编译器"><a href="#10-2-javac-编译器" class="headerlink" title="10.2 javac 编译器"></a>10.2 javac 编译器</h2><p>javac 编译器本身就是一个由 Java 语言编写的程序，这为纯 Java 的程序员了解它的编译过程带来了很大的便利。</p>
+<h3 id="10-2-1-javac-的源码与调试"><a href="#10-2-1-javac-的源码与调试" class="headerlink" title="10.2.1 javac 的源码与调试"></a>10.2.1 javac 的源码与调试</h3><ul>
+<li>javac 的源码存放在 JDK_SRC_HOME/langtools/src/share/classes/com/sun/tools/javac，除了 JDK 自身的 API 外，就只引用了 JDK_SRC_HOME/langtools/src/share/classes/com/sun/* 里面的代码；</li>
+<li>导入 javac 的源码后就可以运行 com.sun.tools.javac.Main 的 main 方法来执行编译了；</li>
+<li>javac 编译过程大概可以分为 3 个过程：解析与填充符号表过程、插入式注解处理器的注解处理过程、分析与字节码生成过程；</li>
+</ul>
+<p><img src="http://oi46mo3on.bkt.clouddn.com/10_deep_in_jvm/javac_compiler.png" alt=""></p>
+<h3 id="10-2-2-解析与填充符号表"><a href="#10-2-2-解析与填充符号表" class="headerlink" title="10.2.2 解析与填充符号表"></a>10.2.2 解析与填充符号表</h3><ul>
+<li>解析步骤由 parseFiles 方法完成；</li>
+<li>词法分析将源代码的字符流转变为标记（Token）集合，由 com.sun.tools.javac.parser.Scanner 类完成；</li>
+<li>语法分析是根据 Token 序列构造抽象语法树（AST，一种用来描述程序代码语法结构的树形表示方式）的过程，由 com.sun.tools.javac.parser.Parser 类实现，AST 由 com.sun.tools.javac.tree.JCTree 类表示；</li>
+<li>填充符号表：由 enterTrees 方法完成；符号表是由一组符号地址和符号信息构成的表格，所登记的信息在编译的不同阶段都要用到，在语义分析中用于语义检查，在目标代码生成时用于地址分配；由 com.sun.tools.javac.comp.Enter 类实现；</li>
+</ul>
+<h3 id="10-2-3-注解处理器"><a href="#10-2-3-注解处理器" class="headerlink" title="10.2.3 注解处理器"></a>10.2.3 注解处理器</h3><ul>
+<li>在 JDK 1.6 中实现了 JSR-269 规范，提供了一组插入式注解处理器的标准 API 在编译期间对注解进行处理，可以读取、修改、添加抽象语法树中的任意元素；</li>
+<li>通过插入式注解处理器实现的插件在功能上有很大的发挥空间，程序员可以使用插入式注解处理器来实现许多原本只能在编码中完成的事情；</li>
+<li>javac 中，在 initProcessAnnotations 初始化，在 processAnnotations 执行，如果有新的注解处理器，通过 com.sun.tools.javac.processing.JavacProcessingEnviroment 类的 doProcessing 方法生成一个新的 JavaCompiler 对象对编译的后续步骤进行处理；</li>
+</ul>
+<h3 id="10-2-4-语义分析与字节码生成"><a href="#10-2-4-语义分析与字节码生成" class="headerlink" title="10.2.4 语义分析与字节码生成"></a>10.2.4 语义分析与字节码生成</h3><ul>
+<li>语义分析的主要任务是对结构上正确的源程序进行上下文有关性质的审查，主要包括标注检查、数据及控制流分析两个步骤；</li>
+<li>解语法糖（Syntactic Sugar，添加的某种对语言功能没有影响但方便程序员使用的语法）：Java 中最常用的语法糖主要是泛型、变长参数、自动装箱等，他们在编译阶段还原回简单的基础语法结构；在 com.sun.tools.javac.comp.TransTypes 类和 com.sun.tools.javac.comp.Lower 类中完成；</li>
+<li>字节码生成：javac 编译的最后一个阶段，不仅仅是把前面各个步骤所生成的信息转化为字节码写入到磁盘中，编译器还进行了少量的代码添加和转换工作（如实例构造器<init>方法和类构造器<clinit>方法）；由 com.sun.tools.javac.jvm.ClassWriter 类的 writeClass 方法输出字节码，生成最终的 Class 文件；</clinit></init></li>
+</ul>
+<h2 id="10-3-Java-语法糖的味道"><a href="#10-3-Java-语法糖的味道" class="headerlink" title="10.3 Java 语法糖的味道"></a>10.3 Java 语法糖的味道</h2><h3 id="10-3-1-泛型与类型擦除"><a href="#10-3-1-泛型与类型擦除" class="headerlink" title="10.3.1 泛型与类型擦除"></a>10.3.1 泛型与类型擦除</h3><ul>
+<li>Java 语言的泛型只在程序源码中存在，在编译后的字节码文件中，就已经替换为原来的原生类型了，并且在相应的地方插入了强制转换，这种基于类型擦除的泛型实现是一种伪泛型；</li>
+<li>JCP 组织引入了 Signature 属性，它的作用就是存储一个方法在字节码层面的特征签名，这个属性中保存的参数类型并不是原生类型，而是包括了参数化类型的信息，这样我们就可以通过反射手段获取参数化类型；</li>
+</ul>
+<h3 id="10-3-2-自动装箱、拆箱与遍历循环"><a href="#10-3-2-自动装箱、拆箱与遍历循环" class="headerlink" title="10.3.2 自动装箱、拆箱与遍历循环"></a>10.3.2 自动装箱、拆箱与遍历循环</h3><ul>
+<li>它们的实现比较简单，但却是 Java 语言里使用最多的语法糖；</li>
+</ul>
+<h3 id="10-3-3-条件编译"><a href="#10-3-3-条件编译" class="headerlink" title="10.3.3 条件编译"></a>10.3.3 条件编译</h3><ul>
+<li>Java 语言之中并没有使用预处理器，因为 Java 编译器并非一个个地编译 Java 文件，而是将所有编译单元的语法树顶级节点输入到待处理列表后再进行编译；</li>
+<li>Java 语言可以使用条件为常量的 if 语句进行条件编译；编译器将会把分支中不成立的代码块消除掉；</li>
+</ul>
+<h2 id="10-4-实战：插入式注解处理器"><a href="#10-4-实战：插入式注解处理器" class="headerlink" title="10.4 实战：插入式注解处理器"></a>10.4 实战：插入式注解处理器</h2><ul>
+<li>实战目标：使用注解处理器 API 来编写一款拥有自己编码风格的校验工具；</li>
+<li>代码实现：继承 javax.annotation.processing.AbstractProcessor，实现 process 方法，从第一个参数 annotations 获取此注解处理器所要处理的注解集合，从第二个参数 roundEnv 中访问到当前这个 Round 中的语法树节点；另外还有一个很常用的实例变量 processingEnv，它代表了注解处理器框架提供的一个上下文环境；可以配合使用的 @SupportedAnnotationTypes 和 @SupportedSourceVersion 注解；</li>
+</ul>
+<h2 id="10-5-本章小结"><a href="#10-5-本章小结" class="headerlink" title="10.5 本章小结"></a>10.5 本章小结</h2><p>本章我们从编译器源码实现的层次上了解了 javac 源代码编译为字节码的过程，分析了 Java 语言中多种语法糖的前因后果，并实战实习了如何使用插入式注解处理器来完成一个检查程序命名规范的编译器插件。下一章我们将会介绍即时编译器的运作和优化过程。</p>
+<h1 id="第十一章-晚期（运行期）优化"><a href="#第十一章-晚期（运行期）优化" class="headerlink" title="第十一章 晚期（运行期）优化"></a>第十一章 晚期（运行期）优化</h1><h2 id="11-1-概述"><a href="#11-1-概述" class="headerlink" title="11.1 概述"></a>11.1 概述</h2><ul>
+<li>为了提高热点代码的执行效率，在运行时虚拟机将会把这些代码编译成与本地平台相关的机器码，并进行各种层次的优化，完成这个任务的编译器称为即时编译器（JIT）；</li>
+<li>JIT 不是虚拟机必需的，但是其编译性能的好坏、代码优化程度的高低却是衡量一款商用虚拟机优秀与否的最关键的指标之一，它也是虚拟机中最核心且最能体现虚拟机技术水平的部分；</li>
+</ul>
+<h2 id="11-2-HotSpot-虚拟机内的即时编译器"><a href="#11-2-HotSpot-虚拟机内的即时编译器" class="headerlink" title="11.2 HotSpot 虚拟机内的即时编译器"></a>11.2 HotSpot 虚拟机内的即时编译器</h2><h3 id="11-2-1-解释器与编译器"><a href="#11-2-1-解释器与编译器" class="headerlink" title="11.2.1 解释器与编译器"></a>11.2.1 解释器与编译器</h3><ul>
+<li>当程序需要迅速启动和执行的时候，解释器可以先发挥作用，省去编译的时间立即执行；在程序运行后，随着时间的推移，编译器把越来越多的代码编译成本地代码提升执行效率；</li>
+<li>HotSpot 虚拟机中内置了两个即时编译器，分别为 Client Compiler 和 Server Compiler，或简称为 C1 编译器和 C2 编译器；虚拟机会根据自身版本与宿主机器的硬件性能自动选择运行模式，也可以使用 “-client” 或“-server”参数去强制指定运行模式；</li>
+<li>想要编译出优化程度更高的代码，解释器可能还要替编译器收集性能监控信息，为了在程序启动响应速度与运行效率之间达到最佳平衡，HotSpot 虚拟机还会逐渐启动分层编译的策略：第 0 层，程序解释运行；第 1 层，C1 编译；第 2 层，C2 编译；</li>
+<li>实施分层编译后，Client Compiler 和 Server Compiler 将会同时工作，许多代码都可能会被多次编译，用 Client Compiler 获取更高的编译速度，用 Server Compiler 来获取更好的编译质量，在解释执行的时候也无须再承担性能收集监控信息的任务；</li>
+</ul>
+<h3 id="11-2-2-编译对象与触发条件"><a href="#11-2-2-编译对象与触发条件" class="headerlink" title="11.2.2 编译对象与触发条件"></a>11.2.2 编译对象与触发条件</h3><ul>
+<li>被 JIT 编译的热点代码有两类：被多次调用的方法、被多次执行的循环体；对于前者编译器会以整个方法作为编译对象，属于标准的 JIT 编译方式；对于后者尽管编译动作是由循环体所触发的，但编译器依然会以整个方法作为编译对象，这种编译方式称之为栈上替换（OSR 编译）；</li>
+<li>热点探测：基于采样的热点探测和基于计数器的热点探测，在 HotSpot 虚拟机中使用的是第二种，通过方法计数器和回边计数器进行热点探测。方法调用计数器触发的即时编译交互过程如下图所示：</li>
+</ul>
+<p><img src="http://oi46mo3on.bkt.clouddn.com/10_deep_in_jvm/javac_jit.png" alt=""></p>
+<h3 id="11-2-3-编译过程"><a href="#11-2-3-编译过程" class="headerlink" title="11.2.3 编译过程"></a>11.2.3 编译过程</h3><ul>
+<li>对于 Client Compiler 来说，它是一个简单快速的三段式编译器，主要的关注点在于局部性的优化，而放弃了很多耗时较长的全局优化手段；第一阶段一个平台独立的前端将字节码构造成一个高级中间代码表示（HIR），第二阶段一个平台相关的后端从 HIR 中产生低级中间代码表示（LIR），最后阶段是在平台相关的后端使用线性扫描算法在 LIR 上分配寄存器，并在 LIR 上做窥孔优化，然后产生机器代码。其大致过程如下所示：</li>
+</ul>
+<p><img src="http://oi46mo3on.bkt.clouddn.com/10_deep_in_jvm/javac_client_compiler.png" alt=""></p>
 <ul>
-<li>production 左外联结 user:</li>
+<li>Server Compiler 是专门面向服务端的典型应用并为服务端的性能配置特别调整过的编译器，也是一个充分优化过的高级编译器，几乎能达到 GNU C++ 编译器使用 - 02 参数时的优化强大，它会执行所有经典的优化动作，如无用代码消除、循环展开、循环表达式外提、消除公共子表达式、常量传播、基本块重排序等，还会实现如范围检查消除、空值检查消除等 Java 语言特性密切相关的优化技术；</li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> scratch_api_production.author_id,scratch_api_user.baseuser_ptr_id,scratch_api_user.sex,scratch_api_user.grade</span><br><span class="line"><span class="keyword">FROM</span> scratch_api_production </span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> scratch_api_user </span><br><span class="line"><span class="keyword">ON</span> scratch_api_production.author_id=scratch_api_user.baseuser_ptr_id</span><br></pre></td></tr></table></figure>
-<p>再构建三联表：</p>
+<h3 id="11-2-4-查看及分析即时编译结果"><a href="#11-2-4-查看及分析即时编译结果" class="headerlink" title="11.2.4 查看及分析即时编译结果"></a>11.2.4 查看及分析即时编译结果</h3><ul>
+<li>本节的运行参数有一部分需要 Debug 或 FastDebug 版虚拟机的支持；</li>
+<li>要知道某个方法是否被编译过，可以使用参数 - XX:+PrintCompilation 要求虚拟机在即时编译时将被编译成本地代码的方法名称打印出来；</li>
+<li>还可以加上参数 - XX:+PrintInlining 要求虚拟机输出方法内联信息，输出内容如下：</li>
+</ul>
+<p><img src="http://oi46mo3on.bkt.clouddn.com/10_deep_in_jvm/javac_jit_viewer.png" alt=""></p>
 <ul>
-<li><strong>galleryproduction左外联结production左外联结user</strong></li>
+<li>除了查看那些方法被编译之外，还可以进一步查看即时编译器生成的机器码内容，这个需要结合虚拟机提供的反汇编接口来阅读；</li>
 </ul>
-<p>三表联结查询模版：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> username,psw,gname,tel </span><br><span class="line"><span class="keyword">from</span> (t1 <span class="keyword">left</span> <span class="keyword">join</span> t2 <span class="keyword">on</span> t1.t1_id=t2.t1_id) </span><br><span class="line"><span class="keyword">left</span> <span class="keyword">join</span> t3 <span class="keyword">on</span> t1.t1_id=t3.t1_id</span><br></pre></td></tr></table></figure>
-<p>我根据业务流程实现的sql查询：</p>
-<ul>
-<li>查询某专题活动中的所有信息</li>
+<h2 id="11-3-编译优化技术"><a href="#11-3-编译优化技术" class="headerlink" title="11.3 编译优化技术"></a>11.3 编译优化技术</h2><h3 id="11-3-1-优化技术概览"><a href="#11-3-1-优化技术概览" class="headerlink" title="11.3.1 优化技术概览"></a>11.3.1 优化技术概览</h3><p><img src="http://oi46mo3on.bkt.clouddn.com/10_deep_in_jvm/javac_jit_tech1.png" alt=""><br><img src="http://oi46mo3on.bkt.clouddn.com/10_deep_in_jvm/javac_jit_tech2.png" alt=""></p>
+<h3 id="11-3-2-公共子表达式消除"><a href="#11-3-2-公共子表达式消除" class="headerlink" title="11.3.2 公共子表达式消除"></a>11.3.2 公共子表达式消除</h3><ul>
+<li>如果一个表达式 E 已经计算过了，并且从先前的计算到现在 E 中所有变量的值都没有发生变化，那么 E 的这次出现就成为了公共子表达式，只需要直接用前面计算过的表达式结果代替 E 就可以了；</li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> *</span><br><span class="line"><span class="keyword">FROM</span> (scratch_api_galleryproduction <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> scratch_api_production <span class="keyword">ON</span> scratch_api_galleryproduction.production_id=scratch_api_production.id)</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> scratch_api_user <span class="keyword">ON</span> scratch_api_production.author_id = scratch_api_user.baseuser_ptr_id</span><br><span class="line"><span class="keyword">WHERE</span> scratch_api_galleryproduction.gallery_id = <span class="string">'c8d29756ce4d4e72900dcee34b3b6925'</span> <span class="keyword">and</span> scratch_api_galleryproduction.admin_checked = <span class="number">1</span></span><br></pre></td></tr></table></figure>
-<p>然后使用阿里云的DataV进行数据可视化:</p>
-<p>需要对接接口：</p>
-<ul>
-<li>查询点赞数最多作品排行：</li>
+<h3 id="11-3-3-数组边界检查消除"><a href="#11-3-3-数组边界检查消除" class="headerlink" title="11.3.3 数组边界检查消除"></a>11.3.3 数组边界检查消除</h3><ul>
+<li>对于虚拟机的执行子系统来说，每次数组元素的读写都带有一次隐含的条件判断，对于拥有大量数组访问的程序代码无疑是一种性能负担；</li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> scratch_api_production.like,scratch_api_production.name </span><br><span class="line"><span class="keyword">FROM</span> (scratch_api_galleryproduction <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> scratch_api_production <span class="keyword">ON</span> scratch_api_galleryproduction.production_id=scratch_api_production.id)</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> scratch_api_user <span class="keyword">ON</span> scratch_api_production.author_id = scratch_api_user.baseuser_ptr_id</span><br><span class="line"><span class="keyword">WHERE</span> scratch_api_galleryproduction.gallery_id = <span class="string">'c8d29756ce4d4e72900dcee34b3b6925'</span> <span class="keyword">AND</span> sex=<span class="string">'男'</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> scratch_api_production.like <span class="keyword">DESC</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>查询结果集中的男女人数</li>
+<h3 id="11-3-4-方法内联"><a href="#11-3-4-方法内联" class="headerlink" title="11.3.4 方法内联"></a>11.3.4 方法内联</h3><ul>
+<li>除了消除方法调用的成本外更重要的意义是为其他优化手段建立良好的基础；</li>
+<li>为了解决虚方法的内联问题，引入了类型继承关系分析（CHA）技术和内联缓存（Inline Cache）来完成方法内联；</li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> sex <span class="keyword">as</span> 性别, <span class="keyword">COUNT</span>(sex) <span class="keyword">AS</span> <span class="string">'人数'</span></span><br><span class="line"><span class="keyword">FROM</span> (scratch_api_galleryproduction <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> scratch_api_production <span class="keyword">ON</span> scratch_api_galleryproduction.production_id=scratch_api_production.id)</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> scratch_api_user <span class="keyword">ON</span> scratch_api_production.author_id = scratch_api_user.baseuser_ptr_id</span><br><span class="line"><span class="keyword">WHERE</span> scratch_api_galleryproduction.gallery_id = <span class="string">'c8d29756ce4d4e72900dcee34b3b6925'</span> <span class="keyword">and</span> scratch_api_galleryproduction.admin_checked = <span class="number">1</span>  <span class="keyword">AND</span> sex=<span class="string">'男'</span></span><br><span class="line"><span class="keyword">UNION</span></span><br><span class="line"><span class="keyword">SELECT</span> sex <span class="keyword">as</span> 性别, <span class="keyword">COUNT</span>(sex) <span class="keyword">AS</span> <span class="string">'人数'</span></span><br><span class="line"><span class="keyword">FROM</span> (scratch_api_galleryproduction <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> scratch_api_production <span class="keyword">ON</span> scratch_api_galleryproduction.production_id=scratch_api_production.id)</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> scratch_api_user <span class="keyword">ON</span> scratch_api_production.author_id = scratch_api_user.baseuser_ptr_id</span><br><span class="line"><span class="keyword">WHERE</span> scratch_api_galleryproduction.gallery_id = <span class="string">'c8d29756ce4d4e72900dcee34b3b6925'</span> <span class="keyword">and</span> scratch_api_galleryproduction.admin_checked = <span class="number">1</span> <span class="keyword">AND</span> sex=<span class="string">'女'</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>查询某专题活动学校参与度排名</li>
+<h3 id="11-3-5-逃逸分析"><a href="#11-3-5-逃逸分析" class="headerlink" title="11.3.5 逃逸分析"></a>11.3.5 逃逸分析</h3><ul>
+<li>逃逸分析的基本行为就是分析对象动态作用域，当一个对象在方法中被定义后，它可能被外部方法所引用（方法逃逸），甚至还可能被外部线程所访问到（线程逃逸）；如果能证明一个对象不会逃逸到方法或线程之外，则可能为这个变量进行一些高效的优化，比如栈上分配（减轻垃圾收集的压力）、同步消除（读写不会有竞争）、标量替换；</li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span>  scratch_api_user.school_id ,<span class="keyword">COUNT</span>(*)</span><br><span class="line"><span class="keyword">FROM</span> (scratch_api_galleryproduction <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> scratch_api_production <span class="keyword">ON</span> scratch_api_galleryproduction.production_id=scratch_api_production.id)</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> scratch_api_user <span class="keyword">ON</span> scratch_api_production.author_id = scratch_api_user.baseuser_ptr_id</span><br><span class="line"><span class="keyword">WHERE</span> scratch_api_galleryproduction.gallery_id = <span class="string">'c8d29756ce4d4e72900dcee34b3b6925'</span> <span class="keyword">and</span> scratch_api_galleryproduction.admin_checked = <span class="number">1</span> <span class="keyword">and</span> scratch_api_user.school_id <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">NULL</span></span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> scratch_api_user.school_id</span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> <span class="keyword">count</span>(*) <span class="keyword">desc</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>查询某专题活动中的参与性别</li>
+<h2 id="11-4-Java-与-C-C-的编译器对比"><a href="#11-4-Java-与-C-C-的编译器对比" class="headerlink" title="11.4 Java 与 C/C++ 的编译器对比"></a>11.4 Java 与 C/C++ 的编译器对比</h2><ul>
+<li>Java 虚拟机的即时编译器与 C/C++ 的静态优化编译器相比，可能会由于下列这些原因而导致输出的本地代码有一些劣势：即时编译器运行占用用户程序运行时间、动态类型安全语言导致的频繁检查、运行时对方法接收者进行多态选择的频率大、可以动态扩展导致很多全局的优化难以运行、大部分对象在堆上分配导致垃圾收集机制的效率低；</li>
+<li>Java 语言的特性换取了开发效率的提升、还有许多优化是静态优化编译器不好做的，比如别名分析、还有一些以运行期性能监控为基础的优化措施如调用频率预测等；</li>
 </ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> scratch_api_user.sex</span><br><span class="line"><span class="keyword">FROM</span> (scratch_api_galleryproduction <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> scratch_api_production <span class="keyword">ON</span> scratch_api_galleryproduction.production_id=scratch_api_production.id)</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> scratch_api_user <span class="keyword">ON</span> scratch_api_production.author_id = scratch_api_user.baseuser_ptr_id</span><br><span class="line"><span class="keyword">WHERE</span> scratch_api_galleryproduction.gallery_id = <span class="string">'c8d29756ce4d4e72900dcee34b3b6925'</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>查询年级占比</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span>  scratch_api_user.grade ,<span class="keyword">COUNT</span>(*)</span><br><span class="line"><span class="keyword">FROM</span> (scratch_api_galleryproduction <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> scratch_api_production <span class="keyword">ON</span> scratch_api_galleryproduction.production_id=scratch_api_production.id)</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> scratch_api_user <span class="keyword">ON</span> scratch_api_production.author_id = scratch_api_user.baseuser_ptr_id</span><br><span class="line"><span class="keyword">WHERE</span> scratch_api_galleryproduction.gallery_id = <span class="string">'c8d29756ce4d4e72900dcee34b3b6925'</span> <span class="keyword">and</span> scratch_api_galleryproduction.admin_checked = <span class="number">1</span> <span class="keyword">and</span> scratch_api_user.grade <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">NULL</span></span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> scratch_api_user.grade</span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> <span class="keyword">count</span>(*) <span class="keyword">desc</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>查询学校占比</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span>  scratch_api_user.school_id ,<span class="keyword">COUNT</span>(*)</span><br><span class="line"><span class="keyword">FROM</span> (scratch_api_galleryproduction <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> scratch_api_production <span class="keyword">ON</span> scratch_api_galleryproduction.production_id=scratch_api_production.id)</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> scratch_api_user <span class="keyword">ON</span> scratch_api_production.author_id = scratch_api_user.baseuser_ptr_id</span><br><span class="line"><span class="keyword">WHERE</span> scratch_api_galleryproduction.gallery_id = <span class="string">'c8d29756ce4d4e72900dcee34b3b6925'</span> <span class="keyword">and</span> scratch_api_galleryproduction.admin_checked = <span class="number">1</span> <span class="keyword">and</span> scratch_api_user.school_id <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">NULL</span></span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> scratch_api_user.school_id</span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> <span class="keyword">count</span>(*) <span class="keyword">desc</span></span><br></pre></td></tr></table></figure>
-<ul>
-<li>查询作品提交时间</li>
-</ul>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span>  <span class="keyword">DATE_FORMAT</span>(scratch_api_production.update_time,<span class="string">"%Y/%m/%e"</span>) <span class="keyword">as</span> <span class="string">'日期'</span>,<span class="keyword">count</span>(*) <span class="keyword">as</span> <span class="string">'当日投票数'</span></span><br><span class="line"><span class="keyword">FROM</span> (scratch_api_galleryproduction <span class="keyword">LEFT</span> <span class="keyword">JOIN</span> scratch_api_production <span class="keyword">ON</span> scratch_api_galleryproduction.production_id=scratch_api_production.id)</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> scratch_api_user <span class="keyword">ON</span> scratch_api_production.author_id = scratch_api_user.baseuser_ptr_id</span><br><span class="line"><span class="keyword">WHERE</span> scratch_api_galleryproduction.gallery_id = <span class="string">'c8d29756ce4d4e72900dcee34b3b6925'</span> <span class="keyword">and</span> scratch_api_galleryproduction.admin_checked = <span class="number">1</span></span><br><span class="line"><span class="keyword">GROUP</span> <span class="keyword">BY</span> <span class="keyword">DATE_FORMAT</span>(scratch_api_production.update_time,<span class="string">"%Y/%m/%e"</span>)</span><br></pre></td></tr></table></figure>
-<ul>
-<li>把地址转换成经纬度<br>不要方，利用高德地图经纬度快速查询工具可以轻松地把任何地址转换成经纬度，可具体到门牌号喔，工具地址：</li>
-</ul>
-<p><a href="https://link.zhihu.com/?target=http%3A//lbs.amap.com/console/show/picker" target="_blank" rel="noopener">控制台 | 高德开放平台 | 高德地图API</a></p>
+<h2 id="11-5-本章小结"><a href="#11-5-本章小结" class="headerlink" title="11.5 本章小结"></a>11.5 本章小结</h2><p>本章我们着重了解了虚拟机的热点探测方法、HotSpot 的即时编译器、编译触发条件以及如何从虚拟机外部观察和分析 JIT 编译的数据和结果，还选择了集中场景的编译期优化技术进行讲解。对 Java 编译器的深入了解，有助于在工作中分辨哪些代码是编译器可以帮我们处理的，哪些代码需要自己调节以便更适合编译器的优化。</p>
 <blockquote>
-<p>义乌市首届Scratch编程周实时数据状态网址(动态页面):<a href="http://datav.aliyun.com/share/07ef37b235d9763bd364f344912d1a05" target="_blank" rel="noopener">http://datav.aliyun.com/share/07ef37b235d9763bd364f344912d1a05</a><br>大数据可视化说明:<br>大数据屏幕：1920*1080（可修改）最高实时更新频率：1min/次<br>正常显示的预览效果参考（静态截图）：<a href="http://p4lmrb1gp.bkt.clouddn.com/15205615855957.jpg" target="_blank" rel="noopener">http://p4lmrb1gp.bkt.clouddn.com/15205615855957.jpg</a><br>本机上如果不是上述参考效果请检查自己的浏览器如下:<br>推荐电脑上预览：首选谷歌 Chrome 浏览器版本56以上，其他浏览器则需更新至最新版并开启极速（chrome内核）模式，不要使用IE浏览器，否则无法正常显示。<br>不推荐手机上预览：无法按默认长宽比例展示</p>
+<p>参考：<br><a href="http://ginobefunny.com/post/deep_in_jvm_notes_part6/" target="_blank" rel="noopener">http://ginobefunny.com/post/deep_in_jvm_notes_part6/</a></p>
 </blockquote>
-<p>预览效果：<br><img src="http://p4lmrb1gp.bkt.clouddn.com/15205615855957.jpg" alt=""></p>
 
       
     </div>
@@ -502,7 +549,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://cloudpai.site/2018/03/08/2018-03-08/" title="处理数据可视化">http://cloudpai.site/2018/03/08/2018-03-08/</a>
+    <a href="http://cloudpai.site/2018/03/12/2018-03-11-6/" title="《深入理解java虚拟机》学习笔记之十&十一">http://cloudpai.site/2018/03/12/2018-03-11-6/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -520,9 +567,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/数据可视化/" rel="tag"><i class="fa fa-tag"></i> 数据可视化</a>
-          
-            <a href="/tags/DataV/" rel="tag"><i class="fa fa-tag"></i> DataV</a>
+            <a href="/tags/JVM/" rel="tag"><i class="fa fa-tag"></i> JVM</a>
           
         </div>
       
@@ -535,8 +580,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/06/2018-03-05-2/" rel="next" title="《深入理解java虚拟机》学习笔记之二（Java内存区域与内存溢出异常&实战，重点）">
-                <i class="fa fa-chevron-left"></i> 《深入理解java虚拟机》学习笔记之二（Java内存区域与内存溢出异常&实战，重点）
+              <a href="/2018/03/12/2018-03-11-5/" rel="next" title="《深入理解java虚拟机》学习笔记之九">
+                <i class="fa fa-chevron-left"></i> 《深入理解java虚拟机》学习笔记之九
               </a>
             
           </div>
@@ -545,8 +590,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/03/09/2018-03-09/" rel="prev" title="JVM参数调优">
-                JVM参数调优 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/03/12/2018-03-11-7/" rel="prev" title="《深入理解java虚拟机》学习笔记之十二&十三">
+                《深入理解java虚拟机》学习笔记之十二&十三 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -614,8 +659,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -736,6 +790,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第四部分-程序编译与代码优化"><span class="nav-text">第四部分 程序编译与代码优化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第十章-早期（编译器）优化"><span class="nav-text">第十章 早期（编译器）优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#10-1-概述"><span class="nav-text">10.1 概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-2-javac-编译器"><span class="nav-text">10.2 javac 编译器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#10-2-1-javac-的源码与调试"><span class="nav-text">10.2.1 javac 的源码与调试</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-2-2-解析与填充符号表"><span class="nav-text">10.2.2 解析与填充符号表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-2-3-注解处理器"><span class="nav-text">10.2.3 注解处理器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-2-4-语义分析与字节码生成"><span class="nav-text">10.2.4 语义分析与字节码生成</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-3-Java-语法糖的味道"><span class="nav-text">10.3 Java 语法糖的味道</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#10-3-1-泛型与类型擦除"><span class="nav-text">10.3.1 泛型与类型擦除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-3-2-自动装箱、拆箱与遍历循环"><span class="nav-text">10.3.2 自动装箱、拆箱与遍历循环</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-3-3-条件编译"><span class="nav-text">10.3.3 条件编译</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-4-实战：插入式注解处理器"><span class="nav-text">10.4 实战：插入式注解处理器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-5-本章小结"><span class="nav-text">10.5 本章小结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第十一章-晚期（运行期）优化"><span class="nav-text">第十一章 晚期（运行期）优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#11-1-概述"><span class="nav-text">11.1 概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-2-HotSpot-虚拟机内的即时编译器"><span class="nav-text">11.2 HotSpot 虚拟机内的即时编译器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#11-2-1-解释器与编译器"><span class="nav-text">11.2.1 解释器与编译器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-2-2-编译对象与触发条件"><span class="nav-text">11.2.2 编译对象与触发条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-2-3-编译过程"><span class="nav-text">11.2.3 编译过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-2-4-查看及分析即时编译结果"><span class="nav-text">11.2.4 查看及分析即时编译结果</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-3-编译优化技术"><span class="nav-text">11.3 编译优化技术</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#11-3-1-优化技术概览"><span class="nav-text">11.3.1 优化技术概览</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-3-2-公共子表达式消除"><span class="nav-text">11.3.2 公共子表达式消除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-3-3-数组边界检查消除"><span class="nav-text">11.3.3 数组边界检查消除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-3-4-方法内联"><span class="nav-text">11.3.4 方法内联</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11-3-5-逃逸分析"><span class="nav-text">11.3.5 逃逸分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-4-Java-与-C-C-的编译器对比"><span class="nav-text">11.4 Java 与 C/C++ 的编译器对比</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-5-本章小结"><span class="nav-text">11.5 本章小结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -916,9 +986,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://cloudpai.site/2018/03/08/2018-03-08/';
-          this.page.identifier = '2018/03/08/2018-03-08/';
-          this.page.title = '处理数据可视化';
+          this.page.url = 'http://cloudpai.site/2018/03/12/2018-03-11-6/';
+          this.page.identifier = '2018/03/12/2018-03-11-6/';
+          this.page.title = '《深入理解java虚拟机》学习笔记之十&十一';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://cloudpai.disqus.com/embed.js';

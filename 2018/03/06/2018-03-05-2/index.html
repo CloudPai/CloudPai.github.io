@@ -84,7 +84,7 @@
 <meta name="description" content="第二章 Java内存区域与内存溢出异常&amp;amp;实战第二章结构：      Java 虚拟机在执行 Java 程序的过程中会把它所管理的内存划分为若干个不同的数据区域。这些区域都有各自的用途，以及创建和销毁时间。根据 《Java 虚拟机规范》的规定，Java 虚拟机所管理的内存将会包括以下几个运行时数据区域。参考：https://www.jianshu.com/p/989c90f339b9  2">
 <meta name="keywords" content="JVM">
 <meta property="og:type" content="article">
-<meta property="og:title" content="《深入理解java虚拟机》学习笔记之二">
+<meta property="og:title" content="《深入理解java虚拟机》学习笔记之二（Java内存区域与内存溢出异常&amp;实战，重点）">
 <meta property="og:url" content="http://cloudpai.site/2018/03/06/2018-03-05-2/index.html">
 <meta property="og:site_name" content="CloudPai">
 <meta property="og:description" content="第二章 Java内存区域与内存溢出异常&amp;amp;实战第二章结构：      Java 虚拟机在执行 Java 程序的过程中会把它所管理的内存划分为若干个不同的数据区域。这些区域都有各自的用途，以及创建和销毁时间。根据 《Java 虚拟机规范》的规定，Java 虚拟机所管理的内存将会包括以下几个运行时数据区域。参考：https://www.jianshu.com/p/989c90f339b9  2">
@@ -112,9 +112,9 @@
 <meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15206713544247.jpg">
 <meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15206724618935.jpg">
 <meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15206724813872.jpg">
-<meta property="og:updated_time" content="2018-03-10T09:06:32.405Z">
+<meta property="og:updated_time" content="2018-03-12T14:18:20.871Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="《深入理解java虚拟机》学习笔记之二">
+<meta name="twitter:title" content="《深入理解java虚拟机》学习笔记之二（Java内存区域与内存溢出异常&amp;实战，重点）">
 <meta name="twitter:description" content="第二章 Java内存区域与内存溢出异常&amp;amp;实战第二章结构：      Java 虚拟机在执行 Java 程序的过程中会把它所管理的内存划分为若干个不同的数据区域。这些区域都有各自的用途，以及创建和销毁时间。根据 《Java 虚拟机规范》的规定，Java 虚拟机所管理的内存将会包括以下几个运行时数据区域。参考：https://www.jianshu.com/p/989c90f339b9  2">
 <meta name="twitter:image" content="http://p4lmrb1gp.bkt.clouddn.com/15202671970955.jpg">
 
@@ -152,7 +152,7 @@
 
 
 
-  <title>《深入理解java虚拟机》学习笔记之二 | CloudPai</title>
+  <title>《深入理解java虚拟机》学习笔记之二（Java内存区域与内存溢出异常&实战，重点） | CloudPai</title>
   
 
 
@@ -330,7 +330,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">《深入理解java虚拟机》学习笔记之二</h1>
+          <h1 class="post-title" itemprop="name headline">《深入理解java虚拟机》学习笔记之二（Java内存区域与内存溢出异常&实战，重点）</h1>
         
 
         <div class="post-meta">
@@ -358,8 +358,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-10T17:06:32+08:00">
-                2018-03-10
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-12T22:18:20+08:00">
+                2018-03-12
               </time>
             
           </span>
@@ -880,7 +880,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://cloudpai.site/2018/03/06/2018-03-05-2/" title="《深入理解java虚拟机》学习笔记之二">http://cloudpai.site/2018/03/06/2018-03-05-2/</a>
+    <a href="http://cloudpai.site/2018/03/06/2018-03-05-2/" title="《深入理解java虚拟机》学习笔记之二（Java内存区域与内存溢出异常&实战，重点）">http://cloudpai.site/2018/03/06/2018-03-05-2/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -1019,7 +1019,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-count">30</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -1041,7 +1041,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">15</span>
+                  <span class="site-state-item-count">17</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -1166,7 +1166,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">52.6k</span>
+    <span title="Site words total count">70.1k</span>
   
 </div>
 
@@ -1319,7 +1319,7 @@
         var disqus_config = function () {
           this.page.url = 'http://cloudpai.site/2018/03/06/2018-03-05-2/';
           this.page.identifier = '2018/03/06/2018-03-05-2/';
-          this.page.title = '《深入理解java虚拟机》学习笔记之二';
+          this.page.title = '《深入理解java虚拟机》学习笔记之二（Java内存区域与内存溢出异常&实战，重点）';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://cloudpai.disqus.com/embed.js';
