@@ -84,14 +84,14 @@
 <meta name="description" content="5.2 案例分析5.2.1 高性能硬件上的程序部署策略 背景：一个15万pv、天左右的在线文档类型网站最近更换了硬件系统，新的硬件为4个cpu,16GB物理内存，操作系统为 64位的 CentOS 5.4 ，Resin作为服务器。管理员选用了 64位的 jdk 1.5,通过-Xmx,-Xms 将堆固定在12GB，使用一段时间后，出现了卡B现象，长时间无响应。监控发现卡B是由于GC停顿导致的。虚拟">
 <meta name="keywords" content="JVM">
 <meta property="og:type" content="article">
-<meta property="og:title" content="《深入理解java虚拟机》学习笔记之五">
+<meta property="og:title" content="JVM学习笔记五：案例分析">
 <meta property="og:url" content="http://cloudpai.site/2018/03/11/2018-03-11-1/index.html">
 <meta property="og:site_name" content="CloudPai">
 <meta property="og:description" content="5.2 案例分析5.2.1 高性能硬件上的程序部署策略 背景：一个15万pv、天左右的在线文档类型网站最近更换了硬件系统，新的硬件为4个cpu,16GB物理内存，操作系统为 64位的 CentOS 5.4 ，Resin作为服务器。管理员选用了 64位的 jdk 1.5,通过-Xmx,-Xms 将堆固定在12GB，使用一段时间后，出现了卡B现象，长时间无响应。监控发现卡B是由于GC停顿导致的。虚拟">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-11T09:23:43.321Z">
+<meta property="og:updated_time" content="2018-03-13T02:41:48.839Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="《深入理解java虚拟机》学习笔记之五">
+<meta name="twitter:title" content="JVM学习笔记五：案例分析">
 <meta name="twitter:description" content="5.2 案例分析5.2.1 高性能硬件上的程序部署策略 背景：一个15万pv、天左右的在线文档类型网站最近更换了硬件系统，新的硬件为4个cpu,16GB物理内存，操作系统为 64位的 CentOS 5.4 ，Resin作为服务器。管理员选用了 64位的 jdk 1.5,通过-Xmx,-Xms 将堆固定在12GB，使用一段时间后，出现了卡B现象，长时间无响应。监控发现卡B是由于GC停顿导致的。虚拟">
 
 
@@ -128,7 +128,7 @@
 
 
 
-  <title>《深入理解java虚拟机》学习笔记之五 | CloudPai</title>
+  <title>JVM学习笔记五：案例分析 | CloudPai</title>
   
 
 
@@ -306,7 +306,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">《深入理解java虚拟机》学习笔记之五</h1>
+          <h1 class="post-title" itemprop="name headline">JVM学习笔记五：案例分析</h1>
         
 
         <div class="post-meta">
@@ -334,8 +334,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-11T17:23:43+08:00">
-                2018-03-11
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-13T10:41:48+08:00">
+                2018-03-13
               </time>
             
           </span>
@@ -502,7 +502,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://cloudpai.site/2018/03/11/2018-03-11-1/" title="《深入理解java虚拟机》学习笔记之五">http://cloudpai.site/2018/03/11/2018-03-11-1/</a>
+    <a href="http://cloudpai.site/2018/03/11/2018-03-11-1/" title="JVM学习笔记五：案例分析">http://cloudpai.site/2018/03/11/2018-03-11-1/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -533,8 +533,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/11/2018-03-11/" rel="next" title="《深入理解java虚拟机》学习笔记之四">
-                <i class="fa fa-chevron-left"></i> 《深入理解java虚拟机》学习笔记之四
+              <a href="/2018/03/11/2018-03-11/" rel="next" title="JVM学习笔记四：JVM 小工具">
+                <i class="fa fa-chevron-left"></i> JVM学习笔记四：JVM 小工具
               </a>
             
           </div>
@@ -543,8 +543,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/03/11/2018-03-11-2/" rel="prev" title="《深入理解java虚拟机》学习笔记之六">
-                《深入理解java虚拟机》学习笔记之六 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/03/11/2018-03-11-2/" rel="prev" title="JVM学习笔记六：类文件结构（了解）">
+                JVM学习笔记六：类文件结构（了解） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -641,7 +641,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-count">32</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -663,7 +663,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">17</span>
+                  <span class="site-state-item-count">21</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -788,7 +788,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">70.1k</span>
+    <span title="Site words total count">74.7k</span>
   
 </div>
 
@@ -941,7 +941,7 @@
         var disqus_config = function () {
           this.page.url = 'http://cloudpai.site/2018/03/11/2018-03-11-1/';
           this.page.identifier = '2018/03/11/2018-03-11-1/';
-          this.page.title = '《深入理解java虚拟机》学习笔记之五';
+          this.page.title = 'JVM学习笔记五：案例分析';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://cloudpai.disqus.com/embed.js';
