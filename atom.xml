@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cloudpai.site/"/>
-  <updated>2018-03-14T14:41:40.657Z</updated>
+  <updated>2018-03-15T14:47:40.159Z</updated>
   <id>http://cloudpai.site/</id>
   
   <author>
@@ -15,6 +15,70 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spring实战笔记二</title>
+    <link href="http://cloudpai.site/2018/03/15/2018-03-15-2/"/>
+    <id>http://cloudpai.site/2018/03/15/2018-03-15-2/</id>
+    <published>2018-03-15T14:42:30.000Z</published>
+    <updated>2018-03-15T14:47:40.159Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;Spring-之旅&quot;&gt;&lt;a href=&quot;#Spring-之旅&quot; class=&quot;headerlink&quot; title=&quot;Spring 之旅&quot;&gt;&lt;/a&gt;Spring 之旅
+      
+    
+    </summary>
+    
+    
+      <category term="Spring" scheme="http://cloudpai.site/tags/Spring/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring实战笔记一</title>
+    <link href="http://cloudpai.site/2018/03/15/2018-03-15/"/>
+    <id>http://cloudpai.site/2018/03/15/2018-03-15/</id>
+    <published>2018-03-15T00:43:39.000Z</published>
+    <updated>2018-03-15T14:41:43.247Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;Spring-之旅&quot;&gt;&lt;a href=&quot;#Spring-之旅&quot; class=&quot;headerlink&quot; title=&quot;Spring 之旅&quot;&gt;&lt;/a&gt;Spring 之旅
+      
+    
+    </summary>
+    
+    
+      <category term="Spring" scheme="http://cloudpai.site/tags/Spring/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《重构》阅读笔记 - 代码的坏味道</title>
+    <link href="http://cloudpai.site/2018/03/15/2018-03-15-1/"/>
+    <id>http://cloudpai.site/2018/03/15/2018-03-15-1/</id>
+    <published>2018-03-14T23:48:47.000Z</published>
+    <updated>2018-03-15T00:48:55.479Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;重复代码（Duplicated Code）&lt;br&gt;如果你在一个以上的地方看到相同的程序结构，那么可以肯定：设法将它们合而为一，程序会变得更美好！你需要决定这
+      
+    
+    </summary>
+    
+    
+      <category term="重构" scheme="http://cloudpai.site/tags/%E9%87%8D%E6%9E%84/"/>
+    
+  </entry>
   
   <entry>
     <title>java并发编程</title>
@@ -118,7 +182,7 @@
     <link href="http://cloudpai.site/2018/03/12/2018-03-12/"/>
     <id>http://cloudpai.site/2018/03/12/2018-03-12/</id>
     <published>2018-03-12T01:38:08.000Z</published>
-    <updated>2018-03-13T03:29:11.503Z</updated>
+    <updated>2018-03-15T11:27:19.408Z</updated>
     
     <summary type="html">
     
@@ -390,74 +454,6 @@
     
     
       <category term="JVM" scheme="http://cloudpai.site/tags/JVM/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JVM学习笔记一：（实战）自己编译JDK</title>
-    <link href="http://cloudpai.site/2018/03/05/2018-03-06/"/>
-    <id>http://cloudpai.site/2018/03/05/2018-03-06/</id>
-    <published>2018-03-05T14:55:31.000Z</published>
-    <updated>2018-03-13T02:40:48.511Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;全书核心分布：&lt;br&gt;&lt;img src=&quot;http://p4lmrb1gp.bkt.clouddn.com/15202617182331.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;
-      
-    
-    </summary>
-    
-    
-      <category term="JVM" scheme="http://cloudpai.site/tags/JVM/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java1.8 帮助文档</title>
-    <link href="http://cloudpai.site/2018/03/05/2018-03-05-1/"/>
-    <id>http://cloudpai.site/2018/03/05/2018-03-05-1/</id>
-    <published>2018-03-05T12:18:30.000Z</published>
-    <updated>2018-03-05T17:23:39.018Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;java 1.6 帮助文档&lt;br&gt;中文&lt;br&gt;链接：&lt;a href=&quot;http://download.csdn.net/detail/qw599186875/9608735&quot;
-      
-    
-    </summary>
-    
-    
-      <category term="java" scheme="http://cloudpai.site/tags/java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>大型网站架构技能图谱（Java版）</title>
-    <link href="http://cloudpai.site/2018/03/05/2018-03-05/"/>
-    <id>http://cloudpai.site/2018/03/05/2018-03-05/</id>
-    <published>2018-03-04T16:44:27.000Z</published>
-    <updated>2018-03-04T16:47:52.746Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;img src=&quot;http://p4lmrb1gp.bkt.clouddn.com/大型网站架构技能图谱（Java版）.jpg&quot; alt=&quot;大型网站架构技能图谱（Java版
-      
-    
-    </summary>
-    
-    
-      <category term="java" scheme="http://cloudpai.site/tags/java/"/>
-    
-      <category term="图谱" scheme="http://cloudpai.site/tags/%E5%9B%BE%E8%B0%B1/"/>
-    
-      <category term="web" scheme="http://cloudpai.site/tags/web/"/>
     
   </entry>
   

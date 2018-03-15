@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="JVM," />
+  <meta name="keywords" content="重构," />
 
 
 
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="常见配置汇总堆设置-Xms:初始堆大小-Xmx:最大堆大小-XX:NewSize=n:设置年轻代大小-XX:NewRatio=n:设置年轻代和年老代的比值.如:为3,表示年轻代与年老代比值为1:3,年轻代占整个年轻代年老代和的1/4-XX:SurvivorRatio=n:年轻代中Eden区与两个Survivor区的比值.注意Survivor区有两个.如:3,表示Eden:Survivor=3:">
-<meta name="keywords" content="JVM">
+<meta name="description" content="重复代码（Duplicated Code）如果你在一个以上的地方看到相同的程序结构，那么可以肯定：设法将它们合而为一，程序会变得更美好！你需要决定这个重复的代码放在哪里比较合适，并确保它被安置之后就不会在别的地方再次出现。  过长函数（Long Method）程序越长越难以理解。现代 OO 语言几乎完全免去了进程内的函数调用开销，因此，你应该积极地分解函数。我们应该遵循原则：每当需要以注释来说">
+<meta name="keywords" content="重构">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JVM参数调优">
-<meta property="og:url" content="http://cloudpai.site/2018/03/09/2018-03-09/index.html">
+<meta property="og:title" content="《重构》阅读笔记 - 代码的坏味道">
+<meta property="og:url" content="http://cloudpai.site/2018/03/15/2018-03-15-1/index.html">
 <meta property="og:site_name" content="CloudPai">
-<meta property="og:description" content="常见配置汇总堆设置-Xms:初始堆大小-Xmx:最大堆大小-XX:NewSize=n:设置年轻代大小-XX:NewRatio=n:设置年轻代和年老代的比值.如:为3,表示年轻代与年老代比值为1:3,年轻代占整个年轻代年老代和的1/4-XX:SurvivorRatio=n:年轻代中Eden区与两个Survivor区的比值.注意Survivor区有两个.如:3,表示Eden:Survivor=3:">
+<meta property="og:description" content="重复代码（Duplicated Code）如果你在一个以上的地方看到相同的程序结构，那么可以肯定：设法将它们合而为一，程序会变得更美好！你需要决定这个重复的代码放在哪里比较合适，并确保它被安置之后就不会在别的地方再次出现。  过长函数（Long Method）程序越长越难以理解。现代 OO 语言几乎完全免去了进程内的函数调用开销，因此，你应该积极地分解函数。我们应该遵循原则：每当需要以注释来说">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-11T08:54:24.245Z">
+<meta property="og:updated_time" content="2018-03-15T00:48:55.479Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JVM参数调优">
-<meta name="twitter:description" content="常见配置汇总堆设置-Xms:初始堆大小-Xmx:最大堆大小-XX:NewSize=n:设置年轻代大小-XX:NewRatio=n:设置年轻代和年老代的比值.如:为3,表示年轻代与年老代比值为1:3,年轻代占整个年轻代年老代和的1/4-XX:SurvivorRatio=n:年轻代中Eden区与两个Survivor区的比值.注意Survivor区有两个.如:3,表示Eden:Survivor=3:">
+<meta name="twitter:title" content="《重构》阅读笔记 - 代码的坏味道">
+<meta name="twitter:description" content="重复代码（Duplicated Code）如果你在一个以上的地方看到相同的程序结构，那么可以肯定：设法将它们合而为一，程序会变得更美好！你需要决定这个重复的代码放在哪里比较合适，并确保它被安置之后就不会在别的地方再次出现。  过长函数（Long Method）程序越长越难以理解。现代 OO 语言几乎完全免去了进程内的函数调用开销，因此，你应该积极地分解函数。我们应该遵循原则：每当需要以注释来说">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://cloudpai.site/2018/03/09/2018-03-09/"/>
+  <link rel="canonical" href="http://cloudpai.site/2018/03/15/2018-03-15-1/"/>
 
 
 
 
 
-  <title>JVM参数调优 | CloudPai</title>
+  <title>《重构》阅读笔记 - 代码的坏味道 | CloudPai</title>
   
 
 
@@ -289,7 +289,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/03/09/2018-03-09/">
+    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/03/15/2018-03-15-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CloudPai">
@@ -306,7 +306,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JVM参数调优</h1>
+          <h1 class="post-title" itemprop="name headline">《重构》阅读笔记 - 代码的坏味道</h1>
         
 
         <div class="post-meta">
@@ -318,8 +318,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-09T16:26:14+08:00">
-                2018-03-09
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-15T07:48:47+08:00">
+                2018-03-15
               </time>
             
 
@@ -334,8 +334,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-11T16:54:24+08:00">
-                2018-03-11
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-15T08:48:55+08:00">
+                2018-03-15
               </time>
             
           </span>
@@ -349,9 +349,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/03/09/2018-03-09/#comments" itemprop="discussionUrl">
+                <a href="/2018/03/15/2018-03-15-1/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/03/09/2018-03-09/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/03/15/2018-03-15-1/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -373,7 +373,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  335
+                  2,137
                 </span>
               
 
@@ -389,7 +389,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  7
                 </span>
               
             </div>
@@ -410,12 +410,52 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><blockquote>
-<p><strong>常见配置汇总</strong><br><strong>堆设置</strong><br>-Xms:初始堆大小<br>-Xmx:最大堆大小<br>-XX:NewSize=n:设置年轻代大小<br>-XX:NewRatio=n:设置年轻代和年老代的比值.如:为3,表示年轻代与年老代比值为1:3,年轻代占整个年轻代年老代和的1/4<br>-XX:SurvivorRatio=n:年轻代中Eden区与两个Survivor区的比值.<strong>注意Survivor区有两个</strong>.如:3,表示Eden:Survivor=3:2,一个Survivor区占整个年轻代的1/5<br>-XX:MaxPermSize=n:设置持久代大小<br><strong>收集器设置</strong><br>-XX:+UseSerialGC:设置串行收集器<br>-XX:+UseParallelGC:设置并行收集器<br>-XX:+UseParalledlOldGC:设置并行年老代收集器<br>-XX:+UseConcMarkSweepGC:设置并发收集器<br><strong>垃圾回收统计信息</strong><br>-XX:+PrintGC<br>-XX:+PrintGCDetails<br>-XX:+PrintGCTimeStamps<br>-Xloggc:filename<br><strong>并行收集器设置</strong><br>-XX:ParallelGCThreads=n:设置并行收集器收集时使用的CPU数.并行收集线程数.<br>-XX:MaxGCPauseMillis=n:设置并行收集最大暂停时间<br>-XX:GCTimeRatio=n:设置垃圾回收时间占程序运行时间的百分比.公式为1/(1+n)<br><strong>并发收集器设置</strong><br>-XX:+CMSIncrementalMode:设置为增量模式.适用于单CPU情况.<br>-XX:ParallelGCThreads=n:设置并发收集器年轻代收集方式为并行收集时,使用的CPU数.并行收集线程数.</p>
-</blockquote>
-<hr>
+        <script src="/assets/js/APlayer.min.js"> </script><ol>
+<li><p>重复代码（Duplicated Code）<br>如果你在一个以上的地方看到相同的程序结构，那么可以肯定：设法将它们合而为一，程序会变得更美好！你需要决定这个重复的代码放在哪里比较合适，并确保它被安置之后就不会在别的地方再次出现。</p>
+</li>
+<li><p>过长函数（Long Method）<br>程序越长越难以理解。现代 OO 语言几乎完全免去了进程内的函数调用开销，因此，你应该积极地分解函数。我们应该遵循原则：每当需要以注释来说明点什么的时候，我们就需要把需要说明的东西写进一个独立函数中，并以其用途（而非实现手法）命名。如何确定需要提炼哪一段代码：寻找注释、条件表达式、循环。</p>
+</li>
+<li><p>过大的类（Large Class）<br>如果你发现一个类试图做太多事情，其内部就会出现很多不相关的实例变量，此时这个类的职责就不明确了。</p>
+</li>
+<li><p>过长参数列（Long Parameter List）<br>太长的参数队列难以理解，太多参数的接口对于使用者来说十分不友好，而且容易出错。如果可以使用一个对象代替参数列表，那么就应该这么做。</p>
+</li>
+<li><p>发散式变化（Divergent Change） VS 霰弹式修改（Shotgun Surgery）<br>一旦需要修改，我们希望只在系统的一个地方进行修改，否则，就属于两种非常相似的坏味道的一种：如果某个类经常因为不同的原因在不同的地方发生变化，那么 Divergent Change 就出现了；如果系统每遇到一个小变化，就需要在多个不同的类内进行许多小修改，这属于 Shotgun Surgery。Divergent Change 是指 “一个类受多种变化的影响”，Shotgun Surgery 则指的是 “一种变化引发多个类的修改”。</p>
+</li>
+<li><p>平行继承体系（Parallel Inheritance Hierarchies）<br>这其实是 Shotgun Surgery 的特殊情况——每当你为某个类添加一个子类，你也必须为它的兄弟类加一个子类。如果你发现某个继承体系的类名称前缀和另一个继承体系的类名称前缀完全相同，就属于这种情况。</p>
+</li>
+<li><p>依恋情结（Feature Envy）<br>面向对象的精髓在于：“将数据和对数据的操作行为包装在一起”。有一种气味是：函数对某个类的兴趣高过自己所处的类的兴趣。有很多时候，我们看到一个函数为了计算某个值，从另一个对象那儿调用了几乎半打的取值函数。最根本的原则是：将总是一起变化的东西放在一起。</p>
+</li>
+<li><p>数据泥团（Data Clumps）<br>你常常可以在很多地方看到相同的三四项数据：两个类中相同的字段、许多函数签名中相同的参数。这些绑在一起出现的数据真应该拥有属于它们自己的对象。减少字段和参数的个数，当然可以去除一些坏味道，但更重要的是：<strong>一旦拥有新对象，你就有机会寻找 Feature Envy，这可以帮你指出能够移至新类中的种种方法</strong>。</p>
+</li>
+<li><p>基本类型偏执（Primitive Obsession）<br>对象技术的新手通常不愿意在小任务上运用对象——例如结合数值和币种的 Money 类、由一个起始值和一个结束值构成的 Range 类、电话号码或邮政号码等的特殊字符串。</p>
+</li>
+<li><p>switch 语句（Switch Statements）<br>从本质上讲，switch 语句的问题在于重复，面向对象的多态特性可以优雅地解决这个问题。如果你只是在单一函数内有些选择事例，那么用多态就属于杀鸡用牛刀了，这种情况下 Replace Parameter with Explicit Methods 是个不错的选择，如果你的选择之一是 null，记得使用 Introduce Null Object。</p>
+</li>
+<li><p>多余的类（Lazy Class）<br>你所创建的每一个类，都得有人去理解它、维护它，这些工作都是要花钱的。如果一个类的所得不值得其身价，就应该消除这个类。</p>
+</li>
+<li><p>过度设计（Speculative Generality）<br>当有人说 “噢，我想我们有一天需要做这个事情”，并因此而企图以各种各样的钩子和特殊情况来处理一些非必要的事情，这种坏味道就出现了。软件设计不可过度设计，否则会使得系统难以理解和维护。</p>
+</li>
+<li><p>令人迷惑的暂时字段（Temporary Field）<br>有时你会看到这样的现象：类内的某个实例变量仅为某种特定情况而设。这样的代码不易理解，因为通常认为对象在所有时候都需要它的所有变量。</p>
+</li>
+<li><p>过度耦合的消息链（Message Chains）<br>如果你看到用户向一个对象请求另一个对象，然后再向后者请求另一个对象，然后再请求另一个对象…… 这就是消息链。实际代码中你看到的可能是一长串 getXXX() 调用，意味着客户代码将与查找目标对象过程中的导航结构紧密耦合，一旦对象间的关系发生任何变化，客户端就会受到影响。</p>
+</li>
+<li><p>中间人（Middle Man）<br>对象的基本特征之一是封装——对外部世界隐藏其内部细节。封装往往伴随着委托，比如你问主管是否有时间参加一个会议，他就把这个消息 “委托” 给他的记事簿，然后才能回答你——你没有必要这位主管到底是使用传统记事簿或电子记事簿或秘书来记录自己的约会。但是，不要过度使用委托——你也许会看到某个类有一半接口都委托给其他类。</p>
+</li>
+<li><p>狎昵关系（Inappropriate Intimacy）<br>类与类之间过分紧密的关系必须拆散——可以引入第三方类或者利用委托。</p>
+</li>
+<li><p>异曲同工的类（Alternative Classes with Different Interfaces）<br>如果两个函数做同一件事，却有着不同的签名，请运用 Rename Method 根据它们的<strong>用途</strong>重新命名。但这往往不够，请反复运用 Move Method 将某些行为移入类，知道这两个函数的协议一致为止。如果你必须移动大量代码才可以完成这个工作，那还不如直接构建一个父类。</p>
+</li>
+<li><p>不完美的库类（Incomplete Library Class）<br>复用常常被认为是面向对象技术的终极目标。很多第三方库提供的接口经常不能恰如其分得满足我们的需求，这时候就需要对第三方接口做一层转换，或者给它添加一定的行为。</p>
+<iframe id="tmp_downloadhelper_iframe" style="display: none;"></iframe></li>
+<li><p>数据类（Data Class）<br>所谓 Data Class，指的是：这种类拥有一些字段，以及用于访问（读、写）的函数，除此之外啥都没有。这样的类只是一种不会说话的数据容器，它们一定被其他类过分细碎得控制着。<br>Data Class 就像小孩子，作为一个起点很好，但若要让它们像成熟的对象那样参与整个系统的工作，它们就必须承担一定责任。但是，在 Spring 框架开发中，我们经常需要定义很多 domain 对象。</p>
+</li>
+<li><p>被拒绝的遗嘱（Refused Request）<br>子类应该继承超类的函数和数据，但如果它们不想或者不需要继承，又该怎么办呢？按照传统说法，这就意味着继承体系的设计错误。你需要为这个子类新建一个兄弟类，然后让父类只包括两个子类共享的部分。<br>一般而言，这就足够了，但是如果子类不愿意支持超类提供的接口，则说明不能使用继承处理，应该使用委托。</p>
+</li>
+<li><p>过多的注释（Comments）<br>常常会有这样的情况：你看到一段代码有着长长的注释，然后发现，这些注释之所以存在乃是因为代码很糟糕。当你需要些注释时，要先尝试重构下代码，争取让代码拥有自说明性。</p>
+</li>
+</ol>
 <blockquote>
-<p>参考：<a href="http://blog.csdn.net/xiajian2010/article/details/17376157" target="_blank" rel="noopener">http://blog.csdn.net/xiajian2010/article/details/17376157</a></p>
+<p>参考：<br><a href="https://www.jianshu.com/p/41e889181536?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation" target="_blank" rel="noopener">https://www.jianshu.com/p/41e889181536?utm_campaign=maleskine&amp;utm_content=note&amp;utm_medium=pc_all_hots&amp;utm_source=recommendation</a></p>
 </blockquote>
 
       
@@ -449,7 +489,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://cloudpai.site/2018/03/09/2018-03-09/" title="JVM参数调优">http://cloudpai.site/2018/03/09/2018-03-09/</a>
+    <a href="http://cloudpai.site/2018/03/15/2018-03-15-1/" title="《重构》阅读笔记 - 代码的坏味道">http://cloudpai.site/2018/03/15/2018-03-15-1/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -467,7 +507,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/JVM/" rel="tag"><i class="fa fa-tag"></i> JVM</a>
+            <a href="/tags/重构/" rel="tag"><i class="fa fa-tag"></i> 重构</a>
           
         </div>
       
@@ -480,8 +520,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/08/2018-03-08/" rel="next" title="处理数据可视化">
-                <i class="fa fa-chevron-left"></i> 处理数据可视化
+              <a href="/2018/03/14/2018-03-14-2/" rel="next" title="java并发编程">
+                <i class="fa fa-chevron-left"></i> java并发编程
               </a>
             
           </div>
@@ -490,8 +530,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/03/10/2018-03-10/" rel="prev" title="JVM学习笔记三（垃圾收集器与内存分配策略，重点）">
-                JVM学习笔记三（垃圾收集器与内存分配策略，重点） <i class="fa fa-chevron-right"></i>
+              <a href="/2018/03/15/2018-03-15/" rel="prev" title="Spring实战笔记一">
+                Spring实战笔记一 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -861,9 +901,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://cloudpai.site/2018/03/09/2018-03-09/';
-          this.page.identifier = '2018/03/09/2018-03-09/';
-          this.page.title = 'JVM参数调优';
+          this.page.url = 'http://cloudpai.site/2018/03/15/2018-03-15-1/';
+          this.page.identifier = '2018/03/15/2018-03-15-1/';
+          this.page.title = '《重构》阅读笔记 - 代码的坏味道';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://cloudpai.disqus.com/embed.js';
