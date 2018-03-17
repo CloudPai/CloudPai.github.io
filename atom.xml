@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cloudpai.site/"/>
-  <updated>2018-03-17T03:02:39.399Z</updated>
+  <updated>2018-03-17T11:09:23.788Z</updated>
   <id>http://cloudpai.site/</id>
   
   <author>
@@ -15,6 +15,128 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>“大话架构”阿里架构师分享的Java程序员需要突破的技术要点</title>
+    <link href="http://cloudpai.site/2018/03/17/2018-03-17-4/"/>
+    <id>http://cloudpai.site/2018/03/17/2018-03-17-4/</id>
+    <published>2018-03-17T11:08:47.000Z</published>
+    <updated>2018-03-17T11:09:23.788Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h2 id=&quot;一、源码分析&quot;&gt;&lt;a href=&quot;#一、源码分析&quot; class=&quot;headerlink&quot; title=&quot;一、源码分析&quot;&gt;&lt;/a&gt;一、源码分析&lt;/h2&gt;&lt;p&gt;源码分析
+      
+    
+    </summary>
+    
+    
+      <category term="待阅" scheme="http://cloudpai.site/tags/%E5%BE%85%E9%98%85/"/>
+    
+      <category term="架构" scheme="http://cloudpai.site/tags/%E6%9E%B6%E6%9E%84/"/>
+    
+      <category term="源码" scheme="http://cloudpai.site/tags/%E6%BA%90%E7%A0%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>面试中并发类问题的准备和学习</title>
+    <link href="http://cloudpai.site/2018/03/17/2018-03-17-3/"/>
+    <id>http://cloudpai.site/2018/03/17/2018-03-17-3/</id>
+    <published>2018-03-17T11:03:33.000Z</published>
+    <updated>2018-03-17T11:07:20.614Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;声明：本文主要讨论的是后端Java开发职位的面试&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;主题&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;又到面试季了，从课程的群里，看到许多同学分享了自己的面试
+      
+    
+    </summary>
+    
+    
+      <category term="面试" scheme="http://cloudpai.site/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+      <category term="java并发" scheme="http://cloudpai.site/tags/java%E5%B9%B6%E5%8F%91/"/>
+    
+      <category term="待阅" scheme="http://cloudpai.site/tags/%E5%BE%85%E9%98%85/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>经典Java面试题95道</title>
+    <link href="http://cloudpai.site/2018/03/17/2018-03-17-2/"/>
+    <id>http://cloudpai.site/2018/03/17/2018-03-17-2/</id>
+    <published>2018-03-17T10:48:05.000Z</published>
+    <updated>2018-03-17T10:58:23.442Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;strong&gt;1、面向对象的特征有哪些方面？&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;答：面向对象的特征主要有以下几个方面：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;抽象：抽象是将一类对象的共同
+      
+    
+    </summary>
+    
+    
+      <category term="面试" scheme="http://cloudpai.site/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+      <category term="待阅" scheme="http://cloudpai.site/tags/%E5%BE%85%E9%98%85/"/>
+    
+      <category term="Java" scheme="http://cloudpai.site/tags/Java/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring 知识点总结69题+25题</title>
+    <link href="http://cloudpai.site/2018/03/17/2018-03-17-1/"/>
+    <id>http://cloudpai.site/2018/03/17/2018-03-17-1/</id>
+    <published>2018-03-17T10:39:18.000Z</published>
+    <updated>2018-03-17T13:45:59.294Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;Spring-知识点总结69题&quot;&gt;&lt;a href=&quot;#Spring-知识点总结69题&quot; class=&quot;headerlink&quot; title=&quot;Spring 知识点总结
+      
+    
+    </summary>
+    
+    
+      <category term="Spring" scheme="http://cloudpai.site/tags/Spring/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring实战笔记五</title>
+    <link href="http://cloudpai.site/2018/03/17/2018-03-17/"/>
+    <id>http://cloudpai.site/2018/03/17/2018-03-17/</id>
+    <published>2018-03-17T03:05:20.000Z</published>
+    <updated>2018-03-17T03:07:35.672Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;第5章-构建Spring-Web应用&quot;&gt;&lt;a href=&quot;#第5章-构建Spring-Web应用&quot; class=&quot;headerlink&quot; title=&quot;第5章 构建
+      
+    
+    </summary>
+    
+    
+      <category term="Spring" scheme="http://cloudpai.site/tags/Spring/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring实战笔记四</title>
@@ -127,7 +249,7 @@
     <link href="http://cloudpai.site/2018/03/14/2018-03-14-2/"/>
     <id>http://cloudpai.site/2018/03/14/2018-03-14-2/</id>
     <published>2018-03-14T14:40:52.000Z</published>
-    <updated>2018-03-14T14:41:40.657Z</updated>
+    <updated>2018-03-17T11:04:48.219Z</updated>
     
     <summary type="html">
     
@@ -143,6 +265,8 @@
     
     
       <category term="java并发" scheme="http://cloudpai.site/tags/java%E5%B9%B6%E5%8F%91/"/>
+    
+      <category term="待阅" scheme="http://cloudpai.site/tags/%E5%BE%85%E9%98%85/"/>
     
   </entry>
   
@@ -336,112 +460,6 @@
       
       
         &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;第七章-虚拟机类加载机制（重点）&quot;&gt;&lt;a href=&quot;#第七章-虚拟机类加载机制（重点）&quot; class=&quot;headerlink&quot; title=&quot;第七章 虚拟机类加载
-      
-    
-    </summary>
-    
-    
-      <category term="JVM" scheme="http://cloudpai.site/tags/JVM/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JVM学习笔记六：类文件结构（了解）</title>
-    <link href="http://cloudpai.site/2018/03/11/2018-03-11-2/"/>
-    <id>http://cloudpai.site/2018/03/11/2018-03-11-2/</id>
-    <published>2018-03-11T09:23:59.000Z</published>
-    <updated>2018-03-13T02:42:14.285Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;第三部分-虚拟机执行子系统&quot;&gt;&lt;a href=&quot;#第三部分-虚拟机执行子系统&quot; class=&quot;headerlink&quot; title=&quot;第三部分 虚拟机执行子系统&quot;&gt;&lt;
-      
-    
-    </summary>
-    
-    
-      <category term="JVM" scheme="http://cloudpai.site/tags/JVM/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JVM学习笔记五：案例分析</title>
-    <link href="http://cloudpai.site/2018/03/11/2018-03-11-1/"/>
-    <id>http://cloudpai.site/2018/03/11/2018-03-11-1/</id>
-    <published>2018-03-11T03:15:26.000Z</published>
-    <updated>2018-03-13T02:41:48.839Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h2 id=&quot;5-2-案例分析&quot;&gt;&lt;a href=&quot;#5-2-案例分析&quot; class=&quot;headerlink&quot; title=&quot;5.2 案例分析&quot;&gt;&lt;/a&gt;5.2 案例分析&lt;/h2
-      
-    
-    </summary>
-    
-    
-      <category term="JVM" scheme="http://cloudpai.site/tags/JVM/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JVM学习笔记四：JVM 小工具</title>
-    <link href="http://cloudpai.site/2018/03/11/2018-03-11/"/>
-    <id>http://cloudpai.site/2018/03/11/2018-03-11/</id>
-    <published>2018-03-11T02:15:27.000Z</published>
-    <updated>2018-03-13T02:41:25.783Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;JVM-小工具&quot;&gt;&lt;a href=&quot;#JVM-小工具&quot; class=&quot;headerlink&quot; title=&quot;JVM 小工具&quot;&gt;&lt;/a&gt;JVM 小工具&lt;/h1&gt;&lt;p&gt;
-      
-    
-    </summary>
-    
-    
-      <category term="JVM" scheme="http://cloudpai.site/tags/JVM/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JVM学习笔记三（垃圾收集器与内存分配策略，重点）</title>
-    <link href="http://cloudpai.site/2018/03/10/2018-03-10/"/>
-    <id>http://cloudpai.site/2018/03/10/2018-03-10/</id>
-    <published>2018-03-10T09:11:59.000Z</published>
-    <updated>2018-03-14T12:43:42.406Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;第三章-垃圾收集器与内存分配策略（重点）&quot;&gt;&lt;a href=&quot;#第三章-垃圾收集器与内存分配策略（重点）&quot; class=&quot;headerlink&quot; title=&quot;第三
-      
-    
-    </summary>
-    
-    
-      <category term="JVM" scheme="http://cloudpai.site/tags/JVM/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JVM参数调优</title>
-    <link href="http://cloudpai.site/2018/03/09/2018-03-09/"/>
-    <id>http://cloudpai.site/2018/03/09/2018-03-09/</id>
-    <published>2018-03-09T08:26:14.000Z</published>
-    <updated>2018-03-11T08:54:24.245Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;常见配置汇总&lt;/strong&gt;&lt;br&gt;&lt;strong&gt;堆设置&lt;/strong&gt;&lt;br&gt;-Xms:初始堆大小&lt;br&gt;-Xmx:最大堆大
       
     
     </summary>
