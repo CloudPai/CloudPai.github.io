@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cloudpai.site/"/>
-  <updated>2018-03-17T13:51:09.578Z</updated>
+  <updated>2018-03-18T14:48:33.597Z</updated>
   <id>http://cloudpai.site/</id>
   
   <author>
@@ -17,11 +17,33 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>java基础知识总结</title>
+    <link href="http://cloudpai.site/2018/03/18/2018-03-18-1/"/>
+    <id>http://cloudpai.site/2018/03/18/2018-03-18-1/</id>
+    <published>2018-03-18T14:11:14.000Z</published>
+    <updated>2018-03-18T14:48:33.597Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;111&lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+      <category term="java基础" scheme="http://cloudpai.site/tags/java%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
+  
+  <entry>
     <title>“大话架构”阿里架构师分享的Java程序员需要突破的技术要点</title>
     <link href="http://cloudpai.site/2018/03/17/2018-03-17-4/"/>
     <id>http://cloudpai.site/2018/03/17/2018-03-17-4/</id>
     <published>2018-03-17T11:08:47.000Z</published>
-    <updated>2018-03-17T13:51:09.578Z</updated>
+    <updated>2018-03-18T14:48:06.754Z</updated>
     
     <summary type="html">
     
@@ -46,7 +68,7 @@
     <link href="http://cloudpai.site/2018/03/17/2018-03-17-3/"/>
     <id>http://cloudpai.site/2018/03/17/2018-03-17-3/</id>
     <published>2018-03-17T11:03:33.000Z</published>
-    <updated>2018-03-17T11:07:20.614Z</updated>
+    <updated>2018-03-18T14:43:17.238Z</updated>
     
     <summary type="html">
     
@@ -60,11 +82,11 @@
     </summary>
     
     
-      <category term="面试" scheme="http://cloudpai.site/tags/%E9%9D%A2%E8%AF%95/"/>
-    
       <category term="java并发" scheme="http://cloudpai.site/tags/java%E5%B9%B6%E5%8F%91/"/>
     
       <category term="待阅" scheme="http://cloudpai.site/tags/%E5%BE%85%E9%98%85/"/>
+    
+      <category term="面试" scheme="http://cloudpai.site/tags/%E9%9D%A2%E8%AF%95/"/>
     
   </entry>
   
@@ -88,9 +110,9 @@
     </summary>
     
     
-      <category term="面试" scheme="http://cloudpai.site/tags/%E9%9D%A2%E8%AF%95/"/>
-    
       <category term="待阅" scheme="http://cloudpai.site/tags/%E5%BE%85%E9%98%85/"/>
+    
+      <category term="面试" scheme="http://cloudpai.site/tags/%E9%9D%A2%E8%AF%95/"/>
     
       <category term="Java" scheme="http://cloudpai.site/tags/Java/"/>
     
@@ -249,7 +271,7 @@
     <link href="http://cloudpai.site/2018/03/14/2018-03-14-2/"/>
     <id>http://cloudpai.site/2018/03/14/2018-03-14-2/</id>
     <published>2018-03-14T14:40:52.000Z</published>
-    <updated>2018-03-17T11:04:48.219Z</updated>
+    <updated>2018-03-18T13:45:50.740Z</updated>
     
     <summary type="html">
     
@@ -439,27 +461,6 @@
       
       
         &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;第八章-虚拟机字节码执行引擎&quot;&gt;&lt;a href=&quot;#第八章-虚拟机字节码执行引擎&quot; class=&quot;headerlink&quot; title=&quot;第八章 虚拟机字节码执行引擎
-      
-    
-    </summary>
-    
-    
-      <category term="JVM" scheme="http://cloudpai.site/tags/JVM/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JVM学习笔记七：虚拟机类加载机制（重点）</title>
-    <link href="http://cloudpai.site/2018/03/11/2018-03-11-3/"/>
-    <id>http://cloudpai.site/2018/03/11/2018-03-11-3/</id>
-    <published>2018-03-11T11:34:33.000Z</published>
-    <updated>2018-03-13T02:42:34.232Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;第七章-虚拟机类加载机制（重点）&quot;&gt;&lt;a href=&quot;#第七章-虚拟机类加载机制（重点）&quot; class=&quot;headerlink&quot; title=&quot;第七章 虚拟机类加载
       
     
     </summary>

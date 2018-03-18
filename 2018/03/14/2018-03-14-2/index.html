@@ -91,7 +91,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://static.zybuluo.com/Yano/k7gxbb68208ywkpa6uzi342b/12.jpg">
 <meta property="og:image" content="http://static.zybuluo.com/Yano/eawdhrehz9w4ikwsnsxprbbu/13.png">
-<meta property="og:updated_time" content="2018-03-17T11:04:48.219Z">
+<meta property="og:updated_time" content="2018-03-18T13:45:50.740Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java并发编程">
 <meta name="twitter:description" content="以下内容来自《深入了解java虚拟机》的后几章  物理机如何处理并发问题？运算任务，除了需要处理器计算之外，还需要与内存交互，如读取运算数据、存储运算结果等（不能仅靠寄存器来解决）。计算机的存储设备和处理器的运算速度差了几个数量级，所以不得不加入一层读写速度尽可能接近处理器运算速度的高速缓存（Cache），作为内存与处理器之间的缓冲：将运算需要的数据复制到缓存中，让运算快速运行。当运算结束后再">
@@ -337,8 +337,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-17T19:04:48+08:00">
-                2018-03-17
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-18T21:45:50+08:00">
+                2018-03-18
               </time>
             
           </span>
@@ -376,7 +376,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  3,924
+                  9,558
                 </span>
               
 
@@ -392,7 +392,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  13
+                  33
                 </span>
               
             </div>
@@ -524,6 +524,104 @@
 <p>锁粗化就是增大锁的作用域。</p>
 <h3 id="轻量级锁"><a href="#轻量级锁" class="headerlink" title="轻量级锁"></a><a></a>轻量级锁</h3><p>在没有多线程竞争的前提下，减少传统的重量级锁使用操作系统互斥量产生的性能消耗。</p>
 <h3 id="偏向锁"><a href="#偏向锁" class="headerlink" title="偏向锁"></a><a></a>偏向锁</h3><p>消除数据在无竞争情况下的同步原语，进一步提高程序的运行性能。即在无竞争的情况下，把整个同步都消除掉。这个锁会偏向于第一个获得它的线程，如果在接下来的执行过程中，该锁没有被其他的线程获取，则持有偏向锁的线程将永远不需要同步。</p>
+<hr>
+<blockquote>
+<p>以下内容来自《java核心技术 卷一 第14章》</p>
+</blockquote>
+<h1 id="第十四章：并发"><a href="#第十四章：并发" class="headerlink" title="第十四章：并发"></a>第十四章：并发</h1><p>Thread：<br>static Thread currentThread() 获取当前线程<br>static void sleep(long millis) 休眠指定的毫秒数 (当前线程)<br>static void yield() 导致当前线程处于让步状态 (当前线程)<br>static boolean interrupted() 检测线程中断状态并置位为 false(当前线程)<br>boolean isInterrupted() 只检测线程中断状态<br>void interrupt() 向线程发送请求，请求中断线程<br>void join() 等待终止指定的线程 (其他线程调用)<br>Thread.State getState() 得到线程状态 (6 种)<br>void setPriority(int newPriority) 设置线程优先级 MIN_PRIORITY=1/NORM_PRIORITY=5/MAX_PRIORITY=10<br>void setDaemon(boolean isDaemon) 设置线程为守护线程，必须在线程启动之前调用</p>
+<p>Object：<br>void wait() 导致线程进入等待状态直到它被通知<br>void nitify() 随机选择一个在该对象上调用 wait 方法的线程，解除其阻塞状态<br>vodi notifyAll() 解除那些在该对象上调用 wait 方法的线程的阻塞状态</p>
+<ul>
+<li>多线程：</li>
+</ul>
+<ol>
+<li>几个概念：<br>• 多任务系统：操作系统将 CPU 时间片分配给每一个进程，给人以并行处理的感觉。但是并发进程数并不是由 CPU 数目制约的。<br>• 多线程程序：一个程序 (进程) 可以同时执行多个任务，同时运行一个以上的线程。<br>• 进程与线程：每个进程拥有自己的一套变量，而每个线程共享数据。一个进程相当于一个应用程序，一个进程中可以包含多个线程，其中有一个主线程，其余都是工作线程，线程更轻量级。</li>
+<li>不要直接调用 Thread 或 Runnable 的<code>run()</code>方法，它只会执行一个线程中的任务 (当前线程)，而不会启动一个新线程，要使用<code>thread.start()</code>来开启 (Runnable 就是包装业务逻辑的类，在指定的时间和线程中执行某段代码)。</li>
+<li>没有什么强制终止线程的方法，<code>interrupt()</code>用来请求终止线程；如果线程被阻塞 (调用 sleep 或 wait 方法)，<code>interrupt()</code>将抛出异常；如果在中断状态被置位时调用<code>sleep()</code>不会引起休眠且会清除中断状态并抛异常，因此中断置位后就别进行其他操作了；中断请求只是先标记一个状态，被中断的线程可以决定如何响应中断。</li>
+<li>静态方法<code>interrupted()</code>检测当前线程是否中断且清除中断状态；实例方法<code>isInterrupt()</code>检测是否被中断且不改变中断状态；实例方法<code>interrupt()</code>请求中断。</li>
+<li>线程的 6 种状态：New(新创建)、Runnable(可运行)、Blocked(被阻塞)、Waiting(等待)、Timed waiting(计时等待)、Terminated(被终止)。</li>
+<li>调用<code>start()</code>后线程进入可执行状态，不一定是立即执行，取决于操作系统给线程提供运行的时间。这里安卓的<code>Handler.post()</code>是等本方法体执行完，才有可能执行 runnable 里的逻辑，而线程的<code>start()</code>方法后 runnable 里的执行逻辑和本方法体里的下一行不一定谁先执行呢。</li>
+<li>两种操作系统调度方式：<br>• 抢占式调度：系统给每一个可运行线程分配时间片来执行任务，当时间片用完，操作系统剥夺该线程的运行权，并给另一个线程运行机会。<br>• 协作式调度：一个线程只有在调用 yield 方法、被阻塞或等待时，线程才会失去控制权。</li>
+<li>几种状态的区别：<br>• 阻塞状态：一个线程试图获取一个对象的内部对象锁，而该锁被其他线程所持有，则该线程进入阻塞状态，当其他线程释放该锁，且线程调度器允许本线程持有它的时候，该线程变为非阻塞状态 (正常竞争对象锁)，相当于自动解锁。<br>• 等待状态：可理解为阻塞的一种，当线程等待另一个线程通知调度器一个条件时，它自己进入等待状态。如调用 Object.wait()、thread.join()、Lock 或 Condition 时出现 (手动阻塞，必须被其他线程主动唤醒，可能出现死锁)。<br>• 计时等待：等待状态一直保持到超时期满或者接收到适当的通知。如调用 Thread.sleep()、Object.wait()、thread.join()、Lock.tryLock() 或 Condition.await() 时出现。</li>
+<li>每个线程有一个优先级，默认继承父线程优先级，范围为 MIN_PRIORITY(1)~MAX_PRIORITY(10) 之间，NORM_PRIORITY 为 5。当线程调度器有机会选择新线程时，它会优先选择优先级较高的线程，但是这个过程是高度依赖于操作系统的。</li>
+<li>守护线程：调用<code>thread.setDaemon(true)</code>将线程转换为守护线程，唯一用途是为其他线程服务，当只剩下守护线程时，虚拟机就退出了。守护线程应该永远不去访问固有资源、文件等，因为它会在任何时候发生中断。</li>
+<li>线程的<code>run()</code>方法不能抛出任何受查异常，但是，非受查异常会导致线程终止。这时候可以用<code>setUncaughtExceptionHandler</code>(实例方法) 来为任何一个线程安装一个处理器。也可以用<code>Thread.setDefaultUncaughtExceptionHandler</code>(静态方法) 来为所有线程安装一个默认的处理器。默认处理器默认为 null，实例处理器默认为线程的 ThreadGroup 对象。ThreadGruop 内部其实还是优先使用父处理器 -&gt; 默认处理器等来处理的，如果都没就 System.err 输出日志并崩溃退出。</li>
+</ol>
+<ul>
+<li>同步：</li>
+</ul>
+<ol>
+<li>同步的作用就是要保证一组操作的原子性。如线程安全队列保证了对该队列操作的线程安全 (队列的内部锁)，但是外部调用时如果有判断逻辑，就要保证判断逻辑上下的原子性 (外部调用者的对象锁)，最好每次使用都判下空，其实也没有绝对的线程安全。</li>
+</ol>
+<ul>
+<li>锁对象 Lock：</li>
+</ul>
+<ol>
+<li>Java 提供了<code>synchronized</code>关键字和 Java SE5 中引入的<code>ReentrantLock</code>类来解决线程同步问题，将某一段代码控制为原子性操作。</li>
+<li>一旦一个线程封锁了锁对象，其他任何线程都无法通过 lock 语句，但其他线程调用<code>lock</code>时，它们被阻塞，直到第一个线程释放锁对象。把解锁操作放在<code>finally</code>语句中很重要，如果代码抛出异常，锁必须被释放 (注意异常退出的话要回滚避免对象损坏)。如果使用锁，就不能使用带资源的 try 语句。</li>
+<li>注意例子中每个对象有自己的<code>ReentrantLock</code>锁对象，如果两个线程试图访问同一个对象，那么锁以串行的方式提供服务。访问不同的对象，则不会发生阻塞。</li>
+<li>锁是可重入的，因为线程可以重复地获得已经持有的锁。锁保持一个持有计数器来跟踪 lock 方法的嵌套调用。线程在每一次调用<code>lock()</code>后都要调用<code>unlock()</code>来释放锁。被一个锁保护的代码可以调用另一个使用相同的锁的方法。注意异常时要先回滚，否则对象可能处于一种受损状态。</li>
+</ol>
+<ul>
+<li>条件对象 Condition：</li>
+</ul>
+<ol>
+<li>数据结构本身是安全的话 (如例子中的 Bank 类的 transfer 方法)，在外部调用如果有判断逻辑还是可能会不安全 (如上面所讲锁对象已经不是一个层级的了)，这时要么在外部使用加锁控制判断逻辑，要么在内部 transfer 方法添加条件锁判断逻辑。</li>
+<li>条件对象：一个锁可以有一个或多个相关的条件对象。等待获得锁的线程和调用了 await 方法的线程本质上不同。一旦一个线程调用<code>await()</code>，它进入该条件的等待集，当锁可用时，该线程不是马上解除阻塞，而是等待直到另一线程调用同一条件上的<code>signalAll()</code>方法为止 (阻塞是得到锁自己就唤醒，等待是必须由其他线程来唤醒 (相互 await 死锁现象，死锁发生的原因是有超出条件限制的操作导致可能同时双方都不满足条件而相互等待))。</li>
+<li><code>signalAll()</code>不会立即激活一个等待线程，它仅仅解除等待线程的阻塞，以便这些线程可以在当前线程退出同步方法之后，通过竞争实现对象的访问。<code>signal()</code>注意是 “随机” 解除一个线程的阻塞。仅可在该条件上调用<code>await()</code>、<code>singal()</code>或<code>singalAll()</code>。被激活的线程从之前<code>await()</code>的方法出继续执行。</li>
+</ol>
+<ul>
+<li>Synchronized 关键字：</li>
+</ul>
+<ol>
+<li>Java 中的每一个对象都有一个内部锁，如果方法用<code>synchronized</code>声明，那么对象锁将保护整个方法。内部对象锁只有一个相关条件，<code>wait()</code>方法添加一个线程到等待集中，<code>notify()/nitifyAll()</code>方法解除等待线程的阻塞状态。这三个方法必须在<code>synchronized</code>代码块中，也就是必须先拿到锁才能等待 (condition 也是先 lock() 后才能 await()等)。缺陷：不能中断一个正在获得锁的线程、锁不能设置超时、条件是单一的。</li>
+<li>实例方法上加<code>synchronized</code>关键字锁的是该实例的这个和所有同步实例方法，通过获取该对象的内部锁来实现；静态方法上加<code>synchronized</code>关键字锁的是同一个类的这个或任何其它的同步静态方法，通过获取该类对象的内部锁实现。</li>
+<li>实现同步的两种方式：<br>①在方法上添加<code>synchronized</code>关键字来实现同步 (使用自己的内部对象锁)。<br>②通过<code>synchronized(obj)</code>进入一个同步阻塞。(使用一个其他 Obj 的对象锁，道理其实是一样的，都是拿到对象的内部锁来 lock)</li>
+<li>注意条件对象有<code>await()、singal()、singalAll()</code>方法；对象是<code>wait()、notify()、notifyAll()</code>方法。对象的几个方法内也是获取内部锁对象进行同步的，要放到<code>synchronized</code>代码块中，先<code>lock()</code>获取锁才能<code>wait()</code>等操作。</li>
+<li>volatile 关键字：<br>• 为实例域的同步访问提供一种免锁机制，更轻量级，如果声明一个域为<code>volatile</code>，那么编译器和虚拟机就知道该域可能被另一个线程并发更新。<br>• 作用：禁止指令重排序 (操作系统可以对指令集重排序的(分配内存 -&gt; 初始化对象 -&gt;赋值空间地址给引用)；实现可见性(针对变量)；保证有序性(long、double 等类型)。<br>• 注意：volatile 保证可见性、有序性，不保证原子性，因为有序、可见是针对域的锁定，原子性是一系列操作，已经不是同一级别的锁了，可以在原子操作外部加锁，也可使用 CAS(轻量级的判断 / 再赋值锁)。</li>
+</ol>
+<ul>
+<li>线程安全方法</li>
+</ul>
+<ol>
+<li>有时候要避免共享变量，使用 ThreadLocal<t> 辅助类可以为各个线程构造单独的实例。ThreadLocal 提供了<code>set()</code>和<code>get()</code>访问器用来访问与当前线程相关联的线程局部变量；ThreadLocal 中有个内部类 ThreadLocalMap，key 为 ThreadLocal，value 为变量 T；每个线程有个变量<code>threadLocals</code>(即 ThreadLocalMap)，在调用<code>set()</code>方法时会取到线程当前这个 map 是否为空，空的话就<code>createMap()</code>，否则就将 key 设为 ThreadLocal，value 设为原共享变量 T 的副本存进去，因此每个线程可以放多个 ThreadLocal 包装过的变量，这些变量线程间独享。</t></li>
+<li><code>lock()</code>方法获取锁会阻塞；<code>tryLock()</code>方法试图申请一个锁，在成功获得锁后返回 true，否则立即返回 false。<code>lock()</code>方法不能被中断，如果出现死锁<code>lock()</code>就无法终止；带超时的<code>tryLock()</code>方法被中断会抛异常，允许程序打破死锁。</li>
+<li>读写锁<code>ReentrantReadWriteLock</code>的<code>readLock()</code>得到一个允许多线程读，排斥写的锁，或者<code>writeLock()</code>得到一个排斥其他读写操作的锁。</li>
+<li>线程的<code>stop()</code>方法会立即终止所有未结束的方法，包括<code>run()</code>方法，因此有可能导致对象状态损坏，因此被弃用了。应当在合适的时候中断线程，线程会在安全的时候停止。</li>
+</ol>
+<ul>
+<li>阻塞队列</li>
+</ul>
+<ol>
+<li>对多线程问题，可以用一个或多个队列以安全的方式将其形式化，生产者向线程队列中插入元素，消费者从中取出它们；可以将例子中的转账指令插入某一队列，而另一个线程从队列中取指令执行，不直接操作 bank 对象，队列自己控制好线程安全即可，对 bank 对象进行操作 (单线程执行，类似 Handler，避免显示控制同步)。</li>
+<li>当队列为空或者已满时，阻塞队列将导致操作的线程阻塞：<code>add()/remove()/element()</code>方法会抛异常、<code>offer()/poll()/peek()</code>方法不阻塞也不会抛异常、<code>take()/put()</code>方法会导致阻塞。</li>
+<li>阻塞队列的几种类型：<br>• ArrayBlockingQueue(带有指定容量的循环数组阻塞队列)<br>• LinkedBlockingQueue(无上限链表阻塞队列)<br>• PriorityBlockingQueue(无边界的优先堆阻塞队列)<br>• DelayQueue(无边界的阻塞时间有限的阻塞队列)</li>
+<li>几种线程安全的集合：<br>• ConcurrenHashMap<br>• ConcurrentSkipListMap<br>• ConcurrentSkipListSet<br>• ConcurrentLinkedQueue<br>集合返回弱一致性的迭代器，不一定能反映出他们被构造之后的所有修改。</li>
+<li>并发集视图：<code>ConcurrentHashMap.&lt;T&gt;newKeySet()</code>。<br>写数组拷贝：CopyOnWriteArrayList、CopyOnWriteArraySet，并发读，写的时候生成一个副本，占用双倍内存。</li>
+<li>任何集合类都可以使用同步包装器变为线程安全的：<code>Collections.synchronizedList(new ArrayList&lt;E&gt;())</code>、<code>Collections.synchronizedMap(new HashMap&lt;K,V&gt;())</code>。</li>
+</ol>
+<ul>
+<li>线程池</li>
+</ul>
+<ol>
+<li>Runnable 封装一个无返回值的异步任务，可用在线程或线程池中；Callable 封装一个有返回值的异步任务，只能放在线程池中。</li>
+<li>Future 保存并管理异步计算的结果；FutureTask 实现了 Ruannable 和 Future 两个接口，可把自己提交给线程池，完了从自己拿处理结果。</li>
+<li>如果程序中创建了大量生命周期很短的线程，或为了减少并发线程的数目，就应该使用线程池。</li>
+<li>四种常用线程池：<br>• CachedThreadPool(核心 = 0，最大 = MAX，0 长度阻塞队列，空线程保持 60s，适用于较多异步任务)<br>• FixedThreadPool(核心 = 最大 = 固定数，MAX 长度阻塞队列，适用快速执行任务)<br>• SingleThreadPool(核心 = 固定 = 1，顺序执行任务)<br>• ScheduledThreadPool(延迟执行或延迟后周期执行的线程池)。</li>
+<li><code>submit()</code>方法提交任务，得到一个 Future 对象用于管理结果；<code>shutdown()</code>方法启动线程池关闭序列，被关闭的线程池不再接受新任务，所有任务执行完后线程池死亡；<code>shotdownNow()</code>方法取消尚未开始的所有任务并试图中断正在执行的线程。</li>
+</ol>
+<ul>
+<li>同步器</li>
+</ul>
+<ol>
+<li>几种常用同步器：<br>• 信号量 Semaphore：一个信号量管理许多的许可证，为了通过信号量，线程通过调用<code>acquire()</code>方法请求许可，否则等待，信号量其实仅维护一个计数，因此用于控制同一时刻的线程数量。任何线程都可以通过<code>release()</code>释放任意数目的许可。<br>• 倒计时门栓 CountDownLatch：让一个线程集等待直到计数器变为 0，用于暂停某个线程等待其他线程执行完必备操作后继续执行。它是一次性的，一旦计数器变为 0，就不能再重用了。<br>• 循环栅栏 CyclicBarrier：允许线程集到达一个公共栅栏 (等待到指定数目) 后执行某段逻辑，然后各自再继续执行(先到达的先 await)。如果任何一个在栅栏上等待的线程离开了栅栏，栅栏就被破坏了，如等待线程的 await 方法超时或者被中断了，这时其他线程的 await 方法会抛异常，那些已经等待的线程会立即终止 await 的调用。</li>
+<li>同步队列：将生产者和消费者线程配对的机制。当一个线程调用 SynchronousQueue 的<code>put()</code>方法时，它会阻塞直到另一个线程调用<code>take()</code>方法为止，反之亦然。数据仅沿一个方向传递，从生产者到消费者。它不是一个队列，没有包含任何元素，<code>size()</code>方法总是返回 0。<br>重点：都很重要</li>
+</ol>
+<h1 id="补充知识点"><a href="#补充知识点" class="headerlink" title="补充知识点"></a>补充知识点</h1><ul>
+<li><p>Java 内存分配：<br>①运行时数据区域：<br>方法区、堆区、栈区 (虚拟机栈、本地方法栈)、程序计数器。<br>前两者是线程共享区、后面的是线程隔离区。<br>②各部分作用：<br>• 程序计数器：当前线程所执行的字节码的行号指示器，这个计数器记录的是在正在执行的虚拟机字节码指令的地址，当执行的是 Native 方法，这个计数器值为空。此内存区域是唯一一个没有规定任何 OutOfMemoryError 情况的区域 。<br>• Java 虚拟机栈：线程私有的 ，它的生命周期与线程相同。存储方法执行时的局部变量表、操作数栈、方法出口等，含有基本数据类型、引用类型的空间地址。如果扩展时无法申请到足够的内存，就会抛出 OutOfMemoryError 异常。<br>• 本地方法栈：与虚拟机的作用相似，不同之处在于虚拟机栈为虚拟机执行的 Java 方法服务，而本地方法栈则为虚拟机使用到的 Native 方法服务。有的虚拟机直接把本地方法栈和虚拟机栈合二为一。<br>• Java 堆：所有线程共享的一块内存区域，在虚拟机启动时创建，此内存区域的唯一目的就是存放对象实例 ，是垃圾收集器管理的主要区域，由 GC 管理内存的回收，有一套自己的回收机制。如果堆中没有内存完成实例分配，并且堆也无法完成扩展时，将会抛出 OutOfMemoryError 异常。<br>• 方法区：又称静态存储区，各个线程共享的内存区域，它用于存储已被虚拟机加载的类信息、常量、静态变量、即时编译器编译后的代码等数据 ，运行时常量也是其中一部分。垃圾收集行为在这个区域比较少出现，但并非数据进了方法区就永久的存在了，这个区域的内存回收目标主要是针对常量池的回收和对类型的卸载。当方法区无法满足内存分配需要时，将抛出 OutOfMemoryError 异常。<br>③对象的创建过程：<br>创建一个对象通常是需要 new 关键字，当虚拟机遇到一条 new 指令时，首先检查这个指令的参数是否在常量池中定位到一个类的符号引用，并且检查这个符号引用代表的类是否已被加载、解析和初始化过，如果没有那么执行相应的类加载过程。类加载检查通过后，虚拟机将为新生对象分配内存。为对象分配空间的任务等同于把一块确定大小的内存从 Java 堆中划分出来。Java 程序通过栈上的 reference 数据来操作堆上的具体对象。主要的访问方式有使用句柄和直接指针两种：句柄就是引用中存储的就是对象的句柄地址，而句柄中包含了对象实例数据与类型数据各自的具体地址信息 ；直接指针指引用中存储的就是对象地址 。</p>
+</li>
+<li><p>ClassLoader<br>• ClassLoader 的具体作用就是将 class 文件加载到 jvm 虚拟机中去，程序就可以正确运行了。但是，jvm 启动的时候，并不会一次性加载所有的 class 文件，而是根据需要去动态加载。<br>• class 文件是字节码格式文件，java 虚拟机并不能直接识别我们平常编写的. java 源文件，所以需要 javac 这个命令转换成. class 文件。其他语言编写的代码只要能编译成. class 文件都可以被 java 虚拟机运行。<br>• 三种 ClassLoader：<br>①BootstrapClassLoader：最顶层的加载类，主要加载核心类库，%JRE_HOME%\lib 下的 rt.jar、resources.jar、charsets.jar 和 class 等。<br>②ExtClassLoader：扩展的类加载器，加载目录 %JRE_HOME%\lib\ext 目录下的 jar 包和 class 文件。<br>③AppClassLoader：也称为 SystemAppClass 加载当前应用的 classpath 的所有类。<br>• 加载顺序：BootstrapClassLoader -&gt; ExtClassLoader -&gt; AppClassLoader。<br>• ExtClassLoader 和 AppClassLoader 都是 UrlClassLoader 的子类。每个类加载器都有一个父加载器，AppClassLoader 的父加载器是 ExtClassLoader，ExtClassLoader 的父加载器是 null。一个 ClassLoader 创建时可以直接指定 parent，如果没有指定 parent，那么它的 parent 默认就是<code>Launcher.getClassLoader()</code>，即 AppClassLoader。<br>• Bootstrap ClassLoader 是由 C/C++ 编写的，它本身是虚拟机的一部分，所以它并不是一个 JAVA 类，也就是无法在 java 代码中获取它的引用。<br>• 双亲委托机制：一个类加载器查找 class 和 resource 时，是通过 “委托模式” 进行的，它首先判断这个 class 是不是已经加载成功，如果没有的话它并不是自己进行查找，而是先通过父加载器，然后递归下去，直到 Bootstrap ClassLoader，如果 Bootstrap Classloader 找到了，直接返回，如果没有找到，则一级一级返回，最后到达自身去查找这些对象，再找不到就抛异常了。虽然 ExtClassLoader 的 parent 为 null，但是在找类时如果 parent 为 null 就调用<code>findBootstrapClassOrNull(name)</code>Bootstrap ClassLoader 去找。<br>• 自定义 ClassLoader 可以根据自定义路径去加载 class 文件，从而将外部类加载进来并使用。一般复写<code>findClass()</code>方法和在<code>findClass()</code>方法中调用<code>defineClass()</code>方法。可以根据自己的规定来进行类加密解密操作，并自定义类加载器来解析类。</p>
+</li>
+</ul>
 
       
     </div>
@@ -697,7 +795,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">42</span>
+                  <span class="site-state-item-count">43</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -809,7 +907,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#物理机如何处理并发问题？"><span class="nav-text">物理机如何处理并发问题？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-内存模型"><span class="nav-text">Java 内存模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-Java-内存模型？"><span class="nav-text">什么是 Java 内存模型？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-内存模型的目标？"><span class="nav-text">Java 内存模型的目标？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#主内存与工作内存"><span class="nav-text">主内存与工作内存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存间的交互操作"><span class="nav-text">内存间的交互操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原子性、可见性、有序性"><span class="nav-text">原子性、可见性、有序性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#volatile"><span class="nav-text">volatile</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是-volatile？"><span class="nav-text">什么是 volatile？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么基于-volatile-变量的运算在并发下不一定是安全的？"><span class="nav-text">为什么基于 volatile 变量的运算在并发下不一定是安全的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么使用-volatile？"><span class="nav-text">为什么使用 volatile？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#并发与线程"><span class="nav-text">并发与线程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#并发与线程的关系？"><span class="nav-text">并发与线程的关系？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是线程？"><span class="nav-text">什么是线程？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现线程有哪些方式？"><span class="nav-text">实现线程有哪些方式？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-线程的实现"><span class="nav-text">Java 线程的实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-线程调度"><span class="nav-text">Java 线程调度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是线程调度？"><span class="nav-text">什么是线程调度？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程调度有哪些方法？"><span class="nav-text">线程调度有哪些方法？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线程安全的定义？"><span class="nav-text">线程安全的定义？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-语言操作的共享数据，包括哪些？"><span class="nav-text">Java 语言操作的共享数据，包括哪些？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#不可变"><span class="nav-text">不可变</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何实现线程安全？"><span class="nav-text">如何实现线程安全？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#阻塞同步（互斥同步）"><span class="nav-text">阻塞同步（互斥同步）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非阻塞同步"><span class="nav-text">非阻塞同步</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#锁优化是在-JDK-的那个版本？"><span class="nav-text">锁优化是在 JDK 的那个版本？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要提出自旋锁？"><span class="nav-text">为什么要提出自旋锁？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自旋锁的原理？"><span class="nav-text">自旋锁的原理？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自旋的缺点？"><span class="nav-text">自旋的缺点？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是自适应自旋？"><span class="nav-text">什么是自适应自旋？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#锁消除"><span class="nav-text">锁消除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#锁粗化"><span class="nav-text">锁粗化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#轻量级锁"><span class="nav-text">轻量级锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#偏向锁"><span class="nav-text">偏向锁</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#物理机如何处理并发问题？"><span class="nav-text">物理机如何处理并发问题？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-内存模型"><span class="nav-text">Java 内存模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-Java-内存模型？"><span class="nav-text">什么是 Java 内存模型？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Java-内存模型的目标？"><span class="nav-text">Java 内存模型的目标？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#主内存与工作内存"><span class="nav-text">主内存与工作内存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内存间的交互操作"><span class="nav-text">内存间的交互操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#原子性、可见性、有序性"><span class="nav-text">原子性、可见性、有序性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#volatile"><span class="nav-text">volatile</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是-volatile？"><span class="nav-text">什么是 volatile？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么基于-volatile-变量的运算在并发下不一定是安全的？"><span class="nav-text">为什么基于 volatile 变量的运算在并发下不一定是安全的？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么使用-volatile？"><span class="nav-text">为什么使用 volatile？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#并发与线程"><span class="nav-text">并发与线程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#并发与线程的关系？"><span class="nav-text">并发与线程的关系？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是线程？"><span class="nav-text">什么是线程？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现线程有哪些方式？"><span class="nav-text">实现线程有哪些方式？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-线程的实现"><span class="nav-text">Java 线程的实现</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-线程调度"><span class="nav-text">Java 线程调度</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是线程调度？"><span class="nav-text">什么是线程调度？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程调度有哪些方法？"><span class="nav-text">线程调度有哪些方法？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#线程安全的定义？"><span class="nav-text">线程安全的定义？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Java-语言操作的共享数据，包括哪些？"><span class="nav-text">Java 语言操作的共享数据，包括哪些？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#不可变"><span class="nav-text">不可变</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何实现线程安全？"><span class="nav-text">如何实现线程安全？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#阻塞同步（互斥同步）"><span class="nav-text">阻塞同步（互斥同步）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#非阻塞同步"><span class="nav-text">非阻塞同步</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#锁优化是在-JDK-的那个版本？"><span class="nav-text">锁优化是在 JDK 的那个版本？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要提出自旋锁？"><span class="nav-text">为什么要提出自旋锁？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自旋锁的原理？"><span class="nav-text">自旋锁的原理？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自旋的缺点？"><span class="nav-text">自旋的缺点？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是自适应自旋？"><span class="nav-text">什么是自适应自旋？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#锁消除"><span class="nav-text">锁消除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#锁粗化"><span class="nav-text">锁粗化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#轻量级锁"><span class="nav-text">轻量级锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#偏向锁"><span class="nav-text">偏向锁</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第十四章：并发"><span class="nav-text">第十四章：并发</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#补充知识点"><span class="nav-text">补充知识点</span></a></li></ol></div>
             
 
           </div>
@@ -844,7 +942,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">168.9k</span>
+    <span title="Site words total count">174.6k</span>
   
 </div>
 
