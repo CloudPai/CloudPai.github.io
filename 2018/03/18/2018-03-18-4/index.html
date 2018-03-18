@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="java基础," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="CloudPai" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="第七章：异常、断言和日志7.1  处理错误需要关注的问题  用户输入错误 设备错误 物理限制 代码错误  7.1.1  异常分类 派生于 RuntimeException 的异常包含下面几种情况:  错误的类型转换 数组访问越界 访问 null 指针  不是派生于 RuntimeException 的异常包括  试图在文件尾部后面读取数据 试图打开一个不存在的文件 试图根据给定的字符串查找 Cl">
+<meta name="keywords" content="java基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java核心技术 卷一（7~9章） 笔记总结">
+<meta property="og:url" content="http://cloudpai.site/2018/03/18/2018-03-18-4/index.html">
+<meta property="og:site_name" content="CloudPai">
+<meta property="og:description" content="第七章：异常、断言和日志7.1  处理错误需要关注的问题  用户输入错误 设备错误 物理限制 代码错误  7.1.1  异常分类 派生于 RuntimeException 的异常包含下面几种情况:  错误的类型转换 数组访问越界 访问 null 指针  不是派生于 RuntimeException 的异常包括  试图在文件尾部后面读取数据 试图打开一个不存在的文件 试图根据给定的字符串查找 Cl">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1999788-947e70996a695f9f.png">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2397836-f6375c2f72895a58.png?imageMogr2/auto-orient/strip%7CimageView2/2">
+<meta property="og:updated_time" content="2018-03-18T14:46:20.805Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java核心技术 卷一（7~9章） 笔记总结">
+<meta name="twitter:description" content="第七章：异常、断言和日志7.1  处理错误需要关注的问题  用户输入错误 设备错误 物理限制 代码错误  7.1.1  异常分类 派生于 RuntimeException 的异常包含下面几种情况:  错误的类型转换 数组访问越界 访问 null 指针  不是派生于 RuntimeException 的异常包括  试图在文件尾部后面读取数据 试图打开一个不存在的文件 试图根据给定的字符串查找 Cl">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1999788-947e70996a695f9f.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'TZAS2SFOJR',
+      apiKey: 'e2a9cd036eede8026382b302001ec261',
+      indexName: 'cloudpai_blogs_search',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cloudpai.site/2018/03/18/2018-03-18-4/"/>
+
+
+
+
+
+  <title>java核心技术 卷一（7~9章） 笔记总结 | CloudPai</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-114643720-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CloudPai</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/03/18/2018-03-18-4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CloudPai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudPai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">java核心技术 卷一（7~9章） 笔记总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-18T20:12:58+08:00">
+                2018-03-18
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-18T22:46:20+08:00">
+                2018-03-18
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/18/2018-03-18-4/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/03/18/2018-03-18-4/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  13,292
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  50
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="第七章：异常、断言和日志"><a href="#第七章：异常、断言和日志" class="headerlink" title="第七章：异常、断言和日志"></a>第七章：异常、断言和日志</h1><h2 id="7-1-处理错误"><a href="#7-1-处理错误" class="headerlink" title="7.1  处理错误"></a>7.1  处理错误</h2><p>需要关注的问题</p>
+<ul>
+<li>用户输入错误</li>
+<li>设备错误</li>
+<li>物理限制</li>
+<li>代码错误</li>
+</ul>
+<h3 id="7-1-1-异常分类"><a href="#7-1-1-异常分类" class="headerlink" title="7.1.1  异常分类"></a>7.1.1  异常分类</h3><p><img src="https://upload-images.jianshu.io/upload_images/1999788-947e70996a695f9f.png" alt=""></p>
+<p>派生于 RuntimeException 的异常包含下面几种情况:</p>
+<ul>
+<li>错误的类型转换</li>
+<li>数组访问越界</li>
+<li>访问 null 指针</li>
+</ul>
+<p>不是派生于 RuntimeException 的异常包括</p>
+<ul>
+<li>试图在文件尾部后面读取数据</li>
+<li>试图打开一个不存在的文件</li>
+<li>试图根据给定的字符串查找 Class 对象，而这个字符串表示的类并不存在</li>
+</ul>
+<h3 id="7-1-2-声明受检查异常"><a href="#7-1-2-声明受检查异常" class="headerlink" title="7.1.2  声明受检查异常"></a>7.1.2  声明受检查异常</h3><p>  使用 throws 关键字，在方法的首部同所有的异常类。每个异常类之间用逗号隔开。</p>
+<h3 id="7-1-3-使用-throws-new-Exception"><a href="#7-1-3-使用-throws-new-Exception" class="headerlink" title="7.1.3    使用 throws new Exception();"></a>7.1.3    使用 throws new Exception();</h3><h3 id="7-1-4-创建异常类"><a href="#7-1-4-创建异常类" class="headerlink" title="7.1.4  创建异常类"></a>7.1.4  创建异常类</h3><pre><code>派生于 Exception 类或派生于 Exception 的子类
+</code></pre><h2 id="7-2-捕获异常"><a href="#7-2-捕获异常" class="headerlink" title="7.2  捕获异常"></a>7.2  捕获异常</h2><h3 id="7-2-1-捕获异常"><a href="#7-2-1-捕获异常" class="headerlink" title="7.2.1  捕获异常"></a>7.2.1  捕获异常</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="7-2-2-捕获多个异常"><a href="#7-2-2-捕获多个异常" class="headerlink" title="7.2.2 捕获多个异常"></a>7.2.2 捕获多个异常</h3><p>   Java 7 以后，在 catch 子句中可以捕获多个异常. 使用 |</p>
+<h3 id="7-2-3-再次抛出异常与异常链"><a href="#7-2-3-再次抛出异常与异常链" class="headerlink" title="7.2.3 再次抛出异常与异常链"></a>7.2.3 再次抛出异常与异常链</h3><p> 在 catch 子句中，可以改变异常的类型，进行再次抛出</p>
+<h3 id="7-2-4-finally-子句"><a href="#7-2-4-finally-子句" class="headerlink" title="7.2.4  finally 子句"></a>7.2.4  finally 子句</h3><p>   不管异常是否被捕获，finally 子句中的代码都被执行。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">InputStream in = <span class="keyword">new</span> FileInputStream(<span class="string">"c:\\a.txt"</span>);</span><br><span class="line"><span class="keyword">try</span>&#123;</span><br><span class="line">  <span class="keyword">try</span>&#123;</span><br><span class="line">  &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">  &#125;</span><br><span class="line">&#125; <span class="keyword">catch</span>(IOException e) &#123;</span><br><span class="line">    <span class="comment">//异常处理的语句</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="7-2-5-带资源的-try-语句"><a href="#7-2-5-带资源的-try-语句" class="headerlink" title="7.2.5 带资源的 try 语句"></a>7.2.5 带资源的 try 语句</h3><p>前提：资源属于实现了 AutoCloseable 接口的类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span>(Resourse res = ...) &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="7-2-6-分析堆栈轨迹元素"><a href="#7-2-6-分析堆栈轨迹元素" class="headerlink" title="7.2.6 分析堆栈轨迹元素"></a>7.2.6 分析堆栈轨迹元素</h3><p>   getStackTrace 方法，可以得到 stackTraceelElement 对象的一个数组，可以在你的程序中分析这个对象数组。</p>
+<h2 id="7-3-使用异常机制的技巧"><a href="#7-3-使用异常机制的技巧" class="headerlink" title="7.3 使用异常机制的技巧"></a>7.3 使用异常机制的技巧</h2><ol>
+<li>异常处理不能代替简单的测试</li>
+<li>不要过分的细化异常</li>
+<li>利用异常层次结构</li>
+<li>不要压制异常</li>
+<li>在检测时，“苛刻” 比放任要好</li>
+<li>不要羞于传递异常</li>
+</ol>
+<h2 id="7-4-使用断言-JDK-自带的，基本不使用"><a href="#7-4-使用断言-JDK-自带的，基本不使用" class="headerlink" title="7.4 使用断言 (JDK 自带的，基本不使用)"></a>7.4 使用断言 (JDK 自带的，基本不使用)</h2><h3 id="7-4-1-断言的概念"><a href="#7-4-1-断言的概念" class="headerlink" title="7.4.1  断言的概念"></a>7.4.1  断言的概念</h3><p>断言机制允许在测试期间向代码中插入一些检查语句，使用关键字 assert.</p>
+<h3 id="7-4-2-启用和禁用断言"><a href="#7-4-2-启用和禁用断言" class="headerlink" title="7.4.2  启用和禁用断言"></a>7.4.2  启用和禁用断言</h3><p>   在默认情况下，断言被禁用。使用 java -ea: 选项启用</p>
+<h3 id="7-4-3-使用断言完成参数检查"><a href="#7-4-3-使用断言完成参数检查" class="headerlink" title="7.4.3  使用断言完成参数检查"></a>7.4.3  使用断言完成参数检查</h3><h3 id="7-4-4-为文档假设使用断言"><a href="#7-4-4-为文档假设使用断言" class="headerlink" title="7.4.4  为文档假设使用断言"></a>7.4.4  为文档假设使用断言</h3><h2 id="7-5-记录日志"><a href="#7-5-记录日志" class="headerlink" title="7.5 记录日志"></a>7.5 记录日志</h2><h3 id="7-5-1-基本日志"><a href="#7-5-1-基本日志" class="headerlink" title="7.5.1  基本日志"></a>7.5.1  基本日志</h3><p>   使用全局日志记录器 (global logger)<br>    <code>Logger.getGlobal().info(、、、);</code></p>
+<h3 id="7-5-2-高级日志"><a href="#7-5-2-高级日志" class="headerlink" title="7.5.2 高级日志"></a>7.5.2 高级日志</h3><p>   日志级别: 七种</p>
+<ul>
+<li>SEVRE</li>
+<li>WARNING</li>
+<li>INFO</li>
+<li>CONFIG</li>
+<li>FINE</li>
+<li>FINER</li>
+<li>FINEST</li>
+</ul>
+<h3 id="7-5-3-修改日志管理器配置"><a href="#7-5-3-修改日志管理器配置" class="headerlink" title="7.5.3  修改日志管理器配置"></a>7.5.3  修改日志管理器配置</h3><h3 id="7-5-4-本地化"><a href="#7-5-4-本地化" class="headerlink" title="7.5.4  本地化"></a>7.5.4  本地化</h3><h3 id="7-5-5-处理器"><a href="#7-5-5-处理器" class="headerlink" title="7.5.5 处理器"></a>7.5.5 处理器</h3><h3 id="7-5-6-过滤器"><a href="#7-5-6-过滤器" class="headerlink" title="7.5.6 过滤器"></a>7.5.6 过滤器</h3><h3 id="7-5-7-格式化器"><a href="#7-5-7-格式化器" class="headerlink" title="7.5.7  格式化器"></a>7.5.7  格式化器</h3><h3 id="7-5-8-日志记录说明"><a href="#7-5-8-日志记录说明" class="headerlink" title="7.5.8  日志记录说明"></a>7.5.8  日志记录说明</h3><h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><blockquote>
+<p>总结：</p>
+<ol>
+<li>所有的异常类都是由 Throwable 继承而来，下层分为 Error 和 Exception，Exception 又分为 IOException 和 RuntimeException。只有 IOException 是<strong>受查异常</strong> (代码提示的异常)，其余都是非受查异常 (平时的崩溃，自己无法控制)。</li>
+<li>Error 是 Java 形式内部错误和资源耗尽错误，我们无能为力；而程序中如果出现了 RuntimeException，那一定是程序员自己的问题。对于异常要么 throws 抛出去给别人处理，要么<code>try catch</code>自己处理。一个方法必须声明所有可能抛出的受查异常，而非受查异常是不可控的，应该避免。</li>
+<li>子类覆盖超类的方法时，子类声明的受查异常不能比超类中声明的更通用；若超类中没有抛出任何受查异常，子类也不能抛出。</li>
+<li>异常可以捕获也可以继续抛出，应该捕获那些知道应该如何处理的异常，而将那些不知道怎样处理的继续抛出 (如工具类中的异常抛出，由调用者自己来分别处理)。</li>
+<li>catch 语句中可以继续抛出异常，并将原始异常设置为新异常的原因<code>initCause()</code>，可以让用户抛出子系统中的高级异常，而不会丢失原异常的细节。</li>
+<li>try 语句中可以只有 finally 而没有 catch 块，不管异常是否被捕获，finally 语句块都会被执行，finally 语句在方法返回前被执行，所以<strong>不要在 finally 中写 return 语句，它会覆盖掉原方法中的 return</strong>。</li>
+<li><strong>堆栈轨迹</strong> (stack trace) 是一个方法调用过程的列表，它包含了程序执行过程中方法的调用位置。<code>t.getStackTrace()</code>可以获取到一个 StackTraceElementp[] 数组，它包含了方法的 name、className 和调用行 lineNumber 等信息。</li>
+<li>一般我们给<code>Thread.setDefaultUnchaughtExceptionHandler()</code>后，在程序非受查崩溃时会回调到 Handler 的<code>uncaughtException(thread,throwable)</code>，在这里可以将<code>throwable.printStackTrace(writer)</code>输出到文件里，然后将文件上传服务器帮助我们分析程序崩溃。</li>
+<li>断言：<br>• 定义：断言机制允许在程序测试期间向代码中插入一些检查语句，当代码发布时，这些插入的检查语句会自动被移除。<br>• 表现形式：assert 条件 / assert 条件: 表达式。<br>• 开启断言：默认下断言是被禁用的，启用或禁用断言是类加载器 (ClassLoader) 的功能。启用或禁用使用<code>java -ea/-da</code>，可针对整个项目或某个特定 class 或 package 作用域。<br>• 作用：断言相当于自己做了一层判断，如果符合预期则没什么，如果不符合预期会自动抛出一个 AssertionError 的非受查异常，不用在方法上自己去写 throw 了。<br>重点：264 异常分类、捕获异常</li>
+</ol>
+</blockquote>
+<h1 id="第八章：泛型程序设计（了解）"><a href="#第八章：泛型程序设计（了解）" class="headerlink" title="第八章：泛型程序设计（了解）"></a>第八章：泛型程序设计（了解）</h1><ol>
+<li>泛型程序设计指编写的代码可以被许多不同类型的对象所重用，使程序具有更好的可读性和安全性。</li>
+<li>泛型变量指域和局部变量及方法的返回类型。泛型可以用于类中也可用于方法中，泛型方法中的类型变量放在修饰符后面，返回类型的前面。</li>
+<li>泛型可以用<code>extends</code>关键字指定子类型来做限制，可以 extends 多个类型，用<code>&amp;</code>符间隔。</li>
+<li>类型擦除：虚拟机中没有泛型类型对象，把泛型类加载到虚拟机中后，所有定义的泛型 T 都会被擦除成原始类型。有限定类型的话擦除类型变量替换为限定类型 (extends 多继承时取第一个类型 因此标签接口尽量往后放)，无限定类型的话为 Object。</li>
+<li>类型擦除与多态的冲突：由于泛型擦除，一个泛型类指向其子类的引用，子类中如果对父类的方法重载 (其实重载不了，父类参数是擦除后的 Object，子类是具体的类型)，在调用方法时，其实先调了父类的方法 (Object 类型)，然后参数强转桥接到了子类的重载方法 (具体类型)。严格上说不能重载，因此子类里是有两个方法的 (可查看子类. class 文件)。</li>
+<li>Java 泛型转换总结：<br>• 虚拟机中无泛型，只有普通类和方法；<br>• 所有的参数类型都要用它们的限定类型替换；<br>• 桥方法被合成用来保持多态；为保持类型安全性，必要时插入强制类型转换。</li>
+<li>泛型约束：<br>• 不能用类型参数代替基本类型；<br>• 类型检测只会检测原始类型；<br>• 不能实例化参数化类型数组 (不安全)；<br>• 不能实例化类型变量；<br>• 不能在静态域或方法中引用类型变量；<br>• 不能抛出和捕获泛型异常。</li>
+<li>泛型之间无联系，不论<code>S</code>与<code>T</code>有什么联系，<code>Pair&lt;S&gt;</code>与<code>Pair&lt;T&gt;</code>无任何联系。Class 类本身是泛型，如<code>String.class</code>是一个<code>Class&lt;String&gt;</code>的实例。</li>
+<li>通配符类型中，允许类型参数变化。有<code>&lt;? super X&gt;</code>与<code>&lt;? extends X&gt;</code>，带有超类型限定的通配符可以向泛型对象写入，带有子类型限定的通配符可以从泛型对象读取。</li>
+<li>泛型 <t> 与通配符 &lt;?&gt; 的区别：泛型 T 指定一种类型参数的表示，实例化时是什么就是什么；通配符? 代表一种限制，只要符合条件类型是什么都行，可以有多种。<br>重点：P316 泛型擦除 P330 通配符</t></li>
+</ol>
+<hr>
+<h1 id="第九章：集合（重点掌握源码）"><a href="#第九章：集合（重点掌握源码）" class="headerlink" title="第九章：集合（重点掌握源码）"></a>第九章：集合（重点掌握源码）</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>Java 集合框架由 Java 类库的一系列接口、抽象类以及具体实现类组成。我们这里所说的集合就是把一组对象组织到一起，然后再根据不同的需求操纵这些数据。集合类型就是容纳这些对象的一个容器。也就是说，最基本的集合特性就是把一组对象放一起集中管理。根据集合中是否允许有重复的对象、对象组织在一起是否按某种顺序等标准来划分的话，集合类型又可以细分为许多种不同的子类型。</p>
+<p>Java 集合框架为我们提供了<strong>一组基本机制以及这些机制的参考实现</strong>，其中基本的集合接口是 Collection 接口，其他相关的接口还有 Iterator 接口、RandomAccess 接口等。这些集合框架中的接口定义了一个集合类型应该实现的基本机制，Java 类库为我们提供了一些具体集合类型的参考实现，根据对数据组织及使用的不同需求，只需要实现不同的接口即可。Java 类库还为我们提供了一些抽象类，提供了集合类型功能的部分实现，我们也可以在这个基础上去进一步实现自己的集合类型。</p>
+<h2 id="Collection-接口"><a href="#Collection-接口" class="headerlink" title="Collection 接口"></a>Collection 接口</h2><h3 id="迭代器"><a href="#迭代器" class="headerlink" title="迭代器"></a>迭代器</h3><p>我们先来看下这个接口的定义：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Collection</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Iterable</span>&lt;<span class="title">E</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>首先，它使用了一个类型参数；其次，它实现了 Iterable<e> 接口，我们再来看下 Iterable<e> 接口的定义：</e></e></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Iterable</span>&lt;<span class="title">T</span>&gt; </span>&#123;</span><br><span class="line">  <span class="function">Iterator&lt;T&gt; <span class="title">iterator</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们可以看到这个接口只定义了一个方法，这个方法要求我们返回一个实现了 Iterator<t> 类型的对象，所以我们看下 Iterator<t> 的定义：</t></t></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Iterator</span>&lt;<span class="title">E</span>&gt; </span>&#123; </span><br><span class="line">  <span class="function"><span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span></span>; </span><br><span class="line">  <span class="function">E <span class="title">next</span><span class="params">()</span></span>; </span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">remove</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>说到这里，我们简单地说一下<strong>迭代器（Iterator）</strong>这个东西。上面我们一共提到了两个和迭代器相关的接口：Iterable<e> 接口和 Iterator<e> 接口，从字面意义上来看，前者的意思是 “可迭代的”，后者的意思是 “迭代器。所以我们可以这么理解这两个接口：实现了 Iterable<e> 接口的类是<strong>可迭代的</strong>；实现了 Iterator<e> 接口的类是一个<strong>迭代器</strong>。</e></e></e></e></p>
+<p>迭代器就是一个我们用来遍历集合中的对象的东西。也就是说，对于集合，我们不是像对原始类型数组那样通过数组索引来直接访问相应位置的元素，而是通过迭代器来遍历。这么做的好处是将对于集合类型的遍历行为与被遍历的集合对象分离，这样一来我们无需关心该集合类型的具体实现是怎样的。只要获取这个集合对象的迭代器, 便可以遍历这个集合中的对象了。而像遍历对象的顺序这些细节，全部由它的迭代器来处理。现在我们来梳理一下前面提到的这些东西：首先，Collection 接口实现了 Iterable<e> 接口，这意味着所有实现了 Collection 接口的具体集合类都是可迭代的。那么既然要迭代，我们就需要一个迭代器来遍历相应集合中的对象，所以 Iterable<e> 接口要求我们实现 iterator 方法，这个方法要返回一个迭代器对象。一个迭代器对象也就是实现了 Iterator<e> 接口的对象，这个接口要求我们实现 hasNext()、next()、remove() 这三个方法。其中 hasNext 方法判断是否还有下一个元素（即是否遍历完对象了），next 方法会返回下一个元素（若没有下一个元素了调用它会引起抛出一个 NoSuchElementException 异常），remove 方法用于移除最近一次调用 next 方法返回的元素（若没有调用 next 方法而直接调用 remove 方法会报错）。我们可以想象在开始对集合进行迭代前，有个指针指向集合第一个元素的前面，第一次调用 next 方法后，这个指针会” 扫过” 第一个元素并返回它，调用 hasNext 方法就是看这个指针后面还有没有元素了。也就是说这个指针始终指向刚遍历过的元素和下一个待遍历的元素之间。通常，迭代一个集合对象的代码是这个样子的：</e></e></e></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Collection&lt;String&gt; c = ...;</span><br><span class="line">Iterator&lt;String&gt; iter = c.iterator();</span><br><span class="line"><span class="keyword">while</span> (iter.hasNext()) &#123;</span><br><span class="line">  String element = iter.next();</span><br><span class="line">  <span class="comment">//do something with element</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>从 Java SE 5.0 开始，我们可以使用与以上代码段等价但是更加简洁的版本：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (String element : c) &#123;</span><br><span class="line">  <span class="comment">//do something with element</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面我们提到过 Iterator 接口的 remove 方法必须在 next 方法返回一个元素后才能调用，这对 Java 类库中为我们提供的实现了 Collection 接口的类来说是这样的。当然我们可以通过自己定义一个实现 Collection 接口的集合类来改变这一默认行为（除非有充足的理由，否则最好不要这样做）。</p>
+<h3 id="Collection-接口-1"><a href="#Collection-接口-1" class="headerlink" title="Collection 接口"></a>Collection 接口</h3><p>我们先来看一下它的官方定义：</p>
+<blockquote>
+<p>The root interface in the <em>collection hierarchy</em>. A collection represents a group of objects, known as its <em>elements</em>. Some collections allow duplicate elements and others do not. Some are ordered and others unordered. The JDK does not provide any <em>direct</em> implementations of this interface: it provides implementations of more specific subinterfaces like Set<br>and List.</p>
+</blockquote>
+<p>大概的意思就是：Collection 接口是集合层级结构的根接口。一个集合代表了一组对象，这组对象被称为集合的元素。一些集合允许重复的元素而其他不允许；一些是有序的而一些是无序的。Java 类库中并未提供任何对这个接口的直接实现，而是提供了对于它的更具体的子接口的实现（比如 Set 接口和 List 接口）。</p>
+<p>我们知道，接口是一组对需求的描述，那么让我们看看 Collection 接口提出了哪些需求。Collection 接口中定义了以下方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">add</span><span class="params">(E e)</span> <span class="comment">//向集合中添加一个元素，若添加元素后集合发生了变化就返回true，若没有发生变化，就返回false。(optional operation).</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">addAll</span><span class="params">(Collection&lt;? extends E&gt; c)</span> <span class="comment">//添加给定集合c中的所有元素到该集合中(optional operation).</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span> <span class="comment">//(optional operation).</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(Object o)</span> <span class="comment">//判断该集合中是否包含指定对象</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">containsAll</span><span class="params">(Collection&lt;?&gt; c)</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span></span><br><span class="line"><span class="function">Iterator&lt;E&gt; <span class="title">iterator</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">remove</span><span class="params">(Object o)</span> <span class="comment">//移除给定对象的一个实例（有的具体集合类型允许重复元素） (optional operation).</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">removeAll</span><span class="params">(Collection&lt;?&gt; c)</span> <span class="comment">//(optional operation).</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">retainAll</span><span class="params">(Collection&lt;?&gt; c)</span> <span class="comment">//仅保留给定集合c中的元素(optional operation).</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">size</span><span class="params">()</span></span></span><br><span class="line"><span class="function">Object[] <span class="title">toArray</span><span class="params">()</span></span></span><br><span class="line"><span class="function">&lt;T&gt; T[] <span class="title">toArray</span><span class="params">(T[] a)</span></span></span><br></pre></td></tr></table></figure>
+<p>我们注意到有些方法后面注释中标注了 “optional operation”，意思是 Collection 接口的实现类究竟需不需要实现这个方法视具体情况而定。比如有些具体的集合类型不允许向其中添加对象，那么它就无需实现 add 方法。我们可以看到，Collection 对象必须实现的方法有：contains 方法、containsAll 方法、isEmpty 方法、iterator 方法、size 方法、两个 toArray 方法以及 equals 方法、hashCode 方法，其中最后两个方法继承自 Object 类。</p>
+<p>我们来说一下两个 toArray 方法，它们的功能都是都是返回这个集合的对象数组。第二个方法接收一个 arrayToFill 参数，当这个参数数组足够大时，就把集合中的元素都填入这个数组（多余空间填 null）；当 arrayToFill 不够大时，就会创建一个大小与集合相同，类型与 arrayToFill 相同的数组，并填入集合元素。</p>
+<p>Collection 接口的直接子接口主要有三个：List 接口、Set 接口和 Queue 接口。下面我们对它们进行逐一介绍。</p>
+<h3 id="List-接口"><a href="#List-接口" class="headerlink" title="List 接口"></a>List 接口</h3><p>我们同样先看下它的官方定义：</p>
+<blockquote>
+<p>An ordered collection (also known as a <em>sequence</em>). The user of this interface has precise control over where in the list each element is inserted. The user can access elements by their integer index (position in the list), and search for elements in the list.Unlike sets, lists typically allow duplicate elements. More formally, lists typically allow pairs of elements e1 and e2 such that e1.equals(e2), and they typically allow multiple null elements if they allow null elements at all.</p>
+</blockquote>
+<p>大概意思是：List 是一个有序的集合类型（也被称作序列）。使用 List 接口可以精确控制每个元素被插入的位置，并且可以通过元素在列表中的索引来访问它。列表允许重复的元素，并且在允许 null 元素的情况下也允许多个 null 元素。</p>
+<p>我们再来看下它定义了哪些方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ListIterator&lt;E&gt; <span class="title">listIterator</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> i, E element)</span></span>;</span><br><span class="line"><span class="function">E <span class="title">remove</span><span class="params">(<span class="keyword">int</span> i)</span></span>;</span><br><span class="line"><span class="function">E <span class="title">get</span><span class="params">(<span class="keyword">int</span> i)</span></span>;</span><br><span class="line"><span class="function">E <span class="title">set</span><span class="params">(<span class="keyword">int</span> i, E element)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">indexOf</span><span class="params">(Object element)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>我们可以看到，列表支持对指定位置元素的读写与移除。我们注意到，上面有一个 listIterator 方法，它返回一个列表迭代器。我们来看一看 ListIterator<e> 接口都定义了哪些方法：</e></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(E e)</span> <span class="comment">//在当前位置添加一个元素</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> <span class="comment">//返回ture如果还有下个元素（在正向遍历列表时使用）</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">hasPrevious</span><span class="params">()</span> <span class="comment">//反向遍历列表时使用</span></span></span><br><span class="line"><span class="function">E <span class="title">next</span><span class="params">()</span> <span class="comment">//返回下一个元素并将cursor（也就是我们上文提到的”指针“）前移一个位置</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">nextIndex</span><span class="params">()</span> <span class="comment">//返回下一次调用next方法将返回的元素的索引</span></span></span><br><span class="line"><span class="function">E <span class="title">previous</span><span class="params">()</span> <span class="comment">//返回前一个元素并将cursor向前移动一个位置</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">previousIndex</span><span class="params">()</span> <span class="comment">//返回下一次调用previous方法将返回的元素的索引void remove() //从列表中移除最近一次调用next方法或previous方法返回的元素</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">set</span><span class="params">(E e)</span> <span class="comment">//用e替换最近依次调用next或previous方法返回的元素</span></span></span><br></pre></td></tr></table></figure>
+<p>ListIterator<e> 是 Iterator<e> 的子接口，它支持像双向迭代这样更加特殊化的操作。综合以上，我们可以看到，List 接口支持两种访问元素的方式：使用列表迭代器顺序访问或者使用 get/set 方法随机访问。</e></e></p>
+<p>Java 类库中常见的实现了 List<e> 接口的类有：ArrayList， LinkedList，Stack，Vector，AbstractList，AbstractSequentialList 等等。</e></p>
+<h5 id="ArrayList"><a href="#ArrayList" class="headerlink" title="ArrayList"></a>ArrayList</h5><p>ArrayList 是一个可动态调整大小的数组，允许 null 类型的元素。我们知道，Java 中的数组大小在初始化时就必须确定下来，而且一旦确定就不能改变，这会使得在很多场景下不够灵活。ArrayList 很好地帮我们解决了这个问题，当我们需要一个能根据包含元素的多少来动态调整大小的数组时，那么 ArrayList 正是我们所需要的。</p>
+<p>我们先来看看这个类的常用方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">add</span><span class="params">(E e)</span> <span class="comment">//添加一个元素到数组末尾</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> index, E element)</span> <span class="comment">//添加一个元素到指定位置</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(Object o)</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">ensureCapacity</span><span class="params">(<span class="keyword">int</span> minCapacity)</span> <span class="comment">//确保ArrayList至少能容纳参数指定数目的对象，若有需要会增加ArrayList实例的容量。</span></span></span><br><span class="line"><span class="function">E <span class="title">get</span><span class="params">(<span class="keyword">int</span> index)</span> <span class="comment">//返回指定位置的元素</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">indexOf</span><span class="params">(Object o)</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span></span><br><span class="line"><span class="function">Iterator&lt;E&gt; <span class="title">iterator</span><span class="params">()</span></span></span><br><span class="line"><span class="function">ListIterator&lt;E&gt; <span class="title">listIterator</span><span class="params">()</span></span></span><br><span class="line"><span class="function">E <span class="title">remove</span><span class="params">(<span class="keyword">int</span> index)</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">remove</span><span class="params">(Object o)</span></span></span><br><span class="line"><span class="function">E <span class="title">set</span><span class="params">(<span class="keyword">int</span> index, E element)</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">size</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+<p>当我们插入了比较多的元素，导致 ArrayList 快要装满时，它会自动增长容量。ArrayList 内部使用一个 Object 数组来存储元素，自动增长容量是通过创建一个新的容量更大的 Object 数组，并将元素从原 Object 数组复制到新 Object 数组来实现的。若要想避免这种开销，在知道大概会容纳多少数据时，我们可以在构造时指定好它的大小以尽量避免它自动增长的发生；我们也可以调用 ensureCapacity 方法来增加 ArrayList 对象的容量到我们指定的大小。ArrayList 有以下三个构造器：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ArrayList()</span><br><span class="line">ArrayList(Collection&lt;? extends E&gt; c)</span><br><span class="line">ArrayList(<span class="keyword">int</span> initialCapacity) <span class="comment">//指定初始capacity，即内部Object数组的初始大小</span></span><br></pre></td></tr></table></figure>
+<h5 id="LinkedList-类"><a href="#LinkedList-类" class="headerlink" title="LinkedList 类"></a>LinkedList 类</h5><p>LinkedList 类代表了一个双向链表，允许 null 元素。这个类同 ArrayList 一样，不是线程安全的。<br>这个类中主要有以下的方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addFirst</span><span class="params">(E element)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">addLast</span><span class="params">(E element)</span></span>;</span><br><span class="line"><span class="function">E <span class="title">getFirst</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function">E <span class="title">getLast</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function">E <span class="title">removeFirst</span><span class="params">()</span></span>;</span><br><span class="line"><span class="function">E <span class="title">removeLast</span><span class="params">()</span></span>;</span><br></pre></td></tr></table></figure>
+<p>这些方法的含义正如它们的名字所示。LinkedList 作为 List 接口的实现类，自然包含了 List 接口中定义的 add 等方法。LinkedList 的 add 方法实现有以下两种：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">add</span><span class="params">(E e)</span> <span class="comment">//把元素e添加到链表末尾</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add</span><span class="params">(<span class="keyword">int</span> index, E element)</span> <span class="comment">//在指定索引处添加元素</span></span></span><br></pre></td></tr></table></figure>
+<p>LinkedList 的一个缺陷在于它不支持对元素的高效随机访问，要想随机访问其中的元素，需要逐个扫描直到遇到符合条件的元素。只有当我们需要减少在列表中间添加或删除元素操作的代价时，可以考虑使用 LinkedList。</p>
+<h3 id="Set-接口"><a href="#Set-接口" class="headerlink" title="Set 接口"></a>Set 接口</h3><p>Set 接口与 List 接口的重要区别就是它不支持重复的元素，至多可以包含一个 null 类型元素。Set 接口定义的是数学意义上的 “集合” 概念。<br>Set 接口主要定义了以下方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">add</span><span class="params">(E e)</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(Object o)</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span></span></span><br><span class="line"><span class="function">Iterator&lt;E&gt; <span class="title">iterator</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">remove</span><span class="params">(Object o)</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">removeAll</span><span class="params">(Collection&lt;?&gt; c)</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">size</span><span class="params">()</span></span></span><br><span class="line"><span class="function">Object[] <span class="title">toArray</span><span class="params">()</span></span></span><br><span class="line"><span class="function">&lt;T&gt; T[] <span class="title">toArray</span><span class="params">(T[] a)</span></span></span><br></pre></td></tr></table></figure>
+<p>Set 接口并没有显式要求其中的元素是有序或是无序的，它有一个叫做 SortedSet 的子接口，这个接口可以用来实现对 Set 元素的排序，SortedSet 还有叫做 NavigableSet 的子接口，这个接口定义的方法可以在有序 Set 中进行查找和遍历。Java 类库中实现了 Set 接口的类主要有：AbstractSet，HashSet，TreeSet，EnumSet，LinkedHashSet 等等。其中，HashSet 与 TreeSet 都是 AbstractSet 的子类。那么，为什么 Java 类库要提供 AbstractSet 这个抽象类呢？答案是为了让我们在自定义实现 Set 接口的类时不必 “从零开始”，AbstractSet 这个抽象类已经为我们实现了 Set 接口中的一些常规方法，而一些灵活性比较强的方法可以由我们自己来定义，我们只需要继承 AbstractSet 这个抽象类即可。类似的抽象类还有很多，比如我们上面提到的实现了 List 接口的 AbstractList 抽象类就是 LinkedList 和 ArrayList 的父类。Java 官方文档中提到，HashSet 和 TreeSet 分别基于 HashMap 和 TreeMap 实现（我们在后面会简单介绍 HashMap 和 TreeMap），他们的区别在于 Set<e> 接口是一个对象的集（数学意义上的” 集合“），Map&lt;K, V &gt; 是一个键值对的集合。而且由于它们分别是对 Set<e> 和 Map&lt;K, V &gt; 接口的实现，相应添加与删除元素的方法也取决于具体接口的定义。</e></e></p>
+<h3 id="Queue-接口"><a href="#Queue-接口" class="headerlink" title="Queue 接口"></a>Queue 接口</h3><p>Queue 接口是对队列这种数据结构的抽象。一般的队列实现允许我们高效的在队尾添加元素，在队列头部删除元素（First in, First out)。Queue<e> 接口还有一个名为 Deque 的子接口，它允许我们高效的在队头或队尾添加 / 删除元素，实现了 Deque<e> 的接口的集合类即为双端队列的一种实现（比如 LinkedList 就实现了 Deque 接口）。Queue 接口定义了以下方法：</e></e></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">add</span><span class="params">(E e)</span> <span class="comment">//添加一个元素到队列中，若队列已满会抛出一个IllegalStateException异常</span></span></span><br><span class="line"><span class="function">E <span class="title">element</span><span class="params">()</span> <span class="comment">//获取队头元素</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">offer</span><span class="params">(E e)</span> <span class="comment">//添加一个元素到队列中，若队列已满返回false</span></span></span><br><span class="line"><span class="function">E <span class="title">peek</span><span class="params">()</span> <span class="comment">//获取队头元素，若队列为空返回null</span></span></span><br><span class="line"><span class="function">E <span class="title">poll</span><span class="params">()</span> <span class="comment">//返回并移除队头元素，若队列为空返回null</span></span></span><br><span class="line"><span class="function">E <span class="title">remove</span><span class="params">()</span> <span class="comment">//返回并移除队头元素</span></span></span><br></pre></td></tr></table></figure>
+<p>我们注意观察下上面的方法：add 与 offer，element 与 peek，remove 与 poll 看似是三对儿功能相同的方法。它们之间的重要区别在于前者若操作失败会抛出一个异常，后者若操作失败会从返回值体现出来（比如返回 false 或 null），我们可以根据具体需求调用它们中的前者或后者。</p>
+<p>实现 Queue 接口的类主要有：AbstractQueue， ArrayDeque， LinkedList，PriorityQueue，DelayQueue 等等。关于它们具体的介绍可参考官方文档或相关的文章。</p>
+<h2 id="Map-接口"><a href="#Map-接口" class="headerlink" title="Map 接口"></a>Map 接口</h2><p>我们先来看下它的定义：</p>
+<blockquote>
+<p>An object that maps keys to values. A map cannot contain duplicate keys; each key can map to at most one value.The Map<br>interface provides three <em>collection views</em>, which allow a map’s contents to be viewed as a set of keys, collection of values, or set of key-value mappings. The <em>order</em> of a map is defined as the order in which the iterators on the map’s collection views return their elements. Some map implementations, like the TreeMap<br>class, make specific guarantees as to their order; others, like the HashMap<br>class, do not.</p>
+</blockquote>
+<p>大概意思是这样的：一个把键映射到值的对象被称作一个 Map 对象。映射表不能包含重复的键，每个键至多可以与一个值关联。Map 接口提供了三个<strong>集合视图</strong>（关于集合视图的概念我们下面会提到）：键的集合视图、值的集合视图以及键值对的集合视图。一个映射表的顺序取决于它的集合视图的迭代器返回元素的顺序。一些 Map 接口的具体实现（比如 TreeMap）保证元素有一定的顺序，其它一些实现（比如 HashMap）则不保证元素在其内部有序。</p>
+<p>也就是说，Map 接口定义了一个类似于 “字典” 的规范，让我们能够根据键快速检索到它所关联的值。我们先来看看 Map 接口定义了哪些方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">containsKey</span><span class="params">(Object key)</span> <span class="comment">//判断是否包含指定键</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">containsValue</span><span class="params">(Object value)</span> <span class="comment">//判断是否包含指定值</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span></span><br><span class="line"><span class="function">V <span class="title">get</span><span class="params">(Object key)</span> <span class="comment">//返回指定键映射的值</span></span></span><br><span class="line"><span class="function">V <span class="title">put</span><span class="params">(K key, V value)</span> <span class="comment">//放入指定的键值对</span></span></span><br><span class="line"><span class="function">V <span class="title">remove</span><span class="params">(Object key)</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">size</span><span class="params">()</span></span></span><br><span class="line"><span class="function">Set&lt;Map.Entry&lt;K,V&gt;&gt; <span class="title">entrySet</span><span class="params">()</span> </span></span><br><span class="line"><span class="function">Set&lt;K&gt; <span class="title">keySet</span><span class="params">()</span></span></span><br><span class="line"><span class="function">Collection&lt;V&gt; <span class="title">values</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+<p>后三个方法在我们下面介绍集合视图时会具体讲解。</p>
+<p>Map 接口的具体实现类主要有：AbstractMap，EnumMap，HashMap，LinkedHashMap，TreeMap。HashTable。</p>
+<h3 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h3><p>我们看一下 HashMap 的官方定义：</p>
+<blockquote>
+<p>HashMap&lt;K, V&gt; 是基于哈希表这个数据结构的 Map 接口具体实现，允许 null 键和 null 值。这个类与 HashTable 近似等价，区别在于 HashMap 不是线程安全的并且允许 null 键和 null 值。由于基于哈希表实现，所以 HashMap 内部的元素是无序的。HashMap 对与 get 与 put 操作的时间复杂度是常数级别的（在散列均匀的前提下）。对 HashMap 的集合视图进行迭代所需时间与 HashMap 的 capacity（bucket 的数量）加上 HashMap 的尺寸（键值对的数量）成正比。因此，若迭代操作的性能很重要，不要把初始 capacity 设的过高（不要把 load factor 设的过低）。</p>
+</blockquote>
+<p>有两个因素会影响一个 HashMap 对象的性能：intial capacity（初始容量）和 load factor（负载因子）。intial capacity 就是 HashMap 对象刚创建时其内部的哈希表的 “桶” 的数量（请参考哈希表的定义）。load factor 等于 maxSize / capacity，也就是 HashMap 所允许的最大键值对数与桶数的比值。增大 load factor 可以节省空间但查找一个元素的时间会增加，减小 load factor 会占用更多的存储空间，但是 get 与 put 的操作会更快。当 HashMap 中的键值对数量超过了 maxSize（即 load factor 与 capacity 的乘积），它会再散列，再散列会重建内部数据结构，桶数（capacity）大约会增加到原来的两倍。</p>
+<p>HashMap 默认的 load factor 大小为 0.75，这个数值在时间与空间上做了很好的权衡。当我们清楚自己将要大概存放多少数据时，也可以自定义 load factor 的大小。</p>
+<p>HashMap 的构造器如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HashMap()</span><br><span class="line">HashMap(<span class="keyword">int</span> initialCapacity)</span><br><span class="line">HashMap(<span class="keyword">int</span> initialCapacity, <span class="keyword">float</span> loadFactor)</span><br><span class="line">HashMap(Map&lt;? extends K,? extends V&gt; m) <span class="comment">//创建一个新的HashMap，用m的数据填充</span></span><br></pre></td></tr></table></figure>
+<p>常用方法如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">containsKey</span><span class="params">(Object key)</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">containsValue</span><span class="params">(Object value)</span></span></span><br><span class="line"><span class="function">V <span class="title">get</span><span class="params">(Object key)</span></span></span><br><span class="line"><span class="function">V <span class="title">put</span><span class="params">(K key, V value)</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span></span></span><br><span class="line"><span class="function">V <span class="title">remove</span><span class="params">(Object key)</span></span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">size</span><span class="params">()</span></span></span><br><span class="line"><span class="function">Collection&lt;V&gt; <span class="title">values</span><span class="params">()</span></span></span><br><span class="line"><span class="function">Set&lt;Map.Entry&lt;K,V&gt;&gt; <span class="title">entrySet</span><span class="params">()</span></span></span><br><span class="line"><span class="function">Set&lt;K&gt; <span class="title">keySet</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+<p>它们的功能都很直观，更多的使用细节可以参考 Java 官方文档，这里就不贴上来了。这里简单地提一下 <a href="http://www.codeceo.com/article/java-weakhashmap-source.html" title="WeakHashMap" target="_blank" rel="noopener">WeakHashMap</a>，它与 HashMap 的区别在于，存储在其中的 key 是 “弱引用” 的，也就是说，当不再存在对 WeakHashMap 中的键的外部引用时，相应的键值对就会被回收。关于 WeakHashMap 和其他类的具体使用方法及注意事项，大家可以参考官方文档。下面我们来简单地介绍下另一个 Map 接口的具体实现——TreeMap。</p>
+<h3 id="TreeMap"><a href="#TreeMap" class="headerlink" title="TreeMap"></a>TreeMap</h3><p>它的官方定义是这样的：</p>
+<blockquote>
+<p>TreeMap&lt;K, V&gt; 一个基于红黑树的 Map 接口实现。TreeMap 中的元素的有序的，排序的依据是存储在其中的键的 natural ordering（自然序，也就是数字从小到大，字母的话按照字典序）或者根据在创建 TreeMap 时提供的 Comparator 对象，这取决于使用了哪个构造器。TreeMap 的 containsKey, get, put 和 remove 操作的时间复杂度均为 log(n)。</p>
+</blockquote>
+<p>TreeMap 有以下构造器：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">TreeMap() <span class="comment">//使用自然序对其元素进行排序</span></span><br><span class="line">TreeMap(Comparator&lt;? <span class="keyword">super</span> K&gt; comparator) <span class="comment">//使用一个比较器对其元素进行排序</span></span><br><span class="line">TreeMap(Map&lt;? extends K,? extends V&gt; m) <span class="comment">//构造一个与映射表m含有相同元素的TreeMap，用自然序进行排列</span></span><br><span class="line">TreeMap(SortedMap&lt;K,? extends V&gt; m) <span class="comment">//构造一个与有序映射表m含有相同元素及元素顺序的TreeMap</span></span><br></pre></td></tr></table></figure>
+<p>它的常见方法如下：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Map.<span class="function">Entry&lt;K,V&gt; <span class="title">ceilingEntry</span><span class="params">(K key)</span> <span class="comment">//返回一个最接近且大于等于指定key的键值对。</span></span></span><br><span class="line"><span class="function">K <span class="title">ceilingKey</span><span class="params">(K key)</span></span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span></span></span><br><span class="line"><span class="function">Comparator&lt;? <span class="keyword">super</span> K&gt; <span class="title">comparator</span><span class="params">()</span> <span class="comment">//返回使用的比较器，若按自然序则返回null</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">containsKey</span><span class="params">(Object key)</span></span></span><br><span class="line"><span class="function"><span class="keyword">boolean</span> <span class="title">containsValue</span><span class="params">(Object value)</span></span></span><br><span class="line"><span class="function">NavigableSet&lt;K&gt; <span class="title">descendingKeySet</span><span class="params">()</span> <span class="comment">//返回一个包含在TreeMap中的键的逆序的NavigableSet视图</span></span></span><br><span class="line"><span class="function">NavigableMap&lt;K,V&gt; <span class="title">descendingMap</span><span class="params">()</span></span></span><br><span class="line"><span class="function">Set&lt;Map.Entry&lt;K,V&gt;&gt; <span class="title">entrySet</span><span class="params">()</span></span></span><br><span class="line"><span class="function">Map.Entry&lt;K,V&gt; <span class="title">firstEntry</span><span class="params">()</span> <span class="comment">//返回键最小的键值对</span></span></span><br><span class="line"><span class="function">Map.Entry&lt;K,V&gt; <span class="title">floorEntry</span><span class="params">(K key)</span> <span class="comment">//返回一个最接近指定key且小于等于它的键对应的键值对</span></span></span><br><span class="line"><span class="function">K <span class="title">floorKey</span><span class="params">(K key)</span></span></span><br><span class="line"><span class="function">V <span class="title">get</span><span class="params">(Object key)</span></span></span><br><span class="line"><span class="function">Set&lt;K&gt; <span class="title">keySet</span><span class="params">()</span></span></span><br><span class="line"><span class="function">Map.Entry&lt;K,V&gt; <span class="title">lastEntry</span><span class="params">()</span> <span class="comment">//返回与最大的键相关联的键值对</span></span></span><br><span class="line"><span class="function">K <span class="title">lastKey</span><span class="params">()</span></span></span><br></pre></td></tr></table></figure>
+<p>建议大家先了解下红黑树这个数据结构的原理及实现（可参考<a href="https://book.douban.com/subject/19952400/" target="_blank" rel="noopener">算法（第 4 版） (豆瓣)</a>），然后再去看官方文档中关于这个类的介绍，这样学起来会事半功倍。</p>
+<p>最后再简单地介绍下 NavigableMap&lt;K, V&gt; 这个接口：</p>
+<p>实现了这个接口的类支持一些 navigation methods，比如 lowerEntry（返回小于指定键的最大键所关联的键值对），floorEntry（返回小于等于指定键的最大键所关联的键值对），ceilingEntry（返回大于等于指定键的最小键所关联的键值对）和 higerEntry（返回大于指定键的最小键所关联的键值对）。一个 NavigableMap 支持对其中存储的键按键的递增顺序或递减顺序的遍历或访问。NavigableMap&lt;K, V&gt; 接口还定义了 firstEntry、pollFirstEntry、lastEntry 和 pollLastEntry 等方法，以准确获取指定位置的键值对。</p>
+<p>总的来说，NavigableMap&lt;K, V&gt; 接口正如它的名字所示，支持我们在映射表中” 自由的航行 “，正向或者反向迭代其中的元素并获取我们需要的指定位置的元素。TreeMap 实现了这个接口。</p>
+<h2 id="视图（View）与包装器"><a href="#视图（View）与包装器" class="headerlink" title="视图（View）与包装器"></a>视图（View）与包装器</h2><p>下面我们来解决一个上面遗留的问题，也就是介绍一下集合视图的概念。Java 中的集合视图是用来查看集合中全部或部分数据的一个”窗口 “，只不过通过视图我们不仅能查看相应集合中的元素，对视图的操作还可能会影响到相应的集合。通过使用视图可以获得其他的实现了 Map 接口或 Collection 接口的对象。比如我们上面提到的 TreeMap 和 HashMap 的 keySet() 方法就会返回一个相应映射表对象的视图。也就是说，keySet 方法返回的视图是一个实现了 Set 接口的对象，这个对象中又包含了一系列键对象。</p>
+<h3 id="轻量级包装器"><a href="#轻量级包装器" class="headerlink" title="轻量级包装器"></a>轻量级包装器</h3><p>Arrays.asList 会发挥一个包装了 Java 数组的集合视图（实现了 List 接口）。请看以下代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">  String[] strings = &#123;<span class="string">"first"</span>, <span class="string">"second"</span>, <span class="string">"third"</span>&#125;;</span><br><span class="line">  List&lt;String&gt; stringList = Arrays.asList(strings);</span><br><span class="line">  String s1 = stringList.get(<span class="number">0</span>);</span><br><span class="line">  System.out.println(s1);</span><br><span class="line">  stringList.add(<span class="number">0</span>, <span class="string">"new first"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上代码会编译成功，但是在运行时会抛出一个 UnsupportedOperationException 异常，原因是调用了改变列表大小的 add 方法。Arrays.asList 方法返回的封装了底层数组的集合视图不支持对改变数组大小的方法（如 add 方法和 remove 方法）的调用（但是可以改变数组中的元素）。实际上，这个方法调用了以下方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Collections.nCopies(n, anObject);</span><br></pre></td></tr></table></figure>
+<p>这个方法会返回一个实现了 List 接口的不可修改的对象。这个对象包含了 n 个元素（anObject）。</p>
+<h3 id="子范围"><a href="#子范围" class="headerlink" title="子范围"></a>子范围</h3><p>我们可以为很多集合类型建立一个称为子范围（subrange）的集合视图。例如以下代码抽出 group 中的第 10 到 19 个元素（从 0 开始计数）组成一个子范围：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List subgroup = group.subList(<span class="number">10</span>, <span class="number">20</span>); <span class="comment">//group为一个实现了List接口的列表类型</span></span><br></pre></td></tr></table></figure>
+<p>List 接口所定义的操作都可以应用于子范围，包括那些会改变列表大小的方法，比如以下方法会把 subgroup 列表清空，同时 group 中相应的元素也会从列表中移除：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">subgroup.clear();</span><br></pre></td></tr></table></figure>
+<p>对于实现了 SortedSet<e> 接口的有序集或是实现了 SortedMap&lt;K, V &gt; 接口的有序映射表，我们也可以为他们创建子范围。SortedSet 接口定义了以下三个方法：</e></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">SortedSet&lt;E&gt; <span class="title">subSet</span><span class="params">(E from, E to)</span></span>; </span><br><span class="line"><span class="function">SortedSet&lt;E&gt; <span class="title">headSet</span><span class="params">(E to)</span></span>;</span><br><span class="line"><span class="function">SortedSet&lt;E&gt; <span class="title">tailSet</span><span class="params">(E from)</span></span>;</span><br></pre></td></tr></table></figure>
+<p>SortedMap 也定义了类似的方法：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">SortedMap&lt;K, V&gt; <span class="title">subMap</span><span class="params">(K from, K to)</span></span>;</span><br><span class="line"><span class="function">SortedMap&lt;K, V&gt; <span class="title">headMap</span><span class="params">(K to)</span></span>;</span><br><span class="line"><span class="function">SortedMap&lt;K, V&gt; <span class="title">tailMap</span><span class="params">(K from)</span></span>;</span><br></pre></td></tr></table></figure>
+<h3 id="不可修改的视图"><a href="#不可修改的视图" class="headerlink" title="不可修改的视图"></a>不可修改的视图</h3><p>Collections 类中的一些方法可以返回<strong>不可修改视图（unmodifiable views)：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Collections.unmodifiableCollection</span><br><span class="line">Collections.unmodifiableList</span><br><span class="line">Collections.unmodifiableSet</span><br><span class="line">Collections.unmodifiableSortedSet</span><br><span class="line">Collections.unmodifiableMap</span><br><span class="line">Collections.unmodifiableSortedMap</span><br></pre></td></tr></table></figure>
+<h3 id="同步视图"><a href="#同步视图" class="headerlink" title="同步视图"></a>同步视图</h3><p>若集合可能被多个线程并发访问，那么我们就需要确保集合中的数据不会被破坏。<strong>Java 类库的设计者使用视图机制来确保常规集合的线程安全。</strong>比如，我们可以调用以下方法将任意一个实现了 Map 接口的集合变为线程安全的：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Map&lt;String, Integer&gt; map = Collections.synchronizedMap(<span class="keyword">new</span> HashMap&lt;String, Integer&gt;());</span><br></pre></td></tr></table></figure>
+<h3 id="被检验视图"><a href="#被检验视图" class="headerlink" title="被检验视图"></a>被检验视图</h3><p>我们先看一下这段代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;String&gt; strings = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">ArrayList rawList = strings;</span><br><span class="line">rawList.add(<span class="keyword">new</span> Date());</span><br></pre></td></tr></table></figure>
+<p>在以上代码的第二行，我们把泛型数组赋值给了一个原始类型数组，这通常只会产生一个警告。而第三行我们往 rawList 中添加一个 Date 对象时，并不会产生任何错误。因为 rawList 内部存储的实际上是 Object 对象，而任何对象都可以转换为 Object 对象。那么我们怎么避免这一问题呢，请看以下代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ArrayList&lt;String&gt; strings = <span class="keyword">new</span> ArrayList&lt;String&gt;();</span><br><span class="line">List&lt;String&gt; safeStrings = Collections.checkedList(strings, String.class);</span><br><span class="line">ArrayList rawList = safeStrings;</span><br><span class="line">rawList.add(<span class="keyword">new</span> Date()); <span class="comment">//Checked list throws a ClassCastException</span></span><br></pre></td></tr></table></figure>
+<p>在上面，我们通过包装 strings 得到一个被检验视图 safeStrings。这样在尝试添加非 String 对象时，便会抛出一个 ClassCastException 异常。</p>
+<h3 id="集合视图的本质"><a href="#集合视图的本质" class="headerlink" title="集合视图的本质"></a>集合视图的本质</h3><p>集合视图本身不包含任何数据，它只是对相应接口的包装。集合视图所支持的所有操作都是通过访问它所关联的集合类实例来实现的。我们来看看 HashMap 的 keySet 方法的源码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Set&lt;K&gt; <span class="title">keySet</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  Set&lt;K&gt; ks;</span><br><span class="line">  <span class="keyword">return</span> (ks = keySet) == <span class="keyword">null</span> ? (keySet = <span class="keyword">new</span> KeySet()) : ks;</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="keyword">final</span> <span class="class"><span class="keyword">class</span> <span class="title">KeySet</span> <span class="keyword">extends</span> <span class="title">AbstractSet</span>&lt;<span class="title">K</span>&gt; </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123; </span><br><span class="line">    <span class="keyword">return</span> size; </span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span> </span>&#123; </span><br><span class="line">    HashMap.<span class="keyword">this</span>.clear(); </span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> Iterator&lt;K&gt; <span class="title">iterator</span><span class="params">()</span> </span>&#123; </span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> KeyIterator(); </span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(Object o)</span> </span>&#123; </span><br><span class="line">    <span class="keyword">return</span> containsKey(o); </span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">boolean</span> <span class="title">remove</span><span class="params">(Object key)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> removeNode(hash(key), key, <span class="keyword">null</span>, <span class="keyword">false</span>, <span class="keyword">true</span>) != <span class="keyword">null</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> Spliterator&lt;K&gt; <span class="title">spliterator</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> KeySpliterator&lt;&gt;(HashMap.<span class="keyword">this</span>, <span class="number">0</span>, -<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">final</span> <span class="keyword">void</span> <span class="title">forEach</span><span class="params">(Consumer&lt;? <span class="keyword">super</span> K&gt; action)</span> </span>&#123;</span><br><span class="line">    Node&lt;K,V&gt;[] tab;</span><br><span class="line">    <span class="keyword">if</span> (action == <span class="keyword">null</span>) <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</span><br><span class="line">    <span class="keyword">if</span> (size &gt; <span class="number">0</span> &amp;&amp; (tab = table) != <span class="keyword">null</span>) &#123;</span><br><span class="line">      <span class="keyword">int</span> mc = modCount;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; tab.length; ++i) &#123;</span><br><span class="line">        <span class="keyword">for</span> (Node&lt;K,V&gt; e = tab[i]; e != <span class="keyword">null</span>; e = e.next)</span><br><span class="line">          action.accept(e.key);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (modCount != mc) <span class="keyword">throw</span> <span class="keyword">new</span> ConcurrentModificationException();</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们可以看到，实际上 keySet() 方法返回一个内部 final 类 KeySet 的实例。我们可以看到 KeySet 类本身没有任何实例变量。我们再看 KeySet 类定义的 size() 实例方法，它的实现就是通过直接返回 HashMap 的实例变量 size。还有 clear 方法，实际上调用的就是 HashMap 对象的 clear 方法。</p>
+<p>keySet 方法能够让你直接访问到 Map 的键集，而不需要复制数据或者创建一个新的数据结构，这样做往往比复制数据到一个新的数据结构更加高效。考虑这样一个场景：你需要把一个之前创建的数组传递给一个接收 List 参数的方法，那么你可以使用 Arrays.asList 方法返回一个包装了数组的视图（这需要的空间复杂度是常数级别的），而不用创建一个新的 ArrayList 再把原数组中的数据复制过去。</p>
+<h2 id="Collections-类"><a href="#Collections-类" class="headerlink" title="Collections 类"></a>Collections 类</h2><p>我们要注意到 Collections 类与 Collection 接口的区别：Collection 是一个接口，而 Collections 是一个类（可以看做一个静态方法库）。下面我们看一下官方文档对 Collections 的描述：</p>
+<blockquote>
+<p>Collections 类包含了大量用于操作或返回集合的静态方法。它包含操作集合的多态算法，还有包装集合的包装器方法等等。这个类中的所有方法在集合或类对象为空时均会抛出一个 NullPointerException。</p>
+</blockquote>
+<p>关于 Collections 类中的常用方法，我们上面已经做了一些介绍，更加详细的介绍大家可以参考 Java 官方文档。</p>
+<h2 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h2><p>关于 Java 集合框架，我们首先应该把握住几个核心的接口，请看下图（下图中 LinkList 拼写有误，应为 LinkedList）：</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2397836-f6375c2f72895a58.png?imageMogr2/auto-orient/strip%7CimageView2/2" alt=""></p>
+<p>我们还要了解到这些接口描述了一组什么样的机制，然后以此作为出发点，去了解具体哪些类实现了哪些机制。像这样自顶向下的学习，我们很快就能掌握常见集合类的用法。对于一些我们平常经常使用的类，我们还可以阅读一下它的源码，了解它的实现细节，这样我们以后使用起来会更加得心应手。不过阅读一些集合类（比如 TreeMap、HashMap）的源码需要我们具备一定的数据结构与算法的基础知识，这方面推荐阅读 <a href="https://book.douban.com/subject/19952400/" target="_blank" rel="noopener">算法（第 4 版） (豆瓣)</a>。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ol>
+<li>《Java 核心技术（卷一）》</li>
+<li><a href="http://stackoverflow.com/questions/18902484/what-is-a-view-of-a-collection" target="_blank" rel="noopener">What is a view of a collection?</a></li>
+<li><a href="http://docs.oracle.com/javase/7/docs/api/" target="_blank" rel="noopener">Java SE 7 Docs</a></li>
+</ol>
+<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><blockquote>
+<ol>
+<li>概念：<br>• Java 集合类库将接口与实现分离，接口定义增删改查等方法，具体分为集合和映射两种基本接口 (Collection 和 Map)。Collection 接口实现了 Iterable 接口，往下又分为 List、Set 和 Queue，Set 往下有 SortSet 等；Map 下有 SortedMap 等 (都是接口)。RandomAccess 接口用于判断该集合是否支持高效的随机访问。<br>• 集合没有 key 值，映射有 key 和 value。集合的实现可以使用具体的数据结构来存储数据，每种数据结构的特点不同。注意 Tree、优先级队列等是随机插入，按指定顺序输入；而 Linked 是按插入顺序输出。<br>• 常用的几种具体集合和映射：ArrayList、LinkedList、HashSet、TreeSet、LinkedHashSet、LinkedBlockingDeque 等 (Collection 集合)；HashMap、LinkedHashMap、WeadHashMap 等 (Map 映射)。<br>• Java 集合接口可以定义不同的实现，不同实现使用不同的数据结构，各种数据结构有自己的特点，另外结合泛型、迭代器，因此可以定义各种不同的数据存储方式。接口从<code>Collection-&gt;List</code>等有不同等级，每层接口定义的方法不同，逐步完善。中间也提供了一些抽象父类完成了一些基本实现，如元素默认判等使用<code>equals()</code>方法，因此 Set 也要求我们自定义<code>equals()</code>方法。</li>
+<li>接口 List 可以添加重复元素，是有序的；Set 不能添加重复元素，是无序的。所以元素被访问的顺序取决于集合类型。</li>
+<li>迭代器：<br>• Java 的迭代器位于两个元素之间，调用<code>next()</code>时，迭代器越过下一个元素，并返回刚刚越过的元素。调用<code>remove()</code>时将删除上次调用<code>next()</code>越过的那个元素。调用<code>remove()</code>之前没有调用<code>next()</code>是不合法的 (不能连续两次调用 remove())。<br>• <code>add()</code>方法插入元素到光标之前。<code>add()</code>方法依赖于迭代器位置，<code>remove()</code>方法依赖于迭代器状态。迭代器可以并发读，要控制并发写。listIterator 的<code>set()</code>方法用一个新元素的值取代越过返回的那个元素，可返回局部迭代器。</li>
+<li>集 set 中要适当的定义集的<code>equals()</code>方法，如只要两个集包含数据相同的元素 (不要求顺序相同，不要求是同一个对象)，就认为是相等的。相等的两个集合要求要有相同的散列码 hashCode(注意是子元素这一层定义 equals()、hashCode() 等方法，集合这一层的 equals()里根据子元素再自定义判等)。</li>
+<li>List 是有序集合，访问可以通过迭代器顺序访问或通过下标随机访问，但是不同数据结构随机访问性能差别很大，如随机插入、删除使用 LinkedList(双向链表结构，数据保存在节点中，每个节点保存着前驱和后继的节点，便于插入删除；但是随机访问要挨个移动指针，因此不支持快速随机访问)；随机查询使用 ArrayList，可以通过索引来访问 (动态数组结构，支持二分查找随机访问，中间增删要移动和赋值数据，效率低，需要把插入位置后所有元素往后移动)。因此 ArrayList 使索引访问更快，LinkedList 最好使用迭代器遍历。数组动态查询之所以快是因为开辟连续的内存地址存储数据，找到一个位置就能知道其他位置，也因此是有界的，且动态插入效率低；而链表是将数据放在节点中，真正的数据内存地址不需连续，因此随机查询效率低，每次都要找出内存地址，但是随机插入高效，只需要改节点的指针即可，也满足了无界。</li>
+<li>LinkedList 列表的<code>get()</code>方法实际上做了微小的优化，如果索引大于<code>size()/2</code>的话就从列表尾端开始搜索元素。但是 for 循环中的<code>list.get(i)</code>是效率很低的，每次都要从头遍历，因此随机查询不建议使用 LinkedList。插入时<code>add()</code>方法默认插入到尾部，插入中间可以用<code>add(i)</code>或迭代器<code>listIterable.add()</code>插入 (依赖光标位置)，listIterable 迭代器也能返回局部迭代列表。</li>
+<li>Vector 类和 HashTable 类的方法都是同步的，可以线程安全的访问对象，但是因此效率比较低。不考虑线程安全的话建议使用 ArrayList 和 HashMap。</li>
+<li>散列表：提供快速查找的数据结构，为每一个对象计算一个整数，称为散列码，散列码是由对象的实例域产生的一个整数。Java 中散列表用链表数组实现，每个列表被称为桶。查找表中对象的位置，先计算散列码，与桶的总数取余，结果就是保存这个元素的桶的索引，因此只需要在这个桶中找数据即可。</li>
+<li>桶中已有一个元素的情况称为 “散列冲突” 或“哈希冲突”，这时默认策略是按列表继续往后放元素 (也有策略是寻找下一个桶)，桶满时(有个默认桶满值如 8) 会从列表变为平衡二叉树(树结构查询更快)。如果散列表太满(不论元素在哪个桶中，总的 size / 总桶数大于填充因子就算满了)，就需要再散列(以 2 的倍数扩桶)。创建一个桶更多的表将所有元素插入到这个新表中，丢弃原来的表。装填因子决定何时对散列表再散列，默认为 0.75。</li>
+<li>所谓 Set 是无序的，因为算出的桶索引是无序的，add 的元素不一定在哪个索引下；另外 Set 无重复元素因为<code>hashCode()</code>算出的桶索引基本不会一样，如果一样了，还会继续判<code>equals()</code>是否一致，一致则覆盖，否则往后链表里加。</li>
+<li><code>queals()</code>方法和<code>hashCode()</code>的定义必须兼容，如果<code>x.equals(y)</code>为 true，<code>x.hashCode()</code>也必须等于<code>y.hashCode()</code>。</li>
+<li>树集 TreeSet 是一个有序集合，按任意顺序插入，迭代器遍历时会顺序输出，排序使用红黑树实现。使用树集必须能够比较元素，因此元素必须实现 Comparator 接口或构造方法中传入一个 Comparator。将一个元素插入到树中比插入到散列集要稍微慢一点点，但是检查数组或链表中的重复元素，树稍微快一点，所以单个桶满会将链表变二叉树。</li>
+<li>队列接口可以在尾部添加元素，在头部删除元素，不可在中间插入，并且可以查找队列中元素的个数。队列接口的实现方式通常有循环数组 (有界) 和列表 (无界) 两种方式。</li>
+<li>优先级队列的元素可以按任意方式插入，却总是按排序的顺序进行检索。内部使用堆 (可自我调整的二叉树，每次插入完就已经是有序的了) 来存储数据，迭代并不是按照元素顺序访问，而删除却总是删除掉优先级最小的那个元素，也需要提供 Comparator。多用于任务调度中任务队列的实现。</li>
+<li>映射：不同于集合直接存放精确数据副本，而是用来存放键值对。通用分为 HashMap 和 TreeMap，散列映射对键进行散列，树映射用键的整体顺序来排序。<code>get()</code>时没有对应键的信息，则返回<code>null</code>；键可以为 null，值不能为 null；重复调用<code>put()</code>方法会覆盖掉上一次的值，<code>put()</code>方法返回上一次的旧值 (没有返回 null)。</li>
+<li>视图：集合框架认为映射本身不是一个集合，但它的视图是实现了 Collection 接口或某个子接口的对象。有三种：键集 (Set)、值集合 (Collection)、键 / 值对集 (Set)。KeySet 并不是 HashSet 或 TreeSet，只是实现了 Set 接口的某个类对象。既然是集合，就有迭代器，但是仅对原映射集可删除不能增加。</li>
+<li>WeakedHashMap 弱散列映射解决映射强引用问题，当元素只被散列条目引用时，会将其加入到弱引用队列，等待垃圾回收机制将其回收。LinkedHashMap/Set 可以记录插入顺序，但是使用访问顺序进行迭代 (同一个桶中元素被访问后会从当前节点删除加入到链表尾部)，且重写<code>removeEldestEntry()</code>方法可以实现类似 LRU 算法的 Map，不过这种迭代顺序的影响只有发生散列冲突时才能看出来。</li>
+<li>Collections 的静态方法<code>synchronizedMap()</code>方法可以将任意一个映射表转成线程安全的 Map。不管是集合还是映射，是有并发问题的，不可一个迭代器正在修改，另一个迭代器在读，会抛出异常。</li>
+<li>Collections 的<code>sort()</code>方法可以进行排序，<code>shuffle()</code>方法可以进行乱序，<code>binarySearch()</code>方法进行二分查找等，类似 Arrays 的一些方法。</li>
+<li>属性映射 Property 是一种特殊的映射结构，键值都是字符串，可以<code>load(InputStream is)</code>加载，也可<code>store(OutputStream out,String str)</code>写出。</li>
+<li>栈 Stack 后进先出，有<code>push()</code>、<code>pop()</code>、<code>peek()</code>等方法，注意<code>pop()</code>和<code>peek()</code>如果站内无元素是会抛异常。</li>
+<li>位集 BitSet 可高效存储位序列，元素包装在字节里，比 ArrayList 存 Boolean 效率高。</li>
+<li>几种数据结构比较：<br>• 数组：采用一段连续的存储单元来存储数据。对于指定下标的查找，时间复杂度为<code>O(1)</code>；通过给定值进行查找，需要遍历数组，逐一比对给定关键字和数组元素，时间复杂度为<code>O(n)</code>，当然，对于有序数组，则可采用二分查找，插值查找，斐波那契查找等方式，可将查找复杂度提高为<code>O(logn)</code>；对于一般的插入删除操作，涉及到数组元素的移动，其平均复杂度也为<code>O(n)</code>。<br>• 链表：对于链表的新增，删除等操作（在找到指定操作位置后），仅需处理结点间的引用即可，时间复杂度为<code>O(1)</code>，而查找操作需要遍历链表逐一进行比对，复杂度为<code>O(n)</code>。<br>• 二叉树：对一棵相对平衡的有序二叉树，对其进行插入，查找，删除等操作，平均复杂度均为<code>O(logn)</code>。<br>• 哈希表：相比上述几种数据结构，在哈希表中进行添加，删除，查找等操作，性能十分之高，不考虑哈希冲突的情况下，仅需一次定位即可完成，时间复杂度为<code>O(1)</code>。</li>
+<li>HashMap 的实现原理：<br>内部采用散列表进行存储，散列表数据结构为数组 + 链表，数组保证快速定位，链表保证哈希冲突 (策略有开放地址法、再散列函数法和链地址法)。JDK1.7 中默认容量 16，链表变树临界值 8，填充因子 0.75，<code>size</code>表示当前 Entry 总数 (不管是单桶还是多桶中)，<code>threshold</code>表示临界扩容桶值。在第一次<code>put()</code>中才给<code>table</code>赋值，<code>hash()</code>对 key 值取 hashCode 进行一系列异或位移操作保证均匀分布，<code>indexFor()</code>这里要求桶数每次都是 2 的幂，这样桶数 - 1 后二进制一定是全 1，不管是直接计算索引值还是再散列时对之前的所有元素重新计算 index 时，需要尽可能快，而 hashCode 不论多大与全 1 进行<code>&amp;</code>运算时，前面全部是非，裁掉了，后面得出的结果就是余数大小，小小算法有点叼 (位运算性能更高吧)。一般来说，对单桶，大于链表变树临界值则将链表变为树结构 (树的查询更快)，对多桶，总数大于<code>threshold</code>临界值则需扩容，但是桶总数 64 之前，该链表变树时优先扩容，桶数大于 64 之后再该变树变树该扩容扩容，可能是优先尽量避免哈希冲突吧。<br>重点：都很重要</li>
+</ol>
+</blockquote>
+<hr>
+<blockquote>
+<p>参考：<br><a href="https://www.jianshu.com/p/559d35944079" target="_blank" rel="noopener">https://www.jianshu.com/p/559d35944079</a><br><a href="https://ctolib.com/topics-35864.html" target="_blank" rel="noopener">https://ctolib.com/topics-35864.html</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+
+     
+    
+      <div>
+        
+    <div style="text-align:center;color: #ccc;font-size:14px;">
+        ------ 本文结束<i class="fa fa-paw"></i>感谢您的阅读 ------</div>
+
+      </div>
+    
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    CloudPai
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://cloudpai.site/2018/03/18/2018-03-18-4/" title="java核心技术 卷一（7~9章） 笔记总结">http://cloudpai.site/2018/03/18/2018-03-18-4/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java基础/" rel="tag"><i class="fa fa-tag"></i> java基础</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/17/2018-03-17-4/" rel="next" title="“大话架构”阿里架构师分享的Java程序员需要突破的技术要点">
+                <i class="fa fa-chevron-left"></i> “大话架构”阿里架构师分享的Java程序员需要突破的技术要点
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/18/2018-03-18-3/" rel="prev" title="java集合框架源码解读">
+                java集合框架源码解读 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+
+
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.jpg"
+                alt="CloudPai" />
+            
+              <p class="site-author-name" itemprop="name">CloudPai</p>
+              <p class="site-description motion-element" itemprop="description">加油(๑•̀ㅂ•́)و✧加油</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+
+<div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=240 src="//music.163.com/outchain/player?type=0&id=2113726971&auto=0&height=430"></iframe>
+</div>
+<!-- 459004290 -->
+
+
+
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">27</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CloudPai" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:liupai024@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.douban.com/people/57965969/doulists/all" target="_blank" title="豆瓣">
+                      
+                        <i class="fa fa-fw fa-book"></i>豆瓣</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/cloudPai/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-edit"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.dlut.edu.cn/" title="DUT" target="_blank">DUT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bupt.edu.cn/" title="BUPT" target="_blank">BUPT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://campus.alibaba.com/index.htm" title="Alibaba Group" target="_blank">Alibaba Group</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第七章：异常、断言和日志"><span class="nav-text">第七章：异常、断言和日志</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#7-1-处理错误"><span class="nav-text">7.1  处理错误</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-1-异常分类"><span class="nav-text">7.1.1  异常分类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-2-声明受检查异常"><span class="nav-text">7.1.2  声明受检查异常</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-3-使用-throws-new-Exception"><span class="nav-text">7.1.3    使用 throws new Exception();</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-4-创建异常类"><span class="nav-text">7.1.4  创建异常类</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-2-捕获异常"><span class="nav-text">7.2  捕获异常</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-1-捕获异常"><span class="nav-text">7.2.1  捕获异常</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-2-捕获多个异常"><span class="nav-text">7.2.2 捕获多个异常</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-3-再次抛出异常与异常链"><span class="nav-text">7.2.3 再次抛出异常与异常链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-4-finally-子句"><span class="nav-text">7.2.4  finally 子句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-5-带资源的-try-语句"><span class="nav-text">7.2.5 带资源的 try 语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-6-分析堆栈轨迹元素"><span class="nav-text">7.2.6 分析堆栈轨迹元素</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-3-使用异常机制的技巧"><span class="nav-text">7.3 使用异常机制的技巧</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-4-使用断言-JDK-自带的，基本不使用"><span class="nav-text">7.4 使用断言 (JDK 自带的，基本不使用)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-4-1-断言的概念"><span class="nav-text">7.4.1  断言的概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-4-2-启用和禁用断言"><span class="nav-text">7.4.2  启用和禁用断言</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-4-3-使用断言完成参数检查"><span class="nav-text">7.4.3  使用断言完成参数检查</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-4-4-为文档假设使用断言"><span class="nav-text">7.4.4  为文档假设使用断言</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-5-记录日志"><span class="nav-text">7.5 记录日志</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-5-1-基本日志"><span class="nav-text">7.5.1  基本日志</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-5-2-高级日志"><span class="nav-text">7.5.2 高级日志</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-5-3-修改日志管理器配置"><span class="nav-text">7.5.3  修改日志管理器配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-5-4-本地化"><span class="nav-text">7.5.4  本地化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-5-5-处理器"><span class="nav-text">7.5.5 处理器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-5-6-过滤器"><span class="nav-text">7.5.6 过滤器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-5-7-格式化器"><span class="nav-text">7.5.7  格式化器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-5-8-日志记录说明"><span class="nav-text">7.5.8  日志记录说明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第八章：泛型程序设计（了解）"><span class="nav-text">第八章：泛型程序设计（了解）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第九章：集合（重点掌握源码）"><span class="nav-text">第九章：集合（重点掌握源码）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-text">概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Collection-接口"><span class="nav-text">Collection 接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#迭代器"><span class="nav-text">迭代器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Collection-接口-1"><span class="nav-text">Collection 接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#List-接口"><span class="nav-text">List 接口</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#ArrayList"><span class="nav-text">ArrayList</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#LinkedList-类"><span class="nav-text">LinkedList 类</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Set-接口"><span class="nav-text">Set 接口</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Queue-接口"><span class="nav-text">Queue 接口</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Map-接口"><span class="nav-text">Map 接口</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#HashMap"><span class="nav-text">HashMap</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TreeMap"><span class="nav-text">TreeMap</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#视图（View）与包装器"><span class="nav-text">视图（View）与包装器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#轻量级包装器"><span class="nav-text">轻量级包装器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#子范围"><span class="nav-text">子范围</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不可修改的视图"><span class="nav-text">不可修改的视图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同步视图"><span class="nav-text">同步视图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#被检验视图"><span class="nav-text">被检验视图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#集合视图的本质"><span class="nav-text">集合视图的本质</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Collections-类"><span class="nav-text">Collections 类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结-1"><span class="nav-text">总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-text">参考资料</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结："><span class="nav-text">总结：</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CloudPai</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">187.9k</span>
+  
+</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv">  </span>
+</span>
+</div>
+
+
+
+
+
+
+
+  <div class="theme-info">&#12288;主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://cloudpai.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://cloudpai.site/2018/03/18/2018-03-18-4/';
+          this.page.identifier = '2018/03/18/2018-03-18-4/';
+          this.page.title = 'java核心技术 卷一（7~9章） 笔记总结';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cloudpai.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!-- <!-- <script src="https://cdn.bootcss.com/aplayer/1.6.0/APlayer.min.js"></script>
+
+<script src="https://api.i-meto.com/music/player.js"></script> --> -->
+  
+  <!--移动端判断，是否引入背景-->
+  <script>
+  var browser={  
+      versions:function(){   
+             var u = navigator.userAgent, app = navigator.appVersion;   
+             return {//移动终端浏览器版本信息
+                  trident: u.indexOf('Trident') > -1, //IE内核
+                  presto: u.indexOf('Presto') > -1, //opera内核
+                  webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                  gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                  mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                  ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                  android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                  iPhone: u.indexOf('iPhone') > -1 , //是否为iPhone或者QQHD浏览器
+                  iPad: u.indexOf('iPad') > -1, //是否iPad
+                  webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+              };  
+           }(),  
+           language:(navigator.browserLanguage || navigator.language).toLowerCase()  
+  }   
+    if(browser.versions.mobile || browser.versions.ios || browser.versions.android ||   
+      browser.versions.iPhone || browser.versions.iPad){        
+               
+    }else{
+    document.write("<script type=\'text/javascript\'  src=\'/js/src/particle.js\'><\/script>");
+    }
+  </script>
+
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/z16.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":-80,"vOffset":-50},"mobile":{"show":false,"scale":0.2},"react":{"opacityDefault":1,"opacityOnHover":0.2}});</script></body>
+</html>

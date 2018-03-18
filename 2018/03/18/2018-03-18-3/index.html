@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="待阅,架构,源码," />
+  <meta name="keywords" content="java基础,源码," />
 
 
 
@@ -81,23 +81,18 @@
 
 
 
-<meta name="description" content="一、源码分析源码分析是一种临界知识，掌握了这种临界知识，能不变应万变，源码分析对于很多人来说很枯燥，生涩难懂。 源码阅读，我觉得最核心有三点：技术基础 + 强烈的求知欲 + 耐心。 我认为是阅读源码的最核心驱动力。我见到绝大多数程序员，对学习的态度，基本上就是这几个层次 (很偏激哦)：  1、只关注项目本身，不懂就 baidu 一下。 2、除了做好项目，还会阅读和项目有关的技术书籍，看 wiki">
-<meta name="keywords" content="待阅,架构,源码">
+<meta name="description" content="111">
+<meta name="keywords" content="java基础,源码">
 <meta property="og:type" content="article">
-<meta property="og:title" content="“大话架构”阿里架构师分享的Java程序员需要突破的技术要点">
-<meta property="og:url" content="http://cloudpai.site/2018/03/17/2018-03-17-4/index.html">
+<meta property="og:title" content="java集合框架源码解读">
+<meta property="og:url" content="http://cloudpai.site/2018/03/18/2018-03-18-3/index.html">
 <meta property="og:site_name" content="CloudPai">
-<meta property="og:description" content="一、源码分析源码分析是一种临界知识，掌握了这种临界知识，能不变应万变，源码分析对于很多人来说很枯燥，生涩难懂。 源码阅读，我觉得最核心有三点：技术基础 + 强烈的求知欲 + 耐心。 我认为是阅读源码的最核心驱动力。我见到绝大多数程序员，对学习的态度，基本上就是这几个层次 (很偏激哦)：  1、只关注项目本身，不懂就 baidu 一下。 2、除了做好项目，还会阅读和项目有关的技术书籍，看 wiki">
+<meta property="og:description" content="111">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15212946022440.jpg">
-<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15212946171076.jpg">
-<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15212946242255.jpg">
-<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15212946323087.jpg">
-<meta property="og:updated_time" content="2018-03-18T14:48:06.754Z">
+<meta property="og:updated_time" content="2018-03-18T14:46:26.306Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="“大话架构”阿里架构师分享的Java程序员需要突破的技术要点">
-<meta name="twitter:description" content="一、源码分析源码分析是一种临界知识，掌握了这种临界知识，能不变应万变，源码分析对于很多人来说很枯燥，生涩难懂。 源码阅读，我觉得最核心有三点：技术基础 + 强烈的求知欲 + 耐心。 我认为是阅读源码的最核心驱动力。我见到绝大多数程序员，对学习的态度，基本上就是这几个层次 (很偏激哦)：  1、只关注项目本身，不懂就 baidu 一下。 2、除了做好项目，还会阅读和项目有关的技术书籍，看 wiki">
-<meta name="twitter:image" content="http://p4lmrb1gp.bkt.clouddn.com/15212946022440.jpg">
+<meta name="twitter:title" content="java集合框架源码解读">
+<meta name="twitter:description" content="111">
 
 
 
@@ -127,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://cloudpai.site/2018/03/17/2018-03-17-4/"/>
+  <link rel="canonical" href="http://cloudpai.site/2018/03/18/2018-03-18-3/"/>
 
 
 
 
 
-  <title>“大话架构”阿里架构师分享的Java程序员需要突破的技术要点 | CloudPai</title>
+  <title>java集合框架源码解读 | CloudPai</title>
   
 
 
@@ -294,7 +289,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/03/17/2018-03-17-4/">
+    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/03/18/2018-03-18-3/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CloudPai">
@@ -311,7 +306,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">“大话架构”阿里架构师分享的Java程序员需要突破的技术要点</h1>
+          <h1 class="post-title" itemprop="name headline">java集合框架源码解读</h1>
         
 
         <div class="post-meta">
@@ -323,8 +318,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-17T19:08:47+08:00">
-                2018-03-17
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-18T22:10:45+08:00">
+                2018-03-18
               </time>
             
 
@@ -339,7 +334,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-18T22:48:06+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-18T22:46:26+08:00">
                 2018-03-18
               </time>
             
@@ -354,9 +349,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/03/17/2018-03-17-4/#comments" itemprop="discussionUrl">
+                <a href="/2018/03/18/2018-03-18-3/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/03/17/2018-03-17-4/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/03/18/2018-03-18-3/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -378,7 +373,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,412
+                  1
                 </span>
               
 
@@ -394,7 +389,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5
+                  1
                 </span>
               
             </div>
@@ -415,47 +410,7 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="一、源码分析"><a href="#一、源码分析" class="headerlink" title="一、源码分析"></a>一、源码分析</h2><p>源码分析是一种临界知识，掌握了这种临界知识，能不变应万变，源码分析对于很多人来说很枯燥，生涩难懂。</p>
-<p>源码阅读，我觉得最核心有三点：技术基础 + 强烈的求知欲 + 耐心。</p>
-<p>我认为是阅读源码的最核心驱动力。我见到绝大多数程序员，对学习的态度，基本上就是这几个层次 (很偏激哦)：</p>
-<ul>
-<li>1、只关注项目本身，不懂就 baidu 一下。</li>
-<li>2、除了做好项目，还会阅读和项目有关的技术书籍，看 wikipedia。</li>
-<li>3、除了阅读和项目相关的书外，还会阅读 IT 行业的书，比如学 Java 时，还会去了解函数语言，如 LISP。</li>
-<li>4、找一些开源项目看看，大量试用第三方框架，还会写写 demo。</li>
-<li>5、阅读基础框架、J2EE 规范、Debug 服务器内核。</li>
-</ul>
-<p>大多数程序都是第 1 种，到第 5 种不光需要浓厚的兴趣，还需要勇气：我能读懂吗？其实，你能够读懂的</p>
-<p>耐心，真的很重要。因为你极少看到阅读源码的指导性文章或书籍，也没有人要求或建议你读。你读的过程中经常会卡住，而一卡主可能就陷进了迷宫。这时，你需要做的，可能是暂时中断一下，再从外围看看它：如 API 结构、框架的设计图。</p>
-<p><strong>下图是我总结出目前最应该学习的源码知识点：</strong></p>
-<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15212946022440.jpg" alt=""></p>
-<h2 id="二、分布式架构"><a href="#二、分布式架构" class="headerlink" title="二、分布式架构"></a>二、分布式架构</h2><p>分布式系统是一个古老而宽泛的话题，而近几年因为 “大数据” 概念的兴起，又焕发出了新的青春与活力。除此之外，分布式系统也是一门理论模型与工程技法并重的学科内容。相比于机器学习这样的研究方向，学习分布式系统的同学往往会感觉：“入门容易，深入难”。的确，学习分布式系统几乎不需要太多数学知识。</p>
-<p>分布式系统是一个复杂且宽泛的研究领域，学习一两门在线课程，看一两本书可能都是不能完全覆盖其所有内容的。</p>
-<p>总的来说，分布式系统要做的任务就是把多台机器有机的组合、连接起来，让其协同完成一件任务，可以是计算任务，也可以是存储任务。如果一定要给近些年的分布式系统研究做一个分类的话，我个人认为大概可以包括三大部分：</p>
-<ul>
-<li>分布式存储系统</li>
-<li>分布式计算系统</li>
-<li>分布式管理系统</li>
-</ul>
-<p><strong>下图是我总结近几年目前分布式最主流的技术：</strong></p>
-<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15212946171076.jpg" alt=""></p>
-<h2 id="三、微服务"><a href="#三、微服务" class="headerlink" title="三、微服务"></a>三、微服务</h2><p>当前微服务很热，大家都号称在使用微服务架构，但究竟什么是微服务架构？微服务架构是不是发展趋势？对于这些问题，我们都缺乏清楚的认识。</p>
-<p>为解决单体架构下的各种问题，微服务架构应运而生。与其构建一个臃肿庞大、难以驯服的怪兽，还不如及早将服务拆分。微服务的核心思想便是服务拆分与解耦，降低复杂性。微服务强调将功能合理拆解，尽可能保证每个服务的功能单一，按照单一责任原则（Single Responsibility Principle）明确角色。 将各个服务做轻，从而做到灵活、可复用，亦可根据各个服务自身资源需求，单独布署，单独作横向扩展。</p>
-<p>下图是我总结出微服务需要学习的知识点：</p>
-<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15212946242255.jpg" alt=""></p>
-<h2 id="四、性能优化"><a href="#四、性能优化" class="headerlink" title="四、性能优化"></a>四、性能优化</h2><p>不管是应付前端面试还是改进产品体验，性能优化都是躲不开的话题。</p>
-<p>优化的目的是让用户有 “快” 的感受，那如何让用户感受到快呢？</p>
-<p>加载速度真的很快，用户打开输入网址按下回车立即看到了页面<br>加载速度并没有变快，但用户感觉你的网站很快<br>性能优化取决于多个因素，包括垃圾收集、虚拟机和底层操作系统（OS）设置。有多个工具可供开发人员进行分析和优化时使用，你可以通过阅读 Java Tools for Source Code Optimization and Analysis 来学习和使用它们。</p>
-<p>必须要明白的是，没有两个应用程序可以使用相同的优化方式，也没有完美的优化 java 应用程序的参考路径。使用最佳实践并且坚持采用适当的方式处理性能优化。想要达到真正最高的性能优化，你作为一个 Java 开发人员，需要对 Java 虚拟机（JVM）和底层操作系统有正确的理解。</p>
-<p>以上五大知识体系是我从业多年总结出来的经验，都是当前最主流的技术。想学习这些技术的朋友可以加群：478030634。群里会分享这些技术知识点供大家学习免费下载</p>
-<p><strong>下图是我总结性能优化应该学习理解的几大知识体系：</strong></p>
-<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15212946323087.jpg" alt=""></p>
-<h2 id="五、Java-工程化"><a href="#五、Java-工程化" class="headerlink" title="五、Java 工程化"></a>五、Java 工程化</h2><p>工欲善其事，必先利其器，不管是小白，还是资深开发，都需要先选择好的工具。提升开发效率何团队协作效率。让自己有更多时间来思考。</p>
-<p><strong>“大话架构” 阿里架构师分享的 Java 程序员需要突破的技术要点</strong></p>
-<hr>
-<blockquote>
-<p>原文：<br><a href="https://segmentfault.com/a/1190000013561054" target="_blank" rel="noopener">https://segmentfault.com/a/1190000013561054</a></p>
-</blockquote>
+        <script src="/assets/js/APlayer.min.js"> </script><p>111</p>
 
       
     </div>
@@ -488,7 +443,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://cloudpai.site/2018/03/17/2018-03-17-4/" title="“大话架构”阿里架构师分享的Java程序员需要突破的技术要点">http://cloudpai.site/2018/03/17/2018-03-17-4/</a>
+    <a href="http://cloudpai.site/2018/03/18/2018-03-18-3/" title="java集合框架源码解读">http://cloudpai.site/2018/03/18/2018-03-18-3/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -506,9 +461,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/待阅/" rel="tag"><i class="fa fa-tag"></i> 待阅</a>
-          
-            <a href="/tags/架构/" rel="tag"><i class="fa fa-tag"></i> 架构</a>
+            <a href="/tags/java基础/" rel="tag"><i class="fa fa-tag"></i> java基础</a>
           
             <a href="/tags/源码/" rel="tag"><i class="fa fa-tag"></i> 源码</a>
           
@@ -523,8 +476,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/17/2018-03-17-3/" rel="next" title="面试中并发类问题的准备和学习">
-                <i class="fa fa-chevron-left"></i> 面试中并发类问题的准备和学习
+              <a href="/2018/03/18/2018-03-18-4/" rel="next" title="java核心技术 卷一（7~9章） 笔记总结">
+                <i class="fa fa-chevron-left"></i> java核心技术 卷一（7~9章） 笔记总结
               </a>
             
           </div>
@@ -533,8 +486,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/03/18/2018-03-18-4/" rel="prev" title="java核心技术 卷一（7~9章） 笔记总结">
-                java核心技术 卷一（7~9章） 笔记总结 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/03/18/2018-03-18-1/" rel="prev" title="java基础知识总结">
+                java基础知识总结 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -602,17 +555,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -733,22 +677,6 @@
         </div>
       </section>
 
-      
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、源码分析"><span class="nav-text">一、源码分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、分布式架构"><span class="nav-text">二、分布式架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、微服务"><span class="nav-text">三、微服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、性能优化"><span class="nav-text">四、性能优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、Java-工程化"><span class="nav-text">五、Java 工程化</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
       
 
       
@@ -929,9 +857,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://cloudpai.site/2018/03/17/2018-03-17-4/';
-          this.page.identifier = '2018/03/17/2018-03-17-4/';
-          this.page.title = '“大话架构”阿里架构师分享的Java程序员需要突破的技术要点';
+          this.page.url = 'http://cloudpai.site/2018/03/18/2018-03-18-3/';
+          this.page.identifier = '2018/03/18/2018-03-18-3/';
+          this.page.title = 'java集合框架源码解读';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://cloudpai.disqus.com/embed.js';
