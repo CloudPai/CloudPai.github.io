@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="CloudPai">
 <meta property="og:description" content="第六章：接口、lambda 表达式与内部类6.1 接口6.1.1 接口概念在 Java 中，接口不是类，而是对类的一组需求描述，这些类要遵从接口描述的统一格式进行定义。例如：Arrays 类中的 sort 方法承诺可以对对象数组进行排序，但要求满足下列前提：对象所属的类必须实现了 Comparable 接口。 12345//这是 Comparable 的代码public interface Co">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-18T17:33:12.481Z">
+<meta property="og:updated_time" content="2018-03-18T17:34:56.216Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java核心技术 卷一（第6章） 笔记总结">
 <meta name="twitter:description" content="第六章：接口、lambda 表达式与内部类6.1 接口6.1.1 接口概念在 Java 中，接口不是类，而是对类的一组需求描述，这些类要遵从接口描述的统一格式进行定义。例如：Arrays 类中的 sort 方法承诺可以对对象数组进行排序，但要求满足下列前提：对象所属的类必须实现了 Comparable 接口。 12345//这是 Comparable 的代码public interface Co">
@@ -334,7 +334,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-19T01:33:12+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-19T01:34:56+08:00">
                 2018-03-19
               </time>
             
@@ -373,7 +373,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  6,805
+                  6,797
                 </span>
               
 
@@ -561,7 +561,13 @@
 <ol>
 <li>方法的引用：<code>&quot;::&quot;</code>操作符分割对象或类名与方法名，如<code>Class::Method/object::Method</code>。构造器引用如<code>Class::new</code>。</li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">9.  内部类：</span><br><span class="line">    • 定义：表示一种类之间的嵌套关系，而不是对象。解决命名控制和访问控制问题。内有内部类可以是私有的，外部类必须是包可见性或共有的。</span><br><span class="line">    • 构造方式：`Outer.inner in = new Outer.inner()`或`Outer.inner = outer.new Inner()`。</span><br><span class="line">    • 特点：可以访问自身数据域，也可访问外围数据域；内部类中所有静态域必须是 final 类型的；内部类初始化时都会包含一个外部类的隐式引用，以便访问外部类的域和方法，因此说内部类会持有外部类的引用。</span><br><span class="line">    • 由于内部类会持有外部类的引用，因此在 Activity 中一般定义 Handler 的时候，如果进行耗时操作，handler 中持有外部 Activity，且 Handler 不会被销毁，这就可能会引起内存泄露 (Act 该销毁却没被销毁)。</span><br><span class="line">    • 特殊：局部内部类是定义在方法中的，不能有任何修饰符，对外部世界完全隐藏，访问的外部类实例域必须是 final 的 (匿名内部类也是)。</span><br><span class="line">    • 匿名内部类多用于传递方法参数中的接口，无构造方法，需要在后面加 `&#123;&#125; `内实现内部需要实现的方法。ArrayList 的双括号初始化 `&#123;&#123;&#125;&#125; `可构造出有初始化数据的 List。</span><br><span class="line">    • 静态内部类不需要引用外围类对象，将内部类声明为 static，可以取消产生的引用。如果内部类不需要访问外围类的实例域，最好声明为静态内部类。静态内部类可以有静态域和方法。</span><br><span class="line">10.  动态代理 (proxy)：</span><br></pre></td></tr></table></figure>
+<ol>
+<li><p>内部类：<br>• 定义：表示一种类之间的嵌套关系，而不是对象。解决命名控制和访问控制问题。内有内部类可以是私有的，外部类必须是包可见性或共有的。<br>• 构造方式：<code>Outer.inner in = new Outer.inner()</code>或<code>Outer.inner = outer.new Inner()</code>。<br>• 特点：可以访问自身数据域，也可访问外围数据域；内部类中所有静态域必须是 final 类型的；内部类初始化时都会包含一个外部类的隐式引用，以便访问外部类的域和方法，因此说内部类会持有外部类的引用。<br>• 由于内部类会持有外部类的引用，因此在 Activity 中一般定义 Handler 的时候，如果进行耗时操作，handler 中持有外部 Activity，且 Handler 不会被销毁，这就可能会引起内存泄露 (Act 该销毁却没被销毁)。<br>• 特殊：局部内部类是定义在方法中的，不能有任何修饰符，对外部世界完全隐藏，访问的外部类实例域必须是 final 的 (匿名内部类也是)。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">• 匿名内部类多用于传递方法参数中的接口，无构造方法，需要在后面加 `&#123;&#125; `内实现内部需要实现的方法。ArrayList 的双括号初始化 `&#123;&#123;&#125;&#125; `可构造出有初始化数据的 List。</span><br></pre></td></tr></table></figure>
+<p>• 静态内部类不需要引用外围类对象，将内部类声明为 static，可以取消产生的引用。如果内部类不需要访问外围类的实例域，最好声明为静态内部类。静态内部类可以有静态域和方法。</p>
+</li>
+<li>动态代理 (proxy)：</li>
+</ol>
 
       
     </div>
