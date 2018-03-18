@@ -89,7 +89,7 @@
 <meta property="og:site_name" content="CloudPai">
 <meta property="og:description" content="第六章：接口、lambda 表达式与内部类6.1 接口6.1.1 接口概念在 Java 中，接口不是类，而是对类的一组需求描述，这些类要遵从接口描述的统一格式进行定义。例如：Arrays 类中的 sort 方法承诺可以对对象数组进行排序，但要求满足下列前提：对象所属的类必须实现了 Comparable 接口。 12345//这是 Comparable 的代码public interface Co">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-18T17:30:39.989Z">
+<meta property="og:updated_time" content="2018-03-18T17:33:12.481Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java核心技术 卷一（第6章） 笔记总结">
 <meta name="twitter:description" content="第六章：接口、lambda 表达式与内部类6.1 接口6.1.1 接口概念在 Java 中，接口不是类，而是对类的一组需求描述，这些类要遵从接口描述的统一格式进行定义。例如：Arrays 类中的 sort 方法承诺可以对对象数组进行排序，但要求满足下列前提：对象所属的类必须实现了 Comparable 接口。 12345//这是 Comparable 的代码public interface Co">
@@ -334,7 +334,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-19T01:30:39+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-19T01:33:12+08:00">
                 2018-03-19
               </time>
             
@@ -373,7 +373,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  6,806
+                  6,805
                 </span>
               
 
@@ -556,10 +556,12 @@
 <li>方法冲突时两个原则：<br>①超类和接口的默认方法冲突时，始终超类优先；<br>②两个接口的默认方法冲突时，只要有其中任一个方法被默认实现了，子类就要选择性复写该方法 (Person.super.getName())，会影响到每个接口。</li>
 <li>对象的拷贝：<br>引用赋值指创建一个栈内存引用，指向一个堆内存实际对象，然后另一个引用也指向这个堆内存，那么修改堆内存的对象对两个引用都是有影响的；拷贝是指完全克隆出一个独立的堆内存对象，这样修改旧不影响两个引用了。<br>• 浅拷贝：对象的基本数据类型可以拷贝，但是子引用类型没有被拷贝，还是同一个引用，两个引用还是会共享一些信息，修改时会影响两个引用。<br>• 深拷贝：对象的基本数据类型和引用数据类型都被拷贝，改变 clone 对象的值不会影响原对象。</li>
 <li>对象的克隆：<br>• Object 的<code>clone()</code>方法是 protected 的，默认是浅拷贝，返回 Object。如果对象想实现克隆，需要实现 Cloneable 接口和重写 <code>clone()</code> 方法，指定为 public，且手动实现深拷贝，创建所有子引用类型并返回。<br>• Cloneable 只是一个标记接口，没有任何方法，实现它只是为了标记一下该类具有克隆能力，<code>instanceof</code>可以通过。实现深拷贝的话该类和类中的引用类型都要实现 Cloneable 接口。<br>• 即使<code>clone()</code>的默认浅拷贝可以实现需求，也得重写改为 public 才能调用，一般可以先<code>super.clone()</code>拿到原父类返回的浅拷贝引用，再重定义对象里每个引用变量的值 (实现深拷贝)，并返回这个克隆对象。ps：使用 Gson 序列化反序列化也能实现克隆功能。</li>
-<li><p>lambda 表达式：<br>• lambda 表达式是一个可传递的代码块，可以在以后反复执行一次或多次，用于代替只有一个方法的接口。表现形式：<code>参数，箭头(-&gt;)以及一个表达式</code>。<code>(没有参数要提供空 ()，只有一个参数可不带 ()，表达式多行可用 {}，不用指定返回类型)</code><br>• lambda 表达式中不能只在一个分支返回值而在其他分支不返回。lambda 表达式中引用的外部自由变量的值必须是不可改变的。lambda 表达式中 this 关键字指的是外围原对象 this。<br>• lambda 表达式表现的就是一个函数式接口，但 Java 是不能直接传递方法的引用的，其实还是封装了一层，内部应该也是传递对象的引用。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">8.  方法的引用：`&quot;::&quot;`操作符分割对象或类名与方法名，如`Class::Method/object::Method`。构造器引用如`Class::new`。</span><br><span class="line">9.  内部类：</span><br><span class="line">    • 定义：表示一种类之间的嵌套关系，而不是对象。解决命名控制和访问控制问题。内有内部类可以是私有的，外部类必须是包可见性或共有的。</span><br><span class="line">    • 构造方式：`Outer.inner in = new Outer.inner()`或`Outer.inner = outer.new Inner()`。</span><br><span class="line">    • 特点：可以访问自身数据域，也可访问外围数据域；内部类中所有静态域必须是 final 类型的；内部类初始化时都会包含一个外部类的隐式引用，以便访问外部类的域和方法，因此说内部类会持有外部类的引用。</span><br><span class="line">    • 由于内部类会持有外部类的引用，因此在 Activity 中一般定义 Handler 的时候，如果进行耗时操作，handler 中持有外部 Activity，且 Handler 不会被销毁，这就可能会引起内存泄露 (Act 该销毁却没被销毁)。</span><br><span class="line">    • 特殊：局部内部类是定义在方法中的，不能有任何修饰符，对外部世界完全隐藏，访问的外部类实例域必须是 final 的 (匿名内部类也是)。</span><br><span class="line">    • 匿名内部类多用于传递方法参数中的接口，无构造方法，需要在后面加 `&#123;&#125; `内实现内部需要实现的方法。ArrayList 的双括号初始化 `&#123;&#123;&#125;&#125; `可构造出有初始化数据的 List。</span><br><span class="line">    • 静态内部类不需要引用外围类对象，将内部类声明为 static，可以取消产生的引用。如果内部类不需要访问外围类的实例域，最好声明为静态内部类。静态内部类可以有静态域和方法。</span><br><span class="line">10.  动态代理 (proxy)：</span><br></pre></td></tr></table></figure>
-</li>
+<li>lambda 表达式：<br>• lambda 表达式是一个可传递的代码块，可以在以后反复执行一次或多次，用于代替只有一个方法的接口。表现形式：<code>参数，箭头(-&gt;)以及一个表达式</code>。<code>(没有参数要提供空 ()，只有一个参数可不带 ()，表达式多行可用 {}，不用指定返回类型)</code><br>• lambda 表达式中不能只在一个分支返回值而在其他分支不返回。lambda 表达式中引用的外部自由变量的值必须是不可改变的。lambda 表达式中 this 关键字指的是外围原对象 this。<br>• lambda 表达式表现的就是一个函数式接口，但 Java 是不能直接传递方法的引用的，其实还是封装了一层，内部应该也是传递对象的引用。</li>
 </ol>
+<ol>
+<li>方法的引用：<code>&quot;::&quot;</code>操作符分割对象或类名与方法名，如<code>Class::Method/object::Method</code>。构造器引用如<code>Class::new</code>。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">9.  内部类：</span><br><span class="line">    • 定义：表示一种类之间的嵌套关系，而不是对象。解决命名控制和访问控制问题。内有内部类可以是私有的，外部类必须是包可见性或共有的。</span><br><span class="line">    • 构造方式：`Outer.inner in = new Outer.inner()`或`Outer.inner = outer.new Inner()`。</span><br><span class="line">    • 特点：可以访问自身数据域，也可访问外围数据域；内部类中所有静态域必须是 final 类型的；内部类初始化时都会包含一个外部类的隐式引用，以便访问外部类的域和方法，因此说内部类会持有外部类的引用。</span><br><span class="line">    • 由于内部类会持有外部类的引用，因此在 Activity 中一般定义 Handler 的时候，如果进行耗时操作，handler 中持有外部 Activity，且 Handler 不会被销毁，这就可能会引起内存泄露 (Act 该销毁却没被销毁)。</span><br><span class="line">    • 特殊：局部内部类是定义在方法中的，不能有任何修饰符，对外部世界完全隐藏，访问的外部类实例域必须是 final 的 (匿名内部类也是)。</span><br><span class="line">    • 匿名内部类多用于传递方法参数中的接口，无构造方法，需要在后面加 `&#123;&#125; `内实现内部需要实现的方法。ArrayList 的双括号初始化 `&#123;&#123;&#125;&#125; `可构造出有初始化数据的 List。</span><br><span class="line">    • 静态内部类不需要引用外围类对象，将内部类声明为 static，可以取消产生的引用。如果内部类不需要访问外围类的实例域，最好声明为静态内部类。静态内部类可以有静态域和方法。</span><br><span class="line">10.  动态代理 (proxy)：</span><br></pre></td></tr></table></figure>
 
       
     </div>
