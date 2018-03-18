@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cloudpai.site/"/>
-  <updated>2018-03-18T14:48:33.597Z</updated>
+  <updated>2018-03-18T17:50:53.212Z</updated>
   <id>http://cloudpai.site/</id>
   
   <author>
@@ -15,6 +15,48 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>blog无法输入双括号的解决方法</title>
+    <link href="http://cloudpai.site/2018/03/19/2018-03-19-4/"/>
+    <id>http://cloudpai.site/2018/03/19/2018-03-19-4/</id>
+    <published>2018-03-18T17:49:24.000Z</published>
+    <updated>2018-03-18T17:50:53.212Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/s
+      
+    
+    </summary>
+    
+    
+      <category term="blog" scheme="http://cloudpai.site/tags/blog/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>java核心技术 卷一（第9章） 笔记总结</title>
+    <link href="http://cloudpai.site/2018/03/18/2018-03-19-5/"/>
+    <id>http://cloudpai.site/2018/03/18/2018-03-19-5/</id>
+    <published>2018-03-18T14:12:58.000Z</published>
+    <updated>2018-03-18T17:53:09.875Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;第九章：集合（重点掌握源码）&quot;&gt;&lt;a href=&quot;#第九章：集合（重点掌握源码）&quot; class=&quot;headerlink&quot; title=&quot;第九章：集合（重点掌握源码）
+      
+    
+    </summary>
+    
+    
+      <category term="java基础" scheme="http://cloudpai.site/tags/java%E5%9F%BA%E7%A1%80/"/>
+    
+  </entry>
   
   <entry>
     <title>java基础知识总结</title>
@@ -63,11 +105,11 @@
   </entry>
   
   <entry>
-    <title>java核心技术 卷一（7~章） 笔记总结</title>
+    <title>java核心技术 卷一（7~8章） 笔记总结</title>
     <link href="http://cloudpai.site/2018/03/18/2018-03-18-4/"/>
     <id>http://cloudpai.site/2018/03/18/2018-03-18-4/</id>
     <published>2018-03-18T12:12:58.000Z</published>
-    <updated>2018-03-18T17:15:09.961Z</updated>
+    <updated>2018-03-18T17:56:03.716Z</updated>
     
     <summary type="html">
     
@@ -255,11 +297,11 @@
     </summary>
     
     
+      <category term="面试" scheme="http://cloudpai.site/tags/%E9%9D%A2%E8%AF%95/"/>
+    
       <category term="java并发" scheme="http://cloudpai.site/tags/java%E5%B9%B6%E5%8F%91/"/>
     
       <category term="待阅" scheme="http://cloudpai.site/tags/%E5%BE%85%E9%98%85/"/>
-    
-      <category term="面试" scheme="http://cloudpai.site/tags/%E9%9D%A2%E8%AF%95/"/>
     
   </entry>
   
@@ -283,9 +325,9 @@
     </summary>
     
     
-      <category term="待阅" scheme="http://cloudpai.site/tags/%E5%BE%85%E9%98%85/"/>
-    
       <category term="面试" scheme="http://cloudpai.site/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+      <category term="待阅" scheme="http://cloudpai.site/tags/%E5%BE%85%E9%98%85/"/>
     
       <category term="Java" scheme="http://cloudpai.site/tags/Java/"/>
     
@@ -414,54 +456,6 @@
     
     
       <category term="Spring" scheme="http://cloudpai.site/tags/Spring/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>《重构》阅读笔记 - 代码的坏味道</title>
-    <link href="http://cloudpai.site/2018/03/15/2018-03-15-1/"/>
-    <id>http://cloudpai.site/2018/03/15/2018-03-15-1/</id>
-    <published>2018-03-14T23:48:47.000Z</published>
-    <updated>2018-03-15T00:48:55.479Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;重复代码（Duplicated Code）&lt;br&gt;如果你在一个以上的地方看到相同的程序结构，那么可以肯定：设法将它们合而为一，程序会变得更美好！你需要决定这
-      
-    
-    </summary>
-    
-    
-      <category term="重构" scheme="http://cloudpai.site/tags/%E9%87%8D%E6%9E%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>java并发编程</title>
-    <link href="http://cloudpai.site/2018/03/14/2018-03-14-2/"/>
-    <id>http://cloudpai.site/2018/03/14/2018-03-14-2/</id>
-    <published>2018-03-14T14:40:52.000Z</published>
-    <updated>2018-03-18T13:45:50.740Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;blockquote&gt;
-&lt;p&gt;以下内容来自《深入了解java虚拟机》的后几章&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;h1 id=&quot;物理机如何处理并发问题？&quot;&gt;&lt;a href=&quot;#
-      
-    
-    </summary>
-    
-    
-      <category term="java并发" scheme="http://cloudpai.site/tags/java%E5%B9%B6%E5%8F%91/"/>
-    
-      <category term="待阅" scheme="http://cloudpai.site/tags/%E5%BE%85%E9%98%85/"/>
     
   </entry>
   
