@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[博客加密文章测试]]></title>
+    <url>%2F2018%2F03%2F19%2F2018-03-19-6%2F</url>
+    <content type="text"><![CDATA[enter password to read. Decrypt U2FsdGVkX19Fj/5qYVCrbxOZbvisVaOORWzReeib0v4AjUyY4awNdXm8kcc94T9nP0sK4xYRcF+CaA8v2CTOcs5D2s1hlEqnMIMcpyjtrfouv+g28gMw4uS3q3jSGvv1UgDRrBedrOnNYiiP+oZ2OKMlcxAhXycGBOLYiNdwtbzYeAfJ5UahkksM+sTIoF/rmOTx4rWiZfTbV4wXWJRl8WdgiIQ8JQZjnS0Uq0CCp1AMUDiGx5KeXQr7WrD/ccJ0]]></content>
+      <tags>
+        <tag>加密</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[blog无法输入双括号的解决方法]]></title>
     <url>%2F2018%2F03%2F19%2F2018-03-19-4%2F</url>
     <content type="text"><![CDATA[1&#123;% raw %&#125;&#123;&#123;message&#125;&#125;&#123;% endraw %&#125;]]></content>
@@ -96,8 +104,8 @@
     <content type="text"><![CDATA[一、源码分析源码分析是一种临界知识，掌握了这种临界知识，能不变应万变，源码分析对于很多人来说很枯燥，生涩难懂。 源码阅读，我觉得最核心有三点：技术基础 + 强烈的求知欲 + 耐心。 我认为是阅读源码的最核心驱动力。我见到绝大多数程序员，对学习的态度，基本上就是这几个层次 (很偏激哦)： 1、只关注项目本身，不懂就 baidu 一下。 2、除了做好项目，还会阅读和项目有关的技术书籍，看 wikipedia。 3、除了阅读和项目相关的书外，还会阅读 IT 行业的书，比如学 Java 时，还会去了解函数语言，如 LISP。 4、找一些开源项目看看，大量试用第三方框架，还会写写 demo。 5、阅读基础框架、J2EE 规范、Debug 服务器内核。 大多数程序都是第 1 种，到第 5 种不光需要浓厚的兴趣，还需要勇气：我能读懂吗？其实，你能够读懂的 耐心，真的很重要。因为你极少看到阅读源码的指导性文章或书籍，也没有人要求或建议你读。你读的过程中经常会卡住，而一卡主可能就陷进了迷宫。这时，你需要做的，可能是暂时中断一下，再从外围看看它：如 API 结构、框架的设计图。 下图是我总结出目前最应该学习的源码知识点： 二、分布式架构分布式系统是一个古老而宽泛的话题，而近几年因为 “大数据” 概念的兴起，又焕发出了新的青春与活力。除此之外，分布式系统也是一门理论模型与工程技法并重的学科内容。相比于机器学习这样的研究方向，学习分布式系统的同学往往会感觉：“入门容易，深入难”。的确，学习分布式系统几乎不需要太多数学知识。 分布式系统是一个复杂且宽泛的研究领域，学习一两门在线课程，看一两本书可能都是不能完全覆盖其所有内容的。 总的来说，分布式系统要做的任务就是把多台机器有机的组合、连接起来，让其协同完成一件任务，可以是计算任务，也可以是存储任务。如果一定要给近些年的分布式系统研究做一个分类的话，我个人认为大概可以包括三大部分： 分布式存储系统 分布式计算系统 分布式管理系统 下图是我总结近几年目前分布式最主流的技术： 三、微服务当前微服务很热，大家都号称在使用微服务架构，但究竟什么是微服务架构？微服务架构是不是发展趋势？对于这些问题，我们都缺乏清楚的认识。 为解决单体架构下的各种问题，微服务架构应运而生。与其构建一个臃肿庞大、难以驯服的怪兽，还不如及早将服务拆分。微服务的核心思想便是服务拆分与解耦，降低复杂性。微服务强调将功能合理拆解，尽可能保证每个服务的功能单一，按照单一责任原则（Single Responsibility Principle）明确角色。 将各个服务做轻，从而做到灵活、可复用，亦可根据各个服务自身资源需求，单独布署，单独作横向扩展。 下图是我总结出微服务需要学习的知识点： 四、性能优化不管是应付前端面试还是改进产品体验，性能优化都是躲不开的话题。 优化的目的是让用户有 “快” 的感受，那如何让用户感受到快呢？ 加载速度真的很快，用户打开输入网址按下回车立即看到了页面加载速度并没有变快，但用户感觉你的网站很快性能优化取决于多个因素，包括垃圾收集、虚拟机和底层操作系统（OS）设置。有多个工具可供开发人员进行分析和优化时使用，你可以通过阅读 Java Tools for Source Code Optimization and Analysis 来学习和使用它们。 必须要明白的是，没有两个应用程序可以使用相同的优化方式，也没有完美的优化 java 应用程序的参考路径。使用最佳实践并且坚持采用适当的方式处理性能优化。想要达到真正最高的性能优化，你作为一个 Java 开发人员，需要对 Java 虚拟机（JVM）和底层操作系统有正确的理解。 以上五大知识体系是我从业多年总结出来的经验，都是当前最主流的技术。想学习这些技术的朋友可以加群：478030634。群里会分享这些技术知识点供大家学习免费下载 下图是我总结性能优化应该学习理解的几大知识体系： 五、Java 工程化工欲善其事，必先利其器，不管是小白，还是资深开发，都需要先选择好的工具。提升开发效率何团队协作效率。让自己有更多时间来思考。 “大话架构” 阿里架构师分享的 Java 程序员需要突破的技术要点 原文：https://segmentfault.com/a/1190000013561054]]></content>
       <tags>
         <tag>待阅</tag>
-        <tag>源码</tag>
         <tag>架构</tag>
+        <tag>源码</tag>
       </tags>
   </entry>
   <entry>
@@ -392,19 +400,19 @@
       </tags>
   </entry>
   <entry>
-    <title><![CDATA[mac使用]]></title>
-    <url>%2F2018%2F02%2F28%2F2018-02-28%2F</url>
-    <content type="text"><![CDATA[Mac系统如何显示隐藏文件？以”.”开头的隐藏文件如何在MAC系统下显示？ 答：Command+Shift+. 可以显示隐藏文件、文件夹，再按一次，恢复隐藏；finder下使用Command+Shift+G 可以前往任何文件夹，包括隐藏文件夹。 显示 隐藏文件 1234567#显示全部文件defaults write com.apple.finder AppleShowAllFiles -bool trueosascript -e 'tell application "Finder" to quit'#不显示全部文件defaults write com.apple.finder AppleShowAllFiles -bool falseosascript -e 'tell application "Finder" to quit']]></content>
-      <tags>
-        <tag>mac</tag>
-      </tags>
-  </entry>
-  <entry>
     <title><![CDATA[git操作]]></title>
     <url>%2F2018%2F02%2F28%2F2018-02-28-1%2F</url>
     <content type="text"><![CDATA[创建的仓库：默认master克隆的仓库：默认origin（源） git add 开始跟踪一个新文件git status显示git状态 git commit提交更新 git diff：比较工作区和缓存区的不同。git diff --cached：比较缓存区和仓库的不同。 git pull 命令自动抓取数据下来，然后将远端分支自动合并到本地仓库中当前分支 git push [remote-name] [branch-name] 如果要把本地的 master 分支推送到 origin 服务器上（再次说明下，克隆操作会自动使用默认的 master 和 origin 名字），可以运行下面的命令：git push origin master git log显示从最近到最远的提交日志。包含每个提交的SHA1校验和、作者的名字和邮箱、提交时间以及提交说明等。gitk使用图形化工具查阅提交历史 git commit --amend修改最后一次提交 git reset HEAD &lt;file&gt;...取消已经暂存的文件 Git 分支git branch创建一个新的分支 git commit -a -m &#39;made other changes&#39; 提交分支git mergetool调用一个可视化的合并工具并引导你解决所有冲突 git学习链接]]></content>
       <tags>
         <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[mac使用]]></title>
+    <url>%2F2018%2F02%2F28%2F2018-02-28%2F</url>
+    <content type="text"><![CDATA[Mac系统如何显示隐藏文件？以”.”开头的隐藏文件如何在MAC系统下显示？ 答：Command+Shift+. 可以显示隐藏文件、文件夹，再按一次，恢复隐藏；finder下使用Command+Shift+G 可以前往任何文件夹，包括隐藏文件夹。 显示 隐藏文件 1234567#显示全部文件defaults write com.apple.finder AppleShowAllFiles -bool trueosascript -e 'tell application "Finder" to quit'#不显示全部文件defaults write com.apple.finder AppleShowAllFiles -bool falseosascript -e 'tell application "Finder" to quit']]></content>
+      <tags>
+        <tag>mac</tag>
       </tags>
   </entry>
   <entry>
