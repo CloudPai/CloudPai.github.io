@@ -84,15 +84,17 @@
 <meta name="description" content="学习:《算法 第四版》 关于 Java 集合框架，我们首先应该把握住几个核心的接口，请看下图：  我们还要了解到这些接口描述了一组什么样的机制，然后以此作为出发点，去了解具体哪些类实现了哪些机制。像这样自顶向下的学习，我们很快就能掌握常见集合类的用法。对于一些我们平常经常使用的类，我们还可以阅读一下它的源码，了解它的实现细节，这样我们以后使用起来会更加得心应手。不过阅读一些集合类（比如 Tree">
 <meta name="keywords" content="java基础,源码">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java集合框架源码解读">
+<meta property="og:title" content="java集合框架源码解读：集合框架概述">
 <meta property="og:url" content="http://cloudpai.site/2018/03/19/2018-03-18-3/index.html">
 <meta property="og:site_name" content="CloudPai">
 <meta property="og:description" content="学习:《算法 第四版》 关于 Java 集合框架，我们首先应该把握住几个核心的接口，请看下图：  我们还要了解到这些接口描述了一组什么样的机制，然后以此作为出发点，去了解具体哪些类实现了哪些机制。像这样自顶向下的学习，我们很快就能掌握常见集合类的用法。对于一些我们平常经常使用的类，我们还可以阅读一下它的源码，了解它的实现细节，这样我们以后使用起来会更加得心应手。不过阅读一些集合类（比如 Tree">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15214622508994.jpg">
-<meta property="og:updated_time" content="2018-03-19T13:14:04.995Z">
+<meta property="og:image" content="http://img.blog.csdn.net/20160829223607591">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15215425217908.jpg">
+<meta property="og:updated_time" content="2018-03-20T10:49:59.236Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java集合框架源码解读">
+<meta name="twitter:title" content="java集合框架源码解读：集合框架概述">
 <meta name="twitter:description" content="学习:《算法 第四版》 关于 Java 集合框架，我们首先应该把握住几个核心的接口，请看下图：  我们还要了解到这些接口描述了一组什么样的机制，然后以此作为出发点，去了解具体哪些类实现了哪些机制。像这样自顶向下的学习，我们很快就能掌握常见集合类的用法。对于一些我们平常经常使用的类，我们还可以阅读一下它的源码，了解它的实现细节，这样我们以后使用起来会更加得心应手。不过阅读一些集合类（比如 Tree">
 <meta name="twitter:image" content="http://p4lmrb1gp.bkt.clouddn.com/15214622508994.jpg">
 
@@ -130,7 +132,7 @@
 
 
 
-  <title>java集合框架源码解读 | CloudPai</title>
+  <title>java集合框架源码解读：集合框架概述 | CloudPai</title>
   
 
 
@@ -308,7 +310,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">java集合框架源码解读</h1>
+          <h1 class="post-title" itemprop="name headline">java集合框架源码解读：集合框架概述</h1>
         
 
         <div class="post-meta">
@@ -336,8 +338,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-19T21:14:04+08:00">
-                2018-03-19
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-20T18:49:59+08:00">
+                2018-03-20
               </time>
             
           </span>
@@ -375,7 +377,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  239
+                  978
                 </span>
               
 
@@ -391,7 +393,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  4
                 </span>
               
             </div>
@@ -416,6 +418,17 @@
 <p>关于 Java 集合框架，我们首先应该把握住几个核心的接口，请看下图：</p>
 <p><img src="http://p4lmrb1gp.bkt.clouddn.com/15214622508994.jpg" alt=""></p>
 <p>我们还要了解到这些接口描述了一组什么样的机制，然后以此作为出发点，去了解具体哪些类实现了哪些机制。像这样自顶向下的学习，我们很快就能掌握常见集合类的用法。对于一些我们平常经常使用的类，我们还可以阅读一下它的<strong>源码</strong>，了解它的<strong>实现细节</strong>，这样我们以后使用起来会更加得心应手。不过阅读一些集合类（比如 TreeMap、HashMap）的源码需要我们具备一定的数据结构与算法的基础知识，这方面推荐阅读 <a href="https://book.douban.com/subject/19952400/" target="_blank" rel="noopener">算法（第 4 版） (豆瓣)</a>。</p>
+<h2 id="集合框架介绍"><a href="#集合框架介绍" class="headerlink" title="集合框架介绍"></a><a></a>集合框架介绍</h2><p>  Java 集合工具包位于 Java.util 包下，包含了很多常用的数据结构，如数组、链表、栈、队列、集合、哈希表等。学习 Java 集合框架下大致可以分为如下五个部分：List 列表、Set 集合、Map 映射、迭代器（Iterator、Enumeration）、工具类（Arrays、Collections）。</p>
+<p>Java 集合类的整体框架如下：</p>
+<p><img src="http://img.blog.csdn.net/20160829223607591" alt=""></p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15215425217908.jpg" alt=""></p>
+<p>从上图中可以看出，集合类主要分为两大类：Collection 和 Map。</p>
+<p>Collection 是 List、Set 等集合高度抽象出来的接口，它包含了这些集合的基本操作，它主要又分为两大部分：List 和 Set。</p>
+<h2 id="List-接口"><a href="#List-接口" class="headerlink" title="List 接口"></a><a></a>List 接口</h2><p>  List 接口通常表示一个列表（数组、队列、链表、栈等），其中的元素可以重复，常用实现类为 ArrayList 和 LinkedList，另外还有不常用的 Vector。另外，LinkedList 还是实现了 Queue 接口，因此也可以作为队列使用。</p>
+<h2 id="Set-接口"><a href="#Set-接口" class="headerlink" title="Set 接口"></a><a></a>Set 接口</h2><p>  Set 接口通常表示一个集合，其中的元素不允许重复（通过 hashcode 和 equals 函数保证），常用实现类有 HashSet 和 TreeSet，HashSet 是通过 Map 中的 HashMap 实现的，而 TreeSet 是通过 Map 中的 TreeMap 实现的。另外，TreeSet 还实现了 SortedSet 接口，因此是有序的集合（集合中的元素要实现 Comparable 接口，并覆写 Compartor 函数才行）。 我们看到，抽象类 AbstractCollection、AbstractList 和 AbstractSet 分别实现了 Collection、List 和 Set 接口，这就是在 Java 集合框架中用的很多的适配器设计模式，用这些抽象类去实现接口，在抽象类中实现接口中的若干或全部方法，这样下面的一些类只需直接继承该抽象类，并实现自己需要的方法即可，而不用实现接口中的全部抽象方法。</p>
+<h2 id="Map-接口"><a href="#Map-接口" class="headerlink" title="Map 接口"></a><a></a>Map 接口</h2><p>  Map 是一个映射接口，其中的每个元素都是一个 key-value 键值对，同样抽象类 AbstractMap 通过适配器模式实现了 Map 接口中的大部分函数，TreeMap、HashMap、WeakHashMap 等实现类都通过继承 AbstractMap 来实现，另外，不常用的 HashTable 直接实现了 Map 接口，它和 Vector 都是 JDK1.0 就引入的集合类。</p>
+<h2 id="Iterator-迭代器"><a href="#Iterator-迭代器" class="headerlink" title="Iterator 迭代器"></a><a></a>Iterator 迭代器</h2><p>  Iterator 是<strong>遍历集合</strong>的迭代器（不能遍历 Map，只用来遍历 Collection），Collection 的实现类都实现了 iterator() 函数，它返回一个 Iterator 对象，用来遍历集合，ListIterator 则专门用来遍历 List。而 Enumeration 则是 JDK1.0 时引入的，作用与 Iterator 相同，但它的功能比 Iterator 要少，它只能在 Hashtable、Vector 和 Stack 中使用。</p>
+<h2 id="工具类"><a href="#工具类" class="headerlink" title="工具类"></a><a></a>工具类</h2><p>  Arrays 和 Collections 是用来操作数组、集合的两个工具类，例如在 ArrayList 和 Vector 中大量调用了 Arrays.Copyof() 方法，而 Collections 中有很多静态方法可以返回各集合类的 synchronized 版本，即<strong>线程安全</strong>的版本，当然了，如果要用线程安全的集合类，首选 Concurrent 并发包下的对应的集合类。</p>
 <blockquote>
 <p>参考专栏：<a href="http://blog.csdn.net/column/details/12706.html" target="_blank" rel="noopener">http://blog.csdn.net/column/details/12706.html</a><br><a href="https://crowhawk.github.io/tags/#Java%E5%9F%BA%E7%A1%80" target="_blank" rel="noopener">https://crowhawk.github.io/tags/#Java%E5%9F%BA%E7%A1%80</a><br><a href="https://www.jianshu.com/p/b9d8814c3654" target="_blank" rel="noopener">https://www.jianshu.com/p/b9d8814c3654</a></p>
 </blockquote>
@@ -451,7 +464,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://cloudpai.site/2018/03/19/2018-03-18-3/" title="java集合框架源码解读">http://cloudpai.site/2018/03/19/2018-03-18-3/</a>
+    <a href="http://cloudpai.site/2018/03/19/2018-03-18-3/" title="java集合框架源码解读：集合框架概述">http://cloudpai.site/2018/03/19/2018-03-18-3/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -484,8 +497,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/19/2018-03-19-6/" rel="next" title="博客加密文章测试">
-                <i class="fa fa-chevron-left"></i> 博客加密文章测试
+              <a href="/2018/03/19/2018-03-20-1/" rel="next" title="java集合框架源码解读零：集合框架概述">
+                <i class="fa fa-chevron-left"></i> java集合框架源码解读零：集合框架概述
               </a>
             
           </div>
@@ -494,8 +507,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/03/19/2018-03-19-7/" rel="prev" title="java并发编程">
-                java并发编程 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/03/19/2018-03-20-2/" rel="prev" title="java 的类之间的关系及UML表示：继承、依赖、关联、实现、聚合、组合">
+                java 的类之间的关系及UML表示：继承、依赖、关联、实现、聚合、组合 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -563,8 +576,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -583,7 +605,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-count">68</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -605,7 +627,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">29</span>
+                  <span class="site-state-item-count">34</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -686,6 +708,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#集合框架介绍"><span class="nav-text">集合框架介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#List-接口"><span class="nav-text">List 接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Set-接口"><span class="nav-text">Set 接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Map-接口"><span class="nav-text">Map 接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Iterator-迭代器"><span class="nav-text">Iterator 迭代器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#工具类"><span class="nav-text">工具类</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -714,7 +752,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">225.6k</span>
+    <span title="Site words total count">286.9k</span>
   
 </div>
 
@@ -867,7 +905,7 @@
         var disqus_config = function () {
           this.page.url = 'http://cloudpai.site/2018/03/19/2018-03-18-3/';
           this.page.identifier = '2018/03/19/2018-03-18-3/';
-          this.page.title = 'java集合框架源码解读';
+          this.page.title = 'java集合框架源码解读：集合框架概述';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://cloudpai.disqus.com/embed.js';

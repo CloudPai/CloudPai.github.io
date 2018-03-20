@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cloudpai.site/"/>
-  <updated>2018-03-19T13:22:11.940Z</updated>
+  <updated>2018-03-20T14:15:09.697Z</updated>
   <id>http://cloudpai.site/</id>
   
   <author>
@@ -15,6 +15,283 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>java集合框架源码解读八：WeakHashMap</title>
+    <link href="http://cloudpai.site/2018/03/20/2018-03-20-11/"/>
+    <id>http://cloudpai.site/2018/03/20/2018-03-20-11/</id>
+    <published>2018-03-20T14:14:26.000Z</published>
+    <updated>2018-03-20T14:15:09.697Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;WeakHashMap&quot;&gt;&lt;a href=&quot;#WeakHashMap&quot; class=&quot;headerlink&quot; title=&quot;WeakHashMap&quot;&gt;&lt;/a&gt;Wea
+      
+    
+    </summary>
+    
+    
+      <category term="java基础" scheme="http://cloudpai.site/tags/java%E5%9F%BA%E7%A1%80/"/>
+    
+      <category term="源码" scheme="http://cloudpai.site/tags/%E6%BA%90%E7%A0%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>java集合框架源码解读七：PriorityQueue</title>
+    <link href="http://cloudpai.site/2018/03/20/2018-03-20-10/"/>
+    <id>http://cloudpai.site/2018/03/20/2018-03-20-10/</id>
+    <published>2018-03-20T14:11:57.000Z</published>
+    <updated>2018-03-20T14:13:38.384Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;PriorityQueue&quot;&gt;&lt;a href=&quot;#PriorityQueue&quot; class=&quot;headerlink&quot; title=&quot;PriorityQueue&quot;&gt;&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="java基础" scheme="http://cloudpai.site/tags/java%E5%9F%BA%E7%A1%80/"/>
+    
+      <category term="源码" scheme="http://cloudpai.site/tags/%E6%BA%90%E7%A0%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>java集合框架源码解读六：LinkedHashSet and LinkedHashMap</title>
+    <link href="http://cloudpai.site/2018/03/20/2018-03-20-9/"/>
+    <id>http://cloudpai.site/2018/03/20/2018-03-20-9/</id>
+    <published>2018-03-20T14:10:04.000Z</published>
+    <updated>2018-03-20T14:11:14.967Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;LinkedHashSet-and-LinkedHashMap&quot;&gt;&lt;a href=&quot;#LinkedHashSet-and-LinkedHashMap&quot; class=
+      
+    
+    </summary>
+    
+    
+      <category term="java基础" scheme="http://cloudpai.site/tags/java%E5%9F%BA%E7%A1%80/"/>
+    
+      <category term="源码" scheme="http://cloudpai.site/tags/%E6%BA%90%E7%A0%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>java集合框架源码解读五：HashSet and HashMap</title>
+    <link href="http://cloudpai.site/2018/03/20/2018-03-20-8/"/>
+    <id>http://cloudpai.site/2018/03/20/2018-03-20-8/</id>
+    <published>2018-03-20T14:07:23.000Z</published>
+    <updated>2018-03-20T14:09:17.812Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;HashSet-and-HashMap&quot;&gt;&lt;a href=&quot;#HashSet-and-HashMap&quot; class=&quot;headerlink&quot; title=&quot;Hash
+      
+    
+    </summary>
+    
+    
+      <category term="java基础" scheme="http://cloudpai.site/tags/java%E5%9F%BA%E7%A1%80/"/>
+    
+      <category term="源码" scheme="http://cloudpai.site/tags/%E6%BA%90%E7%A0%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>java集合框架源码解读四：TreeSet and TreeMap</title>
+    <link href="http://cloudpai.site/2018/03/20/2018-03-20-7/"/>
+    <id>http://cloudpai.site/2018/03/20/2018-03-20-7/</id>
+    <published>2018-03-20T14:03:16.000Z</published>
+    <updated>2018-03-20T14:06:34.021Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;总体介绍&quot;&gt;&lt;a href=&quot;#总体介绍&quot; class=&quot;headerlink&quot; title=&quot;总体介绍&quot;&gt;&lt;/a&gt;总体介绍&lt;/h1&gt;&lt;p&gt;之所以把&lt;em&gt;Tree
+      
+    
+    </summary>
+    
+    
+      <category term="java基础" scheme="http://cloudpai.site/tags/java%E5%9F%BA%E7%A1%80/"/>
+    
+      <category term="源码" scheme="http://cloudpai.site/tags/%E6%BA%90%E7%A0%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>java集合框架源码解读三：Stack and Queue</title>
+    <link href="http://cloudpai.site/2018/03/20/2018-03-20-6/"/>
+    <id>http://cloudpai.site/2018/03/20/2018-03-20-6/</id>
+    <published>2018-03-20T13:58:42.000Z</published>
+    <updated>2018-03-20T14:15:46.556Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;Java里有一个叫做&lt;em&gt;Stack&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="java基础" scheme="http://cloudpai.site/tags/java%E5%9F%BA%E7%A1%80/"/>
+    
+      <category term="源码" scheme="http://cloudpai.site/tags/%E6%BA%90%E7%A0%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>java集合框架源码解读二：LinkedList</title>
+    <link href="http://cloudpai.site/2018/03/20/2018-03-20-5/"/>
+    <id>http://cloudpai.site/2018/03/20/2018-03-20-5/</id>
+    <published>2018-03-20T13:25:18.000Z</published>
+    <updated>2018-03-20T13:57:55.928Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;总体介绍&quot;&gt;&lt;a href=&quot;#总体介绍&quot; class=&quot;headerlink&quot; title=&quot;总体介绍&quot;&gt;&lt;/a&gt;总体介绍&lt;/h1&gt;&lt;p&gt;&lt;em&gt;LinkedLi
+      
+    
+    </summary>
+    
+    
+      <category term="java基础" scheme="http://cloudpai.site/tags/java%E5%9F%BA%E7%A1%80/"/>
+    
+      <category term="源码" scheme="http://cloudpai.site/tags/%E6%BA%90%E7%A0%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>java集合框架源码解读一：ArrayList</title>
+    <link href="http://cloudpai.site/2018/03/20/2018-03-20-4/"/>
+    <id>http://cloudpai.site/2018/03/20/2018-03-20-4/</id>
+    <published>2018-03-20T12:07:19.000Z</published>
+    <updated>2018-03-20T13:24:26.363Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h2 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;&lt;a&gt;&lt;/a&gt;简介&lt;/h2&gt;&lt;p&gt;ArrayList 中是平
+      
+    
+    </summary>
+    
+    
+      <category term="java基础" scheme="http://cloudpai.site/tags/java%E5%9F%BA%E7%A1%80/"/>
+    
+      <category term="源码" scheme="http://cloudpai.site/tags/%E6%BA%90%E7%A0%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>antlr学习</title>
+    <link href="http://cloudpai.site/2018/03/20/2018-03-20/"/>
+    <id>http://cloudpai.site/2018/03/20/2018-03-20/</id>
+    <published>2018-03-20T02:31:06.000Z</published>
+    <updated>2018-03-20T02:59:01.574Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;blockquote&gt;
+&lt;p&gt;参考：&lt;br&gt;《ANTLR 4权威指南》&lt;br&gt;&lt;a href=&quot;http://codemany.com/blog/archives/&quot; targe
+      
+    
+    </summary>
+    
+    
+      <category term="antlr" scheme="http://cloudpai.site/tags/antlr/"/>
+    
+      <category term="语法树" scheme="http://cloudpai.site/tags/%E8%AF%AD%E6%B3%95%E6%A0%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>java并发编程实战 笔记</title>
+    <link href="http://cloudpai.site/2018/03/19/2018-03-20-3/"/>
+    <id>http://cloudpai.site/2018/03/19/2018-03-20-3/</id>
+    <published>2018-03-19T13:49:35.000Z</published>
+    <updated>2018-03-20T11:54:35.534Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;JAVA并发编程实战笔记&quot;&gt;&lt;a href=&quot;#JAVA并发编程实战笔记&quot; class=&quot;headerlink&quot; title=&quot;JAVA并发编程实战笔记&quot;&gt;&lt;/a&gt;
+      
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://cloudpai.site/tags/java/"/>
+    
+      <category term="并发" scheme="http://cloudpai.site/tags/%E5%B9%B6%E5%8F%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>java并发编程实战 准备</title>
+    <link href="http://cloudpai.site/2018/03/19/2018-03-19-8/"/>
+    <id>http://cloudpai.site/2018/03/19/2018-03-19-8/</id>
+    <published>2018-03-19T13:49:35.000Z</published>
+    <updated>2018-03-19T14:53:56.246Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;并发项目推荐&quot;&gt;&lt;a href=&quot;#并发项目推荐&quot; class=&quot;headerlink&quot; title=&quot;并发项目推荐&quot;&gt;&lt;/a&gt;&lt;a href=&quot;#%E5%B9%B
+      
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://cloudpai.site/tags/java/"/>
+    
+      <category term="并发" scheme="http://cloudpai.site/tags/%E5%B9%B6%E5%8F%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>java并发编程实战 笔记一</title>
+    <link href="http://cloudpai.site/2018/03/19/2018-03-19-9/"/>
+    <id>http://cloudpai.site/2018/03/19/2018-03-19-9/</id>
+    <published>2018-03-19T13:49:35.000Z</published>
+    <updated>2018-03-19T14:57:54.453Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;1-1-并发简史&quot;&gt;&lt;a href=&quot;#1-1-并发简史&quot; class=&quot;headerlink&quot; title=&quot;1.1 并发简史&quot;&gt;&lt;/a&gt;1.1 并发简史&lt;/h1
+      
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://cloudpai.site/tags/java/"/>
+    
+      <category term="并发" scheme="http://cloudpai.site/tags/%E5%B9%B6%E5%8F%91/"/>
+    
+  </entry>
   
   <entry>
     <title>java并发编程</title>
@@ -36,24 +313,72 @@
     </summary>
     
     
-      <category term="待阅" scheme="http://cloudpai.site/tags/%E5%BE%85%E9%98%85/"/>
-    
       <category term="java并发" scheme="http://cloudpai.site/tags/java%E5%B9%B6%E5%8F%91/"/>
+    
+      <category term="待阅" scheme="http://cloudpai.site/tags/%E5%BE%85%E9%98%85/"/>
     
   </entry>
   
   <entry>
-    <title>java集合框架源码解读</title>
+    <title>java 的类之间的关系及UML表示：继承、依赖、关联、实现、聚合、组合</title>
+    <link href="http://cloudpai.site/2018/03/19/2018-03-20-2/"/>
+    <id>http://cloudpai.site/2018/03/19/2018-03-20-2/</id>
+    <published>2018-03-19T12:27:19.000Z</published>
+    <updated>2018-03-20T11:54:16.767Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;UML基础&quot;&gt;&lt;a href=&quot;#UML基础&quot; class=&quot;headerlink&quot; title=&quot;UML基础&quot;&gt;&lt;/a&gt;UML基础&lt;/h1&gt;&lt;p&gt;&lt;strong&gt;
+      
+    
+    </summary>
+    
+    
+      <category term="java基础" scheme="http://cloudpai.site/tags/java%E5%9F%BA%E7%A1%80/"/>
+    
+      <category term="类关系" scheme="http://cloudpai.site/tags/%E7%B1%BB%E5%85%B3%E7%B3%BB/"/>
+    
+      <category term="UML" scheme="http://cloudpai.site/tags/UML/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>java集合框架源码解读：集合框架概述</title>
     <link href="http://cloudpai.site/2018/03/19/2018-03-18-3/"/>
     <id>http://cloudpai.site/2018/03/19/2018-03-18-3/</id>
     <published>2018-03-19T12:27:19.000Z</published>
-    <updated>2018-03-19T13:14:04.995Z</updated>
+    <updated>2018-03-20T10:49:59.236Z</updated>
     
     <summary type="html">
     
       
       
         &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;学习:&lt;a href=&quot;https://book.douban.com/subject/19952400/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;《
+      
+    
+    </summary>
+    
+    
+      <category term="java基础" scheme="http://cloudpai.site/tags/java%E5%9F%BA%E7%A1%80/"/>
+    
+      <category term="源码" scheme="http://cloudpai.site/tags/%E6%BA%90%E7%A0%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>java集合框架源码解读零：集合框架概述</title>
+    <link href="http://cloudpai.site/2018/03/19/2018-03-20-1/"/>
+    <id>http://cloudpai.site/2018/03/19/2018-03-20-1/</id>
+    <published>2018-03-19T12:27:19.000Z</published>
+    <updated>2018-03-20T14:19:09.405Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;集合框架介绍&quot;&gt;&lt;a href=&quot;#集合框架介绍&quot; class=&quot;headerlink&quot; title=&quot;集合框架介绍&quot;&gt;&lt;/a&gt;&lt;a&gt;&lt;/a&gt;集合框架介绍&lt;/h1&gt;
       
     
     </summary>
@@ -146,319 +471,6 @@
     
     
       <category term="java基础" scheme="http://cloudpai.site/tags/java%E5%9F%BA%E7%A1%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>java核心技术 卷一（7~8章） 笔记总结</title>
-    <link href="http://cloudpai.site/2018/03/18/2018-03-18-4/"/>
-    <id>http://cloudpai.site/2018/03/18/2018-03-18-4/</id>
-    <published>2018-03-18T12:12:58.000Z</published>
-    <updated>2018-03-18T17:56:03.716Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;第七章：异常、断言和日志&quot;&gt;&lt;a href=&quot;#第七章：异常、断言和日志&quot; class=&quot;headerlink&quot; title=&quot;第七章：异常、断言和日志&quot;&gt;&lt;/a&gt;
-      
-    
-    </summary>
-    
-    
-      <category term="java基础" scheme="http://cloudpai.site/tags/java%E5%9F%BA%E7%A1%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java 反射由浅入深 | 进阶必备</title>
-    <link href="http://cloudpai.site/2018/03/18/2018-03-18-2/"/>
-    <id>http://cloudpai.site/2018/03/18/2018-03-18-2/</id>
-    <published>2018-03-18T09:36:21.000Z</published>
-    <updated>2018-03-18T15:41:31.753Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;一、Java-反射机制&quot;&gt;&lt;a href=&quot;#一、Java-反射机制&quot; class=&quot;headerlink&quot; title=&quot;一、Java 反射机制&quot;&gt;&lt;/a&gt;一、J
-      
-    
-    </summary>
-    
-    
-      <category term="java基础" scheme="http://cloudpai.site/tags/java%E5%9F%BA%E7%A1%80/"/>
-    
-      <category term="反射" scheme="http://cloudpai.site/tags/%E5%8F%8D%E5%B0%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>java核心技术 卷一（第6章） 笔记总结</title>
-    <link href="http://cloudpai.site/2018/03/18/2018-03-19-3/"/>
-    <id>http://cloudpai.site/2018/03/18/2018-03-19-3/</id>
-    <published>2018-03-18T02:24:20.000Z</published>
-    <updated>2018-03-18T17:45:01.523Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;第六章：接口、lambda-表达式与内部类&quot;&gt;&lt;a href=&quot;#第六章：接口、lambda-表达式与内部类&quot; class=&quot;headerlink&quot; title=&quot;
-      
-    
-    </summary>
-    
-    
-      <category term="java基础" scheme="http://cloudpai.site/tags/java%E5%9F%BA%E7%A1%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>java核心技术 卷一（第5章） 笔记总结</title>
-    <link href="http://cloudpai.site/2018/03/18/2018-03-19-2/"/>
-    <id>http://cloudpai.site/2018/03/18/2018-03-19-2/</id>
-    <published>2018-03-18T02:23:20.000Z</published>
-    <updated>2018-03-18T17:14:01.152Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;第五章：继承（inheritance）&quot;&gt;&lt;a href=&quot;#第五章：继承（inheritance）&quot; class=&quot;headerlink&quot; title=&quot;第五章：
-      
-    
-    </summary>
-    
-    
-      <category term="java基础" scheme="http://cloudpai.site/tags/java%E5%9F%BA%E7%A1%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>java核心技术 卷一（第4章） 笔记总结</title>
-    <link href="http://cloudpai.site/2018/03/18/2018-03-19-1/"/>
-    <id>http://cloudpai.site/2018/03/18/2018-03-19-1/</id>
-    <published>2018-03-18T02:22:20.000Z</published>
-    <updated>2018-03-18T17:14:10.690Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;第四章：对象与类&quot;&gt;&lt;a href=&quot;#第四章：对象与类&quot; class=&quot;headerlink&quot; title=&quot;第四章：对象与类&quot;&gt;&lt;/a&gt;第四章：对象与类&lt;/h1
-      
-    
-    </summary>
-    
-    
-      <category term="java基础" scheme="http://cloudpai.site/tags/java%E5%9F%BA%E7%A1%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>java核心技术 卷一（第3章） 笔记总结</title>
-    <link href="http://cloudpai.site/2018/03/18/2018-03-19/"/>
-    <id>http://cloudpai.site/2018/03/18/2018-03-19/</id>
-    <published>2018-03-18T02:21:20.000Z</published>
-    <updated>2018-03-18T17:14:24.646Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;第三章：Java-基本程序设计结构&quot;&gt;&lt;a href=&quot;#第三章：Java-基本程序设计结构&quot; class=&quot;headerlink&quot; title=&quot;第三章：Java
-      
-    
-    </summary>
-    
-    
-      <category term="java基础" scheme="http://cloudpai.site/tags/java%E5%9F%BA%E7%A1%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>java核心技术 卷一（1~2章） 笔记总结</title>
-    <link href="http://cloudpai.site/2018/03/18/2018-03-18/"/>
-    <id>http://cloudpai.site/2018/03/18/2018-03-18/</id>
-    <published>2018-03-18T02:20:20.000Z</published>
-    <updated>2018-03-18T16:45:49.834Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;第一章：Java-程序设计概述&quot;&gt;&lt;a href=&quot;#第一章：Java-程序设计概述&quot; class=&quot;headerlink&quot; title=&quot;第一章：Java 程序设
-      
-    
-    </summary>
-    
-    
-      <category term="java基础" scheme="http://cloudpai.site/tags/java%E5%9F%BA%E7%A1%80/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>“大话架构”阿里架构师分享的Java程序员需要突破的技术要点</title>
-    <link href="http://cloudpai.site/2018/03/17/2018-03-17-4/"/>
-    <id>http://cloudpai.site/2018/03/17/2018-03-17-4/</id>
-    <published>2018-03-17T11:08:47.000Z</published>
-    <updated>2018-03-18T14:48:06.754Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h2 id=&quot;一、源码分析&quot;&gt;&lt;a href=&quot;#一、源码分析&quot; class=&quot;headerlink&quot; title=&quot;一、源码分析&quot;&gt;&lt;/a&gt;一、源码分析&lt;/h2&gt;&lt;p&gt;源码分析
-      
-    
-    </summary>
-    
-    
-      <category term="架构" scheme="http://cloudpai.site/tags/%E6%9E%B6%E6%9E%84/"/>
-    
-      <category term="源码" scheme="http://cloudpai.site/tags/%E6%BA%90%E7%A0%81/"/>
-    
-      <category term="待阅" scheme="http://cloudpai.site/tags/%E5%BE%85%E9%98%85/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>面试中并发类问题的准备和学习</title>
-    <link href="http://cloudpai.site/2018/03/17/2018-03-17-3/"/>
-    <id>http://cloudpai.site/2018/03/17/2018-03-17-3/</id>
-    <published>2018-03-17T11:03:33.000Z</published>
-    <updated>2018-03-18T14:43:17.238Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;声明：本文主要讨论的是后端Java开发职位的面试&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;主题&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;又到面试季了，从课程的群里，看到许多同学分享了自己的面试
-      
-    
-    </summary>
-    
-    
-      <category term="待阅" scheme="http://cloudpai.site/tags/%E5%BE%85%E9%98%85/"/>
-    
-      <category term="java并发" scheme="http://cloudpai.site/tags/java%E5%B9%B6%E5%8F%91/"/>
-    
-      <category term="面试" scheme="http://cloudpai.site/tags/%E9%9D%A2%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>经典Java面试题95道</title>
-    <link href="http://cloudpai.site/2018/03/17/2018-03-17-2/"/>
-    <id>http://cloudpai.site/2018/03/17/2018-03-17-2/</id>
-    <published>2018-03-17T10:48:05.000Z</published>
-    <updated>2018-03-17T10:58:23.442Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;strong&gt;1、面向对象的特征有哪些方面？&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;答：面向对象的特征主要有以下几个方面：&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;抽象：抽象是将一类对象的共同
-      
-    
-    </summary>
-    
-    
-      <category term="待阅" scheme="http://cloudpai.site/tags/%E5%BE%85%E9%98%85/"/>
-    
-      <category term="面试" scheme="http://cloudpai.site/tags/%E9%9D%A2%E8%AF%95/"/>
-    
-      <category term="Java" scheme="http://cloudpai.site/tags/Java/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring 知识点总结69题+25题</title>
-    <link href="http://cloudpai.site/2018/03/17/2018-03-17-1/"/>
-    <id>http://cloudpai.site/2018/03/17/2018-03-17-1/</id>
-    <published>2018-03-17T10:39:18.000Z</published>
-    <updated>2018-03-17T13:45:59.294Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;Spring-知识点总结69题&quot;&gt;&lt;a href=&quot;#Spring-知识点总结69题&quot; class=&quot;headerlink&quot; title=&quot;Spring 知识点总结
-      
-    
-    </summary>
-    
-    
-      <category term="Spring" scheme="http://cloudpai.site/tags/Spring/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring实战笔记五</title>
-    <link href="http://cloudpai.site/2018/03/17/2018-03-17/"/>
-    <id>http://cloudpai.site/2018/03/17/2018-03-17/</id>
-    <published>2018-03-17T03:05:20.000Z</published>
-    <updated>2018-03-17T03:07:35.672Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;第5章-构建Spring-Web应用&quot;&gt;&lt;a href=&quot;#第5章-构建Spring-Web应用&quot; class=&quot;headerlink&quot; title=&quot;第5章 构建
-      
-    
-    </summary>
-    
-    
-      <category term="Spring" scheme="http://cloudpai.site/tags/Spring/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring实战笔记四</title>
-    <link href="http://cloudpai.site/2018/03/16/2018-03-16-1/"/>
-    <id>http://cloudpai.site/2018/03/16/2018-03-16-1/</id>
-    <published>2018-03-16T09:19:23.000Z</published>
-    <updated>2018-03-17T03:02:39.399Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;第四章-面向切面的Spring&quot;&gt;&lt;a href=&quot;#第四章-面向切面的Spring&quot; class=&quot;headerlink&quot; title=&quot;第四章 面向切面的Spr
-      
-    
-    </summary>
-    
-    
-      <category term="Spring" scheme="http://cloudpai.site/tags/Spring/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring实战笔记三</title>
-    <link href="http://cloudpai.site/2018/03/16/2018-03-16/"/>
-    <id>http://cloudpai.site/2018/03/16/2018-03-16/</id>
-    <published>2018-03-16T05:33:41.000Z</published>
-    <updated>2018-03-16T09:16:13.615Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;第三章-高级装配&quot;&gt;&lt;a href=&quot;#第三章-高级装配&quot; class=&quot;headerlink&quot; title=&quot;第三章 高级装配&quot;&gt;&lt;/a&gt;第三章 高级装配&lt;/h1
-      
-    
-    </summary>
-    
-    
-      <category term="Spring" scheme="http://cloudpai.site/tags/Spring/"/>
     
   </entry>
   
