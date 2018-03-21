@@ -81,23 +81,24 @@
 
 
 
-<meta name="description" content="前言Java里有一个叫做Stack的类，却没有叫做Queue的类（它是个接口名字）。当需要使用栈时，Java已不推荐使用Stack，而是推荐使用更高效的ArrayDeque；既然Queue只是一个接口，当需要使用队列时也就首选ArrayDeque了（次选是LinkedList）。 总体介绍要讲栈和队列，首先要讲Deque接口。Deque的含义是“double ended queue”，即双端队列">
+<meta name="description" content="前言Java里有一个叫做Stack的类，却没有叫做Queue的类（它是个接口名字）。当需要使用栈时，Java已不推荐使用Stack，而是推荐使用更高效的ArrayDeque；既然Queue只是一个接口，当需要使用队列时也就首选ArrayDeque了（次选是LinkedList）。 总体介绍要讲栈和队列，首先要讲Deque接口。Deque的含义是“double ended queue”，即双端队">
 <meta name="keywords" content="java基础,源码">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java集合框架源码解读三：Stack and Queue">
 <meta property="og:url" content="http://cloudpai.site/2018/03/20/2018-03-20-6/index.html">
 <meta property="og:site_name" content="CloudPai">
-<meta property="og:description" content="前言Java里有一个叫做Stack的类，却没有叫做Queue的类（它是个接口名字）。当需要使用栈时，Java已不推荐使用Stack，而是推荐使用更高效的ArrayDeque；既然Queue只是一个接口，当需要使用队列时也就首选ArrayDeque了（次选是LinkedList）。 总体介绍要讲栈和队列，首先要讲Deque接口。Deque的含义是“double ended queue”，即双端队列">
+<meta property="og:description" content="前言Java里有一个叫做Stack的类，却没有叫做Queue的类（它是个接口名字）。当需要使用栈时，Java已不推荐使用Stack，而是推荐使用更高效的ArrayDeque；既然Queue只是一个接口，当需要使用队列时也就首选ArrayDeque了（次选是LinkedList）。 总体介绍要讲栈和队列，首先要讲Deque接口。Deque的含义是“double ended queue”，即双端队">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg">
 <meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15215544252620.png">
 <meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15215544379356.png">
 <meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15215544519901.png">
 <meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15215544649519.png">
-<meta property="og:updated_time" content="2018-03-21T10:47:54.158Z">
+<meta property="og:updated_time" content="2018-03-21T11:42:09.323Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java集合框架源码解读三：Stack and Queue">
-<meta name="twitter:description" content="前言Java里有一个叫做Stack的类，却没有叫做Queue的类（它是个接口名字）。当需要使用栈时，Java已不推荐使用Stack，而是推荐使用更高效的ArrayDeque；既然Queue只是一个接口，当需要使用队列时也就首选ArrayDeque了（次选是LinkedList）。 总体介绍要讲栈和队列，首先要讲Deque接口。Deque的含义是“double ended queue”，即双端队列">
-<meta name="twitter:image" content="http://p4lmrb1gp.bkt.clouddn.com/15215544252620.png">
+<meta name="twitter:description" content="前言Java里有一个叫做Stack的类，却没有叫做Queue的类（它是个接口名字）。当需要使用栈时，Java已不推荐使用Stack，而是推荐使用更高效的ArrayDeque；既然Queue只是一个接口，当需要使用队列时也就首选ArrayDeque了（次选是LinkedList）。 总体介绍要讲栈和队列，首先要讲Deque接口。Deque的含义是“double ended queue”，即双端队">
+<meta name="twitter:image" content="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg">
 
 
 
@@ -299,7 +300,7 @@
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CloudPai">
       <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="image" content="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
@@ -339,7 +340,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-21T18:47:54+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-21T19:42:09+08:00">
                 2018-03-21
               </time>
             
@@ -415,7 +416,8 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Java里有一个叫做<em>Stack</em>的类，却没有叫做<em>Queue</em>的类（它是个接口名字）。当需要使用栈时，Java已不推荐使用<em>Stack</em>，而是推荐使用更高效的<em>ArrayDeque</em>；既然<em>Queue</em>只是一个接口，当需要使用队列时也就首选<em>ArrayDeque</em>了（次选是<em>LinkedList</em>）。</p>
+        <script src="/assets/js/APlayer.min.js"> </script><p><img src="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg" alt="君名-squashed"></p>
+<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Java里有一个叫做<em>Stack</em>的类，却没有叫做<em>Queue</em>的类（它是个接口名字）。当需要使用栈时，Java已不推荐使用<em>Stack</em>，而是推荐使用更高效的<em>ArrayDeque</em>；既然<em>Queue</em>只是一个接口，当需要使用队列时也就首选<em>ArrayDeque</em>了（次选是<em>LinkedList</em>）。</p>
 <h1 id="总体介绍"><a href="#总体介绍" class="headerlink" title="总体介绍"></a>总体介绍</h1><p>要讲栈和队列，首先要讲<em>Deque</em>接口。<em>Deque</em>的含义是“double ended queue”，即双端队列，它既可以当作栈使用，也可以当作队列使用。下表列出了<em>Deque</em>与<em>Queue</em>相对应的接口：</p>
 <table>
 <thead>
@@ -690,7 +692,7 @@
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
               <img class="site-author-image" itemprop="image"
-                src="/images/avatar.jpg"
+                src="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg"
                 alt="CloudPai" />
             
               <p class="site-author-name" itemprop="name">CloudPai</p>
@@ -851,7 +853,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">297.1k</span>
+    <span title="Site words total count">297.0k</span>
   
 </div>
 
