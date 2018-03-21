@@ -1936,7 +1936,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #7cffff;
+  background: #26b9f1;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3145,12 +3145,14 @@ img:hover {
   -moz-box-shadow: 0 0 5px rgba(202,203,204,0.5);
 }
 body {
-  background: url("https://source.unsplash.com/user/davidmarcu");
-/*nasa*/
+/*background:url(https://source.unsplash.com/user/davidmarcu); /*nasa*/
 /*@chrislawton*/
+*
+  background: url("http://p4lmrb1gp.bkt.clouddn.com/906711-squashed.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
   width: 100%;
   background-position: 50% 50%;
 }
+*
