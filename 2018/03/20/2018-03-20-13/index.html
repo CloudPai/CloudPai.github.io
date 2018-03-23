@@ -90,7 +90,7 @@
 <meta property="og:description" content="HashTable 介绍  HashTable 经常和 HashMap 拿来做对比。HashTable 同样是基于哈希表实现的，同样每个元素都是 key-value 对，其内部也是通过单链表解决冲突问题，容量不足（超过了阈值）时，同样会自动增长。Hashtable 也是 JDK1.0 引入的类，是线程安全的，能用于多线程环境中。Hashtable 同样实现了 Serializable 接口，它支">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://img.blog.csdn.net/20160815164803808">
-<meta property="og:updated_time" content="2018-03-20T14:37:07.369Z">
+<meta property="og:updated_time" content="2018-03-21T13:37:08.858Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java集合框架源码解读十：HashTable">
 <meta name="twitter:description" content="HashTable 介绍  HashTable 经常和 HashMap 拿来做对比。HashTable 同样是基于哈希表实现的，同样每个元素都是 key-value 对，其内部也是通过单链表解决冲突问题，容量不足（超过了阈值）时，同样会自动增长。Hashtable 也是 JDK1.0 引入的类，是线程安全的，能用于多线程环境中。Hashtable 同样实现了 Serializable 接口，它支">
@@ -336,8 +336,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-20T22:37:07+08:00">
-                2018-03-20
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-21T21:37:08+08:00">
+                2018-03-21
               </time>
             
           </span>
@@ -423,15 +423,15 @@
 <li>Hashtable 同样实现了 Serializable 接口，它支持序列化，实现了 Cloneable 接口，能被克隆。</li>
 </ol>
 <h3 id="不同点"><a href="#不同点" class="headerlink" title="不同点"></a><a></a>不同点</h3><ol>
-<li><p>最重要一点 HashTable 是很多方法都加了同步，因此支持多线程并发执行，是线程同步的而 HashMap 不是线程同步的。</p>
+<li><p>最重要一点 HashTable 是很多方法都加了<strong>同步</strong>，因此<strong>支持多线程并发执行</strong>，是线程同步的而 HashMap 不是线程同步的。</p>
 </li>
-<li><p>HashTable 在不指定容量的情况下的默认容量为 11，而 HashMap 为 16，Hashtable 不要求底层数组的容量一定要为 2 的整数次幂，而 HashMap 则要求一定为 2 的整数次幂。</p>
+<li><p>HashTable 在不指定容量的情况下的默认容量为 11，而 HashMap 为 16，<strong>Hashtable 不要求底层数组的容量一定要为 2 的整数次幂</strong>，而 HashMap 则要求一定为 2 的整数次幂。</p>
 </li>
-<li><p>Hashtable 中 key 和 value 都不允许为 null，而 HashMap 中 key 和 value 都允许为 null（key 只能有一个为 null，而 value 则可以有多个为 null）。但是如果在 Hashtable 中有类似 put(null,null) 的操作，编译同样可以通过，因为 key 和 value 都是 Object 类型，但运行时会抛出<code>NullPointerException</code>异常，这是 JDK 的规范规定的。</p>
+<li><p><strong>Hashtable 中 key 和 value 都不允许为 null</strong>，而 HashMap 中 key 和 value 都允许为 null（key 只能有一个为 null，而 value 则可以有多个为 null）。但是如果在 Hashtable 中有类似 put(null,null) 的操作，编译同样可以通过，因为 key 和 value 都是 Object 类型，但运行时会抛出<code>NullPointerException</code>异常，这是 JDK 的规范规定的。</p>
 </li>
-<li><p>Hashtable 扩容时，将容量变为原来的 2 倍加 1，而 HashMap 扩容时，将容量变为原来的 2 倍。</p>
+<li><p>Hashtable 扩容时，<strong>将容量变为原来的 2 倍加 1</strong>，而 HashMap 扩容时，将容量变为原来的 2 倍。</p>
 </li>
-<li><p>Hashtable 计算 hash 值，直接用 key 的 hashCode()，而 HashMap 重新计算了 key 的 hash 值，Hashtable 在求 hash 值对应的位置索引时，用取模运算，而 HashMap 在求位置索引时，则用与运算，且这里一般先用 hash&amp;0x7FFFFFFF 后，再对 length 取模，&amp;0x7FFFFFFF 的目的是为了将负的 hash 值转化为正值，因为 hash 值有可能为负数，而 &amp; 0x7FFFFFFF 后，只有符号外改变，而后面的位都不变。</p>
+<li><p>Hashtable 计算 hash 值，<strong>直接用 key 的 hashCode()</strong>，而 HashMap 重新计算了 key 的 hash 值，Hashtable 在求 hash 值对应的位置索引时，用取模运算，而 HashMap 在求位置索引时，则用与运算，且这里一般先用 hash&amp;0x7FFFFFFF 后，再对 length 取模，&amp;0x7FFFFFFF 的目的是为了将负的 hash 值转化为正值，因为 hash 值有可能为负数，而 &amp; 0x7FFFFFFF 后，只有符号外改变，而后面的位都不变。</p>
 </li>
 </ol>
 <hr>
@@ -611,7 +611,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">71</span>
+                  <span class="site-state-item-count">78</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -633,7 +633,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -758,7 +758,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">297.1k</span>
+    <span title="Site words total count">317.1k</span>
   
 </div>
 

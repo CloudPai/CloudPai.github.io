@@ -1,0 +1,1369 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="java,并发,待阅," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="CloudPai" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="java 多线程（一个优秀的博客）http://www.cnblogs.com/skywang12345/p/java_threads_category.html  线程状态图http://www.jianshu.com/p/1db1857e8d44 Java 实现多线程三种方式继承 Thread 类、实现 Runnable 接口、使用 ExecutorService、Callable、Futu">
+<meta name="keywords" content="java,并发,待阅">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java并发编程实战 总结">
+<meta property="og:url" content="http://cloudpai.site/2018/03/22/2018-03-22-4/index.html">
+<meta property="og:site_name" content="CloudPai">
+<meta property="og:description" content="java 多线程（一个优秀的博客）http://www.cnblogs.com/skywang12345/p/java_threads_category.html  线程状态图http://www.jianshu.com/p/1db1857e8d44 Java 实现多线程三种方式继承 Thread 类、实现 Runnable 接口、使用 ExecutorService、Callable、Futu">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-03-23T13:44:19.928Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="java并发编程实战 总结">
+<meta name="twitter:description" content="java 多线程（一个优秀的博客）http://www.cnblogs.com/skywang12345/p/java_threads_category.html  线程状态图http://www.jianshu.com/p/1db1857e8d44 Java 实现多线程三种方式继承 Thread 类、实现 Runnable 接口、使用 ExecutorService、Callable、Futu">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'TZAS2SFOJR',
+      apiKey: 'e2a9cd036eede8026382b302001ec261',
+      indexName: 'cloudpai_blogs_search',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cloudpai.site/2018/03/22/2018-03-22-4/"/>
+
+
+
+
+
+  <title>java并发编程实战 总结 | CloudPai</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-114643720-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CloudPai</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/03/22/2018-03-22-4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CloudPai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudPai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">java并发编程实战 总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-22T22:17:36+08:00">
+                2018-03-22
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-23T21:44:19+08:00">
+                2018-03-23
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/22/2018-03-22-4/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/03/22/2018-03-22-4/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,316
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h3 id="java-多线程（一个优秀的博客）"><a href="#java-多线程（一个优秀的博客）" class="headerlink" title="java 多线程（一个优秀的博客）"></a>java 多线程（一个优秀的博客）</h3><p><a href="https://link.jianshu.com?t=http://www.cnblogs.com/skywang12345/p/java_threads_category.html" target="_blank" rel="noopener">http://www.cnblogs.com/skywang12345/p/java_threads_category.html</a></p>
+<hr>
+<h3 id="线程状态图"><a href="#线程状态图" class="headerlink" title="线程状态图"></a>线程状态图</h3><p><a href="https://www.jianshu.com/p/1db1857e8d44" target="_blank" rel="noopener">http://www.jianshu.com/p/1db1857e8d44</a></p>
+<h3 id="Java-实现多线程三种方式"><a href="#Java-实现多线程三种方式" class="headerlink" title="Java 实现多线程三种方式"></a>Java 实现多线程三种方式</h3><p>继承 Thread 类、实现 Runnable 接口、使用 ExecutorService、Callable、Future 实现有返回结果的多线程。<br><a href="https://www.jianshu.com/p/758d41ff3501" target="_blank" rel="noopener">http://www.jianshu.com/p/758d41ff3501</a></p>
+<h3 id="sleep-，wait-，yield-，join-方法的区别-考察是否会释放锁"><a href="#sleep-，wait-，yield-，join-方法的区别-考察是否会释放锁" class="headerlink" title="sleep()，wait()，yield()，join() 方法的区别 (考察是否会释放锁)"></a>sleep()，wait()，yield()，join() 方法的区别 (考察是否会释放锁)</h3><p><a href="https://www.jianshu.com/p/b4a2eb636366" target="_blank" rel="noopener">http://www.jianshu.com/p/b4a2eb636366</a></p>
+<hr>
+<h3 id="阻塞和非阻塞、同步和异步"><a href="#阻塞和非阻塞、同步和异步" class="headerlink" title="阻塞和非阻塞、同步和异步"></a>阻塞和非阻塞、同步和异步</h3><p><a href="https://www.jianshu.com/p/19fec945238f" target="_blank" rel="noopener">http://www.jianshu.com/p/19fec945238f</a></p>
+<hr>
+<h3 id="线程间的通信方式、线程同步方式、进程间通信方式"><a href="#线程间的通信方式、线程同步方式、进程间通信方式" class="headerlink" title="线程间的通信方式、线程同步方式、进程间通信方式"></a>线程间的通信方式、线程同步方式、进程间通信方式</h3><p><a href="https://www.jianshu.com/p/eb3e3019e7b9" target="_blank" rel="noopener">http://www.jianshu.com/p/eb3e3019e7b9</a></p>
+<h3 id="进程和线程的区别与联系"><a href="#进程和线程的区别与联系" class="headerlink" title="进程和线程的区别与联系"></a>进程和线程的区别与联系</h3><p><a href="https://www.jianshu.com/p/974ffaf90406" target="_blank" rel="noopener">http://www.jianshu.com/p/974ffaf90406</a></p>
+<hr>
+<h3 id="Callable、Future、FutureTask-详解"><a href="#Callable、Future、FutureTask-详解" class="headerlink" title="Callable、Future、FutureTask 详解"></a>Callable、Future、FutureTask 详解</h3><p><a href="https://link.jianshu.com?t=http://blog.csdn.net/hbtj_1216/article/details/70569881" target="_blank" rel="noopener">http://blog.csdn.net/hbtj_1216/article/details/70569881</a></p>
+<hr>
+<h3 id="volatile-关键字解析"><a href="#volatile-关键字解析" class="headerlink" title="volatile 关键字解析"></a>volatile 关键字解析</h3><p><a href="https://link.jianshu.com?t=http://blog.csdn.net/hbtj_1216/article/details/72026927" target="_blank" rel="noopener">http://blog.csdn.net/hbtj_1216/article/details/72026927</a></p>
+<h3 id="深入剖析-ThreadLocal"><a href="#深入剖析-ThreadLocal" class="headerlink" title="深入剖析 ThreadLocal"></a>深入剖析 ThreadLocal</h3><p><a href="https://link.jianshu.com?t=http://blog.csdn.net/hbtj_1216/article/details/72148322" target="_blank" rel="noopener">http://blog.csdn.net/hbtj_1216/article/details/72148322</a><br><a href="https://www.jianshu.com/p/3a196baa227b" target="_blank" rel="noopener">http://www.jianshu.com/p/3a196baa227b</a><br><a href="https://www.jianshu.com/p/f4ed71560771" target="_blank" rel="noopener">http://www.jianshu.com/p/f4ed71560771</a></p>
+<h3 id="synchronized-详解"><a href="#synchronized-详解" class="headerlink" title="synchronized 详解"></a>synchronized 详解</h3><p>（1）使用规则：<a href="https://link.jianshu.com?t=http://www.cnblogs.com/skywang12345/p/3479202.html" target="_blank" rel="noopener">http://www.cnblogs.com/skywang12345/p/3479202.html</a><br>（2）synchronized 底层实现原理： <a href="https://www.jianshu.com/p/7b0d6264fe10" target="_blank" rel="noopener">http://www.jianshu.com/p/7b0d6264fe10</a></p>
+<h3 id="Lock-接口及实现类"><a href="#Lock-接口及实现类" class="headerlink" title="Lock 接口及实现类"></a>Lock 接口及实现类</h3><p><a href="https://link.jianshu.com?t=http://www.cnblogs.com/dolphin0520/p/3923167.html" target="_blank" rel="noopener">http://www.cnblogs.com/dolphin0520/p/3923167.html</a></p>
+<h3 id="synchronized-和-Lock-的区别"><a href="#synchronized-和-Lock-的区别" class="headerlink" title="synchronized 和 Lock 的区别"></a>synchronized 和 Lock 的区别</h3><p><strong>synchronized 和 Lock 有以下几点不同</strong>：</p>
+<ol>
+<li><p>Lock 是一个接口，而 synchronized 是 Java 中的关键字，synchronized 是内置的语言实现。</p>
+</li>
+<li><p>synchronized 在发生异常时，会自动释放线程占有的锁，因此不会导致死锁现象发生；而 Lock 在发生异常时，如果没有主动通过 unLock() 去释放锁，则很可能造成死锁现象，因此使用 Lock 时需要在 finally 块中释放锁。</p>
+</li>
+<li><p>Lock 可以让等待锁的线程响应中断，而 synchronized 却不行，使用 synchronized 时，等待的线程会一直等待下去，不能够响应中断。</p>
+</li>
+<li><p>通过 Lock 可以知道有没有成功获取锁（tryLock() 方法尝试获取锁），而 synchronized 却无法办到。</p>
+</li>
+<li><p>Lock 可以提高多个线程进行<strong>读操作</strong>（读锁是共享锁）的效率。</p>
+</li>
+</ol>
+<h3 id="java-程序中，如何安全的结束一个正在运行的线程？"><a href="#java-程序中，如何安全的结束一个正在运行的线程？" class="headerlink" title="java 程序中，如何安全的结束一个正在运行的线程？"></a>java 程序中，如何安全的结束一个正在运行的线程？</h3><p><a href="https://www.jianshu.com/p/da6edefd9b92" target="_blank" rel="noopener">http://www.jianshu.com/p/da6edefd9b92</a><br><a href="https://link.jianshu.com?t=http://www.cnblogs.com/greta/p/5624839.html" target="_blank" rel="noopener">http://www.cnblogs.com/greta/p/5624839.html</a></p>
+<h3 id="Thread-的中断机制-interrupt"><a href="#Thread-的中断机制-interrupt" class="headerlink" title="Thread 的中断机制 (interrupt)"></a>Thread 的中断机制 (interrupt)</h3><p><a href="https://link.jianshu.com?t=http://www.cnblogs.com/onlywujun/p/3565082.html" target="_blank" rel="noopener">http://www.cnblogs.com/onlywujun/p/3565082.html</a></p>
+<h3 id="如何才能产生死锁"><a href="#如何才能产生死锁" class="headerlink" title="如何才能产生死锁"></a>如何才能产生死锁</h3><p>产生死锁的四个必要条件：</p>
+<ul>
+<li><strong>互斥条件</strong>：所谓互斥就是进程在某一时间内独占资源。</li>
+<li><strong>请求与保持条件</strong>：一个进程因请求资源而阻塞时，对已获得的资源保持不放。</li>
+<li><strong>不剥夺条件</strong>：进程已获得资源，在末使用完之前，不能强行剥夺。</li>
+<li><strong>循环等待条件</strong>：若干进程之间形成一种头尾相接的循环等待资源关系。</li>
+</ul>
+<h3 id="Java-死锁的简单例子"><a href="#Java-死锁的简单例子" class="headerlink" title="Java 死锁的简单例子"></a>Java 死锁的简单例子</h3><p><a href="https://www.jianshu.com/p/7d90e9c9c606" target="_blank" rel="noopener">http://www.jianshu.com/p/7d90e9c9c606</a></p>
+<h3 id="什么叫守护线程，用什么方法实现守护线程"><a href="#什么叫守护线程，用什么方法实现守护线程" class="headerlink" title="什么叫守护线程，用什么方法实现守护线程"></a>什么叫守护线程，用什么方法实现守护线程</h3><p>守护线程是为其他线程的运行提供服务的线程。<br>setDaemon(boolean on) 方法可以方便的设置线程的 Daemon 模式，true 为守护模式，false 为用户模式。</p>
+<hr>
+<h3 id="深入分析-java-线程池的实现原理"><a href="#深入分析-java-线程池的实现原理" class="headerlink" title="深入分析 java 线程池的实现原理"></a>深入分析 java 线程池的实现原理</h3><p><a href="https://www.jianshu.com/p/87bff5cc8d8c" target="_blank" rel="noopener">http://www.jianshu.com/p/87bff5cc8d8c</a><br><a href="https://link.jianshu.com?t=http://www.cnblogs.com/dolphin0520/p/3932921.html" target="_blank" rel="noopener">http://www.cnblogs.com/dolphin0520/p/3932921.html</a></p>
+<h3 id="Java-线程池-——-线程池的五种状态"><a href="#Java-线程池-——-线程池的五种状态" class="headerlink" title="Java 线程池 —— 线程池的五种状态"></a>Java 线程池 —— 线程池的五种状态</h3><p>Running、ShutDown、Stop、Tidying、Terminated<br><a href="https://link.jianshu.com?t=http://blog.csdn.net/l_kanglin/article/details/57411851" target="_blank" rel="noopener">http://blog.csdn.net/l_kanglin/article/details/57411851</a></p>
+<h3 id="LockSupport（park-unpark）源码分析"><a href="#LockSupport（park-unpark）源码分析" class="headerlink" title="LockSupport（park/unpark）源码分析"></a>LockSupport（park/unpark）源码分析</h3><p><a href="https://www.jianshu.com/p/e3afe8ab8364" target="_blank" rel="noopener">http://www.jianshu.com/p/e3afe8ab8364</a></p>
+<hr>
+<h3 id="详解-java-定时任务"><a href="#详解-java-定时任务" class="headerlink" title="详解 java 定时任务"></a>详解 java 定时任务</h3><p><a href="https://link.jianshu.com?t=http://cmsblogs.com/?p=1175" target="_blank" rel="noopener">http://cmsblogs.com/?p=1175</a><br>备用地址：<a href="https://link.jianshu.com?t=http://blog.csdn.net/chenssy/article/details/32703499" target="_blank" rel="noopener">http://blog.csdn.net/chenssy/article/details/32703499</a></p>
+<hr>
+<h3 id="深入分析-CAS"><a href="#深入分析-CAS" class="headerlink" title="深入分析 CAS"></a>深入分析 CAS</h3><p><a href="https://link.jianshu.com?t=http://cmsblogs.com/?p=2235" target="_blank" rel="noopener">http://cmsblogs.com/?p=2235</a><br>备用地址：<a href="https://link.jianshu.com?t=http://blog.csdn.net/chenssy/article/details/69640293" target="_blank" rel="noopener">http://blog.csdn.net/chenssy/article/details/69640293</a><br>CAS 实际上是利用处理器提供的 CMPXCHG 指令实现的，而处理器执行 CMPXCHG 指令是一个原子性操作。</p>
+<h3 id="java-同步器-AQS-原理"><a href="#java-同步器-AQS-原理" class="headerlink" title="java 同步器 AQS 原理"></a>java 同步器 AQS 原理</h3><p><a href="https://www.jianshu.com/p/d8eeb31bee5c" target="_blank" rel="noopener">http://www.jianshu.com/p/d8eeb31bee5c</a></p>
+<p>【死磕 Java 并发】—–J.U.C 之 AQS：AQS 简介<br><a href="https://link.jianshu.com?t=http://cmsblogs.com/?p=2174" target="_blank" rel="noopener">http://cmsblogs.com/?p=2174</a><br>备用地址：<a href="https://link.jianshu.com?t=http://blog.csdn.net/chenssy/article/details/60479594" target="_blank" rel="noopener">http://blog.csdn.net/chenssy/article/details/60479594</a></p>
+<p>【死磕 Java 并发】—–J.U.C 之 AQS：CLH 同步队列<br><a href="https://link.jianshu.com?t=http://cmsblogs.com/?p=2188" target="_blank" rel="noopener">http://cmsblogs.com/?p=2188</a><br>备用地址：<a href="https://link.jianshu.com?t=http://blog.csdn.net/chenssy/article/details/60781148" target="_blank" rel="noopener">http://blog.csdn.net/chenssy/article/details/60781148</a></p>
+<p>【死磕 Java 并发】—–J.U.C 之 AQS：同步状态的获取与释放<br><a href="https://link.jianshu.com?t=http://cmsblogs.com/?p=2197" target="_blank" rel="noopener">http://cmsblogs.com/?p=2197</a><br>备用地址：<a href="https://link.jianshu.com?t=http://blog.csdn.net/chenssy/article/details/61922603" target="_blank" rel="noopener">http://blog.csdn.net/chenssy/article/details/61922603</a></p>
+<p>【死磕 Java 并发】—–J.U.C 之 AQS：阻塞和唤醒线程<br><a href="https://link.jianshu.com?t=http://cmsblogs.com/?p=2205" target="_blank" rel="noopener">http://cmsblogs.com/?p=2205</a><br>备用地址：<a href="https://link.jianshu.com?t=http://blog.csdn.net/chenssy/article/details/65449785" target="_blank" rel="noopener">http://blog.csdn.net/chenssy/article/details/65449785</a></p>
+<hr>
+<h3 id="ReentrantLock-源码解析"><a href="#ReentrantLock-源码解析" class="headerlink" title="ReentrantLock 源码解析"></a>ReentrantLock 源码解析</h3><p><a href="https://www.jianshu.com/p/4358b1466ec9" target="_blank" rel="noopener">http://www.jianshu.com/p/4358b1466ec9</a></p>
+<h3 id="ReentrantReadWriteLock-源码解析"><a href="#ReentrantReadWriteLock-源码解析" class="headerlink" title="ReentrantReadWriteLock 源码解析"></a>ReentrantReadWriteLock 源码解析</h3><p><a href="https://link.jianshu.com?t=http://cmsblogs.com/?p=2213" target="_blank" rel="noopener">http://cmsblogs.com/?p=2213</a><br>备用地址：<a href="https://link.jianshu.com?t=http://blog.csdn.net/chenssy/article/details/68059443" target="_blank" rel="noopener">http://blog.csdn.net/chenssy/article/details/68059443</a></p>
+<hr>
+<h3 id="J-U-C-之并发工具类：CountDownLatch"><a href="#J-U-C-之并发工具类：CountDownLatch" class="headerlink" title="J.U.C 之并发工具类：CountDownLatch"></a>J.U.C 之并发工具类：CountDownLatch</h3><p><a href="https://link.jianshu.com?t=http://cmsblogs.com/?p=2253" target="_blank" rel="noopener">http://cmsblogs.com/?p=2253</a><br>备用地址：<a href="https://link.jianshu.com?t=http://blog.csdn.net/chenssy/article/details/70657913" target="_blank" rel="noopener">http://blog.csdn.net/chenssy/article/details/70657913</a></p>
+<h3 id="J-U-C-之并发工具类：CyclicBarrier"><a href="#J-U-C-之并发工具类：CyclicBarrier" class="headerlink" title="J.U.C 之并发工具类：CyclicBarrier"></a>J.U.C 之并发工具类：CyclicBarrier</h3><p><a href="https://link.jianshu.com?t=http://cmsblogs.com/?p=2241" target="_blank" rel="noopener">http://cmsblogs.com/?p=2241</a><br>备用地址：<a href="https://link.jianshu.com?t=http://blog.csdn.net/chenssy/article/details/70160595" target="_blank" rel="noopener">http://blog.csdn.net/chenssy/article/details/70160595</a></p>
+<h3 id="J-U-C-之并发工具类：Semaphore"><a href="#J-U-C-之并发工具类：Semaphore" class="headerlink" title="J.U.C 之并发工具类：Semaphore"></a>J.U.C 之并发工具类：Semaphore</h3><p><a href="https://link.jianshu.com?t=http://cmsblogs.com/?p=2263" target="_blank" rel="noopener">http://cmsblogs.com/?p=2263</a><br>备用地址：<a href="https://link.jianshu.com?t=http://blog.csdn.net/chenssy/article/details/71132566" target="_blank" rel="noopener">http://blog.csdn.net/chenssy/article/details/71132566</a></p>
+<hr>
+<h3 id="ConcurrentHashMap-源码分析"><a href="#ConcurrentHashMap-源码分析" class="headerlink" title="ConcurrentHashMap 源码分析"></a>ConcurrentHashMap 源码分析</h3><p>ConcurrentHashMap 源码分析——JDK1.7：<a href="https://link.jianshu.com?t=http://blog.csdn.net/hbtj_1216/article/details/76205903" target="_blank" rel="noopener">http://blog.csdn.net/hbtj_1216/article/details/76205903</a><br>ConcurrentHashMap 源码分析——JDK1.8 ： <a href="https://www.jianshu.com/p/c0642afe03e0" target="_blank" rel="noopener">http://www.jianshu.com/p/c0642afe03e0</a><br>ConcurrentHashMap1.7 和 1.8 的不同实现 ： <a href="https://www.jianshu.com/p/e694f1e868ec" target="_blank" rel="noopener">http://www.jianshu.com/p/e694f1e868ec</a><br>CAS（Compare And Swap）详解： <a href="https://www.jianshu.com/p/fb6e91b013cc" target="_blank" rel="noopener">http://www.jianshu.com/p/fb6e91b013cc</a></p>
+<hr>
+<h3 id="BlockingQueue-源码分析"><a href="#BlockingQueue-源码分析" class="headerlink" title="BlockingQueue 源码分析"></a>BlockingQueue 源码分析</h3><p>ArrayBlockingQueue 源码解析——JDK1.8 <a href="https://link.jianshu.com?t=http://www.cnblogs.com/leesf456/p/5533770.html" target="_blank" rel="noopener">http://www.cnblogs.com/leesf456/p/5533770.html</a><br>LinkedBlockingQueue 源码解析——JDK1.8 <a href="https://link.jianshu.com?t=http://www.cnblogs.com/leesf456/p/5539071.html" target="_blank" rel="noopener">http://www.cnblogs.com/leesf456/p/5539071.html</a></p>
+<p>SynchronousQuene<br><a href="https://link.jianshu.com?t=http://blog.csdn.net/chenssy/article/details/77371992" target="_blank" rel="noopener">http://blog.csdn.net/chenssy/article/details/77371992</a></p>
+<p>priorityBlockingQuene</p>
+<hr>
+<h3 id="锁优化（5-种方法）"><a href="#锁优化（5-种方法）" class="headerlink" title="锁优化（5 种方法）"></a>锁优化（5 种方法）</h3><p><a href="https://www.jianshu.com/p/4061f926470a" target="_blank" rel="noopener">http://www.jianshu.com/p/4061f926470a</a></p>
+<h3 id="虚拟机内的锁优化（偏向锁、自旋锁、轻量级锁、重量级锁）"><a href="#虚拟机内的锁优化（偏向锁、自旋锁、轻量级锁、重量级锁）" class="headerlink" title="虚拟机内的锁优化（偏向锁、自旋锁、轻量级锁、重量级锁）"></a>虚拟机内的锁优化（偏向锁、自旋锁、轻量级锁、重量级锁）</h3><p><a href="https://www.jianshu.com/p/5da9ef598604" target="_blank" rel="noopener">http://www.jianshu.com/p/5da9ef598604</a></p>
+<hr>
+<h3 id="AtomicLong-原子类"><a href="#AtomicLong-原子类" class="headerlink" title="AtomicLong 原子类"></a>AtomicLong 原子类</h3><p><a href="https://link.jianshu.com?t=http://www.cnblogs.com/skywang12345/p/3514593.html#a2" target="_blank" rel="noopener">http://www.cnblogs.com/skywang12345/p/3514593.html#a2</a></p>
+<h3 id="AtomicLongArray-原子类"><a href="#AtomicLongArray-原子类" class="headerlink" title="AtomicLongArray 原子类"></a>AtomicLongArray 原子类</h3><p><a href="https://link.jianshu.com?t=http://www.cnblogs.com/skywang12345/p/3514604.html" target="_blank" rel="noopener">http://www.cnblogs.com/skywang12345/p/3514604.html</a></p>
+<h3 id="AtomicReference-原子类"><a href="#AtomicReference-原子类" class="headerlink" title="AtomicReference 原子类"></a>AtomicReference 原子类</h3><p><a href="https://link.jianshu.com?t=http://www.cnblogs.com/skywang12345/p/3514623.html" target="_blank" rel="noopener">http://www.cnblogs.com/skywang12345/p/3514623.html</a></p>
+
+      
+    </div>
+    
+    
+    
+
+
+     
+    
+      <div>
+        
+    <div style="text-align:center;color: #ccc;font-size:14px;">
+        ------ 本文结束<i class="fa fa-paw"></i>感谢您的阅读 ------</div>
+
+      </div>
+    
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    CloudPai
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://cloudpai.site/2018/03/22/2018-03-22-4/" title="java并发编程实战 总结">http://cloudpai.site/2018/03/22/2018-03-22-4/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/java/" rel="tag"><i class="fa fa-tag"></i> java</a>
+          
+            <a href="/tags/并发/" rel="tag"><i class="fa fa-tag"></i> 并发</a>
+          
+            <a href="/tags/待阅/" rel="tag"><i class="fa fa-tag"></i> 待阅</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/22/2018-03-22-3/" rel="next" title="java并发编程实战 笔记四">
+                <i class="fa fa-chevron-left"></i> java并发编程实战 笔记四
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/23/2018-03-23/" rel="prev" title="java 并发 多线程 面试总结 top50+top40">
+                java 并发 多线程 面试总结 top50+top40 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+
+
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg"
+                alt="CloudPai" />
+            
+              <p class="site-author-name" itemprop="name">CloudPai</p>
+              <p class="site-description motion-element" itemprop="description">加油(๑•̀ㅂ•́)و✧加油</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">78</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+
+<div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=240 src="//music.163.com/outchain/player?type=0&id=2113726971&auto=0&height=430"></iframe>
+</div>
+<!-- 459004290 -->
+
+
+
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CloudPai" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:liupai024@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.douban.com/people/57965969/doulists/all" target="_blank" title="豆瓣">
+                      
+                        <i class="fa fa-fw fa-book"></i>豆瓣</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/cloudPai/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-edit"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.dlut.edu.cn/" title="DUT" target="_blank">DUT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bupt.edu.cn/" title="BUPT" target="_blank">BUPT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://campus.alibaba.com/index.htm" title="Alibaba Group" target="_blank">Alibaba Group</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#java-多线程（一个优秀的博客）"><span class="nav-text">java 多线程（一个优秀的博客）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程状态图"><span class="nav-text">线程状态图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-实现多线程三种方式"><span class="nav-text">Java 实现多线程三种方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sleep-，wait-，yield-，join-方法的区别-考察是否会释放锁"><span class="nav-text">sleep()，wait()，yield()，join() 方法的区别 (考察是否会释放锁)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#阻塞和非阻塞、同步和异步"><span class="nav-text">阻塞和非阻塞、同步和异步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程间的通信方式、线程同步方式、进程间通信方式"><span class="nav-text">线程间的通信方式、线程同步方式、进程间通信方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进程和线程的区别与联系"><span class="nav-text">进程和线程的区别与联系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Callable、Future、FutureTask-详解"><span class="nav-text">Callable、Future、FutureTask 详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#volatile-关键字解析"><span class="nav-text">volatile 关键字解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深入剖析-ThreadLocal"><span class="nav-text">深入剖析 ThreadLocal</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#synchronized-详解"><span class="nav-text">synchronized 详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lock-接口及实现类"><span class="nav-text">Lock 接口及实现类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#synchronized-和-Lock-的区别"><span class="nav-text">synchronized 和 Lock 的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#java-程序中，如何安全的结束一个正在运行的线程？"><span class="nav-text">java 程序中，如何安全的结束一个正在运行的线程？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Thread-的中断机制-interrupt"><span class="nav-text">Thread 的中断机制 (interrupt)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何才能产生死锁"><span class="nav-text">如何才能产生死锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-死锁的简单例子"><span class="nav-text">Java 死锁的简单例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么叫守护线程，用什么方法实现守护线程"><span class="nav-text">什么叫守护线程，用什么方法实现守护线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深入分析-java-线程池的实现原理"><span class="nav-text">深入分析 java 线程池的实现原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-线程池-——-线程池的五种状态"><span class="nav-text">Java 线程池 —— 线程池的五种状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LockSupport（park-unpark）源码分析"><span class="nav-text">LockSupport（park/unpark）源码分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#详解-java-定时任务"><span class="nav-text">详解 java 定时任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深入分析-CAS"><span class="nav-text">深入分析 CAS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#java-同步器-AQS-原理"><span class="nav-text">java 同步器 AQS 原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ReentrantLock-源码解析"><span class="nav-text">ReentrantLock 源码解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ReentrantReadWriteLock-源码解析"><span class="nav-text">ReentrantReadWriteLock 源码解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#J-U-C-之并发工具类：CountDownLatch"><span class="nav-text">J.U.C 之并发工具类：CountDownLatch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#J-U-C-之并发工具类：CyclicBarrier"><span class="nav-text">J.U.C 之并发工具类：CyclicBarrier</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#J-U-C-之并发工具类：Semaphore"><span class="nav-text">J.U.C 之并发工具类：Semaphore</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ConcurrentHashMap-源码分析"><span class="nav-text">ConcurrentHashMap 源码分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BlockingQueue-源码分析"><span class="nav-text">BlockingQueue 源码分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#锁优化（5-种方法）"><span class="nav-text">锁优化（5 种方法）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟机内的锁优化（偏向锁、自旋锁、轻量级锁、重量级锁）"><span class="nav-text">虚拟机内的锁优化（偏向锁、自旋锁、轻量级锁、重量级锁）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AtomicLong-原子类"><span class="nav-text">AtomicLong 原子类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AtomicLongArray-原子类"><span class="nav-text">AtomicLongArray 原子类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AtomicReference-原子类"><span class="nav-text">AtomicReference 原子类</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CloudPai</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">317.1k</span>
+  
+</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv">  </span>
+</span>
+</div>
+
+
+
+
+
+
+
+  <div class="theme-info">&#12288;主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://cloudpai.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://cloudpai.site/2018/03/22/2018-03-22-4/';
+          this.page.identifier = '2018/03/22/2018-03-22-4/';
+          this.page.title = 'java并发编程实战 总结';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cloudpai.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!-- <!-- <script src="https://cdn.bootcss.com/aplayer/1.6.0/APlayer.min.js"></script>
+
+<script src="https://api.i-meto.com/music/player.js"></script> --> -->
+  
+  <!--移动端判断，是否引入背景-->
+  <script>
+  var browser={  
+      versions:function(){   
+             var u = navigator.userAgent, app = navigator.appVersion;   
+             return {//移动终端浏览器版本信息
+                  trident: u.indexOf('Trident') > -1, //IE内核
+                  presto: u.indexOf('Presto') > -1, //opera内核
+                  webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                  gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                  mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                  ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                  android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                  iPhone: u.indexOf('iPhone') > -1 , //是否为iPhone或者QQHD浏览器
+                  iPad: u.indexOf('iPad') > -1, //是否iPad
+                  webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+              };  
+           }(),  
+           language:(navigator.browserLanguage || navigator.language).toLowerCase()  
+  }   
+    if(browser.versions.mobile || browser.versions.ios || browser.versions.android ||   
+      browser.versions.iPhone || browser.versions.iPad){        
+               
+    }else{
+    document.write("<script type=\'text/javascript\'  src=\'/js/src/particle.js\'><\/script>");
+    }
+  </script>
+
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":-80,"vOffset":-50},"mobile":{"show":false,"scale":0.2},"react":{"opacityDefault":1,"opacityOnHover":0.2}});</script></body>
+</html>

@@ -81,19 +81,19 @@
 
 
 
-<meta name="description" content="1.1 并发简史操作系统多进程出现的原因 资源利用率：一个程序等待某个外部操作的时候运行另一个程序 公平性：粗粒度的时间分片共享计算机资源 便利性：多个程序执行多个任务 促使进程出现的因素同样也促使着线程的出现 线程允许同一个进程中同时存在多条程序控制流。线程共享进程范围内的资源，例如内存句柄、文件句柄 每个线程有各自的程序计数器、_栈_以及局部变量 线程也称作轻量级进程 1.2 线程的优势1.">
+<meta name="description" content="1.1 并发简史操作系统多进程出现的原因 资源利用率：一个程序等待某个外部操作的时候运行另一个程序 公平性：粗粒度的时间分片共享计算机资源 便利性：多个程序执行多个任务 促使进程出现的因素同样也促使着线程的出现 线程允许同一个进程中同时存在多条程序控制流。线程共享进程范围内的资源，例如内存句柄、文件句柄 每个线程有各自的程序计数器、栈以及局部变量 线程也称作轻量级进程 1.2 线程的优势1.2.">
 <meta name="keywords" content="java,并发">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java并发编程实战 笔记一">
 <meta property="og:url" content="http://cloudpai.site/2018/03/19/2018-03-19-9/index.html">
 <meta property="og:site_name" content="CloudPai">
-<meta property="og:description" content="1.1 并发简史操作系统多进程出现的原因 资源利用率：一个程序等待某个外部操作的时候运行另一个程序 公平性：粗粒度的时间分片共享计算机资源 便利性：多个程序执行多个任务 促使进程出现的因素同样也促使着线程的出现 线程允许同一个进程中同时存在多条程序控制流。线程共享进程范围内的资源，例如内存句柄、文件句柄 每个线程有各自的程序计数器、_栈_以及局部变量 线程也称作轻量级进程 1.2 线程的优势1.">
+<meta property="og:description" content="1.1 并发简史操作系统多进程出现的原因 资源利用率：一个程序等待某个外部操作的时候运行另一个程序 公平性：粗粒度的时间分片共享计算机资源 便利性：多个程序执行多个任务 促使进程出现的因素同样也促使着线程的出现 线程允许同一个进程中同时存在多条程序控制流。线程共享进程范围内的资源，例如内存句柄、文件句柄 每个线程有各自的程序计数器、栈以及局部变量 线程也称作轻量级进程 1.2 线程的优势1.2.">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15214714711304.jpg">
-<meta property="og:updated_time" content="2018-03-19T14:57:54.453Z">
+<meta property="og:updated_time" content="2018-03-21T14:43:14.664Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java并发编程实战 笔记一">
-<meta name="twitter:description" content="1.1 并发简史操作系统多进程出现的原因 资源利用率：一个程序等待某个外部操作的时候运行另一个程序 公平性：粗粒度的时间分片共享计算机资源 便利性：多个程序执行多个任务 促使进程出现的因素同样也促使着线程的出现 线程允许同一个进程中同时存在多条程序控制流。线程共享进程范围内的资源，例如内存句柄、文件句柄 每个线程有各自的程序计数器、_栈_以及局部变量 线程也称作轻量级进程 1.2 线程的优势1.">
+<meta name="twitter:description" content="1.1 并发简史操作系统多进程出现的原因 资源利用率：一个程序等待某个外部操作的时候运行另一个程序 公平性：粗粒度的时间分片共享计算机资源 便利性：多个程序执行多个任务 促使进程出现的因素同样也促使着线程的出现 线程允许同一个进程中同时存在多条程序控制流。线程共享进程范围内的资源，例如内存句柄、文件句柄 每个线程有各自的程序计数器、栈以及局部变量 线程也称作轻量级进程 1.2 线程的优势1.2.">
 <meta name="twitter:image" content="http://p4lmrb1gp.bkt.clouddn.com/15214714711304.jpg">
 
 
@@ -336,8 +336,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-19T22:57:54+08:00">
-                2018-03-19
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-21T22:43:14+08:00">
+                2018-03-21
               </time>
             
           </span>
@@ -375,7 +375,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  461
+                  460
                 </span>
               
 
@@ -418,7 +418,7 @@
 <p>便利性：多个程序执行多个任务</p>
 <p>促使进程出现的因素同样也促使着线程的出现</p>
 <p>线程允许同一个进程中同时存在多条程序控制流。线程<strong>共享</strong>进程范围内的资源，例如内存句柄、文件句柄</p>
-<p>每个线程有<strong>各自</strong>的<em>程序计数器</em>、_栈_以及<em>局部变量</em></p>
+<p>每个线程有<strong>各自</strong>的<strong>程序计数器、栈以及局部变量</strong></p>
 <p>线程也称作<strong>轻量级进程</strong></p>
 <h1 id="1-2-线程的优势"><a href="#1-2-线程的优势" class="headerlink" title="1.2 线程的优势"></a><strong>1.2 线程的优势</strong></h1><h4 id="1-2-1-发挥多处理的的强大能力"><a href="#1-2-1-发挥多处理的的强大能力" class="headerlink" title="1.2.1 发挥多处理的的强大能力"></a>1.2.1 发挥多处理的的强大能力</h4><p>操作系统调度单位是线程，如果一个程序只有一个线程，那么只能在一个处理器上运行</p>
 <p>多线程程序可以再多个处理器上运行，如果设计正确，可以通过处理器资源利用率来提升系统的吞吐率</p>
@@ -499,8 +499,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/19/2018-03-19-7/" rel="next" title="java并发编程">
-                <i class="fa fa-chevron-left"></i> java并发编程
+              <a href="/2018/03/19/2018-03-20-3/" rel="next" title="github上的JAVA并发编程实战笔记 参考">
+                <i class="fa fa-chevron-left"></i> github上的JAVA并发编程实战笔记 参考
               </a>
             
           </div>
@@ -509,8 +509,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/03/19/2018-03-20-3/" rel="prev" title="java并发编程实战 笔记">
-                java并发编程实战 笔记 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/03/20/2018-03-20/" rel="prev" title="antlr学习">
+                antlr学习 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -607,7 +607,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">71</span>
+                  <span class="site-state-item-count">78</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -629,7 +629,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -754,7 +754,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">297.1k</span>
+    <span title="Site words total count">317.1k</span>
   
 </div>
 

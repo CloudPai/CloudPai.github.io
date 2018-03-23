@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="WeakHashMap总体介绍在Java集合框架系列文章的最后，笔者打算介绍一个特殊的成员：WeakHashMap，从名字可以看出它是某种 Map。它的特殊之处在于 WeakHashMap 里的entry可能会被GC自动删除，即使程序员没有调用remove()或者clear()方法。 更直观的说，当使用 WeakHashMap 时，即使没有显示的添加或删除任何元素，也可能发生如下情况：   调用">
+<meta name="description" content="WeakHashMap总体介绍一个特殊的成员：WeakHashMap，从名字可以看出它是某种 Map。它的特殊之处在于 WeakHashMap 里的entry可能会被GC自动删除，即使程序员没有调用remove()或者clear()方法。 更直观的说，当使用 WeakHashMap 时，即使没有显示的添加或删除任何元素，也可能发生如下情况：   调用两次size()方法返回不同的值； 两次调用i">
 <meta name="keywords" content="java基础,源码">
 <meta property="og:type" content="article">
 <meta property="og:title" content="java集合框架源码解读八：WeakHashMap">
 <meta property="og:url" content="http://cloudpai.site/2018/03/20/2018-03-20-11/index.html">
 <meta property="og:site_name" content="CloudPai">
-<meta property="og:description" content="WeakHashMap总体介绍在Java集合框架系列文章的最后，笔者打算介绍一个特殊的成员：WeakHashMap，从名字可以看出它是某种 Map。它的特殊之处在于 WeakHashMap 里的entry可能会被GC自动删除，即使程序员没有调用remove()或者clear()方法。 更直观的说，当使用 WeakHashMap 时，即使没有显示的添加或删除任何元素，也可能发生如下情况：   调用">
+<meta property="og:description" content="WeakHashMap总体介绍一个特殊的成员：WeakHashMap，从名字可以看出它是某种 Map。它的特殊之处在于 WeakHashMap 里的entry可能会被GC自动删除，即使程序员没有调用remove()或者clear()方法。 更直观的说，当使用 WeakHashMap 时，即使没有显示的添加或删除任何元素，也可能发生如下情况：   调用两次size()方法返回不同的值； 两次调用i">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-20T14:15:09.697Z">
+<meta property="og:updated_time" content="2018-03-21T13:32:08.440Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java集合框架源码解读八：WeakHashMap">
-<meta name="twitter:description" content="WeakHashMap总体介绍在Java集合框架系列文章的最后，笔者打算介绍一个特殊的成员：WeakHashMap，从名字可以看出它是某种 Map。它的特殊之处在于 WeakHashMap 里的entry可能会被GC自动删除，即使程序员没有调用remove()或者clear()方法。 更直观的说，当使用 WeakHashMap 时，即使没有显示的添加或删除任何元素，也可能发生如下情况：   调用">
+<meta name="twitter:description" content="WeakHashMap总体介绍一个特殊的成员：WeakHashMap，从名字可以看出它是某种 Map。它的特殊之处在于 WeakHashMap 里的entry可能会被GC自动删除，即使程序员没有调用remove()或者clear()方法。 更直观的说，当使用 WeakHashMap 时，即使没有显示的添加或删除任何元素，也可能发生如下情况：   调用两次size()方法返回不同的值； 两次调用i">
 
 
 
@@ -334,8 +334,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-20T22:15:09+08:00">
-                2018-03-20
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-21T21:32:08+08:00">
+                2018-03-21
               </time>
             
           </span>
@@ -373,7 +373,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,191
+                  1,064
                 </span>
               
 
@@ -389,7 +389,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  5
+                  4
                 </span>
               
             </div>
@@ -410,7 +410,7 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="WeakHashMap"><a href="#WeakHashMap" class="headerlink" title="WeakHashMap"></a>WeakHashMap</h1><h1 id="总体介绍"><a href="#总体介绍" class="headerlink" title="总体介绍"></a>总体介绍</h1><p>在Java集合框架系列文章的最后，笔者打算介绍一个特殊的成员：<em>WeakHashMap</em>，从名字可以看出它是某种 <em>Map</em>。它的特殊之处在于 <em>WeakHashMap</em> 里的<code>entry</code>可能会被GC自动删除，即使程序员没有调用<code>remove()</code>或者<code>clear()</code>方法。</p>
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="WeakHashMap"><a href="#WeakHashMap" class="headerlink" title="WeakHashMap"></a>WeakHashMap</h1><h1 id="总体介绍"><a href="#总体介绍" class="headerlink" title="总体介绍"></a>总体介绍</h1><p>一个特殊的成员：<em>WeakHashMap</em>，从名字可以看出它是某种 <em>Map</em>。它的特殊之处在于 <em>WeakHashMap</em> 里的<code>entry</code>可能会被GC自动删除，即使程序员没有调用<code>remove()</code>或者<code>clear()</code>方法。</p>
 <p>更直观的说，当使用 <em>WeakHashMap</em> 时，即使没有显示的添加或删除任何元素，也可能发生如下情况：</p>
 <blockquote>
 <ul>
@@ -430,8 +430,6 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 将WeakHashMap包装成一个Set</span></span><br><span class="line">Set&lt;Object&gt; weakHashSet = Collections.newSetFromMap(</span><br><span class="line">        <span class="keyword">new</span> WeakHashMap&lt;Object, Boolean&gt;());</span><br></pre></td></tr></table></figure>
 <p>不出你所料，<code>newSetFromMap()</code>方法只是对传入的 <em>Map</em>做了简单包装：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Collections.newSetFromMap()用于将任何Map包装成一个Set</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> &lt;E&gt; <span class="function">Set&lt;E&gt; <span class="title">newSetFromMap</span><span class="params">(Map&lt;E, Boolean&gt; map)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> SetFromMap&lt;&gt;(map);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">SetFromMap</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">AbstractSet</span>&lt;<span class="title">E</span>&gt;</span></span><br><span class="line"><span class="class">    <span class="keyword">implements</span> <span class="title">Set</span>&lt;<span class="title">E</span>&gt;, <span class="title">Serializable</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">final</span> Map&lt;E, Boolean&gt; m;  <span class="comment">// The backing map</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">transient</span> Set&lt;E&gt; s;       <span class="comment">// Its keySet</span></span><br><span class="line">    SetFromMap(Map&lt;E, Boolean&gt; map) &#123;</span><br><span class="line">        <span class="keyword">if</span> (!map.isEmpty())</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> IllegalArgumentException(<span class="string">"Map is non-empty"</span>);</span><br><span class="line">        m = map;</span><br><span class="line">        s = map.keySet();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">clear</span><span class="params">()</span>               </span>&#123;        m.clear(); &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span>                 </span>&#123; <span class="keyword">return</span> m.size(); &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isEmpty</span><span class="params">()</span>          </span>&#123; <span class="keyword">return</span> m.isEmpty(); &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(Object o)</span> </span>&#123; <span class="keyword">return</span> m.containsKey(o); &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">remove</span><span class="params">(Object o)</span>   </span>&#123; <span class="keyword">return</span> m.remove(o) != <span class="keyword">null</span>; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">add</span><span class="params">(E e)</span> </span>&#123; <span class="keyword">return</span> m.put(e, Boolean.TRUE) == <span class="keyword">null</span>; &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Iterator&lt;E&gt; <span class="title">iterator</span><span class="params">()</span>     </span>&#123; <span class="keyword">return</span> s.iterator(); &#125;</span><br><span class="line">    <span class="keyword">public</span> Object[] toArray()         &#123; <span class="keyword">return</span> s.toArray(); &#125;</span><br><span class="line">    <span class="keyword">public</span> &lt;T&gt; T[] toArray(T[] a)     &#123; <span class="keyword">return</span> s.toArray(a); &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span>          </span>&#123; <span class="keyword">return</span> s.toString(); &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span>             </span>&#123; <span class="keyword">return</span> s.hashCode(); &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object o)</span>   </span>&#123; <span class="keyword">return</span> o == <span class="keyword">this</span> || s.equals(o); &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">containsAll</span><span class="params">(Collection&lt;?&gt; c)</span> </span>&#123;<span class="keyword">return</span> s.containsAll(c);&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">removeAll</span><span class="params">(Collection&lt;?&gt; c)</span>   </span>&#123;<span class="keyword">return</span> s.removeAll(c);&#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">retainAll</span><span class="params">(Collection&lt;?&gt; c)</span>   </span>&#123;<span class="keyword">return</span> s.retainAll(c);&#125;</span><br><span class="line">    <span class="comment">// addAll is the only inherited implementation</span></span><br><span class="line">    ......</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h1><p>至此<em>Java Collections Framework Internals</em>系列已经全部讲解完毕，希望这几篇简短的博文能够帮助各位读者对Java容器框架建立基本的理解。通过这里可以返回<a href="https://github.com/CarpenterLee/JCFInternals/blob/master/markdown/0-Introduction.md" target="_blank" rel="noopener">本系列文章目录</a></p>
-<p>如果对各位有哪怕些微的帮助，博主将感到非常高兴！如果博文中有任何的纰漏和谬误，欢迎各位博友指正。</p>
 <hr>
 <blockquote>
 <p>参考：<br><a href="http://blog.csdn.net/ylyg050518/article/details/52149816" target="_blank" rel="noopener">http://blog.csdn.net/ylyg050518/article/details/52149816</a><br><a href="https://github.com/CarpenterLee/JCFInternals/blob/master/markdown/2-ArrayList.md" target="_blank" rel="noopener">https://github.com/CarpenterLee/JCFInternals/blob/master/markdown/2-ArrayList.md</a></p>
@@ -609,7 +607,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">71</span>
+                  <span class="site-state-item-count">78</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -631,7 +629,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -721,7 +719,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WeakHashMap"><span class="nav-text">WeakHashMap</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总体介绍"><span class="nav-text">总体介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#具体实现"><span class="nav-text">具体实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Weak-HashSet"><span class="nav-text">Weak HashSet?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#结语"><span class="nav-text">结语</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#WeakHashMap"><span class="nav-text">WeakHashMap</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总体介绍"><span class="nav-text">总体介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#具体实现"><span class="nav-text">具体实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Weak-HashSet"><span class="nav-text">Weak HashSet?</span></a></li></ol></div>
             
 
           </div>
@@ -756,7 +754,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">297.1k</span>
+    <span title="Site words total count">317.1k</span>
   
 </div>
 

@@ -91,7 +91,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://img.blog.csdn.net/20170516104153934?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveWx5ZzA1MDUxOA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
 <meta property="og:image" content="http://img.blog.csdn.net/20170516110004974?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveWx5ZzA1MDUxOA==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast">
-<meta property="og:updated_time" content="2018-03-20T14:36:13.249Z">
+<meta property="og:updated_time" content="2018-03-21T13:45:59.861Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="java集合框架源码解读十一：ConcurrentHashMap">
 <meta name="twitter:description" content="概述ConcurrentHashMap 是 Java 并发框架中很重要的一个类，是实现支持高并发、高吞吐量的线程安全的 HashMap。当然不能直接对整个 hashtable 加锁，所以在 ConcurrentHashMap 中，数据的组织结构和 HashMap 有所区别。  与 HashTable 区别下面这幅图直观展示了 ConcurrentHashMap 与 HashTable 的区别，可">
@@ -337,8 +337,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-20T22:36:13+08:00">
-                2018-03-20
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-21T21:45:59+08:00">
+                2018-03-21
               </time>
             
           </span>
@@ -420,7 +420,7 @@
 <h2 id="ConcurrentHashMap-原理分析"><a href="#ConcurrentHashMap-原理分析" class="headerlink" title="ConcurrentHashMap 原理分析"></a><a></a>ConcurrentHashMap 原理分析</h2><p>ConcurrentHashMap 的结构是比较复杂的，深究去本质，其实也就是数组和链表而已。我们由浅入深慢慢的分析其结构。</p>
 <h3 id="Segment"><a href="#Segment" class="headerlink" title="Segment"></a><a></a>Segment</h3><p>Segment 是 ConcurrentHashMap 的内部类，Segment 的类定义为</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">static final class Segment&lt;K,V&gt; extends ReentrantLock implements Serializable</span><br></pre></td></tr></table></figure>
-<p>其继承于 ReentrantLock 类，从而使得 Segment 对象可以充当锁的角色。Segment 中包含 HashEntry 的数组，其可以守护其包含的若干个桶（HashEntry 的数组）。Segment 在某些意义上有点类似于 HashMap 了，都是包含了一个数组，而数组中的元素可以是一个链表。</p>
+<p>其继承于 ReentrantLock 类，从而使得 Segment 对象可以充当<strong>锁</strong>的角色。Segment 中包含 HashEntry 的数组，其可以守护其包含的若干个桶（HashEntry 的数组）。Segment 在某些意义上有点类似于 HashMap 了，都是包含了一个数组，而数组中的元素可以是一个链表。</p>
 <p><strong>table</strong><br>table 是由 HashEntry 对象组成的数组如果散列时发生碰撞，碰撞的 HashEntry 对象就以链表的形式链接成一个链表 table 数组的数组成员代表散列映射表的一个桶每个 table 守护整个 ConcurrentHashMap 包含桶总数的一部分如果并发级别为 16，table 则守护 ConcurrentHashMap 包含的桶总数的 1/16。</p>
 <p><strong>count</strong></p>
 <p>变量是计数器，表示每个 Segment 对象管理的 table 数组（若干个 HashEntry 的链表）包含的 HashEntry 对象的个数。之所以在每个 Segment 对象中包含一个 count 计数器，而不在 ConcurrentHashMap 中使用全局的计数器，是为了避免出现 “热点域” 而影响并发性。</p>
@@ -523,6 +523,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2018/03/21/2018-03-21/" rel="prev" title="java并发编程实战 笔记二">
+                java并发编程实战 笔记二 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -617,7 +621,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">71</span>
+                  <span class="site-state-item-count">78</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -639,7 +643,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-count">33</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -764,7 +768,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">297.1k</span>
+    <span title="Site words total count">317.1k</span>
   
 </div>
 
