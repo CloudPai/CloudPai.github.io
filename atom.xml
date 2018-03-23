@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cloudpai.site/"/>
-  <updated>2018-03-23T13:32:19.922Z</updated>
+  <updated>2018-03-23T14:37:44.303Z</updated>
   <id>http://cloudpai.site/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>java多线程系列一：基础篇</title>
+    <link href="http://cloudpai.site/2018/03/23/2018-03-23-1/"/>
+    <id>http://cloudpai.site/2018/03/23/2018-03-23-1/</id>
+    <published>2018-03-23T14:14:48.000Z</published>
+    <updated>2018-03-23T14:37:44.303Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;01-基本概念&quot;&gt;&lt;a href=&quot;#01-基本概念&quot; class=&quot;headerlink&quot; title=&quot;01 基本概念&quot;&gt;&lt;/a&gt;01 基本概念&lt;/h1&gt;&lt;p&gt;
+      
+    
+    </summary>
+    
+    
+      <category term="java" scheme="http://cloudpai.site/tags/java/"/>
+    
+      <category term="并发" scheme="http://cloudpai.site/tags/%E5%B9%B6%E5%8F%91/"/>
+    
+  </entry>
   
   <entry>
     <title>java 并发 多线程 面试总结 top50+top40</title>
@@ -46,7 +69,7 @@
     <link href="http://cloudpai.site/2018/03/22/2018-03-22-4/"/>
     <id>http://cloudpai.site/2018/03/22/2018-03-22-4/</id>
     <published>2018-03-22T14:17:36.000Z</published>
-    <updated>2018-03-23T13:44:19.928Z</updated>
+    <updated>2018-03-23T14:08:30.899Z</updated>
     
     <summary type="html">
     
@@ -60,9 +83,9 @@
     
       <category term="java" scheme="http://cloudpai.site/tags/java/"/>
     
-      <category term="并发" scheme="http://cloudpai.site/tags/%E5%B9%B6%E5%8F%91/"/>
-    
       <category term="待阅" scheme="http://cloudpai.site/tags/%E5%BE%85%E9%98%85/"/>
+    
+      <category term="并发" scheme="http://cloudpai.site/tags/%E5%B9%B6%E5%8F%91/"/>
     
   </entry>
   
@@ -109,24 +132,6 @@
       <category term="java" scheme="http://cloudpai.site/tags/java/"/>
     
       <category term="并发" scheme="http://cloudpai.site/tags/%E5%B9%B6%E5%8F%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>scratch大数据：活动/竞赛/教学 区别和联系</title>
-    <link href="http://cloudpai.site/2018/03/22/2018-03-22-1/"/>
-    <id>http://cloudpai.site/2018/03/22/2018-03-22-1/</id>
-    <published>2018-03-22T07:51:20.000Z</published>
-    <updated>2018-03-22T07:58:22.530Z</updated>
-    
-    <summary type="html">
-    
-      「这是一篇加密博客，项目结束后会公开内容」
-    
-    </summary>
-    
-    
-      <category term="BigData" scheme="http://cloudpai.site/tags/BigData/"/>
     
   </entry>
   
@@ -449,17 +454,17 @@
   </entry>
   
   <entry>
-    <title>java并发编程实战 笔记一</title>
-    <link href="http://cloudpai.site/2018/03/19/2018-03-19-9/"/>
-    <id>http://cloudpai.site/2018/03/19/2018-03-19-9/</id>
+    <title>github上的JAVA并发编程实战笔记 参考</title>
+    <link href="http://cloudpai.site/2018/03/19/2018-03-20-3/"/>
+    <id>http://cloudpai.site/2018/03/19/2018-03-20-3/</id>
     <published>2018-03-19T13:49:35.000Z</published>
-    <updated>2018-03-21T14:43:14.664Z</updated>
+    <updated>2018-03-22T14:00:52.075Z</updated>
     
     <summary type="html">
     
       
       
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;1-1-并发简史&quot;&gt;&lt;a href=&quot;#1-1-并发简史&quot; class=&quot;headerlink&quot; title=&quot;1.1 并发简史&quot;&gt;&lt;/a&gt;1.1 并发简史&lt;/h1
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;github上的JAVA并发编程实战笔记&quot;&gt;&lt;a href=&quot;#github上的JAVA并发编程实战笔记&quot; class=&quot;headerlink&quot; title=&quot;gi
       
     
     </summary>
