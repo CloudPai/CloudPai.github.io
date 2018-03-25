@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="java,待阅,并发," />
+  <meta name="keywords" content="java,并发,guava," />
 
 
 
@@ -81,18 +81,18 @@
 
 
 
-<meta name="description" content="java 多线程（一个优秀的博客）http://www.cnblogs.com/skywang12345/p/java_threads_category.html  线程状态图http://blog.csdn.net/hbtj_1216/article/details/77648610 Java 实现多线程三种方式继承 Thread 类、实现 Runnable 接口、使用 ExecutorSer">
-<meta name="keywords" content="java,待阅,并发">
+<meta name="description" content="实战操作教程：https://www.yiibai.com/guava/参考官方中文文档：http://ifeve.com/google-guava/guava官方项目：https://github.com/google/guava">
+<meta name="keywords" content="java,并发,guava">
 <meta property="og:type" content="article">
-<meta property="og:title" content="java并发编程实战 总结">
-<meta property="og:url" content="http://cloudpai.site/2018/03/22/2018-03-22-4/index.html">
+<meta property="og:title" content="guava入门实战">
+<meta property="og:url" content="http://cloudpai.site/2018/03/25/2018-03-25-2/index.html">
 <meta property="og:site_name" content="CloudPai">
-<meta property="og:description" content="java 多线程（一个优秀的博客）http://www.cnblogs.com/skywang12345/p/java_threads_category.html  线程状态图http://blog.csdn.net/hbtj_1216/article/details/77648610 Java 实现多线程三种方式继承 Thread 类、实现 Runnable 接口、使用 ExecutorSer">
+<meta property="og:description" content="实战操作教程：https://www.yiibai.com/guava/参考官方中文文档：http://ifeve.com/google-guava/guava官方项目：https://github.com/google/guava">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-23T14:08:30.899Z">
+<meta property="og:updated_time" content="2018-03-25T14:03:17.401Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="java并发编程实战 总结">
-<meta name="twitter:description" content="java 多线程（一个优秀的博客）http://www.cnblogs.com/skywang12345/p/java_threads_category.html  线程状态图http://blog.csdn.net/hbtj_1216/article/details/77648610 Java 实现多线程三种方式继承 Thread 类、实现 Runnable 接口、使用 ExecutorSer">
+<meta name="twitter:title" content="guava入门实战">
+<meta name="twitter:description" content="实战操作教程：https://www.yiibai.com/guava/参考官方中文文档：http://ifeve.com/google-guava/guava官方项目：https://github.com/google/guava">
 
 
 
@@ -122,13 +122,13 @@
 
 
 
-  <link rel="canonical" href="http://cloudpai.site/2018/03/22/2018-03-22-4/"/>
+  <link rel="canonical" href="http://cloudpai.site/2018/03/25/2018-03-25-2/"/>
 
 
 
 
 
-  <title>java并发编程实战 总结 | CloudPai</title>
+  <title>guava入门实战 | CloudPai</title>
   
 
 
@@ -289,7 +289,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/03/22/2018-03-22-4/">
+    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/03/25/2018-03-25-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="CloudPai">
@@ -306,7 +306,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">java并发编程实战 总结</h1>
+          <h1 class="post-title" itemprop="name headline">guava入门实战</h1>
         
 
         <div class="post-meta">
@@ -318,8 +318,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-22T22:17:36+08:00">
-                2018-03-22
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-25T20:34:06+08:00">
+                2018-03-25
               </time>
             
 
@@ -334,8 +334,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-23T22:08:30+08:00">
-                2018-03-23
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-25T22:03:17+08:00">
+                2018-03-25
               </time>
             
           </span>
@@ -349,9 +349,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/03/22/2018-03-22-4/#comments" itemprop="discussionUrl">
+                <a href="/2018/03/25/2018-03-25-2/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/03/22/2018-03-22-4/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2018/03/25/2018-03-25-2/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -373,7 +373,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,350
+                  34
                 </span>
               
 
@@ -389,7 +389,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  6
+                  1
                 </span>
               
             </div>
@@ -410,83 +410,8 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><h3 id="java-多线程（一个优秀的博客）"><a href="#java-多线程（一个优秀的博客）" class="headerlink" title="java 多线程（一个优秀的博客）"></a><a></a>java 多线程（一个优秀的博客）</h3><p><a href="http://www.cnblogs.com/skywang12345/p/java_threads_category.html" target="_blank" rel="noopener">http://www.cnblogs.com/skywang12345/p/java_threads_category.html</a></p>
-<hr>
-<h3 id="线程状态图"><a href="#线程状态图" class="headerlink" title="线程状态图"></a><a></a>线程状态图</h3><p><a href="http://blog.csdn.net/hbtj_1216/article/details/77648610" target="_blank" rel="noopener">http://blog.csdn.net/hbtj_1216/article/details/77648610</a></p>
-<h3 id="Java-实现多线程三种方式"><a href="#Java-实现多线程三种方式" class="headerlink" title="Java 实现多线程三种方式"></a><a></a>Java 实现多线程三种方式</h3><p>继承 Thread 类、实现 Runnable 接口、使用 ExecutorService、Callable、Future 实现有返回结果的多线程。<br><a href="http://blog.csdn.net/hbtj_1216/article/details/76256149" target="_blank" rel="noopener">http://blog.csdn.net/hbtj_1216/article/details/76256149</a></p>
-<h3 id="sleep-，wait-，yield-，join-方法的区别-考察是否会释放锁"><a href="#sleep-，wait-，yield-，join-方法的区别-考察是否会释放锁" class="headerlink" title="sleep()，wait()，yield()，join() 方法的区别 (考察是否会释放锁)"></a><a></a>sleep()，wait()，yield()，join() 方法的区别 (考察是否会释放锁)</h3><p><a href="http://blog.csdn.net/hbtj_1216/article/details/76282462" target="_blank" rel="noopener">http://blog.csdn.net/hbtj_1216/article/details/76282462</a></p>
-<hr>
-<h3 id="阻塞和非阻塞、同步和异步"><a href="#阻塞和非阻塞、同步和异步" class="headerlink" title="阻塞和非阻塞、同步和异步"></a><a></a>阻塞和非阻塞、同步和异步</h3><p><a href="http://blog.csdn.net/hbtj_1216/article/details/77866384" target="_blank" rel="noopener">http://blog.csdn.net/hbtj_1216/article/details/77866384</a></p>
-<hr>
-<h3 id="线程间的通信方式、线程同步方式、进程间通信方式"><a href="#线程间的通信方式、线程同步方式、进程间通信方式" class="headerlink" title="线程间的通信方式、线程同步方式、进程间通信方式"></a><a></a>线程间的通信方式、线程同步方式、进程间通信方式</h3><p><a href="http://blog.csdn.net/hbtj_1216/article/details/77067467" target="_blank" rel="noopener">http://blog.csdn.net/hbtj_1216/article/details/77067467</a></p>
-<h3 id="进程和线程的区别与联系"><a href="#进程和线程的区别与联系" class="headerlink" title="进程和线程的区别与联系"></a><a></a>进程和线程的区别与联系</h3><p><a href="http://blog.csdn.net/hbtj_1216/article/details/75162088" target="_blank" rel="noopener">http://blog.csdn.net/hbtj_1216/article/details/75162088</a></p>
-<hr>
-<h3 id="Callable、Future、FutureTask-详解"><a href="#Callable、Future、FutureTask-详解" class="headerlink" title="Callable、Future、FutureTask 详解"></a><a></a>Callable、Future、FutureTask 详解</h3><p><a href="http://blog.csdn.net/hbtj_1216/article/details/70569881" target="_blank" rel="noopener">http://blog.csdn.net/hbtj_1216/article/details/70569881</a></p>
-<hr>
-<h3 id="volatile-关键字解析"><a href="#volatile-关键字解析" class="headerlink" title="volatile 关键字解析"></a><a></a>volatile 关键字解析</h3><p><a href="http://blog.csdn.net/hbtj_1216/article/details/72026927" target="_blank" rel="noopener">http://blog.csdn.net/hbtj_1216/article/details/72026927</a></p>
-<h3 id="深入剖析-ThreadLocal"><a href="#深入剖析-ThreadLocal" class="headerlink" title="深入剖析 ThreadLocal"></a><a></a>深入剖析 ThreadLocal</h3><p><a href="http://blog.csdn.net/hbtj_1216/article/details/72148322" target="_blank" rel="noopener">http://blog.csdn.net/hbtj_1216/article/details/72148322</a><br><a href="http://www.jianshu.com/p/3a196baa227b" target="_blank" rel="noopener">http://www.jianshu.com/p/3a196baa227b</a><br><a href="http://www.jianshu.com/p/f4ed71560771" target="_blank" rel="noopener">http://www.jianshu.com/p/f4ed71560771</a></p>
-<h3 id="synchronized-详解"><a href="#synchronized-详解" class="headerlink" title="synchronized 详解"></a><a></a>synchronized 详解</h3><p>（1）使用规则：<a href="http://www.cnblogs.com/skywang12345/p/3479202.html" target="_blank" rel="noopener">http://www.cnblogs.com/skywang12345/p/3479202.html</a><br>（2）synchronized 底层实现原理： <a href="http://blog.csdn.net/hbtj_1216/article/details/77773292" target="_blank" rel="noopener">http://blog.csdn.net/hbtj_1216/article/details/77773292</a></p>
-<h3 id="Lock-接口及实现类"><a href="#Lock-接口及实现类" class="headerlink" title="Lock 接口及实现类"></a><a></a>Lock 接口及实现类</h3><p><a href="http://www.cnblogs.com/dolphin0520/p/3923167.html" target="_blank" rel="noopener">http://www.cnblogs.com/dolphin0520/p/3923167.html</a></p>
-<h3 id="synchronized-和-Lock-的区别"><a href="#synchronized-和-Lock-的区别" class="headerlink" title="synchronized 和 Lock 的区别"></a><a></a>synchronized 和 Lock 的区别</h3><p><strong>synchronized 和 Lock 有以下几点不同</strong>：</p>
-<ol>
-<li><p>Lock 是一个接口，而 synchronized 是 Java 中的关键字，synchronized 是内置的语言实现。</p>
-</li>
-<li><p>synchronized 在发生异常时，会自动释放线程占有的锁，因此不会导致死锁现象发生；而 Lock 在发生异常时，如果没有主动通过 unLock() 去释放锁，则很可能造成死锁现象，因此使用 Lock 时需要在 finally 块中释放锁。</p>
-</li>
-<li><p>Lock 可以让等待锁的线程响应中断，而 synchronized 却不行，使用 synchronized 时，等待的线程会一直等待下去，不能够响应中断。</p>
-</li>
-<li><p>通过 Lock 可以知道有没有成功获取锁（tryLock() 方法尝试获取锁），而 synchronized 却无法办到。</p>
-</li>
-<li><p>Lock 可以提高多个线程进行<strong>读操作</strong>（读锁是共享锁）的效率。</p>
-</li>
-</ol>
-<h3 id="java-程序中，如何安全的结束一个正在运行的线程？"><a href="#java-程序中，如何安全的结束一个正在运行的线程？" class="headerlink" title="java 程序中，如何安全的结束一个正在运行的线程？"></a><a></a>java 程序中，如何安全的结束一个正在运行的线程？</h3><p><a href="http://blog.csdn.net/hbtj_1216/article/details/76263513" target="_blank" rel="noopener">http://blog.csdn.net/hbtj_1216/article/details/76263513</a><br><a href="http://www.cnblogs.com/greta/p/5624839.html" target="_blank" rel="noopener">http://www.cnblogs.com/greta/p/5624839.html</a></p>
-<h3 id="Thread-的中断机制-interrupt"><a href="#Thread-的中断机制-interrupt" class="headerlink" title="Thread 的中断机制 (interrupt)"></a><a></a>Thread 的中断机制 (interrupt)</h3><p><a href="http://www.cnblogs.com/onlywujun/p/3565082.html" target="_blank" rel="noopener">http://www.cnblogs.com/onlywujun/p/3565082.html</a></p>
-<h3 id="如何才能产生死锁"><a href="#如何才能产生死锁" class="headerlink" title="如何才能产生死锁"></a><a></a>如何才能产生死锁</h3><p>产生死锁的四个必要条件：</p>
-<ul>
-<li><strong>互斥条件</strong>：所谓互斥就是进程在某一时间内独占资源。</li>
-<li><strong>请求与保持条件</strong>：一个进程因请求资源而阻塞时，对已获得的资源保持不放。</li>
-<li><strong>不剥夺条件</strong>：进程已获得资源，在末使用完之前，不能强行剥夺。</li>
-<li><strong>循环等待条件</strong>：若干进程之间形成一种头尾相接的循环等待资源关系。</li>
-</ul>
-<h3 id="Java-死锁的简单例子"><a href="#Java-死锁的简单例子" class="headerlink" title="Java 死锁的简单例子"></a><a></a>Java 死锁的简单例子</h3><p><a href="http://blog.csdn.net/hbtj_1216/article/details/75171213" target="_blank" rel="noopener">http://blog.csdn.net/hbtj_1216/article/details/75171213</a></p>
-<h3 id="什么叫守护线程，用什么方法实现守护线程"><a href="#什么叫守护线程，用什么方法实现守护线程" class="headerlink" title="什么叫守护线程，用什么方法实现守护线程"></a><a></a>什么叫守护线程，用什么方法实现守护线程</h3><p>守护线程是为其他线程的运行提供服务的线程。<br>setDaemon(boolean on) 方法可以方便的设置线程的 Daemon 模式，true 为守护模式，false 为用户模式。</p>
-<hr>
-<h3 id="深入分析-java-线程池的实现原理"><a href="#深入分析-java-线程池的实现原理" class="headerlink" title="深入分析 java 线程池的实现原理"></a><a></a>深入分析 java 线程池的实现原理</h3><p><a href="http://www.jianshu.com/p/87bff5cc8d8c" target="_blank" rel="noopener">http://www.jianshu.com/p/87bff5cc8d8c</a><br><a href="http://www.cnblogs.com/dolphin0520/p/3932921.html" target="_blank" rel="noopener">http://www.cnblogs.com/dolphin0520/p/3932921.html</a></p>
-<h3 id="Java-线程池-——-线程池的五种状态"><a href="#Java-线程池-——-线程池的五种状态" class="headerlink" title="Java 线程池 —— 线程池的五种状态"></a><a></a>Java 线程池 —— 线程池的五种状态</h3><p>Running、ShutDown、Stop、Tidying、Terminated<br><a href="http://blog.csdn.net/l_kanglin/article/details/57411851" target="_blank" rel="noopener">http://blog.csdn.net/l_kanglin/article/details/57411851</a></p>
-<h3 id="LockSupport（park-unpark）源码分析"><a href="#LockSupport（park-unpark）源码分析" class="headerlink" title="LockSupport（park/unpark）源码分析"></a><a></a>LockSupport（park/unpark）源码分析</h3><p><a href="http://blog.csdn.net/hbtj_1216/article/details/77505409" target="_blank" rel="noopener">http://blog.csdn.net/hbtj_1216/article/details/77505409</a></p>
-<hr>
-<h3 id="详解-java-定时任务"><a href="#详解-java-定时任务" class="headerlink" title="详解 java 定时任务"></a><a></a>详解 java 定时任务</h3><p><a href="http://cmsblogs.com/?p=1175" target="_blank" rel="noopener">http://cmsblogs.com/?p=1175</a><br>备用地址：<a href="http://blog.csdn.net/chenssy/article/details/32703499" target="_blank" rel="noopener">http://blog.csdn.net/chenssy/article/details/32703499</a></p>
-<hr>
-<h3 id="深入分析-CAS"><a href="#深入分析-CAS" class="headerlink" title="深入分析 CAS"></a><a></a>深入分析 CAS</h3><p><a href="http://cmsblogs.com/?p=2235" target="_blank" rel="noopener">http://cmsblogs.com/?p=2235</a><br>备用地址：<a href="http://blog.csdn.net/chenssy/article/details/69640293" target="_blank" rel="noopener">http://blog.csdn.net/chenssy/article/details/69640293</a><br>CAS 实际上是利用处理器提供的 CMPXCHG 指令实现的，而处理器执行 CMPXCHG 指令是一个原子性操作。</p>
-<h3 id="java-同步器-AQS-原理"><a href="#java-同步器-AQS-原理" class="headerlink" title="java 同步器 AQS 原理"></a><a></a>java 同步器 AQS 原理</h3><p><a href="http://www.jianshu.com/p/d8eeb31bee5c" target="_blank" rel="noopener">http://www.jianshu.com/p/d8eeb31bee5c</a></p>
-<p>【死磕 Java 并发】—–J.U.C 之 AQS：AQS 简介<br><a href="http://cmsblogs.com/?p=2174" target="_blank" rel="noopener">http://cmsblogs.com/?p=2174</a><br>备用地址：<a href="http://blog.csdn.net/chenssy/article/details/60479594" target="_blank" rel="noopener">http://blog.csdn.net/chenssy/article/details/60479594</a></p>
-<p>【死磕 Java 并发】—–J.U.C 之 AQS：CLH 同步队列<br><a href="http://cmsblogs.com/?p=2188" target="_blank" rel="noopener">http://cmsblogs.com/?p=2188</a><br>备用地址：<a href="http://blog.csdn.net/chenssy/article/details/60781148" target="_blank" rel="noopener">http://blog.csdn.net/chenssy/article/details/60781148</a></p>
-<p>【死磕 Java 并发】—–J.U.C 之 AQS：同步状态的获取与释放<br><a href="http://cmsblogs.com/?p=2197" target="_blank" rel="noopener">http://cmsblogs.com/?p=2197</a><br>备用地址：<a href="http://blog.csdn.net/chenssy/article/details/61922603" target="_blank" rel="noopener">http://blog.csdn.net/chenssy/article/details/61922603</a></p>
-<p>【死磕 Java 并发】—–J.U.C 之 AQS：阻塞和唤醒线程<br><a href="http://cmsblogs.com/?p=2205" target="_blank" rel="noopener">http://cmsblogs.com/?p=2205</a><br>备用地址：<a href="http://blog.csdn.net/chenssy/article/details/65449785" target="_blank" rel="noopener">http://blog.csdn.net/chenssy/article/details/65449785</a></p>
-<hr>
-<h3 id="ReentrantLock-源码解析"><a href="#ReentrantLock-源码解析" class="headerlink" title="ReentrantLock 源码解析"></a><a></a>ReentrantLock 源码解析</h3><p><a href="http://www.jianshu.com/p/4358b1466ec9" target="_blank" rel="noopener">http://www.jianshu.com/p/4358b1466ec9</a></p>
-<h3 id="ReentrantReadWriteLock-源码解析"><a href="#ReentrantReadWriteLock-源码解析" class="headerlink" title="ReentrantReadWriteLock 源码解析"></a><a></a>ReentrantReadWriteLock 源码解析</h3><p><a href="http://cmsblogs.com/?p=2213" target="_blank" rel="noopener">http://cmsblogs.com/?p=2213</a><br>备用地址：<a href="http://blog.csdn.net/chenssy/article/details/68059443" target="_blank" rel="noopener">http://blog.csdn.net/chenssy/article/details/68059443</a></p>
-<hr>
-<h3 id="J-U-C-之并发工具类：CountDownLatch"><a href="#J-U-C-之并发工具类：CountDownLatch" class="headerlink" title="J.U.C 之并发工具类：CountDownLatch"></a><a></a>J.U.C 之并发工具类：CountDownLatch</h3><p><a href="http://cmsblogs.com/?p=2253" target="_blank" rel="noopener">http://cmsblogs.com/?p=2253</a><br>备用地址：<a href="http://blog.csdn.net/chenssy/article/details/70657913" target="_blank" rel="noopener">http://blog.csdn.net/chenssy/article/details/70657913</a></p>
-<h3 id="J-U-C-之并发工具类：CyclicBarrier"><a href="#J-U-C-之并发工具类：CyclicBarrier" class="headerlink" title="J.U.C 之并发工具类：CyclicBarrier"></a><a></a>J.U.C 之并发工具类：CyclicBarrier</h3><p><a href="http://cmsblogs.com/?p=2241" target="_blank" rel="noopener">http://cmsblogs.com/?p=2241</a><br>备用地址：<a href="http://blog.csdn.net/chenssy/article/details/70160595" target="_blank" rel="noopener">http://blog.csdn.net/chenssy/article/details/70160595</a></p>
-<h3 id="J-U-C-之并发工具类：Semaphore"><a href="#J-U-C-之并发工具类：Semaphore" class="headerlink" title="J.U.C 之并发工具类：Semaphore"></a><a></a>J.U.C 之并发工具类：Semaphore</h3><p><a href="http://cmsblogs.com/?p=2263" target="_blank" rel="noopener">http://cmsblogs.com/?p=2263</a><br>备用地址：<a href="http://blog.csdn.net/chenssy/article/details/71132566" target="_blank" rel="noopener">http://blog.csdn.net/chenssy/article/details/71132566</a></p>
-<hr>
-<h3 id="ConcurrentHashMap-源码分析"><a href="#ConcurrentHashMap-源码分析" class="headerlink" title="ConcurrentHashMap 源码分析"></a><a></a>ConcurrentHashMap 源码分析</h3><p>ConcurrentHashMap 源码分析——JDK1.7：<a href="http://blog.csdn.net/hbtj_1216/article/details/76205903" target="_blank" rel="noopener">http://blog.csdn.net/hbtj_1216/article/details/76205903</a><br>ConcurrentHashMap 源码分析——JDK1.8 ： <a href="http://www.jianshu.com/p/c0642afe03e0" target="_blank" rel="noopener">http://www.jianshu.com/p/c0642afe03e0</a><br>ConcurrentHashMap1.7 和 1.8 的不同实现 ： <a href="http://www.jianshu.com/p/e694f1e868ec" target="_blank" rel="noopener">http://www.jianshu.com/p/e694f1e868ec</a><br>CAS（Compare And Swap）详解： <a href="http://www.jianshu.com/p/fb6e91b013cc" target="_blank" rel="noopener">http://www.jianshu.com/p/fb6e91b013cc</a></p>
-<hr>
-<h3 id="BlockingQueue-源码分析"><a href="#BlockingQueue-源码分析" class="headerlink" title="BlockingQueue 源码分析"></a><a></a>BlockingQueue 源码分析</h3><p>ArrayBlockingQueue 源码解析——JDK1.8 <a href="http://www.cnblogs.com/leesf456/p/5533770.html" target="_blank" rel="noopener">http://www.cnblogs.com/leesf456/p/5533770.html</a><br>LinkedBlockingQueue 源码解析——JDK1.8 <a href="http://www.cnblogs.com/leesf456/p/5539071.html" target="_blank" rel="noopener">http://www.cnblogs.com/leesf456/p/5539071.html</a></p>
-<p>SynchronousQuene<br><a href="http://blog.csdn.net/chenssy/article/details/77371992" target="_blank" rel="noopener">http://blog.csdn.net/chenssy/article/details/77371992</a></p>
-<p>priorityBlockingQuene</p>
-<hr>
-<h3 id="锁优化（5-种方法）"><a href="#锁优化（5-种方法）" class="headerlink" title="锁优化（5 种方法）"></a><a></a>锁优化（5 种方法）</h3><p><a href="http://blog.csdn.net/hbtj_1216/article/details/77161198" target="_blank" rel="noopener">http://blog.csdn.net/hbtj_1216/article/details/77161198</a></p>
-<h3 id="虚拟机内的锁优化（偏向锁、自旋锁、轻量级锁、重量级锁）"><a href="#虚拟机内的锁优化（偏向锁、自旋锁、轻量级锁、重量级锁）" class="headerlink" title="虚拟机内的锁优化（偏向锁、自旋锁、轻量级锁、重量级锁）"></a><a></a>虚拟机内的锁优化（偏向锁、自旋锁、轻量级锁、重量级锁）</h3><p><a href="http://blog.csdn.net/hbtj_1216/article/details/77161506" target="_blank" rel="noopener">http://blog.csdn.net/hbtj_1216/article/details/77161506</a></p>
-<hr>
-<h3 id="AtomicLong-原子类"><a href="#AtomicLong-原子类" class="headerlink" title="AtomicLong 原子类"></a><a></a>AtomicLong 原子类</h3><p><a href="http://www.cnblogs.com/skywang12345/p/3514593.html#a2" target="_blank" rel="noopener">http://www.cnblogs.com/skywang12345/p/3514593.html#a2</a></p>
-<h3 id="AtomicLongArray-原子类"><a href="#AtomicLongArray-原子类" class="headerlink" title="AtomicLongArray 原子类"></a><a></a>AtomicLongArray 原子类</h3><p><a href="http://www.cnblogs.com/skywang12345/p/3514604.html" target="_blank" rel="noopener">http://www.cnblogs.com/skywang12345/p/3514604.html</a></p>
-<h3 id="AtomicReference-原子类"><a href="#AtomicReference-原子类" class="headerlink" title="AtomicReference 原子类"></a><a></a>AtomicReference 原子类</h3><p><a href="http://www.cnblogs.com/skywang12345/p/3514623.html" target="_blank" rel="noopener">http://www.cnblogs.com/skywang12345/p/3514623.html</a></p>
-<hr>
-<blockquote>
-<p>原文：<br><a href="https://blog.csdn.net/hbtj_1216/article/details/76254076" target="_blank" rel="noopener">https://blog.csdn.net/hbtj_1216/article/details/76254076</a></p>
+        <script src="/assets/js/APlayer.min.js"> </script><blockquote>
+<p>实战操作教程：<br><a href="https://www.yiibai.com/guava/" target="_blank" rel="noopener">https://www.yiibai.com/guava/</a><br>参考官方中文文档：<br><a href="http://ifeve.com/google-guava/" target="_blank" rel="noopener">http://ifeve.com/google-guava/</a><br>guava官方项目：<br><a href="https://github.com/google/guava" target="_blank" rel="noopener">https://github.com/google/guava</a></p>
 </blockquote>
 
       
@@ -520,7 +445,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://cloudpai.site/2018/03/22/2018-03-22-4/" title="java并发编程实战 总结">http://cloudpai.site/2018/03/22/2018-03-22-4/</a>
+    <a href="http://cloudpai.site/2018/03/25/2018-03-25-2/" title="guava入门实战">http://cloudpai.site/2018/03/25/2018-03-25-2/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -540,9 +465,9 @@
           
             <a href="/tags/java/" rel="tag"><i class="fa fa-tag"></i> java</a>
           
-            <a href="/tags/待阅/" rel="tag"><i class="fa fa-tag"></i> 待阅</a>
-          
             <a href="/tags/并发/" rel="tag"><i class="fa fa-tag"></i> 并发</a>
+          
+            <a href="/tags/guava/" rel="tag"><i class="fa fa-tag"></i> guava</a>
           
         </div>
       
@@ -555,8 +480,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/03/22/2018-03-22-3/" rel="next" title="java并发编程实战 笔记四">
-                <i class="fa fa-chevron-left"></i> java并发编程实战 笔记四
+              <a href="/2018/03/25/2018-03-25-1/" rel="next" title="单例模式三种实现----饿汉式 饱汉式(懒汉式) 双重锁模式">
+                <i class="fa fa-chevron-left"></i> 单例模式三种实现----饿汉式 饱汉式(懒汉式) 双重锁模式
               </a>
             
           </div>
@@ -565,8 +490,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/03/23/2018-03-23/" rel="prev" title="java 并发 多线程 面试总结 top50+top40">
-                java 并发 多线程 面试总结 top50+top40 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/03/25/2018-03-25-3/" rel="prev" title="Apache commons lang学习">
+                Apache commons lang学习 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -634,17 +559,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <section class="site-overview-wrap sidebar-panel">
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -663,7 +579,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">81</span>
+                  <span class="site-state-item-count">83</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -685,7 +601,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">33</span>
+                  <span class="site-state-item-count">36</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -766,22 +682,6 @@
       </section>
 
       
-      <!--noindex-->
-        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-              
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#java-多线程（一个优秀的博客）"><span class="nav-text">java 多线程（一个优秀的博客）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程状态图"><span class="nav-text">线程状态图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-实现多线程三种方式"><span class="nav-text">Java 实现多线程三种方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sleep-，wait-，yield-，join-方法的区别-考察是否会释放锁"><span class="nav-text">sleep()，wait()，yield()，join() 方法的区别 (考察是否会释放锁)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#阻塞和非阻塞、同步和异步"><span class="nav-text">阻塞和非阻塞、同步和异步</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程间的通信方式、线程同步方式、进程间通信方式"><span class="nav-text">线程间的通信方式、线程同步方式、进程间通信方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#进程和线程的区别与联系"><span class="nav-text">进程和线程的区别与联系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Callable、Future、FutureTask-详解"><span class="nav-text">Callable、Future、FutureTask 详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#volatile-关键字解析"><span class="nav-text">volatile 关键字解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深入剖析-ThreadLocal"><span class="nav-text">深入剖析 ThreadLocal</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#synchronized-详解"><span class="nav-text">synchronized 详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Lock-接口及实现类"><span class="nav-text">Lock 接口及实现类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#synchronized-和-Lock-的区别"><span class="nav-text">synchronized 和 Lock 的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#java-程序中，如何安全的结束一个正在运行的线程？"><span class="nav-text">java 程序中，如何安全的结束一个正在运行的线程？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Thread-的中断机制-interrupt"><span class="nav-text">Thread 的中断机制 (interrupt)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何才能产生死锁"><span class="nav-text">如何才能产生死锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-死锁的简单例子"><span class="nav-text">Java 死锁的简单例子</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么叫守护线程，用什么方法实现守护线程"><span class="nav-text">什么叫守护线程，用什么方法实现守护线程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深入分析-java-线程池的实现原理"><span class="nav-text">深入分析 java 线程池的实现原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Java-线程池-——-线程池的五种状态"><span class="nav-text">Java 线程池 —— 线程池的五种状态</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LockSupport（park-unpark）源码分析"><span class="nav-text">LockSupport（park/unpark）源码分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#详解-java-定时任务"><span class="nav-text">详解 java 定时任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#深入分析-CAS"><span class="nav-text">深入分析 CAS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#java-同步器-AQS-原理"><span class="nav-text">java 同步器 AQS 原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ReentrantLock-源码解析"><span class="nav-text">ReentrantLock 源码解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ReentrantReadWriteLock-源码解析"><span class="nav-text">ReentrantReadWriteLock 源码解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#J-U-C-之并发工具类：CountDownLatch"><span class="nav-text">J.U.C 之并发工具类：CountDownLatch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#J-U-C-之并发工具类：CyclicBarrier"><span class="nav-text">J.U.C 之并发工具类：CyclicBarrier</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#J-U-C-之并发工具类：Semaphore"><span class="nav-text">J.U.C 之并发工具类：Semaphore</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ConcurrentHashMap-源码分析"><span class="nav-text">ConcurrentHashMap 源码分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BlockingQueue-源码分析"><span class="nav-text">BlockingQueue 源码分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#锁优化（5-种方法）"><span class="nav-text">锁优化（5 种方法）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#虚拟机内的锁优化（偏向锁、自旋锁、轻量级锁、重量级锁）"><span class="nav-text">虚拟机内的锁优化（偏向锁、自旋锁、轻量级锁、重量级锁）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AtomicLong-原子类"><span class="nav-text">AtomicLong 原子类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AtomicLongArray-原子类"><span class="nav-text">AtomicLongArray 原子类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AtomicReference-原子类"><span class="nav-text">AtomicReference 原子类</span></a></li></ol></div>
-            
-
-          </div>
-        </section>
-      <!--/noindex-->
-      
 
       
 
@@ -810,7 +710,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">389.2k</span>
+    <span title="Site words total count">396.5k</span>
   
 </div>
 
@@ -961,9 +861,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'http://cloudpai.site/2018/03/22/2018-03-22-4/';
-          this.page.identifier = '2018/03/22/2018-03-22-4/';
-          this.page.title = 'java并发编程实战 总结';
+          this.page.url = 'http://cloudpai.site/2018/03/25/2018-03-25-2/';
+          this.page.identifier = '2018/03/25/2018-03-25-2/';
+          this.page.title = 'guava入门实战';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://cloudpai.disqus.com/embed.js';
