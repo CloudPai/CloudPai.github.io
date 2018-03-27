@@ -1,0 +1,1560 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="待阅,tomcat," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="CloudPai" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="跟我一起动手实现 Tomcat（一）: 实现静态 Web 服务器前言1最近笔者读了《深入剖析tomcat》这本书（原作：《how tomcat works》）,发现该书简单易读，每个章节循序渐进的讲解了tomcat的原理，在接下来的章节中，tomcat都是基于上一章新增功能并完善，到最后形成一个简易版tomcat的完成品。所以有兴趣的同学请按顺序阅读，本文为记录第一章的知识点以及源码实现（造轮子">
+<meta name="keywords" content="待阅,tomcat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="动手实现Tomcat">
+<meta property="og:url" content="http://cloudpai.site/2018/03/27/2018-03-27-1/index.html">
+<meta property="og:site_name" content="CloudPai">
+<meta property="og:description" content="跟我一起动手实现 Tomcat（一）: 实现静态 Web 服务器前言1最近笔者读了《深入剖析tomcat》这本书（原作：《how tomcat works》）,发现该书简单易读，每个章节循序渐进的讲解了tomcat的原理，在接下来的章节中，tomcat都是基于上一章新增功能并完善，到最后形成一个简易版tomcat的完成品。所以有兴趣的同学请按顺序阅读，本文为记录第一章的知识点以及源码实现（造轮子">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15221555340683.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15221555584051.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15221555704248.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15221555900132.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15221556038879.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15221556168738.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15221556300756.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15221556485009.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15221556682047.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15221556883024.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15221556970716.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15221557100143.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15221557221330.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15221557369712.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15221557483188.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15221557607650.jpg">
+<meta property="og:updated_time" content="2018-03-27T13:04:04.314Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="动手实现Tomcat">
+<meta name="twitter:description" content="跟我一起动手实现 Tomcat（一）: 实现静态 Web 服务器前言1最近笔者读了《深入剖析tomcat》这本书（原作：《how tomcat works》）,发现该书简单易读，每个章节循序渐进的讲解了tomcat的原理，在接下来的章节中，tomcat都是基于上一章新增功能并完善，到最后形成一个简易版tomcat的完成品。所以有兴趣的同学请按顺序阅读，本文为记录第一章的知识点以及源码实现（造轮子">
+<meta name="twitter:image" content="http://p4lmrb1gp.bkt.clouddn.com/15221555340683.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'TZAS2SFOJR',
+      apiKey: 'e2a9cd036eede8026382b302001ec261',
+      indexName: 'cloudpai_blogs_search',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cloudpai.site/2018/03/27/2018-03-27-1/"/>
+
+
+
+
+
+  <title>动手实现Tomcat | CloudPai</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-114643720-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CloudPai</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/03/27/2018-03-27-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CloudPai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudPai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">动手实现Tomcat</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-27T20:20:07+08:00">
+                2018-03-27
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-27T21:04:04+08:00">
+                2018-03-27
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/27/2018-03-27-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/03/27/2018-03-27-1/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  7,446
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  32
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="跟我一起动手实现-Tomcat（一）-实现静态-Web-服务器"><a href="#跟我一起动手实现-Tomcat（一）-实现静态-Web-服务器" class="headerlink" title="跟我一起动手实现 Tomcat（一）: 实现静态 Web 服务器"></a>跟我一起动手实现 Tomcat（一）: 实现静态 Web 服务器</h1><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">最近笔者读了《深入剖析tomcat》这本书（原作：《how tomcat works》）,发现该书简单易读，每个章节循序渐进的讲解了tomcat的原理，在接下来的章节中，tomcat都是基于上一章新增功能并完善，到最后形成一个简易版tomcat的完成品。所以有兴趣的同学请按顺序阅读，本文为记录第一章的知识点以及源码实现（造轮子）。</span><br></pre></td></tr></table></figure>
+<h1 id="如何实现"><a href="#如何实现" class="headerlink" title="如何实现"></a>如何实现</h1><p>HTTP 协议就是咱们 web 服务器与浏览器交互的协议，具体的知识点以及背景本文就不再累述。那么举一个简单的例子就好：</p>
+<ul>
+<li>在浏览器输入 <a href="http://www.baidu.com" target="_blank" rel="noopener">http://www.baidu.com</a> 按下回车键。</li>
+<li>浏览器大概发送了以下的 http 请求到百度的服务器中：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GET /index.html HTTP/1.1</span><br><span class="line">Host: www.baidu.com</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<ul>
+<li>百度 web 服务器在接收到我们的请求的时候，找到对应的服务器资源并相应：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">... </span><br><span class="line"></span><br><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;title&gt;百度一下你就知道&lt;/title&gt;</span><br><span class="line">    &lt;/head&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">        ....</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>那么其实通过上面的例子我们可以发现，静态 (这里指的是 html / 图片 / css 等)web 服务器的实现也是比较简单的：<br><img src="http://p4lmrb1gp.bkt.clouddn.com/15221555340683.jpg" alt=""></p>
+<h1 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a>代码实现</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在这里使用java socket api 实现简单的静态web服务器。</span><br></pre></td></tr></table></figure>
+<ul>
+<li>新建一个 main 方法，核心<strong>伪</strong>代码如下：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//开启socket server 8080端口监听. ServerSocket server = new ServerSocket(8080, 1, InetAddress.getByName(&quot;127.0.0.1&quot;));try (Socket accept = serverSocket.accept();  InputStream inputStream = accept.getInputStream();  OutputStream outputStream = accept.getOutputStream()) &#123;    //解析用户的请求    Request request = new Request();    request.setRequestStream(inputStream);    request.parseRequest();    //生成响应对象并响应静态资源    Response resp = new Response(outputStream, request);    resp.accessStaticResources();&#125; catch (IOException e) &#123;    LOGGER.warn(&quot;catch from user request.&quot;,e);&#125;//关闭服务器serverSocket.close();</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>Request 对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">主要功能：将用户请求（socket的inputStream流）解析为字符串，提取请求中的URI</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>解析字符串代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">StringBuilder requestStr = new StringBuilder();int i;//new 一个 byte缓冲数组byte[] buffer = ArrayUtil.generatorCache();try &#123;    i = inputStream.read(buffer);&#125; catch (IOException e) &#123;    e.printStackTrace();    i = -1;&#125;//将读取到的byte转为Stringfor (int j = 0; j &lt; i; j++) &#123;    requestStr.append((char) buffer[j]);&#125;//解析请求的字符串，提取请求的URIthis.parseURI(requestStr.toString());</span><br></pre></td></tr></table></figure>
+<p>那么请求的信息被我们解析成字符串了，我们怎么知道他想请求什么静态资源呢？</p>
+<p>那我们把解析字符串打印一下:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System.out.println(requestStr.toString());</span><br></pre></td></tr></table></figure>
+<p>GET <strong>/index.html</strong> HTTP/1.1<br>Host: 127.0.0.1:8080<br>Connection: keep-alive<br>Cache-Control: max-age=0<br>User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.108 Safari/537.36<br>Upgrade-Insecure-Requests: 1<br>Accept-Encoding: gzip, deflate, br<br>Accept-Language: zh-CN,zh;q=0.9</p>
+<p>可以很明显的看到，加粗的地方就是我们要提取的 URI，那么怎么提取呢？细心的我们发现了，<strong>/index.html</strong> 这段字符串前后都有一个空格！行，那我们可以直接用 String 的 indexOf 方法解析，参考代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">// 获取/index.html 前面的那个空格索引int oneSpace = requestStr.indexOf(&quot; &quot;);//获取/index.html 后面的那个空格索引int twoSpace = requestStr.indexOf(&quot; &quot;, oneSpace + 1);//截取获得用户请求URIuri = requestStr.substring(oneSpace + 1, twoSpace);</span><br></pre></td></tr></table></figure>
+<ul>
+<li>Response 对象</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">上面Request对象已经把用户想请求的资源解析出来了，那么Response的功能就是找到这个文件，使用Socket的outputStream把文件作为字节流输出给浏览器，就可以将我们的HTML显示给用户啦~</span><br></pre></td></tr></table></figure>
+<p>那么这个项目我们的静态文件放在那里呢？来看看我们的项目结构：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">-main          -java       java代码    -resources        -webroot    存放我们静态资源的文件夹</span><br></pre></td></tr></table></figure>
+<p>因为是只使用 MAVEN 构建项目，我们也没使用 Spring 等框架，如何定位到 webroot 这个文件夹呢？参考了网上的代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String WEB_PROJECT_ROOT = HttpServer.class.getClassLoader().getResource(&quot;webroot&quot;).getFile().substring(1);</span><br></pre></td></tr></table></figure>
+<p>前面的疑惑都解决了，接下来我们就直接把对应的文件找到给写回去就完事了~<br>伪码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//根据请求URI找到用户对应请求的资源文件File staticResource = new File(HttpServer.WEB_PROJECT_ROOT + request.getUri());//资源存在if (staticResource.exists() &amp;&amp; staticResource.isFile()) &#123;    outputStream.write(this.responseToByte(200,&quot;OK&quot;));    write(staticResource);//资源不存在，使用默认的404返回&#125; else &#123;    staticResource = new File(HttpServer.WEB_PROJECT_ROOT + &quot;/404.html&quot;);    outputStream.write(this.responseToByte(404,&quot;file not found&quot;));    write(staticResource);&#125;</span><br></pre></td></tr></table></figure>
+<p>其中，responseToByte() 这个方法只负责将响应行输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br></pre></td></tr></table></figure>
+<p>资源不存在时咱们就输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 404 file not found</span><br></pre></td></tr></table></figure>
+<p>write() 方法也很简单，将传入的 file 对象转成流并使用 socket 的 outputStream 输出</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">try (FileInputStream fis = new FileInputStream(file)) &#123;    byte[] cache = new byte[1024];    int read;    while ((read = fis.read(cache, 0, 1024)) != -1) &#123;        outputStream.write(cache, 0, read);    &#125;&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="看看效果"><a href="#看看效果" class="headerlink" title="看看效果"></a>看看效果</h1><p>运行 main 方法，打开我们的浏览器输出 127.0.0.1/index.html 按下回车，可以看到结果如图：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15221555584051.jpg" alt=""><br>试试随便输入一个不存在的资源：<br><img src="http://p4lmrb1gp.bkt.clouddn.com/15221555704248.jpg" alt=""><br>按下 F12 看看 Http 请求和响应分别是怎样的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">请求：GET /abc.html HTTP/1.1Host: 127.0.0.1:8080其他请求头忽略...响应：HTTP/1.1 404 file not found&lt;!DOCTYPE html&gt;&lt;html lang=&quot;en&quot;&gt;&lt;head&gt;    &lt;meta charset=&quot;UTF-8&quot;&gt;    &lt;title&gt;404 not found!&lt;/title&gt;&lt;/head&gt;&lt;body&gt;    &lt;h1&gt;请求页面不存在！&lt;/h1&gt;&lt;/body&gt;&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>到这里，咱们的 Tomcat 1.0 web 服务器就已经开发完成啦（滑稽脸），已经可以实现简单的 html 和 css、图片等资源的访问等功能，下一章咱们来实现以下简单的 Servlet 容器功能开发：</p>
+<p><strong>PS：本章源码已上传 github</strong> <a href="https://link.juejin.im?target=https%3A%2F%2Fgithub.com%2Fdnhxm%2FSimpleTomcat%2Ftree%2FV1.0" target="_blank" rel="noopener">SimpleTomcat</a></p>
+<hr>
+<h1 id="跟我一起动手实现-Tomcat（二）-实现简单的-Servlet-容器"><a href="#跟我一起动手实现-Tomcat（二）-实现简单的-Servlet-容器" class="headerlink" title="跟我一起动手实现 Tomcat（二）: 实现简单的 Servlet 容器"></a>跟我一起动手实现 Tomcat（二）: 实现简单的 Servlet 容器</h1><h1 id="前言-1"><a href="#前言-1" class="headerlink" title="前言"></a>前言</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">章节循序渐进的讲解了tomcat的原理，在接下来的章节中，tomcat都是基于上一章新增功能并完善，到最后形成一个简易版tomcat的完成品。所以有兴趣的同学请按顺序阅读，本文为记录第二章的知识点以及源码实现（造轮子）。</span><br></pre></td></tr></table></figure>
+<h1 id="内容回顾"><a href="#内容回顾" class="headerlink" title="内容回顾"></a>内容回顾</h1><p><a href="https://link.juejin.im?target=https%3A%2F%2Fjuejin.im%2Fpost%2F5a473a406fb9a0451f3146f6" target="_blank" rel="noopener">跟我一起动手实现 Tomcat（一）: 实现静态 Web 服务器</a><br>上一章我们实现了简单的静态资源 web 服务器，能够读取到用户自定义的 HTML/css/js / 图片并显示到浏览器以及 404 页面的展示等。</p>
+<h1 id="本章内容"><a href="#本章内容" class="headerlink" title="本章内容"></a>本章内容</h1><p>本章会实现简单的 Servlet 容器，能够根据用户请求 URI 调用对应的 Servlet 的 service() 方法并执行，<strong>init()/destory() 方法和 HttpServletRequest/HttpServletResponse 里面的大部分方法本章仍未实现</strong>，会在下面的几章逐步完善。</p>
+<h1 id="开始之前"><a href="#开始之前" class="headerlink" title="开始之前"></a>开始之前</h1><ul>
+<li><strong>javax.servlet.Servlet</strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">咱们web开发的同学都知道，刚学习web开发的时候都是先实现这个Servlet接口去自定义自己的Servlet类的，那么在这里简单的回顾一下Servlet这个接口。</span><br></pre></td></tr></table></figure>
+<p>项目加个依赖：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;    &lt;groupId&gt;javax.servlet&lt;/groupId&gt;    &lt;artifactId&gt;javax.servlet-api&lt;/artifactId&gt;    &lt;version&gt;3.0.1&lt;/version&gt;&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<p>Servlet 接口方法一览（具体方法干嘛的大家应该都懂了，就不介绍了）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public interface Servlet &#123;  public void init(ServletConfig config) throws ServletException;  public ServletConfig getServletConfig();  public void service(ServletRequest req, ServletResponse res)throws ServletException, IOException;  public String getServletInfo();public void destroy();&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><strong>如何实现</strong></p>
+<p>在这里基于上一章的代码，只要用户输入 127.0.0.1:8080/servlet/{servletName}，我们就将这个 URI 提取出具体的 servlet 名字，使用 java.net 包下的 URLClassLoader 将这个 Servlet 类加载并实例化，然后调用它的 service() 方法，一次 Servlet 调用就这样完成啦，是不是很简单呢，来让我们看看代码怎么去实现！！！</p>
+</li>
+</ul>
+<h1 id="代码实现-1"><a href="#代码实现-1" class="headerlink" title="代码实现"></a>代码实现</h1><p><strong>1. 实现相应的接口</strong></p>
+<p>我们先把上个章节的 Request、Response 分别实现 ServletRequest、ServletResponse 接口（这是 Servlet 规范），具体实现的方法咱们什么都不做，等以后再完善。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public class Request implements ServletRequest &#123;    ...省略N个方法&#125;public class Response implements ServletResponse &#123;    /*Response只实现这个方法，把我们socket的outputStream封装成一个PrintWriter*/    @Override    public PrintWriter getWriter() throws IOException &#123;        PrintWriter writer = new PrintWriter(outputStream,true);        return writer;    &#125;&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>2. 不同资源使用不同的执行器</strong></p>
+<p>我们的 tomcat 准备要支持 servlet 调用了，那么 servlet 和普通静态资源不一样，那么我们在代码层面应该将他们隔离开来，以方便日后的扩展，在这里我们实现以下两个执行器：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- ServletProcess 专门执行Servlet的执行器 - StaticResourceProcess 执行静态资源的执行器</span><br></pre></td></tr></table></figure>
+<p>那么我们看看我们现在一个请求的执行流程：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15221555900132.jpg" alt=""><br>好吧其实大家可以看到，跟以前变化也不是很大，只是多了个 if 判断，然后把相应的执行过程丢到执行器里面去执行而已~ 那我们来看看对应的实现：</p>
+<ul>
+<li><strong>HttpServer</strong></li>
+</ul>
+<p>大家应该还记得 HttpServer 吧，是我们启动程序的主入口以及 ServerSocket 监听实现。<br>它的改动不大，只是加了个 if 判断：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public static void main(String[] args) &#123;    ServerSocket serverSocket = new ServerSocket(8080, 1, InetAddress.getByName(&quot;127.0.0.1&quot;));    ....     //解析用户的请求    Request request = new Request();    request.setRequestStream(inputStream);    request.parseRequest();    //生成相应的响应    Response response = new Response(outputStream, request);    //根据URI调用不同的处理器处理请求      if (request.getUri().startsWith(&quot;/servlet/&quot;)) &#123;        new ServletProcess().process(request, response);    &#125; else &#123;        new StaticResourceProcess().process(request, response);    &#125;    ...&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><strong>StaticResourceProcess</strong></p>
+<p>StaticResourceProcess 也没干啥，只是调用了上个章节读取静态资源的方法</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public class StaticResourceProcess &#123;    public void process(Request request, Response response) throws IOException &#123;        response.accessStaticResources();    &#125;&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><strong>ServletProcess</strong></p>
+<p>ServletProcess 持有了一个 URLClassLoader 静态变量，专门用来加载 Servlet：</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">private static final URLClassLoader URL_CLASS_LOADER;static &#123;    /*定位到我们的webroot/servlet/文件夹*/    URL servletClassPath = new File(HttpServer.WEB_ROOT, &quot;servlet&quot;).toURI().toURL();    //初始化classloader    URL_CLASS_LOADER = new URLClassLoader(new URL[]&#123;servletClassPath&#125;);&#125;</span><br></pre></td></tr></table></figure>
+<p>现在我们知道以 / servlet / 开头的 URI 请求是需要调用 Servlet 资源的，那么我们怎么提取 Servlet 的名字并初始化呢？先来看看一个 URI：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/servlet/TestServlet</span><br></pre></td></tr></table></figure>
+<p>好像也不是很难提取，直接用 String 的 lastIndexOf 和 substring 方法就可以搞定啦：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">uri = uri.substring(uri.lastIndexOf(&quot;/&quot;) + 1);</span><br></pre></td></tr></table></figure>
+<p>前面的难题也都解决了，那么我们看看 process 是怎么执行的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public void process(Request request, Response response) throws IOException &#123;    //就是上面的那个字符串截取方法    String servletName = this.parseServletName(request.getUri());    //使用URLClassLoader加载这个Servlet并实例化    Class servletClass = = URL_CLASS_LOADER.loadClass(servletName);    Servlet servlet = (Servlet) servletClass.newInstance();    response.getWriter().println(new String(response.responseToByte(HttpStatusEnum.OK)));    //调用servlet的service方法    servlet.service(request,response);&#125;</span><br></pre></td></tr></table></figure>
+<p>大家可能不太理解倒数第二行的代码，它就是调用了 Response.PrintWriter(我们刚才上面用 socket 的 outputStream 封装的) 对象向浏览器输出了一个响应头（不这么做傲娇的 chrome 会认为这个响应是无效的，servlet 回显的内容就看不到了</p>
+<p>ServletProcess 大致调用流程：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15221556038879.jpg" alt=""></p>
+<p><strong>3. 准备一个自定义 Servlet</strong></p>
+<p>我们 Servlet 容器也算开发完成了，我们搞一个 servlet 做做实验吧~</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public class TestServlet implements Servlet &#123;    public void init(ServletConfig config) throws ServletException &#123;    &#125;    public ServletConfig getServletConfig() &#123;        return null;    &#125;    public void service(ServletRequest req, ServletResponse res) throws ServletException, IOException &#123;        System.out.println(&quot;Start invoke TestServlet ... &quot;);        res.getWriter().println(&quot;Hello Servlet!&quot;);    &#125;    public String getServletInfo() &#123;        return null;    &#125;    public void destroy() &#123;    &#125;&#125;</span><br></pre></td></tr></table></figure>
+<p>它只是在控制台输出一个记录以及向浏览器回显一句话（<strong>是不是觉得不能处理参数很无聊，下面几章我们就会实现它</strong>），把这个类编译成 class 文件，丢到我们 resource/webroot/servlet 文件夹下，打开浏览器走一波：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15221556168738.jpg" alt=""><br>搞定！<br>不对… 其实上面的设计是有很严重的缺陷的</p>
+<h1 id="加强-Request、Response-安全性"><a href="#加强-Request、Response-安全性" class="headerlink" title="加强 Request、Response 安全性"></a>加强 Request、Response 安全性</h1><ul>
+<li><strong>缺陷在哪里</strong></li>
+</ul>
+<p>细心的哥们肯定发现了：我们在 ServletProcess 调用用户自定义的 servlet 的时候，<strong>是直接将 Request/Response 作为参数传入用户的 service 方法中</strong> (因为我们的 reuqest、response 实现了 ServletRequest、ServletResponse 接口)，那么如果我们的这个 tomcat 拿去发布给其他人使用的时候，阅读过我们的 tomcat 源码的人的 servlet 就可以这样写:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public class TestServlet &#123;    public void service(HttpServletRequest request,HttpServletResponse response)&#123;        ((Request)request).parseRequest(&quot;&quot;);        ((Response)response).accessStaticResources();    &#125;&#125;</span><br></pre></td></tr></table></figure>
+<p>上面那两个方法我们设计时是提供我们 process 或者其他时候使用的 (所以方法不能设置为 private)，<strong>并不是提供给用户调用的</strong>，这就破坏了封装性了！！</p>
+<ul>
+<li><p><strong>解决方案</strong></p>
+<p>有看过或者阅读过 Tomcat 源码的时候，发现 Tomcat 已经用了一种设计模式去解决这个缺陷了，就是<strong>外观设计模式 (门面设计模式)</strong>，具体设计模式大家可以去搜索了解一下，在这里我们也引用这种设计模式处理这个缺陷，UML 类图关系如下：<br><img src="http://p4lmrb1gp.bkt.clouddn.com/15221556300756.jpg" alt=""><br>代码也很简单都是调用内部 request 对象的相应方法：</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public class RequestFacade implements ServletRequest&#123;    private Request request;    @Override    public Object getAttribute(String name) &#123;        return request.getAttribute(name);    &#125;    其他实现的方法也类似...&#125;</span><br></pre></td></tr></table></figure>
+<p>在 ServletProcess 方法调用 servlet 时我们用 Facade 类包装一下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">...Servlet servlet = (Servlet) servletClass.newInstance();servlet.service(new RequestFacade(request), new ResponseFacade(response));...</span><br></pre></td></tr></table></figure>
+<p>就此大功告成！</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">使用者顶多只能将ServletRequest/ServletResponse向下转型为RequestFacade/ResponseFacade 但是我们没提供getReuqest()/getResponse()方法，所以它能调用的方法还是相应ServletRequest、ServletResponse接口定义的方法，这样我们内部的方法就不会被用户调用到啦~</span><br></pre></td></tr></table></figure>
+<p>到这里，咱们的 Tomcat 2.0 web 服务器就已经开发完成啦（滑稽脸），已经可以实现简单的自定义 Servlet 调用，但是很多功能仍未完善：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- 每一次请求就new一次Servlet，Servlet应该在初始化项目时就应该初始化，是单例的。 - 并未遵循Servlet规范实现相应的生命周期，例如init()/destory()方法我们均未调用。 - ServletRequest/ServletResponse接口的方法我们仍未实现 - 其他未实现的功能</span><br></pre></td></tr></table></figure>
+<p>在下一个章节我们会实现 Request 解析 Parameter、HTTPHeader、Cookie 等参数并重构架构模式：</p>
+<p><a href="https://link.juejin.im?target=https%3A%2F%2Fjuejin.im%2Fpost%2F5a49ca76f265da4328413499" target="_blank" rel="noopener">跟我一起动手实现 Tomcat（三）: 解析 Request 请求参数、请求头、cookie</a></p>
+<p><strong>PS：本章源码已上传 github</strong> <a href="https://link.juejin.im?target=https%3A%2F%2Fgithub.com%2Fdnhxm%2FSimpleTomcat%2Ftree%2FV2.0" target="_blank" rel="noopener">SimpleTomcat</a></p>
+<hr>
+<h1 id="跟我一起动手实现-Tomcat（三）-解析-Request-请求参数、请求头、cookie"><a href="#跟我一起动手实现-Tomcat（三）-解析-Request-请求参数、请求头、cookie" class="headerlink" title="跟我一起动手实现 Tomcat（三）: 解析 Request 请求参数、请求头、cookie"></a>跟我一起动手实现 Tomcat（三）: 解析 Request 请求参数、请求头、cookie</h1><h1 id="前言-2"><a href="#前言-2" class="headerlink" title="前言"></a>前言</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">最近笔者读了《深入剖析tomcat》这本书（原作：《how tomcat works》）,发现该书简单易读，每个章节循序渐进的讲解了tomcat的原理，在接下来的章节中，tomcat都是基于上一章新增功能并完善，到最后形成一个简易版tomcat的完成品。所以有兴趣的同学请按顺序阅读，本文为记录第三章的知识点以及源码实现（造轮子）。</span><br></pre></td></tr></table></figure>
+<h1 id="内容回顾-1"><a href="#内容回顾-1" class="headerlink" title="内容回顾"></a>内容回顾</h1><p><a href="https://link.juejin.im?target=https%3A%2F%2Fjuejin.im%2Fpost%2F5a487097f265da4319569d4f" target="_blank" rel="noopener">跟我一起动手实现 Tomcat（二）: 实现简单的 Servlet 容器</a><br>上一章我们实现了一个简单的 Servlet 容器，能够调用并执行用户自定义实现 Servlet 接口的类。</p>
+<h1 id="本章内容-1"><a href="#本章内容-1" class="headerlink" title="本章内容"></a>本章内容</h1><ul>
+<li>模块模仿 tomcat，实现 Connector(连接器)、Bootstrap(启动器) 和核心模块。</li>
+<li>能够执行继承 HttpServlet 类的自定义 Servlet(上一章是实现了 Servlet 接口)</li>
+<li>能够解析用户请求参数 (Parameters)/Cookie / 请求头 (Header)</li>
+</ul>
+<h1 id="开始之前-1"><a href="#开始之前-1" class="headerlink" title="开始之前"></a>开始之前</h1><ul>
+<li><strong>简单介绍 Connector(连接器)</strong></li>
+</ul>
+<p>对 Tomcat 比较熟悉的朋友对这个词应该不陌生，后面的篇幅会继续比较详细介绍，在这里<strong>不熟悉的朋友</strong>可以理解为：连接器只是负责接收请求，然后将请求丢给 Container(容器) 去执行相应的请求。</p>
+<ul>
+<li><strong>javax.servlet.http.HttpServlet 类</strong></li>
+</ul>
+<p>上一章我们自定义的 Servlet 是实现了 Servlet 接口，实例化 Servlet 的时候我们是将解析的 Request/Response(分别实现了 ServletRequest/ServletResponse 接口) 传入对应的 service() 方法中完成执行。<br>那我们来回顾一下刚学 Servlet 开发的时候，大部分教程都按顺序讲解实现 Servlet 接口、继承 GenericServlet 类、继承 HttpServlet 类这三种方式去写自己的 Servlet，那么后面推荐的仍然是最后一种，重写其中的 doGet()/doPost() 方法即可，那么我们来看看上一章我们的 tomcat 能不能支持继承 HttpServlet 类的 Servlet 呢：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//HttpServlet源代码片段public abstract class HttpServlet extends GenericServlet &#123;    ...    public void service(ServletRequest req, ServletResponse res)        throws ServletException, IOException&#123;        HttpServletRequest  request;        HttpServletResponse response;        //如果传进来的request/response对象不是Http类型的则抛异常        if (!(req instanceof HttpServletRequest &amp;&amp;                res instanceof HttpServletResponse)) &#123;            throw new ServletException(&quot;non-HTTP request or response&quot;);        &#125;        request = (HttpServletRequest) req;        response = (HttpServletResponse) res;        service(request, response);    &#125;    ...&#125;</span><br></pre></td></tr></table></figure>
+<p>如上所示源码，再来看看我们上一章的 ServletProcess 调用 Servlet 源码:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">servlet.service(new RequestFacade(request), new ResponseFacade(response));</span><br></pre></td></tr></table></figure>
+<p><strong>很明显上一章的 request/response 在 HttpServlet 时会抛出异常</strong>，所以本章我们会将 Request/Response 以及它们的外观类都实现 HttpServletRequest/HttpServletResponse 接口。</p>
+<h1 id="代码实现-2"><a href="#代码实现-2" class="headerlink" title="代码实现"></a>代码实现</h1><p>在代码实现前我们看看整体模块以及流程执行图（看不清可以点击放大）：<br><img src="http://p4lmrb1gp.bkt.clouddn.com/15221556485009.jpg" alt=""></p>
+<p><strong>1. Bootstrap 模块</strong></p>
+<p>启动模块目前我们没有多大工作，只是启动 HttpConnector：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public final class Bootstrap &#123;    public static void main(String[] args)&#123;        new HttpConnector().start();    &#125;&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>2. HttpConnector 模块 (连接器)</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">连接器模块和下面的核心模块的前身其实就是上一章的HttpServer类，我们把它按功能拆分成了   等待和建立连接(HttpConnector)/处理连接(HttpProcess)2个模块。</span><br></pre></td></tr></table></figure>
+<p>连接器功能是等待请求并将请求丢给相应执行器去执行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public class HttpConnector implements Runnable &#123;    public void start()&#123;        new Thread(this).start();    &#125;    @Override    public void run() &#123;        ServerSocket serverSocket = new ServerSocket(8080, 1, InetAddress.getByName(&quot;127.0.0.1&quot;));        while (true) &#123;            Socket accept = serverSocket.accept();            HttpProcess process = new HttpProcess(this);            process.process(accept);        &#125;        serverSocket.close();    &#125;&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>3. 核心模块 (执行器)</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">上面也有说到，执行器也是上一章HttpServer类的前身，只不过这章我们修改了解析请求信息的方式。</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>主要代码</strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public class HttpProcess &#123;    private HttpRequest request;        private HttpResponse response;    public void process(Socket socket) &#123;        InputStream input = socket.getInputStream();        OutputStream output = socket.getOutputStream();         //初始化request以及response        request = new HttpRequest(input);        response = new HttpResponse(output, request);        //解析request请求行和请求头        this.parseRequestLine(input);        this.parseHeaders(input);        //调用对应的处理器处理        if (request.getRequestURI().startsWith(SERVLET_URI_START_WITH)) &#123;            new ServletProcess().process(request, response);        &#125; else &#123;            new StaticResourceProcess().process(request, response);        &#125;    &#125;&#125;</span><br></pre></td></tr></table></figure>
+<p>看了上面的实现可能很多人对有些对象有点陌生，下面一一介绍：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1\. HttpRequest/HttpResponse变量就是上一章的Request/Response对象，因为实现了 HttpServletReuqest/HttpServletResponse也就顺便改了个名，将会在下面介绍； 2\. 每一个请求都对应了一个HttpProcess对象，所以这里request/response是成员变量； 3\. 解析请求行和解析请求头的方法也在下面介绍。</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><strong>parseRequestLine、parseHeaders 方法</strong></p>
+<p>让我们先看看一个原始的 HTTP 请求字符串，看看如何去解析请求行和请求头：</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /index.html?utm_source=aaa HTTP/1.1\r\nHost: www.baidu.com\r\nConnection: keep-alive\r\nPragma: no-cache\r\nCache-Control: no-cache\r\nUpgrade-Insecure-Requests: 1\r\nUser-Agent: Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/56.0.2924.87 Safari/537.36\r\nAccept: text/html\r\nAccept-Encoding: gzip, deflate, sdch, br\r\nAccept-Language: zh-CN,zh;q=0.8\r\nCookie: BAIDUID=462A9AC35EE6158AA7DFCD27AF:FG=1; BIDUPSID=462A9AC35EE6158AA7DF027AF; PSTM=1506310304;  BD_CK_SAM=1; PSINO=7; BD_HOME=1; H_PS_PSSID=1459_24885_21115_25436; BD_UPN=12314353; sug=3; sugstore=0; ORIGIN=2; bdime=0\r\n</span><br></pre></td></tr></table></figure>
+<p>大家可以发现，其实我们使用 socket 读取 HTTP 请求时候，发现每一行都会有’\r\n’这个回车换行符，只不过在我们浏览器按 F12 时被浏览器自动解析成了换行而已，我们分析上面的这个请求信息得出以下规律：</p>
+<p>每一行结尾字符都是\r\n- 请求行（第一行）的HTTP请求方法、URI、请求协议中间都有个空格- 第二行开始（请求头）key和value的内容都是以’:’和一个’ ‘字符隔开- Cookie的键值对是以’=’分割，以’;’和’ ‘区分前后键值对</p>
+<p>接下来我们分别去解析以下 ISO-8859-1 编码情况下上面字符对应的值，并建立一个常量类：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public class HttpConstant &#123;    /* 回车 \r */    public static final byte CARRIAGE_RETURN = 13;    /* 换行 \n */    public static final byte LINE_FEED = 10;    /* 空格    */    public static final byte SPACE = 32;    /* 冒号  : */    public static final byte COLON = 58;&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><p><strong>1.parseRequestLine 方法</strong></p>
+<p>根据上面的思路，我们就可以轻松地解析请求行的数据：</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">StringBuilder temp = new StringBuilder();int cache;while ((cache = requestStream.read()) != -1) &#123;    //读取到第一个\r\n时则说明读取请求行完毕    if (HttpConstant.CARRIAGE_RETURN == cache &amp;&amp; HttpConstant.LINE_FEED == requestStream.read()) &#123;        break;    &#125;    temp.append((char)cache);&#125;String[] requestLineArray = temp.toString().split(&quot; &quot;);</span><br></pre></td></tr></table></figure>
+<p>最后分割空格使用数组装着请求行（如果你有更好的方案也可以在评论区说一说哈）<br><img src="http://p4lmrb1gp.bkt.clouddn.com/15221556682047.jpg" alt=""><br>接下来判断 URI 有没有使用 “?” 传递参数，如果有就截取并丢到 HttpRequest 的 QueryString 变量中，<br>最后截取 URI 即可。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String uri  = requestLineArray[1];int question = uri.indexOf(&quot;?&quot;);if (question &gt;= 0) &#123;    request.setQueryString(uri.substring(question+1,uri.length()));    uri = uri.substring(0,question);&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">判断是不是从?传递jsessionid过来，如果是就赋值到request对象中</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String match = &quot;;jsessionid=&quot;;int semicolon = uri.indexOf(match);if (semicolon &gt;= 0) &#123;    String rest = uri.substring(semicolon + match.length());    int semicolon2 = rest.indexOf(&apos;;&apos;);    if (semicolon2 &gt;= 0) &#123;        request.setRequestedSessionId(rest.substring(0, semicolon2));        rest = rest.substring(semicolon2);    &#125; else &#123;        request.setRequestedSessionId(rest);        rest = &quot;&quot;;    &#125;    request.setRequestedSessionURL(true);    uri = uri.substring(0, semicolon) + rest;&#125; else &#123;    request.setRequestedSessionId(null);    request.setRequestedSessionURL(false);&#125;</span><br></pre></td></tr></table></figure>
+<p>这里调用了一个校验 URI 合法性的方法, 如果 URI 不合法 (例如包含’.//‘之类跳转目录的危险字符)<br>则抛异常，否则就将上面解析到的内容丢到 request 中去。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String normalizedUri = this.normalize(uri);if (normalizedUri == null) &#123;    throw new ServletException(&quot;Invalid URI: &quot; + uri + &quot;&apos;&quot;);&#125;request.setRequestURI(normalizedUri);request.setMethod(requestLineArray[0]);request.setProtocol(requestLineArray[2]);</span><br></pre></td></tr></table></figure>
+<p>就这样，请求行的信息就被我们读取完毕，那我们再来看看读取请求头的代码：</p>
+<ul>
+<li><p><strong>parseHeaders 方法</strong></p>
+<p>这里有个坑：Socket 的 read()方法读取完毕时最后一个字节不是 - 1，而是阻塞等待 Socket 客户端发送 - 1 过来结束读取，但是我们的 Socket 客户端是浏览器，浏览器不会发送 - 1 以表示结束发送，所以我们结合 InputStream#available()方法 (返回实际还可以读取的字节数) 来判断是否读取完毕即可。</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public void parseHeader() &#123;    StringBuilder sb = new StringBuilder();    int cache;    while (input.available() &gt; 0 &amp;&amp; (cache = input.read()) &gt; -1) &#123;        sb.append((char)cache);    &#125;    ....看下文&#125;</span><br></pre></td></tr></table></figure>
+<p>读取完毕效果如图：<br><img src="http://p4lmrb1gp.bkt.clouddn.com/15221556883024.jpg" alt=""><br>如果是 POST 请求，那么表单参数会在空行后面：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15221556970716.jpg" alt=""></p>
+<p>也很有规律，请求头都用 \ r\n 隔开，并且如果是 POST 请求提交表单，那么表单参数会在一个空行后面 (两个 \ r\n)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">//使用\r\n分割请求头Queue&lt;String&gt; headers = Stream.of(sb.toString().split(&quot;\r\n&quot;)).collect(toCollection(LinkedList::new));while (!headers.isEmpty()) &#123;    //获取一个请求头    String headerString = headers.poll();    //读取到空行则说明请求头已读取完毕    if (StringUtil.isBlank(headerString)) &#123;        break;    &#125;    //分割请求头的key和value    String[] headerKeyValue = headerString.split(&quot;: &quot;);    request.addHeader(headerKeyValue[0], headerKeyValue[1]);&#125;//如果在读取到空行后还有数据，说明是POST请求的表单参数if(!headers.isEmpty())&#123;    request.setPostParams(headers.poll());&#125;</span><br></pre></td></tr></table></figure>
+<p>大致流程：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15221557100143.jpg" alt=""><br>最后我们对一些特殊的请求头信息设置到 Request 对象中 (cookie、content-type、content-length);</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String contentLength = request.getHeader(&quot;content-length&quot;);if(contentLength!=null)&#123;     request.setContentLength(Integer.parseInt(contentLength));&#125;request.setContentType(request.getHeader(&quot;content-type&quot;));Cookie[] cookies = parseCookieHeader( request.getHeader(&quot;cookie&quot;));Stream.of(cookies).forEach(cookie -&gt; request.addCookie(cookie));//如果sessionid不是从cookie中获取的，则优先使用cookie中的sessionidif (!request.isRequestedSessionIdFromCookie()) &#123;    Stream.of(cookies)    .filter(cookie -&gt; &quot;jsessionid&quot;.equals(cookie.getName()))    .findFirst().    ifPresent(cookie -&gt; &#123;        //设置cookie的值        request.setRequestedSessionId(cookie.getValue());        request.setRequestedSessionCookie(true);        request.setRequestedSessionURL(false);    &#125;);&#125;</span><br></pre></td></tr></table></figure>
+<p>读取 cookie 的方法也很简单：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">private Cookie[] parseCookieHeader(String cookieListString) &#123;    return  Stream.of(cookieListString.split(&quot;; &quot;))                  .map(cookieStr -&gt; &#123;                    String[] cookieArray = cookieStr.split(&quot;=&quot;);                    return new Cookie(cookieArray[0], cookieArray[1]);                &#125;).toArray(Cookie[]::new);&#125;</span><br></pre></td></tr></table></figure>
+<p>不熟悉 JDK8 语法的小伙伴们可能看不太懂干了什么，没关系来张图解释一下上面那段代码内容：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15221557221330.jpg" alt=""><br>到这里，HttpProcess 处理请求的逻辑就搞定啦，(是不是觉得代码有点多)，细心的客官们一定发现了，request 怎么可以设置那么多属性呢？上一章的 request 好像没有那么多功能吧？是的，我们这一章也对 request/response 做了手脚，请看下文分析：</p>
+<ul>
+<li><p><strong>HttpRequest(上一章的 Request 对象)</strong></p>
+<p>没错，在文章的开头我们已经说了要把 Request 升级一下，那么怎么升级呢？也就是实现 HttpServletRequest 接口啦：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public class HttpRequest implements HttpServletRequest &#123;    private String contentType;    private int contentLength;    private InputStream input;    private String method;    private String protocol;    private String queryString;    private String postParams;    private String requestURI;    private boolean requestedSessionCookie;    private String requestedSessionId;    private boolean requestedSessionURL;    protected ArrayList&lt;Cookie&gt; cookies = new ArrayList&lt;&gt;();    protected HashMap&lt;String, ArrayList&lt;String&gt;&gt; headers = new HashMap&lt;&gt;();    protected ParameterMap parameters;    ...&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>哈哈没有看错，多了一堆参数，但是细心的客官们应该可以看到，这些参数都是非常眼熟，而且上面已经对大部分参数设值过了，眼生的可能就是下面的那个 ParameterMap，那么等下我们慢慢分析：(那些 get、set 方法就不分析了)</p>
+<p><strong>请求头 (header) 操作：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public void addHeader(String name, String value) &#123;    name = name.toLowerCase();    //如果key对应的value不存在则new一个ArrayList    ArrayList&lt;String&gt; values = headers.computeIfAbsent(name, k -&gt; new ArrayList&lt;&gt;());    values.add(value);&#125;public ArrayList getHeaders(String name) &#123;    name = name.toLowerCase();    return headers.get(name);&#125;public String getHeader(String name) &#123;    name = name.toLowerCase();    ArrayList&lt;String&gt; values = headers.get(name);    if (values != null) &#123;        return values.get(0);    &#125; else &#123;        return null;    &#125;&#125;   public ArrayList getHeaderNames() &#123;    return new ArrayList(headers.keySet());&#125;</span><br></pre></td></tr></table></figure>
+<p>大家可以看到请求头是是个 Map，key 是请求头的名字，value 则是请求头的内容数组 (一个请求头可以有多个内容)，所以也就是对这个 Map 做操作而已~</p>
+<p><strong>Cookie 操作：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public Cookie[] getCookies() &#123;     return cookies.toArray(new Cookie[cookies.size()]);&#125;public void addCookie(Cookie cookie) &#123;    cookies.add(cookie);&#125;</span><br></pre></td></tr></table></figure>
+<p>好像也没什么好说的，对 List \ 做常规操作。</p>
+<p><strong>Parameters 操作：</strong><br>这是我们最常用的一个操作啦，那么 ParameterMap 是个什么东西呢，我们先来看看：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public final class ParameterMap extends HashMap&lt;String,String[]&gt; &#123;    private boolean locked = false;    public boolean isLocked() &#123;        return locked;    &#125;    public void setLocked(boolean locked) &#123;        this.locked = locked;    &#125;     public String[] put(String key, String[] value) &#123;        if (locked) &#123;            throw new IllegalStateException(&quot;error&quot;);        &#125;        return (super.put(key, value));    &#125;    ...&#125;</span><br></pre></td></tr></table></figure>
+<p>好吧其实它就是在 HashMap 基础上加了一个 locked 对象 (如果已经解析参数完毕了则将这个对象设置为 true 禁止更改),key 是参数名，value 是参数值数组 (可有多个)<br>    例如：127.0.0.1:8080/servlet/QueryServlet?name=geoffrey&amp;name=yip</p>
+<p>那么我们来看看对 parameter 这个 map 的操作有：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public String getParameter(String name) &#123;    parseParameters();    String[] values = parameters.get(name);    return Optional.ofNullable(values).map(arr -&gt; arr[0]).orElse(null);&#125;public Map getParameterMap() &#123;    parseParameters();    return this.parameters;&#125;public ArrayList&lt;String&gt; getParameterNames() &#123;    parseParameters();    return new ArrayList&lt;&gt;(parameters.keySet());&#125;    public String[] getParameterValues(String name) &#123;    parseParameters();    return parameters.get(name);&#125;</span><br></pre></td></tr></table></figure>
+<p>代码都很简单，但是这个 parseParameters() 是什么呢，对，它是去解析请求的参数了 (<strong>懒加载</strong>)，因为我们不知道用户使用 Servlet 会不会用到请求参数这个功能，而且解析它的开销比解析其他数据大，所以我们会在用户真正使用参数的时候才会去解析，提高整体的响应速度，大概的代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">protected void parseParameters() &#123;    if (parsed) &#123;        //已经解析过则停止解析        return;    &#125;    ParameterMap results = parameters;    if (results == null) &#123;        results = new ParameterMap();    &#125;    results.setLocked(false);    String encoding = getCharacterEncoding();    if (encoding == null) &#123;        encoding = StringUtil.ISO_8859_1;    &#125;    // 解析URI携带的请求参数    String queryString = getQueryString();    this.parseParameters(results, queryString, encoding);    // 初始化Content-Type的值    String contentType = getContentType();    if (contentType == null) &#123;        contentType = &quot;&quot;;    &#125;    int semicolon = contentType.indexOf(&apos;;&apos;);    if (semicolon &gt;= 0) &#123;        contentType = contentType.substring(0, semicolon).trim();    &#125; else &#123;        contentType = contentType.trim();    &#125;    //解析POST请求的表单参数    if (HTTPMethodEnum.POST.name().equals(getMethod()) &amp;&amp; getContentLength() &gt; 0            &amp;&amp; &quot;application/x-www-form-urlencoded&quot;.equals(contentType)) &#123;        this.parseParameters(results, getPostParams(), encoding);    &#125;    //解析完毕就锁定    results.setLocked(true);    parsed = true;    parameters = results;&#125;/** * 解析请求参数 * @param map      Request对象中的参数map * @param params   解析前的参数 * @param encoding 编码 */public void parseParameters(ParameterMap map, String params, String encoding) &#123;    String[] paramArray = params.split(&quot;&amp;&quot;);    Stream.of(paramArray).forEach(param -&gt; &#123;        String[] splitParam = param.split(&quot;=&quot;);        String name = splitParam[0];        String value = splitParam[1];        //此处是将key和value使用URLDecode解码并添加进map中        putMapEntry(map, urlDecode(name, encoding), urlDecode(value, encoding));    &#125;);&#125;</span><br></pre></td></tr></table></figure>
+<p>大概内容就是根据之前 HttpProcess 解析请求行的 queryString 参数以及如果是 POST 请求的表单数据放入 ParameterMap 中，并且锁定 Map。</p>
+<ul>
+<li><strong>HttpResponse(上一章的 Response 对象)</strong></li>
+</ul>
+<p>HttpResponse 对象也跟随者实现了 HttpServletResponse 接口，但是本章没有实现具体的内容，所以此处略过。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public class HttpResponse implements HttpServletResponse &#123; ...&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>ServletProcess</strong></li>
+</ul>
+<p>ServletProcess 具体只需要将 request 和 response 的外观类跟着升级实现对应的接口即可：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">public void process(HttpRequest request, HttpResponse response) throws IOException &#123;    ...   servlet.service(new HttpRequestFacade(request), new HttpResponseFacade(response));   ...&#125;public class HttpRequestFacade implements HttpServletRequest &#123;    private HttpRequest request;    ...&#125;public class HttpResponseFacade implements HttpServletResponse &#123;    private HttpResponse response;    ...&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h1><p>我们先编写一个 Servlet：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/** *  测试注册Servlet */public class RegisterServlet extends HttpServlet &#123;    @Override    public void doGet(HttpServletRequest req, HttpServletResponse resp) &#123;        //打印表单参数        String name = req.getParameter(&quot;name&quot;);        String password = req.getParameter(&quot;password&quot;);        if (StringUtil.isBlank(name) || StringUtil.isBlank(password)) &#123;            try &#123;                resp.getWriter().println(&quot;账号/密码不能为空！&quot;);            &#125; finally &#123;                return;            &#125;        &#125;        //打印请求行        System.out.println(&quot;Parse user register method:&quot; + req.getMethod());        //打印Cookie        System.out.println(&quot;Parse user register cookies:&quot;);        Optional.ofNullable(req.getCookies())                .ifPresent(cookies -&gt;                Stream.of(cookies)                .forEach(cookie -&gt;System.out.println(cookie.getName() + &quot;:&quot; + cookie.getValue()        )));        //打印请求头        System.out.println(&quot;Parse http headers:&quot;);        Enumeration&lt;String&gt; headerNames = req.getHeaderNames();        while (headerNames.hasMoreElements()) &#123;            String headerName = headerNames.nextElement();            System.out.println(headerName + &quot;:&quot; + req.getHeader(headerName));        &#125;        System.out.println(&quot;Parse User register name :&quot; + name);        System.out.println(&quot;Parse User register password :&quot; + password);        try &#123;            resp.getWriter().println(&quot;注册成功！&quot;);        &#125; finally &#123;            return;        &#125;    &#125;    @Override    public void doPost(HttpServletRequest req, HttpServletResponse resp) &#123;        this.doGet(req, resp);    &#125;&#125;</span><br></pre></td></tr></table></figure>
+<p>编写一个 HTML：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;    &lt;head&gt;        &lt;title&gt;注册&lt;/title&gt;    &lt;/head&gt;    &lt;body&gt;        &lt;form method=&quot;post&quot; action=&quot;/servlet/RegisterServlet&quot;&gt;            账号：&lt;input type=&quot;text&quot; &gt;&lt;br&gt;            密码：&lt;input type=&quot;password&quot; &gt;&lt;br&gt;            &lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;        &lt;/form&gt;    &lt;/body&gt;&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<p>打开浏览器测试:</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15221557369712.jpg" alt=""></p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15221557483188.jpg" alt=""><br>控制台输出：<br><img src="http://p4lmrb1gp.bkt.clouddn.com/15221557607650.jpg" alt=""></p>
+<p>到这里，咱们的 Tomcat 3.0 web 服务器就已经开发完成啦（滑稽脸），已经可以实现简单的自定义 Servlet 调用，以及请求行 / 请求头 / 请求参数 / cookie 等信息的解析，待完善的地方还有很多：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">- HTTPProcess一次性只能处理一个请求，其他请求只能堵塞，不具备服务器使用性。 - 每一次请求就new一次Servlet，Servlet应该在初始化项目时就应该初始化，是单例的。 - 并未遵循Servlet规范实现相应的生命周期，例如init()/destory()方法我们均未调用。 - HttpServletRequest/HttpServletResponse接口的大部分方法我们仍未实现 - 架构/包结构和tomcat相差太多 - 其他未实现的功能</span><br></pre></td></tr></table></figure>
+<p>在下一章节我们会把我们的连接器实现 Catalina 的 Connector 接口，并且使得我们可以同时处理多个请求，最终我们的连接器实现的功能以及结构和 Tomcat4 版本的默认连接器基本一致。</p>
+<p><strong>PS：本章源码已上传 github：</strong> <a href="https://link.juejin.im?target=https%3A%2F%2Fgithub.com%2Fdnhxm%2FSimpleTomcat%2Ftree%2FV3.1" target="_blank" rel="noopener">SimpleTomcat</a></p>
+<hr>
+<blockquote>
+<p>原文：<br>Geoffrey.Yip🌴 的个人主页 - 专栏 - 掘金<br><a href="https://juejin.im/user/5915598ba0bb9f005fd2feb1/posts" target="_blank" rel="noopener">https://juejin.im/user/5915598ba0bb9f005fd2feb1/posts</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+
+     
+    
+      <div>
+        
+    <div style="text-align:center;color: #ccc;font-size:14px;">
+        ------ 本文结束<i class="fa fa-paw"></i>感谢您的阅读 ------</div>
+
+      </div>
+    
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    CloudPai
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://cloudpai.site/2018/03/27/2018-03-27-1/" title="动手实现Tomcat">http://cloudpai.site/2018/03/27/2018-03-27-1/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/待阅/" rel="tag"><i class="fa fa-tag"></i> 待阅</a>
+          
+            <a href="/tags/tomcat/" rel="tag"><i class="fa fa-tag"></i> tomcat</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/27/2018-03-27/" rel="next" title="pandas处理数据可视化">
+                <i class="fa fa-chevron-left"></i> pandas处理数据可视化
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/27/2018-03-27-2/" rel="prev" title="Java网络编程总结">
+                Java网络编程总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+
+
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg"
+                alt="CloudPai" />
+            
+              <p class="site-author-name" itemprop="name">CloudPai</p>
+              <p class="site-description motion-element" itemprop="description">加油(๑•̀ㅂ•́)و✧加油</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">91</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+
+<div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=240 src="//music.163.com/outchain/player?type=0&id=2113726971&auto=0&height=430"></iframe>
+</div>
+<!-- 459004290 -->
+
+
+
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CloudPai" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:liupai024@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.douban.com/people/57965969/doulists/all" target="_blank" title="豆瓣">
+                      
+                        <i class="fa fa-fw fa-book"></i>豆瓣</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/cloudPai/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-edit"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.dlut.edu.cn/" title="DUT" target="_blank">DUT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bupt.edu.cn/" title="BUPT" target="_blank">BUPT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://campus.alibaba.com/index.htm" title="Alibaba Group" target="_blank">Alibaba Group</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#跟我一起动手实现-Tomcat（一）-实现静态-Web-服务器"><span class="nav-text">跟我一起动手实现 Tomcat（一）: 实现静态 Web 服务器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#如何实现"><span class="nav-text">如何实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码实现"><span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#看看效果"><span class="nav-text">看看效果</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#跟我一起动手实现-Tomcat（二）-实现简单的-Servlet-容器"><span class="nav-text">跟我一起动手实现 Tomcat（二）: 实现简单的 Servlet 容器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前言-1"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#内容回顾"><span class="nav-text">内容回顾</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#本章内容"><span class="nav-text">本章内容</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开始之前"><span class="nav-text">开始之前</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码实现-1"><span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#加强-Request、Response-安全性"><span class="nav-text">加强 Request、Response 安全性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#跟我一起动手实现-Tomcat（三）-解析-Request-请求参数、请求头、cookie"><span class="nav-text">跟我一起动手实现 Tomcat（三）: 解析 Request 请求参数、请求头、cookie</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前言-2"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#内容回顾-1"><span class="nav-text">内容回顾</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#本章内容-1"><span class="nav-text">本章内容</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#开始之前-1"><span class="nav-text">开始之前</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#代码实现-2"><span class="nav-text">代码实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实验"><span class="nav-text">实验</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CloudPai</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">443.2k</span>
+  
+</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv">  </span>
+</span>
+</div>
+
+
+
+
+
+
+
+  <div class="theme-info">&#12288;主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://cloudpai.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://cloudpai.site/2018/03/27/2018-03-27-1/';
+          this.page.identifier = '2018/03/27/2018-03-27-1/';
+          this.page.title = '动手实现Tomcat';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cloudpai.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!-- <!-- <script src="https://cdn.bootcss.com/aplayer/1.6.0/APlayer.min.js"></script>
+
+<script src="https://api.i-meto.com/music/player.js"></script> --> -->
+  
+  <!--移动端判断，是否引入背景-->
+  <script>
+  var browser={  
+      versions:function(){   
+             var u = navigator.userAgent, app = navigator.appVersion;   
+             return {//移动终端浏览器版本信息
+                  trident: u.indexOf('Trident') > -1, //IE内核
+                  presto: u.indexOf('Presto') > -1, //opera内核
+                  webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                  gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                  mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                  ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                  android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                  iPhone: u.indexOf('iPhone') > -1 , //是否为iPhone或者QQHD浏览器
+                  iPad: u.indexOf('iPad') > -1, //是否iPad
+                  webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+              };  
+           }(),  
+           language:(navigator.browserLanguage || navigator.language).toLowerCase()  
+  }   
+    if(browser.versions.mobile || browser.versions.ios || browser.versions.android ||   
+      browser.versions.iPhone || browser.versions.iPad){        
+               
+    }else{
+    document.write("<script type=\'text/javascript\'  src=\'/js/src/particle.js\'><\/script>");
+    }
+  </script>
+
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":-80,"vOffset":-50},"mobile":{"show":false,"scale":0.2},"react":{"opacityDefault":1,"opacityOnHover":0.2}});</script></body>
+</html>
