@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cloudpai.site/"/>
-  <updated>2018-03-26T12:40:10.091Z</updated>
+  <updated>2018-03-26T15:05:28.473Z</updated>
   <id>http://cloudpai.site/</id>
   
   <author>
@@ -15,6 +15,48 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>韩顺平细说Servlet笔记</title>
+    <link href="http://cloudpai.site/2018/03/26/2018-03-26-2/"/>
+    <id>http://cloudpai.site/2018/03/26/2018-03-26-2/</id>
+    <published>2018-03-26T13:54:51.000Z</published>
+    <updated>2018-03-26T15:05:28.473Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;CS-结构与-BS-结构&quot;&gt;&lt;a href=&quot;#CS-结构与-BS-结构&quot; class=&quot;headerlink&quot; title=&quot;CS 结构与 BS 结构&quot;&gt;&lt;/a&gt;
+      
+    
+    </summary>
+    
+    
+      <category term="servlet" scheme="http://cloudpai.site/tags/servlet/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Servlet 工作原理解析</title>
+    <link href="http://cloudpai.site/2018/03/26/2018-03-26-1/"/>
+    <id>http://cloudpai.site/2018/03/26/2018-03-26-1/</id>
+    <published>2018-03-26T12:59:03.000Z</published>
+    <updated>2018-03-26T13:48:27.669Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;Servlet-工作原理解析&quot;&gt;&lt;a href=&quot;#Servlet-工作原理解析&quot; class=&quot;headerlink&quot; title=&quot;Servlet 工作原理解析
+      
+    
+    </summary>
+    
+    
+      <category term="servlet" scheme="http://cloudpai.site/tags/servlet/"/>
+    
+  </entry>
   
   <entry>
     <title>Anaconda 大数据分析+json返回给echarts图表</title>
@@ -41,33 +83,6 @@
       <category term="python" scheme="http://cloudpai.site/tags/python/"/>
     
       <category term="大数据" scheme="http://cloudpai.site/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Apache commons BeanUtils学习</title>
-    <link href="http://cloudpai.site/2018/03/25/2018-03-26-1/"/>
-    <id>http://cloudpai.site/2018/03/25/2018-03-26-1/</id>
-    <published>2018-03-25T15:03:16.000Z</published>
-    <updated>2018-03-26T12:44:00.023Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;
-      
-    
-    </summary>
-    
-    
-      <category term="java" scheme="http://cloudpai.site/tags/java/"/>
-    
-      <category term="待阅" scheme="http://cloudpai.site/tags/%E5%BE%85%E9%98%85/"/>
-    
-      <category term="工具类" scheme="http://cloudpai.site/tags/%E5%B7%A5%E5%85%B7%E7%B1%BB/"/>
-    
-      <category term="Apache" scheme="http://cloudpai.site/tags/Apache/"/>
     
   </entry>
   
@@ -460,29 +475,6 @@
       
       
         &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h2 id=&quot;Vector-介绍&quot;&gt;&lt;a href=&quot;#Vector-介绍&quot; class=&quot;headerlink&quot; title=&quot;Vector 介绍&quot;&gt;&lt;/a&gt;&lt;a&gt;&lt;/a&gt;Ve
-      
-    
-    </summary>
-    
-    
-      <category term="java基础" scheme="http://cloudpai.site/tags/java%E5%9F%BA%E7%A1%80/"/>
-    
-      <category term="源码" scheme="http://cloudpai.site/tags/%E6%BA%90%E7%A0%81/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>java集合框架源码解读八：WeakHashMap</title>
-    <link href="http://cloudpai.site/2018/03/20/2018-03-20-11/"/>
-    <id>http://cloudpai.site/2018/03/20/2018-03-20-11/</id>
-    <published>2018-03-20T14:14:26.000Z</published>
-    <updated>2018-03-21T13:32:08.440Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;WeakHashMap&quot;&gt;&lt;a href=&quot;#WeakHashMap&quot; class=&quot;headerlink&quot; title=&quot;WeakHashMap&quot;&gt;&lt;/a&gt;Wea
       
     
     </summary>

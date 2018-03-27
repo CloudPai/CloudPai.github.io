@@ -1,0 +1,1619 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="servlet," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="CloudPai" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="CS 结构与 BS 结构基本概述B/S 结构即浏览器和服务器结构。它是随着 Internet 技术的兴起，对 C/S 结构的一种变化或者改进的结构。在这种结构下，用户工作界面是通过 WWW 浏览器来实现，极少部分事务逻辑在前端 (Browser) 实现，但是主要事务逻辑在服务器端 (Server) 实现，形成所谓三层 3-tier 结构。 C/S 结构，即大家熟知的客户机和服务器结构。它是软件系">
+<meta name="keywords" content="servlet">
+<meta property="og:type" content="article">
+<meta property="og:title" content="韩顺平细说Servlet笔记">
+<meta property="og:url" content="http://cloudpai.site/2018/03/26/2018-03-26-2/index.html">
+<meta property="og:site_name" content="CloudPai">
+<meta property="og:description" content="CS 结构与 BS 结构基本概述B/S 结构即浏览器和服务器结构。它是随着 Internet 技术的兴起，对 C/S 结构的一种变化或者改进的结构。在这种结构下，用户工作界面是通过 WWW 浏览器来实现，极少部分事务逻辑在前端 (Browser) 实现，但是主要事务逻辑在服务器端 (Server) 实现，形成所谓三层 3-tier 结构。 C/S 结构，即大家熟知的客户机和服务器结构。它是软件系">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15220727315782.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15220727411931.jpg">
+<meta property="og:image" content="https://box.kancloud.cn/2016-02-23_56cbf5fd22dc6.jpg">
+<meta property="og:image" content="https://box.kancloud.cn/2016-02-23_56cbf5fd465be.jpg">
+<meta property="og:image" content="https://box.kancloud.cn/2016-02-23_56cbf5fd577f6.jpg">
+<meta property="og:image" content="https://box.kancloud.cn/2016-02-23_56cbf5fd7305d.jpg">
+<meta property="og:image" content="https://box.kancloud.cn/2016-02-23_56cbf5fd877ce.jpg">
+<meta property="og:image" content="https://box.kancloud.cn/2016-02-23_56cbf5fda8d88.jpg">
+<meta property="og:image" content="https://box.kancloud.cn/2016-02-23_56cbf5fdcb568.jpg">
+<meta property="og:image" content="https://box.kancloud.cn/2016-02-23_56cbf5fde2f31.jpg">
+<meta property="og:image" content="https://box.kancloud.cn/2016-02-23_56cbf5fe015df.jpg">
+<meta property="og:image" content="https://box.kancloud.cn/2016-02-23_56cbf5fe17237.jpg">
+<meta property="og:image" content="https://box.kancloud.cn/2016-02-23_56cbf5fe6bebc.jpg">
+<meta property="og:image" content="https://box.kancloud.cn/2016-02-23_56cbf5fe88f5b.jpg">
+<meta property="og:image" content="https://box.kancloud.cn/2016-02-23_56cbf5fea56bd.jpg">
+<meta property="og:image" content="https://box.kancloud.cn/2016-02-23_56cbf5febe08e.jpg">
+<meta property="og:image" content="https://box.kancloud.cn/2016-02-23_56cbf5fee2b10.jpg">
+<meta property="og:image" content="https://box.kancloud.cn/2016-02-23_56cbf5ff00173.jpg">
+<meta property="og:image" content="https://box.kancloud.cn/2016-02-23_56cbf5ff2ad54.jpg">
+<meta property="og:image" content="https://box.kancloud.cn/2016-02-23_56cbf5ff553e8.jpg">
+<meta property="og:image" content="https://box.kancloud.cn/2016-02-23_56cbf5ff7730b.jpg">
+<meta property="og:updated_time" content="2018-03-26T15:05:28.473Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="韩顺平细说Servlet笔记">
+<meta name="twitter:description" content="CS 结构与 BS 结构基本概述B/S 结构即浏览器和服务器结构。它是随着 Internet 技术的兴起，对 C/S 结构的一种变化或者改进的结构。在这种结构下，用户工作界面是通过 WWW 浏览器来实现，极少部分事务逻辑在前端 (Browser) 实现，但是主要事务逻辑在服务器端 (Server) 实现，形成所谓三层 3-tier 结构。 C/S 结构，即大家熟知的客户机和服务器结构。它是软件系">
+<meta name="twitter:image" content="http://p4lmrb1gp.bkt.clouddn.com/15220727315782.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'TZAS2SFOJR',
+      apiKey: 'e2a9cd036eede8026382b302001ec261',
+      indexName: 'cloudpai_blogs_search',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cloudpai.site/2018/03/26/2018-03-26-2/"/>
+
+
+
+
+
+  <title>韩顺平细说Servlet笔记 | CloudPai</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-114643720-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CloudPai</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/03/26/2018-03-26-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CloudPai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudPai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">韩顺平细说Servlet笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-26T21:54:51+08:00">
+                2018-03-26
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-26T23:05:28+08:00">
+                2018-03-26
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/26/2018-03-26-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/03/26/2018-03-26-2/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  7,498
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  32
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="CS-结构与-BS-结构"><a href="#CS-结构与-BS-结构" class="headerlink" title="CS 结构与 BS 结构"></a>CS 结构与 BS 结构</h1><h3 id="基本概述"><a href="#基本概述" class="headerlink" title="基本概述"></a>基本概述</h3><p>B/S 结构即浏览器和服务器结构。它是随着 Internet 技术的兴起，对 C/S 结构的一种变化或者改进的结构。在这种结构下，用户工作界面是通过 WWW 浏览器来实现，极少部分事务逻辑在前端 (Browser) 实现，但是主要事务逻辑在服务器端 (Server) 实现，形成所谓三层 3-tier 结构。</p>
+<p>C/S 结构，即大家熟知的客户机和服务器结构。它是软件系统体系结构，通过它可以充分利用两端硬件环境的优势，将任务合理分配到 Client 端和 Server 端来实现，降低了系统的通讯开销。</p>
+<p>PS：像腾讯就是以 C/S 结构起家的，其旗下的 QQ 这一软件就是典型的 C/S 结构应用，像 Facebook 就是以 B/S 为结构的。B/S 结构的好处就是方便，跨平台性好，真正的实现了一次开发，处处运行。C/S 结构以其稳定安全著称，降低了通讯代价，但是实现起来麻烦，需要开发服务器和客户端两套系统并且在不同的平台移植起来非常麻烦。所以现在大多是以 C/S 模式来开发。</p>
+<h3 id="C-S-系统结构"><a href="#C-S-系统结构" class="headerlink" title="C/S 系统结构"></a>C/S 系统结构</h3><p><img src="http://p4lmrb1gp.bkt.clouddn.com/15220727315782.jpg" alt=""></p>
+<h3 id="B-S-系统结构"><a href="#B-S-系统结构" class="headerlink" title="B/S 系统结构"></a>B/S 系统结构</h3><p><img src="http://p4lmrb1gp.bkt.clouddn.com/15220727411931.jpg" alt=""></p>
+<p>实例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">	模拟的简单Web服务器</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">import</span> java.io.*;</span><br><span class="line"><span class="keyword">import</span> java.net.*;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Servlet1</span></span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">		<span class="comment">// 创建ServerSocket</span></span><br><span class="line">		ServerSocket ss = <span class="keyword">new</span> ServerSocket(<span class="number">9999</span>);</span><br><span class="line">		Socket s = ss.accept();</span><br><span class="line">		System.out.println(<span class="string">"9999"</span>);</span><br><span class="line">		OutputStream os = s.getOutputStream();</span><br><span class="line">		BufferedReader br = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> FileReader(<span class="string">"c:\\hello.html"</span>));</span><br><span class="line">		String buf = <span class="string">""</span>;</span><br><span class="line">			<span class="keyword">while</span>((buf = br.readLine()) != <span class="keyword">null</span>)&#123;</span><br><span class="line">			os.write(buf.getBytes());</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		br.close();</span><br><span class="line">		os.close();</span><br><span class="line">		s.close();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="Tomcat-容器入门介绍"><a href="#Tomcat-容器入门介绍" class="headerlink" title="Tomcat 容器入门介绍"></a><a id="Tomcat_0"></a>Tomcat 容器入门介绍</h1><h3 id="Tomcat-环境配置"><a href="#Tomcat-环境配置" class="headerlink" title="Tomcat 环境配置"></a><a id="Tomcat_2"></a>Tomcat 环境配置</h3><p>PS：JDK 的安装这里就不讲了，找到安装包直接下一步下一步就行了。</p>
+<h4 id="1、配置-JDK"><a href="#1、配置-JDK" class="headerlink" title="1、配置 JDK"></a><a id="1JDK_6"></a>1、配置 JDK</h4><p>在 Windows10 下，找到环境变量</p>
+<p><img src="https://box.kancloud.cn/2016-02-23_56cbf5fd22dc6.jpg" alt=""></p>
+<p>在环境变量中添加 JDK 主目录</p>
+<p>格式为：JAVA_HOME= 指向你的 jdk 的主目录（并不是 bin 文件目录）</p>
+<p><img src="https://box.kancloud.cn/2016-02-23_56cbf5fd465be.jpg" alt=""></p>
+<p>在环境变量中添加路径</p>
+<p>格式为：path = %JAVA_HOME%\bin;</p>
+<p><img src="https://box.kancloud.cn/2016-02-23_56cbf5fd577f6.jpg" alt=""></p>
+<p>在环境变量中添加 classpath</p>
+<p>格式为：classpath: .;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar;</p>
+<p><img src="https://box.kancloud.cn/2016-02-23_56cbf5fd7305d.jpg" alt=""></p>
+<p>至此，JDK 就配置完了。</p>
+<p>PS：如果在不配置 JAVAHOME 的前提下可以用如下方法启动 tomcat</p>
+<p>在 startup.bat 的第 25 行中添加 set JAVA_HOME=JKD 路径</p>
+<p><img src="https://box.kancloud.cn/2016-02-23_56cbf5fd877ce.jpg" alt=""></p>
+<h4 id="2、启动-tomcat"><a href="#2、启动-tomcat" class="headerlink" title="2、启动 tomcat"></a><a id="2tomcat_40"></a>2、启动 tomcat</h4><p>到 tomcat 主目录下的 bin/startup.bat 点击启动</p>
+<p><img src="https://box.kancloud.cn/2016-02-23_56cbf5fda8d88.jpg" alt=""></p>
+<h4 id="3、验证是否安装成功"><a href="#3、验证是否安装成功" class="headerlink" title="3、验证是否安装成功"></a><a id="3_46"></a>3、验证是否安装成功</h4><p>在浏览器中输入 <a href="http://127.0.0.1:8080" target="_blank" rel="noopener">http://127.0.0.1:8080</a>(8080 是默认端口，如果该端口被占用需要到主目录 / conf/server.xml 中改端口号)</p>
+<p><img src="https://box.kancloud.cn/2016-02-23_56cbf5fdcb568.jpg" alt=""></p>
+<p>出现这个界面，就表示 tomcat 已经配置成功了。</p>
+<h3 id="Tomcat-配置异常及其解决"><a href="#Tomcat-配置异常及其解决" class="headerlink" title="Tomcat 配置异常及其解决"></a><a id="Tomcat_56"></a>Tomcat 配置异常及其解决</h3><h4 id="1、JAVA-HOME-配置错误，或者没有配置"><a href="#1、JAVA-HOME-配置错误，或者没有配置" class="headerlink" title="1、JAVA_HOME 配置错误，或者没有配置"></a><a id="1JAVA_HOME&nbsp;_58"></a>1、JAVA_HOME 配置错误，或者没有配置</h4><p>这时候，可以按照上面的步骤在来一次，在命令行中输入 java -version，如果显示</p>
+<p><img src="https://box.kancloud.cn/2016-02-23_56cbf5fde2f31.jpg" alt=""></p>
+<p>就表示成功了。</p>
+<h4 id="2、如果你的机器已经占有了-8080-端口，则无法启动"><a href="#2、如果你的机器已经占有了-8080-端口，则无法启动" class="headerlink" title="2、如果你的机器已经占有了 8080 端口，则无法启动"></a><a id="28080&nbsp;_68"></a>2、如果你的机器已经占有了 8080 端口，则无法启动</h4><p>解决方法</p>
+<p>(1) 你可以 8080 先关闭</p>
+<p>netstat –an</p>
+<p>netstat –anb 来查看谁占用该 8080</p>
+<p>(2) 主动改变 tomcat 的端口.</p>
+<p>到 conf/server.xml 文件中修改</p>
+<p><img src="https://box.kancloud.cn/2016-02-23_56cbf5fe015df.jpg" alt=""></p>
+<h4 id="3、-能够正常启动，但是会导航到另外一个页面"><a href="#3、-能够正常启动，但是会导航到另外一个页面" class="headerlink" title="3、 能够正常启动，但是会导航到另外一个页面"></a><a id="3&nbsp;_86"></a>3、 能够正常启动，但是会导航到另外一个页面</h4><p>去修改工具 -&gt; 管理加载项，把默认的导航给禁用即可</p>
+<h4 id="4、浏览器显示-404-Not-Found"><a href="#4、浏览器显示-404-Not-Found" class="headerlink" title="4、浏览器显示 404 Not Found"></a><a id="4404&nbsp;Not&nbsp;Found_92"></a>4、浏览器显示 404 Not Found</h4><p>在访问 tomcat 时候，一定要保证 tomcat 服务器是启动，不然就会出现这种错误。</p>
+<h3 id="Tomcat-的目录结构文件"><a href="#Tomcat-的目录结构文件" class="headerlink" title="Tomcat 的目录结构文件"></a><a id="Tomcat_98"></a>Tomcat 的目录结构文件</h3><p><img src="https://box.kancloud.cn/2016-02-23_56cbf5fe17237.jpg" alt=""></p>
+<p><strong>bin</strong>: 启动和关闭 tomcat 的 bat 文件</p>
+<p><strong>conf</strong>: 配置文件</p>
+<p>–&gt;<strong>server.xml </strong>: 该文件用于配置和 server 相关的信息, 比如 tomcat 启动端口后, 配置 Host,  配置 Context 即 web 应用</p>
+<p>–&gt;<strong>web.xml</strong> : 该文件配置与 web 应用 (web 应用就相当于是一个 web 站点)</p>
+<p>–&gt;<strong>tomcat-users.xml</strong>: 该文件用户配置 tomcat 的用户密码 和 权限</p>
+<p><strong>lib</strong> 目录: 该目录放置运行 tomcat 运行需要的 jar 包</p>
+<p><strong>logs</strong> 目录：存放日志, 当我们需要去查看日志的时候，很有用!, 当我们启动 tomcat 错误时候，可以查询信息.</p>
+<p><strong>webapps</strong> 目录: 该目录下，放置我们的 web 应用 (web 站点), 比如:</p>
+<p>建立  web1 目录  下面放置我们的 html 文件 jsp 文件.. 图片… 则 web1 就被当做一个 web 应用管理起来 (☞ 特别说明 tomcat 6.0 以后支持 tomcat 5 版本 还有别的设置)</p>
+<p><strong>work</strong>: 工作目录: 该目录用于存放 jsp 被访问后 生成的对应的 server 文件 和. class 文件</p>
+<h3 id="如何访问一个-web-应用的某个文件"><a href="#如何访问一个-web-应用的某个文件" class="headerlink" title="如何访问一个 web 应用的某个文件"></a><a id="web_124"></a>如何访问一个 web 应用的某个文件</h3><p><img src="https://box.kancloud.cn/2016-02-23_56cbf5fe6bebc.jpg" alt=""></p>
+<p>PS：想要访问一个 WEB 应用中的某个文件可以采用 url(Uniform Resource Locator) 统一资源定位符来访问，其格式如上。</p>
+<h3 id="Tomcat-应用部署目录结构规范"><a href="#Tomcat-应用部署目录结构规范" class="headerlink" title="Tomcat 应用部署目录结构规范"></a><a id="Tomcat_132"></a>Tomcat 应用部署目录结构规范</h3><p><img src="https://box.kancloud.cn/2016-02-23_56cbf5fe88f5b.jpg" alt=""></p>
+<h3 id="Tomcat-管理虚拟目录"><a href="#Tomcat-管理虚拟目录" class="headerlink" title="Tomcat 管理虚拟目录"></a><a id="Tomcat_138"></a>Tomcat 管理虚拟目录</h3><p>需求：当希望将 web 应用部署到非 webapps 目录下时，怎么解决这问题。</p>
+<p>PS：可以通过虚拟目录配置技术解决。</p>
+<p><img src="https://box.kancloud.cn/2016-02-23_56cbf5fea56bd.jpg" alt=""></p>
+<h4 id="配置步骤"><a href="#配置步骤" class="headerlink" title="配置步骤"></a><a id="_146"></a>配置步骤</h4><p>1、找到 server.xml 文件</p>
+<p>2、编辑 host 节点，添加 Context path</p>
+<p>例如：要访问该 web 应用根目录下的 hello.html 文件</p>
+<p>实际访问时输入的地址：<a href="http://localhost:8088/%E5%BA%94%E7%94%A8%E5%90%8D/hello.html" target="_blank" rel="noopener">http://localhost:8088 / 应用名 / hello.html</a></p>
+<p>3、重启、重新部署生效</p>
+<h4 id="context-的几个属性的说明"><a href="#context-的几个属性的说明" class="headerlink" title="context 的几个属性的说明"></a><a id="context_162"></a>context 的几个属性的说明</h4><p><strong>path</strong>: 应用名称</p>
+<p><strong>docbase</strong>:  web 应用所在的绝对路径</p>
+<p><strong>reloadable</strong>: 如果设为 ture ，表示 tomcat 会自动更新 web 应用，但是这个开销大，<strong>建议在开发过程中，可以设为 true, 但是真的发布了，则应当设为 false</strong></p>
+<p><strong>upackWAR</strong>: 如果设为 ture ，则自动解压，否则不自动解压.</p>
+<p>PS：war 包的打包和 Tomcat 怎么部署 war 包可以使用搜索引擎找到。</p>
+<h3 id="配置域名"><a href="#配置域名" class="headerlink" title="配置域名"></a><a id="_178"></a>配置域名</h3><p>实现的步骤如下:</p>
+<p>(1) 在 C:\WINDOWS\system32\drivers\etc 下的 host 文件 添加 127.0.0.1 <a href="http://www.myweb.com" target="_blank" rel="noopener">www.myweb.com</a></p>
+<p>(2) 在 tomcat 的 server.xml 文件添加主机名</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;Host d:\web3”&gt;</span><br><span class="line"></span><br><span class="line">&lt;Context path=&quot;/&quot; docBase=&quot;d:\web3&quot; /&gt;</span><br><span class="line"></span><br><span class="line">&lt;/Host&gt;</span><br></pre></td></tr></table></figure>
+<p>(3) 在 d:\web3 加入了一个 /WEB-INF/web.xml 把 hello2.html 设为首页面，如果连端口都不希望带，则可以把 tomcat 的启动端口设为 80 即可.</p>
+<p>(4) 重启生效</p>
+<h3 id="Tomcat-框架机制"><a href="#Tomcat-框架机制" class="headerlink" title="Tomcat 框架机制"></a><a id="Tomcat_200"></a>Tomcat 框架机制</h3><p><img src="https://box.kancloud.cn/2016-02-23_56cbf5febe08e.jpg" alt=""></p>
+<h3 id="Tomcat-配置默认主机"><a href="#Tomcat-配置默认主机" class="headerlink" title="Tomcat 配置默认主机"></a><a id="Tomcat_206"></a>Tomcat 配置默认主机</h3><p>在 tomcat/conf/server.xml 文件</p>
+<p>如：<br><img src="https://box.kancloud.cn/2016-02-23_56cbf5fee2b10.jpg" alt=""></p>
+<hr>
+<h1 id="Servlet-入门"><a href="#Servlet-入门" class="headerlink" title="Servlet 入门"></a><a id="Servlet_0"></a>Servlet 入门</h1><h3 id="基本概述-1"><a href="#基本概述-1" class="headerlink" title="基本概述"></a><a id="_2"></a>基本概述</h3><p>Servlet（Server Applet），全称 Java Servlet，未有中文译文。是用 Java 编写的服务器端程序。其主要功能在于交互式地浏览和修改数据，生成动态 Web 内容。狭义的 Servlet 是指 Java 语言实现的一个接口，<strong>广义的 Servlet 是指任何实现了这个 Servlet 接口的类</strong>，一般情况下，人们将 Servlet 理解为后者。</p>
+<p>Servlet 运行于支持 Java 的应用服务器中。从原理上讲，Servlet 可以响应任何类型的请求，但绝大多数情况下 Servlet 只用来扩展基于 HTTP 协议的 Web 服务器。</p>
+<p>PS：学习 Servlet 是学习 JSP 的基础，故很重要。</p>
+<h3 id="Servlet-在网络中的位置"><a href="#Servlet-在网络中的位置" class="headerlink" title="Servlet 在网络中的位置"></a><a id="Servlet_12"></a>Servlet 在网络中的位置</h3><p><img src="https://box.kancloud.cn/2016-02-23_56cbf5ff00173.jpg" alt=""></p>
+<h3 id="Servlet-的生命周期"><a href="#Servlet-的生命周期" class="headerlink" title="Servlet 的生命周期"></a><a id="Servlet_18"></a>Servlet 的生命周期</h3><p><img src="https://box.kancloud.cn/2016-02-23_56cbf5ff2ad54.jpg" alt=""></p>
+<p>1、WEB 服务器 (Tomcat) 首先会找到该 Servlet 并装载该 Servlet</p>
+<p>2、WEB 服务器 (Tomcat) 会创建该 Servlet 的实例</p>
+<p>3、WEB 服务器 (Tomcat) 会调用实例对象的 init()方法</p>
+<p>4、WEB 服务器 (Tomcat) 创建一个封装 HTTP 请求消息的 HttpServletRequest 对象和一个代表 HTTP 响应消息的 HttpServletResponse 对象，然后调用 service()方法并将请求对象和响应对象作为参数传递进去。(实现是通过多线程技术)</p>
+<p>5、WEB 服务器在某种情况，停止对该 Servlet 支持，Servlet 引擎将卸载该 Servlet，在卸载之前会调用 Servlet 的 destroy() 方法进行销毁</p>
+<h3 id="手工开发-Servlet-的方式"><a href="#手工开发-Servlet-的方式" class="headerlink" title="手工开发 Servlet 的方式"></a><a id="Servlet_34"></a>手工开发 Servlet 的方式</h3><p>1、在 Tomcat 主目录的 webapps 文件夹下建立一个 web 应用 web1</p>
+<p>2、在 web1 下建立文件夹 WEB-INF，在该文件夹中建立 web.xml [web.xml 可以从 ROOT/WEB-INF/web.xml 拷贝]</p>
+<p>3、在 WEB-INF 目录下建立 classes 目录 (Servlet 在该目录下开发)，建立 lib 目录</p>
+<p>4、在 classes 目录下开发 Servlet</p>
+<p>5、在 web.xml 中配置 web.xml</p>
+<p>6、编译 Servlet 文件 (编译时需要将 servlet-api.jar 包加入环境变量 classpath 中，该 jar 包在 Tomcat 主目录的 lib 文件夹下)</p>
+<p>7、运行 Tomcat</p>
+<p>8、访问 Servlet</p>
+<h3 id="开发-Servlet-的三种方法"><a href="#开发-Servlet-的三种方法" class="headerlink" title="开发 Servlet 的三种方法"></a><a id="Servlet_54"></a>开发 Servlet 的三种方法</h3><h4 id="1、实现-Servlet-接口"><a href="#1、实现-Servlet-接口" class="headerlink" title="1、实现 Servlet 接口"></a><a id="1Servlet_56"></a>1、实现 Servlet 接口</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">	使用实现Servlet接口的方式开发一个Servlet</span><br><span class="line">	要求：显示当前时间</span><br><span class="line">*/</span><br><span class="line">package com.pc;</span><br><span class="line">import javax.servlet.*;</span><br><span class="line">import javax.servlet.http.*;</span><br><span class="line">import java.io.*;</span><br><span class="line">public class Servlet2 implements Servlet&#123;</span><br><span class="line">	// 该方法用于初始化Servlet，就是把该Servlet装载入内存，该方法只会被调用一次</span><br><span class="line">	public void init(ServletConfig config)&#123;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 得到ServletConfig对象</span><br><span class="line">	public ServletConfig getServletConfig()&#123;</span><br><span class="line">		return null;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 该方法是服务方法，业务逻辑代码写在这</span><br><span class="line">	// 该方法每次都会被调用</span><br><span class="line">	public void service(ServletRequest req, ServletResponse res) throws ServletException, java.io.IOException&#123;</span><br><span class="line">		// 在控制台输出</span><br><span class="line">		System.out.println(&quot;hello world：&quot; + new java.util.Date().toString());</span><br><span class="line">		// 在浏览器返回</span><br><span class="line">		res.getWriter().println(&quot;hello world：&quot; + new java.util.Date().toLocaleString());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 该方法得到Servlet配置信息</span><br><span class="line">	public java.lang.String getServletInfo()&#123;</span><br><span class="line">		return null;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	// 销毁该Servlet，从内存中清除，该方法只会被调用一次</span><br><span class="line">	public void destroy()&#123;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>PS：不仅要写 Servlet 文件，还要在 web.xml 中添加配置信息，配置信息格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- servlet部署到web.xml文件，该部署配置可以从examples下拷贝 --&gt;</span><br><span class="line">&lt;servlet&gt;</span><br><span class="line">    &lt;!--servlet-name 该名字可以自定义，但是默认就使用servlet的名字  --&gt;</span><br><span class="line">    &lt;servlet-name&gt;Servlet2&lt;/servlet-name&gt;</span><br><span class="line">    &lt;!--servlet-class要指明该servlet放在那个包下的  --&gt;</span><br><span class="line">    &lt;servlet-class&gt;com.pc.Servlet2&lt;/servlet-class&gt;</span><br><span class="line">&lt;/servlet&gt;</span><br><span class="line">&lt;!-- servlet的映射 --&gt;</span><br><span class="line">&lt;servlet-mapping&gt;</span><br><span class="line">    &lt;!-- 这个servlet-name要和上面的servlet-name名字一样，这样才能匹配的上 --&gt;</span><br><span class="line">    &lt;servlet-name&gt;Servlet2&lt;/servlet-name&gt;</span><br><span class="line">    &lt;!-- url-pattern 这是访问该servlet的资源部分  默认命名规范：就是该servlet的名字--&gt;</span><br><span class="line">    &lt;url-pattern&gt;/Servlet2&lt;/url-pattern&gt;</span><br><span class="line">&lt;/servlet-mapping&gt;</span><br></pre></td></tr></table></figure>
+<p>PS：</p>
+<p>1、在 classes 文件夹下编译 (当然 Servlet 文件也应该在这里)</p>
+<p>javac -encoding UTF-8 -d . Servlet 文件名. java</p>
+<p>2、不重启更新 web 应用</p>
+<p>首先，在 Tomcat 主目录的 conf 文件夹中找到 tomcat-users.xml 文件，打开它，并在标签中添加如下语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;tomcat-users&gt;</span><br><span class="line">    &lt;role role/&gt;</span><br><span class="line">    &lt;user user/&gt;</span><br><span class="line">&lt;/tomcat-users&gt;</span><br></pre></td></tr></table></figure>
+<p>然后，在 localhost:8080 主界面点击，进入 manager 界面，找到该应用，点击 reload 按钮即可。</p>
+<h4 id="2、继承-GenericServlet-类"><a href="#2、继承-GenericServlet-类" class="headerlink" title="2、继承 GenericServlet 类"></a><a id="2GenericServlet_143"></a>2、继承 GenericServlet 类</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">	使用继承GenericServlet的方式开发一个Servlet</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">package com.pc;</span><br><span class="line">import javax.servlet.*;</span><br><span class="line">import javax.servlet.http.*;</span><br><span class="line">import java.io.*;</span><br><span class="line"></span><br><span class="line">public class Servlet3 extends GenericServlet&#123;</span><br><span class="line">	// 该方法是服务方法，业务逻辑代码写在这</span><br><span class="line">	// 该方法每次都会被调用</span><br><span class="line">	public void service(ServletRequest req,ServletResponse res) throws ServletException,IOException&#123;</span><br><span class="line">		res.getWriter().println(&quot;hellow,world, GenericServle.&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>PS：不仅要写 Servlet 文件，还要在 web.xml 中添加配置信息，配置信息格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;servlet&gt;</span><br><span class="line">    &lt;servlet-name&gt;Servlet3&lt;/servlet-name&gt;</span><br><span class="line">    &lt;servlet-class&gt;com.pc.Servlet3&lt;/servlet-class&gt;</span><br><span class="line">&lt;/servlet&gt;</span><br><span class="line">&lt;servlet-mapping&gt;</span><br><span class="line">    &lt;servlet-name&gt;Servlet3&lt;/servlet-name&gt;</span><br><span class="line">    &lt;url-pattern&gt;/Servlet3&lt;/url-pattern&gt;</span><br><span class="line">&lt;/servlet-mapping&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="3、继承-HttpServlet-类"><a href="#3、继承-HttpServlet-类" class="headerlink" title="3、继承 HttpServlet 类"></a><a id="3HttpServlet_179"></a>3、继承 HttpServlet 类</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line">	使用继承HttpServlet的方式开发一个Servlet</span><br><span class="line">	要求：显示当前时间</span><br><span class="line">*/</span><br><span class="line"></span><br><span class="line">package com.pc;</span><br><span class="line">import javax.servlet.*;</span><br><span class="line">import javax.servlet.http.*;</span><br><span class="line">import java.io.*;</span><br><span class="line"></span><br><span class="line">public class Servlet4 extends HttpServlet&#123;</span><br><span class="line">	// 在HttpServlet中，设计者分别提供了对Post提交和Get提交的处理，默认是get提交</span><br><span class="line">	// doGet().doPost()底层也是调用service方法</span><br><span class="line"></span><br><span class="line">	// 处理Get请求</span><br><span class="line">	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException,IOException&#123;</span><br><span class="line"></span><br><span class="line">		resp.getWriter().println(&quot;doGet()&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">	// 处理Post请求</span><br><span class="line">	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException&#123;</span><br><span class="line">		resp.getWriter().println(&quot;doPost()&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>PS：不仅要写 Servlet 文件，还要在 web.xml 中添加配置信息，配置信息格式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;servlet&gt;</span><br><span class="line">    &lt;servlet-name&gt;Servlet4&lt;/servlet-name&gt;</span><br><span class="line">    &lt;servlet-class&gt;com.pc.Servlet4&lt;/servlet-class&gt;</span><br><span class="line">&lt;/servlet&gt;</span><br><span class="line">&lt;servlet-mapping&gt;</span><br><span class="line">    &lt;servlet-name&gt;Servlet4&lt;/servlet-name&gt;</span><br><span class="line">    &lt;url-pattern&gt;/Servlet4&lt;/url-pattern&gt;</span><br><span class="line">&lt;/servlet-mapping&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="使用-MyEclipse-集成开发环境-IDE-来开发-Web-应用"><a href="#使用-MyEclipse-集成开发环境-IDE-来开发-Web-应用" class="headerlink" title="使用 MyEclipse 集成开发环境 IDE 来开发 Web 应用"></a><a id="MyEclipseIDEWeb_225"></a>使用 MyEclipse 集成开发环境 IDE 来开发 Web 应用</h3><p>PS：具体的配置步骤可以参考搜索引擎。</p>
+<h4 id="MyEclipse-的开发目录结构"><a href="#MyEclipse-的开发目录结构" class="headerlink" title="MyEclipse 的开发目录结构"></a><a id="MyEclipse_229"></a>MyEclipse 的开发目录结构</h4><p><img src="https://box.kancloud.cn/2016-02-23_56cbf5ff553e8.jpg" alt=""></p>
+<h3 id="Servlet-细节问题"><a href="#Servlet-细节问题" class="headerlink" title="Servlet 细节问题"></a><a id="Servlet_235"></a>Servlet 细节问题</h3><h4 id="1、一个已经注册的-Servlet-可以被多次映射"><a href="#1、一个已经注册的-Servlet-可以被多次映射" class="headerlink" title="1、一个已经注册的 Servlet 可以被多次映射"></a><a id="1Servlet_237"></a>1、一个已经注册的 Servlet 可以被多次映射</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">  &lt;servlet&gt;</span><br><span class="line">    &lt;description&gt;This is the description of my J2EE component&lt;/description&gt;</span><br><span class="line">    &lt;display-name&gt;This is the display name of my J2EE component&lt;/display-name&gt;</span><br><span class="line">   	&lt;!-- servlet的注册名 --&gt;</span><br><span class="line">    &lt;servlet-name&gt;MyServlet1&lt;/servlet-name&gt;</span><br><span class="line">    &lt;!-- servlet类的全路径(包名+类名) --&gt;</span><br><span class="line">    &lt;servlet-class&gt;com.web1.servlet.MyServlet1&lt;/servlet-class&gt;</span><br><span class="line">  &lt;/servlet&gt;</span><br><span class="line">&lt;!-- 对一个已经注册的servlet的映射 --&gt;</span><br><span class="line">  &lt;servlet-mapping&gt;</span><br><span class="line">  &lt;!-- servelt的注册名 --&gt;</span><br><span class="line">    &lt;servlet-name&gt;MyServlet1&lt;/servlet-name&gt;</span><br><span class="line">  &lt;!-- servlet的访问路径 --&gt;</span><br><span class="line">    &lt;url-pattern&gt;/MyServlet1&lt;/url-pattern&gt;</span><br><span class="line">  &lt;/servlet-mapping&gt;</span><br><span class="line"></span><br><span class="line">  &lt;servlet-mapping&gt;</span><br><span class="line">  &lt;servlet-name&gt;MyServlet1&lt;/servlet-name&gt;</span><br><span class="line">  &lt;url-pattern&gt;/abc&lt;/url-pattern&gt;</span><br><span class="line">  &lt;/servlet-mapping&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="2、当映射一个-Servlet-时，可以多层映射"><a href="#2、当映射一个-Servlet-时，可以多层映射" class="headerlink" title="2、当映射一个 Servlet 时，可以多层映射"></a><a id="2Servlet_263"></a>2、当映射一个 Servlet 时，可以多层映射</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;url-pattern&gt;/servlet/index.html&lt;/url-pattern&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="3、在-Servlet-使用通配符映射到-URL"><a href="#3、在-Servlet-使用通配符映射到-URL" class="headerlink" title="3、在 Servlet 使用通配符映射到 URL"></a><a id="3ServletURL_270"></a>3、在 Servlet 使用通配符映射到 URL</h4><p>有两种格式:</p>
+<p>第一种格式  <em>. 扩展名  比如 </em>.do  *.ss</p>
+<p>第二种格式  以 / 开头 同时以 /<em> 结尾  比如  /</em>   /news/*</p>
+<p>通配符案例：</p>
+<p>Servlet1 映射到 /abc/*</p>
+<p>Servlet2 映射到 /*</p>
+<p>Servlet3 映射到 /abc</p>
+<p>Servlet4 映射到 *.do</p>
+<p>问题：</p>
+<p>1、当请求 URL 为 “/abc/a.html”，“/abc/<em>” 和 “/</em>” 都匹配，哪个 servlet 响应</p>
+<p>Servlet 引擎将调用 Servlet1。</p>
+<p>2、当请求 URL 为 “/abc” 时，“/abc/*”和 “/abc” 都匹配，哪个 servlet 响应</p>
+<p>Servlet 引擎将调用 Servlet3。</p>
+<p>3、当请求 URL 为 “/abc/a.do” 时，“/abc/<em>” 和 “</em>.do” 都匹配，哪个 servlet 响应</p>
+<p>Servlet 引擎将调用 Servlet1。</p>
+<p>4、当请求 URL 为 “/a.do” 时，“/<em>” 和 “</em>.do” 都匹配，哪个 servlet 响应</p>
+<p>Servlet 引擎将调用 Servlet2。</p>
+<p>5、当请求 URL 为 “/xxx/yyy/a.do” 时，“/<em>” 和 “</em>.do” 都匹配，哪个 servlet 响应</p>
+<p>Servlet 引擎将调用 Servlet2。</p>
+<p>在匹配的时候，要参考的标准:</p>
+<p>1、看谁的匹配度高，谁就被选择</p>
+<p>2、*.do 的优先级最低</p>
+<h4 id="4、servlet-中的配置"><a href="#4、servlet-中的配置" class="headerlink" title="4、servlet 中的配置"></a><a id="4servletloadonstartup_322"></a>4、servlet 中的配置</h4><p>当需要在网站启动时，初始化一些资源时可以配置</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;servlet&gt;</span><br><span class="line">    &lt;load-on-startup&gt;1&lt;/load-on-startup&gt;</span><br><span class="line">&lt;/servlet&gt;</span><br></pre></td></tr></table></figure>
+<p>PS：在 servlet 中如此配置就行，中间的数是整数，越小优先级越高。</p>
+<p>配置好了之后，在网站启动时就会调用该 Servlet 的 init() 方法，所以可以在该方法中进行需要的初始化步骤，比如定时刷新，建立内存表之类的等等。</p>
+<h3 id="ServletConfig-对象"><a href="#ServletConfig-对象" class="headerlink" title="ServletConfig 对象"></a><a id="ServletConfig_338"></a>ServletConfig 对象</h3><p>该对象主要用于读取 servlet 的配置信息.</p>
+<p>案例:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&lt;servlet&gt;</span><br><span class="line">    &lt;servlet-name&gt;ServletConfigTest&lt;/servlet-name&gt;</span><br><span class="line">    &lt;servlet-class&gt;com.web1.servlet.ServletConfigTest&lt;/servlet-class&gt;</span><br><span class="line">    &lt;!-- 这里可以给servlet配置信息,这里配置的信息，只能被该servlet 读取 --&gt;</span><br><span class="line">    &lt;init-param&gt;</span><br><span class="line">        &lt;param-name&gt;encoding&lt;/param-name&gt;</span><br><span class="line">        &lt;param-value&gt;utf-8&lt;/param-value&gt;</span><br><span class="line">    &lt;/init-param&gt;</span><br><span class="line">  &lt;/servlet&gt;</span><br></pre></td></tr></table></figure>
+<p>如何使用：在 Servlet 使用如下语句</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">String encoding = this.getServletConfig().getInitParameter(&quot;encoding&quot;);</span><br></pre></td></tr></table></figure>
+<p>补充说明: 这种配置参数的方式，只能被某个 Servlet 独立使用. 如希望让所有的 Servlet 都去读取某个参数, 这样配置:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 如果这里配置参数，可被所有servlet读取 --&gt;</span><br><span class="line">&lt;context-param&gt;</span><br><span class="line">   &lt;param-name&gt;&lt;/param-name&gt;</span><br><span class="line">   &lt;param-value&gt;&lt;/param-value&gt;</span><br><span class="line">&lt;/context-param&gt;</span><br></pre></td></tr></table></figure>
+<p>读取所有的参数，可以使用如下方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Enumeration&lt;String&gt; names=this.getServletConfig().getInitParameterNames();</span><br><span class="line">while(names.hasMoreElements())&#123;</span><br><span class="line">    String name=names.nextElement();</span><br><span class="line">	System.out.println(name);</span><br><span class="line">	System.out.println(this.getServletConfig().getInitParameter(name));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="注意事项："><a href="#注意事项：" class="headerlink" title="注意事项："></a><a id="_387"></a>注意事项：</h3><p>1、Servlet 类是<strong>单例模式</strong>的，所以要注意线程同步情况。</p>
+<p>2、Servlet 的 service() 方法，在每次响应时都会调用一次。</p>
+<p>3、Servlet 的 init() 初始化方法，destroy() 销毁方法只会被调用一次。</p>
+<p>4、Servlet 的 service() 方法，会根据客户端的请求方法来决定调用对应的 doXXX() 方法。</p>
+<p>5、不要重写构造方法，因为所继承的 HttpServlet 及其父类都已经对构造方法进行了某些初始化，当不了解这些系统自带的初始化，然后盲目使用构造方法，可能导致 Servlet 无法创建实例。</p>
+<p>6、不要重写 service 方法 (在继承 HttpServlet 的情况下)，因为其内部有判别客户端请求方法的逻辑和一些其他逻辑。</p>
+<p>7、<strong>必须重写 doPost() 或者是 doGet() 方法中的一个</strong>。</p>
+<p>8、当想用一种逻辑去处理 Get 和 Post 请求，可以采用<strong>委托机制</strong>，在 doPost 方法内加入 this.doGet(request, response); 或者在 doGet 方法中加入 this.doPost(request, response);</p>
+<p>9、继承 HttpServlet 开发 Servlet 是最常用的方法。</p>
+<p>10、get 提交和 post 提交的区别</p>
+<p>10.1、从安全的角度看，get &lt; post，因为 get 会把提交的信息显示到地址栏。</p>
+<p>10.2、从提交内容大小看， get &lt; post， get 一般不要大于 2k，post 理论无限制，但是在实际开发中，建议不要大于 64k</p>
+<p>10.3、从速度看，get &gt; post，因为 get 仅仅只是获取数据而已</p>
+<p>11、Servlet 的映射的后缀名不一定代表它就真的是那格式的文件。</p>
+<hr>
+<h1 id="HTTP-协议入门——1-1-版本"><a href="#HTTP-协议入门——1-1-版本" class="headerlink" title="HTTP 协议入门——1.1 版本"></a><a id="HTTP11_0"></a>HTTP 协议入门——1.1 版本</h1><h3 id="基本概述-2"><a href="#基本概述-2" class="headerlink" title="基本概述"></a><a id="_2"></a>基本概述</h3><p>超文本传输协议（HTTP，HyperText Transfer Protocol) 是互联网上应用最为广泛的一种网络协议。所有的 WWW 文件都必须遵守这个标准。</p>
+<p>HTTP 协议（HyperText Transfer Protocol，超文本传输协议）是用于从 WWW 服务器传输超文本到本地浏览器的传输协议。它可以使浏览器更加高效，使网络传输减少。它不仅保证计算机正确快速地传输超文本文档，还确定传输文档中的哪一部分，以及哪部分内容首先显示 (如文本先于图形) 等。</p>
+<p>HTTP 是客户端浏览器或其他程序与 Web 服务器之间的应用层通信协议。在 Internet 上的 Web 服务器上存放的都是超文本信息，客户机需要通过 HTTP 协议传输所要访问的超文本信息。HTTP 包含命令和传输信息，不仅可用于 Web 访问，也可以用于其他因特网 / 内联网应用系统之间的通信，从而实现各类应用资源超媒体访问的集成。</p>
+<h3 id="长连接和短连接的区别"><a href="#长连接和短连接的区别" class="headerlink" title="长连接和短连接的区别"></a><a id="_12"></a>长连接和短连接的区别</h3><p>解释 1</p>
+<p>所谓长连接指建立 SOCKET 连接后不管是否使用都保持连接，但安全性较差，<br>所谓短连接指建立 SOCKET 连接后发送后接收完数据后马上断开连接，一般银行都使用短连接</p>
+<p>解释 2</p>
+<p>长连接就是指在基于 tcp 的通讯中，一直保持连接，不管当前是否发送或者接收数据。<br>而短连接就是只有在有数据传输的时候才进行连接，客户－服务器通信 / 传输数据完毕就关闭连接。</p>
+<p>解释 3</p>
+<p>长连接和短连接这个概念好像只有移动的 CMPP 协议中提到了，其他的地方没有看到过。<br>通信方式<br>各网元之间共有两种连接方式：长连接和短连接。所谓长连接，指在一个 TCP 连接上可以连续发送多个数据包，在 TCP 连接保持期间，如果没有数据包发送，需要双方发检测包以维持此连接。短连接是指通信双方有数据交互时，就建立一个 TCP 连接，数据发送完成后，则断开此 TCP 连接，即每次 TCP 连接只完成一对 CMPP 消息的发送。<br>现阶段，要求 ISMG 之间必须采用长连接的通信方式，建议 SP 与 ISMG 之间采用长连接的通信方式。</p>
+<p>解释 4</p>
+<p>短连接：比如 http 的，只是连接、请求、关闭，过程时间较短, 服务器若是一段时间内没有收到请求即可关闭连接。<br>长连接：有些服务需要长时间连接到服务器，比如 CMPP，一般需要自己做在线维持。</p>
+<p>参考文章：<a href="http://blog.csdn.net/shine0181/article/details/7799754" target="_blank" rel="noopener">http://blog.csdn.net/shine0181/article/details/7799754</a></p>
+<h3 id="HTTP-请求部分"><a href="#HTTP-请求部分" class="headerlink" title="HTTP 请求部分"></a><a id="HTTP_42"></a>HTTP 请求部分</h3><h4 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a><a id="_44"></a>基本结构</h4><p>GET /q547550831?viewmode=contents HTTP/1.1 [请求行]</p>
+<p>Host: <a href="http://blog.csdn.net" target="_blank" rel="noopener">blog.csdn.net</a> [消息头] 消息名: 内容</p>
+<p>Connection: keep-alive</p>
+<p>Cache-Control: max-age=0</p>
+<p>Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,_/_;q=0.8</p>
+<p>User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36</p>
+<p>Referer: <a href="http://blog.csdn.net/q547550831?viewmode=contents" target="_blank" rel="noopener">http://blog.csdn.net/q547550831?viewmode=contents</a></p>
+<p>Accept-Encoding: gzip, deflate, sdch</p>
+<p>Accept-Language: zh-CN,zh;q=0.8</p>
+<p>PS：这是我博客主页的请求头，但是这并不代表每个网页的请求头都是这一样的。</p>
+<h4 id="请求方式"><a href="#请求方式" class="headerlink" title="请求方式"></a><a id="_68"></a>请求方式</h4><p>请求方式有：</p>
+<p>POST,GET,HEAD,OPTIONS,DELETE,TRACE,PUT,CONNECT 等</p>
+<p>参考文档：<a href="http://tools.jb51.net/table/http_request_method" target="_blank" rel="noopener">http://tools.jb51.net/table/http_request_method</a></p>
+<p>常用的有：POST 和 GET</p>
+<h4 id="请求消息头"><a href="#请求消息头" class="headerlink" title="请求消息头"></a><a id="_80"></a>请求消息头</h4><p>Host: <a href="http://blog.csdn.net" target="_blank" rel="noopener">blog.csdn.net</a> [主机名]</p>
+<p>Connection: keep-alive [连接状态: 保持连接]</p>
+<p>Cache-Control: max-age=0 [指定请求和响应遵循的缓存机制: 查看是否有修改并选择更新否]</p>
+<p>Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,_/_;q=0.8 [可接受的格式]</p>
+<p>User-Agent: Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36 [浏览器内核]</p>
+<p>Referer: <a href="http://blog.csdn.net/q547550831?viewmode=contents" target="_blank" rel="noopener">http://blog.csdn.net/q547550831?viewmode=contents</a> [从哪个网页跳转到这个网页来的，可以用来防盗链]</p>
+<p>Accept-Encoding: gzip, deflate, sdch [可接收的压缩格式]</p>
+<p>Accept-Language: zh-CN,zh;q=0.8 [浏览器支持的语言]</p>
+<p>PS：请求是指浏览器发出向服务器发出，所以这些信息都是浏览器的信息。请求头远远不止这几种，可以参考该文档：<a href="http://tools.jb51.net/table/http_header" target="_blank" rel="noopener">http://tools.jb51.net/table/http_header</a></p>
+<p>案例：防止盗链</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">package com.pc;</span><br><span class="line"></span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.PrintWriter;</span><br><span class="line"></span><br><span class="line">import javax.servlet.ServletException;</span><br><span class="line">import javax.servlet.http.HttpServlet;</span><br><span class="line">import javax.servlet.http.HttpServletRequest;</span><br><span class="line">import javax.servlet.http.HttpServletResponse;</span><br><span class="line"></span><br><span class="line">public class Servlet6 extends HttpServlet &#123;</span><br><span class="line"></span><br><span class="line">	public void doGet(HttpServletRequest request, HttpServletResponse response)</span><br><span class="line">			throws ServletException, IOException &#123;</span><br><span class="line"></span><br><span class="line">		response.setContentType(&quot;text/html;charset=utf-8&quot;);</span><br><span class="line">		response.setCharacterEncoding(&quot;utf-8&quot;);</span><br><span class="line">		PrintWriter out = response.getWriter();</span><br><span class="line"></span><br><span class="line">		out.println(&quot;&lt;a href=&apos;http://127.0.0.1:8080/servlet1/Servlet5&apos;&gt;连接到Servlet5&lt;/a&gt;&quot;);</span><br><span class="line"></span><br><span class="line">		out.flush();</span><br><span class="line">		out.close();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void doPost(HttpServletRequest request, HttpServletResponse response)</span><br><span class="line">			throws ServletException, IOException &#123;</span><br><span class="line">		this.doGet(request, response);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">package com.pc;</span><br><span class="line"></span><br><span class="line">import java.io.IOException;</span><br><span class="line">import java.io.PrintWriter;</span><br><span class="line"></span><br><span class="line">import javax.servlet.ServletException;</span><br><span class="line">import javax.servlet.http.HttpServlet;</span><br><span class="line">import javax.servlet.http.HttpServletRequest;</span><br><span class="line">import javax.servlet.http.HttpServletResponse;</span><br><span class="line"></span><br><span class="line">public class Servlet5 extends HttpServlet &#123;</span><br><span class="line">	public void doGet(HttpServletRequest request, HttpServletResponse response)</span><br><span class="line">			throws ServletException, IOException &#123;</span><br><span class="line">		response.setContentType(&quot;text/html;charset=utf-8&quot;);</span><br><span class="line">		response.setCharacterEncoding(&quot;utf-8&quot;);</span><br><span class="line">		PrintWriter out = response.getWriter();</span><br><span class="line">		// 通过request对象来获取http请求信息</span><br><span class="line">		// 取出Host</span><br><span class="line">		String host = request.getHeader(&quot;Host&quot;);</span><br><span class="line">		out.println(&quot;host=&quot; + host);</span><br><span class="line"></span><br><span class="line">		// 限制用户</span><br><span class="line">		// 获取用户浏览器的Referer</span><br><span class="line">		// referer可以防止盗链，通过判断链接来至哪里</span><br><span class="line">		String referer = request.getHeader(&quot;Referer&quot;);</span><br><span class="line">		if(referer == null || !referer.startsWith(&quot;http://127.0.0.1:8080/servlet1&quot;))&#123;</span><br><span class="line">			out.println(&quot;非法盗链&quot;);</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			out.println(&quot;referer=&quot; + referer);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		out.flush();</span><br><span class="line">		out.close();</span><br><span class="line">	&#125;</span><br><span class="line">	public void doPost(HttpServletRequest request, HttpServletResponse response)</span><br><span class="line">			throws ServletException, IOException &#123;</span><br><span class="line">		// 一般开发人员习惯把doGet()和doPost()合二为一</span><br><span class="line">		this.doGet(request, response);</span><br><span class="line">	&#125;</span><br><span class="line">	public void init() throws ServletException &#123;</span><br><span class="line">		// Put your code here</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>PS：该案例中只能允许 <a href="http://127.0.0.1:8080/servlet1" target="_blank" rel="noopener">http://127.0.0.1:8080/servlet1</a> 开头的网址进行访问 Servlet5</p>
+<h3 id="HTTP-响应部分"><a href="#HTTP-响应部分" class="headerlink" title="HTTP 响应部分"></a><a id="HTTP_194"></a>HTTP 响应部分</h3><h4 id="基本结构-1"><a href="#基本结构-1" class="headerlink" title="基本结构"></a><a id="_196"></a>基本结构</h4><p>HTTP/1.1 200 OK [状态行]</p>
+<p>Server: openresty [消息名] 消息名: 内容</p>
+<p>Date: Fri, 01 Jan 2016 08:11:04 GMT</p>
+<p>Content-Type: text/html; charset=utf-8</p>
+<p>Transfer-Encoding: chunked</p>
+<p>Connection: keep-alive</p>
+<p>Vary: Accept-Encoding</p>
+<p>Cache-Control: private</p>
+<p>Set-Cookie: uuid=5cad65d6-7a99-4b15-a6e6-5c50e584ca77; expires=Sat, 02-Jan-2016 08:13:49 GMT; path=/</p>
+<p>Set-Cookie: ViewMode=contents; path=/</p>
+<p>Content-Encoding: gzip</p>
+<p><strong>————– 这是一个空行</strong></p>
+<p><strong>消息体</strong></p>
+<h4 id="响应状态码"><a href="#响应状态码" class="headerlink" title="响应状态码"></a><a id="_226"></a>响应状态码</h4><p>响应状态码分别为 1,2,3,4,5 开头的三位数字</p>
+<table>
+<thead>
+<tr>
+<th>响应状态码</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1**</td>
+<td>信息，服务器收到请求，需要请求者继续执行操作</td>
+</tr>
+<tr>
+<td>2**</td>
+<td>成功，操作被成功接收并处理</td>
+</tr>
+<tr>
+<td>3**</td>
+<td>重定向，需要进一步的操作以完成请求</td>
+</tr>
+<tr>
+<td>4**</td>
+<td>客户端错误，请求包含语法错误或无法完成请求</td>
+</tr>
+<tr>
+<td>5**</td>
+<td>服务器错误，服务器在处理请求的过程中发生了错误</td>
+</tr>
+</tbody>
+</table>
+<p>PS：常见的有 200(成功)，303(重定向)，400(Not Found)，500(服务器内部错误)</p>
+<p>可以参考该文档：<a href="http://tools.jb51.net/table/http_status_code" target="_blank" rel="noopener">http://tools.jb51.net/table/http_status_code</a></p>
+<h4 id="响应消息头"><a href="#响应消息头" class="headerlink" title="响应消息头"></a><a id="_240"></a>响应消息头</h4><p>Server: openresty [服务器名称]</p>
+<p>Date: Fri, 01 Jan 2016 08:11:04 GMT [原始服务器消息发出的时间]</p>
+<p>Content-Type: text/html; charset=utf-8 [返回内容的 MIME 类型]</p>
+<p>Transfer-Encoding: chunked [文件传输编码]</p>
+<p>Connection: keep-alive [连接状态: 保持连接]</p>
+<p>Vary: Accept-Encoding [告诉下游代理是使用缓存响应还是从原始服务器请求]</p>
+<p>Cache-Control: private [告诉所有的缓存机制是否可以缓存及哪种类型]</p>
+<p>Set-Cookie: uuid=<strong><em>**</em></strong>; expires=Sat, 02-Jan-2016 08:13:49 GMT; path=/ [设置 Http Cookie]</p>
+<p>Set-Cookie: ViewMode=contents; path=/ [设置 Http Cookie]</p>
+<p>Content-Encoding: gzip [web 服务器支持的返回内容压缩编码类型]</p>
+<p>PS：可以参考该文档 <a href="http://tools.jb51.net/table/http_header" target="_blank" rel="noopener">http://tools.jb51.net/table/http_header</a></p>
+<h3 id="缓存机制"><a href="#缓存机制" class="headerlink" title="缓存机制"></a><a id="_268"></a>缓存机制</h3><p>浏览器默认情况下，会缓存所访问的页面，这样会出现一个问题：如果用户习惯把光标停留在地址栏，然后回车来取页面，就会默认调用 cache 中取数据。</p>
+<p>案例 1、有些网站要求及时性很高，因此要求不缓存页面。</p>
+<p>// 指定该页面不缓存 Ie</p>
+<p>response.setDateHeader(“Expires”, -1);【针对 IE 浏览器设置不缓存】</p>
+<p>// 为了保证兼容性.</p>
+<p>response.setHeader(“Cache-Control”, “no-cache”);【针对火狐浏览器等】</p>
+<p>response.setHeader(“Pragma”, “no-cache”);【其他浏览器】</p>
+<p>案例 2、有些网站要求网页缓存一定时间, 比如缓存一个小时</p>
+<p>response.setDateHeader(“Expires”, System.currentTimeMillis()+3600*1000); // 后面一个参数表示设置的缓存保持时间，-1 表示永远不缓存</p>
+<h3 id="Content-Type-消息头"><a href="#Content-Type-消息头" class="headerlink" title="Content-Type 消息头"></a><a id="ContentType_294"></a>Content-Type 消息头</h3><p>Content-Type，内容类型，一般是指网页中存在的 Content-Type，用于定义网络文件的类型和网页的编码，决定浏览器将以什么形式、什么编码读取这个文件</p>
+<p>PS：其作用就是告诉浏览器，该服务器返回的网页中消息体是什么格式的，该以什么编码格式来读取这个网页。</p>
+<p>因为该类型很多，故给出参考文档，以备后用：<a href="http://tools.jb51.net/table/http_content_type" target="_blank" rel="noopener">http://tools.jb51.net/table/http_content_type</a></p>
+<p>案例 1：定时刷新 Refresh 的使用</p>
+<p>response.setHeader(“Refresh”, “5;url=/servletPro/Servlet2”); // 5 秒后刷新并跳转到 url 后的链接。通过这个可以实现页面定时刷新。</p>
+<p>案例 2：文件下载</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.pc;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.OutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.PrintWriter;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletException;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServlet;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Servlet7</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span></span></span><br><span class="line"><span class="function">			<span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line">		response.setContentType(<span class="string">"text/html;charset=utf-8"</span>);</span><br><span class="line">		response.setCharacterEncoding(<span class="string">"utf-8"</span>);</span><br><span class="line">		<span class="comment">// 演示下载文件</span></span><br><span class="line">		response.setHeader(<span class="string">"Content-Disposition"</span>, <span class="string">"attachment; file);</span></span><br><span class="line"><span class="string">		// 打开文件</span></span><br><span class="line"><span class="string">		// 1.获取到要下载文件的全路径</span></span><br><span class="line"><span class="string">		String path = this.getServletContext().getRealPath("</span>/EVO_120G.jpg<span class="string">");</span></span><br><span class="line"><span class="string">		// 测试</span></span><br><span class="line"><span class="string">		System.out.println("</span>path=<span class="string">" + path);</span></span><br><span class="line"><span class="string">		// 2.创建文件输入流</span></span><br><span class="line"><span class="string">		FileInputStream fis = new FileInputStream(new File(path));</span></span><br><span class="line"><span class="string">		// 做一个缓冲字符数组</span></span><br><span class="line"><span class="string">		byte buff[] = new byte[1024];</span></span><br><span class="line"><span class="string">		int length = 0;</span></span><br><span class="line"><span class="string">		// 3.指向response的输出流</span></span><br><span class="line"><span class="string">		OutputStream os = response.getOutputStream();</span></span><br><span class="line"><span class="string">		// 4.循环读出</span></span><br><span class="line"><span class="string">		// length表示每次实际读入的字节数</span></span><br><span class="line"><span class="string">		while((length = fis.read(buff)) != -1)&#123;</span></span><br><span class="line"><span class="string">			os.write(buff, 0, length);</span></span><br><span class="line"><span class="string">		&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">		// 关闭</span></span><br><span class="line"><span class="string">		os.close();</span></span><br><span class="line"><span class="string">		fis.close();</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">	public void doPost(HttpServletRequest request, HttpServletResponse response)</span></span><br><span class="line"><span class="string">			throws ServletException, IOException &#123;</span></span><br><span class="line"><span class="string">		this.doGet(request, response);</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h1 id="HttpServletResponse-说明"><a href="#HttpServletResponse-说明" class="headerlink" title="HttpServletResponse 说明"></a><a id="HttpServletResponse_0"></a>HttpServletResponse 说明</h1><h3 id="基本概述-3"><a href="#基本概述-3" class="headerlink" title="基本概述"></a><a id="_2"></a>基本概述</h3><p>HttpServletResponse 是用于将 Servlet 处理好的内容发送给浏览器的类，服务器通过对 HttpServletResponse 对象中的内容进行截取、拼接就能获得一个完整的 HTTP 响应信息。</p>
+<p>参考文档：<a href="http://tomcat.apache.org/tomcat-5.5-doc/servletapi/index.html" target="_blank" rel="noopener">http://tomcat.apache.org/tomcat-5.5-doc/servletapi/index.html</a></p>
+<h3 id="常用方法"><a href="#常用方法" class="headerlink" title="常用方法"></a><a id="_8"></a>常用方法</h3><p>public void addHeader(String name,String value) // 添加一个消息头到 HttpServletResponse 对象中去。</p>
+<p>public void setHeader(String name,String value) // 重设一个消息头，其与 addHeader 的区别是，add 是添加 (重复也行)，set 表示的是，如果有该消息头就覆盖它，没有就创建它</p>
+<p>public void setStatus(int sc) // 设置响应消息的状态码，具体可以参照我的另一篇博客 HTTP 协议入门</p>
+<p>public void sendRedirect(String location) throws java.io.IOException // 这个方法在与 request 的 getRequestDispatch() 比较时，会探讨</p>
+<p>public ServletOutputStream getOutputStream() throws java.io.IOException // 得到一个二进制输出流，可以回送任意格式数据数据</p>
+<p>public java.io.PrintWriter getWriter() throws java.io.IOException // 得到一个字符输出流，可以回送字符数据</p>
+<h3 id="getWriter-和-getOutputStream-的区别"><a href="#getWriter-和-getOutputStream-的区别" class="headerlink" title="getWriter() 和 getOutputStream() 的区别"></a><a id="getWritergetOutputStream_24"></a>getWriter() 和 getOutputStream() 的区别</h3><p>getWriter() 用于向客户机回送字符数据</p>
+<p>getOutputStream() 返回的对象，可以回送字符数据，也可以回送字节数据 (二进制数据)</p>
+<p>OutputStream os=response.getOutputStream();</p>
+<p>os.write(“hello,world”.getBytes());</p>
+<p>PS：通过该方法也能用 getOutputStream() 回送字符数据</p>
+<h4 id="如何选择"><a href="#如何选择" class="headerlink" title="如何选择"></a><a id="_38"></a>如何选择</h4><p>如果是回送字符数据，则使用  PrintWriter 对象 , 效率高</p>
+<p>如果是回送字节数据 (binary date) , 则只能使用 OutputStream</p>
+<h4 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a><a id="_46"></a>注意事项</h4><p><strong>PrintWriter,OutputStream 这两个流不能同时使用</strong></p>
+<p>比如：</p>
+<p>OutputStream os=response.getOutputStream();</p>
+<p>os.write(“hello,world”.getBytes());</p>
+<p>PrintWriter out=response.getWriter();</p>
+<p>out.println(“abc”);</p>
+<p>会报错:</p>
+<p>java.lang.IllegalStateException: getOutputStream() has already been called for this response</p>
+<h4 id="不能同时使用-PrintWriter-和-OutputStream-的原因"><a href="#不能同时使用-PrintWriter-和-OutputStream-的原因" class="headerlink" title="不能同时使用 PrintWriter 和 OutputStream 的原因"></a><a id="PrintWriterOutputStream_68"></a>不能同时使用 PrintWriter 和 OutputStream 的原因</h4><p><img src="https://box.kancloud.cn/2016-02-23_56cbf5ff7730b.jpg" alt=""></p>
+<p>结论：Web 服务器在完成一次 service 之后会自动关闭流，并销毁当前的 request 和 response 对象，故无法同时使用两个流。</p>
+<p>案例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.pc;</span><br><span class="line"><span class="keyword">import</span> java.io.File;</span><br><span class="line"><span class="keyword">import</span> java.io.FileInputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"><span class="keyword">import</span> java.io.OutputStream;</span><br><span class="line"><span class="keyword">import</span> java.io.PrintWriter;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletException;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServlet;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Servlet7</span> <span class="keyword">extends</span> <span class="title">HttpServlet</span> </span>&#123;</span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doGet</span><span class="params">(HttpServletRequest request, HttpServletResponse response)</span></span></span><br><span class="line"><span class="function">			<span class="keyword">throws</span> ServletException, IOException </span>&#123;</span><br><span class="line"></span><br><span class="line">		response.setContentType(<span class="string">"text/html;charset=utf-8"</span>);</span><br><span class="line">		response.setCharacterEncoding(<span class="string">"utf-8"</span>);</span><br><span class="line">		<span class="comment">// 演示下载文件</span></span><br><span class="line">		response.setHeader(<span class="string">"Content-Disposition"</span>, <span class="string">"attachment; file);	</span></span><br><span class="line"><span class="string">		// 打开文件</span></span><br><span class="line"><span class="string">		// 1.获取到要下载文件的全路径</span></span><br><span class="line"><span class="string">		String path = this.getServletContext().getRealPath("</span>/EVO_120G.jpg<span class="string">");</span></span><br><span class="line"><span class="string">		// 测试</span></span><br><span class="line"><span class="string">		System.out.println("</span>path=<span class="string">" + path);</span></span><br><span class="line"><span class="string">		// 2.创建文件输入流</span></span><br><span class="line"><span class="string">		FileInputStream fis = new FileInputStream(new File(path));</span></span><br><span class="line"><span class="string">		// 做一个缓冲字符数组</span></span><br><span class="line"><span class="string">		byte buff[] = new byte[1024];</span></span><br><span class="line"><span class="string">		int length = 0;</span></span><br><span class="line"><span class="string">		// 3.指向response的输出流</span></span><br><span class="line"><span class="string">		OutputStream os = response.getOutputStream();</span></span><br><span class="line"><span class="string">		// 4.循环读出</span></span><br><span class="line"><span class="string">		// length表示每次实际读入的字节数</span></span><br><span class="line"><span class="string">		while((length = fis.read(buff)) != -1)&#123;</span></span><br><span class="line"><span class="string">			os.write(buff, 0, length);</span></span><br><span class="line"><span class="string">		&#125;</span></span><br><span class="line"><span class="string">		// 关闭</span></span><br><span class="line"><span class="string">		os.close();</span></span><br><span class="line"><span class="string">		fis.close();</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">	public void doPost(HttpServletRequest request, HttpServletResponse response)</span></span><br><span class="line"><span class="string">			throws ServletException, IOException &#123;</span></span><br><span class="line"><span class="string">		this.doGet(request, response);</span></span><br><span class="line"><span class="string">	&#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br></pre></td></tr></table></figure>
+<hr>
+<blockquote>
+<p>原文：<br>Servlet学习笔记<br><a href="https://www.kancloud.cn/digest/switch-servlet/120123" target="_blank" rel="noopener">https://www.kancloud.cn/digest/switch-servlet/120123</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+
+     
+    
+      <div>
+        
+    <div style="text-align:center;color: #ccc;font-size:14px;">
+        ------ 本文结束<i class="fa fa-paw"></i>感谢您的阅读 ------</div>
+
+      </div>
+    
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    CloudPai
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://cloudpai.site/2018/03/26/2018-03-26-2/" title="韩顺平细说Servlet笔记">http://cloudpai.site/2018/03/26/2018-03-26-2/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/servlet/" rel="tag"><i class="fa fa-tag"></i> servlet</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/26/2018-03-26-1/" rel="next" title="Servlet 工作原理解析">
+                <i class="fa fa-chevron-left"></i> Servlet 工作原理解析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+
+
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg"
+                alt="CloudPai" />
+            
+              <p class="site-author-name" itemprop="name">CloudPai</p>
+              <p class="site-description motion-element" itemprop="description">加油(๑•̀ㅂ•́)و✧加油</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">87</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+
+<div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=240 src="//music.163.com/outchain/player?type=0&id=2113726971&auto=0&height=430"></iframe>
+</div>
+<!-- 459004290 -->
+
+
+
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">39</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CloudPai" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:liupai024@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.douban.com/people/57965969/doulists/all" target="_blank" title="豆瓣">
+                      
+                        <i class="fa fa-fw fa-book"></i>豆瓣</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/cloudPai/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-edit"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.dlut.edu.cn/" title="DUT" target="_blank">DUT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bupt.edu.cn/" title="BUPT" target="_blank">BUPT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://campus.alibaba.com/index.htm" title="Alibaba Group" target="_blank">Alibaba Group</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CS-结构与-BS-结构"><span class="nav-text">CS 结构与 BS 结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本概述"><span class="nav-text">基本概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-S-系统结构"><span class="nav-text">C/S 系统结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-S-系统结构"><span class="nav-text">B/S 系统结构</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tomcat-容器入门介绍"><span class="nav-text">Tomcat 容器入门介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Tomcat-环境配置"><span class="nav-text">Tomcat 环境配置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、配置-JDK"><span class="nav-text">1、配置 JDK</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、启动-tomcat"><span class="nav-text">2、启动 tomcat</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、验证是否安装成功"><span class="nav-text">3、验证是否安装成功</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tomcat-配置异常及其解决"><span class="nav-text">Tomcat 配置异常及其解决</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、JAVA-HOME-配置错误，或者没有配置"><span class="nav-text">1、JAVA_HOME 配置错误，或者没有配置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、如果你的机器已经占有了-8080-端口，则无法启动"><span class="nav-text">2、如果你的机器已经占有了 8080 端口，则无法启动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、-能够正常启动，但是会导航到另外一个页面"><span class="nav-text">3、 能够正常启动，但是会导航到另外一个页面</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4、浏览器显示-404-Not-Found"><span class="nav-text">4、浏览器显示 404 Not Found</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tomcat-的目录结构文件"><span class="nav-text">Tomcat 的目录结构文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何访问一个-web-应用的某个文件"><span class="nav-text">如何访问一个 web 应用的某个文件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tomcat-应用部署目录结构规范"><span class="nav-text">Tomcat 应用部署目录结构规范</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tomcat-管理虚拟目录"><span class="nav-text">Tomcat 管理虚拟目录</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#配置步骤"><span class="nav-text">配置步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#context-的几个属性的说明"><span class="nav-text">context 的几个属性的说明</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置域名"><span class="nav-text">配置域名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tomcat-框架机制"><span class="nav-text">Tomcat 框架机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tomcat-配置默认主机"><span class="nav-text">Tomcat 配置默认主机</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Servlet-入门"><span class="nav-text">Servlet 入门</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本概述-1"><span class="nav-text">基本概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Servlet-在网络中的位置"><span class="nav-text">Servlet 在网络中的位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Servlet-的生命周期"><span class="nav-text">Servlet 的生命周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#手工开发-Servlet-的方式"><span class="nav-text">手工开发 Servlet 的方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#开发-Servlet-的三种方法"><span class="nav-text">开发 Servlet 的三种方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、实现-Servlet-接口"><span class="nav-text">1、实现 Servlet 接口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、继承-GenericServlet-类"><span class="nav-text">2、继承 GenericServlet 类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、继承-HttpServlet-类"><span class="nav-text">3、继承 HttpServlet 类</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-MyEclipse-集成开发环境-IDE-来开发-Web-应用"><span class="nav-text">使用 MyEclipse 集成开发环境 IDE 来开发 Web 应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#MyEclipse-的开发目录结构"><span class="nav-text">MyEclipse 的开发目录结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Servlet-细节问题"><span class="nav-text">Servlet 细节问题</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1、一个已经注册的-Servlet-可以被多次映射"><span class="nav-text">1、一个已经注册的 Servlet 可以被多次映射</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2、当映射一个-Servlet-时，可以多层映射"><span class="nav-text">2、当映射一个 Servlet 时，可以多层映射</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3、在-Servlet-使用通配符映射到-URL"><span class="nav-text">3、在 Servlet 使用通配符映射到 URL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4、servlet-中的配置"><span class="nav-text">4、servlet 中的配置</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ServletConfig-对象"><span class="nav-text">ServletConfig 对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意事项："><span class="nav-text">注意事项：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP-协议入门——1-1-版本"><span class="nav-text">HTTP 协议入门——1.1 版本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本概述-2"><span class="nav-text">基本概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#长连接和短连接的区别"><span class="nav-text">长连接和短连接的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-请求部分"><span class="nav-text">HTTP 请求部分</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本结构"><span class="nav-text">基本结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#请求方式"><span class="nav-text">请求方式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#请求消息头"><span class="nav-text">请求消息头</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-响应部分"><span class="nav-text">HTTP 响应部分</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基本结构-1"><span class="nav-text">基本结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#响应状态码"><span class="nav-text">响应状态码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#响应消息头"><span class="nav-text">响应消息头</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缓存机制"><span class="nav-text">缓存机制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Content-Type-消息头"><span class="nav-text">Content-Type 消息头</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HttpServletResponse-说明"><span class="nav-text">HttpServletResponse 说明</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本概述-3"><span class="nav-text">基本概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#常用方法"><span class="nav-text">常用方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#getWriter-和-getOutputStream-的区别"><span class="nav-text">getWriter() 和 getOutputStream() 的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#如何选择"><span class="nav-text">如何选择</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注意事项"><span class="nav-text">注意事项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不能同时使用-PrintWriter-和-OutputStream-的原因"><span class="nav-text">不能同时使用 PrintWriter 和 OutputStream 的原因</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CloudPai</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">414.9k</span>
+  
+</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv">  </span>
+</span>
+</div>
+
+
+
+
+
+
+
+  <div class="theme-info">&#12288;主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://cloudpai.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://cloudpai.site/2018/03/26/2018-03-26-2/';
+          this.page.identifier = '2018/03/26/2018-03-26-2/';
+          this.page.title = '韩顺平细说Servlet笔记';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cloudpai.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!-- <!-- <script src="https://cdn.bootcss.com/aplayer/1.6.0/APlayer.min.js"></script>
+
+<script src="https://api.i-meto.com/music/player.js"></script> --> -->
+  
+  <!--移动端判断，是否引入背景-->
+  <script>
+  var browser={  
+      versions:function(){   
+             var u = navigator.userAgent, app = navigator.appVersion;   
+             return {//移动终端浏览器版本信息
+                  trident: u.indexOf('Trident') > -1, //IE内核
+                  presto: u.indexOf('Presto') > -1, //opera内核
+                  webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                  gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                  mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                  ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                  android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                  iPhone: u.indexOf('iPhone') > -1 , //是否为iPhone或者QQHD浏览器
+                  iPad: u.indexOf('iPad') > -1, //是否iPad
+                  webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+              };  
+           }(),  
+           language:(navigator.browserLanguage || navigator.language).toLowerCase()  
+  }   
+    if(browser.versions.mobile || browser.versions.ios || browser.versions.android ||   
+      browser.versions.iPhone || browser.versions.iPad){        
+               
+    }else{
+    document.write("<script type=\'text/javascript\'  src=\'/js/src/particle.js\'><\/script>");
+    }
+  </script>
+
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":-80,"vOffset":-50},"mobile":{"show":false,"scale":0.2},"react":{"opacityDefault":1,"opacityOnHover":0.2}});</script></body>
+</html>
