@@ -81,18 +81,44 @@
 
 
 
-<meta name="description" content="参考：专栏：How Tomcat Works笔记 - CSDN博客https://blog.csdn.net/column/details/howtomcatworks.html?&amp;amp;page=2How Tomcat Works读书笔记 - 简书https://www.jianshu.com/p/b21520f4ed69">
+<meta name="description" content="什么是 TomcatTomcat 简单的说就是一个运行 JAVA 的网络服务器，底层是 Socket 的一个程序，它也是 JSP 和 Serlvet 的一个容器。  为什么我们需要用到 Tomcat如果你学过 html，css，你会知道你写的页面只能自己访问，别人不能远程访问你写的页面，Tomcat 就是提供能够让别人访问自己写的页面的一个程序   配置 Tomcat运行 Tomcat 需要 J">
 <meta name="keywords" content="tomcat">
 <meta property="og:type" content="article">
-<meta property="og:title" content="《How Tomcat Works》笔记">
+<meta property="og:title" content="Tomcat学习">
 <meta property="og:url" content="http://cloudpai.site/2018/03/27/2018-03-27-4/index.html">
 <meta property="og:site_name" content="CloudPai">
-<meta property="og:description" content="参考：专栏：How Tomcat Works笔记 - CSDN博客https://blog.csdn.net/column/details/howtomcatworks.html?&amp;amp;page=2How Tomcat Works读书笔记 - 简书https://www.jianshu.com/p/b21520f4ed69">
+<meta property="og:description" content="什么是 TomcatTomcat 简单的说就是一个运行 JAVA 的网络服务器，底层是 Socket 的一个程序，它也是 JSP 和 Serlvet 的一个容器。  为什么我们需要用到 Tomcat如果你学过 html，css，你会知道你写的页面只能自己访问，别人不能远程访问你写的页面，Tomcat 就是提供能够让别人访问自己写的页面的一个程序   配置 Tomcat运行 Tomcat 需要 J">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-03-27T14:13:57.780Z">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-88f15f02ae32dd2a.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-aaea5051a1978717.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-58b1f5ad623a9458.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-93a7fe795cff9c34.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-66769f6f9ee26696.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-4a53779b6b6ad248.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-1f15e39280beee13.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-b0495276aeb0d81d.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-5fec748b45ad440d.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-079a8a20a6d7c0df.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-06486d272e233c5a.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-f5a2b5e0ec32e65e.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-695282d6e2ccb9b7.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-fcb2e020f2597613.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-4eab57ab24612561.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-f78d37fd5e537131.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-dcfdcd564b80f99a">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-bf65cc0c692f95f6">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-03efe414d0f416af.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-b31b3cac0fddeaee.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-753c4bc0faa973d1.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-37ad9ea90c9ec2d2.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-05dc6bd3e5344030.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-a4c4e48e62a1de76.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-2df4d1081dc95e7c.png">
+<meta property="og:updated_time" content="2018-03-28T13:58:44.086Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="《How Tomcat Works》笔记">
-<meta name="twitter:description" content="参考：专栏：How Tomcat Works笔记 - CSDN博客https://blog.csdn.net/column/details/howtomcatworks.html?&amp;amp;page=2How Tomcat Works读书笔记 - 简书https://www.jianshu.com/p/b21520f4ed69">
+<meta name="twitter:title" content="Tomcat学习">
+<meta name="twitter:description" content="什么是 TomcatTomcat 简单的说就是一个运行 JAVA 的网络服务器，底层是 Socket 的一个程序，它也是 JSP 和 Serlvet 的一个容器。  为什么我们需要用到 Tomcat如果你学过 html，css，你会知道你写的页面只能自己访问，别人不能远程访问你写的页面，Tomcat 就是提供能够让别人访问自己写的页面的一个程序   配置 Tomcat运行 Tomcat 需要 J">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5291509-88f15f02ae32dd2a.png">
 
 
 
@@ -128,7 +154,7 @@
 
 
 
-  <title>《How Tomcat Works》笔记 | CloudPai</title>
+  <title>Tomcat学习 | CloudPai</title>
   
 
 
@@ -306,7 +332,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">《How Tomcat Works》笔记</h1>
+          <h1 class="post-title" itemprop="name headline">Tomcat学习</h1>
         
 
         <div class="post-meta">
@@ -334,8 +360,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-27T22:13:57+08:00">
-                2018-03-27
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-28T21:58:44+08:00">
+                2018-03-28
               </time>
             
           </span>
@@ -373,7 +399,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  37
+                  1,580
                 </span>
               
 
@@ -389,7 +415,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  6
                 </span>
               
             </div>
@@ -410,7 +436,169 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><hr>
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="什么是-Tomcat"><a href="#什么是-Tomcat" class="headerlink" title="什么是 Tomcat"></a>什么是 Tomcat</h1><p>Tomcat 简单的说就是一个运行 JAVA 的网络服务器，底层是 Socket 的一个程序，它也是 JSP 和 Serlvet 的一个容器。</p>
+<hr>
+<h1 id="为什么我们需要用到-Tomcat"><a href="#为什么我们需要用到-Tomcat" class="headerlink" title="为什么我们需要用到 Tomcat"></a>为什么我们需要用到 Tomcat</h1><p>如果你学过 html，css，你会知道你写的页面只能自己访问，<strong>别人不能远程访问你写的页面</strong>，Tomcat 就是<strong>提供能够让别人访问自己写的页面的一个程序</strong></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5291509-88f15f02ae32dd2a.png" alt=""></p>
+<hr>
+<h1 id="配置-Tomcat"><a href="#配置-Tomcat" class="headerlink" title="配置 Tomcat"></a>配置 Tomcat</h1><p>运行 Tomcat 需要 JDK 的支持【Tomcat 会通过 JAVA_HOME 找到所需要的 JDK】。</p>
+<ul>
+<li><strong>新建 JAVA_HOME 环境变量</strong>【路径是 JDK 的主目录】</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5291509-aaea5051a1978717.png" alt=""></p>
+<ul>
+<li><p><strong>进入 Tomcat 目录下的 bin 中启动 startup.bat</strong>，以下是成功启动 Tomcat 的页面。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5291509-58b1f5ad623a9458.png" alt=""></p>
+</li>
+<li>在浏览器地址栏输入 <a href="https://link.jianshu.com?t=http%3A%2F%2Flocalhost%3A8080" target="_blank" rel="noopener">http://localhost:8080</a>, 如果<strong>能够出现 Tomcat 页面，说明配置成功了</strong>！</li>
+</ul>
+<p><strong>注意：</strong>如果在使用 Tomcat 时出现了<code>Error deploying web application directory web222</code>, 很大原因就是 jdk 和 tomcat 的版本不匹配。目前，<strong>jdk8 不能匹配 tomcat7.0</strong>，所以<strong>要降低 jdk 版本</strong>【换成 JDK7】</p>
+<hr>
+<p>当然也有可能不是一帆风顺能够直接启动 Tomcat，<strong>不能正常启动 Tomcat 会有以下情况</strong></p>
+<ol>
+<li>JAVA_HOME 配置错误</li>
+<li>端口被占用了<ul>
+<li>第一种方法：在 cmd 输入 netstat -anb 查看谁占用了该端口【Tomcat 默认的是 8080】, 在进程中关闭它</li>
+<li>第二种方法：主动改变 tomcat 的端口, <strong>到 tomcat 主目录下的 conf/server.xml 文件中修改</strong>, 把 8080 端口改成是 8088 或者是其他的‘</li>
+<li><img src="https://upload-images.jianshu.io/upload_images/5291509-93a7fe795cff9c34.png" alt=""></li>
+</ul>
+</li>
+</ol>
+<hr>
+<h1 id="相关术语介绍"><a href="#相关术语介绍" class="headerlink" title="相关术语介绍"></a>相关术语介绍</h1><p><img src="https://upload-images.jianshu.io/upload_images/5291509-66769f6f9ee26696.png" alt=""></p>
+<hr>
+<h1 id="tomcat-结构目录"><a href="#tomcat-结构目录" class="headerlink" title="tomcat 结构目录"></a>tomcat 结构目录</h1><p><img src="https://upload-images.jianshu.io/upload_images/5291509-4a53779b6b6ad248.png" alt=""></p>
+<h2 id="目录的简单介绍"><a href="#目录的简单介绍" class="headerlink" title="目录的简单介绍"></a>目录的简单介绍</h2><ol>
+<li>bin：启动和关闭 tomcat 的 bat 文件</li>
+<li>conf：配置文件<ul>
+<li><code>server.xml</code>该文件用于配置 server 相关的信息，比如 tomcat 启动的端口号，配置主机 (Host)</li>
+<li><code>web.xml</code>文件配置与 web 应用（web 应用相当于一个 web 站点）</li>
+<li><code>tomcat-user.xml</code>配置用户名密码和相关权限.</li>
+</ul>
+</li>
+<li>lib：该目录放置运行 tomcat 运行需要的 jar 包</li>
+<li>logs：存放日志，当我们需要查看日志的时候，可以查询信息</li>
+<li>webapps：放置我们的 web 应用</li>
+<li>work 工作目录：该目录用于存放 <strong>jsp 被访问后生成对应的 server 文件和. class 文件</strong></li>
+</ol>
+<hr>
+<h2 id="webapps-目录的详细说明"><a href="#webapps-目录的详细说明" class="headerlink" title="webapps 目录的详细说明"></a>webapps 目录的详细说明</h2><p><strong>在 webapps 中建立了 web1 目录</strong>，下面放置我们的 html 文件，jsp 文件，图片等等，<strong>则 web1 就被当做 web 应用管理起来</strong>【tomcat6.0 以后的版本才支持】</p>
+<p>例子：<strong>在 webapps 下创建一个 web 站点，在 web 站点下创建一个 html 文件，访问 html 文件</strong></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5291509-1f15e39280beee13.png" alt=""></p>
+<hr>
+<p><strong>web 站点的目录是有规范的</strong></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5291509-b0495276aeb0d81d.png" alt=""></p>
+<p>为什么要这样设置 web 站点目录呢？</p>
+<ul>
+<li>需求：我有多个 html 文件，想把其中的一个 html 文件作为我 web 站点的首页。</li>
+<li>如果<strong>没有 WEB-INF 目录下的 web.xml 文件支持，是无法解决我的需求的</strong></li>
+<li><strong>这个规范是约定熟成的。</strong></li>
+</ul>
+<hr>
+<p>下面将 web 站点下的 helloword2.xml 文件作为站点的首页</p>
+<ul>
+<li>新建一个 WEB-INF 目录</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5291509-5fec748b45ad440d.png" alt=""></p>
+<ul>
+<li>在 WEB-INF 目录下创建一个 web.xml</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5291509-079a8a20a6d7c0df.png" alt=""></p>
+<ul>
+<li><p>web.xml 我们不可能会写，所以可以<strong>在 webapps 目录下其他的站点中抄一份过来</strong>【复制 ROOT/WEB-INF/web.xml 的文件到自己的站点中】</p>
+</li>
+<li><p>在 web.xml 中添加以下代码</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;welcome-file-list&gt;</span><br><span class="line">      &lt;welcome-file&gt;helloword2.html&lt;/welcome-file&gt;</span><br><span class="line">&lt;/welcome-file-list&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/5291509-06486d272e233c5a.png" alt=""></p>
+<ul>
+<li>访问 web 站点【<strong>helloword2.html 已经是 web 站点的首页了，所以不需要指定资源访问了</strong>】</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5291509-f5a2b5e0ec32e65e.png" alt=""></p>
+<hr>
+<h1 id="配置虚拟目录"><a href="#配置虚拟目录" class="headerlink" title="配置虚拟目录"></a>配置虚拟目录</h1><h2 id="为什么需要配置虚拟目录？"><a href="#为什么需要配置虚拟目录？" class="headerlink" title="为什么需要配置虚拟目录？"></a>为什么需要配置虚拟目录？</h2><ul>
+<li>如果把所有 web 站点的目录都放在 webapps 下，可能导致<strong>磁盘空间不够用</strong>，也<strong>不利于对 web 站点目录的管理</strong>【如果存在非常多的 web 站点目录】</li>
+<li>把 <strong>web 站点的目录分散到其他磁盘管理就需要配置虚拟目录【默认情况下，只有 webapps 下的目录才能被 Tomcat 自动管理成一个 web 站点】</strong></li>
+<li>把 web 应用所在目录交给 web 服务器管理，这个过程称之为虚拟目录的映射</li>
+</ul>
+<hr>
+<h2 id="配置虚拟目录方法一："><a href="#配置虚拟目录方法一：" class="headerlink" title="配置虚拟目录方法一："></a>配置虚拟目录方法一：</h2><ul>
+<li>在其他盘符下创建一个 web 站点目录，并创建 WEB-INF 目录和一个 html 文件。</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5291509-695282d6e2ccb9b7.png" alt=""></p>
+<ul>
+<li>找到 Tomcat 目录下 / conf/server.xml 文件</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5291509-fcb2e020f2597613.png" alt=""></p>
+<ul>
+<li>在 server.xml 中的</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;Context path=&quot;/web1&quot; docBase=&quot;D:\web1&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/5291509-4eab57ab24612561.png" alt=""></p>
+<ul>
+<li>访问配置好的 web 站点</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5291509-f78d37fd5e537131.png" alt=""></p>
+<hr>
+<h2 id="配置虚拟目录方法二："><a href="#配置虚拟目录方法二：" class="headerlink" title="配置虚拟目录方法二："></a>配置虚拟目录方法二：</h2><ul>
+<li><p>进入到 conf\Catalina\localhost 文件下，创建一个 xml 文件，<strong>该文件的名字就是站点的名字。</strong></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5291509-dcfdcd564b80f99a" alt=""></p>
+</li>
+<li><p>xml 文件的代码如下，<strong>docBase 是你 web 站点的绝对路径</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt; </span><br><span class="line">&lt;Context </span><br><span class="line">docBase=&quot;D:\web1&quot; </span><br><span class="line">reloadable=&quot;true&quot;&gt; </span><br><span class="line">&lt;/Context&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>访问 web 站点下的 html 资源</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5291509-bf65cc0c692f95f6" alt=""></p>
+</li>
+</ul>
+<hr>
+<h1 id="配置临时域名"><a href="#配置临时域名" class="headerlink" title="配置临时域名"></a>配置临时域名</h1><p>访问 Tomcat 服务器有好几种方式</p>
+<ul>
+<li>使用 localhost 域名访问【localhost 代表本机】</li>
+<li>使用 ip 地址 127.0.0.1 访问【该 ip 地址也是本机】</li>
+<li>使用机器名称访问【只限用于本机上或者局域网】</li>
+<li>使用本机 IP 地址访问【<strong>在 cmd 中输入 ipconfig 可以查询到本机 IP 地址</strong>】</li>
+<li>还可以为机器配置临时域名</li>
+</ul>
+<h2 id="配置临时域名步骤"><a href="#配置临时域名步骤" class="headerlink" title="配置临时域名步骤"></a>配置临时域名步骤</h2><ul>
+<li>打开到 C:\Windows\System32\drivers\etc 下，找到 hosts 文件</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5291509-03efe414d0f416af.png" alt=""></p>
+<ul>
+<li>在 hosts 文件下配置临时域名</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5291509-b31b3cac0fddeaee.png" alt=""></p>
+<hr>
+<h1 id="设置虚拟主机"><a href="#设置虚拟主机" class="headerlink" title="设置虚拟主机"></a>设置虚拟主机</h1><h2 id="什么是虚拟主机？"><a href="#什么是虚拟主机？" class="headerlink" title="什么是虚拟主机？"></a>什么是虚拟主机？</h2><p><strong>多个不同域名的网站共存于一个 Tomcat 中</strong></p>
+<h2 id="为什么需要用到虚拟主机？"><a href="#为什么需要用到虚拟主机？" class="headerlink" title="为什么需要用到虚拟主机？"></a>为什么需要用到虚拟主机？</h2><p>例子：我现在开发了 4 个网站，有 4 个域名。如果我不配置虚拟主机，一个 Tomcat 服务器运行一个网站，我就需要 4 台电脑才能把 4 个网站运行起来。</p>
+<h2 id="配置虚拟主机的步骤"><a href="#配置虚拟主机的步骤" class="headerlink" title="配置虚拟主机的步骤"></a>配置虚拟主机的步骤</h2><ul>
+<li>在 tomcat 的 server.xml 文件中添加主机名</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;Host D:\web1&quot;&gt;</span><br><span class="line">              &lt;Context path=&quot;/web1&quot; docBase=&quot;D:\web1&quot;/&gt;</span><br><span class="line">&lt;/Host&gt;</span><br></pre></td></tr></table></figure>
+<p><img src="https://upload-images.jianshu.io/upload_images/5291509-753c4bc0faa973d1.png" alt=""></p>
+<ul>
+<li><p>访问虚拟主机下的 web 站点</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5291509-37ad9ea90c9ec2d2.png" alt=""></p>
+</li>
+</ul>
+<hr>
+<h1 id="Tomcat-体系结构"><a href="#Tomcat-体系结构" class="headerlink" title="Tomcat 体系结构"></a>Tomcat 体系结构</h1><p><img src="https://upload-images.jianshu.io/upload_images/5291509-05dc6bd3e5344030.png" alt=""></p>
+<hr>
+<h1 id="浏览器访问-WEB-资源的流程图"><a href="#浏览器访问-WEB-资源的流程图" class="headerlink" title="浏览器访问 WEB 资源的流程图"></a>浏览器访问 WEB 资源的流程图</h1><p><img src="https://upload-images.jianshu.io/upload_images/5291509-a4c4e48e62a1de76.png" alt=""></p>
+<hr>
+<h1 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h1><p>在浏览器输入 http//:zhongfucheng 直接显示到页面</p>
+<p>分析：</p>
+<ol>
+<li>需要配置虚拟主机</li>
+<li>把 8080 端口改成 80</li>
+<li>设置 web 站点首页</li>
+<li>映射虚拟目录为 /</li>
+</ol>
+<p><img src="https://upload-images.jianshu.io/upload_images/5291509-2df4d1081dc95e7c.png" alt=""></p>
+<hr>
+<p>Servlet+JSP - 文集 - 简书<br><a href="https://www.jianshu.com/nb/21926044" target="_blank" rel="noopener">https://www.jianshu.com/nb/21926044</a></p>
+<hr>
 <blockquote>
 <p>参考：<br>专栏：How Tomcat Works笔记 - CSDN博客<br><a href="https://blog.csdn.net/column/details/howtomcatworks.html?&amp;page=2" target="_blank" rel="noopener">https://blog.csdn.net/column/details/howtomcatworks.html?&amp;page=2</a><br>How Tomcat Works读书笔记 - 简书<br><a href="https://www.jianshu.com/p/b21520f4ed69" target="_blank" rel="noopener">https://www.jianshu.com/p/b21520f4ed69</a></p>
 </blockquote>
@@ -446,7 +634,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://cloudpai.site/2018/03/27/2018-03-27-4/" title="《How Tomcat Works》笔记">http://cloudpai.site/2018/03/27/2018-03-27-4/</a>
+    <a href="http://cloudpai.site/2018/03/27/2018-03-27-4/" title="Tomcat学习">http://cloudpai.site/2018/03/27/2018-03-27-4/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -486,6 +674,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/28/2018-03-28/" rel="prev" title="Tomcat+Servlet面试总结">
+                Tomcat+Servlet面试总结 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -552,8 +744,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -572,7 +773,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">92</span>
+                  <span class="site-state-item-count">96</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -594,7 +795,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-count">44</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -675,6 +876,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是-Tomcat"><span class="nav-text">什么是 Tomcat</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么我们需要用到-Tomcat"><span class="nav-text">为什么我们需要用到 Tomcat</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置-Tomcat"><span class="nav-text">配置 Tomcat</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#相关术语介绍"><span class="nav-text">相关术语介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#tomcat-结构目录"><span class="nav-text">tomcat 结构目录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#目录的简单介绍"><span class="nav-text">目录的简单介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#webapps-目录的详细说明"><span class="nav-text">webapps 目录的详细说明</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置虚拟目录"><span class="nav-text">配置虚拟目录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么需要配置虚拟目录？"><span class="nav-text">为什么需要配置虚拟目录？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置虚拟目录方法一："><span class="nav-text">配置虚拟目录方法一：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置虚拟目录方法二："><span class="nav-text">配置虚拟目录方法二：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#配置临时域名"><span class="nav-text">配置临时域名</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#配置临时域名步骤"><span class="nav-text">配置临时域名步骤</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#设置虚拟主机"><span class="nav-text">设置虚拟主机</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是虚拟主机？"><span class="nav-text">什么是虚拟主机？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么需要用到虚拟主机？"><span class="nav-text">为什么需要用到虚拟主机？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#配置虚拟主机的步骤"><span class="nav-text">配置虚拟主机的步骤</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Tomcat-体系结构"><span class="nav-text">Tomcat 体系结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#浏览器访问-WEB-资源的流程图"><span class="nav-text">浏览器访问 WEB 资源的流程图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#练习"><span class="nav-text">练习</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -703,7 +920,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">446.7k</span>
+    <span title="Site words total count">478.0k</span>
   
 </div>
 
@@ -856,7 +1073,7 @@
         var disqus_config = function () {
           this.page.url = 'http://cloudpai.site/2018/03/27/2018-03-27-4/';
           this.page.identifier = '2018/03/27/2018-03-27-4/';
-          this.page.title = '《How Tomcat Works》笔记';
+          this.page.title = 'Tomcat学习';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://cloudpai.disqus.com/embed.js';
