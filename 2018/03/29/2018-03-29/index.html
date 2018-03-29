@@ -164,7 +164,7 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-92fa0939537488a2.png">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-f77a28b33bbf91b9.png">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-9f18a6df11400b3d.png">
-<meta property="og:updated_time" content="2018-03-29T12:33:33.980Z">
+<meta property="og:updated_time" content="2018-03-29T14:07:34.247Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JSP 学习">
 <meta name="twitter:description" content="JSP 第一篇【JSP 介绍、工作原理、生命周期、语法、指令、行为】什么是 JSPJSP 全名为 Java Server Pages，java 服务器页面。JSP 是一种基于文本的程序，其特点就是 HTML 和 Java 代码共同存在！ 为什么需要 JSPJSP 是为了简化 Servlet 的工作出现的替代品，Servlet 输出 HTML 非常困难，JSP 就是替代 Servlet 输出 HT">
@@ -410,7 +410,7 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-29T20:33:33+08:00">
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-29T22:07:34+08:00">
                 2018-03-29
               </time>
             
@@ -486,9 +486,9 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="JSP-第一篇【JSP-介绍、工作原理、生命周期、语法、指令、行为】"><a href="#JSP-第一篇【JSP-介绍、工作原理、生命周期、语法、指令、行为】" class="headerlink" title="JSP 第一篇【JSP 介绍、工作原理、生命周期、语法、指令、行为】"></a>JSP 第一篇【JSP 介绍、工作原理、生命周期、语法、指令、行为】</h1><h1 id="什么是-JSP"><a href="#什么是-JSP" class="headerlink" title="什么是 JSP"></a>什么是 JSP</h1><p>JSP 全名为 Java Server Pages，java 服务器页面。JSP 是一种基于文本的程序，<strong>其特点就是 HTML 和 Java 代码共同存在</strong>！</p>
-<h1 id="为什么需要-JSP"><a href="#为什么需要-JSP" class="headerlink" title="为什么需要 JSP"></a>为什么需要 JSP</h1><p><strong>JSP 是为了简化 Servlet 的工作出现的替代品，Servlet 输出 HTML 非常困难，JSP 就是替代 Servlet 输出 HTML 的。</strong></p>
-<h1 id="简单使用一下-JSP"><a href="#简单使用一下-JSP" class="headerlink" title="简单使用一下 JSP"></a>简单使用一下 JSP</h1><ul>
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="JSP-第一篇【JSP-介绍、工作原理、生命周期、语法、指令、行为】"><a href="#JSP-第一篇【JSP-介绍、工作原理、生命周期、语法、指令、行为】" class="headerlink" title="JSP 第一篇【JSP 介绍、工作原理、生命周期、语法、指令、行为】"></a>JSP 第一篇【JSP 介绍、工作原理、生命周期、语法、指令、行为】</h1><h2 id="什么是-JSP"><a href="#什么是-JSP" class="headerlink" title="什么是 JSP"></a>什么是 JSP</h2><p>JSP 全名为 Java Server Pages，java 服务器页面。JSP 是一种基于文本的程序，<strong>其特点就是 HTML 和 Java 代码共同存在</strong>！</p>
+<h2 id="为什么需要-JSP"><a href="#为什么需要-JSP" class="headerlink" title="为什么需要 JSP"></a>为什么需要 JSP</h2><p><strong>JSP 是为了简化 Servlet 的工作出现的替代品，Servlet 输出 HTML 非常困难，JSP 就是替代 Servlet 输出 HTML 的。</strong></p>
+<h2 id="简单使用一下-JSP"><a href="#简单使用一下-JSP" class="headerlink" title="简单使用一下 JSP"></a>简单使用一下 JSP</h2><ul>
 <li>在 idea 下生成一个 JSP，我们来看一下 JSP 长什么样子</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;简单使用JSP&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
@@ -498,7 +498,7 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;简单使用JSP&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;%</span><br><span class="line">    String s = &quot;HelloWorld&quot;;</span><br><span class="line">    out.println(s);</span><br><span class="line">%&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-5aa3eb24457b7763.png" alt=""></p>
-<h1 id="JSP-的工作原理"><a href="#JSP-的工作原理" class="headerlink" title="JSP 的工作原理"></a>JSP 的工作原理</h1><ul>
+<h2 id="JSP-的工作原理"><a href="#JSP-的工作原理" class="headerlink" title="JSP 的工作原理"></a>JSP 的工作原理</h2><ul>
 <li>在 Tomcat 博客中我提到过：<strong>Tomcat 访问任何的资源都是在访问 Servlet</strong>！，当然了，JSP 也不例外！<strong>JSP 本身就是一种 Servlet</strong>。为什么我说 JSP 本身就是一种 Servlet 呢？<strong>其实 JSP 在第一次被访问的时候会被编译为 HttpJspPage 类（该类是 HttpServlet 的一个子类）</strong></li>
 <li>刚才我简单使用了一下 JSP，<strong>它被编译成了这么一个 Servlet</strong>:</li>
 </ul>
@@ -517,14 +517,14 @@
 <li><strong>JSP 比 Servlet 更方便更简单的一个重要原因就是：内置了 9 个对象！</strong>内置对象有：out、session、response、request、config、page、application、pageContext、exception，这几个内置对象不在这里讲。现在先知道一下即可！</li>
 </ul>
 <hr>
-<h1 id="JSP-生命周期"><a href="#JSP-生命周期" class="headerlink" title="JSP 生命周期"></a>JSP 生命周期</h1><p>JSP 也是 Servlet，运行时只有一个实例，<strong>JSP 初始化和销毁时也会调用 Servlet 的 init() 和 destroy() 方法</strong>。另外，JSP 还有自己初始化和销毁的方法</p>
+<h2 id="JSP-生命周期"><a href="#JSP-生命周期" class="headerlink" title="JSP 生命周期"></a>JSP 生命周期</h2><p>JSP 也是 Servlet，运行时只有一个实例，<strong>JSP 初始化和销毁时也会调用 Servlet 的 init() 和 destroy() 方法</strong>。另外，JSP 还有自己初始化和销毁的方法</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public void _jspInit() &#123;</span><br><span class="line">  _el_expressionfactory = _jspxFactory.getJspApplicationContext(getServletConfig().getServletContext()).getExpressionFactory();</span><br><span class="line">  _jsp_instancemanager = org.apache.jasper.runtime.InstanceManagerFactory.getInstanceManager(getServletConfig());</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public void _jspDestroy() &#123;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="JSP-的语法"><a href="#JSP-的语法" class="headerlink" title="JSP 的语法"></a>JSP 的语法</h1><p>JSP 代码可以分为两部分：</p>
+<h2 id="JSP-的语法"><a href="#JSP-的语法" class="headerlink" title="JSP 的语法"></a>JSP 的语法</h2><p>JSP 代码可以分为两部分：</p>
 <ol>
 <li><strong>模板数据：就是 HTML 代码</strong></li>
 <li><strong>元素：JSP 页面中的 java 代码、JSP 指令、JSP 标签</strong></li>
 </ol>
-<h2 id="JSP-脚本"><a href="#JSP-脚本" class="headerlink" title="JSP 脚本"></a>JSP 脚本</h2><ul>
+<h3 id="JSP-脚本"><a href="#JSP-脚本" class="headerlink" title="JSP 脚本"></a>JSP 脚本</h3><ul>
 <li><p><strong>JSP 的脚本就是 JSP 页面中的 java 代码</strong>，也叫做 scriptlet。<strong>JSP 的脚本必须使用 &lt;%%&gt; 括起来，不然会被当成是模板数据的！</strong></p>
 </li>
 <li><p>JSP 脚本有三种方式：</p>
@@ -537,12 +537,12 @@
 <li>如果过多地使用 &lt;%%&gt; 会导致代码混乱，JSP 还提供了一种 scriptlet 标签，<strong>使用此标签和 &lt;%%&gt; 有相同的功能，只不过它更美观了一些</strong></li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;jsp:scriptlet&gt;</span><br><span class="line"></span><br><span class="line">    String s = &quot;HelloWorld&quot;;</span><br><span class="line">    out.println(s);</span><br><span class="line"></span><br><span class="line">&lt;/jsp:scriptlet&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="JSP-注释"><a href="#JSP-注释" class="headerlink" title="JSP 注释"></a>JSP 注释</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;%--这是JSP注释--%&gt;</span><br><span class="line">&lt;%--%&gt;</span><br><span class="line"></span><br><span class="line">//这是java的当行注释</span><br><span class="line">//</span><br><span class="line"></span><br><span class="line">/*这是java的多行注释*/</span><br><span class="line">/**/</span><br></pre></td></tr></table></figure>
+<h3 id="JSP-注释"><a href="#JSP-注释" class="headerlink" title="JSP 注释"></a>JSP 注释</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;%--这是JSP注释--%&gt;</span><br><span class="line">&lt;%--%&gt;</span><br><span class="line"></span><br><span class="line">//这是java的当行注释</span><br><span class="line">//</span><br><span class="line"></span><br><span class="line">/*这是java的多行注释*/</span><br><span class="line">/**/</span><br></pre></td></tr></table></figure>
 <hr>
-<h2 id="JSP-指令"><a href="#JSP-指令" class="headerlink" title="JSP 指令"></a>JSP 指令</h2><p><strong>JSP 指令用来声明 JSP 页面的相关属性，例如编码方式、文档类型等等</strong></p>
+<h3 id="JSP-指令"><a href="#JSP-指令" class="headerlink" title="JSP 指令"></a>JSP 指令</h3><p><strong>JSP 指令用来声明 JSP 页面的相关属性，例如编码方式、文档类型等等</strong></p>
 <p>JSP 指令的语法：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;%@指令  属性名=&quot;值&quot;  %&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="page-指令"><a href="#page-指令" class="headerlink" title="page 指令"></a>page 指令</h3><ul>
+<h4 id="page-指令"><a href="#page-指令" class="headerlink" title="page 指令"></a>page 指令</h4><ul>
 <li>我在 idea 生成的 JSP 页面就有 page 指令了。</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;</span><br></pre></td></tr></table></figure>
@@ -613,7 +613,7 @@
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-ae2c1f51076d6138.gif" alt=""></p>
 <hr>
-<h3 id="include-指令"><a href="#include-指令" class="headerlink" title="include 指令"></a>include 指令</h3><ul>
+<h4 id="include-指令"><a href="#include-指令" class="headerlink" title="include 指令"></a>include 指令</h4><ul>
 <li><p><strong>在讲解 request 对象的时候，我们曾经使用过 request.getRequestDispatcher(String url).include(request,response) 来对页头和页尾面进行包含</strong></p>
 </li>
 <li><p>inclue 指令也是做这样的事情，我们来试验一下吧！</p>
@@ -642,16 +642,16 @@
 <li>jsp 还提供另一种包含文件的方式：<strong>JSP 行为 — 动态包含</strong>。jsp 行为在下面会讲到！</li>
 </ul>
 <hr>
-<h3 id="taglib-指令"><a href="#taglib-指令" class="headerlink" title="taglib 指令"></a>taglib 指令</h3><ul>
+<h4 id="taglib-指令"><a href="#taglib-指令" class="headerlink" title="taglib 指令"></a>taglib 指令</h4><ul>
 <li><strong>JSP 支持标签技术，要使用标签技术就先得声明标签库和标签前缀。taglib 指令就是用来指明 JSP 页面内使用标签库技术。</strong></li>
 <li>这里就不详细说明了，等到学习 JSP 标签的时候再使用吧！现在记住有这个指令即可。</li>
 </ul>
 <hr>
-<h2 id="JSP-行为"><a href="#JSP-行为" class="headerlink" title="JSP 行为"></a>JSP 行为</h2><blockquote>
+<h3 id="JSP-行为"><a href="#JSP-行为" class="headerlink" title="JSP 行为"></a>JSP 行为</h3><blockquote>
 <p><strong>JSP 行为（JSP Actions）是一组 JSP 内置的标签</strong>，只书写少量的标记代码就能够使用 JSP 提供丰富的功能，<strong>JSP 行为是对常用的 JSP 功能的抽象和封装</strong>。</p>
 </blockquote>
 <p>为什么我不把它直接称为 JSP 标签呢？<strong>我把这些 JSP 内置的标签称之为 JSP 行为，能够和 JSTL 标签区分开来</strong>。当然了，你也可以把它称之为 JSP 标签，你不要搞混就行了。我个人喜欢把这些 JSP 内置标签称之为 JSP 行为。</p>
-<h3 id="include-行为"><a href="#include-行为" class="headerlink" title="include 行为"></a>include 行为</h3><ul>
+<h4 id="include-行为"><a href="#include-行为" class="headerlink" title="include 行为"></a>include 行为</h4><ul>
 <li>上面已经提及到了，<strong>include 指令是静态包含，include 行为是动态包含</strong>。<strong>其实 include 行为就是封装了 request.getRequestDispatcher(String url).include(request,response)</strong></li>
 <li>include 行为语法是这个样子的</li>
 </ul>
@@ -696,10 +696,10 @@
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-1177fc72a27bc197.png" alt=""> <img src="https://upload-images.jianshu.io/upload_images/5291509-a3ea5cc0aaeac316.png" alt=""></p>
 <hr>
-<h3 id="param-行为"><a href="#param-行为" class="headerlink" title="param 行为"></a>param 行为</h3><ul>
+<h4 id="param-行为"><a href="#param-行为" class="headerlink" title="param 行为"></a>param 行为</h4><ul>
 <li><strong>当使用</strong></li>
 </ul>
-<h3 id="forward-行为"><a href="#forward-行为" class="headerlink" title="forward 行为"></a>forward 行为</h3><ul>
+<h4 id="forward-行为"><a href="#forward-行为" class="headerlink" title="forward 行为"></a>forward 行为</h4><ul>
 <li>在讲解 request 对象的时候，我们使用 request.getRequestDispatcher(String url).forward(request,response) 进行跳转。<strong>其实 forward 行为就是对其封装</strong>！</li>
 <li>我们来看一下 forward 的语法：</li>
 </ul>
@@ -725,7 +725,7 @@
 <li>效果如下图所示</li>
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-9246398b02927c2d.png" alt=""></p>
-<h3 id="directive-行为"><a href="#directive-行为" class="headerlink" title="directive 行为"></a>directive 行为</h3><ul>
+<h4 id="directive-行为"><a href="#directive-行为" class="headerlink" title="directive 行为"></a>directive 行为</h4><ul>
 <li><strong>directive 的中文意思就是指令</strong>。<strong>该行为就是替代指令 %@% 的语法的</strong></li>
 <li>我们来试一下能不能用的</li>
 </ul>
@@ -738,7 +738,7 @@
 <li><strong>使用该指令可以让 JSP 页面更加美观</strong>！</li>
 <li>使用 scriptlet 行为<code>&lt;jsp:scriptlet&gt;</code>替代 &lt;%%&gt; 是同样一个道理</li>
 </ul>
-<h3 id="javaBean-行为"><a href="#javaBean-行为" class="headerlink" title="javaBean 行为"></a>javaBean 行为</h3><ul>
+<h4 id="javaBean-行为"><a href="#javaBean-行为" class="headerlink" title="javaBean 行为"></a>javaBean 行为</h4><ul>
 <li><strong>JSP 还提供了操作 javaBean 对象的行为</strong>，<strong>在这里就不详细说明了，后面会讲到的！现在记住 JSP 提供了 javaBean 行为来操作简单类即可！</strong><ul>
 <li><code>&lt;jsp:useBean id=&quot;&quot;/&gt;</code></li>
 <li><code>&lt;jsp:setProperty /&gt;</code></li>
@@ -746,7 +746,7 @@
 </ul>
 </li>
 </ul>
-<h1 id="JSP-第二篇【内置对象的介绍、4-种属性范围、应用场景】"><a href="#JSP-第二篇【内置对象的介绍、4-种属性范围、应用场景】" class="headerlink" title="JSP 第二篇【内置对象的介绍、4 种属性范围、应用场景】"></a>JSP 第二篇【内置对象的介绍、4 种属性范围、应用场景】</h1><h1 id="什么是-JSP-内置对象"><a href="#什么是-JSP-内置对象" class="headerlink" title="什么是 JSP 内置对象"></a>什么是 JSP 内置对象</h1><blockquote>
+<h1 id="JSP-第二篇【内置对象的介绍、4-种属性范围、应用场景】"><a href="#JSP-第二篇【内置对象的介绍、4-种属性范围、应用场景】" class="headerlink" title="JSP 第二篇【内置对象的介绍、4 种属性范围、应用场景】"></a>JSP 第二篇【内置对象的介绍、4 种属性范围、应用场景】</h1><h2 id="什么是-JSP-内置对象"><a href="#什么是-JSP-内置对象" class="headerlink" title="什么是 JSP 内置对象"></a>什么是 JSP 内置对象</h2><blockquote>
 <p>JSP 引擎在调用 JSP 对应的 jspServlet 时，<strong>会传递或创建 9 个与 web 开发相关的对象供 jspServlet 使用</strong>。JSP 技术的设计者为便于开发人员在编写 JSP 页面时获得这些 web 对象的引用，特意定义了 9 个相应的变量，<strong>开发人员在 JSP 页面中通过这些变量就可以快速获得这 9 大对象的引用</strong></p>
 </blockquote>
 <p>细心的朋友会发现，<strong>我们没有在 JSP 页面上定义过 out 对象，却可以直接使用！其实 out 对象就是 JSP 内置对象之一</strong>。</p>
@@ -763,7 +763,7 @@
 <li>out</li>
 </ul>
 <hr>
-<h1 id="out-对象"><a href="#out-对象" class="headerlink" title="out 对象"></a>out 对象</h1><p>out 对象的 API</p>
+<h2 id="out-对象"><a href="#out-对象" class="headerlink" title="out 对象"></a>out 对象</h2><p>out 对象的 API</p>
 <ul>
 <li><p><strong>int getBufferSize()【得到缓存大小】</strong></p>
 </li>
@@ -802,32 +802,32 @@
 <li><strong>一般我们在 JSP 页面输出都是用表达式（&lt;%=%&gt;)，所以 out 对象用得并不是很多</strong>！</li>
 </ul>
 <hr>
-<h1 id="request"><a href="#request" class="headerlink" title="request"></a>request</h1><ul>
+<h2 id="request"><a href="#request" class="headerlink" title="request"></a>request</h2><ul>
 <li><strong>内置对象 request 其实就是 HttpServletRequest</strong>，在 Servlet 讲解的时候已经详细说明了，没什么好说的</li>
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-4b9421d3248cbc00.png" alt=""></p>
-<h1 id="response"><a href="#response" class="headerlink" title="response"></a>response</h1><ul>
+<h2 id="response"><a href="#response" class="headerlink" title="response"></a>response</h2><ul>
 <li><strong>内置对象 response 其实就是 HttpServletResponse</strong>，在 Servlet 讲解的时候已经详细说明了，没什么好说的</li>
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-184fffd2ed6196f3.png" alt=""></p>
-<h1 id="config"><a href="#config" class="headerlink" title="config"></a>config</h1><ul>
+<h2 id="config"><a href="#config" class="headerlink" title="config"></a>config</h2><ul>
 <li><strong>内置对象 config 其实就是 ServletConfig</strong>，在 Servlet 讲解的时候已经详细说明了，没什么好说的</li>
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-6e955c82fc04745c.png" alt=""></p>
-<h1 id="session"><a href="#session" class="headerlink" title="session"></a>session</h1><ul>
+<h2 id="session"><a href="#session" class="headerlink" title="session"></a>session</h2><ul>
 <li><strong>内置对象 session 其实就是 HttpSession。</strong>，在 Servlet 讲解的时候已经详细说明了，没什么好说的</li>
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-7c0ba6661832b56b.png" alt=""></p>
 <p>注意：<strong>在 page 指令配置如下信息，session 将不可使用</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;%@page session=&quot;false&quot; %&gt;</span><br></pre></td></tr></table></figure>
-<h1 id="application"><a href="#application" class="headerlink" title="application"></a>application</h1><ul>
+<h2 id="application"><a href="#application" class="headerlink" title="application"></a>application</h2><ul>
 <li><strong>内置对象 application 其实就是 ServletContext 对象</strong>，在 Servlet 讲解的时候已经详细说明了，没什么好说的</li>
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-1a4e2fd181f26779.png" alt=""></p>
-<h1 id="page"><a href="#page" class="headerlink" title="page"></a>page</h1><ul>
+<h2 id="page"><a href="#page" class="headerlink" title="page"></a>page</h2><ul>
 <li>内置对象 page 是 HttpJasPage 对象，<strong>其实 page 对象代表的就是当前 JSP 页面，是当前 JSP 编译后的 Servlet 类的对象</strong>。也就是说：<strong>page 对象相当于普通 java 类的 this</strong></li>
 </ul>
-<h1 id="exception"><a href="#exception" class="headerlink" title="exception"></a>exception</h1><ul>
+<h2 id="exception"><a href="#exception" class="headerlink" title="exception"></a>exception</h2><ul>
 <li><p><strong>内置对象 exception 是 java.lang.Exception 类的对象，exception 封装了 JSP 页面抛出的异常信息。</strong>exception 经常被用来处理错误页面</p>
 </li>
 <li><p>前面我们已<strong>经讲过了怎么设置错误页面了</strong>，下面我们就来简单使用一下 exception 对象吧</p>
@@ -842,12 +842,12 @@
 <li>效果：</li>
 </ul>
 <p><img src="http://upload-images.jianshu.io/upload_images/5291509-a3bd1c9994f6c38e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
-<h1 id="pageContext"><a href="#pageContext" class="headerlink" title="pageContext"></a>pageContext</h1><p><strong>pageContext是内置对象中最重要的一个对象，它代表着JSP页面编译后的内容（也就是JSP页面的运行环境）！</strong></p>
-<h2 id="pageContext获取8个内置对象"><a href="#pageContext获取8个内置对象" class="headerlink" title="pageContext获取8个内置对象"></a>pageContext获取8个内置对象</h2><ul>
+<h2 id="pageContext"><a href="#pageContext" class="headerlink" title="pageContext"></a>pageContext</h2><p><strong>pageContext是内置对象中最重要的一个对象，它代表着JSP页面编译后的内容（也就是JSP页面的运行环境）！</strong></p>
+<h3 id="pageContext获取8个内置对象"><a href="#pageContext获取8个内置对象" class="headerlink" title="pageContext获取8个内置对象"></a>pageContext获取8个内置对象</h3><ul>
 <li>既然它代表了JSP页面编译后的内容，理所当然的：<strong>它封装了对其他8大内置对象的引用！</strong>，也就是说，<strong>通过pageContext可以获取到其他的8个内置对象！</strong></li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;获取八大内置对象&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;%</span><br><span class="line"></span><br><span class="line">    System.out.println(pageContext.getSession());</span><br><span class="line">    System.out.println(pageContext.getRequest());</span><br><span class="line">    System.out.println(pageContext.getResponse());</span><br><span class="line"></span><br><span class="line">    System.out.println(pageContext.getException());</span><br><span class="line"></span><br><span class="line">    System.out.println(pageContext.getPage());</span><br><span class="line">    System.out.println(pageContext.getServletConfig());</span><br><span class="line">    System.out.println(pageContext.getServletContext());</span><br><span class="line">    System.out.println(pageContext.getOut());</span><br><span class="line"></span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
-<h2 id="pageContext作为域对象"><a href="#pageContext作为域对象" class="headerlink" title="pageContext作为域对象"></a>pageContext作为域对象</h2><ul>
+<h3 id="pageContext作为域对象"><a href="#pageContext作为域对象" class="headerlink" title="pageContext作为域对象"></a>pageContext作为域对象</h3><ul>
 <li>类似于request，session，ServletContext作为域对象而言<strong>都有以下三个方法</strong>：<ul>
 <li><strong>setAttribute(String name,Objcet o)</strong></li>
 <li><strong>getAttribute(String name)</strong></li>
@@ -919,22 +919,22 @@
 </ul>
 <p><img src="http://upload-images.jianshu.io/upload_images/5291509-eeb0da05e44a3a5d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="image"></p>
 <hr>
-<h2 id="引入和跳转"><a href="#引入和跳转" class="headerlink" title="引入和跳转"></a>引入和跳转</h2><p>PageContext类中定义了一个<strong>forward方法和两个include方法来分别简化和替代RequestDispatcher.forward方法和include方法</strong>。</p>
+<h3 id="引入和跳转"><a href="#引入和跳转" class="headerlink" title="引入和跳转"></a>引入和跳转</h3><p>PageContext类中定义了一个<strong>forward方法和两个include方法来分别简化和替代RequestDispatcher.forward方法和include方法</strong>。</p>
 <ul>
 <li><strong>pageContext.forward(String url)</strong></li>
 <li><strong>pageContext.include(String url)</strong></li>
 </ul>
 <hr>
-<h1 id="4种属性范围"><a href="#4种属性范围" class="headerlink" title="4种属性范围"></a>4种属性范围</h1><p>到目前为止，我们已经学了4种属性范围了。</p>
+<h2 id="4种属性范围"><a href="#4种属性范围" class="headerlink" title="4种属性范围"></a>4种属性范围</h2><p>到目前为止，我们已经学了4种属性范围了。</p>
 <p>1.  <strong>page【只在一个页面中保存属性，跳转页面无效】</strong><br>2.  <strong>requet【只在一次请求中保存属性，服务器跳转有效，浏览器跳转无效】</strong><br>3.  <strong>session【在一个会话范围中保存属性，无论何种跳转均有效，关闭浏览器后无效】</strong><br>4.  <strong>application【在整个服务器中保存，所有用户都可以使用】</strong></p>
 <hr>
 <ul>
 <li>4个内置对象都支持以下的方法：</li>
 </ul>
 <p>1.  <strong>setAttribute(String name, Object o )</strong><br>2.  <strong>getAttribute(String name)</strong><br>3.  <strong>removeAttribute(String name)</strong></p>
-<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>1.  request：如果客户向服务器发请求，产生的数据，<strong>用户看完就没用了，</strong>像这样的数据就存在request域,像新闻数据，属于用户看完就没用的<br>2.  session：如果客户向服务器发请求，产生的数据，<strong>用户用完了等一会儿还有用</strong>，像这样的数据就存在session域中，像购物数据，用户需要看到自己购物信息，并且等一会儿，还要用这个购物数据结帐<br>3.  servletContext：如果客户向服务器发请求，产生的数据，<strong>用户用完了，还要给其它用户用</strong>，像这样的数据就存在servletContext域中，像聊天数据</p>
+<h3 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h3><p>1.  request：如果客户向服务器发请求，产生的数据，<strong>用户看完就没用了，</strong>像这样的数据就存在request域,像新闻数据，属于用户看完就没用的<br>2.  session：如果客户向服务器发请求，产生的数据，<strong>用户用完了等一会儿还有用</strong>，像这样的数据就存在session域中，像购物数据，用户需要看到自己购物信息，并且等一会儿，还要用这个购物数据结帐<br>3.  servletContext：如果客户向服务器发请求，产生的数据，<strong>用户用完了，还要给其它用户用</strong>，像这样的数据就存在servletContext域中，像聊天数据</p>
 <hr>
-<h1 id="JSP-第三篇【JavaBean-的介绍、JSP-的行为-–JavaBean】"><a href="#JSP-第三篇【JavaBean-的介绍、JSP-的行为-–JavaBean】" class="headerlink" title="JSP 第三篇【JavaBean 的介绍、JSP 的行为 –JavaBean】"></a>JSP 第三篇【JavaBean 的介绍、JSP 的行为 –JavaBean】</h1><h1 id="什么是-javaBean"><a href="#什么是-javaBean" class="headerlink" title="什么是 javaBean"></a>什么是 javaBean</h1><ul>
+<h1 id="JSP-第三篇【JavaBean-的介绍、JSP-的行为-–JavaBean】"><a href="#JSP-第三篇【JavaBean-的介绍、JSP-的行为-–JavaBean】" class="headerlink" title="JSP 第三篇【JavaBean 的介绍、JSP 的行为 –JavaBean】"></a>JSP 第三篇【JavaBean 的介绍、JSP 的行为 –JavaBean】</h1><h2 id="什么是-javaBean"><a href="#什么是-javaBean" class="headerlink" title="什么是 javaBean"></a>什么是 javaBean</h2><ul>
 <li><strong>JavaBean 就是一个普通的 java 类</strong>，也称之为简单 java 对象 –POJO（Plain Ordinary Java Object），<strong>是 Java 程序设计中一种设计模式，是一种基于 Java 平台的软件组件思想</strong></li>
 <li>JavaBean 遵循着特定的写法，通常有以下的规则：<ul>
 <li><strong>有无参的构造函数</strong></li>
@@ -945,7 +945,7 @@
 <li>上面的文字看起来好像很高大上，javaBean 其实非常简单，<strong>下面的代码就是按照特定写法、规则编写的一个 JavaBean 对象</strong></li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class Person &#123;</span><br><span class="line">    private String username ;</span><br><span class="line">    private int age;</span><br><span class="line"></span><br><span class="line">    public Person() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String getUsername() &#123;</span><br><span class="line">        return username;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setUsername(String username) &#123;</span><br><span class="line">        this.username = username;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int getAge() &#123;</span><br><span class="line">        return age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setAge(int age) &#123;</span><br><span class="line">        this.age = age;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="为什么需要使用-Javabean"><a href="#为什么需要使用-Javabean" class="headerlink" title="为什么需要使用 Javabean"></a>为什么需要使用 Javabean</h1><ul>
+<h2 id="为什么需要使用-Javabean"><a href="#为什么需要使用-Javabean" class="headerlink" title="为什么需要使用 Javabean"></a>为什么需要使用 Javabean</h2><ul>
 <li>使用 javaBean 的好处就是：<strong>封装，重用, 可读</strong>！</li>
 <li>下面引用知乎一段回答：</li>
 </ul>
@@ -954,7 +954,7 @@
 </blockquote>
 <p>如果把 bean 类与数据库联合使用，一张表使用 bean 类，可以使你的代码更加简洁高效，易于理解，现在大多数框架都会使用这种机制。</p>
 <hr>
-<h1 id="JSP-行为-–JavaBean"><a href="#JSP-行为-–JavaBean" class="headerlink" title="JSP 行为 –JavaBean"></a>JSP 行为 –JavaBean</h1><ul>
+<h2 id="JSP-行为-–JavaBean"><a href="#JSP-行为-–JavaBean" class="headerlink" title="JSP 行为 –JavaBean"></a>JSP 行为 –JavaBean</h2><ul>
 <li><p>JSP 技术提供了<strong>三个关于 JavaBean 组件的动作元素</strong>，即 JSP 行为（标签），它们分别为：</p>
 </li>
 <li><p><strong><code>&lt;jsp:useBean&gt;</code>【在 JSP 页面中查找 javaBean 对象或者实例化 javaBean 对象】</strong></p>
@@ -964,7 +964,7 @@
 <li><p><strong><code>&lt;jsp:getProperty&gt;</code>【获取 javaBean 的属性】</strong></p>
 </li>
 </ul>
-<h2 id="jsp-useBean"><a href="#jsp-useBean" class="headerlink" title="jsp:useBean"></a><code>jsp:useBean</code></h2><ul>
+<h3 id="jsp-useBean"><a href="#jsp-useBean" class="headerlink" title="jsp:useBean"></a><code>jsp:useBean</code></h3><ul>
 <li><code>&lt;jsp:useBean&gt;</code>标签用于<strong>在指定的域范围内查找指定名称的 JavaBean 对象</strong>：<ul>
 <li><strong>存在则直接返回该 JavaBean 对象的引用</strong>。</li>
 <li><strong>不存在则实例化一个新的 JavaBean 对象并将它以指定的名称存储到指定的域范围中</strong>。</li>
@@ -1002,7 +1002,7 @@
 <ul>
 <li>通过上面的代码我们也<strong>知道了为什么要有一个无参的构造函数</strong>！<strong>内部在 new 对象的时候是没有传递参数进去的！</strong></li>
 </ul>
-<h2 id="jsp-setProperty"><a href="#jsp-setProperty" class="headerlink" title="jsp:setProperty"></a><code>jsp:setProperty</code></h2><ul>
+<h3 id="jsp-setProperty"><a href="#jsp-setProperty" class="headerlink" title="jsp:setProperty"></a><code>jsp:setProperty</code></h3><ul>
 <li><strong>语法：</strong></li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;jsp:setProerty &gt;</span><br></pre></td></tr></table></figure>
@@ -1059,7 +1059,7 @@
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-48a6fac5f90e300d.png" alt=""></p>
 <hr>
-<h2 id="jsp-getProperty"><a href="#jsp-getProperty" class="headerlink" title="jsp:getProperty"></a><code>jsp:getProperty</code></h2><ul>
+<h3 id="jsp-getProperty"><a href="#jsp-getProperty" class="headerlink" title="jsp:getProperty"></a><code>jsp:getProperty</code></h3><ul>
 <li><strong>语法：</strong></li>
 <li>该 jsp 行为十分简单，我们来使用一下就知道了。</li>
 </ul>
@@ -1073,11 +1073,11 @@
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-1159a4356c5dab26.png" alt=""></p>
 <hr>
-<h1 id="JSP-第四篇【EL-表达式介绍、获取各类数据、11-个内置对象、执行运算、回显数据、自定义函数、fn-方法库】"><a href="#JSP-第四篇【EL-表达式介绍、获取各类数据、11-个内置对象、执行运算、回显数据、自定义函数、fn-方法库】" class="headerlink" title="JSP 第四篇【EL 表达式介绍、获取各类数据、11 个内置对象、执行运算、回显数据、自定义函数、fn 方法库】"></a>JSP 第四篇【EL 表达式介绍、获取各类数据、11 个内置对象、执行运算、回显数据、自定义函数、fn 方法库】</h1><h1 id="什么是-EL-表达式？"><a href="#什么是-EL-表达式？" class="headerlink" title="什么是 EL 表达式？"></a>什么是 EL 表达式？</h1><p><strong>表达式语言（Expression Language，EL）,EL 表达式是用 “${}” 括起来的脚本，用来更方便的读取对象！</strong></p>
+<h1 id="JSP-第四篇【EL-表达式介绍、获取各类数据、11-个内置对象、执行运算、回显数据、自定义函数、fn-方法库】"><a href="#JSP-第四篇【EL-表达式介绍、获取各类数据、11-个内置对象、执行运算、回显数据、自定义函数、fn-方法库】" class="headerlink" title="JSP 第四篇【EL 表达式介绍、获取各类数据、11 个内置对象、执行运算、回显数据、自定义函数、fn 方法库】"></a>JSP 第四篇【EL 表达式介绍、获取各类数据、11 个内置对象、执行运算、回显数据、自定义函数、fn 方法库】</h1><h2 id="什么是-EL-表达式？"><a href="#什么是-EL-表达式？" class="headerlink" title="什么是 EL 表达式？"></a>什么是 EL 表达式？</h2><p><strong>表达式语言（Expression Language，EL）,EL 表达式是用 “${}” 括起来的脚本，用来更方便的读取对象！</strong></p>
 <ul>
 <li><strong>EL 表达式主要用来读取数据，进行内容的显示！</strong></li>
 </ul>
-<h1 id="为什么要使用-EL-表达式？"><a href="#为什么要使用-EL-表达式？" class="headerlink" title="为什么要使用 EL 表达式？"></a>为什么要使用 EL 表达式？</h1><ul>
+<h2 id="为什么要使用-EL-表达式？"><a href="#为什么要使用-EL-表达式？" class="headerlink" title="为什么要使用 EL 表达式？"></a>为什么要使用 EL 表达式？</h2><ul>
 <li><p>为什么要使用 EL 表达式，我们先来看一下<strong>没有 EL 表达式是怎么样读取对象数据的吧</strong>！</p>
 </li>
 <li><p><strong>在 1.jsp 中设置了 Session 属性</strong></p>
@@ -1102,14 +1102,14 @@
 <li>使用 EL 表达式<strong>可以方便地读取对象中的属性、提交的参数、JavaBean、甚至集合</strong>！</li>
 </ul>
 <hr>
-<h1 id="EL-表达式的作用"><a href="#EL-表达式的作用" class="headerlink" title="EL 表达式的作用"></a>EL 表达式的作用</h1><ul>
+<h2 id="EL-表达式的作用"><a href="#EL-表达式的作用" class="headerlink" title="EL 表达式的作用"></a>EL 表达式的作用</h2><ul>
 <li>首先来<strong>看一下 EL 表达式的语法吧</strong>：</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">$&#123;标识符&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li><strong>EL 表达式如果找不到相应的对象属性，返回的的空白字符串 “”，而不是 null，这是 EL 表达式最大的特点！</strong></li>
 </ul>
-<h2 id="获取各类数据"><a href="#获取各类数据" class="headerlink" title="获取各类数据"></a>获取各类数据</h2><h3 id="获取域对象的数据"><a href="#获取域对象的数据" class="headerlink" title="获取域对象的数据"></a>获取域对象的数据</h3><ul>
+<h3 id="获取各类数据"><a href="#获取各类数据" class="headerlink" title="获取各类数据"></a>获取各类数据</h3><h4 id="获取域对象的数据"><a href="#获取域对象的数据" class="headerlink" title="获取域对象的数据"></a>获取域对象的数据</h4><ul>
 <li>上面在例子中，我们已经体验到了<strong>获取 Session 域对象的数据是多么地方便！</strong>其实 EL 表达式可以让我们获取各个域范围的数据</li>
 <li><strong>在 1.jsp 中设置 ServeltContext 属性（也就是 application）</strong></li>
 </ul>
@@ -1126,7 +1126,7 @@
 <li>之前我们来讲 ServletContext 对象的时候讲过一个方法 findAttribute(String name),<strong>EL 表达式语句在执行的时候会调用该方法，用标识符作为关键字分别从 page、request、session、application 四个域中查找相应的对象。</strong>这也解释了为什么 EL 表达式可以仅仅通过标识符就能够获取到存进域对象的数据！</li>
 <li><strong>findAttribute() 的查找顺序：从小到大，也就是 page-&gt;request-&gt;session-&gt;application</strong></li>
 </ul>
-<h3 id="获取-JavaBean-的属性"><a href="#获取-JavaBean-的属性" class="headerlink" title="获取 JavaBean 的属性"></a>获取 JavaBean 的属性</h3><ul>
+<h4 id="获取-JavaBean-的属性"><a href="#获取-JavaBean-的属性" class="headerlink" title="获取 JavaBean 的属性"></a>获取 JavaBean 的属性</h4><ul>
 <li><strong>以前在 JSP 页面获取 JavaBean 的数据是这样子的</strong>：</li>
 <li><strong>1.jsp 页面 Session 存进一个 Person 对象，设置 age 的属性为 22</strong></li>
 </ul>
@@ -1140,7 +1140,7 @@
 <ul>
 <li>上面的代码 <strong>等同于调用对象的 getter 方法，内部是通过反射机制完成的</strong>！</li>
 </ul>
-<h3 id="获取集合的数据"><a href="#获取集合的数据" class="headerlink" title="获取集合的数据"></a>获取集合的数据</h3><ul>
+<h4 id="获取集合的数据"><a href="#获取集合的数据" class="headerlink" title="获取集合的数据"></a>获取集合的数据</h4><ul>
 <li><p>集合操作在开发中被广泛地采用，在 <strong>EL 表达式中也很好地支持了集合的操作</strong>！可以<strong>非常方便地读取 Collection 和 Map 集合的内容</strong></p>
 </li>
 <li><p>为了更好地看出 EL 表达式的强大之处，我们也来对比一下使用 EL 表达式和不使用 EL 表达式的区别</p>
@@ -1182,7 +1182,7 @@
 <li><strong>EL 表达式配合 JSTL 标签可以很方便的迭代集合，后面讲到 JSTL 标签的时候会用到!</strong> 这里就不详细说明了。</li>
 </ul>
 <hr>
-<h2 id="EL-运算符"><a href="#EL-运算符" class="headerlink" title="EL 运算符"></a>EL 运算符</h2><ul>
+<h3 id="EL-运算符"><a href="#EL-运算符" class="headerlink" title="EL 运算符"></a>EL 运算符</h3><ul>
 <li><strong>EL 表达式支持简单的运算符：加减乘除取摸，逻辑运算符</strong>。<strong>empty 运算符（判断是否为 null)，三目运算符</strong></li>
 </ul>
 <ul>
@@ -1191,7 +1191,7 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line">    List&lt;Person&gt; list = null;</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">$&#123;list==null?&quot;list集合为空&quot;:&quot;list集合不为空&quot;&#125;</span><br></pre></td></tr></table></figure>
 <hr>
-<h2 id="EL-表达式-11-个内置对象"><a href="#EL-表达式-11-个内置对象" class="headerlink" title="EL 表达式 11 个内置对象"></a>EL 表达式 11 个内置对象</h2><p><strong>EL 表达式主要是来对内容的显示，为了显示的方便，EL 表达式提供了 11 个内置对象</strong>。</p>
+<h3 id="EL-表达式-11-个内置对象"><a href="#EL-表达式-11-个内置对象" class="headerlink" title="EL 表达式 11 个内置对象"></a>EL 表达式 11 个内置对象</h3><p><strong>EL 表达式主要是来对内容的显示，为了显示的方便，EL 表达式提供了 11 个内置对象</strong>。</p>
 <ol>
 <li><strong>pageContext 对应于 JSP 页面中的 pageContext 对象（注意：取的是 pageContext 对象）</strong></li>
 <li><strong>pageScope 代表 page 域中用于保存属性的 Map 对象</strong></li>
@@ -1231,13 +1231,13 @@
 <li>当然了，<strong>使用地址栏方式提交数据给处理页面也是用 param 内置对象去获取数据的</strong>！</li>
 </ul>
 <hr>
-<h2 id="EL-表达式回显数据"><a href="#EL-表达式回显数据" class="headerlink" title="EL 表达式回显数据"></a>EL 表达式回显数据</h2><p>EL 表达式最大的特点就是：<strong>如果获取到的数据为 null，输出空白字符串 “”！这个特点可以让我们数据回显</strong></p>
+<h3 id="EL-表达式回显数据"><a href="#EL-表达式回显数据" class="headerlink" title="EL 表达式回显数据"></a>EL 表达式回显数据</h3><p>EL 表达式最大的特点就是：<strong>如果获取到的数据为 null，输出空白字符串 “”！这个特点可以让我们数据回显</strong></p>
 <ul>
 <li>在 1.jsp 中模拟场景</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;%--模拟数据回显场景--%&gt;</span><br><span class="line">&lt;%</span><br><span class="line">    User user = new User();</span><br><span class="line">    user.setGender(&quot;male&quot;);</span><br><span class="line"></span><br><span class="line">    //数据回显</span><br><span class="line">    request.setAttribute(&quot;user&quot;,user);</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;input type=&quot;radio&quot;  $&#123;user.gender==&apos;male&apos;?&apos;checked&apos;:&apos;&apos; &#125;&gt;男</span><br><span class="line">&lt;input type=&quot;radio&quot;  $&#123;user.gender==&apos;female&apos;?&apos;checked&apos;:&apos;&apos; &#125;&gt;女</span><br></pre></td></tr></table></figure>
 <hr>
-<h1 id="EL-自定义函数"><a href="#EL-自定义函数" class="headerlink" title="EL 自定义函数"></a>EL 自定义函数</h1><p><strong>EL 自定义函数用于扩展 EL 表达式的功能，可以让 EL 表达式完成普通 Java 程序代码所能完成的功能</strong></p>
+<h2 id="EL-自定义函数"><a href="#EL-自定义函数" class="headerlink" title="EL 自定义函数"></a>EL 自定义函数</h2><p><strong>EL 自定义函数用于扩展 EL 表达式的功能，可以让 EL 表达式完成普通 Java 程序代码所能完成的功能</strong></p>
 <ul>
 <li><strong>开发 HTML 转义的 EL 函数</strong></li>
 <li>我们<strong>有时候想在 JSP 页面中输出 JSP 代码，但是 JSP 引擎会自动把 HTML 代码解析，输出给浏览器。此时我们就要对 HTML 代码转义</strong>。</li>
@@ -1260,7 +1260,7 @@
 </ul>
 <p>[图片上传中…(image-1fc61b-1517900786708-3)]</p>
 <hr>
-<h1 id="EL-函数库（fn-方法库）"><a href="#EL-函数库（fn-方法库）" class="headerlink" title="EL 函数库（fn 方法库）"></a>EL 函数库（fn 方法库）</h1><ul>
+<h2 id="EL-函数库（fn-方法库）"><a href="#EL-函数库（fn-方法库）" class="headerlink" title="EL 函数库（fn 方法库）"></a>EL 函数库（fn 方法库）</h2><ul>
 <li><p>由于<strong>在 JSP 页面中显示数据时，经常需要对显示的字符串进行处理，SUN 公司针对于一些常见处理定义了一套 EL 函数库供开发者使用</strong>。</p>
 </li>
 <li><p><strong>其实 EL 函数库就是 fn 方法库，是 JSTL 标签库中的一个库，</strong>也有人称之为 fn 标签库，但是该库<strong>长得不像是标签</strong>，所以称之为 fn 方法库</p>
@@ -1316,22 +1316,22 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line">    User user = new User();</span><br><span class="line">    String likes[] = &#123;&quot;sing&quot;&#125;;</span><br><span class="line">    user.setLikes(likes);</span><br><span class="line"></span><br><span class="line">    //数据回显</span><br><span class="line">    request.setAttribute(&quot;user&quot;,user);</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;%--java的字符数组以&quot;,&quot;号分割开，首先拼接成一个字符串，再判读该字符串有没有包含关键字，如果有就checked--%&gt;</span><br><span class="line">&lt;input type=&quot;checkbox&quot;$&#123; fn:contains(fn:join(user.likes,&quot;,&quot;),&quot;sing&quot;)?&apos;checked&apos;:&apos;&apos; &#125;&gt;唱歌</span><br><span class="line">&lt;input type=&quot;checkbox&quot;$&#123; fn:contains(fn:join(user.likes,&quot;,&quot;),&quot;dance&quot;)?&apos;checked&apos;:&apos;&apos; &#125;&gt;跳舞</span><br></pre></td></tr></table></figure>
 <hr>
-<h1 id="JSP-第五篇【JSTL-的介绍、core-标签库、fn-方法库、fmt-标签库】"><a href="#JSP-第五篇【JSTL-的介绍、core-标签库、fn-方法库、fmt-标签库】" class="headerlink" title="JSP 第五篇【JSTL 的介绍、core 标签库、fn 方法库、fmt 标签库】"></a>JSP 第五篇【JSTL 的介绍、core 标签库、fn 方法库、fmt 标签库】</h1><h1 id="什么是-JSTL"><a href="#什么是-JSTL" class="headerlink" title="什么是 JSTL"></a>什么是 JSTL</h1><p><strong>JSTL 全称为 JSP Standard Tag Library 即 JSP 标准标签库</strong>。</p>
+<h1 id="JSP-第五篇【JSTL-的介绍、core-标签库、fn-方法库、fmt-标签库】"><a href="#JSP-第五篇【JSTL-的介绍、core-标签库、fn-方法库、fmt-标签库】" class="headerlink" title="JSP 第五篇【JSTL 的介绍、core 标签库、fn 方法库、fmt 标签库】"></a>JSP 第五篇【JSTL 的介绍、core 标签库、fn 方法库、fmt 标签库】</h1><h2 id="什么是-JSTL"><a href="#什么是-JSTL" class="headerlink" title="什么是 JSTL"></a>什么是 JSTL</h2><p><strong>JSTL 全称为 JSP Standard Tag Library 即 JSP 标准标签库</strong>。</p>
 <p>JSTL 作为最基本的标签库，<strong>提供了一系列的 JSP 标签，实现了基本的功能：集合的遍历、数据的输出、字符串的处理、数据的格式化等等！</strong></p>
-<h1 id="为什么要使用-JSTL"><a href="#为什么要使用-JSTL" class="headerlink" title="为什么要使用 JSTL"></a>为什么要使用 JSTL</h1><ul>
+<h2 id="为什么要使用-JSTL"><a href="#为什么要使用-JSTL" class="headerlink" title="为什么要使用 JSTL"></a>为什么要使用 JSTL</h2><ul>
 <li><strong>EL 表达式不够完美，需要 JSTL 的支持</strong>！在 JSP 中，我们前面已经用到了 EL 表达式，体会到了 EL 表达式的强大功能：<strong>使用 EL 表达式可以很方便地引用一些 JavaBean 以及其属性，不会抛出 NullPointerException 之类的错误！</strong>但是，EL 表达式非常有限，<strong>它不能遍历集合，做逻辑的控制。这时，就需要 JSTL 的支持了</strong>！</li>
 <li><strong>Scriptlet 的可读性，维护性，重用性都十分差！</strong>JSTL 与 HTML 代码十分类似，遵循着 XML 标签语法，<strong>使用 JSTL 让 JSP 页面显得整洁，可读性非常好，重用性非常高，可以完成复杂的功能！</strong></li>
 <li>在 JSP 中不推荐使用 scriptlet 输出，推荐使用 JSP 标签。</li>
 </ul>
-<h1 id="使用-JSTL-标签库步骤："><a href="#使用-JSTL-标签库步骤：" class="headerlink" title="使用 JSTL 标签库步骤："></a>使用 JSTL 标签库步骤：</h1><ol>
+<h2 id="使用-JSTL-标签库步骤："><a href="#使用-JSTL-标签库步骤：" class="headerlink" title="使用 JSTL 标签库步骤："></a>使用 JSTL 标签库步骤：</h2><ol>
 <li><strong>导入 jstl.jar 和 standard.jar 开发包</strong></li>
 <li><strong>在 JSP 页面中用 tablib 指令引入需要用到的 JSTL 标签</strong></li>
 </ol>
-<h1 id="core-标签库"><a href="#core-标签库" class="headerlink" title="core 标签库"></a>core 标签库</h1><ul>
+<h2 id="core-标签库"><a href="#core-标签库" class="headerlink" title="core 标签库"></a>core 标签库</h2><ul>
 <li><strong>core 标签库是 JSTL 的核心标签库，实现了最基本的功能：流程控制、迭代输出等操作</strong>！</li>
 <li><strong>core 标签库的前缀一般是 c</strong></li>
 </ul>
-<h2 id="c-out"><a href="#c-out" class="headerlink" title="c:out"></a><code>c:out</code></h2><p><img src="https://upload-images.jianshu.io/upload_images/5291509-7118b79a9b40325d.png" alt=""></p>
+<h3 id="c-out"><a href="#c-out" class="headerlink" title="c:out"></a><code>c:out</code></h3><p><img src="https://upload-images.jianshu.io/upload_images/5291509-7118b79a9b40325d.png" alt=""></p>
 <ul>
 <li><strong>简单使用一下</strong></li>
 </ul>
@@ -1340,11 +1340,11 @@
 <li>我们发现<strong>上面的代码实现的效果和 EL 表达式是一样的</strong>，<strong>它出色的地方就多了两个属性, default 和 escapeXml 属性。</strong>如果我们用到这两个属性，我们就使用该标签，如果没有用到这两个属性就用 EL 表达式就可以了。</li>
 </ul>
 <hr>
-<h2 id="c-set"><a href="#c-set" class="headerlink" title="c:set"></a><code>c:set</code></h2><p><img src="https://upload-images.jianshu.io/upload_images/5291509-cab9e2562182e36b.png" alt=""></p>
+<h3 id="c-set"><a href="#c-set" class="headerlink" title="c:set"></a><code>c:set</code></h3><p><img src="https://upload-images.jianshu.io/upload_images/5291509-cab9e2562182e36b.png" alt=""></p>
 <ul>
 <li>该标签有 5 个属性，用起来有稍微有些复杂了！现在要记住的就是：<strong>var 属性操作的是 Integer、Double、Float、String 等类型的数据，target 属性操作的是 JavaBean 或 Map 对象的数据，scope 代表的是 Web 域，value 是值，property 是对象的属性</strong>！</li>
 </ul>
-<h3 id="使用-var-属性"><a href="#使用-var-属性" class="headerlink" title="使用 var 属性"></a>使用 var 属性</h3><ul>
+<h4 id="使用-var-属性"><a href="#使用-var-属性" class="headerlink" title="使用 var 属性"></a>使用 var 属性</h4><ul>
 <li><p><strong>既然 var 属性只能操作 Integer、Double、String 等类型，那么存在 var 属性就一定没有 property 属性（property 代表的是对象的成员属性，Integer、String 这些类型哪来的成员变量呀）</strong></p>
 </li>
 <li><p>下面的代码流程是这样的：<strong>创建了一个 name 的变量，设置的值为 zhongfucheng，范围是 page</strong></p>
@@ -1367,7 +1367,7 @@
 <li>效果：</li>
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-020fa3891994ca79.png" alt=""></p>
-<h3 id="使用-target-属性"><a href="#使用-target-属性" class="headerlink" title="使用 target 属性"></a>使用 target 属性</h3><ul>
+<h4 id="使用-target-属性"><a href="#使用-target-属性" class="headerlink" title="使用 target 属性"></a>使用 target 属性</h4><ul>
 <li><strong>使用 target 属性与之配对的是 property 属性，target 属性只能操作 JavaBean 或 Map 对象，property 就是对应的成员变量或 key 了。</strong>。</li>
 <li><strong>既然 target 属性操作的是 JavaBean 或 Map 对象，那么一定是通过 EL 表达式来获取到对象了。taget 属性如果获取不到数据会抛出异常！使用 target 属性就一定没有 scope 属性（scope 属性代表的是保存范围，target 的值都是获取来的，难道你还能改变人家的范围？）</strong></li>
 </ul>
@@ -1376,7 +1376,7 @@
 <li>效果：</li>
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-81a2addeffbf3fe7.png" alt=""></p>
-<h2 id="c-remove"><a href="#c-remove" class="headerlink" title="c:remove"></a><code>c:remove</code></h2><p><strong>remove 标签就相当简单了，只有 var 和 scope 属性，代表的是删除域范围的属性</strong></p>
+<h3 id="c-remove"><a href="#c-remove" class="headerlink" title="c:remove"></a><code>c:remove</code></h3><p><strong>remove 标签就相当简单了，只有 var 和 scope 属性，代表的是删除域范围的属性</strong></p>
 <ul>
 <li>下面简单来测试一下吧：</li>
 </ul>
@@ -1385,14 +1385,14 @@
 <li>效果：</li>
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-85f2a85076c27b80.png" alt=""></p>
-<h2 id="c-catch"><a href="#c-catch" class="headerlink" title="c:catch"></a><code>c:catch</code></h2><p><strong>该标签主要用来处理程序中产生的异常。</strong></p>
+<h3 id="c-catch"><a href="#c-catch" class="headerlink" title="c:catch"></a><code>c:catch</code></h3><p><strong>该标签主要用来处理程序中产生的异常。</strong></p>
 <p><strong>catch 标签也十分简单，只有一个 var 属性，var 属性封装了异常的信息！</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;%--创建出JavaBean对象，设置为session范围的属性--%&gt;</span><br><span class="line">&lt;jsp:useBean id=&quot;person&quot; class=&quot;domain.Person&quot; scope=&quot;session&quot;/&gt;</span><br><span class="line"></span><br><span class="line">&lt;c:catch var=&quot;message&quot;&gt;</span><br><span class="line"></span><br><span class="line">    &lt;%--target属性只能是EL表达式，现在我是字符串，获取不到对象，肯定会抛出异常的！--%&gt;</span><br><span class="line">    &lt;c:set target=&quot;person&quot; property=&quot;age&quot; value=&quot;32&quot;/&gt;</span><br><span class="line"></span><br><span class="line">&lt;/c:catch&gt;</span><br><span class="line"></span><br><span class="line">$&#123;message&#125;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>效果：</li>
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-cfda73e429e5fb3a.png" alt=""></p>
-<h2 id="c-if"><a href="#c-if" class="headerlink" title="c:if"></a><code>c:if</code></h2><p><img src="https://upload-images.jianshu.io/upload_images/5291509-6f18061e6389d975.png" alt=""></p>
+<h3 id="c-if"><a href="#c-if" class="headerlink" title="c:if"></a><code>c:if</code></h3><p><img src="https://upload-images.jianshu.io/upload_images/5291509-6f18061e6389d975.png" alt=""></p>
 <p><strong>JSTL 提供了 if 标签完成分支语句的实现，test 属性是不可或缺的</strong>。</p>
 <p><strong>var 和 scope 属性我看来好像没什么用的（保存执行结果有什么用？）</strong></p>
 <ul>
@@ -1404,7 +1404,7 @@
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-68b1befdc036732d.png" alt=""> <img src="https://upload-images.jianshu.io/upload_images/5291509-4d2595613461cfdd.png" alt=""></p>
 <hr>
-<h2 id="c-choose"><a href="#c-choose" class="headerlink" title="c:choose"></a><code>c:choose</code></h2><p><strong>if 标签没有 else 的功能，如果需要类似于 java 中的 if else 流程就需要使用 choose 标签。</strong></p>
+<h3 id="c-choose"><a href="#c-choose" class="headerlink" title="c:choose"></a><code>c:choose</code></h3><p><strong>if 标签没有 else 的功能，如果需要类似于 java 中的 if else 流程就需要使用 choose 标签。</strong></p>
 <p><strong>choose 标签需要联合 when 和 otherwise 标签一起使用！</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;c:choose&gt;</span><br><span class="line">    &lt;c:when test=&quot;$&#123;param.name==&apos;zhongfucheng&apos;&#125;&quot;&gt;</span><br><span class="line">        你好啊，zhongfucheng</span><br><span class="line">    &lt;/c:when&gt;</span><br><span class="line">    &lt;c:when test=&quot;$&#123;param.name==&apos;ouzicheng&apos;&#125;&quot;&gt;</span><br><span class="line">        你好啊，ouzicheng</span><br><span class="line">    &lt;/c:when&gt;</span><br><span class="line">    &lt;c:otherwise&gt;</span><br><span class="line">        你是谁啊？别随便过来！</span><br><span class="line">    &lt;/c:otherwise&gt;</span><br><span class="line">&lt;/c:choose&gt;</span><br></pre></td></tr></table></figure>
 <ul>
@@ -1412,7 +1412,7 @@
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-a335c99c4956ded5.png" alt=""> <img src="https://upload-images.jianshu.io/upload_images/5291509-6a61bd3dcf0ed277.png" alt=""></p>
 <hr>
-<h2 id="c-forEach"><a href="#c-forEach" class="headerlink" title="c:forEach"></a><code>c:forEach</code></h2><p><img src="https://upload-images.jianshu.io/upload_images/5291509-22cf7a45555fa9c2.png" alt=""></p>
+<h3 id="c-forEach"><a href="#c-forEach" class="headerlink" title="c:forEach"></a><code>c:forEach</code></h3><p><img src="https://upload-images.jianshu.io/upload_images/5291509-22cf7a45555fa9c2.png" alt=""></p>
 <p><strong>forEach 为循环标签，相当于 Java 中的 while 和 for</strong></p>
 <ul>
 <li><p><strong>之前我们在使用 EL 表达式获取到集合的数据，遍历集合都是用 scriptlet 代码循环，现在我们学了 forEach 标签就可以舍弃 scriptlet 代码了。</strong></p>
@@ -1456,7 +1456,7 @@
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-ccb6fcd825283b4c.png" alt=""></p>
 <hr>
-<h2 id="c-forTokens"><a href="#c-forTokens" class="headerlink" title="c:forTokens"></a><code>c:forTokens</code></h2><p><strong>该标签类似于 String 类的 split() 和 for 循环的一种集合</strong></p>
+<h3 id="c-forTokens"><a href="#c-forTokens" class="headerlink" title="c:forTokens"></a><code>c:forTokens</code></h3><p><strong>该标签类似于 String 类的 split() 和 for 循环的一种集合</strong></p>
 <p><strong>它与 forEach 标签非常相似，都有 begin、end、step、items、var、varStatus 属性，不同的是 forTokens 标签的 items 属性里面是字符串，这个字符串会被 delims 属性的内容分割成多个字符串！</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;c:forTokens items=&quot;zhongfucheng,ouzicheng,xiaoming,xiaohong&quot; var=&quot;name&quot; delims=&quot;,&quot; &gt;</span><br><span class="line">    $&#123;name&#125;</span><br><span class="line">&lt;/c:forTokens&gt;</span><br></pre></td></tr></table></figure>
 <ul>
@@ -1464,7 +1464,7 @@
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-490b580e44406703.png" alt=""></p>
 <hr>
-<h2 id="c-import"><a href="#c-import" class="headerlink" title="c:import"></a><code>c:import</code></h2><p><strong>import 标签类似于 JSP 行为<code>&lt;jsp:include/&gt;</code>和 JSP 指令<code>&lt;%include&gt;</code></strong></p>
+<h3 id="c-import"><a href="#c-import" class="headerlink" title="c:import"></a><code>c:import</code></h3><p><strong>import 标签类似于 JSP 行为<code>&lt;jsp:include/&gt;</code>和 JSP 指令<code>&lt;%include&gt;</code></strong></p>
 <p>import 标签的属性：</p>
 <ol>
 <li><strong>url【指定要包含的路径，Internet 所有的 url 都可以】</strong></li>
@@ -1492,11 +1492,11 @@
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-34dfa15cdebcfbdb.png" alt=""></p>
 <hr>
-<h2 id="c-param"><a href="#c-param" class="headerlink" title="c:param"></a><code>c:param</code></h2><ul>
+<h3 id="c-param"><a href="#c-param" class="headerlink" title="c:param"></a><code>c:param</code></h3><ul>
 <li>在 JSP 页面进行 URL 的相关操作时，<strong>经常要在 URL 地址后面附加一些参数。</strong></li>
 </ul>
 <hr>
-<h2 id="c-url"><a href="#c-url" class="headerlink" title="c:url"></a><code>c:url</code></h2><p>url 标签十分实用！在浏览器禁用 Cookie 的时候，我们之前学 Servlet 时解决办法是：response.encodeURL()。<strong>url 标签也可以实现这样的功能，再配合 param 标签使用，就十分实用了！</strong></p>
+<h3 id="c-url"><a href="#c-url" class="headerlink" title="c:url"></a><code>c:url</code></h3><p>url 标签十分实用！在浏览器禁用 Cookie 的时候，我们之前学 Servlet 时解决办法是：response.encodeURL()。<strong>url 标签也可以实现这样的功能，再配合 param 标签使用，就十分实用了！</strong></p>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-6f59946161c7dc5a.png" alt=""></p>
 <ul>
 <li>我们<strong>配合 param 标签来使用一下吧</strong>！</li>
@@ -1507,7 +1507,7 @@
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-0a45ae588c1a4e85.png" alt=""></p>
 <hr>
-<h2 id="c-redirect"><a href="#c-redirect" class="headerlink" title="c:redirect"></a><code>c:redirect</code></h2><p><strong>redirect 标签用于实现 Redirect 功能，当然了，此标签也能够配合 param 标签使用！</strong></p>
+<h3 id="c-redirect"><a href="#c-redirect" class="headerlink" title="c:redirect"></a><code>c:redirect</code></h3><p><strong>redirect 标签用于实现 Redirect 功能，当然了，此标签也能够配合 param 标签使用！</strong></p>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-6bc51adc26c7e2e1.png" alt=""></p>
 <ul>
 <li>简单使用一下，<strong>重定向到 2.jsp，带了一个参数</strong>：</li>
@@ -1518,15 +1518,15 @@
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-7f6a306d4f93fd33.png" alt=""></p>
 <hr>
-<h1 id="fmt-标签库"><a href="#fmt-标签库" class="headerlink" title="fmt 标签库"></a>fmt 标签库</h1><p><strong>fmt 标签库也叫做国际化标签库</strong>。这里就不详细说明了，等我讲到 Web 国际化的时候才讲吧！</p>
-<h1 id="fn-方法库"><a href="#fn-方法库" class="headerlink" title="fn 方法库"></a>fn 方法库</h1><p><strong>fn 方法库也叫做 EL 函数库、fn 标签库。这个在讲解 EL 表达式的时候有详细的说明，可转移到我 EL 表达式的博文中</strong>！</p>
+<h2 id="fmt-标签库"><a href="#fmt-标签库" class="headerlink" title="fmt 标签库"></a>fmt 标签库</h2><p><strong>fmt 标签库也叫做国际化标签库</strong>。这里就不详细说明了，等我讲到 Web 国际化的时候才讲吧！</p>
+<h2 id="fn-方法库"><a href="#fn-方法库" class="headerlink" title="fn 方法库"></a>fn 方法库</h2><p><strong>fn 方法库也叫做 EL 函数库、fn 标签库。这个在讲解 EL 表达式的时候有详细的说明，可转移到我 EL 表达式的博文中</strong>！</p>
 <hr>
-<h1 id="JSP第六篇【自定义标签之传统标签】"><a href="#JSP第六篇【自定义标签之传统标签】" class="headerlink" title="JSP第六篇【自定义标签之传统标签】"></a>JSP第六篇【自定义标签之传统标签】</h1><h1 id="为什么要使用自定义标签？"><a href="#为什么要使用自定义标签？" class="headerlink" title="为什么要使用自定义标签？"></a>为什么要使用自定义标签？</h1><p><strong>JSTL 标签库只提供了简单的输出等功能，没有实现任何的 HTML 代码封装，并且某些复杂类型转换，或者逻辑处理的时候，JSTL 标签库完成不了，需要自定义标签!</strong></p>
-<h1 id="编写自定义标签的步骤："><a href="#编写自定义标签的步骤：" class="headerlink" title="编写自定义标签的步骤："></a>编写自定义标签的步骤：</h1><ol>
+<h1 id="JSP第六篇【自定义标签之传统标签】"><a href="#JSP第六篇【自定义标签之传统标签】" class="headerlink" title="JSP第六篇【自定义标签之传统标签】"></a>JSP第六篇【自定义标签之传统标签】</h1><h2 id="为什么要使用自定义标签？"><a href="#为什么要使用自定义标签？" class="headerlink" title="为什么要使用自定义标签？"></a>为什么要使用自定义标签？</h2><p><strong>JSTL 标签库只提供了简单的输出等功能，没有实现任何的 HTML 代码封装，并且某些复杂类型转换，或者逻辑处理的时候，JSTL 标签库完成不了，需要自定义标签!</strong></p>
+<h2 id="编写自定义标签的步骤："><a href="#编写自定义标签的步骤：" class="headerlink" title="编写自定义标签的步骤："></a>编写自定义标签的步骤：</h2><ol>
 <li><strong>编写一个实现 Tag 接口的 Java 类【标签处理器类】</strong></li>
 <li><strong>在 WEB-INF 目录下创建 tld(Tag Library Descriptor) 文件，在 tld 文件中对标签处理类（实现 Tag 接口的 Java 类）进行描述</strong></li>
 </ol>
-<h1 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h1><ul>
+<h2 id="快速入门"><a href="#快速入门" class="headerlink" title="快速入门"></a>快速入门</h2><ul>
 <li><p>目标：<strong>使用标签输出客户机的 IP 地址</strong>！</p>
 </li>
 <li><p>按照步骤来：<strong>首先编写一个实现 Tag 接口的 Java 类</strong></p>
@@ -1555,7 +1555,7 @@
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-14f46763cd2a4da4.png" alt=""></p>
 <hr>
-<h2 id="标签处理类详细说明"><a href="#标签处理类详细说明" class="headerlink" title="标签处理类详细说明"></a>标签处理类详细说明</h2><p><strong>看完上面的程序，大部分人都是懵逼的。因为还不知道它具体是怎么用的，调用顺序是什么</strong>。</p>
+<h3 id="标签处理类详细说明"><a href="#标签处理类详细说明" class="headerlink" title="标签处理类详细说明"></a>标签处理类详细说明</h3><p><strong>看完上面的程序，大部分人都是懵逼的。因为还不知道它具体是怎么用的，调用顺序是什么</strong>。</p>
 <ul>
 <li><strong>首先我们来看一下 Tag 接口的源码</strong>！</li>
 </ul>
@@ -1602,7 +1602,7 @@
 <li><strong>控制 JSP 页面内容重复执行和修改 JSP 页面内容输出后面会有！</strong></li>
 </ul>
 <hr>
-<h2 id="tld-文件详细说明"><a href="#tld-文件详细说明" class="headerlink" title="tld 文件详细说明"></a>tld 文件详细说明</h2><p><img src="https://upload-images.jianshu.io/upload_images/5291509-035d6f74091c7806" alt=""> <img src="https://upload-images.jianshu.io/upload_images/5291509-b2a2a8bdf67e0d0d" alt=""></p>
+<h3 id="tld-文件详细说明"><a href="#tld-文件详细说明" class="headerlink" title="tld 文件详细说明"></a>tld 文件详细说明</h3><p><img src="https://upload-images.jianshu.io/upload_images/5291509-035d6f74091c7806" alt=""> <img src="https://upload-images.jianshu.io/upload_images/5291509-b2a2a8bdf67e0d0d" alt=""></p>
 <ul>
 <li>首先我们来<strong>看一下 tld 文件当前用到的内容吧</strong>！</li>
 </ul>
@@ -1618,7 +1618,7 @@
 </li>
 </ul>
 <hr>
-<h1 id="TagSupport-类"><a href="#TagSupport-类" class="headerlink" title="TagSupport 类"></a>TagSupport 类</h1><p><strong>大部分时候我们都不需要实现 Tag 接口来编写自定义标签，TagSupport 是 Tag 的一个模板类，实现了 pageContext，parent 的 getter、setter 方法以及一些其他的功能。我们要做的就是重写 doStartTag() 和 doEndTag() 方法</strong></p>
+<h2 id="TagSupport-类"><a href="#TagSupport-类" class="headerlink" title="TagSupport 类"></a>TagSupport 类</h2><p><strong>大部分时候我们都不需要实现 Tag 接口来编写自定义标签，TagSupport 是 Tag 的一个模板类，实现了 pageContext，parent 的 getter、setter 方法以及一些其他的功能。我们要做的就是重写 doStartTag() 和 doEndTag() 方法</strong></p>
 <ul>
 <li><p>下面我们就来简单使用一下吧：</p>
 </li>
@@ -1634,7 +1634,7 @@
 <li>效果：</li>
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-d1ee4f89c07cfb77.png" alt=""></p>
-<h2 id="带属性的标签"><a href="#带属性的标签" class="headerlink" title="带属性的标签"></a>带属性的标签</h2><p><strong>上面我们编写的自定义标签都没有附带属性的，我们在使用 core 标签库的时候，标签一般都带有属性</strong>。</p>
+<h3 id="带属性的标签"><a href="#带属性的标签" class="headerlink" title="带属性的标签"></a>带属性的标签</h3><p><strong>上面我们编写的自定义标签都没有附带属性的，我们在使用 core 标签库的时候，标签一般都带有属性</strong>。</p>
 <p>其实 <strong>JSTL 标签库的原理就是自定义标签，把自定义标签搞明白了，对 JSTL 标签库的使用就有更好的理解了</strong>！</p>
 <ul>
 <li><p><strong>想要自定义标签带有属性也非常简单，只要在标签处理器类上加一个成员变量和 setter、getter()，再在 tld 文件中描述下该属性即可！它的原理是这样的：当标签使用到属性的时候，引擎就会调用它的 setter() 方法</strong></p>
@@ -1654,11 +1654,11 @@
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-6dbc1f38dd6dc91b.png" alt=""> <img src="https://upload-images.jianshu.io/upload_images/5291509-7d717234ebdb22b6.png" alt=""></p>
 <hr>
-<h1 id="标签的继承关系"><a href="#标签的继承关系" class="headerlink" title="标签的继承关系"></a>标签的继承关系</h1><ul>
+<h2 id="标签的继承关系"><a href="#标签的继承关系" class="headerlink" title="标签的继承关系"></a>标签的继承关系</h2><ul>
 <li><strong>在深入讲解之前，我们先来看一下各种 Tag 接口、类之间的关系，这样学习下去才不会晕</strong>！</li>
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-1263d39ee6e9f420.png" alt=""></p>
-<h2 id="IterationTag-说明"><a href="#IterationTag-说明" class="headerlink" title="IterationTag 说明"></a>IterationTag 说明</h2><ul>
+<h3 id="IterationTag-说明"><a href="#IterationTag-说明" class="headerlink" title="IterationTag 说明"></a>IterationTag 说明</h3><ul>
 <li><strong>我们已经使用过了 Tag 接口和 TagSupport 类了</strong>。接下来我们看一下 IterationTag 是什么玩意。</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public interface IterationTag extends Tag &#123;</span><br><span class="line">    int EVAL_BODY_AGAIN = 2;</span><br><span class="line"></span><br><span class="line">    int doAfterBody() throws JspException;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -1685,7 +1685,7 @@
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-f77a28b33bbf91b9.png" alt=""></p>
 <hr>
-<h2 id="BodyTag-说明"><a href="#BodyTag-说明" class="headerlink" title="BodyTag 说明"></a>BodyTag 说明</h2><p><strong>前面我们已经使用到了带标签体的自定义标签了，前面的都是只能直接输出而得不到标签体的内容，既然得不到标签体的内容，就更别说修改标签体了</strong>！</p>
+<h3 id="BodyTag-说明"><a href="#BodyTag-说明" class="headerlink" title="BodyTag 说明"></a>BodyTag 说明</h3><p><strong>前面我们已经使用到了带标签体的自定义标签了，前面的都是只能直接输出而得不到标签体的内容，既然得不到标签体的内容，就更别说修改标签体了</strong>！</p>
 <ul>
 <li>此时，我们就需要 BodyTag 接口的支持了！<strong>它专门用来处理带标签体的标签</strong>，下面我们来<strong>看一下 BodyTag 的源码</strong>！</li>
 </ul>
@@ -1702,7 +1702,7 @@
 <li><strong>再看回上面的关系图，BodyTag 实现了 IterationTag 和 Tag 接口，如果直接实现 BodyTag 接口做开发，要实现的方法就太多了。一般我们使用继承 BodyTag 的 BodyTagSupport 来做开发</strong></li>
 </ul>
 <hr>
-<h2 id="BodyTagSupport-说明"><a href="#BodyTagSupport-说明" class="headerlink" title="BodyTagSupport 说明"></a>BodyTagSupport 说明</h2><ul>
+<h3 id="BodyTagSupport-说明"><a href="#BodyTagSupport-说明" class="headerlink" title="BodyTagSupport 说明"></a>BodyTagSupport 说明</h3><ul>
 <li>首先来看一下源代码吧：</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">public class BodyTagSupport extends TagSupport implements BodyTag &#123;</span><br><span class="line">    protected BodyContent bodyContent;</span><br><span class="line"></span><br><span class="line">    public BodyTagSupport() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int doStartTag() throws JspException &#123;</span><br><span class="line">        return 2;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int doEndTag() throws JspException &#123;</span><br><span class="line">        return super.doEndTag();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setBodyContent(BodyContent b) &#123;</span><br><span class="line">        this.bodyContent = b;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void doInitBody() throws JspException &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int doAfterBody() throws JspException &#123;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void release() &#123;</span><br><span class="line">        this.bodyContent = null;</span><br><span class="line">        super.release();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public BodyContent getBodyContent() &#123;</span><br><span class="line">        return this.bodyContent;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public JspWriter getPreviousOut() &#123;</span><br><span class="line">        return this.bodyContent.getEnclosingWriter();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -1821,6 +1821,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2018/03/29/2018-03-29-1/" rel="prev" title="JSP面试总结">
+                JSP面试总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -1915,7 +1919,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">97</span>
+                  <span class="site-state-item-count">99</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2027,7 +2031,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JSP-第一篇【JSP-介绍、工作原理、生命周期、语法、指令、行为】"><span class="nav-text">JSP 第一篇【JSP 介绍、工作原理、生命周期、语法、指令、行为】</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是-JSP"><span class="nav-text">什么是 JSP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么需要-JSP"><span class="nav-text">为什么需要 JSP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#简单使用一下-JSP"><span class="nav-text">简单使用一下 JSP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JSP-的工作原理"><span class="nav-text">JSP 的工作原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JSP-生命周期"><span class="nav-text">JSP 生命周期</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JSP-的语法"><span class="nav-text">JSP 的语法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JSP-脚本"><span class="nav-text">JSP 脚本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSP-注释"><span class="nav-text">JSP 注释</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSP-指令"><span class="nav-text">JSP 指令</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#page-指令"><span class="nav-text">page 指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#include-指令"><span class="nav-text">include 指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#taglib-指令"><span class="nav-text">taglib 指令</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSP-行为"><span class="nav-text">JSP 行为</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#include-行为"><span class="nav-text">include 行为</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#param-行为"><span class="nav-text">param 行为</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#forward-行为"><span class="nav-text">forward 行为</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#directive-行为"><span class="nav-text">directive 行为</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#javaBean-行为"><span class="nav-text">javaBean 行为</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JSP-第二篇【内置对象的介绍、4-种属性范围、应用场景】"><span class="nav-text">JSP 第二篇【内置对象的介绍、4 种属性范围、应用场景】</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是-JSP-内置对象"><span class="nav-text">什么是 JSP 内置对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#out-对象"><span class="nav-text">out 对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#request"><span class="nav-text">request</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#response"><span class="nav-text">response</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#config"><span class="nav-text">config</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#session"><span class="nav-text">session</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#application"><span class="nav-text">application</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#page"><span class="nav-text">page</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#exception"><span class="nav-text">exception</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pageContext"><span class="nav-text">pageContext</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#pageContext获取8个内置对象"><span class="nav-text">pageContext获取8个内置对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pageContext作为域对象"><span class="nav-text">pageContext作为域对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引入和跳转"><span class="nav-text">引入和跳转</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4种属性范围"><span class="nav-text">4种属性范围</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#应用场景"><span class="nav-text">应用场景</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JSP-第三篇【JavaBean-的介绍、JSP-的行为-–JavaBean】"><span class="nav-text">JSP 第三篇【JavaBean 的介绍、JSP 的行为 –JavaBean】</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是-javaBean"><span class="nav-text">什么是 javaBean</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么需要使用-Javabean"><span class="nav-text">为什么需要使用 Javabean</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JSP-行为-–JavaBean"><span class="nav-text">JSP 行为 –JavaBean</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#jsp-useBean"><span class="nav-text">jsp:useBean</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jsp-setProperty"><span class="nav-text">jsp:setProperty</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jsp-getProperty"><span class="nav-text">jsp:getProperty</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JSP-第四篇【EL-表达式介绍、获取各类数据、11-个内置对象、执行运算、回显数据、自定义函数、fn-方法库】"><span class="nav-text">JSP 第四篇【EL 表达式介绍、获取各类数据、11 个内置对象、执行运算、回显数据、自定义函数、fn 方法库】</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是-EL-表达式？"><span class="nav-text">什么是 EL 表达式？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么要使用-EL-表达式？"><span class="nav-text">为什么要使用 EL 表达式？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#EL-表达式的作用"><span class="nav-text">EL 表达式的作用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#获取各类数据"><span class="nav-text">获取各类数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取域对象的数据"><span class="nav-text">获取域对象的数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取-JavaBean-的属性"><span class="nav-text">获取 JavaBean 的属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取集合的数据"><span class="nav-text">获取集合的数据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EL-运算符"><span class="nav-text">EL 运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EL-表达式-11-个内置对象"><span class="nav-text">EL 表达式 11 个内置对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EL-表达式回显数据"><span class="nav-text">EL 表达式回显数据</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#EL-自定义函数"><span class="nav-text">EL 自定义函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#EL-函数库（fn-方法库）"><span class="nav-text">EL 函数库（fn 方法库）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JSP-第五篇【JSTL-的介绍、core-标签库、fn-方法库、fmt-标签库】"><span class="nav-text">JSP 第五篇【JSTL 的介绍、core 标签库、fn 方法库、fmt 标签库】</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是-JSTL"><span class="nav-text">什么是 JSTL</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么要使用-JSTL"><span class="nav-text">为什么要使用 JSTL</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用-JSTL-标签库步骤："><span class="nav-text">使用 JSTL 标签库步骤：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#core-标签库"><span class="nav-text">core 标签库</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#c-out"><span class="nav-text">c:out</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#c-set"><span class="nav-text">c:set</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-var-属性"><span class="nav-text">使用 var 属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-target-属性"><span class="nav-text">使用 target 属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#c-remove"><span class="nav-text">c:remove</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#c-catch"><span class="nav-text">c:catch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#c-if"><span class="nav-text">c:if</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#c-choose"><span class="nav-text">c:choose</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#c-forEach"><span class="nav-text">c:forEach</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#c-forTokens"><span class="nav-text">c:forTokens</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#c-import"><span class="nav-text">c:import</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#c-param"><span class="nav-text">c:param</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#c-url"><span class="nav-text">c:url</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#c-redirect"><span class="nav-text">c:redirect</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#fmt-标签库"><span class="nav-text">fmt 标签库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#fn-方法库"><span class="nav-text">fn 方法库</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JSP第六篇【自定义标签之传统标签】"><span class="nav-text">JSP第六篇【自定义标签之传统标签】</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么要使用自定义标签？"><span class="nav-text">为什么要使用自定义标签？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#编写自定义标签的步骤："><span class="nav-text">编写自定义标签的步骤：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#快速入门"><span class="nav-text">快速入门</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#标签处理类详细说明"><span class="nav-text">标签处理类详细说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tld-文件详细说明"><span class="nav-text">tld 文件详细说明</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TagSupport-类"><span class="nav-text">TagSupport 类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#带属性的标签"><span class="nav-text">带属性的标签</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#标签的继承关系"><span class="nav-text">标签的继承关系</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#IterationTag-说明"><span class="nav-text">IterationTag 说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BodyTag-说明"><span class="nav-text">BodyTag 说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#BodyTagSupport-说明"><span class="nav-text">BodyTagSupport 说明</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JSP-第一篇【JSP-介绍、工作原理、生命周期、语法、指令、行为】"><span class="nav-text">JSP 第一篇【JSP 介绍、工作原理、生命周期、语法、指令、行为】</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-JSP"><span class="nav-text">什么是 JSP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么需要-JSP"><span class="nav-text">为什么需要 JSP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单使用一下-JSP"><span class="nav-text">简单使用一下 JSP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSP-的工作原理"><span class="nav-text">JSP 的工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSP-生命周期"><span class="nav-text">JSP 生命周期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSP-的语法"><span class="nav-text">JSP 的语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#JSP-脚本"><span class="nav-text">JSP 脚本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSP-注释"><span class="nav-text">JSP 注释</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSP-指令"><span class="nav-text">JSP 指令</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#page-指令"><span class="nav-text">page 指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#include-指令"><span class="nav-text">include 指令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#taglib-指令"><span class="nav-text">taglib 指令</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JSP-行为"><span class="nav-text">JSP 行为</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#include-行为"><span class="nav-text">include 行为</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#param-行为"><span class="nav-text">param 行为</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#forward-行为"><span class="nav-text">forward 行为</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#directive-行为"><span class="nav-text">directive 行为</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#javaBean-行为"><span class="nav-text">javaBean 行为</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JSP-第二篇【内置对象的介绍、4-种属性范围、应用场景】"><span class="nav-text">JSP 第二篇【内置对象的介绍、4 种属性范围、应用场景】</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-JSP-内置对象"><span class="nav-text">什么是 JSP 内置对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#out-对象"><span class="nav-text">out 对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#request"><span class="nav-text">request</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#response"><span class="nav-text">response</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#config"><span class="nav-text">config</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#session"><span class="nav-text">session</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#application"><span class="nav-text">application</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#page"><span class="nav-text">page</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#exception"><span class="nav-text">exception</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#pageContext"><span class="nav-text">pageContext</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#pageContext获取8个内置对象"><span class="nav-text">pageContext获取8个内置对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#pageContext作为域对象"><span class="nav-text">pageContext作为域对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引入和跳转"><span class="nav-text">引入和跳转</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4种属性范围"><span class="nav-text">4种属性范围</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#应用场景"><span class="nav-text">应用场景</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JSP-第三篇【JavaBean-的介绍、JSP-的行为-–JavaBean】"><span class="nav-text">JSP 第三篇【JavaBean 的介绍、JSP 的行为 –JavaBean】</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-javaBean"><span class="nav-text">什么是 javaBean</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么需要使用-Javabean"><span class="nav-text">为什么需要使用 Javabean</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSP-行为-–JavaBean"><span class="nav-text">JSP 行为 –JavaBean</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#jsp-useBean"><span class="nav-text">jsp:useBean</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jsp-setProperty"><span class="nav-text">jsp:setProperty</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jsp-getProperty"><span class="nav-text">jsp:getProperty</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JSP-第四篇【EL-表达式介绍、获取各类数据、11-个内置对象、执行运算、回显数据、自定义函数、fn-方法库】"><span class="nav-text">JSP 第四篇【EL 表达式介绍、获取各类数据、11 个内置对象、执行运算、回显数据、自定义函数、fn 方法库】</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-EL-表达式？"><span class="nav-text">什么是 EL 表达式？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要使用-EL-表达式？"><span class="nav-text">为什么要使用 EL 表达式？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EL-表达式的作用"><span class="nav-text">EL 表达式的作用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获取各类数据"><span class="nav-text">获取各类数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#获取域对象的数据"><span class="nav-text">获取域对象的数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取-JavaBean-的属性"><span class="nav-text">获取 JavaBean 的属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取集合的数据"><span class="nav-text">获取集合的数据</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EL-运算符"><span class="nav-text">EL 运算符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EL-表达式-11-个内置对象"><span class="nav-text">EL 表达式 11 个内置对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EL-表达式回显数据"><span class="nav-text">EL 表达式回显数据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EL-自定义函数"><span class="nav-text">EL 自定义函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EL-函数库（fn-方法库）"><span class="nav-text">EL 函数库（fn 方法库）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JSP-第五篇【JSTL-的介绍、core-标签库、fn-方法库、fmt-标签库】"><span class="nav-text">JSP 第五篇【JSTL 的介绍、core 标签库、fn 方法库、fmt 标签库】</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-JSTL"><span class="nav-text">什么是 JSTL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要使用-JSTL"><span class="nav-text">为什么要使用 JSTL</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-JSTL-标签库步骤："><span class="nav-text">使用 JSTL 标签库步骤：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#core-标签库"><span class="nav-text">core 标签库</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#c-out"><span class="nav-text">c:out</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c-set"><span class="nav-text">c:set</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用-var-属性"><span class="nav-text">使用 var 属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用-target-属性"><span class="nav-text">使用 target 属性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c-remove"><span class="nav-text">c:remove</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c-catch"><span class="nav-text">c:catch</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c-if"><span class="nav-text">c:if</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c-choose"><span class="nav-text">c:choose</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c-forEach"><span class="nav-text">c:forEach</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c-forTokens"><span class="nav-text">c:forTokens</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c-import"><span class="nav-text">c:import</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c-param"><span class="nav-text">c:param</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c-url"><span class="nav-text">c:url</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c-redirect"><span class="nav-text">c:redirect</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fmt-标签库"><span class="nav-text">fmt 标签库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#fn-方法库"><span class="nav-text">fn 方法库</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JSP第六篇【自定义标签之传统标签】"><span class="nav-text">JSP第六篇【自定义标签之传统标签】</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要使用自定义标签？"><span class="nav-text">为什么要使用自定义标签？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#编写自定义标签的步骤："><span class="nav-text">编写自定义标签的步骤：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#快速入门"><span class="nav-text">快速入门</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#标签处理类详细说明"><span class="nav-text">标签处理类详细说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tld-文件详细说明"><span class="nav-text">tld 文件详细说明</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TagSupport-类"><span class="nav-text">TagSupport 类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#带属性的标签"><span class="nav-text">带属性的标签</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标签的继承关系"><span class="nav-text">标签的继承关系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#IterationTag-说明"><span class="nav-text">IterationTag 说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BodyTag-说明"><span class="nav-text">BodyTag 说明</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BodyTagSupport-说明"><span class="nav-text">BodyTagSupport 说明</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -2062,7 +2066,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">494.7k</span>
+    <span title="Site words total count">499.1k</span>
   
 </div>
 

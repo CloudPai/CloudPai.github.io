@@ -225,7 +225,7 @@
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-ea394f7a0891631f.png">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-6346d62b1df5d591.gif">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-19a3efecf90f5541.gif">
-<meta property="og:updated_time" content="2018-03-28T13:55:49.805Z">
+<meta property="og:updated_time" content="2018-03-29T14:11:47.049Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Servlet学习">
 <meta name="twitter:description" content="Servlet第一篇【介绍Servlet、HTTP协议、WEB目录结构、编写入门Servlet程序、Servlet生命周期】什么是 Serlvet？Servlet 其实就是一个遵循 Servlet 开发的 java 类。Serlvet 是由服务器调用的，运行在服务器端。 为什么要用到 Serlvet？我们编写 java 程序想要在网上实现 聊天、发帖、这样一些的交互功能，普通的 java 技术是">
@@ -471,8 +471,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-03-28T21:55:49+08:00">
-                2018-03-28
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-29T22:11:47+08:00">
+                2018-03-29
               </time>
             
           </span>
@@ -547,31 +547,31 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="Servlet第一篇【介绍Servlet、HTTP协议、WEB目录结构、编写入门Servlet程序、Servlet生命周期】"><a href="#Servlet第一篇【介绍Servlet、HTTP协议、WEB目录结构、编写入门Servlet程序、Servlet生命周期】" class="headerlink" title="Servlet第一篇【介绍Servlet、HTTP协议、WEB目录结构、编写入门Servlet程序、Servlet生命周期】"></a>Servlet第一篇【介绍Servlet、HTTP协议、WEB目录结构、编写入门Servlet程序、Servlet生命周期】</h1><h1 id="什么是-Serlvet？"><a href="#什么是-Serlvet？" class="headerlink" title="什么是 Serlvet？"></a>什么是 Serlvet？</h1><p>Servlet 其实就是一个<strong>遵循 Servlet 开发的 java 类</strong>。Serlvet 是<strong>由服务器调用的</strong>，<strong>运行在服务器端</strong>。</p>
-<h1 id="为什么要用到-Serlvet？"><a href="#为什么要用到-Serlvet？" class="headerlink" title="为什么要用到 Serlvet？"></a>为什么要用到 Serlvet？</h1><p>我们编写 java 程序想要在网上实现 聊天、发帖、这样一些的交互功能，<strong>普通的 java 技术是非常难完成的</strong>。sun 公司就提供了 Serlvet 这种技术供我们使用。</p>
-<h1 id="HTTP-协议"><a href="#HTTP-协议" class="headerlink" title="HTTP 协议"></a>HTTP 协议</h1><h2 id="什么是-HTPP-协议"><a href="#什么是-HTPP-协议" class="headerlink" title="什么是 HTPP 协议"></a>什么是 HTPP 协议</h2><blockquote>
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="Servlet第一篇【介绍Servlet、HTTP协议、WEB目录结构、编写入门Servlet程序、Servlet生命周期】"><a href="#Servlet第一篇【介绍Servlet、HTTP协议、WEB目录结构、编写入门Servlet程序、Servlet生命周期】" class="headerlink" title="Servlet第一篇【介绍Servlet、HTTP协议、WEB目录结构、编写入门Servlet程序、Servlet生命周期】"></a>Servlet第一篇【介绍Servlet、HTTP协议、WEB目录结构、编写入门Servlet程序、Servlet生命周期】</h1><h2 id="什么是-Serlvet？"><a href="#什么是-Serlvet？" class="headerlink" title="什么是 Serlvet？"></a>什么是 Serlvet？</h2><p>Servlet 其实就是一个<strong>遵循 Servlet 开发的 java 类</strong>。Serlvet 是<strong>由服务器调用的</strong>，<strong>运行在服务器端</strong>。</p>
+<h2 id="为什么要用到-Serlvet？"><a href="#为什么要用到-Serlvet？" class="headerlink" title="为什么要用到 Serlvet？"></a>为什么要用到 Serlvet？</h2><p>我们编写 java 程序想要在网上实现 聊天、发帖、这样一些的交互功能，<strong>普通的 java 技术是非常难完成的</strong>。sun 公司就提供了 Serlvet 这种技术供我们使用。</p>
+<h2 id="HTTP-协议"><a href="#HTTP-协议" class="headerlink" title="HTTP 协议"></a>HTTP 协议</h2><h3 id="什么是-HTPP-协议"><a href="#什么是-HTPP-协议" class="headerlink" title="什么是 HTPP 协议"></a>什么是 HTPP 协议</h3><blockquote>
 <p>超文本传输协议（HTTP，HyperText Transfer Protocol) 是互联网上应用最为广泛的一种网络协议。所有的 WWW 文件都必须遵守这个标准。它是 TCP/IP 协议的一个<strong>应用层协议</strong></p>
 </blockquote>
 <p>简单来说，<strong>HTTP 协议就是客户端和服务器交互的一种通迅的格式</strong>。</p>
 <p>例子: 在浏览器点击一个链接，浏览器就为我打开这个链接的网页。</p>
 <p>原理：当在浏览器中点击这个链接的时候，<strong>浏览器会向服务器发送一段文本</strong>，<strong>告诉服务器请求打开的是哪一个网页。服务器收到请求后，就返回一段文本给浏览器，浏览器会将该文本解析，然后显示出来。</strong>这段文本就是遵循 HTTP 协议规范的。</p>
-<h2 id="HTTP1-0-和-HTTP1-1-的区别"><a href="#HTTP1-0-和-HTTP1-1-的区别" class="headerlink" title="HTTP1.0 和 HTTP1.1 的区别"></a>HTTP1.0 和 HTTP1.1 的区别</h2><p>HTTP1.0 协议中，客户端与 web 服务器建立连接后，只能获得一个 web 资源【短连接，获取资源后就断开连接】</p>
+<h3 id="HTTP1-0-和-HTTP1-1-的区别"><a href="#HTTP1-0-和-HTTP1-1-的区别" class="headerlink" title="HTTP1.0 和 HTTP1.1 的区别"></a>HTTP1.0 和 HTTP1.1 的区别</h3><p>HTTP1.0 协议中，客户端与 web 服务器建立连接后，只能获得一个 web 资源【短连接，获取资源后就断开连接】</p>
 <p>HTTP1.1 协议，允许客户端与 web 服务器建立连接后，在一个连接上获取多个 web 资源【保持连接】</p>
-<h2 id="HTTP-请求"><a href="#HTTP-请求" class="headerlink" title="HTTP 请求"></a>HTTP 请求</h2><p><strong>浏览器向服务器请求某个 web 资源时，称之为浏览器向服务器发送了一个 http 请求。</strong></p>
+<h3 id="HTTP-请求"><a href="#HTTP-请求" class="headerlink" title="HTTP 请求"></a>HTTP 请求</h3><p><strong>浏览器向服务器请求某个 web 资源时，称之为浏览器向服务器发送了一个 http 请求。</strong></p>
 <p>一个完整 http 请求应该包含三个部分：</p>
 <ol>
 <li>请求行【描述客户端的<strong>请求方式</strong>、<strong>请求的资源名称</strong>，以及使用的 <strong>HTTP 协议版本号</strong>】</li>
 <li>多个消息头【描述客户端请求哪台主机，以及<strong>客户端的一些环境信息</strong>等】</li>
 <li>一个空行</li>
 </ol>
-<h3 id="请求行"><a href="#请求行" class="headerlink" title="请求行"></a>请求行</h3><p>请求行：GET /java.html HTTP/1.1</p>
+<h4 id="请求行"><a href="#请求行" class="headerlink" title="请求行"></a>请求行</h4><p>请求行：GET /java.html HTTP/1.1</p>
 <p><strong>请求行中的 GET 称之为请求方式</strong>，请求方式有：POST,GET,HEAD,OPTIONS,DELETE,TRACE,PUT。</p>
 <p><strong>常用的有：POST,GET</strong></p>
 <p>一般来说，当我们<strong>点击超链接，通过地址栏访问都是 get 请求方式</strong>。通过<strong>表单提交的数据一般是 post 方式</strong>。</p>
 <p>可以简单理解 <strong>GET 方式用来查询数据</strong>,<strong>POST 方式用来提交数据</strong>，<strong>get 的提交速度比 post 快</strong></p>
 <p>GET 方式：在 URL 地址后<strong>附带的参数是有限制的</strong>，其<strong>数据容量通常不能超过 1K</strong>。</p>
 <p>POST 方式：可以在<strong>请求的实体内容中向服务器发送数据</strong>，<strong>传送的数据量无限制</strong>。</p>
-<h3 id="请求头"><a href="#请求头" class="headerlink" title="请求头"></a>请求头</h3><ul>
+<h4 id="请求头"><a href="#请求头" class="headerlink" title="请求头"></a>请求头</h4><ul>
 <li>Accept: text/html,image/* 【浏览器告诉服务器，它支持的数据类型】</li>
 <li>Accept-Charset: ISO-8859-1 【浏览器告诉服务器，它支持哪种<strong>字符集</strong>】</li>
 <li>Accept-Encoding: gzip,compress 【浏览器告诉服务器，它支持的<strong>压缩格式</strong>】</li>
@@ -585,7 +585,7 @@
 <li>Date: Tue, 11 Jul 2000 18:23:51 GMT【浏览器告诉服务器，请求的时间】</li>
 </ul>
 <hr>
-<h2 id="HTTP-响应"><a href="#HTTP-响应" class="headerlink" title="HTTP 响应"></a>HTTP 响应</h2><p>一个 HTTP 响应代表着<strong>服务器向浏览器回送数据</strong></p>
+<h3 id="HTTP-响应"><a href="#HTTP-响应" class="headerlink" title="HTTP 响应"></a>HTTP 响应</h3><p>一个 HTTP 响应代表着<strong>服务器向浏览器回送数据</strong></p>
 <p>一个完整的 HTTP 响应应该包含四个部分:</p>
 <ol>
 <li>一个状态行【用于描述<strong>服务器对请求的处理结果。</strong>】</li>
@@ -593,11 +593,11 @@
 <li>一个空行</li>
 <li>实体内容【<strong>服务器向客户端回送的数据</strong>】</li>
 </ol>
-<h3 id="状态行"><a href="#状态行" class="headerlink" title="状态行"></a>状态行</h3><p>格式： HTTP 版本号　状态码　原因叙述</p>
+<h4 id="状态行"><a href="#状态行" class="headerlink" title="状态行"></a>状态行</h4><p>格式： HTTP 版本号　状态码　原因叙述</p>
 <p>状态行：HTTP/1.1 200 OK</p>
 <p>状态码用于表示<strong>服务器对请求的处理结果</strong>，它是一个<strong>三位的十进制数</strong>。响应状态码分为 5 类</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-896f978f9f50d802.png" alt=""></p>
-<h3 id="响应头"><a href="#响应头" class="headerlink" title="响应头"></a>响应头</h3><ul>
+<h4 id="响应头"><a href="#响应头" class="headerlink" title="响应头"></a>响应头</h4><ul>
 <li>Location: <a href="https://link.jianshu.com?t=http%3A%2F%2Fwww.it315.org%2Findex.jsp" target="_blank" rel="noopener">http://www.it315.org/index.jsp</a> 【服务器告诉浏览器<strong>要跳转到哪个页面</strong>】</li>
 <li>Server:apache tomcat【服务器告诉浏览器，服务器的型号是什么】</li>
 <li>Content-Encoding: gzip 【服务器告诉浏览器<strong>数据压缩的格式</strong>】</li>
@@ -615,9 +615,9 @@
 <li>Connection: close/Keep-Alive 【服务器告诉浏览器连接方式】</li>
 <li>Date: Tue, 11 Jul 2000 18:23:51 GMT【服务器告诉浏览器回送数据的时间】</li>
 </ul>
-<h1 id="Servlet-的作用"><a href="#Servlet-的作用" class="headerlink" title="Servlet 的作用"></a>Servlet 的作用</h1><p>Servlet 带给我们最大的作用就是能够<strong>处理浏览器带来 HTTP 请求，并返回一个响应给浏览器，从而实现浏览器和服务器的交互</strong>。</p>
+<h2 id="Servlet-的作用"><a href="#Servlet-的作用" class="headerlink" title="Servlet 的作用"></a>Servlet 的作用</h2><p>Servlet 带给我们最大的作用就是能够<strong>处理浏览器带来 HTTP 请求，并返回一个响应给浏览器，从而实现浏览器和服务器的交互</strong>。</p>
 <hr>
-<h1 id="JAVAWEB-目录结构"><a href="#JAVAWEB-目录结构" class="headerlink" title="JAVAWEB 目录结构"></a>JAVAWEB 目录结构</h1><p><img src="https://upload-images.jianshu.io/upload_images/5291509-01ac23b210d5e6df.png" alt=""></p>
+<h2 id="JAVAWEB-目录结构"><a href="#JAVAWEB-目录结构" class="headerlink" title="JAVAWEB 目录结构"></a>JAVAWEB 目录结构</h2><p><img src="https://upload-images.jianshu.io/upload_images/5291509-01ac23b210d5e6df.png" alt=""></p>
 <p>以上图说明：</p>
 <ul>
 <li>bbs 目录代表一个 web 应用</li>
@@ -628,8 +628,8 @@
 <li>jar 文件放在 lib 目录下</li>
 </ul>
 <hr>
-<h1 id="实现-Servlet-接口编写-Servlet-程序"><a href="#实现-Servlet-接口编写-Servlet-程序" class="headerlink" title="实现 Servlet 接口编写 Servlet 程序"></a>实现 Servlet 接口编写 Servlet 程序</h1><p>程序我都是由 idea 下写，首先要在 idea 上配置 Tomcat，在我别的博文中有教程！</p>
-<h2 id="编写-Servlet-程序的步骤"><a href="#编写-Servlet-程序的步骤" class="headerlink" title="编写 Servlet 程序的步骤"></a>编写 Servlet 程序的步骤</h2><ul>
+<h2 id="实现-Servlet-接口编写-Servlet-程序"><a href="#实现-Servlet-接口编写-Servlet-程序" class="headerlink" title="实现 Servlet 接口编写 Servlet 程序"></a>实现 Servlet 接口编写 Servlet 程序</h2><p>程序我都是由 idea 下写，首先要在 idea 上配置 Tomcat，在我别的博文中有教程！</p>
+<h3 id="编写-Servlet-程序的步骤"><a href="#编写-Servlet-程序的步骤" class="headerlink" title="编写 Servlet 程序的步骤"></a>编写 Servlet 程序的步骤</h3><ul>
 <li>创建一个自定义类，<strong>实现 Serlvet 接口</strong></li>
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-c713202668573a02.png" alt=""></p>
@@ -653,7 +653,7 @@
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-35d0b4e2530d4d3e.png" alt=""></p>
 <hr>
-<h1 id="Serlvet-生命周期"><a href="#Serlvet-生命周期" class="headerlink" title="Serlvet 生命周期"></a>Serlvet 生命周期</h1><ul>
+<h2 id="Serlvet-生命周期"><a href="#Serlvet-生命周期" class="headerlink" title="Serlvet 生命周期"></a>Serlvet 生命周期</h2><ul>
 <li><p>下面我们看看 Servlet 的生命周期</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-653ff9242cc376b4.png" alt=""></p>
 </li>
@@ -672,7 +672,7 @@
 <li>当我们<strong>关闭 Tomcat 服务器</strong>的时候，<strong>destroy() 被调用了！</strong></li>
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-e7bf088691383d6d.png" alt=""></p>
-<h2 id="Servlet-生命周期可分为-5-个步骤"><a href="#Servlet-生命周期可分为-5-个步骤" class="headerlink" title="Servlet 生命周期可分为 5 个步骤"></a>Servlet 生命周期可分为 5 个步骤</h2><ol>
+<h3 id="Servlet-生命周期可分为-5-个步骤"><a href="#Servlet-生命周期可分为-5-个步骤" class="headerlink" title="Servlet 生命周期可分为 5 个步骤"></a>Servlet 生命周期可分为 5 个步骤</h3><ol>
 <li><strong>加载 Servlet</strong>。当 Tomcat 第一次访问 Servlet 的时候，<strong>Tomcat 会负责创建 Servlet 的实例</strong></li>
 <li><strong>初始化</strong>。当 Servlet 被实例化后，Tomcat 会<strong>调用 init() 方法初始化这个对象</strong></li>
 <li><strong>处理服务</strong>。当浏览器<strong>访问 Servlet</strong> 的时候，Servlet <strong>会调用 service() 方法处理请求</strong></li>
@@ -683,19 +683,19 @@
 <li>简单总结：<strong>只要访问 Servlet，service() 就会被调用。init() 只有第一次访问 Servlet 的时候才会被调用。destroy() 只有在 Tomcat 关闭的时候才会被调用。</strong></li>
 </ul>
 <hr>
-<h1 id="继承-HttpServlet-编写-Servlet-程序"><a href="#继承-HttpServlet-编写-Servlet-程序" class="headerlink" title="继承 HttpServlet 编写 Servlet 程序"></a>继承 HttpServlet 编写 Servlet 程序</h1><p>在上面我们实现 Servlet 接口，要实现 5 个方法。这样太麻烦了！而 <strong>HttpServlet 类已经实现了 Servlet 接口的所有方法</strong>，编写 Servlet 时，只需要<strong>继承 HttpServlet，重写你需要的方法即可</strong>，并且它在原有 Servlet 接口上<strong>添加了一些与 HTTP 协议处理方法</strong>，它<strong>比 Servlet 接口的功能更为强大</strong>。</p>
+<h2 id="继承-HttpServlet-编写-Servlet-程序"><a href="#继承-HttpServlet-编写-Servlet-程序" class="headerlink" title="继承 HttpServlet 编写 Servlet 程序"></a>继承 HttpServlet 编写 Servlet 程序</h2><p>在上面我们实现 Servlet 接口，要实现 5 个方法。这样太麻烦了！而 <strong>HttpServlet 类已经实现了 Servlet 接口的所有方法</strong>，编写 Servlet 时，只需要<strong>继承 HttpServlet，重写你需要的方法即可</strong>，并且它在原有 Servlet 接口上<strong>添加了一些与 HTTP 协议处理方法</strong>，它<strong>比 Servlet 接口的功能更为强大</strong>。</p>
 <ul>
 <li>一般我们开发的时候，都是<strong>重写 doGet() 和 doPost() 方法的</strong>。对于 idea 而言，创建 Servlet 的时候已经帮你重写好了</li>
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-36a4a7fdcf24f063.png" alt=""></p>
 <hr>
-<h1 id="Servlet-第二篇【Servlet-调用图、Servlet-细节、ServletConfig、ServletContext】"><a href="#Servlet-第二篇【Servlet-调用图、Servlet-细节、ServletConfig、ServletContext】" class="headerlink" title="Servlet 第二篇【Servlet 调用图、Servlet 细节、ServletConfig、ServletContext】"></a>Servlet 第二篇【Servlet 调用图、Servlet 细节、ServletConfig、ServletContext】</h1><h1 id="Servlet-的调用图"><a href="#Servlet-的调用图" class="headerlink" title="Servlet 的调用图"></a>Servlet 的调用图</h1><p>前面我们已经学过了 Servlet 的生命周期了，我们根据 Servlet 的生命周期画出 Servlet 的调用图加深理解</p>
+<h1 id="Servlet-第二篇【Servlet-调用图、Servlet-细节、ServletConfig、ServletContext】"><a href="#Servlet-第二篇【Servlet-调用图、Servlet-细节、ServletConfig、ServletContext】" class="headerlink" title="Servlet 第二篇【Servlet 调用图、Servlet 细节、ServletConfig、ServletContext】"></a>Servlet 第二篇【Servlet 调用图、Servlet 细节、ServletConfig、ServletContext】</h1><h2 id="Servlet-的调用图"><a href="#Servlet-的调用图" class="headerlink" title="Servlet 的调用图"></a>Servlet 的调用图</h2><p>前面我们已经学过了 Servlet 的生命周期了，我们根据 Servlet 的生命周期画出 Servlet 的调用图加深理解</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-cc91a5503313c836.png" alt=""></p>
-<h1 id="Servlet-的细节"><a href="#Servlet-的细节" class="headerlink" title="Servlet 的细节"></a>Servlet 的细节</h1><h2 id="一个已经注册的-Servlet-可以被多次映射"><a href="#一个已经注册的-Servlet-可以被多次映射" class="headerlink" title="一个已经注册的 Servlet 可以被多次映射"></a>一个已经注册的 Servlet 可以被多次映射</h2><p><strong>同一个 Servlet 可以被映射到多个 URL 上。</strong></p>
+<h2 id="Servlet-的细节"><a href="#Servlet-的细节" class="headerlink" title="Servlet 的细节"></a>Servlet 的细节</h2><h3 id="一个已经注册的-Servlet-可以被多次映射"><a href="#一个已经注册的-Servlet-可以被多次映射" class="headerlink" title="一个已经注册的 Servlet 可以被多次映射"></a>一个已经注册的 Servlet 可以被多次映射</h3><p><strong>同一个 Servlet 可以被映射到多个 URL 上。</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;servlet&gt;</span><br><span class="line">    &lt;servlet-name&gt;Demo1&lt;/servlet-name&gt;</span><br><span class="line">    &lt;servlet-class&gt;zhongfucheng.web.Demo1&lt;/servlet-class&gt;</span><br><span class="line">&lt;/servlet&gt;</span><br><span class="line">&lt;servlet-mapping&gt;</span><br><span class="line">    &lt;servlet-name&gt;Demo1&lt;/servlet-name&gt;</span><br><span class="line">    &lt;url-pattern&gt;/Demo1&lt;/url-pattern&gt;</span><br><span class="line">&lt;/servlet-mapping&gt;</span><br><span class="line">&lt;servlet-mapping&gt;</span><br><span class="line">    &lt;servlet-name&gt;Demo1&lt;/servlet-name&gt;</span><br><span class="line">    &lt;url-pattern&gt;/ouzicheng&lt;/url-pattern&gt;</span><br><span class="line">&lt;/servlet-mapping&gt;</span><br></pre></td></tr></table></figure>
 <p>无论我访问的是 <a href="https://link.jianshu.com?t=http%3A%2F%2Flocalhost%3A8080%2FDemo1" target="_blank" rel="noopener">http://localhost:8080/Demo1</a> 还是 <a href="https://link.jianshu.com?t=http%3A%2F%2Flocalhost%3A8080%2Fouzicheng" target="_blank" rel="noopener">http://localhost:8080/ouzicheng</a>。我访问的都是 Demo1。</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-aa81351d3dfaaefe.png" alt=""> <img src="https://upload-images.jianshu.io/upload_images/5291509-63e1e34d6641dcdb.png" alt=""></p>
-<h2 id="Servlet-映射的-URL-可以使用通配符"><a href="#Servlet-映射的-URL-可以使用通配符" class="headerlink" title="Servlet 映射的 URL 可以使用通配符"></a>Servlet 映射的 URL 可以使用通配符</h2><p>通配符有两种格式：</p>
+<h3 id="Servlet-映射的-URL-可以使用通配符"><a href="#Servlet-映射的-URL-可以使用通配符" class="headerlink" title="Servlet 映射的 URL 可以使用通配符"></a>Servlet 映射的 URL 可以使用通配符</h3><p>通配符有两种格式：</p>
 <ol>
 <li>*. 扩展名</li>
 <li>正斜杠（/）开头并以 “/*” 结尾。</li>
@@ -716,16 +716,16 @@
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"> &lt;servlet&gt;</span><br><span class="line">    &lt;servlet-name&gt;Demo1&lt;/servlet-name&gt;</span><br><span class="line">    &lt;servlet-class&gt;zhongfucheng.web.Demo1&lt;/servlet-class&gt;</span><br><span class="line">&lt;/servlet&gt;</span><br><span class="line">&lt;servlet-mapping&gt;</span><br><span class="line">    &lt;servlet-name&gt;Demo1&lt;/servlet-name&gt;</span><br><span class="line">    &lt;url-pattern&gt;*.jsp&lt;/url-pattern&gt;</span><br><span class="line">&lt;/servlet-mapping&gt;</span><br><span class="line">&lt;servlet-mapping&gt;</span><br><span class="line">    &lt;servlet-name&gt;Demo1&lt;/servlet-name&gt;</span><br><span class="line">    &lt;url-pattern&gt;*.net&lt;/url-pattern&gt;</span><br><span class="line">&lt;/servlet-mapping&gt;</span><br><span class="line">&lt;servlet-mapping&gt;</span><br><span class="line">    &lt;servlet-name&gt;Demo1&lt;/servlet-name&gt;</span><br><span class="line">    &lt;url-pattern&gt;*.asp&lt;/url-pattern&gt;</span><br><span class="line">&lt;/servlet-mapping&gt;</span><br><span class="line">&lt;servlet-mapping&gt;</span><br><span class="line">    &lt;servlet-name&gt;Demo1&lt;/servlet-name&gt;</span><br><span class="line">    &lt;url-pattern&gt;*.php&lt;/url-pattern&gt;</span><br><span class="line">&lt;/servlet-mapping&gt;</span><br></pre></td></tr></table></figure>
 <hr>
-<h2 id="Servlet-是单例的"><a href="#Servlet-是单例的" class="headerlink" title="Servlet 是单例的"></a>Servlet 是单例的</h2><h3 id="为什么-Servlet-是单例的"><a href="#为什么-Servlet-是单例的" class="headerlink" title="为什么 Servlet 是单例的"></a>为什么 Servlet 是单例的</h3><p><strong>浏览器多次对 Servlet 的请求</strong>，一般情况下，<strong>服务器只创建一个 Servlet 对象</strong>，也就是说，Servlet 对象<strong>一旦创建了</strong>，就会<strong>驻留在内存中，为后续的请求做服务，直到服务器关闭</strong>。</p>
-<h3 id="每次访问请求对象和响应对象都是新的"><a href="#每次访问请求对象和响应对象都是新的" class="headerlink" title="每次访问请求对象和响应对象都是新的"></a>每次访问请求对象和响应对象都是新的</h3><p>对于<strong>每次访问请求</strong>，Servlet 引擎都会<strong>创建一个新的 HttpServletRequest 请求对象和一个新的 HttpServletResponse 响应对象</strong>，然后将这两<strong>个对象作为参数传递给它调用的 Servlet 的 service() 方法</strong>，<strong>service 方法再根据请求方式分别调用 doXXX 方法</strong>。</p>
-<h3 id="线程安全问题"><a href="#线程安全问题" class="headerlink" title="线程安全问题"></a>线程安全问题</h3><p>当多个用户访问 Servlet 的时候，<strong>服务器会为每个用户创建一个线程</strong>。<strong>当多个用户并发访问 Servlet 共享资源的时候就会出现线程安全问题</strong>。</p>
+<h3 id="Servlet-是单例的"><a href="#Servlet-是单例的" class="headerlink" title="Servlet 是单例的"></a>Servlet 是单例的</h3><h4 id="为什么-Servlet-是单例的"><a href="#为什么-Servlet-是单例的" class="headerlink" title="为什么 Servlet 是单例的"></a>为什么 Servlet 是单例的</h4><p><strong>浏览器多次对 Servlet 的请求</strong>，一般情况下，<strong>服务器只创建一个 Servlet 对象</strong>，也就是说，Servlet 对象<strong>一旦创建了</strong>，就会<strong>驻留在内存中，为后续的请求做服务，直到服务器关闭</strong>。</p>
+<h4 id="每次访问请求对象和响应对象都是新的"><a href="#每次访问请求对象和响应对象都是新的" class="headerlink" title="每次访问请求对象和响应对象都是新的"></a>每次访问请求对象和响应对象都是新的</h4><p>对于<strong>每次访问请求</strong>，Servlet 引擎都会<strong>创建一个新的 HttpServletRequest 请求对象和一个新的 HttpServletResponse 响应对象</strong>，然后将这两<strong>个对象作为参数传递给它调用的 Servlet 的 service() 方法</strong>，<strong>service 方法再根据请求方式分别调用 doXXX 方法</strong>。</p>
+<h4 id="线程安全问题"><a href="#线程安全问题" class="headerlink" title="线程安全问题"></a>线程安全问题</h4><p>当多个用户访问 Servlet 的时候，<strong>服务器会为每个用户创建一个线程</strong>。<strong>当多个用户并发访问 Servlet 共享资源的时候就会出现线程安全问题</strong>。</p>
 <p>原则：</p>
 <ol>
 <li>如果一个<strong>变量需要多个用户共享</strong>，则应当在访问该变量的时候，<strong>加同步机制 synchronized (对象){}</strong></li>
 <li>如果一个变量<strong>不需要共享</strong>，则<strong>直接在 doGet() 或者 doPost() 定义</strong>. 这样不会存在线程安全问题</li>
 </ol>
 <hr>
-<h2 id="load-on-startup"><a href="#load-on-startup" class="headerlink" title="load-on-startup"></a>load-on-startup</h2><p>如果在</p>
+<h3 id="load-on-startup"><a href="#load-on-startup" class="headerlink" title="load-on-startup"></a>load-on-startup</h3><p>如果在</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-24abd7253fa2664a.png" alt=""> <img src="https://upload-images.jianshu.io/upload_images/5291509-8e9fc5359c25b4d0.png" alt=""></p>
 <p>作用：</p>
 <ol>
@@ -733,7 +733,7 @@
 <li>完成一些定时的任务【定时写日志，定时备份数据】</li>
 </ol>
 <hr>
-<h2 id="在-web-访问任何资源都是在访问-Servlet"><a href="#在-web-访问任何资源都是在访问-Servlet" class="headerlink" title="在 web 访问任何资源都是在访问 Servlet"></a>在 web 访问任何资源都是在访问 Servlet</h2><p>当你启动 Tomcat，你在网址上输入 <a href="https://link.jianshu.com?t=http%3A%2F%2Flocalhost%3A8080" target="_blank" rel="noopener">http://localhost:8080</a>。为什么会出现 Tomcat 小猫的页面？</p>
+<h3 id="在-web-访问任何资源都是在访问-Servlet"><a href="#在-web-访问任何资源都是在访问-Servlet" class="headerlink" title="在 web 访问任何资源都是在访问 Servlet"></a>在 web 访问任何资源都是在访问 Servlet</h3><p>当你启动 Tomcat，你在网址上输入 <a href="https://link.jianshu.com?t=http%3A%2F%2Flocalhost%3A8080" target="_blank" rel="noopener">http://localhost:8080</a>。为什么会出现 Tomcat 小猫的页面？</p>
 <p>这是由<strong>缺省 Servlet 为你服务的</strong>！</p>
 <ul>
 <li>我们先看一下 web.xml 文件中的配置,<strong>web.xml 文件配置了一个缺省 Servlet</strong></li>
@@ -757,12 +757,12 @@
 <li>总结：<strong>无论在 web 中访问什么资源【包括 JSP】，都是在访问 Servlet。</strong>没有手工配置缺省 Servlet 的时候，<strong>你访问静态图片，静态网页，缺省 Servlet 会在你 web 站点中寻找该图片或网页</strong>，如果有就返回给浏览器，没有就报 404 错误</li>
 </ul>
 <hr>
-<h1 id="ServletConfig-对象"><a href="#ServletConfig-对象" class="headerlink" title="ServletConfig 对象"></a>ServletConfig 对象</h1><h2 id="ServletConfig-对象有什么用？"><a href="#ServletConfig-对象有什么用？" class="headerlink" title="ServletConfig 对象有什么用？"></a>ServletConfig 对象有什么用？</h2><blockquote>
+<h2 id="ServletConfig-对象"><a href="#ServletConfig-对象" class="headerlink" title="ServletConfig 对象"></a>ServletConfig 对象</h2><h3 id="ServletConfig-对象有什么用？"><a href="#ServletConfig-对象有什么用？" class="headerlink" title="ServletConfig 对象有什么用？"></a>ServletConfig 对象有什么用？</h3><blockquote>
 <p>通过此对象可以读取 web.xml 中配置的初始化参数。</p>
 </blockquote>
 <p>现在问题来了，<strong>为什么我们要把参数信息放到 web.xml 文件中呢</strong>？我们可以直接在程序中都可以定义参数信息，<strong>搞到 web.xml 文件中又有什么好处呢</strong>？</p>
 <p>好处就是：<strong>能够让你的程序更加灵活</strong>【更换需求，更改配置文件 web.xml 即可，程序代码不用改】</p>
-<h2 id="获取-web-xml-文件配置的参数信息"><a href="#获取-web-xml-文件配置的参数信息" class="headerlink" title="获取 web.xml 文件配置的参数信息"></a>获取 web.xml 文件配置的参数信息</h2><ul>
+<h3 id="获取-web-xml-文件配置的参数信息"><a href="#获取-web-xml-文件配置的参数信息" class="headerlink" title="获取 web.xml 文件配置的参数信息"></a>获取 web.xml 文件配置的参数信息</h3><ul>
 <li>为 Demo1 这个 Servlet 配置一个参数，参数名是 name，值是 zhongfucheng</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;servlet&gt;</span><br><span class="line">    &lt;servlet-name&gt;Demo1&lt;/servlet-name&gt;</span><br><span class="line">    &lt;servlet-class&gt;zhongfucheng.web.Demo1&lt;/servlet-class&gt;</span><br><span class="line">    &lt;init-param&gt;</span><br><span class="line">        &lt;param-name&gt;name&lt;/param-name&gt;</span><br><span class="line">        &lt;param-value&gt;zhongfucheng&lt;/param-value&gt;</span><br><span class="line">    &lt;/init-param&gt;</span><br><span class="line">&lt;/servlet&gt;</span><br><span class="line">&lt;servlet-mapping&gt;</span><br><span class="line">    &lt;servlet-name&gt;Demo1&lt;/servlet-name&gt;</span><br><span class="line">    &lt;url-pattern&gt;/Demo1&lt;/url-pattern&gt;</span><br><span class="line">&lt;/servlet-mapping&gt;</span><br></pre></td></tr></table></figure>
@@ -772,14 +772,14 @@
 </li>
 </ul>
 <hr>
-<h1 id="ServletContext-对象"><a href="#ServletContext-对象" class="headerlink" title="ServletContext 对象"></a>ServletContext 对象</h1><h2 id="什么是-ServletContext-对象？"><a href="#什么是-ServletContext-对象？" class="headerlink" title="什么是 ServletContext 对象？"></a>什么是 ServletContext 对象？</h2><p>当 Tomcat 启动的时候，就会创建一个 <strong>ServletContext</strong> 对象。它<strong>代表着当前 web 站点</strong></p>
-<h2 id="ServletContext-有什么用？"><a href="#ServletContext-有什么用？" class="headerlink" title="ServletContext 有什么用？"></a>ServletContext 有什么用？</h2><ol>
+<h2 id="ServletContext-对象"><a href="#ServletContext-对象" class="headerlink" title="ServletContext 对象"></a>ServletContext 对象</h2><h3 id="什么是-ServletContext-对象？"><a href="#什么是-ServletContext-对象？" class="headerlink" title="什么是 ServletContext 对象？"></a>什么是 ServletContext 对象？</h3><p>当 Tomcat 启动的时候，就会创建一个 <strong>ServletContext</strong> 对象。它<strong>代表着当前 web 站点</strong></p>
+<h3 id="ServletContext-有什么用？"><a href="#ServletContext-有什么用？" class="headerlink" title="ServletContext 有什么用？"></a>ServletContext 有什么用？</h3><ol>
 <li>ServletContext 既然代表着当前 web 站点，那么<strong>所有 Servlet 都共享着一个 ServletContext 对象</strong>，所以 <strong>Servlet 之间可以通过 ServletContext 实现通讯</strong>。</li>
 <li>ServletConfig 获取的是配置的是单个 Servlet 的参数信息，<strong>ServletContext 可以获取的是配置整个 web 站点的参数信息</strong></li>
 <li><strong>利用 ServletContext 读取 web 站点的资源文件</strong></li>
 <li>实现 Servlet 的转发【用 ServletContext 转发不多，主要用 request 转发】</li>
 </ol>
-<h3 id="Servlet-之间实现通讯"><a href="#Servlet-之间实现通讯" class="headerlink" title="Servlet 之间实现通讯"></a>Servlet 之间实现通讯</h3><p>ServletContext 对象可以被称之为<strong>域对象</strong></p>
+<h4 id="Servlet-之间实现通讯"><a href="#Servlet-之间实现通讯" class="headerlink" title="Servlet 之间实现通讯"></a>Servlet 之间实现通讯</h4><p>ServletContext 对象可以被称之为<strong>域对象</strong></p>
 <p>到这里可能有一个疑问，域对象是什么呢？其实域对象可以简单理解成<strong>一个容器【类似于 Map 集合】</strong></p>
 <p>实现 Servlet 之间通讯就要<strong>用到 ServletContext 的 setAttribute(String name,Object obj) 方法</strong>，<br>第一个参数是关键字，第二个参数是你要存储的对象</p>
 <ul>
@@ -795,7 +795,7 @@
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-0173f00552b8db63.png" alt=""></p>
 <hr>
-<h3 id="获取-web-站点配置的信息"><a href="#获取-web-站点配置的信息" class="headerlink" title="获取 web 站点配置的信息"></a>获取 web 站点配置的信息</h3><p>如果我想要让所有的 Servlet 都能够获取到连接数据库的信息，不可能在 web.xml 文件中每个 Servlet 中都配置一下，这样代码量太大了！并且会显得非常啰嗦冗余。</p>
+<h4 id="获取-web-站点配置的信息"><a href="#获取-web-站点配置的信息" class="headerlink" title="获取 web 站点配置的信息"></a>获取 web 站点配置的信息</h4><p>如果我想要让所有的 Servlet 都能够获取到连接数据库的信息，不可能在 web.xml 文件中每个 Servlet 中都配置一下，这样代码量太大了！并且会显得非常啰嗦冗余。</p>
 <ul>
 <li>web.xml 文件支持<strong>对整个站点进行配置参数信息</strong>【<strong>所有 Servlet 都可以取到该参数信息</strong>】</li>
 </ul>
@@ -811,7 +811,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">//获取到ServletContext对象</span><br><span class="line">ServletContext servletContext = this.getServletContext();</span><br><span class="line"></span><br><span class="line">//通过名称获取值</span><br><span class="line">String value = servletContext.getInitParameter(&quot;name&quot;);</span><br><span class="line">System.out.println(value);</span><br></pre></td></tr></table></figure>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-9683b9a04a433565.png" alt=""></p>
 <hr>
-<h3 id="读取资源文件"><a href="#读取资源文件" class="headerlink" title="读取资源文件"></a>读取资源文件</h3><p><strong>第一种方式：</strong></p>
+<h4 id="读取资源文件"><a href="#读取资源文件" class="headerlink" title="读取资源文件"></a>读取资源文件</h4><p><strong>第一种方式：</strong></p>
 <ul>
 <li>现在我要通过 Servlet111 读取 1.png 图片</li>
 </ul>
@@ -873,11 +873,11 @@
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">//获取到类装载器</span><br><span class="line">ClassLoader classLoader = Servlet111.class.getClassLoader();</span><br><span class="line"></span><br><span class="line">//通过类装载器获取到读取文件流</span><br><span class="line">InputStream inputStream = classLoader.getResourceAsStream(&quot;/zhongfucheng/web/1.png&quot;);</span><br></pre></td></tr></table></figure>
 <p>原则：<strong>如果文件太大，就不能用类装载器的方式去读取，会导致内存溢出</strong></p>
-<h1 id="Servlet-第四篇【request-对象常用方法、应用】"><a href="#Servlet-第四篇【request-对象常用方法、应用】" class="headerlink" title="Servlet 第四篇【request 对象常用方法、应用】"></a>Servlet 第四篇【request 对象常用方法、应用】</h1><h1 id="什么是-HttpServletRequest"><a href="#什么是-HttpServletRequest" class="headerlink" title="什么是 HttpServletRequest"></a>什么是 HttpServletRequest</h1><blockquote>
+<h1 id="Servlet-第四篇【request-对象常用方法、应用】"><a href="#Servlet-第四篇【request-对象常用方法、应用】" class="headerlink" title="Servlet 第四篇【request 对象常用方法、应用】"></a>Servlet 第四篇【request 对象常用方法、应用】</h1><h2 id="什么是-HttpServletRequest"><a href="#什么是-HttpServletRequest" class="headerlink" title="什么是 HttpServletRequest"></a>什么是 HttpServletRequest</h2><blockquote>
 <p>HttpServletRequest 对象代表客户端的请求，当客户端通过 HTTP 协议访问服务器时，HTTP 请求头中的所有信息都封装在这个对象中，开发人员通过这个对象的方法，可以获得客户这些信息。</p>
 </blockquote>
 <p>简单来说，<strong>要得到浏览器信息，就找 HttpServletRequest 对象</strong></p>
-<h1 id="HttpServletRequest-常用方法"><a href="#HttpServletRequest-常用方法" class="headerlink" title="HttpServletRequest 常用方法"></a>HttpServletRequest 常用方法</h1><h2 id="获得客户机【浏览器】信息"><a href="#获得客户机【浏览器】信息" class="headerlink" title="获得客户机【浏览器】信息"></a>获得客户机【浏览器】信息</h2><ul>
+<h2 id="HttpServletRequest-常用方法"><a href="#HttpServletRequest-常用方法" class="headerlink" title="HttpServletRequest 常用方法"></a>HttpServletRequest 常用方法</h2><h3 id="获得客户机【浏览器】信息"><a href="#获得客户机【浏览器】信息" class="headerlink" title="获得客户机【浏览器】信息"></a>获得客户机【浏览器】信息</h3><ul>
 <li><strong>getRequestURL 方法返回客户端发出请求时的完整 URL。</strong></li>
 <li>getRequestURI 方法返回请求行中的资源名部分。</li>
 <li><strong>getQueryString 方法返回请求行中的参数部分。</strong></li>
@@ -888,19 +888,19 @@
 <li><strong>getLocalAddr 方法返回 WEB 服务器的 IP 地址。</strong></li>
 <li>getLocalName 方法返回 WEB 服务器的主机名</li>
 </ul>
-<h2 id="获得客户机请求头"><a href="#获得客户机请求头" class="headerlink" title="获得客户机请求头"></a>获得客户机请求头</h2><ul>
+<h3 id="获得客户机请求头"><a href="#获得客户机请求头" class="headerlink" title="获得客户机请求头"></a>获得客户机请求头</h3><ul>
 <li><strong>getHeader 方法</strong></li>
 <li>getHeaders 方法</li>
 <li>getHeaderNames 方法</li>
 </ul>
-<h2 id="获得客户机请求参数-客户端提交的数据"><a href="#获得客户机请求参数-客户端提交的数据" class="headerlink" title="获得客户机请求参数 (客户端提交的数据)"></a>获得客户机请求参数 (客户端提交的数据)</h2><ul>
+<h3 id="获得客户机请求参数-客户端提交的数据"><a href="#获得客户机请求参数-客户端提交的数据" class="headerlink" title="获得客户机请求参数 (客户端提交的数据)"></a>获得客户机请求参数 (客户端提交的数据)</h3><ul>
 <li><strong>getParameter 方法</strong></li>
 <li><strong>getParameterValues（String name）方法</strong></li>
 <li>getParameterNames 方法</li>
 <li>getParameterMap 方法</li>
 </ul>
 <hr>
-<h1 id="HttpServletRequest-应用"><a href="#HttpServletRequest-应用" class="headerlink" title="HttpServletRequest 应用"></a>HttpServletRequest 应用</h1><h2 id="防盗链"><a href="#防盗链" class="headerlink" title="防盗链"></a>防盗链</h2><p>什么是防盗链呢？比如：<strong>我现在有海贼王最新的资源，想要看海贼王的要在我的网页上看。现在别的网站的人看到我有海贼王的资源，想要把我的资源粘贴在他自己的网站上。这样我独家的资源就被一个 CTRL+C 和 CTRL+V 抢走了</strong>？而反盗链就是不能被他们 CRTL+C 和 CRTL+V</p>
+<h2 id="HttpServletRequest-应用"><a href="#HttpServletRequest-应用" class="headerlink" title="HttpServletRequest 应用"></a>HttpServletRequest 应用</h2><h3 id="防盗链"><a href="#防盗链" class="headerlink" title="防盗链"></a>防盗链</h3><p>什么是防盗链呢？比如：<strong>我现在有海贼王最新的资源，想要看海贼王的要在我的网页上看。现在别的网站的人看到我有海贼王的资源，想要把我的资源粘贴在他自己的网站上。这样我独家的资源就被一个 CTRL+C 和 CTRL+V 抢走了</strong>？而反盗链就是不能被他们 CRTL+C 和 CRTL+V</p>
 <ul>
 <li>下面我模拟一下场景。现在我首页先有一个超链接，指向着海贼王最新资源</li>
 </ul>
@@ -949,7 +949,7 @@
 <li><strong>又跳回到了我的首页了。</strong> <img src="https://upload-images.jianshu.io/upload_images/5291509-33e3db3e0687bfc3.png" alt=""></li>
 </ul>
 <hr>
-<h2 id="表单提交数据【通过-post-方式提交数据】"><a href="#表单提交数据【通过-post-方式提交数据】" class="headerlink" title="表单提交数据【通过 post 方式提交数据】"></a>表单提交数据【通过 post 方式提交数据】</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;form action=&quot;/zhongfucheng/Servlet111&quot; method=&quot;post&quot;&gt;</span><br><span class="line">    &lt;table&gt;</span><br><span class="line">        &lt;tr&gt;</span><br><span class="line">            &lt;td&gt;用户名&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;&lt;input type=&quot;text&quot; &gt;&lt;/td&gt;</span><br><span class="line">        &lt;/tr&gt;</span><br><span class="line">        &lt;tr&gt;</span><br><span class="line">            &lt;td&gt;密码&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;&lt;input type=&quot;password&quot; &gt;&lt;/td&gt;</span><br><span class="line">        &lt;/tr&gt;</span><br><span class="line">        &lt;tr&gt;</span><br><span class="line">            &lt;td&gt;性别&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;</span><br><span class="line">                &lt;input type=&quot;radio&quot; &gt;男</span><br><span class="line">                &lt;input type=&quot;radio&quot; &gt;女</span><br><span class="line">            &lt;/td&gt;</span><br><span class="line">        &lt;/tr&gt;</span><br><span class="line">        &lt;tr&gt;</span><br><span class="line">            &lt;td&gt;爱好&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;</span><br><span class="line">                &lt;input type=&quot;checkbox&quot; &gt;游泳</span><br><span class="line">                &lt;input type=&quot;checkbox&quot; &gt;跑步</span><br><span class="line">                &lt;input type=&quot;checkbox&quot; &gt;飞翔</span><br><span class="line">            &lt;/td&gt;</span><br><span class="line">        &lt;/tr&gt;</span><br><span class="line">        &lt;input type=&quot;hidden&quot; &gt;</span><br><span class="line">        &lt;tr&gt;</span><br><span class="line">            &lt;td&gt;你的来自于哪里&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;</span><br><span class="line">                &lt;select &gt;</span><br><span class="line">                    &lt;option value=&quot;广州&quot;&gt;广州&lt;/option&gt;</span><br><span class="line">                    &lt;option value=&quot;深圳&quot;&gt;深圳&lt;/option&gt;</span><br><span class="line">                    &lt;option value=&quot;北京&quot;&gt;北京&lt;/option&gt;</span><br><span class="line">                &lt;/select&gt;</span><br><span class="line">            &lt;/td&gt;</span><br><span class="line">        &lt;/tr&gt;</span><br><span class="line">        &lt;tr&gt;</span><br><span class="line">            &lt;td&gt;详细说明:&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;</span><br><span class="line">                &lt;textarea cols=&quot;30&quot; rows=&quot;2&quot; &gt;&lt;/textarea&gt;</span><br><span class="line">            &lt;/td&gt;</span><br><span class="line">        &lt;/tr&gt;</span><br><span class="line">        &lt;tr&gt;</span><br><span class="line">            &lt;td&gt;&lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;&lt;input type=&quot;reset&quot; value=&quot;重置&quot;&gt;&lt;/td&gt;</span><br><span class="line">        &lt;/tr&gt;</span><br><span class="line">    &lt;/table&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="表单提交数据【通过-post-方式提交数据】"><a href="#表单提交数据【通过-post-方式提交数据】" class="headerlink" title="表单提交数据【通过 post 方式提交数据】"></a>表单提交数据【通过 post 方式提交数据】</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;form action=&quot;/zhongfucheng/Servlet111&quot; method=&quot;post&quot;&gt;</span><br><span class="line">    &lt;table&gt;</span><br><span class="line">        &lt;tr&gt;</span><br><span class="line">            &lt;td&gt;用户名&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;&lt;input type=&quot;text&quot; &gt;&lt;/td&gt;</span><br><span class="line">        &lt;/tr&gt;</span><br><span class="line">        &lt;tr&gt;</span><br><span class="line">            &lt;td&gt;密码&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;&lt;input type=&quot;password&quot; &gt;&lt;/td&gt;</span><br><span class="line">        &lt;/tr&gt;</span><br><span class="line">        &lt;tr&gt;</span><br><span class="line">            &lt;td&gt;性别&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;</span><br><span class="line">                &lt;input type=&quot;radio&quot; &gt;男</span><br><span class="line">                &lt;input type=&quot;radio&quot; &gt;女</span><br><span class="line">            &lt;/td&gt;</span><br><span class="line">        &lt;/tr&gt;</span><br><span class="line">        &lt;tr&gt;</span><br><span class="line">            &lt;td&gt;爱好&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;</span><br><span class="line">                &lt;input type=&quot;checkbox&quot; &gt;游泳</span><br><span class="line">                &lt;input type=&quot;checkbox&quot; &gt;跑步</span><br><span class="line">                &lt;input type=&quot;checkbox&quot; &gt;飞翔</span><br><span class="line">            &lt;/td&gt;</span><br><span class="line">        &lt;/tr&gt;</span><br><span class="line">        &lt;input type=&quot;hidden&quot; &gt;</span><br><span class="line">        &lt;tr&gt;</span><br><span class="line">            &lt;td&gt;你的来自于哪里&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;</span><br><span class="line">                &lt;select &gt;</span><br><span class="line">                    &lt;option value=&quot;广州&quot;&gt;广州&lt;/option&gt;</span><br><span class="line">                    &lt;option value=&quot;深圳&quot;&gt;深圳&lt;/option&gt;</span><br><span class="line">                    &lt;option value=&quot;北京&quot;&gt;北京&lt;/option&gt;</span><br><span class="line">                &lt;/select&gt;</span><br><span class="line">            &lt;/td&gt;</span><br><span class="line">        &lt;/tr&gt;</span><br><span class="line">        &lt;tr&gt;</span><br><span class="line">            &lt;td&gt;详细说明:&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;</span><br><span class="line">                &lt;textarea cols=&quot;30&quot; rows=&quot;2&quot; &gt;&lt;/textarea&gt;</span><br><span class="line">            &lt;/td&gt;</span><br><span class="line">        &lt;/tr&gt;</span><br><span class="line">        &lt;tr&gt;</span><br><span class="line">            &lt;td&gt;&lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;&lt;/td&gt;</span><br><span class="line">            &lt;td&gt;&lt;input type=&quot;reset&quot; value=&quot;重置&quot;&gt;&lt;/td&gt;</span><br><span class="line">        &lt;/tr&gt;</span><br><span class="line">    &lt;/table&gt;</span><br></pre></td></tr></table></figure>
 <ul>
 <li>在 Servlet111 中获取到提交的数据，代码如下</li>
 </ul>
@@ -963,7 +963,7 @@
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-3a071e4559601805.png" alt=""></p>
 <hr>
-<h2 id="超链接方式提交数据"><a href="#超链接方式提交数据" class="headerlink" title="超链接方式提交数据"></a>超链接方式提交数据</h2><p><strong>常见的 get 方式提交数据有</strong>：<strong>使用超链接，sendRedirect()</strong></p>
+<h3 id="超链接方式提交数据"><a href="#超链接方式提交数据" class="headerlink" title="超链接方式提交数据"></a>超链接方式提交数据</h3><p><strong>常见的 get 方式提交数据有</strong>：<strong>使用超链接，sendRedirect()</strong></p>
 <p>格式如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">sendRedirect(&quot;servlet的地址?参数名=&quot;+参数值 &amp;&quot;参数名=&quot;+参数值);</span><br></pre></td></tr></table></figure>
 <ul>
@@ -990,7 +990,7 @@
 <li><strong>sendRedirect() 和超链接类似，在这里就不赘述了</strong></li>
 </ul>
 <hr>
-<h2 id="解决中文乱码问题"><a href="#解决中文乱码问题" class="headerlink" title="解决中文乱码问题"></a>解决中文乱码问题</h2><p>细心的朋友会发现，我在获取表单数据的时候，有这句代码<code>request.setCharacterEncoding(&quot;UTF-8&quot;);</code>，如果没有这句代码，会发生什么事呢？我们看看。</p>
+<h3 id="解决中文乱码问题"><a href="#解决中文乱码问题" class="headerlink" title="解决中文乱码问题"></a>解决中文乱码问题</h3><p>细心的朋友会发现，我在获取表单数据的时候，有这句代码<code>request.setCharacterEncoding(&quot;UTF-8&quot;);</code>，如果没有这句代码，会发生什么事呢？我们看看。</p>
 <ul>
 <li>再重新填写数据</li>
 </ul>
@@ -1076,7 +1076,7 @@
 </li>
 </ul>
 <hr>
-<h2 id="实现转发"><a href="#实现转发" class="headerlink" title="实现转发"></a>实现转发</h2><p>之前讲过使用 response 的 sendRedirect() 可以<strong>实现重定向，做到的功能是页面跳转</strong>，使用 request 的 getRequestDispatcher.forward(request,response) <strong>实现转发，做到的功能也是页面跳转</strong>，他们有什么区别呢？现在我先来说下转发</p>
+<h3 id="实现转发"><a href="#实现转发" class="headerlink" title="实现转发"></a>实现转发</h3><p>之前讲过使用 response 的 sendRedirect() 可以<strong>实现重定向，做到的功能是页面跳转</strong>，使用 request 的 getRequestDispatcher.forward(request,response) <strong>实现转发，做到的功能也是页面跳转</strong>，他们有什么区别呢？现在我先来说下转发</p>
 <ul>
 <li>代码如下所示</li>
 </ul>
@@ -1110,8 +1110,8 @@
 <li><p>现在问题又来了，我们可以<strong>使用 ServletContext 和 request 实现 Servlet 之间的通讯，那么我们用哪一种呢</strong>？一般的原则：<strong>可以使用 request 就尽可能使用 request</strong>。因为 ServletContext 代表着整个 web 应用，使用 ServletContext 会消耗大量的资源，而 <strong>request 对象会随着请求的结束而结束，资源会被回收</strong>。<strong>使用 request 域进行 Servlet 之间的通讯在开发中是非常频繁的</strong>。</p>
 </li>
 </ul>
-<h2 id="转发的时序图"><a href="#转发的时序图" class="headerlink" title="转发的时序图"></a>转发的时序图</h2><p><img src="https://upload-images.jianshu.io/upload_images/5291509-949f0be12929dca8.png" alt=""></p>
-<h2 id="请求转发的细节"><a href="#请求转发的细节" class="headerlink" title="请求转发的细节"></a>请求转发的细节</h2><ul>
+<h3 id="转发的时序图"><a href="#转发的时序图" class="headerlink" title="转发的时序图"></a>转发的时序图</h3><p><img src="https://upload-images.jianshu.io/upload_images/5291509-949f0be12929dca8.png" alt=""></p>
+<h3 id="请求转发的细节"><a href="#请求转发的细节" class="headerlink" title="请求转发的细节"></a>请求转发的细节</h3><ul>
 <li><p>如果在<strong>调用 forward 方法之前</strong>，在 <strong>Servlet 程序中写入的部分内容已经被真正地传送到了客户端</strong>，forward 方法将抛出 IllegalStateException 异常。 也就是说：<strong>不要在转发之前写数据给浏览器</strong></p>
 </li>
 <li><p>我们来试试是不是真的会出现异常。</p>
@@ -1125,7 +1125,7 @@
 <ul>
 <li>如果在调用 forward 方法之前向 Servlet 引擎的缓冲区中写入了内容，<strong>只要写入到缓冲区中的内容还没有被真正输出到客户端</strong>，forward 方法就可以被正常执行，<strong>原来写入到输出缓冲区中的内容将被清空</strong>，但是，<strong>已写入到 HttpServletResponse 对象中的响应头字段信息保持有效</strong>。</li>
 </ul>
-<h2 id="转发和重定向的区别"><a href="#转发和重定向的区别" class="headerlink" title="转发和重定向的区别"></a>转发和重定向的区别</h2><h3 id="实际发生位置不同，地址栏不同"><a href="#实际发生位置不同，地址栏不同" class="headerlink" title="实际发生位置不同，地址栏不同"></a>实际发生位置不同，地址栏不同</h3><ul>
+<h3 id="转发和重定向的区别"><a href="#转发和重定向的区别" class="headerlink" title="转发和重定向的区别"></a>转发和重定向的区别</h3><h4 id="实际发生位置不同，地址栏不同"><a href="#实际发生位置不同，地址栏不同" class="headerlink" title="实际发生位置不同，地址栏不同"></a>实际发生位置不同，地址栏不同</h4><ul>
 <li>转发是发生在服务器的<ul>
 <li><strong>转发是由服务器进行跳转的</strong>，细心的朋友会发现，在转发的时候，<strong>浏览器的地址栏是没有发生变化的</strong>，在我访问 Servlet111 的时候，即使跳转到了 Servlet222 的页面，浏览器的地址还是 Servlet111 的。也就是说<strong>浏览器是不知道该跳转的动作，转发是对浏览器透明的</strong>。通过上面的转发时序图我们也可以发现，<strong>实现转发只是一次的 http 请求</strong>，<strong>一次转发中 request 和 response 对象都是同一个</strong>。这也解释了，为什么可以使用 <strong>request 作为域对象进行 Servlet 之间的通讯。</strong></li>
 </ul>
@@ -1135,7 +1135,7 @@
 </ul>
 </li>
 </ul>
-<h3 id="用法不同"><a href="#用法不同" class="headerlink" title="用法不同"></a>用法不同</h3><p>很多人都搞不清楚转发和重定向的时候，<strong>资源地址究竟怎么写</strong>。有的时候要把应用名写上，有的时候不用把应用名写上。很容易把人搞晕。记住一个原则：<strong>给服务器用的直接从资源名开始写，给浏览器用的要把应用名写上</strong></p>
+<h4 id="用法不同"><a href="#用法不同" class="headerlink" title="用法不同"></a>用法不同</h4><p>很多人都搞不清楚转发和重定向的时候，<strong>资源地址究竟怎么写</strong>。有的时候要把应用名写上，有的时候不用把应用名写上。很容易把人搞晕。记住一个原则：<strong>给服务器用的直接从资源名开始写，给浏览器用的要把应用名写上</strong></p>
 <ul>
 <li>request.getRequestDispatcher(“/ 资源名 URI”).forward(request,response)<ul>
 <li><strong>转发时 “/“ 代表的是本应用程序的根目录【zhongfucheng】</strong></li>
@@ -1146,27 +1146,27 @@
 </ul>
 </li>
 </ul>
-<h3 id="能够去往的-URL-的范围不一样"><a href="#能够去往的-URL-的范围不一样" class="headerlink" title="能够去往的 URL 的范围不一样"></a>能够去往的 URL 的范围不一样</h3><ul>
+<h4 id="能够去往的-URL-的范围不一样"><a href="#能够去往的-URL-的范围不一样" class="headerlink" title="能够去往的 URL 的范围不一样"></a>能够去往的 URL 的范围不一样</h4><ul>
 <li><strong>转发是服务器跳转只能去往当前 web 应用的资源</strong></li>
 <li><strong>重定向是服务器跳转，可以去往任何的资源</strong></li>
 </ul>
-<h3 id="传递数据的类型不同"><a href="#传递数据的类型不同" class="headerlink" title="传递数据的类型不同"></a>传递数据的类型不同</h3><ul>
+<h4 id="传递数据的类型不同"><a href="#传递数据的类型不同" class="headerlink" title="传递数据的类型不同"></a>传递数据的类型不同</h4><ul>
 <li><strong>转发的 request 对象可以传递各种类型的数据，包括对象</strong></li>
 <li><strong>重定向只能传递字符串</strong></li>
 </ul>
-<h3 id="跳转的时间不同"><a href="#跳转的时间不同" class="headerlink" title="跳转的时间不同"></a>跳转的时间不同</h3><ul>
+<h4 id="跳转的时间不同"><a href="#跳转的时间不同" class="headerlink" title="跳转的时间不同"></a>跳转的时间不同</h4><ul>
 <li><strong>转发时：执行到跳转语句时就会立刻跳转</strong></li>
 <li><strong>重定向：整个页面执行完之后才执行跳转</strong></li>
 </ul>
 <hr>
-<h2 id="转发和重定向使用哪一个？"><a href="#转发和重定向使用哪一个？" class="headerlink" title="转发和重定向使用哪一个？"></a>转发和重定向使用哪一个？</h2><p>根据上面说明了转发和重定向的区别也可以很容易概括出来<strong>。转发是带着转发前的请求的参数的。重定向是新的请求</strong>。</p>
+<h3 id="转发和重定向使用哪一个？"><a href="#转发和重定向使用哪一个？" class="headerlink" title="转发和重定向使用哪一个？"></a>转发和重定向使用哪一个？</h3><p>根据上面说明了转发和重定向的区别也可以很容易概括出来<strong>。转发是带着转发前的请求的参数的。重定向是新的请求</strong>。</p>
 <p>典型的应用场景：</p>
 <ol>
 <li>转发: 访问 Servlet 处理业务逻辑，然后 forward 到 jsp 显示处理结果，浏览器里 URL 不变</li>
 <li>重定向: 提交表单，处理成功后 redirect 到另一个 jsp，防止表单重复提交，浏览器里 URL 变了</li>
 </ol>
 <hr>
-<h2 id="RequestDispatcher-再说明"><a href="#RequestDispatcher-再说明" class="headerlink" title="RequestDispatcher 再说明"></a>RequestDispatcher 再说明</h2><p>RequestDispatcher 对象调用 forward() 可以实现转发上面已经说过了。RequestDispatcher 还有另外一个方法 <strong>include()</strong>，该方法可以实现包含，有什么用呢？</p>
+<h3 id="RequestDispatcher-再说明"><a href="#RequestDispatcher-再说明" class="headerlink" title="RequestDispatcher 再说明"></a>RequestDispatcher 再说明</h3><p>RequestDispatcher 对象调用 forward() 可以实现转发上面已经说过了。RequestDispatcher 还有另外一个方法 <strong>include()</strong>，该方法可以实现包含，有什么用呢？</p>
 <p>我们在写网页的时候，一般<strong>网页的头部和尾部是不需要改变的</strong>。如果我们<strong>多个地方使用 Servlet 输出网头和网尾的话，需要把代码重新写一遍</strong>。而使用 RequestDispatcher 的 <strong>include() 方法就可以实现包含网头和网尾的效果了</strong>。</p>
 <ul>
 <li>我们来操作吧！现在我有网头和网尾的 Servlet</li>
@@ -1181,11 +1181,11 @@
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-333bc7c48dd5255a.png" alt=""></p>
 <hr>
-<h1 id="Servlet-第五篇【介绍会话技术、Cookie-的-API、详解、应用】"><a href="#Servlet-第五篇【介绍会话技术、Cookie-的-API、详解、应用】" class="headerlink" title="Servlet 第五篇【介绍会话技术、Cookie 的 API、详解、应用】"></a>Servlet 第五篇【介绍会话技术、Cookie 的 API、详解、应用】</h1><h1 id="什么是会话技术"><a href="#什么是会话技术" class="headerlink" title="什么是会话技术"></a>什么是会话技术</h1><blockquote>
+<h1 id="Servlet-第五篇【介绍会话技术、Cookie-的-API、详解、应用】"><a href="#Servlet-第五篇【介绍会话技术、Cookie-的-API、详解、应用】" class="headerlink" title="Servlet 第五篇【介绍会话技术、Cookie 的 API、详解、应用】"></a>Servlet 第五篇【介绍会话技术、Cookie 的 API、详解、应用】</h1><h2 id="什么是会话技术"><a href="#什么是会话技术" class="headerlink" title="什么是会话技术"></a>什么是会话技术</h2><blockquote>
 <p>基本概念: 指用户开一个浏览器，<strong>访问一个网站, 只要不关闭该浏览器，不管该用户点击多少个超链接，访问多少资源，直到用户关闭浏览器，整个这个过程我们称为一次会话</strong>.</p>
 </blockquote>
 <hr>
-<h1 id="为什么我们要使用会话技术？"><a href="#为什么我们要使用会话技术？" class="headerlink" title="为什么我们要使用会话技术？"></a>为什么我们要使用会话技术？</h1><p>会话跟踪技术可以解决我们很多很多问题。</p>
+<h2 id="为什么我们要使用会话技术？"><a href="#为什么我们要使用会话技术？" class="headerlink" title="为什么我们要使用会话技术？"></a>为什么我们要使用会话技术？</h2><p>会话跟踪技术可以解决我们很多很多问题。</p>
 <ul>
 <li>在论坛登陆的时候，<strong>很多时候会有一个小框框问你是否要自动登陆，当你下次登陆的时候就不用输入密码了</strong></li>
 </ul>
@@ -1195,8 +1195,8 @@
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-1d03baea78089250.png" alt=""></p>
 <hr>
-<h1 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h1><p><strong>会话跟踪技术有 Cookie 和 Session</strong>，<strong>Cookie 技术是先出现的</strong>。我们先讲 Cookie 技术吧。</p>
-<h2 id="什么是-Cookie"><a href="#什么是-Cookie" class="headerlink" title="什么是 Cookie"></a>什么是 Cookie</h2><blockquote>
+<h2 id="Cookie"><a href="#Cookie" class="headerlink" title="Cookie"></a>Cookie</h2><p><strong>会话跟踪技术有 Cookie 和 Session</strong>，<strong>Cookie 技术是先出现的</strong>。我们先讲 Cookie 技术吧。</p>
+<h3 id="什么是-Cookie"><a href="#什么是-Cookie" class="headerlink" title="什么是 Cookie"></a>什么是 Cookie</h3><blockquote>
 <p>Cookie 是由 W3C 组织提出，最早由 netscape 社区发展的一种机制</p>
 </blockquote>
 <ul>
@@ -1206,7 +1206,7 @@
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-a401af6be71b4681.png" alt=""></p>
 <hr>
 <p>Cookie 的流程：浏览器访问服务器，<strong>如果服务器需要记录该用户的状态，就使用 response 向浏览器发送一个 Cookie，浏览器会把 Cookie 保存起来。当浏览器再次访问服务器的时候，浏览器会把请求的网址连同 Cookie 一同交给服务器</strong>。</p>
-<h2 id="Cookie-API"><a href="#Cookie-API" class="headerlink" title="Cookie API"></a>Cookie API</h2><ul>
+<h3 id="Cookie-API"><a href="#Cookie-API" class="headerlink" title="Cookie API"></a>Cookie API</h3><ul>
 <li>Cookie 类用于创建一个 Cookie 对象</li>
 <li>response 接口中定义了一个 addCookie 方法，它用于在其响应头中增加一个相应的 Set-Cookie 头字段</li>
 <li>request 接口中定义了一个 getCookies 方法，它用于获取客户端提交的 Cookie</li>
@@ -1220,7 +1220,7 @@
 <li>setDomain 与 getDomain 方法</li>
 <li>getName 方法</li>
 </ul>
-<h2 id="简单使用-Cookie"><a href="#简单使用-Cookie" class="headerlink" title="简单使用 Cookie"></a>简单使用 Cookie</h2><ul>
+<h3 id="简单使用-Cookie"><a href="#简单使用-Cookie" class="headerlink" title="简单使用 Cookie"></a>简单使用 Cookie</h3><ul>
 <li>创建 Cookie 对象，发送 Cookie 给浏览器、</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">//设置response的编码</span><br><span class="line">response.setContentType(&quot;text/html;charset=UTF-8&quot;);</span><br><span class="line"></span><br><span class="line">//创建Cookie对象，指定名称和值</span><br><span class="line">Cookie cookie = new Cookie(&quot;username&quot;, &quot;zhongfucheng&quot;);</span><br><span class="line"></span><br><span class="line">//向浏览器给一个Cookie</span><br><span class="line">response.addCookie(cookie);</span><br><span class="line"></span><br><span class="line">response.getWriter().write(&quot;我已经向浏览器发送了一个Cookie&quot;);</span><br></pre></td></tr></table></figure>
@@ -1238,11 +1238,11 @@
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-c3ee9aad3769bb65.png" alt=""></p>
 <hr>
-<h2 id="Cookie-细节"><a href="#Cookie-细节" class="headerlink" title="Cookie 细节"></a>Cookie 细节</h2><h3 id="Cookie-不可跨域名性"><a href="#Cookie-不可跨域名性" class="headerlink" title="Cookie 不可跨域名性"></a>Cookie 不可跨域名性</h3><ul>
+<h3 id="Cookie-细节"><a href="#Cookie-细节" class="headerlink" title="Cookie 细节"></a>Cookie 细节</h3><h4 id="Cookie-不可跨域名性"><a href="#Cookie-不可跨域名性" class="headerlink" title="Cookie 不可跨域名性"></a>Cookie 不可跨域名性</h4><ul>
 <li>很多人在初学的时候可能有一个疑问：在访问 Servlet 的时候浏览器<strong>是不是把所有的 Cookie 都带过去给服务器</strong>，<strong>会不会修改了别的网站的 Cookie</strong></li>
 <li>答案是否定的。Cookie 具有不可跨域名性。浏览器判断<strong>一个网站是否能操作另一个网站的 Cookie 的依据是域名</strong>。所以一般来说，<strong>当我访问 baidu 的时候，浏览器只会把 baidu 颁发的 Cookie 带过去，而不会带上 google 的 Cookie。</strong></li>
 </ul>
-<h3 id="Cookie-保存中文"><a href="#Cookie-保存中文" class="headerlink" title="Cookie 保存中文"></a>Cookie 保存中文</h3><ul>
+<h4 id="Cookie-保存中文"><a href="#Cookie-保存中文" class="headerlink" title="Cookie 保存中文"></a>Cookie 保存中文</h4><ul>
 <li>上面我们的例子保存的是英文字符，下面我们来看下保存中文字符会怎么样。</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">response.setContentType(&quot;text/html;charset=UTF-8&quot;);</span><br><span class="line">PrintWriter printWriter = response.getWriter();</span><br><span class="line"></span><br><span class="line">String name = &quot;中国&quot;;</span><br><span class="line">Cookie cookie = new Cookie(&quot;country&quot;, name);</span><br><span class="line">cookie.setMaxAge(2000);</span><br><span class="line">response.addCookie(cookie);</span><br><span class="line"></span><br><span class="line">printWriter.write(&quot;我颁发了一个Cookie，值保存的是中文数据&quot;);</span><br></pre></td></tr></table></figure>
@@ -1268,14 +1268,14 @@
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-080c44995ee02b9a.png" alt=""></p>
 <hr>
-<h3 id="Cookie-的有效期"><a href="#Cookie-的有效期" class="headerlink" title="Cookie 的有效期"></a>Cookie 的有效期</h3><p><strong>Cookie 的有效期是通过 setMaxAge() 来设置的</strong>。</p>
+<h4 id="Cookie-的有效期"><a href="#Cookie-的有效期" class="headerlink" title="Cookie 的有效期"></a>Cookie 的有效期</h4><p><strong>Cookie 的有效期是通过 setMaxAge() 来设置的</strong>。</p>
 <ul>
 <li>如果 MaxAge 为<strong>正数</strong>，<strong>浏览器会把 Cookie 写到硬盘中，只要还在 MaxAge 秒之前，登陆网站时该 Cookie 就有效</strong>【不论关闭了浏览器还是电脑】</li>
 <li>如果 MaxAge 为<strong>负数</strong>，<strong>Cookie 是临时性的，仅在本浏览器内有效</strong>，关闭浏览器 Cookie 就失效了，Cookie 不会写到硬盘中。Cookie 默认值就是 - 1。这也就为什么在我第一个例子中，如果我没设置 Cookie 的有效期，在硬盘中就找不到对应的文件。</li>
 <li>如果 MaxAge 为 <strong>0</strong>，则表示<strong>删除该 Cookie</strong>。Cookie 机制没有提供删除 Cookie 对应的方法，把 MaxAge 设置为 0 等同于删除 Cookie</li>
 </ul>
 <hr>
-<h3 id="Cookie-的修改和删除"><a href="#Cookie-的修改和删除" class="headerlink" title="Cookie 的修改和删除"></a>Cookie 的修改和删除</h3><ul>
+<h4 id="Cookie-的修改和删除"><a href="#Cookie-的修改和删除" class="headerlink" title="Cookie 的修改和删除"></a>Cookie 的修改和删除</h4><ul>
 <li>上面我们已经知道了 Cookie 机制没有提供删除 Cookie 的方法。其实细心点我们可以发现，Cookie 机制也没有提供修改 Cookie 的方法。那么我们<strong>怎么修改 Cookie 的值呢</strong>？</li>
 <li>Cookie 存储的方式<strong>类似于 Map 集合</strong>，如下图所示</li>
 </ul>
@@ -1317,7 +1317,7 @@
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-b12a0a659002ffc6.png" alt=""></p>
 <hr>
-<h3 id="Cookie-的域名"><a href="#Cookie-的域名" class="headerlink" title="Cookie 的域名"></a>Cookie 的域名</h3><p>Cookie 的 <strong>domain 属性决定运行访问 Cookie 的域名。domain 的值规定为 “. 域名”</strong></p>
+<h4 id="Cookie-的域名"><a href="#Cookie-的域名" class="headerlink" title="Cookie 的域名"></a>Cookie 的域名</h4><p>Cookie 的 <strong>domain 属性决定运行访问 Cookie 的域名。domain 的值规定为 “. 域名”</strong></p>
 <ul>
 <li><p>Cookie 的隐私安全机制决定 Cookie 是不可跨域名的。也就是说 <a href="https://link.jianshu.com?t=http%3A%2F%2Fwww.baidu.com" target="_blank" rel="noopener">www.baidu.com</a> 和 <a href="https://link.jianshu.com?t=http%3A%2F%2Fwww.google.com" target="_blank" rel="noopener">www.google.com</a> 之间的 Cookie 是互不交接的。<strong>即使是同一级域名，不同二级域名也不能交接</strong>，也就是说：<a href="https://link.jianshu.com?t=http%3A%2F%2Fwww.goole.com" target="_blank" rel="noopener">www.goole.com</a> 和 <a href="https://link.jianshu.com?t=http%3A%2F%2Fwww.image.goole.com" target="_blank" rel="noopener">www.image.goole.com</a> 的 Cookie 也不能访问</p>
 </li>
@@ -1354,7 +1354,7 @@
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-392a9e58937210d8.png" alt=""></p>
 <hr>
-<h3 id="Cookie-的路径"><a href="#Cookie-的路径" class="headerlink" title="Cookie 的路径"></a>Cookie 的路径</h3><p><strong>Cookie 的 path 属性决定允许访问 Cookie 的路径</strong></p>
+<h4 id="Cookie-的路径"><a href="#Cookie-的路径" class="headerlink" title="Cookie 的路径"></a>Cookie 的路径</h4><p><strong>Cookie 的 path 属性决定允许访问 Cookie 的路径</strong></p>
 <ul>
 <li><p>一般地，<strong>Cookie 发布出来，整个网页的资源都可以使用。现在我只想 Servlet1 可以获取到 Cookie，其他的资源不能获取</strong>。</p>
 </li>
@@ -1371,12 +1371,12 @@
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-015ed998d9183008.png" alt=""></p>
 <hr>
-<h3 id="Cookie-的安全属性"><a href="#Cookie-的安全属性" class="headerlink" title="Cookie 的安全属性"></a>Cookie 的安全属性</h3><ul>
+<h4 id="Cookie-的安全属性"><a href="#Cookie-的安全属性" class="headerlink" title="Cookie 的安全属性"></a>Cookie 的安全属性</h4><ul>
 <li>HTTP 协议不仅仅是无状态的，而且是不安全的！如果不希望 Cookie 在非安全协议中传输，可以<strong>设置 Cookie 的 secure 属性为 true，浏览器只会在 HTTPS 和 SSL 等安全协议中传输该 Cookie</strong>。</li>
 <li>当然了，设置 secure 属性不会将 Cookie 的内容加密。如果想要保证安全，最好使用 md5 算法加密【后面有】。</li>
 </ul>
 <hr>
-<h2 id="Cookie-的应用"><a href="#Cookie-的应用" class="headerlink" title="Cookie 的应用"></a>Cookie 的应用</h2><h3 id="显示用户上次访问的时间"><a href="#显示用户上次访问的时间" class="headerlink" title="显示用户上次访问的时间"></a>显示用户上次访问的时间</h3><ul>
+<h3 id="Cookie-的应用"><a href="#Cookie-的应用" class="headerlink" title="Cookie 的应用"></a>Cookie 的应用</h3><h4 id="显示用户上次访问的时间"><a href="#显示用户上次访问的时间" class="headerlink" title="显示用户上次访问的时间"></a>显示用户上次访问的时间</h4><ul>
 <li><p>其实就是<strong>每次登陆的时候，取到 Cookie 保存的值，再更新下 Cookie 的值</strong>。</p>
 </li>
 <li><p>访问 Serlvet 有两种情况</p>
@@ -1411,7 +1411,7 @@
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-80cbde53483c5071.png" alt=""></p>
 <hr>
-<h3 id="显示上次浏览过商品"><a href="#显示上次浏览过商品" class="headerlink" title="显示上次浏览过商品"></a>显示上次浏览过商品</h3><ul>
+<h4 id="显示上次浏览过商品"><a href="#显示上次浏览过商品" class="headerlink" title="显示上次浏览过商品"></a>显示上次浏览过商品</h4><ul>
 <li>我就以书籍为例子了！<strong>首先设计 Book 对象</strong></li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">private String id ;</span><br><span class="line">private String name ;</span><br><span class="line">private String author;</span><br><span class="line"></span><br><span class="line">public Book() &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public Book(String id, String name, String author) &#123;</span><br><span class="line">    this.id = id;</span><br><span class="line">    this.name = name;</span><br><span class="line">    this.author = author;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">...各种set、get方法</span><br></pre></td></tr></table></figure>
@@ -1502,12 +1502,12 @@
 <li>好的，经过测试，该程序应该没有什么问题了！</li>
 </ul>
 <hr>
-<h1 id="Servlet-第六篇【Session-介绍、API、生命周期、应用、与-Cookie-区别】"><a href="#Servlet-第六篇【Session-介绍、API、生命周期、应用、与-Cookie-区别】" class="headerlink" title="Servlet 第六篇【Session 介绍、API、生命周期、应用、与 Cookie 区别】"></a>Servlet 第六篇【Session 介绍、API、生命周期、应用、与 Cookie 区别】</h1><h1 id="什么是-Session"><a href="#什么是-Session" class="headerlink" title="什么是 Session"></a>什么是 Session</h1><blockquote>
+<h1 id="Servlet-第六篇【Session-介绍、API、生命周期、应用、与-Cookie-区别】"><a href="#Servlet-第六篇【Session-介绍、API、生命周期、应用、与-Cookie-区别】" class="headerlink" title="Servlet 第六篇【Session 介绍、API、生命周期、应用、与 Cookie 区别】"></a>Servlet 第六篇【Session 介绍、API、生命周期、应用、与 Cookie 区别】</h1><h2 id="什么是-Session"><a href="#什么是-Session" class="headerlink" title="什么是 Session"></a>什么是 Session</h2><blockquote>
 <p>Session 是另一种记录浏览器状态的机制。不同的是 Cookie 保存在浏览器中，Session 保存在服务器中。用户使用浏览器访问服务器的时候，服务器把用户的信息以某种的形式记录在服务器，这就是 Session</p>
 </blockquote>
 <p>如果说 Cookie 是检查用户身上的”通行证 “来确认用户的身份，那么 Session 就是通过检查服务器上的” 客户明细表“来确认用户的身份的。Session 相当于在服务器中建立了一份“客户明细表”。</p>
-<h1 id="为什么要使用-Session-技术？"><a href="#为什么要使用-Session-技术？" class="headerlink" title="为什么要使用 Session 技术？"></a>为什么要使用 Session 技术？</h1><p><strong>Session 比 Cookie 使用方便，Session 可以解决 Cookie 解决不了的事情【Session 可以存储对象，Cookie 只能存储字符串。】。</strong></p>
-<h1 id="Session-API"><a href="#Session-API" class="headerlink" title="Session API"></a>Session API</h1><ul>
+<h2 id="为什么要使用-Session-技术？"><a href="#为什么要使用-Session-技术？" class="headerlink" title="为什么要使用 Session 技术？"></a>为什么要使用 Session 技术？</h2><p><strong>Session 比 Cookie 使用方便，Session 可以解决 Cookie 解决不了的事情【Session 可以存储对象，Cookie 只能存储字符串。】。</strong></p>
+<h2 id="Session-API"><a href="#Session-API" class="headerlink" title="Session API"></a>Session API</h2><ul>
 <li>long getCreationTime();【获取 Session 被创建时间】</li>
 <li><strong>String getId();【获取 Session 的 id】</strong></li>
 <li>long getLastAccessedTime();【返回 Session 最后活跃的时间】</li>
@@ -1522,7 +1522,7 @@
 <li>boolean isNew();【该 Session 是否为新的】</li>
 </ul>
 <hr>
-<h1 id="Session-作为域对象"><a href="#Session-作为域对象" class="headerlink" title="Session 作为域对象"></a>Session 作为域对象</h1><p>从上面的 API 看出，Session 有着 request 和 ServletContext 类似的方法。其实 <strong>Session 也是一个域对象</strong>。Session 作为一种记录浏览器状态的机制，<strong>只要 Session 对象没有被销毁，Servlet 之间就可以通过 Session 对象实现通讯</strong></p>
+<h2 id="Session-作为域对象"><a href="#Session-作为域对象" class="headerlink" title="Session 作为域对象"></a>Session 作为域对象</h2><p>从上面的 API 看出，Session 有着 request 和 ServletContext 类似的方法。其实 <strong>Session 也是一个域对象</strong>。Session 作为一种记录浏览器状态的机制，<strong>只要 Session 对象没有被销毁，Servlet 之间就可以通过 Session 对象实现通讯</strong></p>
 <ul>
 <li>我们来试试吧，在 Servlet4 中设置 Session 属性</li>
 </ul>
@@ -1538,7 +1538,7 @@
 <ul>
 <li>一般来讲，当我们要存进的是<strong>用户级别的数据就用 Session</strong>，那什么是用户级别呢？<strong>只要浏览器不关闭，希望数据还在，就使用 Session 来保存</strong>。</li>
 </ul>
-<h1 id="Session-的生命周期和有效期"><a href="#Session-的生命周期和有效期" class="headerlink" title="Session 的生命周期和有效期"></a>Session 的生命周期和有效期</h1><ul>
+<h2 id="Session-的生命周期和有效期"><a href="#Session-的生命周期和有效期" class="headerlink" title="Session 的生命周期和有效期"></a>Session 的生命周期和有效期</h2><ul>
 <li><p>Session 在用户<strong>第一次访问服务器 Servlet，jsp 等动态资源就会被自动创建，Session 对象保存在内存里</strong>，这也就为什么上面的例子可以<strong>直接使用 request 对象获取得到 Session 对象</strong>。</p>
 </li>
 <li><p>如果访问 HTML,IMAGE 等静态资源 Session 不会被创建。</p>
@@ -1568,7 +1568,7 @@
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-9e4110debb868433.png" alt=""></p>
 <hr>
-<h1 id="使用-Session-完成简单的购物功能"><a href="#使用-Session-完成简单的购物功能" class="headerlink" title="使用 Session 完成简单的购物功能"></a>使用 Session 完成简单的购物功能</h1><ul>
+<h2 id="使用-Session-完成简单的购物功能"><a href="#使用-Session-完成简单的购物功能" class="headerlink" title="使用 Session 完成简单的购物功能"></a>使用 Session 完成简单的购物功能</h2><ul>
 <li>我们还是以书籍为例，所以可以 copy“显示浏览过的商品 “例子部分的代码。</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">response.setContentType(&quot;text/html;charset=UTF-8&quot;);</span><br><span class="line">PrintWriter printWriter = response.getWriter();</span><br><span class="line"></span><br><span class="line">printWriter.write(&quot;网页上所有的书籍：&quot; + &quot;&lt;br/&gt;&quot;);</span><br><span class="line"></span><br><span class="line">//拿到数据库所有的书</span><br><span class="line">LinkedHashMap&lt;String, Book&gt; linkedHashMap = DB.getAll();</span><br><span class="line">Set&lt;Map.Entry&lt;String, Book&gt;&gt; entry = linkedHashMap.entrySet();</span><br><span class="line"></span><br><span class="line">//显示所有的书到网页上</span><br><span class="line">for (Map.Entry&lt;String, Book&gt; stringBookEntry : entry) &#123;</span><br><span class="line"></span><br><span class="line">    Book book = stringBookEntry.getValue();</span><br><span class="line"></span><br><span class="line">    String url = &quot;/ouzicheng/Servlet6?id=&quot; + book.getId();</span><br><span class="line">    printWriter.write(book.getName());</span><br><span class="line">    printWriter.write(&quot;&lt;a href=&apos;&quot; + url + &quot;&apos;&gt;购买&lt;/a&gt;&quot;);</span><br><span class="line">    printWriter.write(&quot;&lt;br/&gt;&quot;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -1593,7 +1593,7 @@
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-39992b6a09d68649.png" alt=""></p>
 <hr>
-<h1 id="Session-的实现原理"><a href="#Session-的实现原理" class="headerlink" title="Session 的实现原理"></a>Session 的实现原理</h1><ul>
+<h2 id="Session-的实现原理"><a href="#Session-的实现原理" class="headerlink" title="Session 的实现原理"></a>Session 的实现原理</h2><ul>
 <li>用现象说明问题，我<strong>在 Servlet4 中的代码设置了 Session 的属性</strong></li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">//得到Session对象</span><br><span class="line">HttpSession httpSession = request.getSession();</span><br><span class="line"></span><br><span class="line">//设置Session属性</span><br><span class="line">httpSession.setAttribute(&quot;name&quot;, &quot;看完博客就要点赞！！&quot;);</span><br></pre></td></tr></table></figure>
@@ -1634,7 +1634,7 @@
 <li>而当我们<strong>使用新会话的浏览器访问 Servlet7 的时候</strong>，<strong>该新浏览器并没有 Cookie，服务器无法辨认使用哪一个 Session，所以就获取不到值</strong></li>
 </ul>
 <hr>
-<h1 id="浏览器禁用了-Cookie，Session-还能用吗？"><a href="#浏览器禁用了-Cookie，Session-还能用吗？" class="headerlink" title="浏览器禁用了 Cookie，Session 还能用吗？"></a>浏览器禁用了 Cookie，Session 还能用吗？</h1><p>上面说了 Session 是依靠 Cookie 来识别用户浏览器的。如果我的用户浏览器禁用了 Cookie 了呢？绝大多数的手机浏览器都不支持 Cookie，那我的 Session 怎么办？</p>
+<h2 id="浏览器禁用了-Cookie，Session-还能用吗？"><a href="#浏览器禁用了-Cookie，Session-还能用吗？" class="headerlink" title="浏览器禁用了 Cookie，Session 还能用吗？"></a>浏览器禁用了 Cookie，Session 还能用吗？</h2><p>上面说了 Session 是依靠 Cookie 来识别用户浏览器的。如果我的用户浏览器禁用了 Cookie 了呢？绝大多数的手机浏览器都不支持 Cookie，那我的 Session 怎么办？</p>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-4bef34364f1e288e.png" alt=""></p>
 <ul>
 <li>好的，我们来看看情况是怎么样的。用户浏览器访问 Servlet4 的时候，服务器向用户浏览器颁发了一个 Cookie</li>
@@ -1689,7 +1689,7 @@
 <li>URL 地址重写的原理：<strong>将 Session 的 id 信息重写到 URL 地址中</strong>。<strong>服务器解析重写后 URL，获取 Session 的 id</strong>。这样一来，即使浏览器禁用掉了 Cookie，但 Session 的 id 通过服务器端传递，还是可以使用 Session 来记录用户的状态。</li>
 </ul>
 <hr>
-<h1 id="Session-禁用-Cookie"><a href="#Session-禁用-Cookie" class="headerlink" title="Session 禁用 Cookie"></a>Session 禁用 Cookie</h1><ul>
+<h2 id="Session-禁用-Cookie"><a href="#Session-禁用-Cookie" class="headerlink" title="Session 禁用 Cookie"></a>Session 禁用 Cookie</h2><ul>
 <li><p>Java Web 规范支持通过配置禁用 Cookie</p>
 </li>
 <li><p>禁用自己项目的 Cookie</p>
@@ -1706,7 +1706,7 @@
 </ul>
 <p>注意：<strong>该配置只是让服务器不能自动维护名为 jsessionid 的 Cookie，并不能阻止 Cookie 的读写。</strong></p>
 <hr>
-<h1 id="Session-案例"><a href="#Session-案例" class="headerlink" title="Session 案例"></a>Session 案例</h1><h2 id="使用-Session-完成用户简单登陆"><a href="#使用-Session-完成用户简单登陆" class="headerlink" title="使用 Session 完成用户简单登陆"></a>使用 Session 完成用户简单登陆</h2><ul>
+<h2 id="Session-案例"><a href="#Session-案例" class="headerlink" title="Session 案例"></a>Session 案例</h2><h3 id="使用-Session-完成用户简单登陆"><a href="#使用-Session-完成用户简单登陆" class="headerlink" title="使用 Session 完成用户简单登陆"></a>使用 Session 完成用户简单登陆</h3><ul>
 <li>先创建 User 类</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">private String username = null;</span><br><span class="line">private String password = null;</span><br><span class="line"></span><br><span class="line">public User() &#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public User(String username, String password) &#123;</span><br><span class="line">    this.username = username;</span><br><span class="line">    this.password = password;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">....各种set、get方法</span><br></pre></td></tr></table></figure>
@@ -1731,7 +1731,7 @@
 </ul>
 <p><img src="https://upload-images.jianshu.io/upload_images/5291509-8099bd021b449e36.png" alt=""> <img src="https://upload-images.jianshu.io/upload_images/5291509-47bebcd635ae9196.png" alt=""></p>
 <hr>
-<h2 id="利用-Session-防止表单重复提交"><a href="#利用-Session-防止表单重复提交" class="headerlink" title="利用 Session 防止表单重复提交"></a>利用 Session 防止表单重复提交</h2><ul>
+<h3 id="利用-Session-防止表单重复提交"><a href="#利用-Session-防止表单重复提交" class="headerlink" title="利用 Session 防止表单重复提交"></a>利用 Session 防止表单重复提交</h3><ul>
 <li><p>重复提交的危害：</p>
 <ul>
 <li>在投票的网页上不停地提交，实现了刷票的效果。</li>
@@ -1819,7 +1819,7 @@
 <li>等到再次访问的时候，我们 session 就没有值了，就不受理前台的请求了！</li>
 </ul>
 <hr>
-<h2 id="一次性校验码"><a href="#一次性校验码" class="headerlink" title="一次性校验码"></a>一次性校验码</h2><ul>
+<h3 id="一次性校验码"><a href="#一次性校验码" class="headerlink" title="一次性校验码"></a>一次性校验码</h3><ul>
 <li><p>一次性校验码其实就是为了<strong>防止暴力猜测密码</strong></p>
 </li>
 <li><p>在讲 response 对象的时候，我们使用 response 对象输出过验证码，但是没有去验证！</p>
@@ -1856,7 +1856,7 @@
 <li>页面直接访问 Servlet 来获取我们的验证码，于是我们验证码的值就会改变【同时 session 的值也会被改变】</li>
 <li>当用户验证的时候，就是 session 内的值的验证了。</li>
 </ul>
-<h1 id="Session-和-Cookie-的区别"><a href="#Session-和-Cookie-的区别" class="headerlink" title="Session 和 Cookie 的区别"></a>Session 和 Cookie 的区别</h1><ul>
+<h2 id="Session-和-Cookie-的区别"><a href="#Session-和-Cookie-的区别" class="headerlink" title="Session 和 Cookie 的区别"></a>Session 和 Cookie 的区别</h2><ul>
 <li><strong>从存储方式上比较</strong><ul>
 <li>Cookie 只能存储字符串，如果要存储非 ASCII 字符串还要对其编码。</li>
 <li>Session 可以存储任何类型的数据，可以把 Session 看成是一个容器</li>
@@ -1889,7 +1889,7 @@
 </li>
 </ul>
 <hr>
-<h1 id="Cookie-和-Session-共同使用"><a href="#Cookie-和-Session-共同使用" class="headerlink" title="Cookie 和 Session 共同使用"></a>Cookie 和 Session 共同使用</h1><ul>
+<h2 id="Cookie-和-Session-共同使用"><a href="#Cookie-和-Session-共同使用" class="headerlink" title="Cookie 和 Session 共同使用"></a>Cookie 和 Session 共同使用</h2><ul>
 <li><p><strong>如果仅仅使用 Cookie 或仅仅使用 Session 可能达不到理想的效果</strong>。这时应该尝试一下同时使用 Session 和 Cookie</p>
 </li>
 <li><p>那么，什么时候才需要同时使用 Cookie 和 Session 呢？</p>
@@ -2086,7 +2086,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">97</span>
+                  <span class="site-state-item-count">99</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -2198,7 +2198,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Servlet第一篇【介绍Servlet、HTTP协议、WEB目录结构、编写入门Servlet程序、Servlet生命周期】"><span class="nav-text">Servlet第一篇【介绍Servlet、HTTP协议、WEB目录结构、编写入门Servlet程序、Servlet生命周期】</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是-Serlvet？"><span class="nav-text">什么是 Serlvet？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么要用到-Serlvet？"><span class="nav-text">为什么要用到 Serlvet？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HTTP-协议"><span class="nav-text">HTTP 协议</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-HTPP-协议"><span class="nav-text">什么是 HTPP 协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP1-0-和-HTTP1-1-的区别"><span class="nav-text">HTTP1.0 和 HTTP1.1 的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-请求"><span class="nav-text">HTTP 请求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#请求行"><span class="nav-text">请求行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求头"><span class="nav-text">请求头</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-响应"><span class="nav-text">HTTP 响应</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#状态行"><span class="nav-text">状态行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#响应头"><span class="nav-text">响应头</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Servlet-的作用"><span class="nav-text">Servlet 的作用</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#JAVAWEB-目录结构"><span class="nav-text">JAVAWEB 目录结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实现-Servlet-接口编写-Servlet-程序"><span class="nav-text">实现 Servlet 接口编写 Servlet 程序</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#编写-Servlet-程序的步骤"><span class="nav-text">编写 Servlet 程序的步骤</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Serlvet-生命周期"><span class="nav-text">Serlvet 生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Servlet-生命周期可分为-5-个步骤"><span class="nav-text">Servlet 生命周期可分为 5 个步骤</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#继承-HttpServlet-编写-Servlet-程序"><span class="nav-text">继承 HttpServlet 编写 Servlet 程序</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Servlet-第二篇【Servlet-调用图、Servlet-细节、ServletConfig、ServletContext】"><span class="nav-text">Servlet 第二篇【Servlet 调用图、Servlet 细节、ServletConfig、ServletContext】</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Servlet-的调用图"><span class="nav-text">Servlet 的调用图</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Servlet-的细节"><span class="nav-text">Servlet 的细节</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一个已经注册的-Servlet-可以被多次映射"><span class="nav-text">一个已经注册的 Servlet 可以被多次映射</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Servlet-映射的-URL-可以使用通配符"><span class="nav-text">Servlet 映射的 URL 可以使用通配符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Servlet-是单例的"><span class="nav-text">Servlet 是单例的</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么-Servlet-是单例的"><span class="nav-text">为什么 Servlet 是单例的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#每次访问请求对象和响应对象都是新的"><span class="nav-text">每次访问请求对象和响应对象都是新的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程安全问题"><span class="nav-text">线程安全问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#load-on-startup"><span class="nav-text">load-on-startup</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在-web-访问任何资源都是在访问-Servlet"><span class="nav-text">在 web 访问任何资源都是在访问 Servlet</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ServletConfig-对象"><span class="nav-text">ServletConfig 对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ServletConfig-对象有什么用？"><span class="nav-text">ServletConfig 对象有什么用？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获取-web-xml-文件配置的参数信息"><span class="nav-text">获取 web.xml 文件配置的参数信息</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ServletContext-对象"><span class="nav-text">ServletContext 对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-ServletContext-对象？"><span class="nav-text">什么是 ServletContext 对象？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ServletContext-有什么用？"><span class="nav-text">ServletContext 有什么用？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Servlet-之间实现通讯"><span class="nav-text">Servlet 之间实现通讯</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取-web-站点配置的信息"><span class="nav-text">获取 web 站点配置的信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#读取资源文件"><span class="nav-text">读取资源文件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Servlet-第四篇【request-对象常用方法、应用】"><span class="nav-text">Servlet 第四篇【request 对象常用方法、应用】</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是-HttpServletRequest"><span class="nav-text">什么是 HttpServletRequest</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HttpServletRequest-常用方法"><span class="nav-text">HttpServletRequest 常用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#获得客户机【浏览器】信息"><span class="nav-text">获得客户机【浏览器】信息</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获得客户机请求头"><span class="nav-text">获得客户机请求头</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#获得客户机请求参数-客户端提交的数据"><span class="nav-text">获得客户机请求参数 (客户端提交的数据)</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#HttpServletRequest-应用"><span class="nav-text">HttpServletRequest 应用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#防盗链"><span class="nav-text">防盗链</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表单提交数据【通过-post-方式提交数据】"><span class="nav-text">表单提交数据【通过 post 方式提交数据】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#超链接方式提交数据"><span class="nav-text">超链接方式提交数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解决中文乱码问题"><span class="nav-text">解决中文乱码问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现转发"><span class="nav-text">实现转发</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#转发的时序图"><span class="nav-text">转发的时序图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#请求转发的细节"><span class="nav-text">请求转发的细节</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#转发和重定向的区别"><span class="nav-text">转发和重定向的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#实际发生位置不同，地址栏不同"><span class="nav-text">实际发生位置不同，地址栏不同</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用法不同"><span class="nav-text">用法不同</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#能够去往的-URL-的范围不一样"><span class="nav-text">能够去往的 URL 的范围不一样</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#传递数据的类型不同"><span class="nav-text">传递数据的类型不同</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#跳转的时间不同"><span class="nav-text">跳转的时间不同</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#转发和重定向使用哪一个？"><span class="nav-text">转发和重定向使用哪一个？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RequestDispatcher-再说明"><span class="nav-text">RequestDispatcher 再说明</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Servlet-第五篇【介绍会话技术、Cookie-的-API、详解、应用】"><span class="nav-text">Servlet 第五篇【介绍会话技术、Cookie 的 API、详解、应用】</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是会话技术"><span class="nav-text">什么是会话技术</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么我们要使用会话技术？"><span class="nav-text">为什么我们要使用会话技术？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Cookie"><span class="nav-text">Cookie</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-Cookie"><span class="nav-text">什么是 Cookie</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cookie-API"><span class="nav-text">Cookie API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简单使用-Cookie"><span class="nav-text">简单使用 Cookie</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cookie-细节"><span class="nav-text">Cookie 细节</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookie-不可跨域名性"><span class="nav-text">Cookie 不可跨域名性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookie-保存中文"><span class="nav-text">Cookie 保存中文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookie-的有效期"><span class="nav-text">Cookie 的有效期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookie-的修改和删除"><span class="nav-text">Cookie 的修改和删除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookie-的域名"><span class="nav-text">Cookie 的域名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookie-的路径"><span class="nav-text">Cookie 的路径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookie-的安全属性"><span class="nav-text">Cookie 的安全属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cookie-的应用"><span class="nav-text">Cookie 的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#显示用户上次访问的时间"><span class="nav-text">显示用户上次访问的时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#显示上次浏览过商品"><span class="nav-text">显示上次浏览过商品</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Servlet-第六篇【Session-介绍、API、生命周期、应用、与-Cookie-区别】"><span class="nav-text">Servlet 第六篇【Session 介绍、API、生命周期、应用、与 Cookie 区别】</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是-Session"><span class="nav-text">什么是 Session</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么要使用-Session-技术？"><span class="nav-text">为什么要使用 Session 技术？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Session-API"><span class="nav-text">Session API</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Session-作为域对象"><span class="nav-text">Session 作为域对象</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Session-的生命周期和有效期"><span class="nav-text">Session 的生命周期和有效期</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#使用-Session-完成简单的购物功能"><span class="nav-text">使用 Session 完成简单的购物功能</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Session-的实现原理"><span class="nav-text">Session 的实现原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#浏览器禁用了-Cookie，Session-还能用吗？"><span class="nav-text">浏览器禁用了 Cookie，Session 还能用吗？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Session-禁用-Cookie"><span class="nav-text">Session 禁用 Cookie</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Session-案例"><span class="nav-text">Session 案例</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-Session-完成用户简单登陆"><span class="nav-text">使用 Session 完成用户简单登陆</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#利用-Session-防止表单重复提交"><span class="nav-text">利用 Session 防止表单重复提交</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一次性校验码"><span class="nav-text">一次性校验码</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Session-和-Cookie-的区别"><span class="nav-text">Session 和 Cookie 的区别</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Cookie-和-Session-共同使用"><span class="nav-text">Cookie 和 Session 共同使用</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Servlet第一篇【介绍Servlet、HTTP协议、WEB目录结构、编写入门Servlet程序、Servlet生命周期】"><span class="nav-text">Servlet第一篇【介绍Servlet、HTTP协议、WEB目录结构、编写入门Servlet程序、Servlet生命周期】</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-Serlvet？"><span class="nav-text">什么是 Serlvet？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要用到-Serlvet？"><span class="nav-text">为什么要用到 Serlvet？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HTTP-协议"><span class="nav-text">HTTP 协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是-HTPP-协议"><span class="nav-text">什么是 HTPP 协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP1-0-和-HTTP1-1-的区别"><span class="nav-text">HTTP1.0 和 HTTP1.1 的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-请求"><span class="nav-text">HTTP 请求</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#请求行"><span class="nav-text">请求行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#请求头"><span class="nav-text">请求头</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-响应"><span class="nav-text">HTTP 响应</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#状态行"><span class="nav-text">状态行</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#响应头"><span class="nav-text">响应头</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Servlet-的作用"><span class="nav-text">Servlet 的作用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JAVAWEB-目录结构"><span class="nav-text">JAVAWEB 目录结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实现-Servlet-接口编写-Servlet-程序"><span class="nav-text">实现 Servlet 接口编写 Servlet 程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#编写-Servlet-程序的步骤"><span class="nav-text">编写 Servlet 程序的步骤</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Serlvet-生命周期"><span class="nav-text">Serlvet 生命周期</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Servlet-生命周期可分为-5-个步骤"><span class="nav-text">Servlet 生命周期可分为 5 个步骤</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#继承-HttpServlet-编写-Servlet-程序"><span class="nav-text">继承 HttpServlet 编写 Servlet 程序</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Servlet-第二篇【Servlet-调用图、Servlet-细节、ServletConfig、ServletContext】"><span class="nav-text">Servlet 第二篇【Servlet 调用图、Servlet 细节、ServletConfig、ServletContext】</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Servlet-的调用图"><span class="nav-text">Servlet 的调用图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Servlet-的细节"><span class="nav-text">Servlet 的细节</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一个已经注册的-Servlet-可以被多次映射"><span class="nav-text">一个已经注册的 Servlet 可以被多次映射</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Servlet-映射的-URL-可以使用通配符"><span class="nav-text">Servlet 映射的 URL 可以使用通配符</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Servlet-是单例的"><span class="nav-text">Servlet 是单例的</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#为什么-Servlet-是单例的"><span class="nav-text">为什么 Servlet 是单例的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#每次访问请求对象和响应对象都是新的"><span class="nav-text">每次访问请求对象和响应对象都是新的</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#线程安全问题"><span class="nav-text">线程安全问题</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#load-on-startup"><span class="nav-text">load-on-startup</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在-web-访问任何资源都是在访问-Servlet"><span class="nav-text">在 web 访问任何资源都是在访问 Servlet</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ServletConfig-对象"><span class="nav-text">ServletConfig 对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ServletConfig-对象有什么用？"><span class="nav-text">ServletConfig 对象有什么用？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取-web-xml-文件配置的参数信息"><span class="nav-text">获取 web.xml 文件配置的参数信息</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ServletContext-对象"><span class="nav-text">ServletContext 对象</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是-ServletContext-对象？"><span class="nav-text">什么是 ServletContext 对象？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ServletContext-有什么用？"><span class="nav-text">ServletContext 有什么用？</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Servlet-之间实现通讯"><span class="nav-text">Servlet 之间实现通讯</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#获取-web-站点配置的信息"><span class="nav-text">获取 web 站点配置的信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#读取资源文件"><span class="nav-text">读取资源文件</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Servlet-第四篇【request-对象常用方法、应用】"><span class="nav-text">Servlet 第四篇【request 对象常用方法、应用】</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-HttpServletRequest"><span class="nav-text">什么是 HttpServletRequest</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HttpServletRequest-常用方法"><span class="nav-text">HttpServletRequest 常用方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#获得客户机【浏览器】信息"><span class="nav-text">获得客户机【浏览器】信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获得客户机请求头"><span class="nav-text">获得客户机请求头</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获得客户机请求参数-客户端提交的数据"><span class="nav-text">获得客户机请求参数 (客户端提交的数据)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HttpServletRequest-应用"><span class="nav-text">HttpServletRequest 应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#防盗链"><span class="nav-text">防盗链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表单提交数据【通过-post-方式提交数据】"><span class="nav-text">表单提交数据【通过 post 方式提交数据】</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#超链接方式提交数据"><span class="nav-text">超链接方式提交数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决中文乱码问题"><span class="nav-text">解决中文乱码问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#实现转发"><span class="nav-text">实现转发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#转发的时序图"><span class="nav-text">转发的时序图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求转发的细节"><span class="nav-text">请求转发的细节</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#转发和重定向的区别"><span class="nav-text">转发和重定向的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#实际发生位置不同，地址栏不同"><span class="nav-text">实际发生位置不同，地址栏不同</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#用法不同"><span class="nav-text">用法不同</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#能够去往的-URL-的范围不一样"><span class="nav-text">能够去往的 URL 的范围不一样</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#传递数据的类型不同"><span class="nav-text">传递数据的类型不同</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#跳转的时间不同"><span class="nav-text">跳转的时间不同</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#转发和重定向使用哪一个？"><span class="nav-text">转发和重定向使用哪一个？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RequestDispatcher-再说明"><span class="nav-text">RequestDispatcher 再说明</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Servlet-第五篇【介绍会话技术、Cookie-的-API、详解、应用】"><span class="nav-text">Servlet 第五篇【介绍会话技术、Cookie 的 API、详解、应用】</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是会话技术"><span class="nav-text">什么是会话技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么我们要使用会话技术？"><span class="nav-text">为什么我们要使用会话技术？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cookie"><span class="nav-text">Cookie</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是-Cookie"><span class="nav-text">什么是 Cookie</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookie-API"><span class="nav-text">Cookie API</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#简单使用-Cookie"><span class="nav-text">简单使用 Cookie</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookie-细节"><span class="nav-text">Cookie 细节</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Cookie-不可跨域名性"><span class="nav-text">Cookie 不可跨域名性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cookie-保存中文"><span class="nav-text">Cookie 保存中文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cookie-的有效期"><span class="nav-text">Cookie 的有效期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cookie-的修改和删除"><span class="nav-text">Cookie 的修改和删除</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cookie-的域名"><span class="nav-text">Cookie 的域名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cookie-的路径"><span class="nav-text">Cookie 的路径</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Cookie-的安全属性"><span class="nav-text">Cookie 的安全属性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Cookie-的应用"><span class="nav-text">Cookie 的应用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#显示用户上次访问的时间"><span class="nav-text">显示用户上次访问的时间</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#显示上次浏览过商品"><span class="nav-text">显示上次浏览过商品</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Servlet-第六篇【Session-介绍、API、生命周期、应用、与-Cookie-区别】"><span class="nav-text">Servlet 第六篇【Session 介绍、API、生命周期、应用、与 Cookie 区别】</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-Session"><span class="nav-text">什么是 Session</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要使用-Session-技术？"><span class="nav-text">为什么要使用 Session 技术？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Session-API"><span class="nav-text">Session API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Session-作为域对象"><span class="nav-text">Session 作为域对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Session-的生命周期和有效期"><span class="nav-text">Session 的生命周期和有效期</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用-Session-完成简单的购物功能"><span class="nav-text">使用 Session 完成简单的购物功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Session-的实现原理"><span class="nav-text">Session 的实现原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器禁用了-Cookie，Session-还能用吗？"><span class="nav-text">浏览器禁用了 Cookie，Session 还能用吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Session-禁用-Cookie"><span class="nav-text">Session 禁用 Cookie</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Session-案例"><span class="nav-text">Session 案例</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用-Session-完成用户简单登陆"><span class="nav-text">使用 Session 完成用户简单登陆</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#利用-Session-防止表单重复提交"><span class="nav-text">利用 Session 防止表单重复提交</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一次性校验码"><span class="nav-text">一次性校验码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Session-和-Cookie-的区别"><span class="nav-text">Session 和 Cookie 的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Cookie-和-Session-共同使用"><span class="nav-text">Cookie 和 Session 共同使用</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -2233,7 +2233,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">494.7k</span>
+    <span title="Site words total count">499.1k</span>
   
 </div>
 

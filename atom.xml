@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cloudpai.site/"/>
-  <updated>2018-03-29T12:33:33.980Z</updated>
+  <updated>2018-03-29T14:12:30.003Z</updated>
   <id>http://cloudpai.site/</id>
   
   <author>
@@ -17,11 +17,55 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title></title>
+    <link href="http://cloudpai.site/2018/03/29/2018-03-29-2/"/>
+    <id>http://cloudpai.site/2018/03/29/2018-03-29-2/</id>
+    <published>2018-03-29T14:12:30.002Z</published>
+    <updated>2018-03-29T14:12:30.003Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;# &lt;/p&gt;
+
+      
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>JSP面试总结</title>
+    <link href="http://cloudpai.site/2018/03/29/2018-03-29-1/"/>
+    <id>http://cloudpai.site/2018/03/29/2018-03-29-1/</id>
+    <published>2018-03-29T12:36:12.000Z</published>
+    <updated>2018-03-29T12:37:12.125Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;下面是我整理下来的 JSP 知识点:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/5291
+      
+    
+    </summary>
+    
+    
+      <category term="面试" scheme="http://cloudpai.site/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+      <category term="JSP" scheme="http://cloudpai.site/tags/JSP/"/>
+    
+  </entry>
+  
+  <entry>
     <title>JSP 学习</title>
     <link href="http://cloudpai.site/2018/03/29/2018-03-29/"/>
     <id>http://cloudpai.site/2018/03/29/2018-03-29/</id>
     <published>2018-03-29T10:22:55.000Z</published>
-    <updated>2018-03-29T12:33:33.980Z</updated>
+    <updated>2018-03-29T14:07:34.247Z</updated>
     
     <summary type="html">
     
@@ -91,7 +135,7 @@
     <link href="http://cloudpai.site/2018/03/28/2018-03-28-1/"/>
     <id>http://cloudpai.site/2018/03/28/2018-03-28-1/</id>
     <published>2018-03-28T11:43:34.000Z</published>
-    <updated>2018-03-28T13:55:49.805Z</updated>
+    <updated>2018-03-29T14:11:47.049Z</updated>
     
     <summary type="html">
     
@@ -434,52 +478,6 @@
       
       
         &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;01-线程池架构&quot;&gt;&lt;a href=&quot;#01-线程池架构&quot; class=&quot;headerlink&quot; title=&quot;01 线程池架构&quot;&gt;&lt;/a&gt;01 线程池架构&lt;/h1
-      
-    
-    </summary>
-    
-    
-      <category term="java" scheme="http://cloudpai.site/tags/java/"/>
-    
-      <category term="并发" scheme="http://cloudpai.site/tags/%E5%B9%B6%E5%8F%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>java多线程系列四：JUC集合</title>
-    <link href="http://cloudpai.site/2018/03/24/2018-03-24-2/"/>
-    <id>http://cloudpai.site/2018/03/24/2018-03-24-2/</id>
-    <published>2018-03-24T13:55:31.000Z</published>
-    <updated>2018-03-25T03:25:34.025Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;01-框架&quot;&gt;&lt;a href=&quot;#01-框架&quot; class=&quot;headerlink&quot; title=&quot;01 框架&quot;&gt;&lt;/a&gt;01 框架&lt;/h1&gt;&lt;h2 id=&quot;概要&quot;
-      
-    
-    </summary>
-    
-    
-      <category term="java" scheme="http://cloudpai.site/tags/java/"/>
-    
-      <category term="并发" scheme="http://cloudpai.site/tags/%E5%B9%B6%E5%8F%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>java多线程系列三：JUC锁</title>
-    <link href="http://cloudpai.site/2018/03/24/2018-03-24-1/"/>
-    <id>http://cloudpai.site/2018/03/24/2018-03-24-1/</id>
-    <published>2018-03-24T08:46:11.000Z</published>
-    <updated>2018-03-24T14:13:55.395Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;01-框架&quot;&gt;&lt;a href=&quot;#01-框架&quot; class=&quot;headerlink&quot; title=&quot;01 框架&quot;&gt;&lt;/a&gt;01 框架&lt;/h1&gt;&lt;p&gt;根据锁添加到 J
       
     
     </summary>
