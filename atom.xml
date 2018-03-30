@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cloudpai.site/"/>
-  <updated>2018-03-29T14:12:30.003Z</updated>
+  <updated>2018-03-30T12:02:30.060Z</updated>
   <id>http://cloudpai.site/</id>
   
   <author>
@@ -17,22 +17,47 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
-    <link href="http://cloudpai.site/2018/03/29/2018-03-29-2/"/>
-    <id>http://cloudpai.site/2018/03/29/2018-03-29-2/</id>
-    <published>2018-03-29T14:12:30.002Z</published>
-    <updated>2018-03-29T14:12:30.003Z</updated>
+    <title>nginx 学习</title>
+    <link href="http://cloudpai.site/2018/03/29/2018-03-29-3/"/>
+    <id>http://cloudpai.site/2018/03/29/2018-03-29-3/</id>
+    <published>2018-03-29T14:54:26.000Z</published>
+    <updated>2018-03-30T12:02:30.060Z</updated>
     
     <summary type="html">
     
       
       
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;# &lt;/p&gt;
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;参考：&lt;br&gt;实战nginx笔记 - 简书&lt;br&gt;&lt;a href=&quot;https://www.jianshu.com/p/dff2c0497
+      
+    
+    </summary>
+    
+    
+      <category term="nginx" scheme="http://cloudpai.site/tags/nginx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>正则表达式</title>
+    <link href="http://cloudpai.site/2018/03/29/2018-03-29-2/"/>
+    <id>http://cloudpai.site/2018/03/29/2018-03-29-2/</id>
+    <published>2018-03-29T14:13:07.000Z</published>
+    <updated>2018-03-29T14:14:49.167Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;使用 &lt;code&gt;^\#\#\#&lt;/code&gt;(注意正则表达式结尾是一个空格)正则表达式进行替换查找博客中的三级标题，&lt;/p&gt;
 
       
     
     </summary>
     
+    
+      <category term="正则表达式" scheme="http://cloudpai.site/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
     
   </entry>
   
@@ -271,7 +296,7 @@
     <link href="http://cloudpai.site/2018/03/27/2018-03-27/"/>
     <id>http://cloudpai.site/2018/03/27/2018-03-27/</id>
     <published>2018-03-27T01:42:05.000Z</published>
-    <updated>2018-03-29T01:36:50.378Z</updated>
+    <updated>2018-03-30T14:03:16.351Z</updated>
     
     <summary type="html">
     
@@ -460,30 +485,7 @@
     
       <category term="java" scheme="http://cloudpai.site/tags/java/"/>
     
-      <category term="并发" scheme="http://cloudpai.site/tags/%E5%B9%B6%E5%8F%91/"/>
-    
       <category term="面试" scheme="http://cloudpai.site/tags/%E9%9D%A2%E8%AF%95/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>java多线程系列五：JUC线程池</title>
-    <link href="http://cloudpai.site/2018/03/25/2018-03-25/"/>
-    <id>http://cloudpai.site/2018/03/25/2018-03-25/</id>
-    <published>2018-03-25T03:26:08.000Z</published>
-    <updated>2018-03-25T09:29:03.615Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;01-线程池架构&quot;&gt;&lt;a href=&quot;#01-线程池架构&quot; class=&quot;headerlink&quot; title=&quot;01 线程池架构&quot;&gt;&lt;/a&gt;01 线程池架构&lt;/h1
-      
-    
-    </summary>
-    
-    
-      <category term="java" scheme="http://cloudpai.site/tags/java/"/>
     
       <category term="并发" scheme="http://cloudpai.site/tags/%E5%B9%B6%E5%8F%91/"/>
     
