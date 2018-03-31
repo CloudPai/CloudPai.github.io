@@ -1,0 +1,1392 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java,IO," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="CloudPai" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="字符流： Reader： 用于读取字符流的抽象类。子类必须实现的方法只有 read(char[], int, int) 和 close()。 |—BufferedReader ：从字符输入流中读取文本，缓冲各个字符，从而实现字符、数组和行的高效读取。 可以指定缓冲区的大小，或者可使用默认的大小。大多数情况下，默认值就足够大了。 |—LineNumberReader ：跟踪行号的缓冲字符输入流。此">
+<meta name="keywords" content="Java,IO">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java IO总结">
+<meta property="og:url" content="http://cloudpai.site/2018/03/31/2018-03-31-3/index.html">
+<meta property="og:site_name" content="CloudPai">
+<meta property="og:description" content="字符流： Reader： 用于读取字符流的抽象类。子类必须实现的方法只有 read(char[], int, int) 和 close()。 |—BufferedReader ：从字符输入流中读取文本，缓冲各个字符，从而实现字符、数组和行的高效读取。 可以指定缓冲区的大小，或者可使用默认的大小。大多数情况下，默认值就足够大了。 |—LineNumberReader ：跟踪行号的缓冲字符输入流。此">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225009371901.jpg">
+<meta property="og:updated_time" content="2018-03-31T13:19:58.820Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java IO总结">
+<meta name="twitter:description" content="字符流： Reader： 用于读取字符流的抽象类。子类必须实现的方法只有 read(char[], int, int) 和 close()。 |—BufferedReader ：从字符输入流中读取文本，缓冲各个字符，从而实现字符、数组和行的高效读取。 可以指定缓冲区的大小，或者可使用默认的大小。大多数情况下，默认值就足够大了。 |—LineNumberReader ：跟踪行号的缓冲字符输入流。此">
+<meta name="twitter:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225009371901.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'TZAS2SFOJR',
+      apiKey: 'e2a9cd036eede8026382b302001ec261',
+      indexName: 'cloudpai_blogs_search',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cloudpai.site/2018/03/31/2018-03-31-3/"/>
+
+
+
+
+
+  <title>Java IO总结 | CloudPai</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-114643720-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CloudPai</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/03/31/2018-03-31-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CloudPai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudPai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java IO总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-31T20:31:10+08:00">
+                2018-03-31
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-31T21:19:58+08:00">
+                2018-03-31
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/31/2018-03-31-3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/03/31/2018-03-31-3/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,301
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="字符流："><a href="#字符流：" class="headerlink" title="字符流："></a>字符流：</h1><ul>
+<li>Reader： 用于读取字符流的抽象类。子类必须实现的方法只有 read(char[], int, int) 和 close()。<ul>
+<li>|—BufferedReader ：从字符输入流中读取文本，缓冲各个字符，从而实现字符、数组和行的高效读取。 可以指定缓冲区的大小，或者可使用默认的大小。大多数情况下，默认值就足够大了。</li>
+<li>|—LineNumberReader ：跟踪行号的缓冲字符输入流。此类定义了方法 setLineNumber(int) 和 getLineNumber()，它们可分别用于设置和获取当前行号。</li>
+<li>|—InputStreamReader ：是字节流通向字符流的桥梁：它使用指定的 charset 读取字节并将其解码为字符。它使用的字符集可以由名称指定或显式给定，或者可以接受平台默认的字符集。</li>
+<li>|—FileReader： ：用来读取字符文件的便捷类。此类的构造方法假定默认字符编码和默认字节缓冲区大小<br>都是适当的。要自己指定这些值，可以先在 FileInputStream 上构造一个 InputStreamReader。</li>
+<li>|—CharArrayReade</li>
+<li>|—StringReader</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>Writer： 写入字符流的抽象类。子类必须实现的方法仅有 write(char[], int, int)、flush() 和 close()。<ul>
+<li>|—BufferedWriter： ：将文本写入字符输出流，缓冲各个字符，从而提供单个字符、数组和字符串的高效写入。</li>
+<li>|—OutputStreamWriter ：是字符流通向字节流的桥梁：可使用指定的 charset 将要写入流中的字符编码成字节。它使用的字符集可以由名称指定或显式给定，否则将接受平台默认的字符集。</li>
+<li>|—FileWriter： ：用来写入字符文件的便捷类。此类的构造方法假定默认字符编码和默认字节缓冲区大小都是可接受的。要自己指定这些值，可以先在 FileOutputStream 上构造一个 OutputStreamWriter。</li>
+<li>|—PrintWrite</li>
+<li>|—CharArrayWriter</li>
+<li>|—StringWriter</li>
+</ul>
+</li>
+</ul>
+<h1 id="字-节-流："><a href="#字-节-流：" class="headerlink" title="字 节 流："></a><a></a>字 节 流：</h1><ul>
+<li>InputStream： 是表示字节输入流的所有类的超类。<ul>
+<li>|— FileInputStream： ：从文件系统中的某个文件中获得输入字节。哪些文件可用取决于主机环境。FileInputStream 用于读取诸如图像数据之类的原始字节流。要读取字符流，请考虑使用 FileReader。</li>
+<li>|— FilterInputStream： ：包含其他一些输入流，它将这些流用作其基本数据源，它可以直接传输数据或提供一些额外的功能。</li>
+<li>|— BufferedInputStream ：该类实现缓冲的输入流。</li>
+<li>|— Stream ：</li>
+<li>|— ObjectInputStream ：</li>
+<li>|— PipedInputStream</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ul>
+<li>OutputStream：此抽象类是表示输出字节流的所有类的超类。<ul>
+<li>|— FileOutputStream ：文件输出流是用于将数据写入 File 或 FileDescriptor 的输出流。</li>
+<li>|— FilterOutputStream ：此类是过滤输出流的所有类的超类。</li>
+<li>|— BufferedOutputStream ：该类实现缓冲的输出流。</li>
+<li>|— PrintStream ：</li>
+<li>|— DataOutputStream ：</li>
+<li>|— ObjectOutputStream ：</li>
+<li>|— PipedOutputStream：</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h1 id="规律总结"><a href="#规律总结" class="headerlink" title="规律总结"></a><a></a>规律总结</h1><blockquote>
+<p>IO 流中的对象：其实很简单，就是读取和写入。但是因为功能的不同，流的体系中提供 N 多的对象。那么开始时，到<br>底该用哪个对象更为合适呢？这就需要明确流的操作规律。</p>
+</blockquote>
+<h3 id="1-，明确源和目的。"><a href="#1-，明确源和目的。" class="headerlink" title="1 ，明确源和目的。"></a><a></a>1 ，明确源和目的。</h3><ul>
+<li>数据源：就是需要读取，可以使用两个体系：InputStream、Reader；</li>
+<li>数据汇：就是需要写入，可以使用两个体系：OutputStream、Writer；</li>
+</ul>
+<h3 id="2-，操作的数据是否是纯文本数据？"><a href="#2-，操作的数据是否是纯文本数据？" class="headerlink" title="2 ，操作的数据是否是纯文本数据？"></a><a></a>2 ，操作的数据是否是纯文本数据？</h3><ul>
+<li>如果是：数据源：Reader 数据汇：Writer</li>
+<li>如果不是：数据源：InputStream 数据汇：OutputStream</li>
+</ul>
+<h3 id="3-，虽然确定了一个体系，但是该体系中有太多的对象，到底用哪个呢？明确操作的数据设备。"><a href="#3-，虽然确定了一个体系，但是该体系中有太多的对象，到底用哪个呢？明确操作的数据设备。" class="headerlink" title="3 ，虽然确定了一个体系，但是该体系中有太多的对象，到底用哪个呢？明确操作的数据设备。"></a><a></a>3 ，虽然确定了一个体系，但是该体系中有太多的对象，到底用哪个呢？明确操作的数据设备。</h3><ul>
+<li>数据源对应的设备：硬盘 (File)，内存 (数组)，键盘 (System.in)</li>
+<li>数据汇对应的设备：硬盘 (File)，内存 (数组)，控制台 (System.out)。</li>
+</ul>
+<h3 id="4-，需要在基本操作上附加其他功能吗？比如缓冲。"><a href="#4-，需要在基本操作上附加其他功能吗？比如缓冲。" class="headerlink" title="4 ，需要在基本操作上附加其他功能吗？比如缓冲。"></a><a></a>4 ，需要在基本操作上附加其他功能吗？比如缓冲。</h3><ul>
+<li>如果需要就进行装饰。</li>
+</ul>
+<h1 id="根据规律实例化演示"><a href="#根据规律实例化演示" class="headerlink" title="根据规律实例化演示"></a><a></a>根据规律实例化演示</h1><h3 id="需求：读取键盘录入，将数据存储到一个文件中。"><a href="#需求：读取键盘录入，将数据存储到一个文件中。" class="headerlink" title="需求：读取键盘录入，将数据存储到一个文件中。"></a><a></a>需求：读取键盘录入，将数据存储到一个文件中。</h3><h3 id="规律分析"><a href="#规律分析" class="headerlink" title="规律分析"></a><a></a>规律分析</h3><h4 id="1，明确体系："><a href="#1，明确体系：" class="headerlink" title="1，明确体系："></a>1，明确体系：</h4><ul>
+<li>源：InputStream ，Reader</li>
+<li>目的：OutputStream ，Writer</li>
+</ul>
+<h4 id="2，明确数据："><a href="#2，明确数据：" class="headerlink" title="2，明确数据："></a>2，明确数据：</h4><ul>
+<li>源：是纯文本吗？是 Reader</li>
+<li>目的；是纯文本吗？是 Writer</li>
+</ul>
+<h4 id="3，明确设备："><a href="#3，明确设备：" class="headerlink" title="3，明确设备："></a>3，明确设备：</h4><ul>
+<li>源：键盘，System.in</li>
+<li>目的：硬盘，FileWriter</li>
+<li>InputStream in = System.in;</li>
+<li>FileWriter fw = new FileWriter(“a.txt”);</li>
+</ul>
+<h4 id="4，需要额外功能吗？"><a href="#4，需要额外功能吗？" class="headerlink" title="4，需要额外功能吗？"></a>4，需要额外功能吗？</h4><ul>
+<li>需要，因为源明确的体系是 Reader。可是源的设备是 System.in。所以为了方便于操作文本数据，将源转成字符流。需要转换流。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">InputStreamReader InputStreamReader isr = <span class="keyword">new</span> InputStreamReader(System.in);</span><br><span class="line">FileWriter fw = <span class="keyword">new</span> FileWriter(“a.txt”);</span><br><span class="line">BufferedReader bufr = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(System.in));</span><br><span class="line">BufferedWriter bufw = <span class="keyword">new</span> BufferedWriter(<span class="keyword">new</span> FileWriter(“a.txt”));</span><br></pre></td></tr></table></figure>
+<h3 id="代码实现"><a href="#代码实现" class="headerlink" title="代码实现"></a><a></a>代码实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 通过键盘录入文字输出到文件</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">test3</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    BufferedWriter bufferedWriter = <span class="keyword">null</span>;</span><br><span class="line">    BufferedReader bufferedReader = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        bufferedWriter = <span class="keyword">new</span> BufferedWriter(</span><br><span class="line">                <span class="keyword">new</span> OutputStreamWriter(</span><br><span class="line">                        <span class="keyword">new</span> FileOutputStream(</span><br><span class="line">                                <span class="string">"E:\\kejiang\\IdeaProjects\\JavaProjectTest\\src\\io\\SystemOut.txt"</span>),<span class="string">"UTF-8"</span>));</span><br><span class="line">        bufferedReader = <span class="keyword">new</span> BufferedReader(<span class="keyword">new</span> InputStreamReader(System.in));</span><br><span class="line">        String s = <span class="string">""</span>;</span><br><span class="line">        <span class="keyword">while</span> ((s = bufferedReader.readLine()) != <span class="keyword">null</span>) &#123;</span><br><span class="line">            <span class="keyword">if</span> (<span class="string">"over"</span>.equals(s)) &#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            bufferedWriter.write(s.toUpperCase());</span><br><span class="line">            bufferedWriter.newLine();</span><br><span class="line">            bufferedWriter.flush();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; <span class="keyword">catch</span> (FileNotFoundException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">        e.printStackTrace();</span><br><span class="line">    &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            bufferedWriter.close();</span><br><span class="line">            bufferedReader.close();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>运行效果</p>
+<ul>
+<li>控制台</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">这是通过键盘录入的数据</span><br><span class="line">测试一下</span><br><span class="line"></span><br><span class="line">over</span><br><span class="line"></span><br><span class="line">Process finished with exit code 0</span><br></pre></td></tr></table></figure>
+<ul>
+<li>输出的文件<br><img src="http://p4lmrb1gp.bkt.clouddn.com/15225009371901.jpg" alt=""></li>
+</ul>
+<hr>
+<blockquote>
+<p>参考：<br>Java IO流之规律总结 - CSDN博客<br><a href="https://blog.csdn.net/linglongxin24/article/details/52840580" target="_blank" rel="noopener">https://blog.csdn.net/linglongxin24/article/details/52840580</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+
+     
+    
+      <div>
+        
+    <div style="text-align:center;color: #ccc;font-size:14px;">
+        ------ 本文结束<i class="fa fa-paw"></i>感谢您的阅读 ------</div>
+
+      </div>
+    
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    CloudPai
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://cloudpai.site/2018/03/31/2018-03-31-3/" title="Java IO总结">http://cloudpai.site/2018/03/31/2018-03-31-3/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
+          
+            <a href="/tags/IO/" rel="tag"><i class="fa fa-tag"></i> IO</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/31/2018-03-31-1/" rel="next" title="Java IO学习笔记">
+                <i class="fa fa-chevron-left"></i> Java IO学习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/31/2018-03-31-4/" rel="prev" title="Java IO面试">
+                Java IO面试 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+
+
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg"
+                alt="CloudPai" />
+            
+              <p class="site-author-name" itemprop="name">CloudPai</p>
+              <p class="site-description motion-element" itemprop="description">加油(๑•̀ㅂ•́)و✧加油</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">108</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+
+<div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=240 src="//music.163.com/outchain/player?type=0&id=2113726971&auto=0&height=430"></iframe>
+</div>
+<!-- 459004290 -->
+
+
+
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">48</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CloudPai" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:liupai024@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.douban.com/people/57965969/doulists/all" target="_blank" title="豆瓣">
+                      
+                        <i class="fa fa-fw fa-book"></i>豆瓣</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/cloudPai/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-edit"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.dlut.edu.cn/" title="DUT" target="_blank">DUT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bupt.edu.cn/" title="BUPT" target="_blank">BUPT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://campus.alibaba.com/index.htm" title="Alibaba Group" target="_blank">Alibaba Group</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#字符流："><span class="nav-text">字符流：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#字-节-流："><span class="nav-text">字 节 流：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#规律总结"><span class="nav-text">规律总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-，明确源和目的。"><span class="nav-text">1 ，明确源和目的。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-，操作的数据是否是纯文本数据？"><span class="nav-text">2 ，操作的数据是否是纯文本数据？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-，虽然确定了一个体系，但是该体系中有太多的对象，到底用哪个呢？明确操作的数据设备。"><span class="nav-text">3 ，虽然确定了一个体系，但是该体系中有太多的对象，到底用哪个呢？明确操作的数据设备。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-，需要在基本操作上附加其他功能吗？比如缓冲。"><span class="nav-text">4 ，需要在基本操作上附加其他功能吗？比如缓冲。</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#根据规律实例化演示"><span class="nav-text">根据规律实例化演示</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#需求：读取键盘录入，将数据存储到一个文件中。"><span class="nav-text">需求：读取键盘录入，将数据存储到一个文件中。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#规律分析"><span class="nav-text">规律分析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1，明确体系："><span class="nav-text">1，明确体系：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2，明确数据："><span class="nav-text">2，明确数据：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3，明确设备："><span class="nav-text">3，明确设备：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4，需要额外功能吗？"><span class="nav-text">4，需要额外功能吗？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码实现"><span class="nav-text">代码实现</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CloudPai</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">531.2k</span>
+  
+</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv">  </span>
+</span>
+</div>
+
+
+
+
+
+
+
+  <div class="theme-info">&#12288;主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://cloudpai.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://cloudpai.site/2018/03/31/2018-03-31-3/';
+          this.page.identifier = '2018/03/31/2018-03-31-3/';
+          this.page.title = 'Java IO总结';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cloudpai.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!-- <!-- <script src="https://cdn.bootcss.com/aplayer/1.6.0/APlayer.min.js"></script>
+
+<script src="https://api.i-meto.com/music/player.js"></script> --> -->
+  
+  <!--移动端判断，是否引入背景-->
+  <script>
+  var browser={  
+      versions:function(){   
+             var u = navigator.userAgent, app = navigator.appVersion;   
+             return {//移动终端浏览器版本信息
+                  trident: u.indexOf('Trident') > -1, //IE内核
+                  presto: u.indexOf('Presto') > -1, //opera内核
+                  webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                  gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                  mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                  ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                  android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                  iPhone: u.indexOf('iPhone') > -1 , //是否为iPhone或者QQHD浏览器
+                  iPad: u.indexOf('iPad') > -1, //是否iPad
+                  webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+              };  
+           }(),  
+           language:(navigator.browserLanguage || navigator.language).toLowerCase()  
+  }   
+    if(browser.versions.mobile || browser.versions.ios || browser.versions.android ||   
+      browser.versions.iPhone || browser.versions.iPad){        
+               
+    }else{
+    document.write("<script type=\'text/javascript\'  src=\'/js/src/particle.js\'><\/script>");
+    }
+  </script>
+
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":-80,"vOffset":-50},"mobile":{"show":false,"scale":0.2},"react":{"opacityDefault":1,"opacityOnHover":0.2}});</script></body>
+</html>
