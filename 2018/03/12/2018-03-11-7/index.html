@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="JVM," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="CloudPai" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="第五部分 高效并发第十二章 Java 内存模型与线程并发处理的广泛应用是使得 Amdahl 定律代替摩尔定律成为计算机性能发展源动力的根本原因，也是人类 “压榨” 计算机运算能力的最有力武器。 12.1 概述 多任务处理在现代计算机操作系统中几乎已是一项必备的功能了； 除了充分利用计算机处理器的能力外，一个服务端同时对多个客户端提供服务则是另一个更具体的并发应用场景； 服务端是 Java 语言最">
+<meta name="keywords" content="JVM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《深入理解java虚拟机》学习笔记之十二&amp;十三">
+<meta property="og:url" content="http://cloudpai.site/2018/03/12/2018-03-11-7/index.html">
+<meta property="og:site_name" content="CloudPai">
+<meta property="og:description" content="第五部分 高效并发第十二章 Java 内存模型与线程并发处理的广泛应用是使得 Amdahl 定律代替摩尔定律成为计算机性能发展源动力的根本原因，也是人类 “压榨” 计算机运算能力的最有力武器。 12.1 概述 多任务处理在现代计算机操作系统中几乎已是一项必备的功能了； 除了充分利用计算机处理器的能力外，一个服务端同时对多个客户端提供服务则是另一个更具体的并发应用场景； 服务端是 Java 语言最">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://oi46mo3on.bkt.clouddn.com/10_deep_in_jvm/jmm_relation.png">
+<meta property="og:image" content="http://oi46mo3on.bkt.clouddn.com/10_deep_in_jvm/thread_status.png">
+<meta property="og:image" content="http://oi46mo3on.bkt.clouddn.com/10_deep_in_jvm/mark_word_object_header.png">
+<meta property="og:image" content="http://oi46mo3on.bkt.clouddn.com/10_deep_in_jvm/mark_word_for_lock.png">
+<meta property="og:updated_time" content="2018-03-12T14:21:13.034Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《深入理解java虚拟机》学习笔记之十二&amp;十三">
+<meta name="twitter:description" content="第五部分 高效并发第十二章 Java 内存模型与线程并发处理的广泛应用是使得 Amdahl 定律代替摩尔定律成为计算机性能发展源动力的根本原因，也是人类 “压榨” 计算机运算能力的最有力武器。 12.1 概述 多任务处理在现代计算机操作系统中几乎已是一项必备的功能了； 除了充分利用计算机处理器的能力外，一个服务端同时对多个客户端提供服务则是另一个更具体的并发应用场景； 服务端是 Java 语言最">
+<meta name="twitter:image" content="http://oi46mo3on.bkt.clouddn.com/10_deep_in_jvm/jmm_relation.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'TZAS2SFOJR',
+      apiKey: 'e2a9cd036eede8026382b302001ec261',
+      indexName: 'cloudpai_blogs_search',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cloudpai.site/2018/03/12/2018-03-11-7/"/>
+
+
+
+
+
+  <title>《深入理解java虚拟机》学习笔记之十二&十三 | CloudPai</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-114643720-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CloudPai</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/03/12/2018-03-11-7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CloudPai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudPai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《深入理解java虚拟机》学习笔记之十二&十三</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-12T00:33:00+08:00">
+                2018-03-12
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-12T22:21:13+08:00">
+                2018-03-12
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/12/2018-03-11-7/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/03/12/2018-03-11-7/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  5,991
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  21
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="第五部分-高效并发"><a href="#第五部分-高效并发" class="headerlink" title="第五部分 高效并发"></a>第五部分 高效并发</h1><h1 id="第十二章-Java-内存模型与线程"><a href="#第十二章-Java-内存模型与线程" class="headerlink" title="第十二章 Java 内存模型与线程"></a>第十二章 Java 内存模型与线程</h1><p>并发处理的广泛应用是使得 Amdahl 定律代替摩尔定律成为计算机性能发展源动力的根本原因，也是人类 “压榨” 计算机运算能力的最有力武器。</p>
+<h2 id="12-1-概述"><a href="#12-1-概述" class="headerlink" title="12.1 概述"></a>12.1 概述</h2><ul>
+<li>多任务处理在现代计算机操作系统中几乎已是一项必备的功能了；</li>
+<li>除了充分利用计算机处理器的能力外，一个服务端同时对多个客户端提供服务则是另一个更具体的并发应用场景；</li>
+<li>服务端是 Java 语言最擅长的领域之一，不过如何写好并发应用程序却又是服务端程序开发的难点之一，处理好并发方面的问题通常需要更多的编码经验来支持，幸好 Java 语言和虚拟机提供了许多工具，把并发编码的门槛降低了不少；</li>
+</ul>
+<h2 id="12-2-硬件的效率与一致性"><a href="#12-2-硬件的效率与一致性" class="headerlink" title="12.2 硬件的效率与一致性"></a>12.2 硬件的效率与一致性</h2><ul>
+<li>绝大多数的运算任务不可能只靠处理器计算就能完成，处理器至少要与内存交互，所以现代计算机系统都不得不加入一层读写速度尽可能接近处理器运算速度的高速缓存来作为内存与处理器之间的缓冲：将运算需要使用到的数据复制到缓存中，让运算能快速运行，当运算结束后再从缓存同步回内存之中，这样处理器就无须等待缓慢的内存读写了；</li>
+<li>基于高速缓存的存储交互很好地解决了处理器与内存的速度矛盾，但是也为计算机系统带来更高的复杂度，因为它引入了一个新的问题：缓存一致性；为了解决一致性的问题，需要各个处理器访问缓存时都遵循一些协议，在读写时要根据协议来进行操作，这类协议有 MSI、MESI、MOSI、Synapse、Firefly 及 Dragon Protocol 等；</li>
+<li>本章将会多次提到内存模型一词，可以理解在特定的操作协议下，对特定的内存或高速缓存进行读写访问的过程抽象；不同架构的物理机器可以拥有不一样的内存模型，而 Java 虚拟机也有自己的内存模型，并且这里介绍的内存访问操作与硬件的缓存访问具有很高的可比性；</li>
+<li>除了增加高速缓存之外，为了使得处理器内部的运算单元能尽量被充分利用，处理器可能会对输入代码进行乱序执行优化，处理器会在计算之后将乱序执行的结果重组，保证该结果与顺序执行的结果是一致的；</li>
+</ul>
+<h2 id="12-3-Java-内存模型"><a href="#12-3-Java-内存模型" class="headerlink" title="12.3 Java 内存模型"></a>12.3 Java 内存模型</h2><p>Java 虚拟机规范中视图定义一种 Java 内存模型（JMM）来屏蔽掉各种硬件和操作系统的内存访问差异，以实现让 Java 程序在各种平台下都能达到一致的内存访问效果。</p>
+<h3 id="12-3-1-主内存与工作内存"><a href="#12-3-1-主内存与工作内存" class="headerlink" title="12.3.1 主内存与工作内存"></a>12.3.1 主内存与工作内存</h3><ul>
+<li>Java 内存模型的主要目标是定义程序中各个变量的访问规则，即在虚拟机中将变量存储到内存和从内存中取出变量这样的底层细节；此处的变量与 Java 编程中所说的变量有所区别，它包括了实例字段、静态字段和构成数组对象的元素，但不包括局部变量与方法参数，因为后者是线程私有的，不会被共享；</li>
+<li>Java 内存模型规定了所有的变量都存储在主内存中，每个线程还有自己的工作内存，线程的工作内存中保存了被该线程使用到的变量的主内存副本拷贝，线程对变量的所有操作都必须在工作内存中进行，而不能直接读写主内存中的变量；</li>
+<li>这里所讲的主内存、工作内存与第二章所讲的 Java 内存区域中的 Java 堆、栈、方法区等并不是同一个层次的内存划分，这两者基本上是没有关系的；线程、主内存和工作内存的关系如下所示：</li>
+</ul>
+<p><img src="http://oi46mo3on.bkt.clouddn.com/10_deep_in_jvm/jmm_relation.png" alt=""></p>
+<h3 id="12-3-2-内存间交互操作"><a href="#12-3-2-内存间交互操作" class="headerlink" title="12.3.2 内存间交互操作"></a>12.3.2 内存间交互操作</h3><p>关于主内存与工作内存之间具体的交互协议，即一个变量如何从主内存拷贝到工作内存、如何从工作内存同步回主内存之类的实现细节，Java 内存模型中定义了以下八种操作来完成，虚拟机实现时必须保证下面提及的每一种操作都是原子的、不可再分的（对于 double 和 long 类型的变量的某些操作在某些平台允许有例外）：</p>
+<ul>
+<li>lock</li>
+<li>unlock</li>
+<li>read</li>
+<li>load</li>
+<li>use</li>
+<li>assign</li>
+<li>store</li>
+<li>write</li>
+</ul>
+<p>基于理解难度和严谨性考虑，最新的 JSR-133 文档中，已经放弃采用这八种操作去定义 Java 内存模型的访问协议了，后面将会介绍一个等效判断原则 – 先行发生原则，用来确定一个访问在并发环境下是否安全；</p>
+<h3 id="12-3-3-对于-volatile-型变量的特殊规则"><a href="#12-3-3-对于-volatile-型变量的特殊规则" class="headerlink" title="12.3.3 对于 volatile 型变量的特殊规则"></a>12.3.3 对于 volatile 型变量的特殊规则</h3><ul>
+<li>关键字 volatile 可以说是 Java 虚拟机提供的最轻量级的同步机制；</li>
+<li>当一个变量定义为 volatile 之后，它将具备两种特性：第一是保证此变量对所有线程的可见性，这里的可见性是指当一个线程修改了这个变量的值，新的值对于其他线程来说是可以立即得知的，而普通的变量的值在线程间传递均需要通过主内存来完成；另外一个是禁止指令重排序优化，普通的变量仅仅会保证在该方法的执行过程中所有依赖赋值结果的地方都能获取到正确的结果，而不能保证变量赋值操作的顺序与程序代码中的执行顺序一致；</li>
+<li>volatile 变量在各个线程的工作内存中不存在一致性问题，但是 Java 里面的运算并非原子操作，导致 volatile 变量的运算在并发下一样是不安全的；</li>
+<li>在不符合以下两条规则的运算场景中，我们仍然要通过加锁来保证原子性：运算结果并不依赖变量的当前值或者能够确保只有单一的线程修改变量的值、变量不需要与其他的状态变量共同参与不变约束；</li>
+<li>volatile 变量读操作的性能消耗与普通变量几乎没有任何差别，但是写操作则可能会慢一些；不过大多数场景下 volatile 的总开销仍然要比锁低，我们在 volatile 与锁之中选择的唯一依据仅仅是 volatile 的语义能否满足使用场景的需求；</li>
+</ul>
+<h3 id="12-3-4-对于-long-和-double-型变量的特殊规则"><a href="#12-3-4-对于-long-和-double-型变量的特殊规则" class="headerlink" title="12.3.4 对于 long 和 double 型变量的特殊规则"></a>12.3.4 对于 long 和 double 型变量的特殊规则</h3><ul>
+<li>允许虚拟机将没有被 volatile 修饰的 64 位数据的读写操作划分为两次 32 位的操作来进行，即允许虚拟机实现选择可以不保证 64 位数据类型的 load、store、read 和 write 这 4 个操作的原子性，这点就是所谓的 long 和 double 的非原子性协定；</li>
+<li>但允许虚拟机选择把这些操作实现为具有原子性的操作，目前各种平台下的商用虚拟机几乎都选择把 64 位数据的读写操作作为原子操作来对待；</li>
+</ul>
+<h3 id="12-3-5-原子性、可见性与有序性"><a href="#12-3-5-原子性、可见性与有序性" class="headerlink" title="12.3.5 原子性、可见性与有序性"></a>12.3.5 原子性、可见性与有序性</h3><ul>
+<li>原子性（Atomicity）：由 Java 内存模型来直接保证的原子性变量操作包括 read、load、assign、use、store 和 write；在 synchronized 块之间的操作也具备原子性；</li>
+<li>可见性（Visibility）：是指当一个线程修改了共享变量的值，其他线程能够立即得知这个修改；除了 volatile 之外，Java 还有 synchronized 和 final 关键字能实现可见性；</li>
+<li>有序性（Ordering）：如果在本线程内观察，所有的操作都是有序的；如果在一个线程中观察另一个线程，所有的操作都是无序的；Java 语言提供了 volatile 和 synchronized 两个关键字来保证线程之间操作的有序性；</li>
+</ul>
+<h3 id="12-3-6-先行发生原则"><a href="#12-3-6-先行发生原则" class="headerlink" title="12.3.6 先行发生原则"></a>12.3.6 先行发生原则</h3><ul>
+<li>先行发生是 Java 内存模型中定义的两项操作之间的偏序关系，如果说操作 A 先行发生于操作 B，其实就是说在发生操作 B 之前，操作 A 产生的影响能被操作 B 观察到，影响包括了修改了内存中共享变量的值、发送了消息、调用了方法等；</li>
+<li>下面是 Java 内存模型下一些天然的先行发生关系：程序次序规则、管程锁定规则、volatile 变量规则、线程启动规则、线程终止规则、线程中断规则、对象终结规则、传递性；</li>
+<li>时间先后顺序与先行发生原则之间基本没有太大的关系，所以我们衡量并发安全问题的时候不要受到时间顺序的干扰，一切必须以先行发生原则为准；</li>
+</ul>
+<h2 id="12-4-Java-与线程"><a href="#12-4-Java-与线程" class="headerlink" title="12.4 Java 与线程"></a>12.4 Java 与线程</h2><h3 id="12-4-1-线程的实现"><a href="#12-4-1-线程的实现" class="headerlink" title="12.4.1 线程的实现"></a>12.4.1 线程的实现</h3><ul>
+<li>线程是比进程更轻量级的调度执行单位，线程的引入可以把一个进程的资源分配和执行调度分开，各个线程既可以共享进程资源又可以独立调度；</li>
+<li>Thread 类与大部分的 Java API 有显著的差别，它的所有关键方法都是声明为 Native 的；</li>
+<li>实现线程主要有三种方式：使用内核线程实现（系统调用代价相对较高、一个系统支持轻量级进程的数量是有限的）、使用用户线程实现（优势在于不需要系统内核支援，劣势在于所有线程操作都需要用户程序自己处理）和使用用户线程加轻量级进程混合实现（用户线程是完全建立在用户空间中，因此用户线程的创建、切换等操作依然廉价，并且可以支持大规模的用户线程并发；而操作系统提供支持的轻量级进程则作为用户线程和内核线程之间的桥梁，这样可以使用内核提供的线程调度功能及处理器映射，并且用户线程的系统调用要通过轻量级线程来完成，大大降低了整个进程被完全阻塞的风险）；</li>
+<li>对于 Sun JDK 来说，它的 Windows 版与 Linux 版都是使用一对一的线程模型实现的，一条 Java 线程就映射到一条轻量级进程之中，因为 Windows 和 Linux 系统提供的线程模式就是一对一的；</li>
+</ul>
+<h3 id="12-4-2-Java-线程调度"><a href="#12-4-2-Java-线程调度" class="headerlink" title="12.4.2 Java 线程调度"></a>12.4.2 Java 线程调度</h3><ul>
+<li>线程调度是指系统为线程分配处理器使用权的过程，主要调度方式有两种，分别是协同式线程调度（线程的执行时间由线程本身来控制）和抢占式线程调度（线程由系统来分配执行时间，线程的切换不由线程本身来决定）；</li>
+<li>Java 语言一共设置了 10 个级别的线程优先级，不过线程优先级并不是太靠谱，原因就是操作系统的线程优先级不见得总是与 Java 线程的优先级一一对应，另外优先级还可能被系统自行改变；</li>
+</ul>
+<h3 id="12-4-3-状态转换"><a href="#12-4-3-状态转换" class="headerlink" title="12.4.3 状态转换"></a>12.4.3 状态转换</h3><ul>
+<li>Java 语言定义了五种线程状态，在任意一个时间点，一个线程只能有且只有其中一种状态，分别是新建（New）、运行（Runnable）、无限期等待（Waiting）、限期等待（Timed Waiting）、阻塞（Blocled）、结束（Terminated）。它们之间相互的转换关系如下所示：</li>
+</ul>
+<p><img src="http://oi46mo3on.bkt.clouddn.com/10_deep_in_jvm/thread_status.png" alt=""></p>
+<h2 id="12-5-本章小结"><a href="#12-5-本章小结" class="headerlink" title="12.5 本章小结"></a>12.5 本章小结</h2><p>本章我们首先了解了虚拟机 Java 内存模型的结构及操作，然后讲解了原子性、可见性、有序性在 Java 内存模型中的体现，最后介绍了先行发生原则的规则及使用。另外，我们还了解了线程在 Java 语言之中是如何实现的。</p>
+<p>在本章主要介绍了虚拟机如何实现并发，而在下一章我们主要关注点将是虚拟机如何实现高效，以及虚拟机对我们编写的并发代码提供了什么样的优化手段。</p>
+<h1 id="第十三章-线程安全与锁优化"><a href="#第十三章-线程安全与锁优化" class="headerlink" title="第十三章 线程安全与锁优化"></a>第十三章 线程安全与锁优化</h1><h2 id="13-1-概述"><a href="#13-1-概述" class="headerlink" title="13.1 概述"></a>13.1 概述</h2><ul>
+<li>首先需要保证并发的正确性，然后在此基础上实现高效；</li>
+</ul>
+<h2 id="13-2-线程安全"><a href="#13-2-线程安全" class="headerlink" title="13.2 线程安全"></a>13.2 线程安全</h2><p>Brian Goetz 对线程安全有一个比较恰当的定义：当多个线程访问一个对象时，如果不用考虑这些线程在运行时环境下的调度和交替执行，也不需要进行额外的同步，或者在调用方进行任何其他的协调操作，调用这个对象的行为都可以获得正确的结果，那这个对象是线程安全的。</p>
+<h3 id="13-2-1-Java-语言中的线程安全"><a href="#13-2-1-Java-语言中的线程安全" class="headerlink" title="13.2.1 Java 语言中的线程安全"></a>13.2.1 Java 语言中的线程安全</h3><ul>
+<li>我们可以将 Java 语言中各个操作共享的数据分为以下五类：不可变、绝对线程安全、相对线程安全、线程兼容和线程对立；</li>
+<li>不可变：不可变带来的安全性是最简单和最纯粹的，如 final 的基本数据类型；如果共享的数据是一个对象，那就需要保证对象的行为不会对其状态产生任何影响才行，比如 String 类的 substring、replace 方法；Number 类型的大部分子类都符合不可变要求的类型，但是 AtomicInteger 和 AtomicLong 则并非不可变的；</li>
+<li>线程绝对安全：Java API 中标注自己是线程安全的类，大多数都不是绝对的线程安全；比如 java.util.Vector，不意味着调用它的是时候永远都不再需要同步手段了；</li>
+<li>线程相对安全：是我们通常意义上所讲的线程安全，在 Java 语言中，大部分的线程安全类都属于这种类型；</li>
+<li>线程兼容：指对象本身并不是线程安全的，但是可以通过在调用端正确地使用同步手段来保证对象在并发环境中可以安全地使用；我们说一个类不是线程安全的，绝大多数时候指的是这一种情况；</li>
+<li>线程对立：无论调用端是否采取了同步措施，都无法在多线程环境中并发使用的代码，Java 语言中很少出现；</li>
+</ul>
+<h3 id="13-2-2-线程安全的实现方法"><a href="#13-2-2-线程安全的实现方法" class="headerlink" title="13.2.2 线程安全的实现方法"></a>13.2.2 线程安全的实现方法</h3><ul>
+<li>互斥同步：同步是指在多个线程并发访问共享数据时，保证共享数据在同一个时刻只被一个线程使用，而互斥是实现同步的一种手段，临界区、互斥量和信号量都是主要的互斥实现方式；Java 中最基本的互斥同步手段就是 synchronized 关键字，它对同一个线程来说是可重入的且会阻塞后面其他线程的进入；另外还可以使用 java.util.concurrent 包中的重入锁（ReentrantLock）来实现同步，相比 synchronized 关键字 ReentrantLock 增加了一些高级功能：等待可中断、可实现公平锁以及锁可以绑定多个条件；</li>
+<li>非阻塞同步：互斥同步最主要的问题就是进行线程阻塞和唤醒带来的性能问题，其属于一种悲观的并发策略；随着硬件指令集的发展，我们有了另外一个选择即基于冲突检测的乐观并发策略，就是先进行操作，如果没有其他线程争用共享数据那就操作成功了，如果有争用产生了冲突，那就再采取其他的补偿措施（最常见的就是不断重试直至成功），这种同步操作称为非阻塞同步；Java 并发包的整数原子类，其中的 compareAndSet 和 getAndIncrement 等方法都使用了 Unsafe 类的 CAS 操作；</li>
+<li>无同步方案：要保证线程安全，并不是一定就要进行同步；有一些代码天生就是线程安全的，比如可重入代码和线程本地存储的代码；</li>
+</ul>
+<h2 id="13-3-锁优化"><a href="#13-3-锁优化" class="headerlink" title="13.3 锁优化"></a>13.3 锁优化</h2><h3 id="13-3-1-自旋锁与自适应自旋"><a href="#13-3-1-自旋锁与自适应自旋" class="headerlink" title="13.3.1 自旋锁与自适应自旋"></a>13.3.1 自旋锁与自适应自旋</h3><ul>
+<li>互斥同步对性能最大的影响是阻塞的实现，挂起线程和恢复线程的操作都需要转入内核态中完成，这些操作给系统的并发性能带来了很大的压力；另外在共享数据的锁定状态只会持续很短的一段时间，为了这段时间去挂起和恢复线程并不值得，如果让两个或以上的线程同时并行执行，让后面请求锁的那个线程稍等一下，但不放弃处理器的执行时间，看看持有锁的线程是否很快就会释放锁；为了让线程等待，我们只需让线程执行一个忙循环，这些技术就是所谓的自旋锁；</li>
+<li>在 JDK 1.6 已经默认开启自旋锁；如果锁被占用的时间很短自旋等待的效果就会非常好，反之则会白白消耗处理器资源；</li>
+<li>在 JDK 1.6 中引入了自适应的自旋锁，这意味着自旋的时间不再固定，而是由前一次在同一个锁上的自旋时间及锁的拥有者的状态来决定；</li>
+</ul>
+<h3 id="13-3-2-锁消除"><a href="#13-3-2-锁消除" class="headerlink" title="13.3.2 锁消除"></a>13.3.2 锁消除</h3><ul>
+<li>锁消除是指虚拟机即时编译器在运行时，对一些代码上要求同步，但是被检测到不可能存在共享数据竞争的锁进行消除；</li>
+<li>锁消除的主要判断依据来源于逃逸分析的数据支持；</li>
+</ul>
+<h3 id="13-3-3-锁粗化"><a href="#13-3-3-锁粗化" class="headerlink" title="13.3.3 锁粗化"></a>13.3.3 锁粗化</h3><ul>
+<li>原则上总是推荐将同步块的作用范围限制得尽量小 – 只有在共享数据的实际作用域中才进行同步，这样是为了使得需要同步的操作数量尽可能变小，如果存在锁竞争，那等待锁的线程也能尽快拿到锁；</li>
+<li>但是如果一系列的连续操作都对同一个对象反复加锁和解锁，甚至加锁操作是出现在循环体中的，那即使没有线程竞争，频繁地进行互斥同步操作也会导致不必要的性能损耗；</li>
+</ul>
+<h3 id="13-3-4-轻量级锁"><a href="#13-3-4-轻量级锁" class="headerlink" title="13.3.4 轻量级锁"></a>13.3.4 轻量级锁</h3><ul>
+<li>轻量级锁是 JDK 1.6 之中加入的新型锁机制，它是相对于使用操作系统互斥量来实现的传统锁而言的；它并不是用来代替重量级锁的，它的本意是在没有多线程竞争的前提下，减少传统的重量级锁使用操作系统互斥量产生的性能消耗；</li>
+<li>要理解轻量级锁，以及后面会讲到的偏向锁的原理和运作过程，必须从 HotSpot 虚拟机的对象的内存布局开始介绍；HotSpot 虚拟机的对象头分为两部分信息：第一部分用于存储对象自身的运行时数据，如哈希码、GC 分代年龄等，这部分官方称之为 Mark Word，是实现轻量级锁和偏向锁的关键，另外一部分用于存储指向方法区对象类型数据的指针； Mark Word 被设计成一个非固定的数据结构以便在极小的空间存储尽量多的信息，在 32 位的 HotSpot 虚拟机中对象未被锁定的状态下，25bit 用于存储对象哈希码，4bit 用于存储对象分代年龄，2bit 用于存储锁标志位，1bit 固定为 0；在其他状态（轻量级锁定、重量级锁定、GC 标志、可偏向）下对象的存储内容如下：</li>
+</ul>
+<p><img src="http://oi46mo3on.bkt.clouddn.com/10_deep_in_jvm/mark_word_object_header.png" alt=""></p>
+<ul>
+<li>在代码进入同步块的时候，如果此同步对象没有被锁定，虚拟机首先将在当前线程的栈帧中建立一个名为锁记录（Lock Record）的空间，用于存储对象目前的 Mark Word 的拷贝（官方称之为 Displaced Mark Word）；然后虚拟机将使用 CAS 操作尝试将对象的 Mark Word 更新为指向 Lock Record 的指针，如果更新成功了那么这个线程就拥有了该对象的锁，并且对象 Mark Word 的锁标志位将转变为 “00”，即表示此对象处于轻量级锁定状态；如果这个更新操作失败了，虚拟机首先会检查对象的 Mark Word 是否指向当前线程的栈帧，如果是就可以直接进入同步块继续执行，否则说明这个锁对象已经被其他线程抢占了；如果有两条以上的线程争用同一个锁，那轻量级锁就不再有效，要膨胀为重量级锁，锁标志的状态值变为 “10”，Mark Word 中存储的就是指向重量级锁的指针，后面等待锁的线程也要进行阻塞状态；</li>
+<li>轻量级锁能提升程序同步性能的依据是 “对于绝大部分的锁，在整个同步周期内都是不存在竞争的”，这是一个经验数据；</li>
+</ul>
+<h3 id="13-3-5-偏向锁"><a href="#13-3-5-偏向锁" class="headerlink" title="13.3.5 偏向锁"></a>13.3.5 偏向锁</h3><ul>
+<li>偏向锁也是 JDK 1.6 中引入的一项锁优化，它的目的是消除数据在无竞争情况下的同步原语，进一步提高程序的运行性能；如果说轻量级锁是在无竞争的情况下使用 CAS 操作去消除同步使用的互斥量，那偏向锁就是在无竞争的情况下把整个同步都消除掉，连 CAS 操作都不做了；</li>
+<li>偏向锁会偏向于第一个获得它的线程，如果在接下来的执行过程中，该锁没有被其他的线程获取，则持有偏向锁的线程将永远不需要再进行同步；</li>
+<li>假设当前虚拟机启动了偏向锁，那么当锁对象第一次被线程获取的时候，虚拟机将会把对象头中的标志位设为 “01”，即偏向模式；同时使用 CAS 操作把获取到这个锁的线程 ID 记录在对象的 Mark Word 之中；如果 CAS 操作成功，持有偏向锁的线程以后每次进入这个锁相关的同步块时，虚拟机都可以不再进行任何同步操作；当有另外一个线程去尝试获取这个锁时，偏向模式就宣告结束，根据锁对象目前是否被锁定的状态，撤销偏向后恢复到未锁定或轻量级锁定的状态，后续的同步操作就如上面介绍的轻量级锁那样执行；偏向锁、轻量级锁的状态转化以及对象 Mark Work 的关系如下图所示：</li>
+</ul>
+<p><img src="http://oi46mo3on.bkt.clouddn.com/10_deep_in_jvm/mark_word_for_lock.png" alt=""></p>
+<ul>
+<li>偏向锁可以提高带有同步但无竞争的程序性能，它同样是一个带有效益权衡性质的优化；</li>
+</ul>
+<h2 id="本章小结"><a href="#本章小结" class="headerlink" title="本章小结"></a>本章小结</h2><p>本章介绍了线程安全所涉及的概念和分类、同步实现的方式及虚拟机的底层运行原理，并且介绍了虚拟机为了实现高效并发所采取的一系列锁优化措施。</p>
+<blockquote>
+<p>参考：<br><a href="http://ginobefunny.com/post/deep_in_jvm_notes_part7/" target="_blank" rel="noopener">http://ginobefunny.com/post/deep_in_jvm_notes_part7/</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+
+     
+    
+      <div>
+        
+    <div style="text-align:center;color: #ccc;font-size:14px;">
+        ------ 本文结束<i class="fa fa-paw"></i>感谢您的阅读 ------</div>
+
+      </div>
+    
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    CloudPai
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://cloudpai.site/2018/03/12/2018-03-11-7/" title="《深入理解java虚拟机》学习笔记之十二&十三">http://cloudpai.site/2018/03/12/2018-03-11-7/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JVM/" rel="tag"><i class="fa fa-tag"></i> JVM</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/12/2018-03-11-6/" rel="next" title="《深入理解java虚拟机》学习笔记之十&十一">
+                <i class="fa fa-chevron-left"></i> 《深入理解java虚拟机》学习笔记之十&十一
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/12/2018-03-12/" rel="prev" title="大数据分析准备：专题/竞赛/教学">
+                大数据分析准备：专题/竞赛/教学 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+
+
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg"
+                alt="CloudPai" />
+            
+              <p class="site-author-name" itemprop="name">CloudPai</p>
+              <p class="site-description motion-element" itemprop="description">加油(๑•̀ㅂ•́)و✧加油</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">102</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+
+<div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=240 src="//music.163.com/outchain/player?type=0&id=2113726971&auto=0&height=430"></iframe>
+</div>
+<!-- 459004290 -->
+
+
+
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CloudPai" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:liupai024@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.douban.com/people/57965969/doulists/all" target="_blank" title="豆瓣">
+                      
+                        <i class="fa fa-fw fa-book"></i>豆瓣</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/cloudPai/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-edit"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.dlut.edu.cn/" title="DUT" target="_blank">DUT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bupt.edu.cn/" title="BUPT" target="_blank">BUPT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://campus.alibaba.com/index.htm" title="Alibaba Group" target="_blank">Alibaba Group</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第五部分-高效并发"><span class="nav-text">第五部分 高效并发</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第十二章-Java-内存模型与线程"><span class="nav-text">第十二章 Java 内存模型与线程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#12-1-概述"><span class="nav-text">12.1 概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-2-硬件的效率与一致性"><span class="nav-text">12.2 硬件的效率与一致性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-3-Java-内存模型"><span class="nav-text">12.3 Java 内存模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#12-3-1-主内存与工作内存"><span class="nav-text">12.3.1 主内存与工作内存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-3-2-内存间交互操作"><span class="nav-text">12.3.2 内存间交互操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-3-3-对于-volatile-型变量的特殊规则"><span class="nav-text">12.3.3 对于 volatile 型变量的特殊规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-3-4-对于-long-和-double-型变量的特殊规则"><span class="nav-text">12.3.4 对于 long 和 double 型变量的特殊规则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-3-5-原子性、可见性与有序性"><span class="nav-text">12.3.5 原子性、可见性与有序性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-3-6-先行发生原则"><span class="nav-text">12.3.6 先行发生原则</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-4-Java-与线程"><span class="nav-text">12.4 Java 与线程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#12-4-1-线程的实现"><span class="nav-text">12.4.1 线程的实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-4-2-Java-线程调度"><span class="nav-text">12.4.2 Java 线程调度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12-4-3-状态转换"><span class="nav-text">12.4.3 状态转换</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-5-本章小结"><span class="nav-text">12.5 本章小结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第十三章-线程安全与锁优化"><span class="nav-text">第十三章 线程安全与锁优化</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#13-1-概述"><span class="nav-text">13.1 概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-2-线程安全"><span class="nav-text">13.2 线程安全</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#13-2-1-Java-语言中的线程安全"><span class="nav-text">13.2.1 Java 语言中的线程安全</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-2-2-线程安全的实现方法"><span class="nav-text">13.2.2 线程安全的实现方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-3-锁优化"><span class="nav-text">13.3 锁优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#13-3-1-自旋锁与自适应自旋"><span class="nav-text">13.3.1 自旋锁与自适应自旋</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-3-2-锁消除"><span class="nav-text">13.3.2 锁消除</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-3-3-锁粗化"><span class="nav-text">13.3.3 锁粗化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-3-4-轻量级锁"><span class="nav-text">13.3.4 轻量级锁</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13-3-5-偏向锁"><span class="nav-text">13.3.5 偏向锁</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本章小结"><span class="nav-text">本章小结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CloudPai</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">517.4k</span>
+  
+</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv">  </span>
+</span>
+</div>
+
+
+
+
+
+
+
+  <div class="theme-info">&#12288;主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://cloudpai.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://cloudpai.site/2018/03/12/2018-03-11-7/';
+          this.page.identifier = '2018/03/12/2018-03-11-7/';
+          this.page.title = '《深入理解java虚拟机》学习笔记之十二&十三';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cloudpai.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!-- <!-- <script src="https://cdn.bootcss.com/aplayer/1.6.0/APlayer.min.js"></script>
+
+<script src="https://api.i-meto.com/music/player.js"></script> --> -->
+  
+  <!--移动端判断，是否引入背景-->
+  <script>
+  var browser={  
+      versions:function(){   
+             var u = navigator.userAgent, app = navigator.appVersion;   
+             return {//移动终端浏览器版本信息
+                  trident: u.indexOf('Trident') > -1, //IE内核
+                  presto: u.indexOf('Presto') > -1, //opera内核
+                  webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                  gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                  mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                  ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                  android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                  iPhone: u.indexOf('iPhone') > -1 , //是否为iPhone或者QQHD浏览器
+                  iPad: u.indexOf('iPad') > -1, //是否iPad
+                  webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+              };  
+           }(),  
+           language:(navigator.browserLanguage || navigator.language).toLowerCase()  
+  }   
+    if(browser.versions.mobile || browser.versions.ios || browser.versions.android ||   
+      browser.versions.iPhone || browser.versions.iPad){        
+               
+    }else{
+    document.write("<script type=\'text/javascript\'  src=\'/js/src/particle.js\'><\/script>");
+    }
+  </script>
+
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":-80,"vOffset":-50},"mobile":{"show":false,"scale":0.2},"react":{"opacityDefault":1,"opacityOnHover":0.2}});</script></body>
+</html>

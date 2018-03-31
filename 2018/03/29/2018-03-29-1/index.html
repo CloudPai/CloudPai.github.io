@@ -1,0 +1,1694 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="面试,JSP," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="CloudPai" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="下面是我整理下来的 JSP 知识点:  图上的知识点都可以在我其他的文章内找到相应内容。 JSP 常见面试题jsp 静态包含和动态包含的区别 jsp 静态包含和动态包含的区别   在讲解 request 对象的时候，我们曾经使用过 request.getRequestDispatcher(String url).include(request,response) 来对页头和页尾面进行包含  in">
+<meta name="keywords" content="面试,JSP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JSP面试总结">
+<meta property="og:url" content="http://cloudpai.site/2018/03/29/2018-03-29-1/index.html">
+<meta property="og:site_name" content="CloudPai">
+<meta property="og:description" content="下面是我整理下来的 JSP 知识点:  图上的知识点都可以在我其他的文章内找到相应内容。 JSP 常见面试题jsp 静态包含和动态包含的区别 jsp 静态包含和动态包含的区别   在讲解 request 对象的时候，我们曾经使用过 request.getRequestDispatcher(String url).include(request,response) 来对页头和页尾面进行包含  in">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-b53f906a2a4b0e90.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-ee6da969c1d2d8de.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-fd361a7aca15cb33.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-0e0c30beb51ebeef.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-54dd370fef6493e5.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-056a1d2283f01659.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-e335a4dc83d02c05.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-fb228e48229e419d.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-cd8595f80c03052a.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-3a558957389e3680.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-789ddf4395488bfd.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-6e4603fdcc6d8ac1.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-6a08c7db5369b63d.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-55f7307493b7d8c7.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-ea21a614596a5961.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-152d9c62e48869ca.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-11563f91494732f9.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-70a8ea52b84bf6cb.png">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/5291509-699d0cae659d92b8.png">
+<meta property="og:updated_time" content="2018-03-29T12:37:12.125Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JSP面试总结">
+<meta name="twitter:description" content="下面是我整理下来的 JSP 知识点:  图上的知识点都可以在我其他的文章内找到相应内容。 JSP 常见面试题jsp 静态包含和动态包含的区别 jsp 静态包含和动态包含的区别   在讲解 request 对象的时候，我们曾经使用过 request.getRequestDispatcher(String url).include(request,response) 来对页头和页尾面进行包含  in">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/5291509-b53f906a2a4b0e90.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'TZAS2SFOJR',
+      apiKey: 'e2a9cd036eede8026382b302001ec261',
+      indexName: 'cloudpai_blogs_search',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cloudpai.site/2018/03/29/2018-03-29-1/"/>
+
+
+
+
+
+  <title>JSP面试总结 | CloudPai</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-114643720-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CloudPai</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/03/29/2018-03-29-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CloudPai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudPai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JSP面试总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-29T20:36:12+08:00">
+                2018-03-29
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-03-29T20:37:12+08:00">
+                2018-03-29
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/29/2018-03-29-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/03/29/2018-03-29-1/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4,510
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  18
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><p>下面是我整理下来的 JSP 知识点:</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5291509-b53f906a2a4b0e90.png" alt=""></p>
+<p><strong>图上的知识点都可以在我其他的文章内找到相应内容。</strong></p>
+<h1 id="JSP-常见面试题"><a href="#JSP-常见面试题" class="headerlink" title="JSP 常见面试题"></a>JSP 常见面试题</h1><h2 id="jsp-静态包含和动态包含的区别"><a href="#jsp-静态包含和动态包含的区别" class="headerlink" title="jsp 静态包含和动态包含的区别"></a>jsp 静态包含和动态包含的区别</h2><blockquote>
+<p>jsp 静态包含和动态包含的区别</p>
+</blockquote>
+<ul>
+<li><p><strong>在讲解 request 对象的时候，我们曾经使用过 request.getRequestDispatcher(String url).include(request,response) 来对页头和页尾面进行包含</strong></p>
+</li>
+<li><p>inclue 指令也是做这样的事情，我们来试验一下吧！</p>
+</li>
+<li><p>这是页头</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot;   %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;title&gt;页头&lt;/title&gt;</span><br><span class="line">    &lt;/head&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line">    我是页头</span><br><span class="line">    &lt;br&gt;</span><br><span class="line">    &lt;br&gt;</span><br><span class="line">    &lt;br&gt;</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>这是页尾</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;页尾&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">我是页尾</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>在 1.jsp 中把页头和页尾包含进来</strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;包含页头和页尾进来&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;%@include file=&quot;head.jsp&quot; %&gt;</span><br><span class="line">&lt;%@include file=&quot;foot.jsp&quot; %&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>访问 1.jsp</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5291509-ee6da969c1d2d8de.png" alt=""></p>
+<ul>
+<li><strong>include 指令是静态包含</strong>。静态包含的意思就是：<strong>把文件的代码内容都包含进来，再编译！</strong>，看一下 jsp 的源代码就知道了！</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5291509-fd361a7aca15cb33.png" alt=""></p>
+<ul>
+<li>上面已经提及到了，<strong>include 指令是静态包含，include 行为是动态包含</strong>。<strong>其实 include 行为就是封装了 request.getRequestDispatcher(String url).include(request,response)</strong></li>
+<li>include 行为语法是这个样子的</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;jsp:include page=&quot;&quot;/&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>我们先来使用一下把，<strong>在 1.jsp 页面中也将页头和页尾包含进来</strong>。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;包含页头和页尾进来&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">    &lt;jsp:include page=&quot;head.jsp&quot;/&gt;</span><br><span class="line">    &lt;jsp:include page=&quot;foot.jsp&quot;/&gt;</span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>访问 1.jsp 页面看一下效果：</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5291509-0e0c30beb51ebeef.png" alt=""></p>
+<ul>
+<li>使用 jsp 行为来包含文件，jsp 源文件是这样子的：</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5291509-54dd370fef6493e5.png" alt=""></p>
+<ul>
+<li><p>jsp 行为包含文件就是<strong>先编译被包含的页面，再将页面的结果写入到包含的页面中（1.jsp)</strong></p>
+</li>
+<li><p>当然了，现在有静态包含和动态包含，使用哪一个更好呢？<strong>答案是：动态包含</strong>。</p>
+</li>
+<li><p>动态包含可以<strong>向被包含的页面传递参数（用处不大）</strong>，并且是<strong>分别处理包含页面的（将被包含页面编译后得出的结果再写进包含页面）【如果有相同名称的参数，使用静态包含就会报错！】</strong>！</p>
+</li>
+<li><p>模拟一下场景吧，现在我的头页面有个名为 s 的字符串变量</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot;   %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">    &lt;head&gt;</span><br><span class="line">        &lt;title&gt;页头&lt;/title&gt;</span><br><span class="line">    &lt;/head&gt;</span><br><span class="line">    &lt;body&gt;</span><br><span class="line"></span><br><span class="line">    &lt;%</span><br><span class="line">        String s = &quot;zhongfucheng&quot;;</span><br><span class="line">    %&gt;</span><br><span class="line">    我是页头呀</span><br><span class="line">    &lt;br&gt;</span><br><span class="line">    &lt;br&gt;</span><br><span class="line">    &lt;br&gt;</span><br><span class="line">    &lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>我的页尾也有个名为 s 的字符串变量</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;页尾&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;%</span><br><span class="line">    String s = &quot;zhongfucheng&quot;;</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">我是页尾呀</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>现在我使用静态包含看看会发生什么，出现异常了。</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5291509-056a1d2283f01659.png" alt=""></p>
+<ul>
+<li>出现异常的原因很简单，就是<strong>同一个文件中有两个相同的变量 s</strong></li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5291509-e335a4dc83d02c05.png" alt=""></p>
+<ul>
+<li><strong>使用动态包含就可以避免这种情况</strong></li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5291509-fb228e48229e419d.png" alt=""> <img src="https://upload-images.jianshu.io/upload_images/5291509-cd8595f80c03052a.png" alt=""></p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ol>
+<li><p><code>&lt;%@include file=&quot;xxx.jsp&quot;%&gt;</code>为 jsp 中的编译指令，<strong>其文件的包含是发生在 jsp 向 servlet 转换的时期</strong>，而<code>&lt;jsp:include page=&quot;xxx.jsp&quot;&gt;</code>是 jsp 中的动作指令，其文件的包含是发生<strong>在编译时期，也就是将 java 文件编译为 class 文件的时期</strong></p>
+</li>
+<li><p>使用静态包含只会<strong>产生一个 class 文件，而使用动态包含会产生多个 class 文件</strong></p>
+</li>
+<li><p>使用静态包含，包含页面和被包含页面的 request 对象为同一对象，因为静态包含只是将被包含的页面的内容复制到包含的页面中去；而动态包含包含页面和被包含页面不是同一个页面，被包含的页面的 request 对象可以取到的参数范围要相对大些，不仅可以取到传递到包含页面的参数，同样也能取得在包含页面向下传递的参数</p>
+</li>
+</ol>
+<h2 id="jsp-有哪些内置对象-作用分别是什么"><a href="#jsp-有哪些内置对象-作用分别是什么" class="headerlink" title="jsp 有哪些内置对象? 作用分别是什么?"></a>jsp 有哪些内置对象? 作用分别是什么?</h2><blockquote>
+<p>jsp 有哪些内置对象? 作用分别是什么?</p>
+</blockquote>
+<p>九个内置对象：</p>
+<ul>
+<li><strong>pageContext</strong></li>
+<li>page</li>
+<li><strong>config</strong></li>
+<li><strong>request</strong></li>
+<li><strong>response</strong></li>
+<li><strong>session</strong></li>
+<li><strong>application</strong></li>
+<li>exception</li>
+<li>out</li>
+</ul>
+<p>其中，request、response、session、application、config 这五个对象和 Servlet 的 API 是一样的。这 5 个对象我就不解释了。</p>
+<p><strong>在 JSP 中，尤其重要的是 pageContext 对象。</strong></p>
+<p><strong>pageContext 是内置对象中最重要的一个对象，它代表着 JSP 页面编译后的内容（也就是 JSP 页面的运行环境）！</strong></p>
+<blockquote>
+<p>pageContext 对象</p>
+</blockquote>
+<ul>
+<li>既然它代表了 JSP 页面编译后的内容，理所当然的：<strong>它封装了对其他 8 大内置对象的引用！</strong>，也就是说，<strong>通过 pageContext 可以获取到其他的 8 个内置对象！</strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;获取八大内置对象&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;%</span><br><span class="line"></span><br><span class="line">    System.out.println(pageContext.getSession());</span><br><span class="line">    System.out.println(pageContext.getRequest());</span><br><span class="line">    System.out.println(pageContext.getResponse());</span><br><span class="line"></span><br><span class="line">    System.out.println(pageContext.getException());</span><br><span class="line"></span><br><span class="line">    System.out.println(pageContext.getPage());</span><br><span class="line">    System.out.println(pageContext.getServletConfig());</span><br><span class="line">    System.out.println(pageContext.getServletContext());</span><br><span class="line">    System.out.println(pageContext.getOut());</span><br><span class="line"></span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>看下效果：</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5291509-3a558957389e3680.png" alt=""></p>
+<blockquote>
+<p>pageContext 作为域对象</p>
+</blockquote>
+<ul>
+<li><p>类似于 request，session，ServletContext 作为域对象而言<strong>都有以下三个方法</strong>：</p>
+<ul>
+<li><strong>setAttribute(String name,Objcet o)</strong></li>
+<li><strong>getAttribute(String name)</strong></li>
+<li><strong>removeAttribute(String name)</strong></li>
+</ul>
+</li>
+<li><p>当然了，pageContext 也不例外，<strong>pageContext 也有这三个方法</strong>！</p>
+</li>
+<li><p>pageContext 本质上代表的是当前 JSP 页面编译后的内容，<strong>作为域对象而言，它就代表着当前 JSP 页面（也就是 page）</strong>！也就是说：<strong>pageContext 域对象只在 page 范围内有效，超出了 page 范围就无效了</strong>！</p>
+</li>
+<li><p>首先来看看在 <strong>page 范围内能不能使用</strong></p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;使用page域对象&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;%</span><br><span class="line">    pageContext.setAttribute(&quot;name&quot;, &quot;zhongfucheng&quot;);</span><br><span class="line">%&gt;</span><br><span class="line">&lt;%</span><br><span class="line">    String value = (String) pageContext.getAttribute(&quot;name&quot;);</span><br><span class="line">    System.out.println(value);</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>效果如下：</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5291509-789ddf4395488bfd.png" alt=""></p>
+<ul>
+<li><p>我们现在来试验一下<strong>是不是超出了 page 范围就无效了！</strong></p>
+</li>
+<li><p><strong>在 2.jsp 中 request 域对象设置属性</strong></p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;request域对象设置属性&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line">&lt;%</span><br><span class="line">    //这是request域对象保存的内容</span><br><span class="line">    request.setAttribute(&quot;name&quot;,&quot;zhongfucheng&quot;);</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;%--跳转到1.jsp中--%&gt;</span><br><span class="line"></span><br><span class="line">&lt;jsp:forward page=&quot;1.jsp&quot;/&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>企图在 1.jsp 中 pageContext 取出 request 存进去的属性</strong></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;在page域对象获取属性&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line">    //企图获取request域对象存进的属性</span><br><span class="line">    String value = (String) pageContext.getAttribute(&quot;name&quot;);</span><br><span class="line">    System.out.println(value);</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>效果如下：</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5291509-6e4603fdcc6d8ac1.png" alt=""></p>
+<hr>
+<ul>
+<li><p>pageContext 本质上代表着编译后 JSP 的内容，<strong>pageContext 还可以封装了访问其他域的方法</strong>！</p>
+</li>
+<li><p>上面的 <strong>pageContext 默认是 page 范围的</strong>，<strong>但 pageContext 对象重载了 set、get、removeAttribute 这三个方法</strong></p>
+<ul>
+<li><strong>getAttribute(String name,int scope)</strong></li>
+<li><strong>setAttribute(String name,Object value,int scope)</strong></li>
+<li><strong>removeAttribute(String name,int scope)</strong></li>
+</ul>
+</li>
+<li><p><strong>多了一个设置域范围的一个参数，如果不指定默认就是 page</strong>。当然了，<strong>pageContext 把 request、session、application、page 这几个域对象封装着了静态变量供我们使用</strong>。</p>
+<ul>
+<li><strong>PageContext.APPLICATION_SCOPE</strong></li>
+<li><strong>PageContext.SESSION_SCOPE</strong></li>
+<li><strong>PageContext.REQUEST_SCOPE</strong></li>
+<li><strong>PageContext.PAGE_SCOPE</strong></li>
+</ul>
+</li>
+<li>刚才我们没有使用重载方法的时候，使用 pageContext 是无法获取到 request 域对象设置的属性的。<strong>现在我们使用重载后的方法看一下能不能获取得到</strong>！</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;在page域对象获取request域对象的属性&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line">    //使用重载的方法获取request域对象的属性</span><br><span class="line">    String value = (String) pageContext.getAttribute(&quot;name&quot;,pageContext.REQUEST_SCOPE);</span><br><span class="line">    System.out.println(value);</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>效果：</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5291509-6a08c7db5369b63d.png" alt=""></p>
+<hr>
+<ul>
+<li><p>pageContexst 还有这么一个方法：</p>
+<ul>
+<li><strong>findAttribute(String name)</strong></li>
+</ul>
+</li>
+<li><p><strong>该方法会查找各个域的属性，从小到大开始寻找！也就是 page—&gt;request-&gt;session-&gt;application。</strong></p>
+</li>
+<li><p>我们用此方法看能不能查找出 request 域对象的属性吧！</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; %&gt;</span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;使用findAttribute&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line"></span><br><span class="line">    //使用findAttribute查找2.jsp中request域对象的属性</span><br><span class="line">    String value = (String) pageContext.findAttribute(&quot;name&quot;);</span><br><span class="line">    System.out.println(value);</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>效果如下：</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5291509-55f7307493b7d8c7.png" alt=""></p>
+<blockquote>
+<p>out 对象：</p>
+</blockquote>
+<ul>
+<li><strong>out 对象用于向浏览器输出数据，与之对应的是 Servlet 的 PrintWriter 对象</strong>。然而这个 out 对象的类型并不是 PrintWriter，是 JspWriter</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5291509-ea21a614596a5961.png" alt=""></p>
+<ul>
+<li><p>我们可以简单理解为：<strong>JspWriter 就是带缓存的 PrintWrieter</strong>。</p>
+</li>
+<li><p>out 对象的原理如下：</p>
+</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5291509-152d9c62e48869ca.png" alt=""></p>
+<ul>
+<li>只有向 out 对象中写入了内容，且<strong>满足如下任何一个条件时，out 对象才去调用 ServletResponse.getWriter 方法</strong>，并<strong>通过该方法返回的 PrintWriter 对象将 out 对象的缓冲区中的内容真正写入到 Servlet 引擎提供的缓冲区中</strong>：<ul>
+<li><strong>设置 page 指令的 buffer 属性关闭了 out 对象的缓存功能</strong></li>
+<li><strong>out 对象的缓冲区已满</strong></li>
+<li><strong>整个 JSP 页面结束</strong></li>
+</ul>
+</li>
+<li><strong>一般我们在 JSP 页面输出都是用表达式（&lt;%=%&gt;)，所以 out 对象用得并不是很多</strong>！</li>
+</ul>
+<blockquote>
+<p>page 对象</p>
+</blockquote>
+<p>内置对象 page 是 HttpJasPage 对象，其实 page 对象代表的就是当前 JSP 页面，是当前 JSP 编译后的 Servlet 类的对象。也就是说：page 对象相当于普通 java 类的 this</p>
+<blockquote>
+<p>exception 对象</p>
+</blockquote>
+<ul>
+<li><p><strong>内置对象 exception 是 java.lang.Exception 类的对象，exception 封装了 JSP 页面抛出的异常信息。</strong>exception 经常被用来处理错误页面</p>
+</li>
+<li><p>前面我们已<strong>经讲过了怎么设置错误页面了</strong>，下面我们就来简单使用一下 exception 对象吧</p>
+</li>
+<li><p>1.jsp 页面</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; errorPage=&quot;error.jsp&quot; %&gt;</span><br><span class="line"></span><br><span class="line">&lt;%--模拟空指针异常的错误--%&gt;&lt;% String sss = null; sss.length();%&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>error.jsp 页面</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;%@ page contentType=&quot;text/html;charset=UTF-8&quot; language=&quot;java&quot; isErrorPage=&quot;true&quot; %&gt;</span><br><span class="line"></span><br><span class="line">&lt;html&gt;</span><br><span class="line">&lt;head&gt;</span><br><span class="line">    &lt;title&gt;错误页面&lt;/title&gt;</span><br><span class="line">&lt;/head&gt;</span><br><span class="line">&lt;body&gt;</span><br><span class="line"></span><br><span class="line">&lt;%</span><br><span class="line">    out.println(&quot;程序抛出了异常：&quot; + exception);</span><br><span class="line">%&gt;</span><br><span class="line"></span><br><span class="line">&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>效果：</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5291509-11563f91494732f9.png" alt=""></p>
+<h3 id="总结-1"><a href="#总结-1" class="headerlink" title="总结"></a>总结</h3><ol>
+<li>request 用户端请求，此请求会包含来自 GET/POST 请求的参数</li>
+<li>response 网页传回用户端的回应</li>
+<li>pageContext 网页的属性是在这里管理，代表的编译后 JSP 内容</li>
+<li>session 与请求有关的会话期</li>
+<li>application servlet 正在执行的内容</li>
+<li>out 用来传送回应的输出</li>
+<li>config servlet 的构架部件</li>
+<li>page JSP 网页本身</li>
+<li>exception 针对错误网页，未捕捉的例外</li>
+</ol>
+<h2 id="jsp-和-servlet-的区别、共同点、各自应用的范围？"><a href="#jsp-和-servlet-的区别、共同点、各自应用的范围？" class="headerlink" title="jsp 和 servlet 的区别、共同点、各自应用的范围？"></a>jsp 和 servlet 的区别、共同点、各自应用的范围？</h2><blockquote>
+<p>jsp 和 servlet 的区别、共同点、各自应用的范围？</p>
+</blockquote>
+<ol>
+<li>JSP 是 Servlet 技术的扩展，<strong>本质上就是 Servlet 的简易方式</strong>。JSP 编译后是 “类 servlet”。</li>
+<li>Servlet 和 JSP 最主要的不同点在于：Servlet 的应用逻辑是在 Java 文件中，并且完全从表示层中的 HTML 里分离开来。<strong>而 JSP 的情况是 Java 和 HTML 可以组合成一个扩展名为. jsp 的文件。</strong></li>
+<li><strong>JSP 侧重于视图，Servlet 主要用于控制逻辑。</strong></li>
+</ol>
+<h2 id="属性作用域范围"><a href="#属性作用域范围" class="headerlink" title="属性作用域范围"></a>属性作用域范围</h2><blockquote>
+<p>属性作用域范围</p>
+</blockquote>
+<ol>
+<li><strong>page【只在一个页面中保存属性，跳转页面无效】</strong></li>
+<li><strong>requet【只在一次请求中保存属性，服务器跳转有效，浏览器跳转无效】</strong></li>
+<li><strong>session【在一个会话范围中保存属性，无论何种跳转均有效，关闭浏览器后无效】</strong></li>
+<li><strong>application【在整个服务器中保存，所有用户都可以使用】</strong></li>
+</ol>
+<p>应用场景：</p>
+<ol>
+<li>request：如果客户向服务器发请求，产生的数据，<strong>用户看完就没用了，</strong>像这样的数据就存在 request 域, 像新闻数据，属于用户看完就没用的</li>
+<li>session：如果客户向服务器发请求，产生的数据，<strong>用户用完了等一会儿还有用</strong>，像这样的数据就存在 session 域中，像购物数据，用户需要看到自己购物信息，并且等一会儿，还要用这个购物数据结帐</li>
+<li>servletContext：如果客户向服务器发请求，产生的数据，<strong>用户用完了，还要给其它用户用</strong>，像这样的数据就存在 servletContext 域中，像聊天数据</li>
+</ol>
+<h2 id="写出-5-种-JSTL-常用标签"><a href="#写出-5-种-JSTL-常用标签" class="headerlink" title="写出 5 种 JSTL 常用标签"></a>写出 5 种 JSTL 常用标签</h2><blockquote>
+<p>写出 5 种 JSTL 常用标签</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">&lt;c:if&gt;，&lt;c:item&gt;，&lt;c:foreach&gt;，&lt;c:out&gt;，&lt;c:set&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="写一个自定义标签要继承什么类"><a href="#写一个自定义标签要继承什么类" class="headerlink" title="写一个自定义标签要继承什么类"></a>写一个自定义标签要继承什么类</h2><blockquote>
+<p>写一个自定义标签要继承什么类</p>
+</blockquote>
+<p>我们可以有两种方式来实现自定义标签：</p>
+<ul>
+<li>传统方式，实现 Tag 接口 (老方法)</li>
+<li><strong>简单方式，继承 SimpleTagSupport 类</strong></li>
+</ul>
+<p>SimpleTagSupport 类的执行顺序 (原理)：</p>
+<ul>
+<li><strong>①WEB 容器调用标签处理器对象的 setJspContext 方法，将代表 JSP 页面的 pageContext 对象传递给标签处理器对象</strong></li>
+<li><strong>②WEB 容器调用标签处理器对象的 setParent 方法，将父标签处理器对象传递给这个标签处理器对象。【注意，只有在标签存在父标签的情况下，WEB 容器才会调用这个方法】</strong></li>
+<li><strong>③如果调用标签时设置了属性，容器将调用每个属性对应的 setter 方法把属性值传递给标签处理器对象。如果标签的属性值是 EL 表达式或脚本表达式，则 WEB 容器首先计算表达式的值，然后把值传递给标签处理器对象。</strong></li>
+<li><strong>④如果简单标签有标签体，容器将调用 setJspBody 方法把代表标签体的 JspFragment 对象传递进来</strong></li>
+<li><strong>⑤执行标签时：容器调用标签处理器的 doTag() 方法，开发人员在方法体内通过操作 JspFragment 对象，就可以实现是否执行、迭代、修改标签体的目的。</strong></li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/5291509-70a8ea52b84bf6cb.png" alt=""></p>
+<h3 id="总结-2"><a href="#总结-2" class="headerlink" title="总结"></a>总结</h3><p><strong>SimpleTagSupport，一般调用 doTag 方法或者实现 SimpleTag 接口</strong></p>
+<h2 id="JSP-是如何被执行的？执行效率比-SERVLET-低吗？"><a href="#JSP-是如何被执行的？执行效率比-SERVLET-低吗？" class="headerlink" title="JSP 是如何被执行的？执行效率比 SERVLET 低吗？"></a>JSP 是如何被执行的？执行效率比 SERVLET 低吗？</h2><blockquote>
+<p>JSP 是如何被执行的？执行效率比 SERVLET 低吗？</p>
+</blockquote>
+<ul>
+<li><strong>当客户端向一个 jsp 页面发送请求时，Web Container 将 jsp 转化成 servlet 的源代码（只在第一次请求时），然后编译转化后的 servlet 并加载到内存中执行，执行的结果 response 到客户端</strong></li>
+<li><strong>jsp 只在第一次执行的时候会转化成 servlet，以后每次执行，web 容器都是直接执行编译后的 servlet，所以 jsp 和 servlet 只是在第一次执行的时候不一样，jsp 慢一点，以后的执行都是相同的</strong></li>
+</ul>
+<h2 id="如何避免-jsp-页面自动生成-session-对象？为什么要这么做？"><a href="#如何避免-jsp-页面自动生成-session-对象？为什么要这么做？" class="headerlink" title="如何避免 jsp 页面自动生成 session 对象？为什么要这么做？"></a>如何避免 jsp 页面自动生成 session 对象？为什么要这么做？</h2><blockquote>
+<p>如何避免 jsp 页面自动生成 session 对象？为什么要这么做？</p>
+</blockquote>
+<p><strong>可以使用页面指令显式关掉，代码如下：</strong></p>
+<p><code>&lt;%@ page session=&quot;false&quot; %&gt;</code></p>
+<h2 id="jsp-的缺点？"><a href="#jsp-的缺点？" class="headerlink" title="jsp 的缺点？"></a>jsp 的缺点？</h2><blockquote>
+<p>jsp 的缺点？</p>
+</blockquote>
+<ul>
+<li><strong>1）不好调试</strong></li>
+<li><strong>2）与其他脚本语言的交互 (可读性差)</strong></li>
+</ul>
+<h2 id="说出-Servlet-和-CGI-的区别？"><a href="#说出-Servlet-和-CGI-的区别？" class="headerlink" title="说出 Servlet 和 CGI 的区别？"></a>说出 Servlet 和 CGI 的区别？</h2><blockquote>
+<p>说出 Servlet 和 CGI 的区别？</p>
+</blockquote>
+<ul>
+<li>Servlet 处于服务器进程中，只会有一个 servlet 实例，<strong>每个请求都会产生一个新的线程，而且 servlet 实例一般不会销毁</strong></li>
+<li><strong>CGI：来一个请求就创建一个进程，用完就销毁，效率低于 servlet</strong></li>
+</ul>
+<h2 id="简述-JSP-的设计模式。"><a href="#简述-JSP-的设计模式。" class="headerlink" title="简述 JSP 的设计模式。"></a>简述 JSP 的设计模式。</h2><blockquote>
+<p>简述 JSP 的设计模式。</p>
+</blockquote>
+<p><strong>在 Web 开发模式中，有两个主要的开发结构，称为模式一（Mode I）和模式二（Mode II）</strong></p>
+<p><strong>首先我们来理清一些概念吧：</strong></p>
+<ul>
+<li><strong>DAO(Data Access Object)：主要对数据的操作，增加、修改、删除等原子性操作。</strong></li>
+<li><strong>Web 层：界面 + 控制器，也就是说 JSP【界面】+Servlet【控制器】</strong></li>
+<li><strong>Service 业务层：将多个原子性的 DAO 操作进行组合，组合成一个完整的业务逻辑</strong></li>
+<li><strong>控制层：主要使用 Servlet 进行控制</strong></li>
+<li><strong>数据访问层：使用 DAO、Hibernate、JDBC 技术实现对数据的增删改查</strong></li>
+<li><strong>JavaBean 用于封装数据，处理部分核心逻辑，每一层中都用到！</strong></li>
+</ul>
+<p>模式一指的就是<strong>在开发中将显示层、控制层、数据层的操作统一交给 JSP 或者 JavaBean 来进行处理</strong>！</p>
+<p><strong>模式一有两种情况：</strong></p>
+<p><strong>完全使用 JSP 做开发:</strong></p>
+<ul>
+<li><p>优点：</p>
+<ul>
+<li><strong>开发速度贼快，只要写 JSP 就行了，JavaBean 和 Servlet 都不用设计！</strong></li>
+<li><strong>小幅度修改代码方便，直接修改 JSP 页面交给 WEB 容器就行了，不像 Servlet 还要编译成. class 文件再交给服务器！【当然了，在 ide 下开发这个也不算是事】</strong></li>
+</ul>
+</li>
+<li><p>缺点：</p>
+<ul>
+<li><strong>程序的可读性差、复用性低、代码复杂！什么 jsp 代码、html 代码都往上面写，这肯定很难阅读，很难重用！</strong></li>
+</ul>
+</li>
+</ul>
+<p><strong>使用 JSP+JavaBean 做开发:</strong></p>
+<ul>
+<li><p>优点：</p>
+<ul>
+<li><strong>程序的可读性较高，大部分的代码都写在 JavaBean 上，不会和 HTML 代码混合在一起，可读性还行的</strong>。</li>
+<li><strong>可重复利用高，核心的代码都由 JavaBean 开发了，JavaBean 的设计就是用来重用、封装，大大减少编写重复代码的工作！</strong></li>
+</ul>
+</li>
+<li><p>缺点：</p>
+<ul>
+<li><strong>没有流程控制，程序中的 JSP 页面都需要检查请求的参数是否正确，异常发生时的处理。显示操作和业务逻辑代码工作会紧密耦合在一起的！日后维护会困难</strong></li>
+</ul>
+</li>
+</ul>
+<p><strong>Mode II 中所有的开发都是以 Servlet 为主体展开的，由 Servlet 接收所有的客户端请求，然后根据请求调用相对应的 JavaBean，并所有的显示结果交给 JSP 完成！，也就是俗称的 MVC 设计模式！</strong></p>
+<p><img src="https://upload-images.jianshu.io/upload_images/5291509-699d0cae659d92b8.png" alt=""></p>
+<p><strong>MVC 设计模式：</strong></p>
+<ul>
+<li><strong>显示层（View）：主要负责接受 Servlet 传递的内容，调用 JavaBean，将内容显示给用户</strong></li>
+<li><strong>控制层（Controller）：主要负责所有用户的请求参数，判断请求参数是否合法，根据请求的类型调用 JavaBean，将最终的处理结果交给显示层显示！</strong></li>
+<li><strong>模型层（Mode）：模型层包括了业务层，DAO 层。</strong></li>
+</ul>
+<h3 id="总结-3"><a href="#总结-3" class="headerlink" title="总结"></a>总结</h3><ul>
+<li><strong>（1）ModelI，JSP+JavaBean 设计模式。</strong></li>
+<li><strong>（2）ModelII，MVC 设计模式。</strong></li>
+</ul>
+<hr>
+<blockquote>
+<p>参考：<br>Servlet+JSP - 文集 - 简书<br><a href="https://www.jianshu.com/nb/21926044" target="_blank" rel="noopener">https://www.jianshu.com/nb/21926044</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+
+     
+    
+      <div>
+        
+    <div style="text-align:center;color: #ccc;font-size:14px;">
+        ------ 本文结束<i class="fa fa-paw"></i>感谢您的阅读 ------</div>
+
+      </div>
+    
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    CloudPai
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://cloudpai.site/2018/03/29/2018-03-29-1/" title="JSP面试总结">http://cloudpai.site/2018/03/29/2018-03-29-1/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/面试/" rel="tag"><i class="fa fa-tag"></i> 面试</a>
+          
+            <a href="/tags/JSP/" rel="tag"><i class="fa fa-tag"></i> JSP</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/29/2018-03-29/" rel="next" title="JSP 学习">
+                <i class="fa fa-chevron-left"></i> JSP 学习
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/29/2018-03-29-2/" rel="prev" title="正则表达式">
+                正则表达式 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+
+
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg"
+                alt="CloudPai" />
+            
+              <p class="site-author-name" itemprop="name">CloudPai</p>
+              <p class="site-description motion-element" itemprop="description">加油(๑•̀ㅂ•́)و✧加油</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">102</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+
+<div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=240 src="//music.163.com/outchain/player?type=0&id=2113726971&auto=0&height=430"></iframe>
+</div>
+<!-- 459004290 -->
+
+
+
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CloudPai" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:liupai024@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.douban.com/people/57965969/doulists/all" target="_blank" title="豆瓣">
+                      
+                        <i class="fa fa-fw fa-book"></i>豆瓣</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/cloudPai/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-edit"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.dlut.edu.cn/" title="DUT" target="_blank">DUT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bupt.edu.cn/" title="BUPT" target="_blank">BUPT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://campus.alibaba.com/index.htm" title="Alibaba Group" target="_blank">Alibaba Group</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JSP-常见面试题"><span class="nav-text">JSP 常见面试题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#jsp-静态包含和动态包含的区别"><span class="nav-text">jsp 静态包含和动态包含的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jsp-有哪些内置对象-作用分别是什么"><span class="nav-text">jsp 有哪些内置对象? 作用分别是什么?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-1"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jsp-和-servlet-的区别、共同点、各自应用的范围？"><span class="nav-text">jsp 和 servlet 的区别、共同点、各自应用的范围？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#属性作用域范围"><span class="nav-text">属性作用域范围</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写出-5-种-JSTL-常用标签"><span class="nav-text">写出 5 种 JSTL 常用标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写一个自定义标签要继承什么类"><span class="nav-text">写一个自定义标签要继承什么类</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-2"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JSP-是如何被执行的？执行效率比-SERVLET-低吗？"><span class="nav-text">JSP 是如何被执行的？执行效率比 SERVLET 低吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何避免-jsp-页面自动生成-session-对象？为什么要这么做？"><span class="nav-text">如何避免 jsp 页面自动生成 session 对象？为什么要这么做？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jsp-的缺点？"><span class="nav-text">jsp 的缺点？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#说出-Servlet-和-CGI-的区别？"><span class="nav-text">说出 Servlet 和 CGI 的区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#简述-JSP-的设计模式。"><span class="nav-text">简述 JSP 的设计模式。</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总结-3"><span class="nav-text">总结</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CloudPai</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">517.4k</span>
+  
+</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv">  </span>
+</span>
+</div>
+
+
+
+
+
+
+
+  <div class="theme-info">&#12288;主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://cloudpai.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://cloudpai.site/2018/03/29/2018-03-29-1/';
+          this.page.identifier = '2018/03/29/2018-03-29-1/';
+          this.page.title = 'JSP面试总结';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cloudpai.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!-- <!-- <script src="https://cdn.bootcss.com/aplayer/1.6.0/APlayer.min.js"></script>
+
+<script src="https://api.i-meto.com/music/player.js"></script> --> -->
+  
+  <!--移动端判断，是否引入背景-->
+  <script>
+  var browser={  
+      versions:function(){   
+             var u = navigator.userAgent, app = navigator.appVersion;   
+             return {//移动终端浏览器版本信息
+                  trident: u.indexOf('Trident') > -1, //IE内核
+                  presto: u.indexOf('Presto') > -1, //opera内核
+                  webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                  gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                  mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                  ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                  android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                  iPhone: u.indexOf('iPhone') > -1 , //是否为iPhone或者QQHD浏览器
+                  iPad: u.indexOf('iPad') > -1, //是否iPad
+                  webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+              };  
+           }(),  
+           language:(navigator.browserLanguage || navigator.language).toLowerCase()  
+  }   
+    if(browser.versions.mobile || browser.versions.ios || browser.versions.android ||   
+      browser.versions.iPhone || browser.versions.iPad){        
+               
+    }else{
+    document.write("<script type=\'text/javascript\'  src=\'/js/src/particle.js\'><\/script>");
+    }
+  </script>
+
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":-80,"vOffset":-50},"mobile":{"show":false,"scale":0.2},"react":{"opacityDefault":1,"opacityOnHover":0.2}});</script></body>
+</html>
