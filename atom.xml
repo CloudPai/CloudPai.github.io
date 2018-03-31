@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cloudpai.site/"/>
-  <updated>2018-03-30T12:02:30.060Z</updated>
+  <updated>2018-03-31T07:35:06.360Z</updated>
   <id>http://cloudpai.site/</id>
   
   <author>
@@ -17,19 +17,64 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>nginx 学习</title>
-    <link href="http://cloudpai.site/2018/03/29/2018-03-29-3/"/>
-    <id>http://cloudpai.site/2018/03/29/2018-03-29-3/</id>
-    <published>2018-03-29T14:54:26.000Z</published>
-    <updated>2018-03-30T12:02:30.060Z</updated>
+    <title>nginx实战</title>
+    <link href="http://cloudpai.site/2018/03/31/2018-03-31/"/>
+    <id>http://cloudpai.site/2018/03/31/2018-03-31/</id>
+    <published>2018-03-31T06:14:41.000Z</published>
+    <updated>2018-03-31T07:35:06.360Z</updated>
     
     <summary type="html">
     
       
       
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;hr&gt;
-&lt;blockquote&gt;
-&lt;p&gt;参考：&lt;br&gt;实战nginx笔记 - 简书&lt;br&gt;&lt;a href=&quot;https://www.jianshu.com/p/dff2c0497
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;blockquote&gt;
+&lt;p&gt;使用理由&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=
+      
+    
+    </summary>
+    
+    
+      <category term="nginx" scheme="http://cloudpai.site/tags/nginx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>nginx 面试 总结</title>
+    <link href="http://cloudpai.site/2018/03/30/2018-03-30/"/>
+    <id>http://cloudpai.site/2018/03/30/2018-03-30/</id>
+    <published>2018-03-30T14:23:38.000Z</published>
+    <updated>2018-03-31T07:35:02.154Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;code&gt;Nginx&lt;/code&gt;的并发能力在同类型网页服务器中的表现，相对而言是比较好的，因此受到了很多企业的青睐，我国使用&lt;code&gt;Nginx&lt;/code&gt;网站的知名
+      
+    
+    </summary>
+    
+    
+      <category term="面试" scheme="http://cloudpai.site/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+      <category term="nginx" scheme="http://cloudpai.site/tags/nginx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>nginx理论</title>
+    <link href="http://cloudpai.site/2018/03/29/2018-03-29-3/"/>
+    <id>http://cloudpai.site/2018/03/29/2018-03-29-3/</id>
+    <published>2018-03-29T14:54:26.000Z</published>
+    <updated>2018-03-31T07:34:58.666Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;1-反向代理&quot;&gt;&lt;a href=&quot;#1-反向代理&quot; class=&quot;headerlink&quot; title=&quot;1 反向代理&quot;&gt;&lt;/a&gt;1 反向代理&lt;/h1&gt;&lt;h2 id=
       
     
     </summary>
@@ -296,7 +341,7 @@
     <link href="http://cloudpai.site/2018/03/27/2018-03-27/"/>
     <id>http://cloudpai.site/2018/03/27/2018-03-27/</id>
     <published>2018-03-27T01:42:05.000Z</published>
-    <updated>2018-03-30T14:03:16.351Z</updated>
+    <updated>2018-03-30T14:17:20.531Z</updated>
     
     <summary type="html">
     
@@ -436,58 +481,6 @@
       <category term="工具类" scheme="http://cloudpai.site/tags/%E5%B7%A5%E5%85%B7%E7%B1%BB/"/>
     
       <category term="Apache" scheme="http://cloudpai.site/tags/Apache/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>guava入门实战</title>
-    <link href="http://cloudpai.site/2018/03/25/2018-03-25-2/"/>
-    <id>http://cloudpai.site/2018/03/25/2018-03-25-2/</id>
-    <published>2018-03-25T12:34:06.000Z</published>
-    <updated>2018-03-25T14:03:17.401Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;blockquote&gt;
-&lt;p&gt;实战操作教程：&lt;br&gt;&lt;a href=&quot;https://www.yiibai.com/guava/&quot; target=&quot;_blank&quot; rel=&quot;no
-      
-    
-    </summary>
-    
-    
-      <category term="java" scheme="http://cloudpai.site/tags/java/"/>
-    
-      <category term="并发" scheme="http://cloudpai.site/tags/%E5%B9%B6%E5%8F%91/"/>
-    
-      <category term="guava" scheme="http://cloudpai.site/tags/guava/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>单例模式三种实现----饿汉式 饱汉式(懒汉式) 双重锁模式</title>
-    <link href="http://cloudpai.site/2018/03/25/2018-03-25-1/"/>
-    <id>http://cloudpai.site/2018/03/25/2018-03-25-1/</id>
-    <published>2018-03-25T09:32:11.000Z</published>
-    <updated>2018-03-25T13:43:11.088Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;blockquote&gt;
-&lt;p&gt;在它的核心结构中只包含一个被称为单例的特殊类。通过单例模式可以保证系统中一个类只有一个实例而且该实例易于外界访问，从而方便对实例个数的控制并节约系统
-      
-    
-    </summary>
-    
-    
-      <category term="java" scheme="http://cloudpai.site/tags/java/"/>
-    
-      <category term="面试" scheme="http://cloudpai.site/tags/%E9%9D%A2%E8%AF%95/"/>
-    
-      <category term="并发" scheme="http://cloudpai.site/tags/%E5%B9%B6%E5%8F%91/"/>
     
   </entry>
   
