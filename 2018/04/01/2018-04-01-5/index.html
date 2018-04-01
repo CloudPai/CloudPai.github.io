@@ -1,0 +1,1715 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="软件工程," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="CloudPai" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="软件工程（Software Engineering，简称 SE），是一门研究用工程化方法构建和维护有效的、实用的和高质量的软件的学科，就是和软件有关的工程，而软件是什么，软件是系统中与硬件相互依存的另一部分，包括程序、数据、及其相关文档的完整集合。 那么，问题又来了，程序、数据、文档又是啥？ 程序：按设计的功能和性能要求的指令序列。数据：正常操作信息的数据结构。文档：程序开发、维护和使用有关的额">
+<meta name="keywords" content="软件工程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件工程 笔记二:软件分析">
+<meta property="og:url" content="http://cloudpai.site/2018/04/01/2018-04-01-5/index.html">
+<meta property="og:site_name" content="CloudPai">
+<meta property="og:description" content="软件工程（Software Engineering，简称 SE），是一门研究用工程化方法构建和维护有效的、实用的和高质量的软件的学科，就是和软件有关的工程，而软件是什么，软件是系统中与硬件相互依存的另一部分，包括程序、数据、及其相关文档的完整集合。 那么，问题又来了，程序、数据、文档又是啥？ 程序：按设计的功能和性能要求的指令序列。数据：正常操作信息的数据结构。文档：程序开发、维护和使用有关的额">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225878264955.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225878407145.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225878528686.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225879022183.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225879258000.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225879409912.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225879605807.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225879755928.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225879882332.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225879989619.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225880170390.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225880320712.jpg">
+<meta property="og:updated_time" content="2018-04-01T13:11:07.759Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="软件工程 笔记二:软件分析">
+<meta name="twitter:description" content="软件工程（Software Engineering，简称 SE），是一门研究用工程化方法构建和维护有效的、实用的和高质量的软件的学科，就是和软件有关的工程，而软件是什么，软件是系统中与硬件相互依存的另一部分，包括程序、数据、及其相关文档的完整集合。 那么，问题又来了，程序、数据、文档又是啥？ 程序：按设计的功能和性能要求的指令序列。数据：正常操作信息的数据结构。文档：程序开发、维护和使用有关的额">
+<meta name="twitter:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225878264955.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'TZAS2SFOJR',
+      apiKey: 'e2a9cd036eede8026382b302001ec261',
+      indexName: 'cloudpai_blogs_search',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cloudpai.site/2018/04/01/2018-04-01-5/"/>
+
+
+
+
+
+  <title>软件工程 笔记二:软件分析 | CloudPai</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-114643720-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CloudPai</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/04/01/2018-04-01-5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CloudPai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudPai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">软件工程 笔记二:软件分析</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-01T21:01:33+08:00">
+                2018-04-01
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-01T21:11:07+08:00">
+                2018-04-01
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/01/2018-04-01-5/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/04/01/2018-04-01-5/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  6,979
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  24
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><p><strong>软件工程（Software Engineering，简称 SE）</strong>，是一门研究用工程化方法构建和维护有效的、实用的和高质量的软件的学科，就是和软件有关的工程，而软件是什么，软件是系统中与硬件相互依存的另一部分，包括程序、数据、及其相关文档的完整集合。</p>
+<p>那么，问题又来了，程序、数据、文档又是啥？</p>
+<p><strong>程序</strong>：按设计的功能和性能要求的指令序列。<br><strong>数据</strong>：正常操作信息的数据结构。<br><strong>文档</strong>：程序开发、维护和使用有关的额图文材料</p>
+<p>什么特点？</p>
+<p>1. 逻辑实体，非物理实体（抽象性）</p>
+<p>2. 生产与硬件不同，开发过程中无明显制造过程</p>
+<p>3. 运行和使用期间，没有硬件的机械磨损，老化问题</p>
+<p>4. 开发和运行手系统限制，有不同程度的依赖性</p>
+<p>5. 至今未完全摆脱手工操作</p>
+<p>6. 本身复杂（实际问题，逻辑结构）</p>
+<p>7. 成本昂贵</p>
+<p>8. 很多设计社会因素（知识产权等）</p>
+<p>其他方面了解：</p>
+<p><strong>分类</strong>情况有很多种。依据功能划分分为系统软件、支撑软件、应用软件；按规模划分，有微型、小型、中型、大型、甚大型、计大型之分；还有按工作方式、服务对象、使用频率、失效影响等区分。</p>
+<p>软件工程<strong>基本原理</strong>：</p>
+<p>1. 用分阶段的生存周期计划严格管理</p>
+<p>2. 坚持进行阶段评审</p>
+<p>3. 实行严格的产品控制</p>
+<p>4. 采用现代程序设计技术</p>
+<p>5. 结果应能清楚地审查</p>
+<p>6. 合理安排软件开发小组的人（少而精）</p>
+<p>7. 承认不断改进软件工程实践的必要性</p>
+<p>软件工程的项目<strong>基本目标</strong>是：</p>
+<p>付出较低的开发成本</p>
+<p>达到要求的软件功能</p>
+<p>取得较好的软件性能</p>
+<p>开发的软件易于移植</p>
+<p>需要较低的维护费用</p>
+<p>能按时完成开发工作，即时交付使用</p>
+<p>软件工程原则：分解性、独立性、一致性、确定性</p>
+<p>  <strong>生存周期（六个阶段）：</strong><br>  <strong>（从开发至被废弃）问题定义、可行性研究、需求分析、设计、编码、测试、运行与维护</strong>；<strong>三大阶段：软件计划阶段、开发阶段和维护阶段</strong></p>
+<p>软件开发模型，例如瀑布模型、B 模型、快速原型模型（RapidPrototyping Model）、演化模型、渐增模型、螺旋模型等。</p>
+<p>通过上面了解了软件工程，那么我们可能会认为做个软件有啥的，做出来不就行了，那么我们看看具体怎么做吧。</p>
+<p>如果直接就开始软件创建，那为啥还要叫软件工程，直接叫编程不就完了。其实软件工程师工程化的，需要考虑方方面面，不仅要创建软件，还要为软件作说明，以及维护，让非专业的人知道怎么使用和维护软件，这才是重点。那么让非专业人士了解，就需要多种文档的建立啦。由于视频我还没有看完，所以只能先介绍我了解的文档了。</p>
+<p>文档也就是<strong>软件规格说明书</strong>，用来规定软件的功能与运行环境，满足规格的条件和完成客户需求。软件规格说明书的特点：易理解性、可见性、可支持性、可接受性、可靠性、健壮性、可维护性、速度。</p>
+<p>首先，第二章介绍的是<strong>可行性研究报告</strong>。</p>
+<p><strong>可行性研究步骤</strong>：</p>
+<p>复查系统规模和目标</p>
+<p>研究当前正在使用的系统</p>
+<p>到处新系统的高层逻辑模型</p>
+<p>向用户推荐建议方法</p>
+<p>推荐行动方针，做出关键性的决定</p>
+<p>草拟开发计划，写出可行性论证报告</p>
+<p>提交上级和专家审查</p>
+<p><strong>软件计划内容</strong></p>
+<p>软件功能规模，软件能力对硬件的要求，接口界面的性质和复杂性等</p>
+<p><strong>环境资源：</strong></p>
+<p>人力资源，在不同的阶段对不同的人员的要求</p>
+<p>硬件，包括目标机器，及其他机器</p>
+<p>软件，包括职支撑软件和使用软件</p>
+<p>制定进度表，包括交付日期，如何组织分配力量</p>
+<p>软件成本，只要双方都能接受即可（估算）</p>
+<p>资源性能描述：要什么样水平的人，什么样的功能性能的硬件和软件</p>
+<p><strong>价格评估</strong></p>
+<p>影响因素：人口、产品、工程、资源</p>
+<p>1. 参数化算法</p>
+<p>C=f（Vi);C 是软件价格，Vi 所选取的影响软件价格的独立参数</p>
+<p>2. 代码行（LOC）价格估算技术</p>
+<p>有关参数：源代码行，是软件产品计量单位，不包括注释，作业命令……</p>
+<p>  劳动量，一个人参加劳动时间的长短</p>
+<p>  软件生产率，单位劳动时间完成软件的数量</p>
+<p>  LOC 计算方法，对设计的系统进行功能分解，根据历史数据和经验选择每个软件功能块的 LOC 价格</p>
+<p>3. 任务分解方法</p>
+<p>思想：首先把软件开发工程分解为若干个相对独立的任务，再分别估计每个开发任务的成本，最后累加得出总成本</p>
+<p>4. 自动估计成本方法</p>
+<p>减轻人的劳动但要有大量的经验数据做基础，要有狼嚎数据库系统支持</p>
+<p><strong>成本 / 效益分析</strong> </p>
+<p>成本估计方法：自顶向下估价、自底向上估价</p>
+<p>成本 / 效益分析法：</p>
+<p>运行费：取决与系统的操作费用和维护费用</p>
+<p>系统的经济效益：因新系统而增加的收入 + 新系统节省的运行费；系统经济效益一般在整个生存周期内都存在</p>
+<p><strong>项目开发计划</strong></p>
+<p>引言：编写目的、项目背景、定义、参考资料</p>
+<p>项目描述：工作内容、条件与限制、产品、运行环境、服务、验收标准</p>
+<p>实施计划：任务分解、进度、预算、关键问题</p>
+<p>人员组织及分工</p>
+<p>交付期限</p>
+<p>专题计划要点</p>
+<p>第三章介绍的是软件需求</p>
+<p><strong>任务</strong>: 深入描述软件的功能和性能</p>
+<p>确定软件设计的约束和软甲同其他系统元素的接口细节</p>
+<p>定义软件的其他有效性需求（借助于当前系统的逻辑模型到处目标系统的逻辑模型，解决目标系统的 “做什么” 的问题）</p>
+<p>  需求包括：功能需求、性能需求、环境需求、可靠性需求、安全保密要求、用户界面需求、资料使用需求、成本消耗需求、开发进度需求、预先估计以后系统可能达到的目标</p>
+<p><strong>方法共性：</strong></p>
+<p>支持数据域分析的机制</p>
+<p>功能表示的方法</p>
+<p>接口的定义</p>
+<p>问题分解的机制以及对抽象的支持</p>
+<p>逻辑视图和物理视图</p>
+<p>系统抽象模型</p>
+<p><strong>软件需求分析的原则</strong></p>
+<p>需要能够表达和理解问题的信息域和功能域</p>
+<p>要能以层次化得方式对问题进行分解和不断细化</p>
+<p><strong>软件需求规格说明的原则</strong></p>
+<p>从现实中分离功能描述要 “做什么” 而不是“怎么实现”</p>
+<p>要求使用面向处理的规格说明语言（或称系统定义语言）</p>
+<p><strong>软件需求方法</strong></p>
+<p>由对软件问题的信息域和功能域的系统分析过程及其表示方法</p>
+<p>大多是由信息驱动（信息流即数据流，不包括控制）</p>
+<p>结构化分析方法</p>
+<p>面向数据流</p>
+<p>使用数据处理类型软件</p>
+<p>数据流图（DFD）：通过数据流向表达软件需求</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15225878264955.jpg" alt=""><br><img src="http://p4lmrb1gp.bkt.clouddn.com/15225878407145.jpg" alt=""></p>
+<p><strong>数据流图的作用：</strong></p>
+<p>1. 系统分析员用这种工具可以自顶向下分析系统信息流程</p>
+<p>2. 可在图上画出需要计算机处理的部分</p>
+<p>3. 根据数据存贮（zhu），进一步作数据分析，向数据库设计过渡</p>
+<p>4. 根据数据流向，定出存取方式</p>
+<p>5. 对应一个处理过程，用相应的语言、判定表等工具表达出处理方法</p>
+<p><strong>数据流图的优缺点：</strong></p>
+<p>1. 总体概念强，每一层都明确强调 “干什么”，“需要什么”，“给什么”</p>
+<p>2. 可以反映出数据的流向和处理过程</p>
+<p>3. 由于自顶向下分析，容易及早发现系统各部分的逻辑错误，也容易修正</p>
+<p>4. 容易与计算机处理相对照</p>
+<p>5. 不直观，一般都要在作业流程分析的基础上加以概括、抽象、修正来得到</p>
+<p>6. 如果没有计算机系统帮助的话，人工绘制太麻烦，工作量较大</p>
+<p><strong>检查和修改数据流图的原则</strong></p>
+<p>1. 数据流图上所有图形符号只限于前述四种基本图形元素</p>
+<p>2. 数据流图的主图必需包括前述四种基本元素，缺一不可</p>
+<p>3. 每个加工至少有一个输入数据流和一个输出数据流</p>
+<p>4. 在数据流图中，需按层给加工框编号。编号表明该加工所处层次及上下层的亲子关系</p>
+<p>5. 规定任何一个数据流子图必需与它上一层的一个加工对应，两者的输入数据流和输出数据流必需一致</p>
+<p>6. 图上每个元素都必须有名字</p>
+<p>7. 数据流图中不可夹带控制流</p>
+<p>8. 初画图时可以忽略琐碎的细节，以集中精力于主要数据流</p>
+<p>9. 不许有交叉层叠的情况</p>
+<p><strong>数据词典</strong></p>
+<p>配合数据流图，清楚地表达数据处理的要求</p>
+<p>（主）词条描述——对图形元素定义（名字，别名或编号，分类，描述，定义，位置，其它等）</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15225878528686.jpg" alt=""></p>
+<p>用于写<strong>加工逻辑说明</strong>的工具：</p>
+<p><strong>结构化英语</strong>，是一种介于自然语言和形式化语言之间的语言，由英语命令动词，数据词典中定义的名字，有限的自定义词，逻辑关系词 IF_THEN_ELSE、CASE_OF、WHILE_DO、REPEAT_UNTIL 等组成；语言的正文用基本控制结构进行分割，加工的操作用自然语言短语来表示；其基本控制结构有三种：简单陈述句结构；重复结构；判定结构</p>
+<p><strong>判定表</strong>（将各种逻辑通过列表的方式列举出来）</p>
+<p>先条件后动作最后优化；优化先从动作开始。</p>
+<p>描述加工的基本说明，适用多个逻辑的，清晰描述复杂的条件组合与应该做的动作对应关系；但不能表述不确定的加工处理，重复循环的加工处理</p>
+<p><strong>判定树</strong>（通过树状图表示逻辑组合）</p>
+<p>用来表达加工逻辑的一种工具，有时比判定表更直观</p>
+<p>优点：形式简单，直观，判定表的数据源数多余两个的时候，判定表写起来别较多，判定树比较形象</p>
+<p>不足：简洁度不如判定表，越接近树叶的地方越多</p>
+<p>其它还有 <strong>I/P/O 图</strong>、<strong>层次方框图</strong>、<strong>PHA 图</strong>等，不做详细介绍。</p>
+<p>工具的选择方式： </p>
+<ol>
+<li><p><strong>从机器的可读性来讲</strong>：结构化英语、判定表优于判定树</p>
+</li>
+<li><p><strong>从描述的直观性来讲</strong>：判定树较好</p>
+</li>
+<li><p><strong>对于逻辑验证和优化能力</strong>：判定表较好（所有的可能性都列出来）</p>
+</li>
+</ol>
+<p><strong>原型化方法</strong></p>
+<p>开发初期，完整准确的规格说明不易得到，用户往往对系统仅一个模糊想法，难完全准确表达系统全面要求</p>
+<p><strong>软件原型的分类：</strong></p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15225879022183.jpg" alt=""></p>
+<p>最常用的<strong>动态分析</strong>方法</p>
+<p>状态迁移图是描述系统的状态如何相应外部的信号进行推移的一种图形表示，圆圈 “○” 表示可得到的系统状态，箭头 “→” 表示从一种状态向另一种状态的迁移，“？”表示转移即系统的事件。优点：单纯性，机械地分析许多情况，易机那里分析工具，如可转换为状态迁移表，处理功能强；状态之间的关系描述直观（不能有交叉不清）</p>
+<p><strong>时序图（Sequence Diagram）</strong>，亦称为<a href="http://baike.baidu.com/view/2226296.htm" target="_blank" rel="noopener">序列图</a>或循序图或顺序图，是一种 UML 交互图。它通过描述对象之间发送消息的时间顺序显示多个对象之间的动态协作。它可以表示<a href="http://baike.baidu.com/view/706238.htm" target="_blank" rel="noopener">用例</a>的行为顺序，当执行一个用例行为时，时序图中的每条消息对应了一个类操作或<a href="http://baike.baidu.com/view/1906565.htm" target="_blank" rel="noopener">状态机</a>中引起转换的触发事件。</p>
+<p><strong>Petri 网简称 PNG（Petri Net Graph）</strong>，广泛应用于硬件与软件系统的开发中，适用于描述与分析相互独立、协同操作的处理系统，即并发执行的处理系统；标记，或称令牌（token），是表明系统当前处于什么状态的标志</p>
+<p><strong>第四章介绍的是软件概要设计说明书和详细设计说明书</strong></p>
+<p>  即第四章描述的是软件的设计。</p>
+<p> <strong>概要设计的过程步骤</strong>：</p>
+<p>S1: 设计系统方案</p>
+<p>S2：选取一组合理的方案</p>
+<p>S3：推荐最佳实施方案</p>
+<p>S4：功能分解</p>
+<p>S5： 软件结构设计</p>
+<p>S6：数据库设计、文件结构的设计</p>
+<p>S7：制定测试计划</p>
+<p>S8：编写概要设计文档</p>
+<p>S9：审查与复审概要设计文档</p>
+<p><strong>软件设计的概念与原则</strong></p>
+<ol>
+<li><p>将软件划分成若干独立成分的依据</p>
+</li>
+<li><p>怎样表示不同的成分内的功能细节和数据结构</p>
+</li>
+<li><p>怎样同一衡量软件的技术质量</p>
+</li>
+</ol>
+<p><strong>软件设计的目标和任务</strong></p>
+<p>根据用信息域表示的软件需求，以及功能和性能需求，进行</p>
+<p>数据设计</p>
+<p>系统结构设计</p>
+<p>过程设计</p>
+<p>注意：一般先概念设计，后详细设计</p>
+<p><strong>软件设计的过程：</strong></p>
+<p>制定规范</p>
+<p>软件系统结构的总体设计</p>
+<p>处理方式设计</p>
+<p>数据结构设计</p>
+<p>可靠性设计（质量设计）</p>
+<p>编写概要设计阶段的文档（概要设计说明书和数据库的说明书、完善用户手册）</p>
+<p>概要设计评审</p>
+<p><strong>软件设计基础：</strong></p>
+<p><strong>自顶向下，逐步细化</strong></p>
+<p>体系结构自顶向下方式，各个层次过程细节和数据细节逐层细化</p>
+<p>软件结构</p>
+<p>模块结构和数据的结构</p>
+<p>把一个问题分解为多个子问题，然后非别解决子问题（子问题开发工作量之和小于原问题开发工作量【数学问题】）</p>
+<p><strong>程序结构，</strong>分为两种</p>
+<p><strong>树状结构</strong>（层次结构）：</p>
+<p>层次分明，只有一个节点，没有副节点，多个子节点（兄弟之间没有什么联系，只与父节点有关）；纵向叫深度，横向叫快读，每个节点输入叫扇入，输出叫扇出</p>
+<p><strong>网状结构</strong>：</p>
+<p>任何两个节点可以建立联系，层次模糊，不易看出根节点</p>
+<p><strong>结构图（S/C 图）</strong></p>
+<p>反映程序中模块之间的层次调用关系和联系</p>
+<p><strong>模块化</strong></p>
+<p>能够把一个大而复杂的软件系统划分成易于理解的比较单纯的模块结构</p>
+<p><strong>1. 模块</strong></p>
+<p>矩形框表示，模块名，各个模块名不能相同</p>
+<p>模块名（以功能、功能缩写、已定义模块、子程序或过程），一般以功能命名，功能非单一以主要功能命名</p>
+<p><strong>2. 模块的调用关系和接口</strong><br><img src="http://p4lmrb1gp.bkt.clouddn.com/15225879258000.jpg" alt=""></p>
+<p><strong>3. 模块间的信息传递</strong></p>
+<p>传入和传出信息必不可少，要表明信息名称和特征</p>
+<p>传递信息较多时要描写主要信息</p>
+<p><strong>4. 表示模块 A 有条件地调用另一个模块 B</strong></p>
+<p>菱形框表示，标记点一定要在上一模块，尽量也要写上条件</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15225879409912.jpg" alt=""></p>
+<p>弧形的表示<strong>循环调用，右箭头的表明循环调用的方向（顺序）</strong></p>
+<p><strong>程序的系统结构图</strong></p>
+<p>小的结构图深度大概 5-7 层，中型十几层或 10 层，复杂型几十层，反映问题的复杂性</p>
+<p>宽度指任意一层的模块书，宽度越大，复杂度越高</p>
+<p>扇出太多表明受其他模块影响较大，扇出不要太多，一般 2-5，不要超过 9-10，减小扇出，势必要增加深度</p>
+<p>扇入表示驱动模块（上一个模块）有多少，扇入一般 1-5，要控制数量</p>
+<p>一个好的系统结构图应该呈现 <strong>“瓮” 型</strong></p>
+<p><strong>抽象化</strong></p>
+<p>软件系统进行模块设计时，可有不同的抽象层次，即分解系统；</p>
+<p>控制分解速度</p>
+<p>过程：分层抽象，逐渐细化；</p>
+<p>根据任务需求进一步细化；</p>
+<p>程序过程抽象（编程阶段）；</p>
+<p>数据抽象，在不同层次上描述数据对象的细节，定义与该数据对象相关的操作</p>
+<p>信息隐蔽</p>
+<p>划分模块的时候（定义层次），模块内的数据发生变化的时候，尽量不要影响其他相关模块或少影响，即不允许其他的模块使用本模块</p>
+<p><strong>模块的独立性</strong></p>
+<p>模块的基本属性：</p>
+<p>功能：描述该模块实现什么功能</p>
+<p>逻辑：描述模块内部怎么做</p>
+<p>状态：该模块使用时的环境和条件</p>
+<p>独立性是指软件系统中每个模块只涉及软件要求的具体的子功能</p>
+<p>一般采用两个准则度量模块独立性，即模块间耦合和模块内聚</p>
+<p><strong>模块间的耦合</strong></p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15225879605807.jpg" alt=""></p>
+<p>独立性越强，耦合性越低</p>
+<p><strong>非直接耦合（Nondirect Coupling）</strong></p>
+<p>两模块之间没有直接关系</p>
+<p><strong>数据耦合（Data Coupling）</strong></p>
+<p>如果一个模块模块访问另一个模块时，彼此之间是通过简单数据参数（不是控制参数、公共数据结构或外部变量来交换输入、输入信息的）</p>
+<p><strong>标记耦合（Stamp Coupling）</strong></p>
+<p>如果一组模块通过参数表传递记录信息，就是标记耦合</p>
+<p><strong>控制耦合（Control Coupling）（中耦合）</strong></p>
+<p>如果一个模块通过传送开关、标志、名字等控制信息，明显地控制选择另一模块的功能</p>
+<p><strong>外部耦合（External Coupling）</strong></p>
+<p>一组模块都访问同一全局简单变量而不是同一全局数据结构，而且不是通过参数表传递该全局变量的信息，较强耦合</p>
+<p><strong>公共耦合（Common Coupling）</strong></p>
+<p>若一组模块都访问同一个公共数据环境，较强耦合有两种情况：松散公共耦合和紧密公共耦</p>
+<p>（a）A 模块写入的数据（B 模块不需要的）可能导入到 B 模块</p>
+<p>（b）两个模块都能修改数据，容易造成混乱，尽量避免</p>
+<p>  <strong>合理使用公用耦合，可减少使用内存量</strong></p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15225879755928.jpg" alt=""></p>
+<p><strong>内容耦合（Content Coupling）</strong></p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15225879882332.jpg" alt=""></p>
+<p><strong>模块内聚</strong></p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15225879989619.jpg" alt=""></p>
+<p><strong>内聚性越高，模块独立性越强。内聚是可以互相转换的。</strong></p>
+<p><strong>功能内聚（Functional Cohesion）</strong></p>
+<p>一个模块中各个部分都是完成某一具体功能必不可少的组成部分，是不可分割的，最理想的模块内聚</p>
+<p><strong>信息内聚（Informational Cohesion）</strong></p>
+<p>也称（顺序内聚），模块完成多个功能，各个功能都在统一数据结构上操作，每一项功能有一个唯一的入口点，较强内聚</p>
+<p><strong>通信内聚（Communication Cohesion）</strong></p>
+<p>如果一个模块内各功能部分都使用了相同的输入数据，或产生相同的输出数据</p>
+<p><strong>过程内聚（Procedural Cohesion）</strong></p>
+<p>使用流程图做为工具设计程序时，把流程图中的某一部分划出来组成模块</p>
+<p><strong>时间内聚（Classical Cohesion）</strong></p>
+<p>也叫瞬间内聚</p>
+<p>1. 各个模块的执行与时间有关</p>
+<p>2. 通常要求所有功能必须在同一时间段内执行；</p>
+<p>3. 动作仅执行一次，往往影响其他模块；</p>
+<p>4. 模块内各部分内聚的时间关系反映了某些实质问题</p>
+<p><strong>逻辑内聚（Logical Cohesion）</strong></p>
+<p>把集中相关的功能组合在一起</p>
+<p><strong>巧合内聚（Coincidental Cohesion）</strong></p>
+<p>各部分之间没有联系，或者即使有联系，这种联系也很松散</p>
+<p><strong>结构化设计方法</strong></p>
+<p>首先研究、分析和审查数据流图；然后根据数据流图决定问题的类型，典型类型：变换型和事务型</p>
+<p><strong>系统结构图中的模块</strong></p>
+<p><strong>传入模块</strong></p>
+<p>输入物理数据流，传出逻辑数据流，左斜</p>
+<p><strong>传出模块</strong></p>
+<p>传出逻辑输出数据流（一般），右斜</p>
+<p><strong>变换模块</strong></p>
+<p>从上级模块取得数据，经过变换后在返还上级模块</p>
+<p><strong>协调模块</strong></p>
+<p>对所有下属模块进行协调与管理</p>
+<p><strong>变换型系统结构图</strong>（一条线）, 过程大致分为三步：取得数据，变换数据和给出数据</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15225880170390.jpg" alt=""></p>
+<p><strong>事务型系统结构图</strong>（有分支）, 接受一项事务，根据事务处理的特点和性质，选择分派一个适当的处理单元，然后给出结果<br><img src="http://p4lmrb1gp.bkt.clouddn.com/15225880320712.jpg" alt=""></p>
+<p><strong>变换分析</strong></p>
+<p>方法四步组成：</p>
+<p>1. 重画数据流图</p>
+<p>2. 区分有效（逻辑）输入、有效（逻辑）输出和中心变换部分</p>
+<p>3. 进行一级分解，设计上层模块</p>
+<p>4. 进行二级分析，设计输入、输出和中心变换部分的中、下层模块</p>
+<p>中心交换就是主模块位置</p>
+<ol>
+<li><p>在选择木块设计的次序时，须对一个木块的全部直接下属模块都设计完成</p>
+</li>
+<li><p>在设计下层模块时，应考虑模块的耦合和内聚问题</p>
+</li>
+<li><p>使用 “黑箱” 技术：在设计当前模块时，先把这个模块的所有下层模块定义成“黑箱”</p>
+</li>
+<li><p>在模块划分时，一个模块的直接下属模块一般在 5 个左右（调用的模块）</p>
+</li>
+<li><p>如果出现以下情况，就停止模块的功能分解：</p>
+</li>
+<li><p>当木块不能再细分为明显的子任务时；</p>
+</li>
+<li><p>的那个分解成用户提供的模块或程序库的子程序时</p>
+</li>
+<li><p>当模块的界面是输入 / 输出设备传送的信息时</p>
+</li>
+<li><p>当模块不宜再分解得过小时</p>
+</li>
+</ol>
+<p><strong>事务分析</strong>也是从分析数据流图开始，自顶向下，逐步分解，建立系统到结构图</p>
+<p><strong>事务处理过程：</strong></p>
+<ol>
+<li><p>识别事务源</p>
+</li>
+<li><p>规定适当的事务型结构</p>
+</li>
+<li><p>识别各种事务和他们定义的操作</p>
+</li>
+<li><p>注意利用公用模块</p>
+</li>
+<li><p>对每一事务，或对联系密切的一组事务，建立一个事务处理模块</p>
+</li>
+<li><p>对事务处理模块规定他们全部的下层操作模块</p>
+</li>
+<li><p>对操作模块规定他们的全部细节模块</p>
+</li>
+</ol>
+<p><strong>软件模块结构的改进</strong></p>
+<p>模块功能的完善化, 一个完整的模块应当有一下几部分：</p>
+<ol>
+<li>执行规定的功能的部分</li>
+</ol>
+<p>2.  出错处理的部分</p>
+<p>3.     给它的调用者返回一个结束状态标志</p>
+<p>模块的作用范围应在控制范围之内</p>
+<p>模块的控制范围包括它本身及其所有的从属模块</p>
+<p>模块的作用范围是指模块内一个判定的作用范围，凡是收这个判定影响的所有模块都属于这个判定的作用范围。</p>
+<p>当违反了作用域和控制域的关系时，解决方法：判定点的上移（判定模块的功能上移）；受控制的模块下移到控制模块</p>
+<p>尽可能减少高扇出结构，随着深度增大扇入</p>
+<p>扇出一般 2-5，不超 9；扇入一般 3-4</p>
+<p>好处：是每个模块内部结构不太复杂</p>
+<p>避免或减少使用病态联接，如：</p>
+<ol>
+<li><p>直接病态联接</p>
+</li>
+<li><p>公共数据域病态联接</p>
+</li>
+<li><p>通信模块联接</p>
+</li>
+</ol>
+<p>模块的大小要适中</p>
+<p>通常规定其语句行数在 50~100 左右，保持在一页纸之内，最多不超过 500 行</p>
+<p>  一般按功能划分，防止模块功能太多，要是修改很麻烦</p>
+<p>设计功能可预测的模块，但要避免过分受限制的模块（受约束条件过多）</p>
+<p>对非法和合法的输入都应有相应的输出</p>
+<p>软件包应满足设计约束和可移植性</p>
+<p><strong>设计的后处理</strong></p>
+<p>为每一个模块写一份处理说明</p>
+<p>为每一个模块提供一份接口说明</p>
+<p>确保全局数据结构和局部数据结构</p>
+<p>之处所有的设计约束和限制</p>
+<p>进行给药设计的评审</p>
+<p><strong>数据设计及文件设计</strong></p>
+<p><strong>数据设计的原则</strong></p>
+<p>（<strong>总</strong>）在需求分析阶段所确定的数据对象选择逻辑表示，需要对不同的结构进行算法分析，以便选择一个最有效的设计方案；</p>
+<p>确定对逻辑数据结构所必需的操作的程序模块，以便限制各个数据决策的影响范围</p>
+<p>（<strong>分</strong>）</p>
+<ol>
+<li><p>用于软件的系统化方法也是用于数据</p>
+</li>
+<li><p>确定所有的数据结构和在美中数据结构上施加的操作</p>
+</li>
+<li><p>应当建立一个数据词典并用它来定义数据和软件的设计</p>
+</li>
+<li><p>底层数据设计的决策应推迟到设计过程的后期进行</p>
+</li>
+<li><p>数据结构的表示只限于那些必须直接使用该数据结构内数据的模块才能知道</p>
+</li>
+<li><p>应当建立一个存放有效数据结构及相关操作的库</p>
+</li>
+<li><p>软件设计和程序设计语言应当支持抽象数据类型的定义和实现</p>
+</li>
+</ol>
+<p><strong>文件设计</strong></p>
+<p>文件逻辑设计，在概要设计阶段</p>
+<ol>
+<li><p>整理必须的数据元素</p>
+</li>
+<li><p>分析数据间的关系</p>
+</li>
+<li><p>确定文件的逻辑设计</p>
+</li>
+<li><p>理解文件的特性</p>
+</li>
+<li><p>确定文件的组织方式</p>
+</li>
+<li><p>确定文件的存储介质</p>
+</li>
+<li><p>确定文件的记录格式</p>
+</li>
+<li><p>估算存取时间和存存储容量</p>
+</li>
+</ol>
+<p><strong>过程设计</strong></p>
+<p>对所采用算法的逻辑关系进行分析，设计出全部必要的过程细节，并给予清晰的表达</p>
+<p>决定各个模块的实现算法，并精确地表达这些算法，表达过程规格说明的工具叫做详细设计工具：图形工具、表格工具、语言工具</p>
+<p><strong>程序流程图</strong></p>
+<p>亦程序框图，五种基本控制结构：顺序型、选择型、先判定型循环、后判定型循环、多情况选择型</p>
+<p>程序流程图的优点：</p>
+<p>（a）采用简单规范的符号，画法简单；</p>
+<p>（b）结构清晰，逻辑性强；</p>
+<p>（c）便于描述，容易理解。</p>
+<p>缺点：诱惑程序员过早的考虑控制流，建议少用</p>
+<p><strong>N-S 图（盒图）</strong></p>
+<p>整个方框，看不到控制流。五种图形构件：、顺序型、选择型、WHILE 重复型、UNTIL 重复型、多分支选择型（CASE）型</p>
+<p><strong>问题分析图（PAD）</strong></p>
+<p>二维树形结构数据流来表示控制流，直接得出。其基本控制结构：顺序型、选择型、WHILE 重复型、UNTIL 重复型和多分支选择型（CASE 型）</p>
+<hr>
+<blockquote>
+<p>参考：<br>专栏：软件工程 - CSDN博客<br><a href="https://blog.csdn.net/column/details/dongle-se.html" target="_blank" rel="noopener">https://blog.csdn.net/column/details/dongle-se.html</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+
+     
+    
+      <div>
+        
+    <div style="text-align:center;color: #ccc;font-size:14px;">
+        ------ 本文结束<i class="fa fa-paw"></i>感谢您的阅读 ------</div>
+
+      </div>
+    
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    CloudPai
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://cloudpai.site/2018/04/01/2018-04-01-5/" title="软件工程 笔记二:软件分析">http://cloudpai.site/2018/04/01/2018-04-01-5/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/软件工程/" rel="tag"><i class="fa fa-tag"></i> 软件工程</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/01/2018-04-01-4/" rel="next" title="软件工程 笔记一:绪论">
+                <i class="fa fa-chevron-left"></i> 软件工程 笔记一:绪论
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/01/2018-04-01-6/" rel="prev" title="软件工程 笔记三:软件测试">
+                软件工程 笔记三:软件测试 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+
+
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg"
+                alt="CloudPai" />
+            
+              <p class="site-author-name" itemprop="name">CloudPai</p>
+              <p class="site-description motion-element" itemprop="description">加油(๑•̀ㅂ•́)و✧加油</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">122</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+
+<div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=240 src="//music.163.com/outchain/player?type=0&id=2113726971&auto=0&height=430"></iframe>
+</div>
+<!-- 459004290 -->
+
+
+
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CloudPai" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:liupai024@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.douban.com/people/57965969/doulists/all" target="_blank" title="豆瓣">
+                      
+                        <i class="fa fa-fw fa-book"></i>豆瓣</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/cloudPai/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-edit"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.dlut.edu.cn/" title="DUT" target="_blank">DUT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bupt.edu.cn/" title="BUPT" target="_blank">BUPT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://campus.alibaba.com/index.htm" title="Alibaba Group" target="_blank">Alibaba Group</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CloudPai</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">581.1k</span>
+  
+</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv">  </span>
+</span>
+</div>
+
+
+
+
+
+
+
+  <div class="theme-info">&#12288;主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://cloudpai.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://cloudpai.site/2018/04/01/2018-04-01-5/';
+          this.page.identifier = '2018/04/01/2018-04-01-5/';
+          this.page.title = '软件工程 笔记二:软件分析';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cloudpai.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!-- <!-- <script src="https://cdn.bootcss.com/aplayer/1.6.0/APlayer.min.js"></script>
+
+<script src="https://api.i-meto.com/music/player.js"></script> --> -->
+  
+  <!--移动端判断，是否引入背景-->
+  <script>
+  var browser={  
+      versions:function(){   
+             var u = navigator.userAgent, app = navigator.appVersion;   
+             return {//移动终端浏览器版本信息
+                  trident: u.indexOf('Trident') > -1, //IE内核
+                  presto: u.indexOf('Presto') > -1, //opera内核
+                  webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                  gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                  mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                  ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                  android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                  iPhone: u.indexOf('iPhone') > -1 , //是否为iPhone或者QQHD浏览器
+                  iPad: u.indexOf('iPad') > -1, //是否iPad
+                  webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+              };  
+           }(),  
+           language:(navigator.browserLanguage || navigator.language).toLowerCase()  
+  }   
+    if(browser.versions.mobile || browser.versions.ios || browser.versions.android ||   
+      browser.versions.iPhone || browser.versions.iPad){        
+               
+    }else{
+    document.write("<script type=\'text/javascript\'  src=\'/js/src/particle.js\'><\/script>");
+    }
+  </script>
+
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":-80,"vOffset":-50},"mobile":{"show":false,"scale":0.2},"react":{"opacityDefault":1,"opacityOnHover":0.2}});</script></body>
+</html>

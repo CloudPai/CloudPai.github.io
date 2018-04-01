@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cloudpai.site/"/>
-  <updated>2018-04-01T12:28:22.485Z</updated>
+  <updated>2018-04-01T13:41:24.886Z</updated>
   <id>http://cloudpai.site/</id>
   
   <author>
@@ -15,6 +15,199 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>软件工程 总结</title>
+    <link href="http://cloudpai.site/2018/04/01/2018-04-01-12/"/>
+    <id>http://cloudpai.site/2018/04/01/2018-04-01-12/</id>
+    <published>2018-04-01T13:34:09.000Z</published>
+    <updated>2018-04-01T13:41:24.886Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;blockquote&gt;
+&lt;p&gt;通过对软工视频的学习，已了解软工视频大致是在为写文档做预习，一个软件工程必不可少的一部分就是文档的编辑，文档亦难亦不难。不难在我们都能理解每一份文档
+      
+    
+    </summary>
+    
+    
+      <category term="软件工程" scheme="http://cloudpai.site/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>软件工程 笔记八:相关文档</title>
+    <link href="http://cloudpai.site/2018/04/01/2018-04-01-11/"/>
+    <id>http://cloudpai.site/2018/04/01/2018-04-01-11/</id>
+    <published>2018-04-01T13:31:33.000Z</published>
+    <updated>2018-04-01T13:32:58.650Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;经过长达 10 天左右的时间，软件工程文档基本完成，只差师傅验收了，虽然这个期间，一直都是借鉴的好多人的文档以及从网上找对各个文档的相关理解，但终究还是有自己的收获的。&lt;/p
+      
+    
+    </summary>
+    
+    
+      <category term="软件工程" scheme="http://cloudpai.site/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>软件工程 笔记七:项目管理</title>
+    <link href="http://cloudpai.site/2018/04/01/2018-04-01-10/"/>
+    <id>http://cloudpai.site/2018/04/01/2018-04-01-10/</id>
+    <published>2018-04-01T13:27:51.000Z</published>
+    <updated>2018-04-01T13:30:53.604Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;软件工程中必须有的一项就是项目，故而项目管理也是必要的。软件项目分为项目管理过程、软件生产率和质量的度量、软件项目的估算、软件项目计划的目标、软件开发成本估算。&lt;/p&gt;
+&lt;p
+      
+    
+    </summary>
+    
+    
+      <category term="软件工程" scheme="http://cloudpai.site/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>软件工程 笔记六:软件工程管理</title>
+    <link href="http://cloudpai.site/2018/04/01/2018-04-01-9/"/>
+    <id>http://cloudpai.site/2018/04/01/2018-04-01-9/</id>
+    <published>2018-04-01T13:24:04.000Z</published>
+    <updated>2018-04-01T13:27:12.289Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;一个好的工程需要配套的管理体系，软件工程也不列外。软件工程就我的理解就是对软件工程的各个阶段都一定规范，俗话说 “不以规矩，不能成方圆”，而这个规矩就由管理来充当。&lt;br&gt;一
+      
+    
+    </summary>
+    
+    
+      <category term="软件工程" scheme="http://cloudpai.site/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>软件工程 笔记五:面向对象技术</title>
+    <link href="http://cloudpai.site/2018/04/01/2018-04-01-8/"/>
+    <id>http://cloudpai.site/2018/04/01/2018-04-01-8/</id>
+    <published>2018-04-01T13:20:16.000Z</published>
+    <updated>2018-04-01T13:23:06.638Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;strong&gt;面向对象&lt;/strong&gt;：Coad 和 Yourdon 给出定义是：“面向对象 = 对象 + 类 + 继承 + 通信”&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;对象（
+      
+    
+    </summary>
+    
+    
+      <category term="软件工程" scheme="http://cloudpai.site/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>软件工程 笔记四:用户界面设计</title>
+    <link href="http://cloudpai.site/2018/04/01/2018-04-01-7/"/>
+    <id>http://cloudpai.site/2018/04/01/2018-04-01-7/</id>
+    <published>2018-04-01T13:18:17.000Z</published>
+    <updated>2018-04-01T13:19:48.967Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;用户界面 (UserInterface，简称 UI) 是直接面对用户的界面，是系统与用户之间的媒介，一个软件的好坏，UI 起着重要因素。UI 是软件的人机交互界面、操作逻辑、
+      
+    
+    </summary>
+    
+    
+      <category term="软件工程" scheme="http://cloudpai.site/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>软件工程 笔记三:软件测试</title>
+    <link href="http://cloudpai.site/2018/04/01/2018-04-01-6/"/>
+    <id>http://cloudpai.site/2018/04/01/2018-04-01-6/</id>
+    <published>2018-04-01T13:11:48.000Z</published>
+    <updated>2018-04-01T13:17:41.775Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;这几天刚刚刚接触了软件测试，感觉内容挺简单的，无非就是该怎么测试一个软件能否正确运行。其中主要讲述了测试的方法与原则。实际上测试都是要依据各种测试方法协调完成测试工作，而这个
+      
+    
+    </summary>
+    
+    
+      <category term="软件工程" scheme="http://cloudpai.site/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>软件工程 笔记二:软件分析</title>
+    <link href="http://cloudpai.site/2018/04/01/2018-04-01-5/"/>
+    <id>http://cloudpai.site/2018/04/01/2018-04-01-5/</id>
+    <published>2018-04-01T13:01:33.000Z</published>
+    <updated>2018-04-01T13:11:07.759Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;strong&gt;软件工程（Software Engineering，简称 SE）&lt;/strong&gt;，是一门研究用工程化方法构建和维护有效的、实用的和高质量的软件的学科，就是和
+      
+    
+    </summary>
+    
+    
+      <category term="软件工程" scheme="http://cloudpai.site/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>软件工程 笔记一:绪论</title>
+    <link href="http://cloudpai.site/2018/04/01/2018-04-01-4/"/>
+    <id>http://cloudpai.site/2018/04/01/2018-04-01-4/</id>
+    <published>2018-04-01T12:49:03.000Z</published>
+    <updated>2018-04-01T12:59:50.927Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;strong&gt;什么是软件工程？&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;软件工程是一门研究用工程化方法构建和维护有效的、实用的和高质量的软件的学科。它涉及程序设计语言、数据库、软件
+      
+    
+    </summary>
+    
+    
+      <category term="软件工程" scheme="http://cloudpai.site/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>HTTPS协议</title>
@@ -269,211 +462,6 @@
     
     
       <category term="hexo" scheme="http://cloudpai.site/tags/hexo/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>nginx实战</title>
-    <link href="http://cloudpai.site/2018/03/31/2018-03-31/"/>
-    <id>http://cloudpai.site/2018/03/31/2018-03-31/</id>
-    <published>2018-03-31T06:14:41.000Z</published>
-    <updated>2018-03-31T10:00:57.594Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;blockquote&gt;
-&lt;p&gt;使用理由&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;figure class=&quot;highlight xml&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=
-      
-    
-    </summary>
-    
-    
-      <category term="nginx" scheme="http://cloudpai.site/tags/nginx/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>nginx 面试 总结</title>
-    <link href="http://cloudpai.site/2018/03/30/2018-03-30/"/>
-    <id>http://cloudpai.site/2018/03/30/2018-03-30/</id>
-    <published>2018-03-30T14:23:38.000Z</published>
-    <updated>2018-03-31T09:49:00.264Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;code&gt;Nginx&lt;/code&gt;的并发能力在同类型网页服务器中的表现，相对而言是比较好的，因此受到了很多企业的青睐，我国使用&lt;code&gt;Nginx&lt;/code&gt;网站的知名
-      
-    
-    </summary>
-    
-    
-      <category term="面试" scheme="http://cloudpai.site/tags/%E9%9D%A2%E8%AF%95/"/>
-    
-      <category term="nginx" scheme="http://cloudpai.site/tags/nginx/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>nginx理论</title>
-    <link href="http://cloudpai.site/2018/03/29/2018-03-29-3/"/>
-    <id>http://cloudpai.site/2018/03/29/2018-03-29-3/</id>
-    <published>2018-03-29T14:54:26.000Z</published>
-    <updated>2018-03-31T09:49:00.104Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;1-反向代理&quot;&gt;&lt;a href=&quot;#1-反向代理&quot; class=&quot;headerlink&quot; title=&quot;1 反向代理&quot;&gt;&lt;/a&gt;1 反向代理&lt;/h1&gt;&lt;h2 id=
-      
-    
-    </summary>
-    
-    
-      <category term="nginx" scheme="http://cloudpai.site/tags/nginx/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>正则表达式</title>
-    <link href="http://cloudpai.site/2018/03/29/2018-03-29-2/"/>
-    <id>http://cloudpai.site/2018/03/29/2018-03-29-2/</id>
-    <published>2018-03-29T14:13:07.000Z</published>
-    <updated>2018-03-31T09:49:00.149Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;使用 &lt;code&gt;^\#\#\#&lt;/code&gt;(注意正则表达式结尾是一个空格)正则表达式进行替换查找博客中的三级标题，&lt;/p&gt;
-
-      
-    
-    </summary>
-    
-    
-      <category term="正则表达式" scheme="http://cloudpai.site/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JSP面试总结</title>
-    <link href="http://cloudpai.site/2018/03/29/2018-03-29-1/"/>
-    <id>http://cloudpai.site/2018/03/29/2018-03-29-1/</id>
-    <published>2018-03-29T12:36:12.000Z</published>
-    <updated>2018-03-31T09:49:00.277Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;下面是我整理下来的 JSP 知识点:&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://upload-images.jianshu.io/upload_images/5291
-      
-    
-    </summary>
-    
-    
-      <category term="面试" scheme="http://cloudpai.site/tags/%E9%9D%A2%E8%AF%95/"/>
-    
-      <category term="JSP" scheme="http://cloudpai.site/tags/JSP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JSP 学习</title>
-    <link href="http://cloudpai.site/2018/03/29/2018-03-29/"/>
-    <id>http://cloudpai.site/2018/03/29/2018-03-29/</id>
-    <published>2018-03-29T10:22:55.000Z</published>
-    <updated>2018-03-31T09:49:00.201Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;JSP-第一篇【JSP-介绍、工作原理、生命周期、语法、指令、行为】&quot;&gt;&lt;a href=&quot;#JSP-第一篇【JSP-介绍、工作原理、生命周期、语法、指令、行为】&quot; 
-      
-    
-    </summary>
-    
-    
-      <category term="JSP" scheme="http://cloudpai.site/tags/JSP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>tomcat bio nio apr 模式性能测试</title>
-    <link href="http://cloudpai.site/2018/03/28/2018-03-28-3/"/>
-    <id>http://cloudpai.site/2018/03/28/2018-03-28-3/</id>
-    <published>2018-03-28T14:27:43.000Z</published>
-    <updated>2018-03-31T09:49:00.164Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;11.11 活动当天，服务器负载过大，导致部分页面出现了不可访问的状态、那后来主管就要求调优了，下面是 tomcat bio、nio、apr 模式以及后来自己测试的一些性能结
-      
-    
-    </summary>
-    
-    
-      <category term="Java" scheme="http://cloudpai.site/tags/Java/"/>
-    
-      <category term="tomcat" scheme="http://cloudpai.site/tags/tomcat/"/>
-    
-      <category term="IO" scheme="http://cloudpai.site/tags/IO/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java中BIO,NIO,AIO的理解</title>
-    <link href="http://cloudpai.site/2018/03/28/2018-03-28-2/"/>
-    <id>http://cloudpai.site/2018/03/28/2018-03-28-2/</id>
-    <published>2018-03-28T14:25:30.000Z</published>
-    <updated>2018-03-31T09:49:00.108Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;strong&gt;Java 中 BIO,NIO,AIO 的理解&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;在高性能的 IO 体系设计中，有几个名词概念常常会使我们感到迷惑不解。具体如下：
-      
-    
-    </summary>
-    
-    
-      <category term="Java" scheme="http://cloudpai.site/tags/Java/"/>
-    
-      <category term="IO" scheme="http://cloudpai.site/tags/IO/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Servlet学习</title>
-    <link href="http://cloudpai.site/2018/03/28/2018-03-28-1/"/>
-    <id>http://cloudpai.site/2018/03/28/2018-03-28-1/</id>
-    <published>2018-03-28T11:43:34.000Z</published>
-    <updated>2018-03-31T09:49:00.300Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;Servlet第一篇【介绍Servlet、HTTP协议、WEB目录结构、编写入门Servlet程序、Servlet生命周期】&quot;&gt;&lt;a href=&quot;#Servlet第
-      
-    
-    </summary>
-    
-    
-      <category term="servlet" scheme="http://cloudpai.site/tags/servlet/"/>
     
   </entry>
   

@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="软件工程," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="CloudPai" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="通过对软工视频的学习，已了解软工视频大致是在为写文档做预习，一个软件工程必不可少的一部分就是文档的编辑，文档亦难亦不难。不难在我们都能理解每一份文档，并且知道每份文档主要内容有什么，而难亦在怎么将文档的主要内容写出来，用什么表示主要内容，可以让读者更清晰的了解你需要表达什么内容。 通过一次文档的验收，暴露了我们很多问题，即使写的再详细，由于我们缺少经验，总是或多或少的存在某些问题。 比如，对于">
+<meta name="keywords" content="软件工程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件工程 总结">
+<meta property="og:url" content="http://cloudpai.site/2018/04/01/2018-04-01-12/index.html">
+<meta property="og:site_name" content="CloudPai">
+<meta property="og:description" content="通过对软工视频的学习，已了解软工视频大致是在为写文档做预习，一个软件工程必不可少的一部分就是文档的编辑，文档亦难亦不难。不难在我们都能理解每一份文档，并且知道每份文档主要内容有什么，而难亦在怎么将文档的主要内容写出来，用什么表示主要内容，可以让读者更清晰的了解你需要表达什么内容。 通过一次文档的验收，暴露了我们很多问题，即使写的再详细，由于我们缺少经验，总是或多或少的存在某些问题。 比如，对于">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225899573428.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225899842192.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225900341421.jpg">
+<meta property="og:updated_time" content="2018-04-01T13:41:24.886Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="软件工程 总结">
+<meta name="twitter:description" content="通过对软工视频的学习，已了解软工视频大致是在为写文档做预习，一个软件工程必不可少的一部分就是文档的编辑，文档亦难亦不难。不难在我们都能理解每一份文档，并且知道每份文档主要内容有什么，而难亦在怎么将文档的主要内容写出来，用什么表示主要内容，可以让读者更清晰的了解你需要表达什么内容。 通过一次文档的验收，暴露了我们很多问题，即使写的再详细，由于我们缺少经验，总是或多或少的存在某些问题。 比如，对于">
+<meta name="twitter:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225899573428.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'TZAS2SFOJR',
+      apiKey: 'e2a9cd036eede8026382b302001ec261',
+      indexName: 'cloudpai_blogs_search',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cloudpai.site/2018/04/01/2018-04-01-12/"/>
+
+
+
+
+
+  <title>软件工程 总结 | CloudPai</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-114643720-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CloudPai</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/04/01/2018-04-01-12/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CloudPai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudPai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">软件工程 总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-01T21:34:09+08:00">
+                2018-04-01
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-01T21:41:24+08:00">
+                2018-04-01
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/01/2018-04-01-12/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/04/01/2018-04-01-12/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,027
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><blockquote>
+<p>通过对软工视频的学习，已了解软工视频大致是在为写文档做预习，一个软件工程必不可少的一部分就是文档的编辑，文档亦难亦不难。不难在我们都能理解每一份文档，并且知道每份文档主要内容有什么，而难亦在怎么将文档的主要内容写出来，用什么表示主要内容，可以让读者更清晰的了解你需要表达什么内容。</p>
+<p>通过一次文档的验收，暴露了我们很多问题，即使写的再详细，由于我们缺少经验，总是或多或少的存在某些问题。</p>
+<p>比如，对于可行性研究报告主要给要看这份文档的人指出项目开发的实际效益，主要从技术与经济方面，而我的文档中掺杂着一些详细到具体功能的描述，这个是需求或者详细设计文档中的内容，从而使可行性研究报告过于赘余，其他文档也都存在这样的一些问题。</p>
+<p>下面我来好好的总结下每份文档中都主要该有什么内容吧。</p>
+<h2 id="1-对于可行性研究报告"><a href="#1-对于可行性研究报告" class="headerlink" title="1. 对于可行性研究报告"></a><a></a><a target="_blank"></a>1. 对于可行性研究报告</h2><p>简单说来就是个老板看的，要让老板看到有利益，才会同意开发这个项目，说白了就是别人投资需要让人看到未来。所以，要对与能创造利益有关的一切因素谈起。这需要从<a href="http://baike.baidu.com/view/20838.htm" target="_blank" rel="noopener">经济</a>、<a href="http://baike.baidu.com/subview/45517/12502662.htm" target="_blank" rel="noopener">技术</a>、<a href="http://baike.baidu.com/view/172873.htm" target="_blank" rel="noopener">生产</a>、<a href="http://baike.baidu.com/view/1112223.htm" target="_blank" rel="noopener">供销</a>直到<a href="http://baike.baidu.com/subview/11175/10728337.htm" target="_blank" rel="noopener">社会</a>各种<a href="http://baike.baidu.com/view/13655.htm" target="_blank" rel="noopener">环境</a>、<a href="http://baike.baidu.com/subview/17641/11176244.htm" target="_blank" rel="noopener">法律</a>等各种因素进行具体<a href="http://baike.baidu.com/subview/628265/8059285.htm" target="_blank" rel="noopener">调查</a>、<a href="http://baike.baidu.com/view/104381.htm" target="_blank" rel="noopener">研究</a>、<a href="http://baike.baidu.com/view/239473.htm" target="_blank" rel="noopener">分析</a>，确定<a href="http://baike.baidu.com/view/199460.htm" target="_blank" rel="noopener">有利</a>和<a href="http://baike.baidu.com/view/910196.htm" target="_blank" rel="noopener">不利</a>的<a href="http://baike.baidu.com/view/444885.htm" target="_blank" rel="noopener">因素</a>、项目是否可行，估计成功率大小、经济效益和社会效果程度，从而为决策者和主管机关同意开发项目提供<strong>依据</strong>。</p>
+<h2 id="2-项目开发计划"><a href="#2-项目开发计划" class="headerlink" title="2. 项目开发计划"></a><a></a><a target="_blank"></a>2. 项目开发计划</h2><p>是创建一个项目开发过程的总体计划，为项目负责人提供一个框架，使之能合理地估算软件项目开发所需的资源、经费和开发进度，并为项目配置提供信息辅助，也控制软件项目开发过程按此计划进行。在项目开发计划书中，最主要的是必须要有相关表示项目计划的图例（主要有甘特图、工程网络图、时标网络图），以便项目负责人能把控项目进度，了解什么时间段做好什么工作。</p>
+<h2 id="3-软件需求说明书"><a href="#3-软件需求说明书" class="headerlink" title="3. 软件需求说明书"></a><a></a><a target="_blank"></a>3. 软件需求说明书</h2><p>通俗一点，就是指出软件有什么优点（或功能），此优点（或功能）是用户与开发人员都认可的。官方定义是为了使用户和软件开发者双方对该软件的初始规定有一个共同的理解，使之成为整个开发工作的基础。包含硬件、功能、性能、输入输出、接口界面、警示信息、保密安全、数据与数据库、文档和法规的要求。实际上，对于需求，达到用户需求的才可以，因而要从输入 / 输出和它们的关系入手，也方便软件开发人员了解需要什么功能的编程。对于功能，没有什么比让用户看到一个系统功能的模型图更有效的了，于是就用到了<strong>用例图</strong>或者<strong>原型图。</strong></p>
+</blockquote>
+<blockquote>
+<p><strong>用例图</strong>是静态的系统模型，如</p>
+</blockquote>
+<blockquote>
+<blockquote>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15225899573428.jpg" alt=""></p>
+</blockquote>
+</blockquote>
+<blockquote>
+<p><strong>原型图（<a href="http://baike.baidu.com/link?url=w18hJe5zvjJ5sZvo6BGykujn7qAxFiofPPtjgTgThDrNsMIY6bF2hexKDFM_l2OkBVTh1c3spR_1im_qdvhvz_" target="_blank" rel="noopener">原型设计</a>）</strong>就如一个完整的系统，应有的功能都可以操作，就像一个实际系统的虚拟（动态）模型</p>
+<p>输入 / 输出即可用 <strong><a href="http://baike.baidu.com/link?url=zExDf0XO-OHb-WWwk_yvghd5TWf6LmA_wdChohCCtqcmKLbXW40Rmk7eEpanNp4xxdwqehuGW9t016-d5sK9pGfdTO2ak9b01DlXAWN7Vj2mx2ZiAQmG5K5CP6naDOTy" target="_blank" rel="noopener">IPO 图</a></strong>表示：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15225899842192.jpg" alt=""></p>
+<p>而他们之间的具体关系，可以用 <strong><a href="http://baike.baidu.com/link?url=PlUf64IkeFYOGHNOA1NeWNhLUhyANeL9dLLE3-5zJ_LcZWGiBaZ_TNnhX7POrYjFUNg44CG82AaO4xWOSyrN1J4FIKcgth3e11aslhPuDW1E9x3vNWaPeGW9uilyN2wkQnO7dyC5QNgUJ4Tu-0qnEq" target="_blank" rel="noopener">ER 图</a></strong>表示：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15225900341421.jpg" alt=""></p>
+<h2 id="4-概要设计说明书"><a href="#4-概要设计说明书" class="headerlink" title="4. 概要设计说明书"></a><a></a><a target="_blank"></a>4. 概要设计说明书</h2><p>简单点就是指模块之间及模块内大功能的说明，详细的要说明对程序 系统的设计考虑，包括程序系统的基本处理流程、程序系统的组织结构、模块划分、功能分配、接口设计、运行设计、数据结构设计和出错处理设计等，为程序的<a href="http://baike.baidu.com/view/228950.htm" target="_blank" rel="noopener">详细设计</a>提供基础。本文档中需要有类图、界面、原型图（也与功能的实现有关）。</p>
+<h2 id="5-详细设计说明书"><a href="#5-详细设计说明书" class="headerlink" title="5. 详细设计说明书"></a><a></a><a target="_blank"></a>5. 详细设计说明书</h2><p>是概要设计说明书的细致化，将各个功能都详细的设计出来，方便编程人员更好地编程出符合需求的程序。本文档描述的是关于项目最基层的工作内容，只根据概要设计说明书设计，只说明程序设计，而其他可以不编写。本文档需要包括构架图、类图、时序图、及定义代码规范等内容。</p>
+<h2 id="6-数据库设计说明书"><a href="#6-数据库设计说明书" class="headerlink" title="6. 数据库设计说明书"></a><a></a><a target="_blank"></a>6. 数据库设计说明书</h2><p>指所见项目需要创建什么样的数据库，数据库表结构的设计、字段详细说明、视图说明，及其相对应的 SQL 语句说明。通俗一点，就是数据库的设计规范。</p>
+<h2 id="7-测试计划"><a href="#7-测试计划" class="headerlink" title="7. 测试计划"></a><a></a><a target="_blank"></a>7. 测试计划</h2><p>就是对编程好的软件进行测试。测试计划需要包括测试用例（从输入 / 输出举例说明），测试方法有黑 / 白盒测试法等，禁忌最好不要测试人员和开发人员同一人。</p>
+<p>测试计划编写的六要素：</p>
+<p>1）why——为什么要进行这些测试；</p>
+<p>2) what—测试哪些方面，不同阶段的工作内容；</p>
+<p>3) when——测试不同阶段的起止时间；</p>
+<p>4) where——相应文档，缺陷的存放位置，<a href="http://baike.baidu.com/view/651482.htm" target="_blank" rel="noopener">测试环境</a>等；</p>
+<p>5) who——项目有关人员组成，安排哪些测试人员进行测试；</p>
+<p>6) how——如何去做，使用哪些<a href="http://baike.baidu.com/view/11808387.htm" target="_blank" rel="noopener">测试工具</a>以及测试方法进行测试。</p>
+<h2 id="8-测试分析报告"><a href="#8-测试分析报告" class="headerlink" title="8. 测试分析报告"></a><a></a><a target="_blank"></a>8. 测试分析报告</h2><p>就是将测试结果记录下来，并通过专业人士的分析（即评估），然后整合起来交给。</p>
+<h2 id="9-质量保证计划书"><a href="#9-质量保证计划书" class="headerlink" title="9. 质量保证计划书"></a><a></a><a target="_blank"></a>9. 质量保证计划书</h2><p>指在整个工程执行过程中，如何保证工程的质量满足合同和标书规定的有关质量保证方面的文件，包括设计、生产、施工、培训等过程中的质量保证，每项内容的质量保证措施，如何设立质量控制点，如何进行质量控制的操作等。</p>
+<p>质量保证计划应包含编制依据、适用范围和时限、管理职责、合同评审、文件和资料控制、采购控制、施工过程控制、检验和试验、工程项目的不合格品控制和预防纠正措施、物资搬运和储存管理、标识与可追溯性、用工制度与培训、质量记录和记录表格以及质量计划的修订等内容。说得简单些，质量保证计划就是监督和控制影响软件开发质量有关的因素。</p>
+<h2 id="10-操作手册"><a href="#10-操作手册" class="headerlink" title="10. 操作手册"></a><a></a><a target="_blank"></a>10. 操作手册</h2><p>了解操作手册需要了解操作的含义。操作指人活动的一种行为，是一种技能。操作也是按照一定的规范和要领操纵动作，故而操作手册就是指对软件可以按照一定规范和要领进行操作。所以，这一文档需要编写的就是对软件操作的规范。</p>
+<h2 id="11-用户使用手册"><a href="#11-用户使用手册" class="headerlink" title="11. 用户使用手册"></a><a></a><a target="_blank"></a>11. 用户使用手册</h2><p>同上，需要了解使用的含义。使用即利用某种工具而实现某个目的。故而用户使用手册就是利用软件得到结果。这部分主要是描述怎么利用该软件达到目的，即了解软件的功能。</p>
+<p>用户使用手册与操作手册的区别之一就是用户使用手册有 “帮助” 的内容。</p>
+<h2 id="12-项目开发进度月报"><a href="#12-项目开发进度月报" class="headerlink" title="12. 项目开发进度月报"></a><a></a><a target="_blank"></a>12. 项目开发进度月报</h2><p>主要记录实际每月工作进度，用表格形式记录下来，以便相关人员可以调控项目开发进度，从而实现资源的合理利用。</p>
+</blockquote>
+<hr>
+<blockquote>
+<p>参考：<br>专栏：软件工程 - CSDN博客<br><a href="https://blog.csdn.net/column/details/dongle-se.html" target="_blank" rel="noopener">https://blog.csdn.net/column/details/dongle-se.html</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+
+     
+    
+      <div>
+        
+    <div style="text-align:center;color: #ccc;font-size:14px;">
+        ------ 本文结束<i class="fa fa-paw"></i>感谢您的阅读 ------</div>
+
+      </div>
+    
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    CloudPai
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://cloudpai.site/2018/04/01/2018-04-01-12/" title="软件工程 总结">http://cloudpai.site/2018/04/01/2018-04-01-12/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/软件工程/" rel="tag"><i class="fa fa-tag"></i> 软件工程</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/01/2018-04-01-11/" rel="next" title="软件工程 笔记八:相关文档">
+                <i class="fa fa-chevron-left"></i> 软件工程 笔记八:相关文档
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+
+
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg"
+                alt="CloudPai" />
+            
+              <p class="site-author-name" itemprop="name">CloudPai</p>
+              <p class="site-description motion-element" itemprop="description">加油(๑•̀ㅂ•́)و✧加油</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">122</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+
+<div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=240 src="//music.163.com/outchain/player?type=0&id=2113726971&auto=0&height=430"></iframe>
+</div>
+<!-- 459004290 -->
+
+
+
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CloudPai" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:liupai024@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.douban.com/people/57965969/doulists/all" target="_blank" title="豆瓣">
+                      
+                        <i class="fa fa-fw fa-book"></i>豆瓣</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/cloudPai/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-edit"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.dlut.edu.cn/" title="DUT" target="_blank">DUT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bupt.edu.cn/" title="BUPT" target="_blank">BUPT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://campus.alibaba.com/index.htm" title="Alibaba Group" target="_blank">Alibaba Group</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-对于可行性研究报告"><span class="nav-text">1. 对于可行性研究报告</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-项目开发计划"><span class="nav-text">2. 项目开发计划</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-软件需求说明书"><span class="nav-text">3. 软件需求说明书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-概要设计说明书"><span class="nav-text">4. 概要设计说明书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-详细设计说明书"><span class="nav-text">5. 详细设计说明书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-数据库设计说明书"><span class="nav-text">6. 数据库设计说明书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-测试计划"><span class="nav-text">7. 测试计划</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-测试分析报告"><span class="nav-text">8. 测试分析报告</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-质量保证计划书"><span class="nav-text">9. 质量保证计划书</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-操作手册"><span class="nav-text">10. 操作手册</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-用户使用手册"><span class="nav-text">11. 用户使用手册</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-项目开发进度月报"><span class="nav-text">12. 项目开发进度月报</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CloudPai</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">581.1k</span>
+  
+</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv">  </span>
+</span>
+</div>
+
+
+
+
+
+
+
+  <div class="theme-info">&#12288;主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://cloudpai.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://cloudpai.site/2018/04/01/2018-04-01-12/';
+          this.page.identifier = '2018/04/01/2018-04-01-12/';
+          this.page.title = '软件工程 总结';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cloudpai.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!-- <!-- <script src="https://cdn.bootcss.com/aplayer/1.6.0/APlayer.min.js"></script>
+
+<script src="https://api.i-meto.com/music/player.js"></script> --> -->
+  
+  <!--移动端判断，是否引入背景-->
+  <script>
+  var browser={  
+      versions:function(){   
+             var u = navigator.userAgent, app = navigator.appVersion;   
+             return {//移动终端浏览器版本信息
+                  trident: u.indexOf('Trident') > -1, //IE内核
+                  presto: u.indexOf('Presto') > -1, //opera内核
+                  webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                  gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                  mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                  ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                  android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                  iPhone: u.indexOf('iPhone') > -1 , //是否为iPhone或者QQHD浏览器
+                  iPad: u.indexOf('iPad') > -1, //是否iPad
+                  webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+              };  
+           }(),  
+           language:(navigator.browserLanguage || navigator.language).toLowerCase()  
+  }   
+    if(browser.versions.mobile || browser.versions.ios || browser.versions.android ||   
+      browser.versions.iPhone || browser.versions.iPad){        
+               
+    }else{
+    document.write("<script type=\'text/javascript\'  src=\'/js/src/particle.js\'><\/script>");
+    }
+  </script>
+
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":-80,"vOffset":-50},"mobile":{"show":false,"scale":0.2},"react":{"opacityDefault":1,"opacityOnHover":0.2}});</script></body>
+</html>

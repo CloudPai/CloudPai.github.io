@@ -1,0 +1,1360 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="软件工程," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="CloudPai" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="这几天刚刚刚接触了软件测试，感觉内容挺简单的，无非就是该怎么测试一个软件能否正确运行。其中主要讲述了测试的方法与原则。实际上测试都是要依据各种测试方法协调完成测试工作，而这个过程不是在很大程度上决定了一个软件的成功与否。所以，软件测试很重要！ 下面就让我们来接触它吧：  上面这幅图是我对与软件测试的初步认识总结的思维导图（仅供参考）。 软件测试主要讲述了软件测试的目标和原则、软件测试的用例设计、">
+<meta name="keywords" content="软件工程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="软件工程 笔记三:软件测试">
+<meta property="og:url" content="http://cloudpai.site/2018/04/01/2018-04-01-6/index.html">
+<meta property="og:site_name" content="CloudPai">
+<meta property="og:description" content="这几天刚刚刚接触了软件测试，感觉内容挺简单的，无非就是该怎么测试一个软件能否正确运行。其中主要讲述了测试的方法与原则。实际上测试都是要依据各种测试方法协调完成测试工作，而这个过程不是在很大程度上决定了一个软件的成功与否。所以，软件测试很重要！ 下面就让我们来接触它吧：  上面这幅图是我对与软件测试的初步认识总结的思维导图（仅供参考）。 软件测试主要讲述了软件测试的目标和原则、软件测试的用例设计、">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225883725378.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225883832055.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225883925348.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225884053098.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225884163426.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225884285353.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225884398328.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225884551520.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225884722413.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225884834790.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225884949291.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225885057389.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225885178882.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225885340525.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225885518525.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225885617956.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225885908200.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225886009795.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225886237053.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225886362185.jpg">
+<meta property="og:updated_time" content="2018-04-01T13:17:41.775Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="软件工程 笔记三:软件测试">
+<meta name="twitter:description" content="这几天刚刚刚接触了软件测试，感觉内容挺简单的，无非就是该怎么测试一个软件能否正确运行。其中主要讲述了测试的方法与原则。实际上测试都是要依据各种测试方法协调完成测试工作，而这个过程不是在很大程度上决定了一个软件的成功与否。所以，软件测试很重要！ 下面就让我们来接触它吧：  上面这幅图是我对与软件测试的初步认识总结的思维导图（仅供参考）。 软件测试主要讲述了软件测试的目标和原则、软件测试的用例设计、">
+<meta name="twitter:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225883725378.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'TZAS2SFOJR',
+      apiKey: 'e2a9cd036eede8026382b302001ec261',
+      indexName: 'cloudpai_blogs_search',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cloudpai.site/2018/04/01/2018-04-01-6/"/>
+
+
+
+
+
+  <title>软件工程 笔记三:软件测试 | CloudPai</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-114643720-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CloudPai</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/04/01/2018-04-01-6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CloudPai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudPai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">软件工程 笔记三:软件测试</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-01T21:11:48+08:00">
+                2018-04-01
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-01T21:17:41+08:00">
+                2018-04-01
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/01/2018-04-01-6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/04/01/2018-04-01-6/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3,441
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  12
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><p>这几天刚刚刚接触了软件测试，感觉内容挺简单的，无非就是该怎么测试一个软件能否正确运行。其中主要讲述了测试的方法与原则。实际上测试都是要依据各种测试方法协调完成测试工作，而这个过程不是在很大程度上决定了一个软件的成功与否。所以，软件测试很重要！</p>
+<p>下面就让我们来接触它吧：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15225883725378.jpg" alt=""></p>
+<p>上面这幅图是我对与软件测试的初步认识总结的思维导图（仅供参考）。</p>
+<p>软件测试主要讲述了<strong>软件测试的目标和原则</strong>、<strong>软件测试的用例设计</strong>、<strong>软件测试的策略</strong>、<strong>软件测试的种类</strong>和<strong>程序的调试</strong>五个大方面。</p>
+<p><strong>一、软件测试的目的和原则</strong></p>
+<p><strong>目的</strong>：</p>
+<p>1. 测试时程序的执行过程，目的在于发现错误<br>2. 一个好的测试用例在于能发现至今未发现的错误<br>3. 一个成功的测试时发现了至今未发现的错误<br><strong>原则</strong>：</p>
+<p>1. 应当把 “尽早地和不断地进行软件测试” 做为软件开发者的座右铭</p>
+<p>2. 测试用例应由测试输入数据和对应的预期输出结果这两部分组成</p>
+<ol>
+<li><em>程序员应避免检查自己的程序（开发和测试人员两套）</em></li>
+</ol>
+<p>4. 在设计测试用例时，应当包括合理的输入条件和不合理的输入条件</p>
+<p><strong>二、测试信息流</strong></p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15225883832055.jpg" alt=""></p>
+<p><strong>(**</strong>输入：<strong>**)</strong></p>
+<p>软件配置：</p>
+<p>测试配置：</p>
+<p>测试工具：</p>
+<p><strong>(**</strong>输出：<strong>**)</strong></p>
+<p>测试结果分析：</p>
+<p>排错（调试）：</p>
+<p>修正后的文档再测试：</p>
+<p><strong>三、测试与软件开发各阶段的关系</strong></p>
+<p><strong>开发过程</strong>是自顶向下，逐步细化的过程</p>
+<p><strong>测试过程</strong>相反顺序安排的自底向上，逐步集成的过程</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15225883925348.jpg" alt=""></p>
+<p><strong>四、测试用例设计</strong><br>两种方法：<br><strong>黑盒测试（功能测试或数据驱动测试）</strong><br>把测试对象看做一个黑盒测试，检查程序的功能是否符合他的功能说明</p>
+<p>重点：程序接口是否遗漏或不完整；<br><strong>白盒测试（结构测试或逻辑驱动测试）</strong></p>
+<p>测试对象看做一个透明的盒子，对程序所有逻辑路径进行测试<br>重点：独立路径至少要测试一遍；被测的所有逻辑（成立和不成立两个方向）都要测试<br><strong>大的程序都不可能测试完全（**</strong>所以<strong>**需要测试员一般高于开发人员）</strong><br><strong>逻辑覆盖：</strong><br>以程序内部的逻辑结构为基础的设计测试用例的技术（属<strong>白盒测试</strong>）<br>语句判定、判定覆盖、条件覆盖（存在缺陷）<br>判定—条件覆盖、条件组合覆盖、路径覆盖（比较严格）<br>语句覆盖：设计若干个测试用例，运行被测程序，使得每一条执行语句至少执行一次<br>判断覆盖：设计若干个测试用例，运行被测程序，使得每个判断的取真分支和取假分支至少精力一次<br>条件覆盖：设计若干个测试用例，运行被测程序，使得程序中每个判断的每个条件的可能取值至少执行一次<br>判断—条件覆盖：设计足够测试用例，使得判断中每个条件的所有可能取值至少执行一次，同时每个判断中的每个条件的可能取值至少执行一次</p>
+<p>例：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15225884053098.jpg" alt=""></p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15225884163426.jpg" alt=""></p>
+<p><strong>路径测试</strong>: 设计足够的测试用例, 覆盖程序中<strong>所有可能</strong>的路径</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15225884285353.jpg" alt=""></p>
+<p><strong>条件测试路径选择</strong><br>当程序中判定多于一个时, 形成的分支结构可以分为两类: 嵌套型分支结构和连锁型分支结构</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15225884398328.jpg" alt=""></p>
+<p><strong>循环测试路径选择</strong><br>循环分为: 简单循环、嵌套循环、连锁循环、非结构循环<br><img src="http://p4lmrb1gp.bkt.clouddn.com/15225884551520.jpg" alt=""></p>
+<p><strong>黑盒测试的测试用例设计</strong><br><strong>等价类划分</strong><br>把所有可能的输入数据，即程序的输入域划分成若干部分，然后从每一部分中选取少数有代表性的数据做为测试用例<br><u>划分情况</u>：有效等价类、无效等价类<br><u>划分原则</u>：<br>1. 如果输入条件规定了取值范围，或值得个数，则可以确立一个有效等价类和无效等价类<br>2. 如果输入条件规定了输入值得集合，或者是规定了 “必须如何” 的条件，这时可确立一个有效等价类和一个无效等价类<br>3. 如果输入条件是一个布尔型，则可以确定一个有效等价类和一个无效等价类<br>4. 如果规定了输入数据的一组值，而且程序要对每个输入值分别进行处理<br>5. 如果规定了输入数据必需遵守的规则，则可以确立一个有效等价类（符合规则）和若干个无效等价类（从不同角度违反规则）<br><u>确定测试用例</u>：列出所有划分出的等价类<br><strong>边界值分析</strong><br>测试用例时，主要考虑边界处。<br>使用时，首先要确定边界情况。应当选取正好等于，刚刚大于或刚刚小于边界值做测试数据<br>遵循原则：<br>1. 如果输入条件规定了取值范围，则应对该范围的边界内附近，恰好在边界和在边界外附近（无效等价类中）设计测试用例<br>2. 如果输入条件规定了数据的个数，则应对最小个数，最大个数，比最少个数少 1，比最大个数大 1 等情况设计测试用例<br>3. 针对规格说明中的每个输出条件使用前面的 1 和 2 原则<br>4. 如果程序规格说明中提到的输入或输出域是个有效的集合（如顺序文件，线性表等）。应选有序续集的第一个和最后一个元素做为测试用例<br><img src="http://p4lmrb1gp.bkt.clouddn.com/15225884722413.jpg" alt=""></p>
+<p><strong>错误推测法</strong><br>基本想法：列举出程序中所有可能有的错误和容易发生错误的特殊情况<br><strong>一般作补充的测试用例</strong><br><strong>因果法</strong><br>如果在测试时必须考虑输入条件的各种组合，可使用一种适合于描述对于多种条件的组合，形影产生多个动作的形式来设计测试用例，这就需要利用因果图。<strong>最终生成的是判定表</strong>。<br>生成测试用例的<strong>基本步骤</strong>：<br>1. 分析软件规格说明描述中，哪些是原因（即输入条件或输入条件的等价类），哪些是结果（即输出条件），并给每个原因和结果赋予一个标识符<br>2. 分析软件规格说明描述中的语义，找出原因与结果之间，原因与原因之间的对应关系，根据这些关系画出因果图<br>3. 由于语法或环境限制，右斜原因与原因之间，原因与结果之间的组合情况不可能出现，为表明这些特殊情况，在因果图上用一些几号表明约束或限制条件<br>4. 把因果图转换成判定表<br>5. 判定表的每一列拿出来做为依据，设计测试用例<br>图中的<strong>基本符号</strong>：<u>Ci 表示原因，Ei 表示结果，结点表示状态（0 表示状态不出现，1 表示状态出现）</u><br>主要原因和结果之间的关系有（<strong>恒等、非、或、与</strong>）</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15225884834790.jpg" alt=""></p>
+<p>表示<strong>约束条件</strong>的符号：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15225884949291.jpg" alt=""></p>
+<p><strong>五、软件测试的策略</strong></p>
+<p><strong>步骤</strong>：单元测试、组装测试、确认测试和系统测试<br><img src="http://p4lmrb1gp.bkt.clouddn.com/15225885057389.jpg" alt=""></p>
+<p><strong>单元测试（Unit Testion）</strong><br>又称模块测试，针对软件设计的最小单位——程序模块，进行正确性检验的测试工作<br>内容：模块接口、局部数据结构、边界条件、独立路径、出错处理</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15225885178882.jpg" alt=""></p>
+<p>步骤：同时考虑它和外界的联系，用一些辅助模块去模拟与被测模块相联系的其他模块（驱动模块 driver、桩模块 stub）</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15225885340525.jpg" alt=""></p>
+<p>常见错误清单：<br>（一）模块接口检查表<br>1. 模块接受的输入参数个数与模块的变元个数是否一致<br>2. 参数与变元的属性是否匹配<br>3. 参数与变元所用的单位是否一致<br>4. 传递给被调用模块的变元的数目是否等于那个模块的参数的数目<br>5. 传递给被调用模块的变元属性和参数的属性是否一致<br>6. 传递给被调用模块的变元的单位和该模块参数的单位是否一致<br>7. 传递给内部函数的变元属性、数目和次序时否正确<br>8. 是否修改了只是做为输入用的变元<br>9. 全程变量的定义在各个模块中是否一致<br>10. 有没有把常数当做变量来传递<br>（二）完成外部输入 / 输出时的检查表<br>1. 文件属性是否正确<br>2. OPEN 语句是否正确<br>3. 格式说明与输入 / 输出语句给出的信息是否一致<br>4. 缓冲区容量与记录长度是否匹配<br>5. 在进行读写操作之前是否打开了文件<br>6. 对结束文件条件的判断和处理是否正确<br>7. 对输入 / 输出错误的处理是否正确<br>8. 有没有输出信息中有正文错误<br>（三）模块局部数据结构检查表<br>1. 不正确或不一致说明<br>2. 错误的初始值或错误的缺省值<br>3. 变量名拼写错或缩写错<br>4. 不相容的数据类型<br>5. 下溢、上溢或是地址错误<br><strong>组装测试（Integrated Testing）</strong><br>把模块组装成为系统的方式有：<strong>一次性组装方式</strong>和<strong>增殖式组装方式（常用）</strong></p>
+<p><strong>一次性组装方式（big bang）</strong></p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15225885518525.jpg" alt=""></p>
+<p><strong>增殖式组装方式</strong></p>
+<p>自顶向下的增殖方式<br>自底向下的增殖方式<br>混合增殖测试<br><strong>确认测试（Validation Testing）</strong><br>又称<strong>有效性测试</strong>。<br>任务：验证软件的功能和性能及其它特性是否与用户的要求一致<br><img src="http://p4lmrb1gp.bkt.clouddn.com/15225885617956.jpg" alt=""></p>
+<p><strong>进行有效性测试</strong><br>是在模拟的环境（可能就是开发的环境）下，运行黑盒测试的方法，验证被测软件是否满足需求规格说明书列出的需求<br>软件配置复查<br>目的：<br>1. 保证软件配置的所有成分都齐全<br>2. 保证各方面的质量 都符合要求<br>3. 保证具有维护阶段所必需的细节<br>4. 保证已经编排好分类的目录<br><strong>验收测试（Acceptance Testing）</strong><br>是以用户为主的测试。软件开发人员和 QA（质量保证）人员也应参加<br>由用户参加设计测试用例，使用生产中的实际数据进行测试</p>
+<p><strong>系统测试（System Testing）</strong><br>将通过确认测试的软件做为整个基于计算机胸膛的一个元素，与计算机硬件、外设、某些支持软件、数据和人员等其他系统元素结合在一起，在实际运行环境下，对计算机系统进行一系列的组装测试和确认测试<br><strong>α测试和β测试</strong><br>α测试是由一个用户在开发环境下进行测试，也可以是公司内部的用户在模拟实际操作环境下进行的测试<br>β测试是由软件的多个用户在实际使用环境下进行的测试。这些用户返回有关错误信息给开发者<br>测试种类<br>功能测试、可靠性测试、强度测试、性能测试、恢复测试、启动 / 停止测试、配置测试、安全性测试、可使用性测试、可支持性测试、过程测试、互连测试、兼容性测试、容量测试、文档测试</p>
+<p><strong>六、调试（Debug）</strong><br>在成功测试后开始工作，进一步诊断和改正程序中潜在的错误<br><strong>步骤</strong>：<br>i. 从错误的外部表现形式入手，确定程序中错误位置<br>ii. 研究有关部分的程序，找出错误的内在原因<br>iii. 修改设计和代码，以排除这个错误<br>iv. 重复进行暴露了这个错误的原始测试或某些有关测试<br><strong>方法</strong>：强行排错（使用多，效率低）、回溯法调试（适用小程序）、归纳法调试（基本思想：从一些线索即错误征兆着手）、演绎法调试（从一般原理或前提触发)</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15225885908200.jpg" alt=""></p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15225886009795.jpg" alt=""></p>
+<p><strong>原则：</strong><br>许多原则本质是心理学方面的问题，分为：<br><strong>确定错误的性质和位置的原则：</strong><br>1. 用头脑去分析思考与错误征兆有关的信息<br>2. 避开死胡同<br>3. 只把调试工具当做辅助手段来使用<br>4. 避免用试探法，最多只能把它当做最后手段<br><strong>修改错误的原则：</strong><br>1. 在出现错误的地方，很可能还有别的错误<br>2. 当心修正一个错误的同时有可能会引入新的错误</p>
+<p><strong>七、测试分析报告</strong></p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15225886237053.jpg" alt=""></p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15225886362185.jpg" alt=""></p>
+<ol>
+<li>测试时程序的执行过程，目的在于发现错误</li>
+<li>一个好的测试用例在于能发现至今未发现的错误</li>
+<li>一个成功的测试时发现了至今未发现的错误</li>
+</ol>
+<hr>
+<blockquote>
+<p>参考：<br>专栏：软件工程 - CSDN博客<br><a href="https://blog.csdn.net/column/details/dongle-se.html" target="_blank" rel="noopener">https://blog.csdn.net/column/details/dongle-se.html</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+
+     
+    
+      <div>
+        
+    <div style="text-align:center;color: #ccc;font-size:14px;">
+        ------ 本文结束<i class="fa fa-paw"></i>感谢您的阅读 ------</div>
+
+      </div>
+    
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    CloudPai
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://cloudpai.site/2018/04/01/2018-04-01-6/" title="软件工程 笔记三:软件测试">http://cloudpai.site/2018/04/01/2018-04-01-6/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/软件工程/" rel="tag"><i class="fa fa-tag"></i> 软件工程</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/01/2018-04-01-5/" rel="next" title="软件工程 笔记二:软件分析">
+                <i class="fa fa-chevron-left"></i> 软件工程 笔记二:软件分析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/01/2018-04-01-7/" rel="prev" title="软件工程 笔记四:用户界面设计">
+                软件工程 笔记四:用户界面设计 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+
+
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg"
+                alt="CloudPai" />
+            
+              <p class="site-author-name" itemprop="name">CloudPai</p>
+              <p class="site-description motion-element" itemprop="description">加油(๑•̀ㅂ•́)و✧加油</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">122</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+
+<div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=240 src="//music.163.com/outchain/player?type=0&id=2113726971&auto=0&height=430"></iframe>
+</div>
+<!-- 459004290 -->
+
+
+
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">50</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CloudPai" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:liupai024@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.douban.com/people/57965969/doulists/all" target="_blank" title="豆瓣">
+                      
+                        <i class="fa fa-fw fa-book"></i>豆瓣</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/cloudPai/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-edit"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.dlut.edu.cn/" title="DUT" target="_blank">DUT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bupt.edu.cn/" title="BUPT" target="_blank">BUPT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://campus.alibaba.com/index.htm" title="Alibaba Group" target="_blank">Alibaba Group</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CloudPai</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">581.1k</span>
+  
+</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv">  </span>
+</span>
+</div>
+
+
+
+
+
+
+
+  <div class="theme-info">&#12288;主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://cloudpai.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://cloudpai.site/2018/04/01/2018-04-01-6/';
+          this.page.identifier = '2018/04/01/2018-04-01-6/';
+          this.page.title = '软件工程 笔记三:软件测试';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cloudpai.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!-- <!-- <script src="https://cdn.bootcss.com/aplayer/1.6.0/APlayer.min.js"></script>
+
+<script src="https://api.i-meto.com/music/player.js"></script> --> -->
+  
+  <!--移动端判断，是否引入背景-->
+  <script>
+  var browser={  
+      versions:function(){   
+             var u = navigator.userAgent, app = navigator.appVersion;   
+             return {//移动终端浏览器版本信息
+                  trident: u.indexOf('Trident') > -1, //IE内核
+                  presto: u.indexOf('Presto') > -1, //opera内核
+                  webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                  gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                  mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                  ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                  android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                  iPhone: u.indexOf('iPhone') > -1 , //是否为iPhone或者QQHD浏览器
+                  iPad: u.indexOf('iPad') > -1, //是否iPad
+                  webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+              };  
+           }(),  
+           language:(navigator.browserLanguage || navigator.language).toLowerCase()  
+  }   
+    if(browser.versions.mobile || browser.versions.ios || browser.versions.android ||   
+      browser.versions.iPhone || browser.versions.iPad){        
+               
+    }else{
+    document.write("<script type=\'text/javascript\'  src=\'/js/src/particle.js\'><\/script>");
+    }
+  </script>
+
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":-80,"vOffset":-50},"mobile":{"show":false,"scale":0.2},"react":{"opacityDefault":1,"opacityOnHover":0.2}});</script></body>
+</html>
