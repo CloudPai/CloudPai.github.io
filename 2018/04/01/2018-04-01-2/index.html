@@ -1,0 +1,1634 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Java,加密," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="CloudPai" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="密码学算法分类：123456789消息编码：Base64消息摘要：MD类，SHA类，MAC对称加密：DES，3DES，AES非对称加密：RSA，DH密钥交换数字签名：RSA signature，DSA signature 消息编码：Base64 原理开发者对 Base64 编码肯定很熟悉，是否对它有很清晰的认识就不一定了。实际上 Base64 已经简单到不能再简单了，如果对它的理解还是模棱两可实">
+<meta name="keywords" content="Java,加密">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 加密算法 原理">
+<meta property="og:url" content="http://cloudpai.site/2018/04/01/2018-04-01-2/index.html">
+<meta property="og:site_name" content="CloudPai">
+<meta property="og:description" content="密码学算法分类：123456789消息编码：Base64消息摘要：MD类，SHA类，MAC对称加密：DES，3DES，AES非对称加密：RSA，DH密钥交换数字签名：RSA signature，DSA signature 消息编码：Base64 原理开发者对 Base64 编码肯定很熟悉，是否对它有很清晰的认识就不一定了。实际上 Base64 已经简单到不能再简单了，如果对它的理解还是模棱两可实">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225725437063.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225725568321.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225725840313.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225726026744.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225745228531.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225746116059.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225746693103.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225789738801.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225796502445.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225813151347.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225808431892.jpg">
+<meta property="og:updated_time" content="2018-04-01T11:32:50.092Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java 加密算法 原理">
+<meta name="twitter:description" content="密码学算法分类：123456789消息编码：Base64消息摘要：MD类，SHA类，MAC对称加密：DES，3DES，AES非对称加密：RSA，DH密钥交换数字签名：RSA signature，DSA signature 消息编码：Base64 原理开发者对 Base64 编码肯定很熟悉，是否对它有很清晰的认识就不一定了。实际上 Base64 已经简单到不能再简单了，如果对它的理解还是模棱两可实">
+<meta name="twitter:image" content="http://p4lmrb1gp.bkt.clouddn.com/15225725437063.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'TZAS2SFOJR',
+      apiKey: 'e2a9cd036eede8026382b302001ec261',
+      indexName: 'cloudpai_blogs_search',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cloudpai.site/2018/04/01/2018-04-01-2/"/>
+
+
+
+
+
+  <title>Java 加密算法 原理 | CloudPai</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-114643720-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CloudPai</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/04/01/2018-04-01-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CloudPai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudPai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Java 加密算法 原理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-01T16:43:08+08:00">
+                2018-04-01
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-01T19:32:50+08:00">
+                2018-04-01
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/01/2018-04-01-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/04/01/2018-04-01-2/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  10,722
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  42
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="密码学算法分类："><a href="#密码学算法分类：" class="headerlink" title="密码学算法分类："></a>密码学算法分类：</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">消息编码：Base64</span><br><span class="line"></span><br><span class="line">消息摘要：MD类，SHA类，MAC</span><br><span class="line"></span><br><span class="line">对称加密：DES，3DES，AES</span><br><span class="line"></span><br><span class="line">非对称加密：RSA，DH密钥交换</span><br><span class="line"></span><br><span class="line">数字签名：RSA signature，DSA signature</span><br></pre></td></tr></table></figure>
+<h1 id="消息编码：Base64-原理"><a href="#消息编码：Base64-原理" class="headerlink" title="消息编码：Base64 原理"></a>消息编码：Base64 原理</h1><p>开发者对 Base64 编码肯定很熟悉，是否对它有很清晰的认识就不一定了。实际上 Base64 已经简单到不能再简单了，如果对它的理解还是模棱两可实在不应该。大概介绍一下 Base64 的相关内容，花几分钟时间就可以彻底理解它。</p>
+<p>　　<strong>一. Base64 编码由来</strong></p>
+<p>　　为什么会有 Base64 编码呢？因为有些网络传送渠道并不支持所有的字节，例如传统的邮件只支持可见字符的传送，像 ASCII 码的<strong>控制字符</strong>就不能通过邮件传送。这样用途就受到了很大的限制，比如图片二进制流的每个字节不可能全部是可见字符，所以就传送不了。最好的方法就是在不改变传统协议的情况下，做一种扩展方案来支持二进制文件的传送。把不可打印的字符也能用可打印字符来表示，问题就解决了。Base64 编码应运而生，Base64 就是一种基于 64 个可打印字符来表示二进制数据的表示方法。</p>
+<p>　　<strong>二. Base64 编码原理</strong></p>
+<p>　　看一下 Base64 的索引表，字符选用了 “A-Z、a-z、0-9、+、/“ 64 个可打印字符。数值代表字符的索引，这个是标准 Base64 协议规定的，不能更改。64 个字符用 6 个 bit 位就可以全部表示，一个字节有 8 个 bit 位，剩下两个 bit 就浪费掉了，这样就不得不牺牲一部分空间了。这里需要弄明白的就是一个 Base64 字符是 8 个 bit，但是有效部分只有右边的 6 个 bit，<strong>左边两个永远是 0</strong>。</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15225725437063.jpg" alt=""></p>
+<p>　　那么怎么用 6 个有效 bit 来表示传统字符的 8 个 bit 呢？8 和 6 的最小公倍数是 24，也就是说 3 个传统字节可以由 4 个 Base64 字符来表示，保证有效位数是一样的，这样就多了 1/3 的字节数来弥补 Base64 只有 6 个有效 bit 的不足。你也可以说用两个 Base64 字符也能表示一个传统字符，但是<strong>采用最小公倍数的方案</strong>其实是最减少浪费的。结合下边的图比较容易理解。Man 是三个字符，一共 24 个有效 bit，只好用 4 个 Base64 字符来凑齐 24 个有效位。红框表示的是对应的 Base64，6 个有效位转化成相应的索引值再对应 Base64 字符表，查出 “Man” 对应的 Base64 字符是 “TWFU”。说到这里有个原则不知道你发现了没有，要转换成 Base64 的<strong>最小单位就是三个字节</strong>，对一个字符串来说每次都是三个字节三个字节的转换，对应的是 Base64 的四个字节。这个搞清楚了其实就差不多了。</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15225725568321.jpg" alt=""><br><img src="http://p4lmrb1gp.bkt.clouddn.com/15225725840313.jpg" alt=""></p>
+<p>　　但是转换到最后你发现不够三个字节了怎么办呢？愿望终于实现了，我们可以用两个 Base64 来表示一个字符或用三个 Base64 表示两个字符，像下图的 A 对应的第二个 Base64 的二进制位只有两个，把后边的四个补 0 就是了。所以 A 对应的 Base64 字符就是<a href="mailto:1565730756@QQ.COM" target="_blank" rel="noopener">1565730756@QQ.COM</a>。上边已经说过了，原则是 Base64 字符的<strong>最小单位是四个字符一组</strong>，那这才两个字符，后边补两个 “=” 吧。其实不用 “=” 也不耽误解码，之所以用 “=”，可能是考虑到多段编码后的 Base64 字符串拼起来也不会引起混淆。由此可见 Base64 字符串只可能最后出现一个或两个 “=”，中间是不可能出现 “=” 的。下图中字符 “BC” 的编码过程也是一样的。</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15225726026744.jpg" alt=""></p>
+<p><strong>　　三. 总结　</strong>　</p>
+<p>　　说起 Base64 编码可能有些奇怪，因为大多数的编码都是由字符转化成二进制的过程，而从二进制转成字符的过程称为解码。而 <strong>Base64 的概念就恰好反了，由二进制转到字符称为编码，由字符到二进制称为解码。</strong></p>
+<p>　　Base64 编码主要用在传输、存储、<strong>表示二进制</strong>等领域，还可以用来加密，但是这种加密比较简单，只是一眼看上去不知道什么内容罢了，当然也可以对 Base64 的字符序列进行定制来进行加密。</p>
+<p>　　<strong>Base64 编码是从二进制到字符的过程</strong>，像一些中文字符用不同的编码转为二进制时，产生的二进制是不一样的，所以最终产生的 Base64 字符也不一样。例如 “上网” 对应 utf-8 格式的 Base64 编码是 “5LiK572R”，对应 GB2312 格式的 Base64 编码是 “yc/N+A==”。</p>
+<p>文章参考自 “ <a href="http://zh.wikipedia.org/wiki/Base64" target="_blank" rel="noopener">维基百科 - Base64</a>“</p>
+<h1 id="消息摘要：MD类，SHA类，MAC-原理"><a href="#消息摘要：MD类，SHA类，MAC-原理" class="headerlink" title="消息摘要：MD类，SHA类，MAC 原理"></a>消息摘要：MD类，SHA类，MAC 原理</h1><h2 id="MD5-原理"><a href="#MD5-原理" class="headerlink" title="MD5 原理"></a>MD5 原理</h2><p><strong>什么是 MD5 算法</strong></p>
+<p>MD5 讯息摘要演算法（英语：MD5 Message-Digest Algorithm），一种被广泛使用的密码杂凑函数，可以产生出一个 128 位元（16 位元组）的散列值（hash value），用于确保信息传输完整一致。</p>
+<p><strong>MD5 功能</strong></p>
+<p>输入任意长度的信息，经过处理，输出为 128 位的信息（数字指纹）；<br>不同的输入得到的不同的结果（唯一性）；</p>
+<p><strong>MD5 属不属于加密算法</strong></p>
+<p>认为不属于的人是因为他们觉得不能从密文（散列值）反过来得到原文，即没有解密算法，所以这部分人认为 MD5 只能属于算法，不能称为加密算法；<br>认为属于的人是因为他们觉得经过 MD5 处理后看不到原文，即已经将原文加密，所以认为 MD5 属于加密算法；我个人支持前者，正如认为 BASE64 算法只能算编码一样。</p>
+<p><strong>MD5 算法是否可逆？</strong></p>
+<p>MD5 不可逆的原因是其是一种<strong>散列函数</strong>，使用的是 <strong>hash 算法</strong>，在计算过程中原文的部分信息是丢失了的。</p>
+<p>不过有个地方值得指出的是，一个 MD5 理论上的确是可能对应无数多个原文的，因为 MD5 是有限多个的而原文可以是无数多个。比如主流使用的 MD5 将任意长度的 “字节串映射为一个 128bit 的大整数。也就是一共有 2^128 种可能，大概是 3.4*10^38，这个数字是有限多个的，而但是世界上可以被用来加密的原文则会有无数的可能性。</p>
+<p>不过需要注意的一点是，尽量这是一个理论上的有限对无限，不过问题是这个无限在现实生活中并不完全成立，因为一方面现实中原文的长度往往是有限的（以常用的密码为例，一般人都在 20 位以内），另一方面目前想要发现两段原文对应同一个 MD5（专业的说这叫<strong>杂凑冲撞</strong>）值非常困难，因此某种意义上来说，在一定范围内想构建 MD5 值与原文的<strong>一一对应</strong>关系是完全有可能的。所以对于 MD5 目前最有效的攻击方式就是<strong>彩虹表</strong>，具体详情你可以通过谷歌了解。</p>
+<p>MD5 相当于超损压缩。</p>
+<p><strong>MD5 用途</strong></p>
+<p>1. 防止被篡改：<br>1）比如发送一个电子文档，发送前，我先得到 MD5 的输出结果 a。然后在对方收到电子文档后，对方也得到一个 MD5 的输出结果 b。如果 a 与 b 一样就代表中途未被篡改。<br>2）比如我提供文件下载，为了防止不法分子在安装程序中添加木马，我可以在网站上公布由安装文件得到的 MD5 输出结果。<br>3）SVN 在检测文件是否在 CheckOut 后被修改过，也是用到了 MD5.</p>
+<p>2. 防止直接看到明文：<br>现在很多网站在数据库存储用户的密码的时候都是存储用户密码的 MD5 值。这样就算不法分子得到数据库的用户密码的 MD5 值，也无法知道用户的密码。（比如在 UNIX 系统中用户的密码就是以 MD5（或其它类似的算法）经加密后存储在文件系统中。当用户登录的时候，系统把用户输入的密码计算成 MD5 值，然后再去和保存在文件系统中的 MD5 值进行比较，进而确定输入的密码是否正确。通过这样的步骤，系统在并不知道用户密码的明码的情况下就可以确定用户登录系统的合法性。这不但可以避免用户的密码被具有系统管理员权限的用户知道，而且还在一定程度上增加了密码被破解的难度。）</p>
+<p>3. 防止抵赖（数字签名）：<br>这需要一个<strong>第三方认证机构</strong>。例如 A 写了一个文件，认证机构对此文件用 MD5 算法产生摘要信息并做好记录。若以后 A 说这文件不是他写的，权威机构只需对此文件重新产生摘要信息，然后跟记录在册的摘要信息进行比对，相同的话，就证明是 A 写的了。这就是所谓的 “数字签名”。</p>
+<p><strong>MD5 安全性</strong></p>
+<p>普遍认为 MD5 是很安全，因为暴力破解的时间是一般人无法接受的。实际上如果把用户的密码 MD5 处理后再存储到数据库，其实是很不安全的。因为用户的密码是比较短的，而且很多用户的密码都使用生日，手机号码，身份证号码，电话号码等等。或者使用常用的一些吉利的数字，或者某个英文单词。如果我把常用的密码先 MD5 处理，把数据存储起来，然后再跟你的 MD5 结果匹配，这时我就有可能得到明文。比如某个 MD5 破解网站 <a href="http://www.cmd5.com/default.aspx" target="_blank" rel="noopener">http://www.cmd5.com/default.aspx</a>，所以现在大多数网站密码的策略是强制要求用户使用数字大小写字母的组合的方式提高用户密码的安全度。</p>
+<p><strong>MD5 算法过程</strong><br><img src="http://p4lmrb1gp.bkt.clouddn.com/15225745228531.jpg" alt=""></p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15225746116059.jpg" alt=""><br>对 MD5 算法简要的叙述可以为：MD5 以 <strong>512 位分组</strong>来处理输入的信息，且每一分组又被划分为 <strong>16 个 32 位子分组</strong>，经过了一系列的处理后，算法的输出由四个 32 位分组组成，将这四个 32 位分组级联后将生成一个 128 位散列值。</p>
+<p>第一步、填充：<br><img src="http://p4lmrb1gp.bkt.clouddn.com/15225746693103.jpg" alt=""><br>如果输入信息的长度 (bit) 对 512 求余的结果不等于 448，就需要填充使得对 512 求余的结果等于 448。填充的方法是填充一个 1 和 n 个 0。填充完后，信息的长度就为 N*512+448(bit)；</p>
+<p>第二步、记录信息长度：用 64 位来存储填充前信息长度。这 64 位加在第一步结果的后面，这样信息长度就变为 N<em>512+448+64=(N+1)</em>512 位。</p>
+<p>第三步、装入标准的幻数（四个整数）：标准的幻数（物理顺序）是（A=(01234567)16，B=(89ABCDEF)16，C=(FEDCBA98)16，D=(76543210)16）。如果在程序中定义应该是:<br>（A=0X67452301L，B=0XEFCDAB89L，C=0X98BADCFEL，D=0X10325476L）。</p>
+<p>第四步、四轮循环运算：循环的次数是分组的个数（N+1）</p>
+<p>1）将每一 512 字节细分成 16 个小组，每个小组 64 位（8 个字节）</p>
+<p>2）先认识四个线性函数 (&amp; 是与,| 是或,~ 是非,^ 是异或)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">F(X,Y,Z)=(X&amp;Y)|((~X)&amp;Z)</span><br><span class="line">G(X,Y,Z)=(X&amp;Z)|(Y&amp;(~Z))</span><br><span class="line">H(X,Y,Z)=X^Y^Z</span><br><span class="line">I(X,Y,Z)=Y^(X|(~Z))</span><br></pre></td></tr></table></figure>
+<p>3）设 Mj 表示消息的第 j 个子分组（从 0 到 15），&lt;&lt;</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">FF(a,b,c,d,Mj,s,ti)表示a=b+((a+F(b,c,d)+Mj+ti)&lt;&lt;&lt;s)</span><br><span class="line">GG(a,b,c,d,Mj,s,ti)表示a=b+((a+G(b,c,d)+Mj+ti)&lt;&lt;&lt;s)</span><br><span class="line">HH(a,b,c,d,Mj,s,ti)表示a=b+((a+H(b,c,d)+Mj+ti)&lt;&lt;&lt;s)</span><br><span class="line">II(a,b,c,d,Mj,s,ti)表示a=b+((a+I(b,c,d)+Mj+ti)&lt;&lt;&lt;s)</span><br></pre></td></tr></table></figure>
+<p>4）四轮运算</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"> 第一轮</span><br><span class="line">a=FF(a,b,c,d,M0,7,0xd76aa478)</span><br><span class="line">b=FF(d,a,b,c,M1,12,0xe8c7b756)</span><br><span class="line">c=FF(c,d,a,b,M2,17,0x242070db)</span><br><span class="line">d=FF(b,c,d,a,M3,22,0xc1bdceee)</span><br><span class="line">a=FF(a,b,c,d,M4,7,0xf57c0faf)</span><br><span class="line">b=FF(d,a,b,c,M5,12,0x4787c62a)</span><br><span class="line">c=FF(c,d,a,b,M6,17,0xa8304613)</span><br><span class="line">d=FF(b,c,d,a,M7,22,0xfd469501)</span><br><span class="line">a=FF(a,b,c,d,M8,7,0x698098d8)</span><br><span class="line">b=FF(d,a,b,c,M9,12,0x8b44f7af)</span><br><span class="line">c=FF(c,d,a,b,M10,17,0xffff5bb1)</span><br><span class="line">d=FF(b,c,d,a,M11,22,0x895cd7be)</span><br><span class="line">a=FF(a,b,c,d,M12,7,0x6b901122)</span><br><span class="line">b=FF(d,a,b,c,M13,12,0xfd987193)</span><br><span class="line">c=FF(c,d,a,b,M14,17,0xa679438e)</span><br><span class="line">d=FF(b,c,d,a,M15,22,0x49b40821)</span><br><span class="line"></span><br><span class="line">第二轮</span><br><span class="line">a=GG(a,b,c,d,M1,5,0xf61e2562)</span><br><span class="line">b=GG(d,a,b,c,M6,9,0xc040b340)</span><br><span class="line">c=GG(c,d,a,b,M11,14,0x265e5a51)</span><br><span class="line">d=GG(b,c,d,a,M0,20,0xe9b6c7aa)</span><br><span class="line">a=GG(a,b,c,d,M5,5,0xd62f105d)</span><br><span class="line">b=GG(d,a,b,c,M10,9,0x02441453)</span><br><span class="line">c=GG(c,d,a,b,M15,14,0xd8a1e681)</span><br><span class="line">d=GG(b,c,d,a,M4,20,0xe7d3fbc8)</span><br><span class="line">a=GG(a,b,c,d,M9,5,0x21e1cde6)</span><br><span class="line">b=GG(d,a,b,c,M14,9,0xc33707d6)</span><br><span class="line">c=GG(c,d,a,b,M3,14,0xf4d50d87)</span><br><span class="line">d=GG(b,c,d,a,M8,20,0x455a14ed)</span><br><span class="line">a=GG(a,b,c,d,M13,5,0xa9e3e905)</span><br><span class="line">b=GG(d,a,b,c,M2,9,0xfcefa3f8)</span><br><span class="line">c=GG(c,d,a,b,M7,14,0x676f02d9)</span><br><span class="line">d=GG(b,c,d,a,M12,20,0x8d2a4c8a)</span><br><span class="line"></span><br><span class="line">第三轮</span><br><span class="line">a=HH(a,b,c,d,M5,4,0xfffa3942)</span><br><span class="line">b=HH(d,a,b,c,M8,11,0x8771f681)</span><br><span class="line">c=HH(c,d,a,b,M11,16,0x6d9d6122)</span><br><span class="line">d=HH(b,c,d,a,M14,23,0xfde5380c)</span><br><span class="line">a=HH(a,b,c,d,M1,4,0xa4beea44)</span><br><span class="line">b=HH(d,a,b,c,M4,11,0x4bdecfa9)</span><br><span class="line">c=HH(c,d,a,b,M7,16,0xf6bb4b60)</span><br><span class="line">d=HH(b,c,d,a,M10,23,0xbebfbc70)</span><br><span class="line">a=HH(a,b,c,d,M13,4,0x289b7ec6)</span><br><span class="line">b=HH(d,a,b,c,M0,11,0xeaa127fa)</span><br><span class="line">c=HH(c,d,a,b,M3,16,0xd4ef3085)</span><br><span class="line">d=HH(b,c,d,a,M6,23,0x04881d05)</span><br><span class="line">a=HH(a,b,c,d,M9,4,0xd9d4d039)</span><br><span class="line">b=HH(d,a,b,c,M12,11,0xe6db99e5)</span><br><span class="line">c=HH(c,d,a,b,M15,16,0x1fa27cf8)</span><br><span class="line">d=HH(b,c,d,a,M2,23,0xc4ac5665)</span><br><span class="line"></span><br><span class="line">第四轮</span><br><span class="line">a=II(a,b,c,d,M0,6,0xf4292244)</span><br><span class="line">b=II(d,a,b,c,M7,10,0x432aff97)</span><br><span class="line">c=II(c,d,a,b,M14,15,0xab9423a7)</span><br><span class="line">d=II(b,c,d,a,M5,21,0xfc93a039)</span><br><span class="line">a=II(a,b,c,d,M12,6,0x655b59c3)</span><br><span class="line">b=II(d,a,b,c,M3,10,0x8f0ccc92)</span><br><span class="line">c=II(c,d,a,b,M10,15,0xffeff47d)</span><br><span class="line">d=II(b,c,d,a,M1,21,0x85845dd1)</span><br><span class="line">a=II(a,b,c,d,M8,6,0x6fa87e4f)</span><br><span class="line">b=II(d,a,b,c,M15,10,0xfe2ce6e0)</span><br><span class="line">c=II(c,d,a,b,M6,15,0xa3014314)</span><br><span class="line">d=II(b,c,d,a,M13,21,0x4e0811a1)</span><br><span class="line">a=II(a,b,c,d,M4,6,0xf7537e82)</span><br><span class="line">b=II(d,a,b,c,M11,10,0xbd3af235)</span><br><span class="line">c=II(c,d,a,b,M2,15,0x2ad7d2bb)</span><br><span class="line">d=II(b,c,d,a,M9,21,0xeb86d391)</span><br></pre></td></tr></table></figure>
+<p>5）每轮循环后，将 A，B，C，D 分别加上 a，b，c，d，然后进入下一循环。</p>
+<h2 id="SHA-算法"><a href="#SHA-算法" class="headerlink" title="SHA 算法"></a>SHA 算法</h2><p><strong>正文</strong></p>
+<p>　　本文主要讲述使用 SHA1 算法计算信息摘要的过程。</p>
+<p>　　为保证传输信息的安全，除了对信息加密外，还需要对信息进行认证。认证的目的有两：一是验证信息的发送者是合法的，二是验证信息的完整性。Hash 函数就是进行信息认证的一种有效手段。</p>
+<h3 id="1-Hash-函数和消息完整性"><a href="#1-Hash-函数和消息完整性" class="headerlink" title="1.Hash 函数和消息完整性"></a>1.Hash 函数和消息完整性</h3><p>　　Hash 函数也称为杂凑函数或散列函数，函数输入为一可变长度 x，输出为一固定长度串，该串被称为输入 x 的 Hash 值或数字指纹。</p>
+<p>　　因为 Hash 函数是多对一函数，不同的输入对应着相同的输出，求其逆是比较难，通过给定的输入计算 Hash 值必须是很容易，但从 Hash 值逆推输入则很难，因此也称 Hash 函数为单向 Hash 函数。</p>
+<p>　　Hash 函数一般满足以下几个基本需求：</p>
+<p>　　1). 输入 x 可以任意长度</p>
+<p>　　2). 输出数据长度固定</p>
+<p>　　3). 容易计算，给定任何 x，容易计算出 x 的 Hash 值</p>
+<p>　　4). 单向函数，即给出一个 Hash 值，很难反向计算出原始输入的 x</p>
+<p>　　5). 唯一性，即难以找出两个不同的输入会得到相同的 Hash 输出值</p>
+<p>　　Hash 值得长度由算法的类型决定，与输入的消息大小无关，一般为 128bit 或者 160bit，即使两个消息的差别很小，如仅差别一两位，其 Hash 函数的运算结果也会截然不同，用同一个算法对某一消息进行 Hash 运算只能获得唯一确定的 Hash 值。</p>
+<p>　　一个<strong>安全的单向迭代函数</strong>是构造安全消息 Hash 值得核心和基础，有了好的单向迭代函数，就可以用合适的迭代方法来构造迭代 Hash 函数，Hash 函数的安全设计的理论主要有以下两点：一是函数的单向性，二是函数影射的随机性。常见的 Hash 算法有 MD-5、SHA 等。</p>
+<h3 id="2-SHA1-算法简介"><a href="#2-SHA1-算法简介" class="headerlink" title="2.SHA1 算法简介"></a>2.SHA1 算法简介</h3><p>　　SHA(Security Hash Algorithm) 是美国的 NIST 和 NSA 设计的一种标准的 Hash 算法，最初的版本于 93 年发表，称为 SHA-0，因为很快就被发现存在安全隐患，于是在 95 年就发布第二个版本 SHA-1。02 年，NIST 分别发布了 SHA-256、SHA-384、SHA-512，这些算法统称 SHA-2。08 年又新增了 SHA-224。目前 SHA-2 各版本已成为主流。</p>
+<p>　　这里以 SHA1 为例来进行 SHA 算法的讲解，其他系列原理类似。SHA1 的特性有：</p>
+<p>　　1). 不能使用消息摘要复原信息；</p>
+<p>　　2). 不同的消息产生不同的消息摘要。</p>
+<h3 id="3-术语和概念"><a href="#3-术语和概念" class="headerlink" title="3. 术语和概念"></a><strong>3.</strong> <strong>术语和概念</strong></h3><h4 id="3-1-位-Bit-，字节（Byte）和字（Word）"><a href="#3-1-位-Bit-，字节（Byte）和字（Word）" class="headerlink" title="3.1 位 (Bit)**，字节（Byte）和字（Word）**"></a><strong>3.1</strong> <strong>位</strong> <strong>(Bit)**</strong>，字节（<strong><strong>Byte</strong></strong>）和字（<strong><strong>Word</strong></strong>）**</h4><p>　　SHA1 把消息当做位（bit）字符串进行处理。最小单位称为位，8 位组成一个字节，两个字节组成一个字。</p>
+<p>　　例如，字符串 “abc” 转换成位字符串是 01100001 01100010 01100011，转换成 16 进制字符串是 0x616263。</p>
+<h4 id="3-2-运算符和符号"><a href="#3-2-运算符和符号" class="headerlink" title="3.2 **运算符和符号**"></a><strong>3.2 **</strong>运算符和符号**</h4><p>　　下面的逻辑运算符作用于 “字”</p>
+<p>　　X^Y    = X， Y 逻辑与</p>
+<p>　　X \/ Y   = X， Y 逻辑或</p>
+<p>　　X XOR Y= X， Y 逻辑异或</p>
+<p>　　~X     =   X 逻辑取反</p>
+<p>　　X+Y 的定义：字 X 和 Y 代表两个整数 x 和 y, 其中 0 &lt;= x &lt; 2^32 且 0 &lt;= y &lt; 2^32. 令整数 z = (x + y) mod 2^32. 这时候 0 &lt;= z &lt; 2^32. 将 z 转换成字 Z, 那么就是 Z = X + Y.</p>
+<p>　　循环左移位操作符 Sn(X)：X 是一个字，n 是一个整数，0&lt;=n&lt;=32。Sn(X) = (X&lt;&lt;n)OR(X&gt;&gt;32-n)。这个很容易理解了，比如 X=11111111 00000001 00000001 00000000，n=5，则 Sn(X)=111 00000001 00000001 00000000 11111。</p>
+<p>　　X&lt;&lt;n 定义：抛弃最左边的 n 位数字，将各个位依次向左移动 n 位，然后用 0 填补右边的 n 位（最后结果还是 32 位）。</p>
+<p>　　X&gt;&gt;n 定义：抛弃右边的 n 位，将各个位依次向右移动 n 位，然后在左边的 n 位填 0。</p>
+<h3 id="4-SHA1-算法"><a href="#4-SHA1-算法" class="headerlink" title="4.SHA1 算法"></a><strong>4.SHA1</strong> <strong>算法</strong></h3><h4 id="4-1-把消息转换为位字符串"><a href="#4-1-把消息转换为位字符串" class="headerlink" title="4.1. 把消息转换为位字符串"></a>4.1. 把消息转换为位字符串</h4><p>　　因为 SHA1 算法只接受位作为输入，所以进行计算前必须把原始消息（比如字符串、文件等）转换成位字符串。</p>
+<p>　　比如，对字符串 “abc” 产生消息摘要，‘a’=97   ‘b’=98   ‘c’=99，先转换成 24 位的字符串：01100001 01100010 01100011</p>
+<h4 id="4-2-对转换得到的位字符串进行补位操作"><a href="#4-2-对转换得到的位字符串进行补位操作" class="headerlink" title="4.2. 对转换得到的位字符串进行补位操作"></a>4.2. 对转换得到的位字符串进行补位操作</h4><p>　　消息必须进行补位，使其长度在对 512 取模以后的余数是 448，即（补位后的消息长度）%512 = 448。</p>
+<p>　　对消息进行补位时，先在后面补一个 1，如果不满足要求，再补 0 直到满足对 512 取模余数为 448。这就意味着，补位至少补一位（原消息位数为 512n+447），最多补 512 位（原消息位数为 512n+448）。</p>
+<p>　　还是以前面的 “abc” 为例显示补位的过程：</p>
+<p>　　原始信息： 01100001 01100010 01100011</p>
+<p>　　补位第一步，首先补一个 1：01100001 01100010 01100011 1</p>
+<p>　　可以确定的是，如果用一个字节来表示一个字符，补 1 之后肯定不满足条件，仍需继续补位。</p>
+<p>　　补位第二步，后面补 0 直到总长度对 512 取模余数为 448，这里补 423 个 0，使总长度达到为 448：</p>
+<p>　　01100001 01100010 01100011 1000…..00</p>
+<p>　　补位完成后的数据转换为 16 进制：</p>
+<p>　　61626380 00000000 00000000 00000000</p>
+<p>　　00000000 00000000 00000000 00000000</p>
+<p>　　00000000 00000000 00000000 00000000</p>
+<p>　　00000000 00000000</p>
+<p>　　从 16 进制数据里可以看到，我们也可以直接采用 16 进制的方式进行补位，我们先补 80，看是否满足长度对 64 取余的结果为 56，不满足则继续补 0。</p>
+<p>　　大家可以自己考虑一下为什么可以补 80。</p>
+<h4 id="4-3-附加长度信息"><a href="#4-3-附加长度信息" class="headerlink" title="4.3 附加长度信息"></a>4.3 附加长度信息</h4><p>　　这一步中，要将原始消息（没有进行补位操作之前）的长度（二进制位数）附加到已经补位的消息之后。</p>
+<p>　　通常用一个 64 位的数据来表示原始消息的长度。如果消息长度不大于 2^64，那么第一个字就是 0。</p>
+<p>　　补长度的操作以后，整个消息（16 进制）如下：</p>
+<p>　　61626380 00000000 00000000 00000000</p>
+<p>　　00000000 00000000 00000000 00000000</p>
+<p>　　00000000 00000000 00000000 00000000</p>
+<p>　　00000000 00000000 00000000 00000018</p>
+<p>　　然后，将整个消息拆分为一个一个的 512 位的数据块 M1，M2，…,Mn，然后分别对每一个数据块 Mi (1≤i≤n) 做处理，得到消息摘要。</p>
+<p>　　注意，这里是 64 位，上一步补位后的长度是 512k+448,k≥0，这样，512k+448+64=512(k+1)，恰好可以被 512 整除。</p>
+<p>　　在我们举得例子里，一共只有 512 位，因此做为一个数据块进行处理。</p>
+<h4 id="4-4-使用的常量和函数"><a href="#4-4-使用的常量和函数" class="headerlink" title="4.4  使用的常量和函数"></a>4.4  <strong>使用的常量和函数</strong></h4><p>　　一系列的常量字 K(0), K(1), … , K(79)，如果以 16 进制给出，它们如下：</p>
+<p>　　K<sub>t</sub> = 0x5A827999  (0 &lt;= t &lt;= 19)</p>
+<p>　　K<sub>t</sub> = 0x6ED9EBA1 (20 &lt;= t &lt;= 39)</p>
+<p>　　K<sub>t</sub> = 0x8F1BBCDC (40 &lt;= t &lt;= 59)</p>
+<p>　　K<sub>t</sub> = 0xCA62C1D6 (60 &lt;= t &lt;= 79)</p>
+<p>　　在 SHA1 中我们需要一系列的函数。每个函数 f<sub>t</sub> (0 &lt;= t &lt;= 79) 都操作 32 位字 B，C，D 并且产生 32 位字作为输出。f<sub>t</sub>(B,C,D) 可以如下定义</p>
+<p>　　f<sub>t</sub>(B,C,D) = (B AND C) OR ((NOT B) AND D)             ( 0 &lt;= t &lt;= 19)</p>
+<p>　　f<sub>t</sub>(B,C,D) = B XOR C XOR D                                    (20 &lt;= t &lt;= 39)</p>
+<p>　　f<sub>t</sub>(B,C,D) = (B AND C) OR (B AND D) OR (C AND D)  (40 &lt;= t &lt;= 59)</p>
+<p>　　f<sub>t</sub>(B,C,D) = B XOR C XOR D                                    (60 &lt;= t &lt;= 79)</p>
+<h4 id="4-5-计算消息摘要"><a href="#4-5-计算消息摘要" class="headerlink" title="4.5 计算消息摘要"></a><strong>4.5</strong> <strong>计算消息摘要</strong></h4><p>　　使用进行了补位和补长度后的消息来计算消息摘要。</p>
+<p>计算需要的缓冲区：</p>
+<p>　　1). 两个都由 5 个 32 位的字组成缓冲区 BUF1 和 BUF2， BUF1 的 5 个 32 位缓冲区被标识为 A,B,C,D,E，BUF2 的 5 个 32 位缓冲区被标识为 H0,H1,H2,H3,H4。</p>
+<p>　　2). 一个 80 个 32 位字的缓冲区 BUF3，按照 32 位划分，依次被标识为 W<sub>0</sub>, W<sub>1</sub>,…, W<sub>79</sub>。</p>
+<p>　　3). 一个 1 个字的 TEMP 缓冲区。</p>
+<p>计算消息摘要：</p>
+<p>　　在 3.2 中，我们把补位之后的数据附加了长度信息，然后划分为一个一个的 512 位（16 个字）的数据块 M1,M2,…,Mn，这里会依次对每个数据块 Mi (1≤i≤n) 做处理。</p>
+<p>　　在处理每个数据块 Mi (1≤i≤n) 之前，先将缓冲区 H0,H1,H2,H3,H4 初始化为下面的值（16 进制）：</p>
+<p>　　H<sub>0</sub> = 0x67452301</p>
+<p>　　H<sub>1</sub> = 0xEFCDAB89</p>
+<p>　　H<sub>2</sub> = 0x98BADCFE</p>
+<p>　　H<sub>3</sub> = 0x10325476</p>
+<p>　　H<sub>4</sub> = 0xC3D2E1F0. </p>
+<p>接下来处理 Mi(1≤i≤n)，步骤如下：</p>
+<p>　　1). 将每个 Mi 分成 16 个字（每个字 32 位） W<sub>0</sub>, W<sub>1</sub>, … , W<sub>15</sub>,  W<sub>0</sub> 是最左边的字；</p>
+<p>　　n 个 Mi 就划分之后，就变成 W<sub>0</sub>,W<sub>1</sub>,…,W<sub>15</sub>,W<sub>16</sub>,…,W<sub>31</sub>,W<sub>32</sub>,…W<sub>79</sub>；</p>
+<p>　　2). 对于 t = 16 到 79 令 W<sub>t</sub> = S<sup>1</sup>(W<sub>t-3</sub> XOR W<sub>t-8</sub> XOR W<sub>t- 14</sub> XOR W<sub>t-16</sub>)；</p>
+<p>　　3). 令 A = H<sub>0</sub>, B = H<sub>1</sub>, C = H<sub>2</sub>, D = H<sub>3</sub>, E = H<sub>4</sub>；</p>
+<p>　　4) 对于 t = 0 到 79，执行下面的循环</p>
+<p>　　TEMP = S<sup>5</sup>(A) + f<sub>t</sub>(B,C,D) + E + W<sub>t</sub> + K<sub>t</sub>;</p>
+<p>　　E = D;</p>
+<p>　　D = C;</p>
+<p>　　C = S<sup>30</sup>(B);</p>
+<p>　　B = A;</p>
+<p>　　A = TEMP;</p>
+<p>　　5). 令 H<sub>0</sub> = H<sub>0</sub> + A, H<sub>1</sub> = H<sub>1</sub> + B, H<sub>2</sub> = H<sub>2</sub> + C, H<sub>3</sub> = H<sub>3</sub> + D, H<sub>4</sub> = H<sub>4</sub> + E. </p>
+<p>　　在处理完所有的  Mi(1≤i≤n) 后，会得到一个 160 位（5 个 32 位字）的字符串消息摘要 H<sub>0</sub> H<sub>1</sub> H<sub>2</sub> H<sub>3</sub> H<sub>4</sub>。</p>
+<h1 id="对称加密：DES，3DES，AES-原理"><a href="#对称加密：DES，3DES，AES-原理" class="headerlink" title="对称加密：DES，3DES，AES 原理"></a>对称加密：DES，3DES，AES 原理</h1><p>对称加密也称为常规加密、单钥加密，在非对称加密 (公钥加密) 开发之前是唯一使用的加密类型，直到现在，它也仍然是使用最广泛的加密类型之一。最常见对称加密算法是：DES、3DES、AES、RC4。</p>
+<h2 id="对称加密算法基本原理"><a href="#对称加密算法基本原理" class="headerlink" title="对称加密算法基本原理"></a><a></a>对称加密算法基本原理</h2><p>先上图，对称加密工作过程<br><img src="http://p4lmrb1gp.bkt.clouddn.com/15225789738801.jpg" alt=""><br>在整个工作过程中涉及到以下几个概念</p>
+<ul>
+<li><strong>明文</strong>：也就是原始信息或者说原始数据。也就是上图中的 A。</li>
+<li><strong>加密算法</strong>：对明文进行各种替换或转换操作的一种算法。也就是①过程执行的算法。</li>
+<li><strong>密钥</strong>：密钥也是加密算法的输入，加密算法进行替换或转换的具体操作依赖于这个密钥。也就是上图中描述的密钥 Key。</li>
+<li><strong>密文</strong>：经过加密算法打乱的消息输出。密文的输出取决于明文与密钥，对于相同的明文，不同的密钥会产生不同的密文。也就是上图中的 B。</li>
+<li><strong>解密算法</strong>：本质上来说就是加密算法的逆过程，算法输入的是密文和加密时使用的同一密钥。</li>
+</ul>
+<h2 id="对称加密的分类：流加密与分组加密"><a href="#对称加密的分类：流加密与分组加密" class="headerlink" title="对称加密的分类：流加密与分组加密"></a><a></a>对称加密的分类：流加密与分组加密</h2><ol>
+<li>流加密每次加密数据流的一位 (bit) 或者一个字节(byte)。如 RC4。</li>
+<li>分组加密 (通常也成为块加密) 是将明文进行分组，加密算法对每个分组分别加密，通常明文分组和加密后得到的密文分组等长。典型的分组大小是 64bit 或 128bit。如 DES，3DES，AES。</li>
+</ol>
+<h2 id="DES"><a href="#DES" class="headerlink" title="DES"></a><a></a>DES</h2><p>Data Encryption Standard 数据加密标准，该标准中的数据加密算法 (Data Encryption Algorithm)，简称 DEA，国内对 DES 和 DEA 两个术语的使用有点混乱。DES 是 IBM 公司发明的，在 1977 年应征作为美国国家密码标准方案。随着 CPU 计算速度的提升，以及硬件成本的下降，1999 年美国国家标准技术研究所颁布新标准，规定 DES 只能用于历史遗留系统以及 3DES 中。<br>DES 采用 <strong>64bit 分组长度</strong>和 <strong>56bit 密钥长度</strong>，经过一系列变换得到 <strong>64bit 的密文输出</strong>。解密使用相同的密钥对密文进行解密运算。</p>
+<h2 id="3DES"><a href="#3DES" class="headerlink" title="3DES"></a><a></a>3DES</h2><table>
+<thead>
+<tr>
+<th>密钥大小 (bit)</th>
+<th>密钥个数</th>
+<th>每微秒执行一次解密所需要的时间</th>
+<th>每微妙执行一百万次解密所需要的时间</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>56</td>
+<td>2<sup>56</sup> = 7.2*10<sup>16</sup></td>
+<td>2<sup>55</sup>μs=1142 年</td>
+<td>10.01 小时</td>
+</tr>
+</tbody>
+</table>
+<p>随着软硬件技术的发展，多核 CPU、分布式计算、量子计算等理论的实现，DES 在穷举方式的暴力攻击下还是相当脆弱的，因此很多人想办法用某种算法替代它，面对这种需求广泛被采用的有两种方案：<br>1. 设计一套全新的算法，例如 AES，这个在后面会说到。<br>2. 为了保护已有软硬件的投资，仍使用 DES，但使用多个密钥进行多次加密，这就是多重 DES 加密。</p>
+<h3 id="双重加密"><a href="#双重加密" class="headerlink" title="双重加密"></a><a></a>双重加密</h3><p>双重加密是多重加密最简单的形式，使用两个密钥。使用表达式叙述如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">C：      代表加密后的密文(crypted)</span><br><span class="line">E：      代表加密算法(encrypt)</span><br><span class="line">D：      代表解密算法(decrypt)</span><br><span class="line">K1,K2：  代表两个密钥(key)</span><br><span class="line">P：      代表明文(proclaimed)</span><br><span class="line"></span><br><span class="line">        加密过程：</span><br><span class="line">        C = E( K2, E( K1, P ) )</span><br><span class="line">        解密过程：</span><br><span class="line">        P = D( K1, D( K2, C) )</span><br></pre></td></tr></table></figure>
+<p>双重 DES 加密表面上进行了两次加密，从而密钥长度为 56×2=112bit，密码强度增加了，但是在 1992 年<a href="http://math.boisestate.edu/~liljanab/MATH509Spring2012/DesNotGroup.pdf" target="_blank" rel="noopener">在一篇论文</a>中被证实存在下面的情况：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">E(K2, E(K1, P)) = E(K3, P)</span><br></pre></td></tr></table></figure>
+<p>也就是说存在密钥 K3 能解密经过 K1，K2 进行双重加密的密文，这意味着双重 DES 退化成了单重 DES 了。显然这种方式是不安全的。</p>
+<h3 id="使用两个密钥的三重加密"><a href="#使用两个密钥的三重加密" class="headerlink" title="使用两个密钥的三重加密"></a><a></a>使用两个密钥的三重加密</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">加密过程:</span><br><span class="line">    C = E( K1, D( K2, E( K1, P ) )</span><br><span class="line">解密过程:</span><br><span class="line">    P = D( K1, E( K2, D( K1, C ) )</span><br></pre></td></tr></table></figure>
+<p>这个加密方式就有意思了，先用 K1 进行加密，然后对加密的密文用 K2 进行解密，解密后的密文再用 K1 进行加密；解密过程就与之相反，并且该算法当 k1==k2 时能与单重 DES 兼容。这个奇特的想法最后也成为了美国的加密标准之一 X9.17。</p>
+<h3 id="使用三个密钥的三重加密"><a href="#使用三个密钥的三重加密" class="headerlink" title="使用三个密钥的三重加密"></a><a></a>使用三个密钥的三重加密</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">加密过程:</span><br><span class="line">    C = E( K3, D( K2, E( K1, P ) )</span><br><span class="line">解密过程:</span><br><span class="line">    P = D( K3, E( K2, D( K1, C ) )</span><br></pre></td></tr></table></figure>
+<p>这种加密方式 1998 年被列为美国加密标准 X9.52，并且已经广泛地替代了 DES。过程很好理解。如果需要与 DES 进行兼容，只需设置 K3=K2 或 K2=K1；如果需要与前面的双重密钥的三重加密兼容只需 k1=k3。</p>
+<p>知道了 3DES 与 DES 的关系，那我们就可以推出 3DES 的密钥长度应该为 DES 的三倍也就是 168bit，输入的明文块和输出的密文块仍然是 64bit 的。</p>
+<blockquote>
+<p>更多 3DES 的信息可以查看 <a href="https://en.wikipedia.org/wiki/Triple_DES" target="_blank" rel="noopener">wiki</a></p>
+</blockquote>
+<h2 id="AES"><a href="#AES" class="headerlink" title="AES"></a><a></a>AES</h2><p>3DES 缺点是算法运行相对较慢。因为原来 DEA 是为 70 年代的硬件设计的，算法代码并不是很高效，而 3DES 是 DEA 算法的 3 轮迭代，因此更慢。而且 DEA 和 3DES 的分组大小都是 64bit，3DES 密钥长度却是 168bit，处于加密效率和安全的考虑，需要更大的分组长度。于是 AES 应运而生。</p>
+<p>Advanced Encryption Standard 高级加密标准，该标准是美国国家标准技术研究所于 2001 年颁布的。AES 旨在取代 DES 成为广泛使用的标准，2006 年 AES 已成为最流行的对称加密算法。</p>
+<p>AES 使用的<strong>分组大小为 128bit</strong>，<strong>密钥长度可以为 128、192、256 bit</strong>。最简单最常用的也就是 128 bit 的密钥。</p>
+<blockquote>
+<p>AES 的详细内容可以查看 <a href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard" target="_blank" rel="noopener">wiki</a></p>
+</blockquote>
+<p>下面列个表，大致的总结一下分组加密算法。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">分组 (块) 加密标准</th>
+<th style="text-align:center">分组大小</th>
+<th style="text-align:center">密钥长度</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">DES</td>
+<td style="text-align:center">64 bit = 8 byte</td>
+<td style="text-align:center">56 bit = 7 byte</td>
+</tr>
+<tr>
+<td style="text-align:center">3DES</td>
+<td style="text-align:center">64 bit = 8 byte</td>
+<td style="text-align:center">168 bit = 21 byte</td>
+</tr>
+<tr>
+<td style="text-align:center">AES</td>
+<td style="text-align:center">128 bit = 16 byte</td>
+<td style="text-align:center">128</td>
+<td>192</td>
+<td>256 bit =16</td>
+<td>24</td>
+<td>32 byte</td>
+</tr>
+</tbody>
+</table>
+<h2 id="流加密实现原理"><a href="#流加密实现原理" class="headerlink" title="流加密实现原理"></a><a></a>流加密实现原理</h2><h3 id="真随机数，伪随机数"><a href="#真随机数，伪随机数" class="headerlink" title="真随机数，伪随机数"></a><a></a>真随机数，伪随机数</h3><p>因为<strong>随机数</strong>在加密算法中相当重要，而且 RC4 中就使用了伪随机数生成算法。所以有必要理解什么是伪随机数，什么事真随机数。看一下 Wiki 中对真随机数和伪随机数的界定。</p>
+<p>根据密码学原理，随机数的随机性检验可以分为三个标准：</p>
+<ol>
+<li>统计学伪随机性。统计学伪随机性指的是：在给定的随机比特流样本中，1 的数量大致等于 0 的数量，同理，“10”“01”“00”“11”四者数量大致相等。类似的标准被称为统计学随机性。满足这类要求的数字在人类 “一眼看上去” 是随机的。</li>
+<li>密码学安全伪随机性。其定义为：给定随机样本的一部分和随机算法 (RNG,Random number generator)，不能有效的演算出随机样本的剩余部分。</li>
+<li>真随机性。其定义为：随机样本不可重现。实际上只要给定边界条件，真随机数并不存在，可是如果产生一个真随机数样本的边界条件十分复杂且难以捕捉（比如计算机本身的辐射波动值），可以认为用这个方法演算出来了真随机数。</li>
+</ol>
+<p>相应的，随机数也分为三类：</p>
+<ol>
+<li>伪随机数：满足第一个条件的随机数。</li>
+<li>密码学安全的伪随机数：同时满足前两个条件的随机数。可以通过密码学安全伪随机数生成器计算得出。</li>
+<li>真随机数：同时满足三个条件的随机数。</li>
+</ol>
+<p>真正的随机数是使用物理现象产生的：比如掷钱币、骰子、使用电子元件的噪音、核裂变等等。这样的随机数生成器叫做物理性随机数生成器，它们的缺点是技术要求比较高。</p>
+<p>在实际应用中往往使用伪随机数就足够了。这些数列是 “似乎” 随机的数，实际上它们是通过一个固定的、可以重复的算法产生的(只是重复的周期比较大)。它们不真正地随机，因为它们实际上是可以计算出来的，但是它们具有类似于随机数的统计特征(分布均匀)。这样的生成器叫做伪随机数生成器(PRNG, pseudo-random number generator)。</p>
+<h3 id="流加密的基本原理"><a href="#流加密的基本原理" class="headerlink" title="流加密的基本原理"></a><a></a>流加密的基本原理</h3><p>流加密的原理很简单，用前面提到的伪随机数生成器 (PRNG) 根据秘钥来生成一个与明文长度一样的密钥流，然后将密钥流与明文流进行<strong>异或运算</strong>从而得到加密后的密文。解密时用同样的算法，根据密钥通过 PRNG 得到密钥流，将密钥流与密文进行异或运算即可。这里面遵循了一个很简单的原则：对一个数据进行两次相同的异或运算得到的还是原来的数据。</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15225796502445.jpg" alt=""></p>
+<h3 id="流加密的优缺点"><a href="#流加密的优缺点" class="headerlink" title="流加密的优缺点"></a><a></a>流加密的优缺点</h3><p>优点：</p>
+<ol>
+<li>实现简单。流加密生成密钥流后，只要进行一次异或运算即可；而像 DES 这样的分组加密需要经过 <a href="https://en.wikipedia.org/wiki/Feistel_cipher" target="_blank" rel="noopener">Feistel 加密网络</a> (16 轮的置换操作)。</li>
+<li>速度更快。因为流加密的简单操作少，所以速度也比分组加密块。</li>
+<li>变长密钥。密钥只负责生成密钥流，密钥流的生成与密钥长度关系不大，这就使得流加密可以使用变长密钥。</li>
+</ol>
+<h2 id="RC4"><a href="#RC4" class="headerlink" title="RC4"></a><a></a>RC4</h2><p><code>Rivest Cipher 4</code>是 RSA 公司的成员 Ron Rivest 于 1987 年设计的 (RSA 是三个麻省理工大学的学生创立的，著名的非对称公钥加密算法 RSA 就是该公司发明的)。起初该算法是商业机密，直到 1994 年，才被公之于众。由于 RC4 具有<strong>算法简单，运算速度快，软硬件实现都十分容易</strong>等优点，使其在一些协议和标准里得到了广泛应用。比如：SSL/TLS(Secure Sockets Layer/Transport Layer Security)，无线局域网 WEP(Wired Equivalent Privacy) 协议和 WPA(Wi-Fi Protected Access) 中都有 RC4 的应用。</p>
+<blockquote>
+<p>Ron Rivest 共设计了六套加密算法，都以 RC 命名，其中 RC4 是流加密方式实现的，RC2 是一种分组加密算法实现，RC6 更是 AES 算法征集的入围者，更多内容<a href="https://en.wikipedia.org/wiki/RC_algorithm" target="_blank" rel="noopener">点击这里</a></p>
+</blockquote>
+<h1 id="非对称加密：RSA，DH密钥交换-原理"><a href="#非对称加密：RSA，DH密钥交换-原理" class="headerlink" title="非对称加密：RSA，DH密钥交换 原理"></a>非对称加密：RSA，DH密钥交换 原理</h1><p> <strong>非对称加密算法</strong></p>
+<p> 在日常的工作生产中， 我们经常需要进行数据的通讯，开发人员经常需要对数据进行加解密操作，以保证数据的安全。数据的加密算法非为对称加密和非对称加密两种，常用的 DES、三重DES、AES 等都属于对称加密，即通过一个密钥可以进行数据的加解密，密钥一旦泄漏，传输的数据则不安全。</p>
+<p>非对称加密算法的核心源于<strong>数学问题</strong>，它存在公钥和私钥的概念，要完成加解密操作，需要两个密钥同时参与。我们常说的 “公钥加密，私钥加密” 或“私钥加密，公钥解密”都属于非对称加密的范畴，后文中讲到的RSA算法也一种典型的非对称加密算法。公钥加密的数据必须使用私钥才可以解密，同样，私钥加密的数据也只能通过公钥进行解密。<br>相比对称加密，非对称加密的安全性得到了提升，但是也存在明显的缺点，非对称加解密的效率要远远小于对称加解密。所以非对称加密往往被用在一些安全性要求比较高的应用或领域中。</p>
+<p><strong>典型的 RSA 非对称加密</strong></p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15225813151347.jpg" alt=""></p>
+<p>RSA加密算法是一种典型的非对称加密算法，它基于<strong>大数的因式分解数学难题</strong>，它也是应用最广泛的非对称加密算法，于 1978 年由美国麻省理工学院（MIT）的三位学着：Ron Rivest、Adi Shamir 和 Leonard Adleman 共同提出。</p>
+<p>它的原理较为简单，我们假设有消息发送方 A 和消息接收方 B，通过下面的几个步骤，我们就可以完成消息的加密传递：</p>
+<ol>
+<li><p>消息发送方 A 在本地构建密钥对，公钥和私钥；</p>
+</li>
+<li><p>消息发送方 A 将产生的<strong>公钥</strong>发送给消息接收方 B；</p>
+</li>
+<li><p>B 向 A 发送数据时，通过<strong>公钥</strong>进行加密，A 接收到数据后通过<strong>私钥</strong>进行解密，完成一次通信；</p>
+</li>
+<li><p>反之，A 向 B 发送数据时，通过<strong>私钥</strong>对数据进行加密，B 接收到数据后通过<strong>公钥</strong>进行解密。</p>
+</li>
+</ol>
+<p>由于<strong>公钥</strong>是消息发送方 A 暴露给消息接收方 B 的，所以这种方式也存在一定的安全隐患，如果<strong>公钥</strong>在数据传输过程中泄漏，则 A 通过<strong>私钥</strong>加密的数据就可能被解密。</p>
+<p>如果要建立更安全的加密消息传递模型，需要消息发送方和消息接收方各构建一套密钥对，并分别将各自的公钥暴露给对方，在进行消息传递时，A 通过 B 的<strong>公钥</strong>对数据加密，B 接收到消息通过 B 的<strong>私钥</strong>进行解密，反之，B 通过 A 的<strong>公钥</strong>进行加密，A 接收到消息后通过 A 的<strong>私钥</strong>进行解密。</p>
+<p>当然，这种方式可能存在数据传递被模拟的隐患，我们可以通过数字签名等技术进行安全性的进一步提升。由于存在多次的非对称加解密，这种方式带来的效率问题也更加严重。   </p>
+<p><strong>SSH 加密原理</strong></p>
+<p>在 SSH 安全协议的原理中， 是一种非对称加密与对称加密算法的结合，先看下图：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15225808431892.jpg" alt=""></p>
+<p>这里进行一下说明：</p>
+<ol>
+<li><p>首先服务端会通过非对称加密，产生一个<strong>公钥</strong>和<strong>私钥</strong>；</p>
+</li>
+<li><p>在客户端发起请求时，服务端将<strong>公钥</strong>暴露给客户端，这个<strong>公钥</strong>可以被任意暴露；</p>
+</li>
+<li><p>客户端在获取<strong>公钥</strong>后，会先产生一个由 256 位随机数字组成的会话密钥，这里称为口令；</p>
+</li>
+<li><p>客户端通过<strong>公钥</strong>将这个口令加密，发送给服务器端；</p>
+</li>
+<li><p>服务器端通过<strong>私钥</strong>进行解密，获取到通讯口令；</p>
+</li>
+<li><p>之后，客户端和服务端的信息传递，都通过这个口令进行对称的加密。</p>
+</li>
+</ol>
+<p>个人感觉，这样的设计在一定程度上提高了加解密的效率，不过，与客户端服务端各构建一套密钥对的加解密方式相比，在安全性上可能有所下降。在上面所述的通过口令进行加密的过程中，数据也是可以被窃听的，不过由于密钥是 256 个随机数字，有 10 的 256 次方种组合方式，所以破解难度也很大。相对还是比较安全的。服务端和客户端都提前知道了密钥，SSH 的这种方式，服务端是通过解密获取到了密钥。</p>
+<p><strong>DH 密钥交换算法</strong><br>SSH 的原理，是基于 RSA 非对称加密，RSA 是基于大数的因式分解数学难题，下面要提到的 DH 密钥交换算法则是基于<strong>有限域上的离散对数难题</strong>。</p>
+<p>DH 算法是一种<strong>密钥协商算法</strong>，只用于<strong>密钥的分配</strong>，不用于消息的加解密。它提供了一种安全的交换密钥的方式，通过交换的密钥进行数据的加解密。就像 SSH 原理中，口令的交换，不过 <strong>DH 算法更安全</strong>。</p>
+<p>我们举个例子来进行说明，假设有 A、B 两方，A 作为发送者，B 作为接收者。通过下面的几个步骤就可以构建出一个只属于双方的密钥口令，如下：</p>
+<ol>
+<li><p>首先 A、B 双方，在通信前构建专属于自己的密钥对，假设分别是<strong>公钥 A，私钥 A，公钥 B，私钥 B；</strong></p>
+</li>
+<li><p>A 将自己的<strong>公钥 A</strong> 暴露给 B，B 通过<strong>私钥 B</strong>和<strong>公钥 A </strong>经过一定的运算产生出本地的<strong>密钥 B；</strong></p>
+</li>
+<li><p>同样，B 将自己的<strong>公钥 B</strong>暴露给 A，A 通过<strong>私钥 A</strong> 和<strong>公钥 B</strong> 经过一定的运算产生出本地的<strong>密钥 A；</strong></p>
+</li>
+<li><p>最后，这个算法有意思的一点就是，<strong>密钥 A</strong> 和<strong>密钥 B</strong> 是<strong>一致的</strong>，这样 A、B 双方就拥有了一个属于双方的 “秘密” 口令；</p>
+</li>
+</ol>
+<p>DH 算法的产生是，对称加密向非对称加密的过渡，为后续非对称加密的产生和发展奠定了基础。</p>
+<h1 id="数字签名：RSA-signature，DSA-signature-原理"><a href="#数字签名：RSA-signature，DSA-signature-原理" class="headerlink" title="数字签名：RSA signature，DSA signature 原理"></a>数字签名：RSA signature，DSA signature 原理</h1><h2 id="数字签名流程"><a href="#数字签名流程" class="headerlink" title="数字签名流程"></a>数字签名流程</h2><p>（1）生成签名：对源文件的「数字摘要」，使用私钥加密，生成「加密数字摘要」；</p>
+<p>（2）验证签名：对「加密数字摘要」通过公钥进行解密，生成「数字摘要 2」，比较「数字摘要」与「数字摘要 2」，结果相同则签名验证通过。</p>
+<p>概念：带有「公钥」和「私钥」的「消息摘要」算法，是「非对称加密算法」和「消息摘要」算法的结合体</p>
+<blockquote>
+<p>私钥签名，公钥验证</p>
+</blockquote>
+<h3 id="常用签名算法"><a href="#常用签名算法" class="headerlink" title="常用签名算法"></a>常用签名算法</h3><ul>
+<li><p>RSASignature</p>
+</li>
+<li><p>DSASignature</p>
+</li>
+<li><p>ECDSASignature（需 Bouncy Castle）</p>
+</li>
+</ul>
+<h3 id="数字签名作用"><a href="#数字签名作用" class="headerlink" title="数字签名作用"></a>数字签名作用</h3><ul>
+<li><p>验证数据完整性</p>
+</li>
+<li><p>认证数据来源</p>
+</li>
+<li><p>抗否认</p>
+</li>
+</ul>
+<h3 id="场景"><a href="#场景" class="headerlink" title="场景"></a>场景</h3><p>如 Android App 开发者签名</p>
+<hr>
+<blockquote>
+<p>参考：<br>从原理上搞定编码（四）– Base64编码 - luguo3000 - 博客园<br><a href="http://www.cnblogs.com/luguo3000/p/3940197.html" target="_blank" rel="noopener">http://www.cnblogs.com/luguo3000/p/3940197.html</a><br>MD5算法原理及其实现 - CSDN博客<br><a href="https://blog.csdn.net/u012611878/article/details/54000607" target="_blank" rel="noopener">https://blog.csdn.net/u012611878/article/details/54000607</a><br>安全体系（三）——SHA1算法详解 - songoo - 博客园<br><a href="http://www.cnblogs.com/songwenlong/p/6528025.html" target="_blank" rel="noopener">http://www.cnblogs.com/songwenlong/p/6528025.html</a><br>密码学安全算法–对称加密算法 - CSDN博客<br><a href="https://blog.csdn.net/holmofy/article/details/72861821" target="_blank" rel="noopener">https://blog.csdn.net/holmofy/article/details/72861821</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+
+     
+    
+      <div>
+        
+    <div style="text-align:center;color: #ccc;font-size:14px;">
+        ------ 本文结束<i class="fa fa-paw"></i>感谢您的阅读 ------</div>
+
+      </div>
+    
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    CloudPai
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://cloudpai.site/2018/04/01/2018-04-01-2/" title="Java 加密算法 原理">http://cloudpai.site/2018/04/01/2018-04-01-2/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
+          
+            <a href="/tags/加密/" rel="tag"><i class="fa fa-tag"></i> 加密</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/01/2018-04-01-1/" rel="next" title="Java 加密算法 实战">
+                <i class="fa fa-chevron-left"></i> Java 加密算法 实战
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/01/2018-04-01-3/" rel="prev" title="HTTPS协议">
+                HTTPS协议 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+
+
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg"
+                alt="CloudPai" />
+            
+              <p class="site-author-name" itemprop="name">CloudPai</p>
+              <p class="site-description motion-element" itemprop="description">加油(๑•̀ㅂ•́)و✧加油</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">113</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+
+<div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=240 src="//music.163.com/outchain/player?type=0&id=2113726971&auto=0&height=430"></iframe>
+</div>
+<!-- 459004290 -->
+
+
+
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CloudPai" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:liupai024@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.douban.com/people/57965969/doulists/all" target="_blank" title="豆瓣">
+                      
+                        <i class="fa fa-fw fa-book"></i>豆瓣</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/cloudPai/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-edit"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.dlut.edu.cn/" title="DUT" target="_blank">DUT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bupt.edu.cn/" title="BUPT" target="_blank">BUPT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://campus.alibaba.com/index.htm" title="Alibaba Group" target="_blank">Alibaba Group</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#密码学算法分类："><span class="nav-text">密码学算法分类：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#消息编码：Base64-原理"><span class="nav-text">消息编码：Base64 原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#消息摘要：MD类，SHA类，MAC-原理"><span class="nav-text">消息摘要：MD类，SHA类，MAC 原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#MD5-原理"><span class="nav-text">MD5 原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SHA-算法"><span class="nav-text">SHA 算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-Hash-函数和消息完整性"><span class="nav-text">1.Hash 函数和消息完整性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-SHA1-算法简介"><span class="nav-text">2.SHA1 算法简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-术语和概念"><span class="nav-text">3. 术语和概念</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3-1-位-Bit-，字节（Byte）和字（Word）"><span class="nav-text">3.1 位 (Bit)**，字节（Byte）和字（Word）**</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-2-运算符和符号"><span class="nav-text">3.2 **运算符和符号**</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-SHA1-算法"><span class="nav-text">4.SHA1 算法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#4-1-把消息转换为位字符串"><span class="nav-text">4.1. 把消息转换为位字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-2-对转换得到的位字符串进行补位操作"><span class="nav-text">4.2. 对转换得到的位字符串进行补位操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-3-附加长度信息"><span class="nav-text">4.3 附加长度信息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-4-使用的常量和函数"><span class="nav-text">4.4  使用的常量和函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-5-计算消息摘要"><span class="nav-text">4.5 计算消息摘要</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对称加密：DES，3DES，AES-原理"><span class="nav-text">对称加密：DES，3DES，AES 原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#对称加密算法基本原理"><span class="nav-text">对称加密算法基本原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对称加密的分类：流加密与分组加密"><span class="nav-text">对称加密的分类：流加密与分组加密</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DES"><span class="nav-text">DES</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3DES"><span class="nav-text">3DES</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#双重加密"><span class="nav-text">双重加密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用两个密钥的三重加密"><span class="nav-text">使用两个密钥的三重加密</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用三个密钥的三重加密"><span class="nav-text">使用三个密钥的三重加密</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AES"><span class="nav-text">AES</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#流加密实现原理"><span class="nav-text">流加密实现原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#真随机数，伪随机数"><span class="nav-text">真随机数，伪随机数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流加密的基本原理"><span class="nav-text">流加密的基本原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流加密的优缺点"><span class="nav-text">流加密的优缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RC4"><span class="nav-text">RC4</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#非对称加密：RSA，DH密钥交换-原理"><span class="nav-text">非对称加密：RSA，DH密钥交换 原理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数字签名：RSA-signature，DSA-signature-原理"><span class="nav-text">数字签名：RSA signature，DSA signature 原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数字签名流程"><span class="nav-text">数字签名流程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#常用签名算法"><span class="nav-text">常用签名算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数字签名作用"><span class="nav-text">数字签名作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#场景"><span class="nav-text">场景</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CloudPai</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">556.9k</span>
+  
+</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv">  </span>
+</span>
+</div>
+
+
+
+
+
+
+
+  <div class="theme-info">&#12288;主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://cloudpai.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://cloudpai.site/2018/04/01/2018-04-01-2/';
+          this.page.identifier = '2018/04/01/2018-04-01-2/';
+          this.page.title = 'Java 加密算法 原理';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cloudpai.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!-- <!-- <script src="https://cdn.bootcss.com/aplayer/1.6.0/APlayer.min.js"></script>
+
+<script src="https://api.i-meto.com/music/player.js"></script> --> -->
+  
+  <!--移动端判断，是否引入背景-->
+  <script>
+  var browser={  
+      versions:function(){   
+             var u = navigator.userAgent, app = navigator.appVersion;   
+             return {//移动终端浏览器版本信息
+                  trident: u.indexOf('Trident') > -1, //IE内核
+                  presto: u.indexOf('Presto') > -1, //opera内核
+                  webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                  gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                  mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                  ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                  android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                  iPhone: u.indexOf('iPhone') > -1 , //是否为iPhone或者QQHD浏览器
+                  iPad: u.indexOf('iPad') > -1, //是否iPad
+                  webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+              };  
+           }(),  
+           language:(navigator.browserLanguage || navigator.language).toLowerCase()  
+  }   
+    if(browser.versions.mobile || browser.versions.ios || browser.versions.android ||   
+      browser.versions.iPhone || browser.versions.iPad){        
+               
+    }else{
+    document.write("<script type=\'text/javascript\'  src=\'/js/src/particle.js\'><\/script>");
+    }
+  </script>
+
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":-80,"vOffset":-50},"mobile":{"show":false,"scale":0.2},"react":{"opacityDefault":1,"opacityOnHover":0.2}});</script></body>
+</html>
