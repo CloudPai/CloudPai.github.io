@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cloudpai.site/"/>
-  <updated>2018-04-03T09:57:24.541Z</updated>
+  <updated>2018-04-03T15:04:30.065Z</updated>
   <id>http://cloudpai.site/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Spring技术内幕-IOC 笔记</title>
+    <link href="http://cloudpai.site/2018/04/03/2018-04-03/"/>
+    <id>http://cloudpai.site/2018/04/03/2018-04-03/</id>
+    <published>2018-04-03T14:15:54.000Z</published>
+    <updated>2018-04-03T15:04:30.065Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;一、什么是-Ioc-DI？&quot;&gt;&lt;a href=&quot;#一、什么是-Ioc-DI？&quot; class=&quot;headerlink&quot; title=&quot;一、什么是 Ioc/DI？&quot;&gt;&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="Spring" scheme="http://cloudpai.site/tags/Spring/"/>
+    
+      <category term="源码" scheme="http://cloudpai.site/tags/%E6%BA%90%E7%A0%81/"/>
+    
+      <category term="IOC" scheme="http://cloudpai.site/tags/IOC/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring 源码学习流程</title>
@@ -74,15 +99,13 @@
     <link href="http://cloudpai.site/2018/04/01/2018-04-01-13/"/>
     <id>http://cloudpai.site/2018/04/01/2018-04-01-13/</id>
     <published>2018-04-01T14:09:28.000Z</published>
-    <updated>2018-04-01T14:48:54.467Z</updated>
+    <updated>2018-04-03T11:08:41.779Z</updated>
     
     <summary type="html">
     
       
       
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;hr&gt;
-&lt;blockquote&gt;
-&lt;p&gt;参考：&lt;br&gt;【框架设计】—设计模式 - 随笔分类 - chenssy - 博客园&lt;br&gt;&lt;a href=&quot;http://www.cnbl
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;专栏：设计模式 - CSDN博客&lt;br&gt;&lt;a href=&quot;https://blog.csdn.net/column/details/pattern.html&quot; target=
       
     
     </summary>
@@ -443,32 +466,6 @@
       <category term="Java" scheme="http://cloudpai.site/tags/Java/"/>
     
       <category term="序列化" scheme="http://cloudpai.site/tags/%E5%BA%8F%E5%88%97%E5%8C%96/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Java IO面试</title>
-    <link href="http://cloudpai.site/2018/03/31/2018-03-31-4/"/>
-    <id>http://cloudpai.site/2018/03/31/2018-03-31-4/</id>
-    <published>2018-03-31T13:07:55.000Z</published>
-    <updated>2018-03-31T13:35:50.230Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;img src=&quot;http://p4lmrb1gp.bkt.clouddn.com/15225019568523.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;1
-      
-    
-    </summary>
-    
-    
-      <category term="Java" scheme="http://cloudpai.site/tags/Java/"/>
-    
-      <category term="面试" scheme="http://cloudpai.site/tags/%E9%9D%A2%E8%AF%95/"/>
-    
-      <category term="IO" scheme="http://cloudpai.site/tags/IO/"/>
     
   </entry>
   
