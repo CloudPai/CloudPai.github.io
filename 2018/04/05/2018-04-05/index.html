@@ -1,0 +1,1371 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Spring,源码,IOC," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="CloudPai" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="IOC设计精髓：主要实用了设计模式中的委托模式通过某类的子类来实现该类的功能，以达到功能实现类与该类之间的解耦。 IoC 容器的初始化包括 BeanDefinition 的 Resource 定位、载入和注册这三个基本的过程。 具体实现流程 2.设置资源加载器和资源定位此处做了以下两件事：  调用父类容器的构造方法 (super(parent) 方法)为容器设置好 Bean 资源加载器。 再调用">
+<meta name="keywords" content="Spring,源码,IOC">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring技术内幕：IoC容器的初始化 总结">
+<meta property="og:url" content="http://cloudpai.site/2018/04/05/2018-04-05/index.html">
+<meta property="og:site_name" content="CloudPai">
+<meta property="og:description" content="IOC设计精髓：主要实用了设计模式中的委托模式通过某类的子类来实现该类的功能，以达到功能实现类与该类之间的解耦。 IoC 容器的初始化包括 BeanDefinition 的 Resource 定位、载入和注册这三个基本的过程。 具体实现流程 2.设置资源加载器和资源定位此处做了以下两件事：  调用父类容器的构造方法 (super(parent) 方法)为容器设置好 Bean 资源加载器。 再调用">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15229391298441.jpg">
+<meta property="og:updated_time" content="2018-04-05T14:42:27.252Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Spring技术内幕：IoC容器的初始化 总结">
+<meta name="twitter:description" content="IOC设计精髓：主要实用了设计模式中的委托模式通过某类的子类来实现该类的功能，以达到功能实现类与该类之间的解耦。 IoC 容器的初始化包括 BeanDefinition 的 Resource 定位、载入和注册这三个基本的过程。 具体实现流程 2.设置资源加载器和资源定位此处做了以下两件事：  调用父类容器的构造方法 (super(parent) 方法)为容器设置好 Bean 资源加载器。 再调用">
+<meta name="twitter:image" content="http://p4lmrb1gp.bkt.clouddn.com/15229391298441.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'TZAS2SFOJR',
+      apiKey: 'e2a9cd036eede8026382b302001ec261',
+      indexName: 'cloudpai_blogs_search',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cloudpai.site/2018/04/05/2018-04-05/"/>
+
+
+
+
+
+  <title>Spring技术内幕：IoC容器的初始化 总结 | CloudPai</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-114643720-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CloudPai</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/04/05/2018-04-05/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CloudPai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudPai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Spring技术内幕：IoC容器的初始化 总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-05T20:59:45+08:00">
+                2018-04-05
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-05T22:42:27+08:00">
+                2018-04-05
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/05/2018-04-05/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/04/05/2018-04-05/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,916
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  11
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="IOC设计精髓："><a href="#IOC设计精髓：" class="headerlink" title="IOC设计精髓："></a>IOC设计精髓：</h1><p>主要实用了设计模式中的<strong>委托模式</strong><br>通过某类的子类来实现该类的功能，以达到功能实现类与该类之间的解耦。</p>
+<p>IoC 容器的初始化包括 <strong>BeanDefinition 的 Resource 定位</strong>、<strong>载入</strong>和<strong>注册</strong>这三个基本的过程。</p>
+<h1 id="具体实现流程"><a href="#具体实现流程" class="headerlink" title="具体实现流程"></a>具体实现流程</h1><p><img src="http://p4lmrb1gp.bkt.clouddn.com/15229391298441.jpg" alt=""></p>
+<h2 id="2-设置资源加载器和资源定位"><a href="#2-设置资源加载器和资源定位" class="headerlink" title="2.设置资源加载器和资源定位"></a>2.设置资源加载器和资源定位</h2><p>此处做了以下两件事：</p>
+<ol>
+<li>调用父类容器的构造方法 (super(parent) 方法)为容器设置好 Bean 资源加载器。</li>
+<li><p>再调用父类 AbstractRefreshableConfigApplicationContext 的 setConfigLocations(configLocations) 方法设置 Bean 定义资源文件的定位路径。</p>
+<p> 可以使用两种方式匹配资源文件路径：<br> 1).一个字符串来配置多个 Spring Bean 定义资源文件<br> 2).使用字符串数组</p>
+</li>
+</ol>
+<h2 id="3-AbstractApplicationContext-的-refresh-函数载入-Bean-定义"><a href="#3-AbstractApplicationContext-的-refresh-函数载入-Bean-定义" class="headerlink" title="3.AbstractApplicationContext 的 refresh 函数载入 Bean 定义"></a>3.AbstractApplicationContext 的 refresh 函数载入 Bean 定义</h2><p>是 refresh() 函数之后：<strong>开始 Spring IoC 容器对 Bean 定义资源的载入</strong></p>
+<p>refresh() 方法的作用是：在创建 IoC 容器前，如果已经有容器存在，则需要把已有的容器销毁和关闭，以保证在 refresh 之后使用的是新建立起来的 IoC 容器。refresh 的作用类似于对 IoC 容器的重启，在新建立好的容器中对容器进行初始化，对 Bean 定义资源进行载入</p>
+<h2 id="4、AbstractApplicationContext-子类的-refreshBeanFactory-方法："><a href="#4、AbstractApplicationContext-子类的-refreshBeanFactory-方法：" class="headerlink" title="4、AbstractApplicationContext 子类的 refreshBeanFactory() 方法："></a>4、AbstractApplicationContext 子类的 refreshBeanFactory() 方法：</h2><p>使用了<strong>委派模式</strong>：在当前类中只定义了抽象的loadBeanDefinitions方法，具体是调用其子类AbstractRefreshableApplicationContext 实现的 refreshBeanFactory() 方法</p>
+<p>子类的具体实现功能：</p>
+<p>先判断 BeanFactory 是否存在，如果存在则先销毁 beans 并关闭 beanFactory，接着创建 DefaultListableBeanFactory，并调用 loadBeanDefinitions(beanFactory) <strong>装载 bean定义</strong>。</p>
+<h2 id="5、AbstractRefreshableApplicationContext-子类的-loadBeanDefinitions-方法："><a href="#5、AbstractRefreshableApplicationContext-子类的-loadBeanDefinitions-方法：" class="headerlink" title="5、AbstractRefreshableApplicationContext 子类的 loadBeanDefinitions 方法："></a>5、AbstractRefreshableApplicationContext 子类的 loadBeanDefinitions 方法：</h2><p>使用了<strong>委托模式</strong>：当前类AbstractRefreshableApplicationContext 中只定义了抽象的 loadBeanDefinitions 方法，容器真正调用的是其子类 AbstractXmlApplicationContext 对该方法的实现。</p>
+<p>子类的具体实现功能：</p>
+<p><strong>Xml Bean 读取器</strong> (XmlBeanDefinitionReader) 调用其父类 AbstractBeanDefinitionReader 的 reader.loadBeanDefinitions 方法<strong>读取 Bean 定义资源</strong>。</p>
+<h2 id="6、AbstractBeanDefinitionReader-读取-Bean-定义资源（loadBeanDefinitions-方法）："><a href="#6、AbstractBeanDefinitionReader-读取-Bean-定义资源（loadBeanDefinitions-方法）：" class="headerlink" title="6、AbstractBeanDefinitionReader 读取 Bean 定义资源（loadBeanDefinitions 方法）："></a>6、AbstractBeanDefinitionReader 读取 Bean 定义资源（loadBeanDefinitions 方法）：</h2><p>该方法做了以下两件事：</p>
+<p>1.<strong>调用资源加载器</strong>的获取资源方法 resourceLoader.getResource(location)，<strong>获取到要加载的资源</strong>。</p>
+<p>2.<strong>真正执行加载功能</strong>是其子类 XmlBeanDefinitionReader 的 loadBeanDefinitions 方法。</p>
+<h2 id="7、资源加载器获取要读入的资源："><a href="#7、资源加载器获取要读入的资源：" class="headerlink" title="7、资源加载器获取要读入的资源："></a>7、资源加载器获取要读入的资源：</h2><p>XmlBeanDefinitionReader 通过调用其父类 DefaultResourceLoader 的 getResource 方法获取要加载的资源</p>
+<p>通过资源路径来获取Resource的具体实现方法分为以下三种情况：</p>
+<p>1.如果是类路径的方式，那需要使用ClassPathResource 来得到bean 文件的资源对象<br>2.如果是URL 方式，使用UrlResource 作为bean 文件的资源对象<br>3.如果既不是classpath标识，又不是URL标识的Resource定位，则调用容器本身的getResourceByPath方法获取Resource  </p>
+<h2 id="8、XmlBeanDefinitionReader-加载-Bean-定义资源："><a href="#8、XmlBeanDefinitionReader-加载-Bean-定义资源：" class="headerlink" title="8、XmlBeanDefinitionReader 加载 Bean 定义资源："></a>8、XmlBeanDefinitionReader 加载 Bean 定义资源：</h2><p>XmlBeanDefinitionReader加载资源的入口方法：分为以下几步：</p>
+<p>1.将读入的XML资源进行特殊编码处理<br>2.将资源文件转为InputStream的IO流<br>3.从InputStream中得到XML的解析源<br>4.<strong>将XML文件转换为DOM对象，解析过程由documentLoader实现</strong><br>5.关闭从Resource中得到的IO流</p>
+<h2 id="9、DocumentLoader-将-Bean-定义资源转换为-Document-对象："><a href="#9、DocumentLoader-将-Bean-定义资源转换为-Document-对象：" class="headerlink" title="9、DocumentLoader 将 Bean 定义资源转换为 Document 对象："></a>9、DocumentLoader 将 Bean 定义资源转换为 Document 对象：</h2><p>使用 JavaEE标准的JAXP<strong>将载入的Bean定义资源转换成document对象</strong></p>
+<h2 id="10、XmlBeanDefinitionReader-解析载入的-Bean-定义资源文件："><a href="#10、XmlBeanDefinitionReader-解析载入的-Bean-定义资源文件：" class="headerlink" title="10、XmlBeanDefinitionReader 解析载入的 Bean 定义资源文件："></a>10、XmlBeanDefinitionReader 解析载入的 Bean 定义资源文件：</h2><p>Bean 定义资源的载入解析分为以下两个过程：</p>
+<p>首先，通过调用 XML 解析器将 Bean 定义资源文件转换得到 Document 对象，但是这些 Document 对象并没有按照 Spring 的 Bean 规则进行解析。这一步是<strong>载入</strong>的过程</p>
+<p>其次，在完成通用的 XML 解析之后，<strong>按照 Spring 的 Bean 规则对 Document 对象进行解析</strong>。</p>
+<h2 id="11、DefaultBeanDefinitionDocumentReader-对-Bean-定义的-Document-对象解析："><a href="#11、DefaultBeanDefinitionDocumentReader-对-Bean-定义的-Document-对象解析：" class="headerlink" title="11、DefaultBeanDefinitionDocumentReader 对 Bean 定义的 Document 对象解析："></a>11、DefaultBeanDefinitionDocumentReader 对 Bean 定义的 Document 对象解析：</h2><p>对 Bean 定义的 Document 对象解析不同标签来导入 IoC 容器所需要的其他资源，分为三种情况： </p>
+<ol>
+<li><p>使用<code>&lt;Import&gt;</code> 元素：<br>Spring IoC 容器在解析时会首先将指定导入的资源加载进容器中。</p>
+</li>
+<li><p>使用<code>&lt; Ailas &gt;</code>别名时：<br>Spring IoC 容器首先将别名元素所定义的别名注册到容器中。</p>
+</li>
+<li>对于既不是 <code>&lt;Import&gt;</code>元素，又不是 <code>&lt; Alias &gt;</code>元素的元素：<br>即 Spring 配置文件中普通的 <code>&lt; Bean &gt;</code> 元素的解析由 BeanDefinitionParserDelegate 类的 parseBeanDefinitionElement 方法来实现。</li>
+</ol>
+<h2 id="12、BeanDefinitionParserDelegate-解析-Bean-定义资源文件中的-lt-Bean-gt-元素："><a href="#12、BeanDefinitionParserDelegate-解析-Bean-定义资源文件中的-lt-Bean-gt-元素：" class="headerlink" title="12、BeanDefinitionParserDelegate 解析 Bean 定义资源文件中的 &lt;Bean&gt; 元素："></a>12、BeanDefinitionParserDelegate 解析 Bean 定义资源文件中的 <code>&lt;Bean&gt;</code> 元素：</h2><p>注意：在解析 <code>&lt;Bean&gt;</code> 元素过程中没有创建和实例化 Bean 对象，只是创建了 Bean 对象的定义类 BeanDefinition，将 <code>&lt; Bean &gt;</code> 元素中的配置信息设置到 BeanDefinition 中作为记录，当依赖注入时才使用这些记录信息创建和实例化具体的 Bean 对象。</p>
+<h2 id="13、BeanDefinitionParserDelegate-解析-lt-property-gt-元素："><a href="#13、BeanDefinitionParserDelegate-解析-lt-property-gt-元素：" class="headerlink" title="13、BeanDefinitionParserDelegate 解析 &lt;property&gt; 元素："></a>13、BeanDefinitionParserDelegate 解析 <code>&lt;property&gt;</code> 元素：</h2><p>我们在使用 Spring 的 <code>&lt; Bean &gt;</code> 元素时，配置最多的是 <code>&lt; property &gt;</code> 属性。在 Spring 配置文件中，<code>&lt;Bean&gt;</code>元素中 <code>&lt; property &gt;</code> 元素的相关配置是按照如下处理的：</p>
+<ol>
+<li><p>ref 被封装为指向依赖对象一个引用。</p>
+</li>
+<li><p>value 配置都会封装成一个字符串类型的对象。</p>
+</li>
+<li><p>ref 和 value 都通过 “解析的数据类型属性值. setSource(extractSource(ele));” 方法将属性值 / 引用与所引用的属性关联起来。</p>
+</li>
+</ol>
+<h2 id="14、解析-lt-property-gt-元素的子元素："><a href="#14、解析-lt-property-gt-元素的子元素：" class="headerlink" title="14、解析 &lt;property&gt; 元素的子元素："></a>14、解析 <code>&lt;property&gt;</code> 元素的子元素：</h2><p>在 BeanDefinitionParserDelegate 类中的 parsePropertySubElement 方法对 <code>&lt;property&gt;</code>中的子元素解析</p>
+<p>在 Spring 配置文件中，对 <code>&lt;property&gt;</code> 元素中配置的 Array、List、Set、Map、Prop 等各种集合子元素的都通过上述方法解析，生成对应的数据对象，比如 ManagedList、ManagedArray、ManagedSet 等，这些 Managed 类是 Spring 对象 BeanDefiniton 的数据封装，对集合数据类型的具体解析有各自的解析方法实现，解析方法的命名非常规范，一目了然。</p>
+<h2 id="15、解析-lt-list-gt-子元素："><a href="#15、解析-lt-list-gt-子元素：" class="headerlink" title="15、解析 &lt;list&gt;子元素："></a>15、解析 <code>&lt;list&gt;</code>子元素：</h2><p>在 BeanDefinitionParserDelegate 类中的 parseListElement 方法就是具体实现解析 <code>&lt;property&gt;</code>元素中的 <code>&lt; list &gt;</code>集合子元素</p>
+<p>解析过程如下：</p>
+<ol>
+<li>获取<code>&lt;list&gt;</code>元素中的value-type属性，即获取集合元素的数据类型 </li>
+<li>获取<list>集合元素中的所有子节点</list></li>
+<li>Spring中将List封装为ManagedList </li>
+<li>设置集合目标数据类型  </li>
+<li>具体解析<list>集合元素，<array>、<list>和<set>都使用该方法解析</set></list></array></list></li>
+</ol>
+<h2 id="16、解析过后的-BeanDefinition-在-IoC-容器中的注册："><a href="#16、解析过后的-BeanDefinition-在-IoC-容器中的注册：" class="headerlink" title="16、解析过后的 BeanDefinition 在 IoC 容器中的注册："></a>16、解析过后的 BeanDefinition 在 IoC 容器中的注册：</h2><p>通过 Spring IoC 容器对 Bean 定义资源的解析后，IoC 容器大致完成了管理 Bean 对象的准备工作，即初始化过程，但是最为重要的<strong>依赖注入</strong>还没有发生，现在在 IoC 容器中 BeanDefinition 存储的只是一些静态信息，接下来需要<strong>向容器注册 Bean 定义信息</strong>才能全部完成 IoC 容器的初始化过程</p>
+<p>具体过程如下：</p>
+<ol>
+<li>获取解析的BeanDefinition的名称</li>
+<li>向IoC容器注册BeanDefinition </li>
+<li>如果解析的BeanDefinition有别名，向容器为其注册别名</li>
+</ol>
+<h2 id="17、DefaultListableBeanFactory-向-IoC-容器注册解析后的-BeanDefinition："><a href="#17、DefaultListableBeanFactory-向-IoC-容器注册解析后的-BeanDefinition：" class="headerlink" title="17、DefaultListableBeanFactory 向 IoC 容器注册解析后的 BeanDefinition："></a>17、DefaultListableBeanFactory 向 IoC 容器注册解析后的 BeanDefinition：</h2><p>当调用 BeanDefinitionReaderUtils 向 IoC 容器注册解析的 BeanDefinition 时，真正完成注册功能的是 DefaultListableBeanFactory，它使用一个 HashMap 的集合对象存放 IoC 容器中注册解析的 BeanDefinition</p>
+<p>至此，Bean 定义资源文件中配置的 Bean 被解析过后，已经注册到 IoC 容器中，被容器管理起来，真正完成了 IoC 容器初始化所做的全部工作。现 在 IoC 容器中已经建立了整个 Bean 的配置信息，这些 BeanDefinition 信息已经可以使用，并且可以被检索，IoC 容器的作用就是对这些注册的 Bean 定义信息进行处理和维护。这些的注册的 Bean 定义信息是 IoC 容器控制反转的基础，正是有了这些注册的数据，容器才可以进行依赖注入。</p>
+<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><p>现在通过上面的代码，总结一下 IOC 容器初始化的基本步骤：</p>
+<p>初始化的入口在容器实现中的 refresh() 调用来完成</p>
+<p>对 bean 定义载入 IOC 容器使用的方法是 loadBeanDefinition, 其中的大致过程如下：</p>
+<p><strong>通过 ResourceLoader 来完成资源文件位置的定位，DefaultResourceLoader 是默认的实现，同时上下文本身就给出了 ResourceLoader 的实现，可以从类路径，文件系统, URL 等方式来定为资源位置</strong>。</p>
+<p>如果是 XmlBeanFactory 作为 IOC 容器，那么需要为它指定 bean 定义的资源，也就是说 bean 定义文件时通过抽象成 Resource 来被 IOC 容器处理的，容器通过 BeanDefinitionReader 来完成定义信息的解析和 Bean 信息的注册, 往往使用的是 XmlBeanDefinitionReader 来解析 bean 的 xml 定义文件 - 实际的处理过程是委托给 BeanDefinitionParserDelegate 来完成的，从而得到 bean 的定义信息，这些信息在 Spring 中使用 BeanDefinition 对象来表示 - 这个名字可以让我们想到 loadBeanDefinition,RegisterBeanDefinition  这些相关的方法 - 他们都是为处理 BeanDefinitin 服务的， 容器解析得到 BeanDefinitionIoC 以后，需要把它在 IOC 容器中注册，这由 IOC 实现 BeanDefinitionRegistry 接口来实现。</p>
+<p>注册过程就是在 IOC 容器内部维护的一个 HashMap 来保存得到的 BeanDefinition 的过程。这个 HashMap 是 IoC 容器持有 bean 信息的场所，以后对 bean 的操作都是围绕这个 HashMap 来实现的.</p>
+<p>然后我们就可以通过 BeanFactory 和 ApplicationContext 来享受到 Spring IOC 的服务了。</p>
+<p>在使用 IOC 容器的时候，我们注意到除了少量粘合代码，绝大多数以正确 IoC 风格编写的应用程序代码完全不用关心如何到达工厂，因为容器将把这些对象与容器管理的其他对象钩在一起。<strong>基本的策略是把工厂放到已知的地方，最好是放在对预期使用的上下文有意义的地方，以及代码将实际需要访问工厂的地方</strong>。 Spring 本身提供了对声明式载入 web 应用程序用法的应用程序上下文, 并将其存储在 ServletContext 中的框架实现。具体可以参见以后的文章 </p>
+<p>在使用 Spring IOC 容器的时候我们还需要区别两个概念:</p>
+<p>Beanfactory 和 Factory bean，其中 <strong>BeanFactory 指的是 IOC 容器的编程抽象</strong>，比如 ApplicationContext， XmlBeanFactory 等，这些都是 IOC 容器的具体表现，需要使用什么样的容器由客户决定, 但 Spring 为我们提供了丰富的选择。 FactoryBean 只是一个可以在 IOC 而容器中被管理的一个 bean, 是对各种处理过程和资源使用的抽象, <strong>Factory bean 在需要时产生另一个对象，而不返回 FactoryBean 本身, 我们可以把它看成是一个抽象工厂</strong>，对它的调用返回的是工厂生产的产品。所有的 Factory bean 都实现特殊的 org.springframework.beans.factory.FactoryBean 接口，当使用容器中 factory bean 的时候，<strong>该容器不会返回 factory bean 本身, 而是返回其生成的对象</strong>。Spring 包括了大部分的通用资源和服务访问抽象的 Factory bean 的实现，其中包括: 对 JNDI 查询的处理，对代理对象的处理，对事务性代理的处理，对 RMI 代理的处理等，这些我们都可以看成是具体的工厂, 看成是 SPRING 为我们建立好的工厂。也就是说 <strong>Spring 通过使用抽象工厂模式为我们准备了一系列工厂来生产一些特定的对象, 免除我们手工重复的工作</strong>，我们要使用时只需要在 IOC 容器里配置好就能很方便的使用了</p>
+
+      
+    </div>
+    
+    
+    
+
+
+     
+    
+      <div>
+        
+    <div style="text-align:center;color: #ccc;font-size:14px;">
+        ------ 本文结束<i class="fa fa-paw"></i>感谢您的阅读 ------</div>
+
+      </div>
+    
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    CloudPai
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://cloudpai.site/2018/04/05/2018-04-05/" title="Spring技术内幕：IoC容器的初始化 总结">http://cloudpai.site/2018/04/05/2018-04-05/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Spring/" rel="tag"><i class="fa fa-tag"></i> Spring</a>
+          
+            <a href="/tags/源码/" rel="tag"><i class="fa fa-tag"></i> 源码</a>
+          
+            <a href="/tags/IOC/" rel="tag"><i class="fa fa-tag"></i> IOC</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/04/2018-04-04/" rel="next" title="ANTLR4 学习">
+                <i class="fa fa-chevron-left"></i> ANTLR4 学习
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+
+
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg"
+                alt="CloudPai" />
+            
+              <p class="site-author-name" itemprop="name">CloudPai</p>
+              <p class="site-description motion-element" itemprop="description">加油(๑•̀ㅂ•́)و✧加油</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">128</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+
+<div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=240 src="//music.163.com/outchain/player?type=0&id=2113726971&auto=0&height=430"></iframe>
+</div>
+<!-- 459004290 -->
+
+
+
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">54</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CloudPai" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:liupai024@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.douban.com/people/57965969/doulists/all" target="_blank" title="豆瓣">
+                      
+                        <i class="fa fa-fw fa-book"></i>豆瓣</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/cloudPai/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-edit"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.dlut.edu.cn/" title="DUT" target="_blank">DUT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bupt.edu.cn/" title="BUPT" target="_blank">BUPT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://campus.alibaba.com/index.htm" title="Alibaba Group" target="_blank">Alibaba Group</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#IOC设计精髓："><span class="nav-text">IOC设计精髓：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#具体实现流程"><span class="nav-text">具体实现流程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-设置资源加载器和资源定位"><span class="nav-text">2.设置资源加载器和资源定位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-AbstractApplicationContext-的-refresh-函数载入-Bean-定义"><span class="nav-text">3.AbstractApplicationContext 的 refresh 函数载入 Bean 定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、AbstractApplicationContext-子类的-refreshBeanFactory-方法："><span class="nav-text">4、AbstractApplicationContext 子类的 refreshBeanFactory() 方法：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、AbstractRefreshableApplicationContext-子类的-loadBeanDefinitions-方法："><span class="nav-text">5、AbstractRefreshableApplicationContext 子类的 loadBeanDefinitions 方法：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6、AbstractBeanDefinitionReader-读取-Bean-定义资源（loadBeanDefinitions-方法）："><span class="nav-text">6、AbstractBeanDefinitionReader 读取 Bean 定义资源（loadBeanDefinitions 方法）：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7、资源加载器获取要读入的资源："><span class="nav-text">7、资源加载器获取要读入的资源：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8、XmlBeanDefinitionReader-加载-Bean-定义资源："><span class="nav-text">8、XmlBeanDefinitionReader 加载 Bean 定义资源：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9、DocumentLoader-将-Bean-定义资源转换为-Document-对象："><span class="nav-text">9、DocumentLoader 将 Bean 定义资源转换为 Document 对象：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10、XmlBeanDefinitionReader-解析载入的-Bean-定义资源文件："><span class="nav-text">10、XmlBeanDefinitionReader 解析载入的 Bean 定义资源文件：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11、DefaultBeanDefinitionDocumentReader-对-Bean-定义的-Document-对象解析："><span class="nav-text">11、DefaultBeanDefinitionDocumentReader 对 Bean 定义的 Document 对象解析：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12、BeanDefinitionParserDelegate-解析-Bean-定义资源文件中的-lt-Bean-gt-元素："><span class="nav-text">12、BeanDefinitionParserDelegate 解析 Bean 定义资源文件中的 &lt;Bean&gt; 元素：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13、BeanDefinitionParserDelegate-解析-lt-property-gt-元素："><span class="nav-text">13、BeanDefinitionParserDelegate 解析 &lt;property&gt; 元素：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14、解析-lt-property-gt-元素的子元素："><span class="nav-text">14、解析 &lt;property&gt; 元素的子元素：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15、解析-lt-list-gt-子元素："><span class="nav-text">15、解析 &lt;list&gt;子元素：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16、解析过后的-BeanDefinition-在-IoC-容器中的注册："><span class="nav-text">16、解析过后的 BeanDefinition 在 IoC 容器中的注册：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17、DefaultListableBeanFactory-向-IoC-容器注册解析后的-BeanDefinition："><span class="nav-text">17、DefaultListableBeanFactory 向 IoC 容器注册解析后的 BeanDefinition：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结："><span class="nav-text">总结：</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CloudPai</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">624.3k</span>
+  
+</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv">  </span>
+</span>
+</div>
+
+
+
+
+
+
+
+  <div class="theme-info">&#12288;主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://cloudpai.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://cloudpai.site/2018/04/05/2018-04-05/';
+          this.page.identifier = '2018/04/05/2018-04-05/';
+          this.page.title = 'Spring技术内幕：IoC容器的初始化 总结';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cloudpai.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!-- <!-- <script src="https://cdn.bootcss.com/aplayer/1.6.0/APlayer.min.js"></script>
+
+<script src="https://api.i-meto.com/music/player.js"></script> --> -->
+  
+  <!--移动端判断，是否引入背景-->
+  <script>
+  var browser={  
+      versions:function(){   
+             var u = navigator.userAgent, app = navigator.appVersion;   
+             return {//移动终端浏览器版本信息
+                  trident: u.indexOf('Trident') > -1, //IE内核
+                  presto: u.indexOf('Presto') > -1, //opera内核
+                  webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                  gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                  mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                  ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                  android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                  iPhone: u.indexOf('iPhone') > -1 , //是否为iPhone或者QQHD浏览器
+                  iPad: u.indexOf('iPad') > -1, //是否iPad
+                  webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+              };  
+           }(),  
+           language:(navigator.browserLanguage || navigator.language).toLowerCase()  
+  }   
+    if(browser.versions.mobile || browser.versions.ios || browser.versions.android ||   
+      browser.versions.iPhone || browser.versions.iPad){        
+               
+    }else{
+    document.write("<script type=\'text/javascript\'  src=\'/js/src/particle.js\'><\/script>");
+    }
+  </script>
+
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":-80,"vOffset":-50},"mobile":{"show":false,"scale":0.2},"react":{"opacityDefault":1,"opacityOnHover":0.2}});</script></body>
+</html>
