@@ -81,20 +81,25 @@
 
 
 
-<meta name="description" content="IOC设计精髓：主要实用了设计模式中的委托模式通过某类的子类来实现该类的功能，以达到功能实现类与该类之间的解耦。 IoC 容器的初始化包括 BeanDefinition 的 Resource 定位、载入和注册这三个基本的过程。 具体实现流程 2.设置资源加载器和资源定位此处做了以下两件事：  调用父类容器的构造方法 (super(parent) 方法)为容器设置好 Bean 资源加载器。 再调用">
+<meta name="description" content="IOC设计精髓：主要实用了设计模式中的委托模式通过某类的子类来实现该类的功能，以达到功能实现类与该类之间的解耦。 IoC 容器的初始化包括 BeanDefinition 的 Resource 定位、载入和解析和注册这三个基本的过程。 这三个过程是分开进行的，也是解耦的一个体现。   IOC容器用来管理对象依赖关系的，对IOC容器来说 BeanDefinition就是对依赖关反转模式中管理的对象依">
 <meta name="keywords" content="Spring,源码,IOC">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring技术内幕：IoC容器的初始化 总结">
 <meta property="og:url" content="http://cloudpai.site/2018/04/05/2018-04-05/index.html">
 <meta property="og:site_name" content="CloudPai">
-<meta property="og:description" content="IOC设计精髓：主要实用了设计模式中的委托模式通过某类的子类来实现该类的功能，以达到功能实现类与该类之间的解耦。 IoC 容器的初始化包括 BeanDefinition 的 Resource 定位、载入和注册这三个基本的过程。 具体实现流程 2.设置资源加载器和资源定位此处做了以下两件事：  调用父类容器的构造方法 (super(parent) 方法)为容器设置好 Bean 资源加载器。 再调用">
+<meta property="og:description" content="IOC设计精髓：主要实用了设计模式中的委托模式通过某类的子类来实现该类的功能，以达到功能实现类与该类之间的解耦。 IoC 容器的初始化包括 BeanDefinition 的 Resource 定位、载入和解析和注册这三个基本的过程。 这三个过程是分开进行的，也是解耦的一个体现。   IOC容器用来管理对象依赖关系的，对IOC容器来说 BeanDefinition就是对依赖关反转模式中管理的对象依">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15229860759923.jpg">
 <meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15229391298441.jpg">
-<meta property="og:updated_time" content="2018-04-05T14:42:27.252Z">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15229956918457.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15230065191510.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15229976605941.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15229975568629.jpg">
+<meta property="og:updated_time" content="2018-04-06T09:25:02.576Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring技术内幕：IoC容器的初始化 总结">
-<meta name="twitter:description" content="IOC设计精髓：主要实用了设计模式中的委托模式通过某类的子类来实现该类的功能，以达到功能实现类与该类之间的解耦。 IoC 容器的初始化包括 BeanDefinition 的 Resource 定位、载入和注册这三个基本的过程。 具体实现流程 2.设置资源加载器和资源定位此处做了以下两件事：  调用父类容器的构造方法 (super(parent) 方法)为容器设置好 Bean 资源加载器。 再调用">
-<meta name="twitter:image" content="http://p4lmrb1gp.bkt.clouddn.com/15229391298441.jpg">
+<meta name="twitter:description" content="IOC设计精髓：主要实用了设计模式中的委托模式通过某类的子类来实现该类的功能，以达到功能实现类与该类之间的解耦。 IoC 容器的初始化包括 BeanDefinition 的 Resource 定位、载入和解析和注册这三个基本的过程。 这三个过程是分开进行的，也是解耦的一个体现。   IOC容器用来管理对象依赖关系的，对IOC容器来说 BeanDefinition就是对依赖关反转模式中管理的对象依">
+<meta name="twitter:image" content="http://p4lmrb1gp.bkt.clouddn.com/15229860759923.jpg">
 
 
 
@@ -336,8 +341,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-04-05T22:42:27+08:00">
-                2018-04-05
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-06T17:25:02+08:00">
+                2018-04-06
               </time>
             
           </span>
@@ -375,7 +380,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,916
+                  3,403
                 </span>
               
 
@@ -391,7 +396,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  11
+                  12
                 </span>
               
             </div>
@@ -413,36 +418,53 @@
 
       
         <script src="/assets/js/APlayer.min.js"> </script><h1 id="IOC设计精髓："><a href="#IOC设计精髓：" class="headerlink" title="IOC设计精髓："></a>IOC设计精髓：</h1><p>主要实用了设计模式中的<strong>委托模式</strong><br>通过某类的子类来实现该类的功能，以达到功能实现类与该类之间的解耦。</p>
-<p>IoC 容器的初始化包括 <strong>BeanDefinition 的 Resource 定位</strong>、<strong>载入</strong>和<strong>注册</strong>这三个基本的过程。</p>
-<h1 id="具体实现流程"><a href="#具体实现流程" class="headerlink" title="具体实现流程"></a>具体实现流程</h1><p><img src="http://p4lmrb1gp.bkt.clouddn.com/15229391298441.jpg" alt=""></p>
-<h2 id="2-设置资源加载器和资源定位"><a href="#2-设置资源加载器和资源定位" class="headerlink" title="2.设置资源加载器和资源定位"></a>2.设置资源加载器和资源定位</h2><p>此处做了以下两件事：</p>
+<p>IoC 容器的初始化包括 <strong>BeanDefinition 的 Resource 定位</strong>、<strong>载入和解析</strong>和<strong>注册</strong>这三个基本的过程。</p>
+<p>这三个过程是分开进行的，也是<strong>解耦</strong>的一个体现。</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15229860759923.jpg" alt=""></p>
+<blockquote>
+<p>IOC容器用来管理对象依赖关系的，对IOC容器来说 BeanDefinition就是对依赖关反转模式中管理的对象依赖关系的数据抽象，也是容器实现依赖反转的核心数据结构，依赖反转功能都是围绕这个BeanDefinition的处理完成的。这些BeanDefinition就像是容器里装的水。</p>
+</blockquote>
+<h1 id="具体实现流程"><a href="#具体实现流程" class="headerlink" title="具体实现流程"></a>具体实现流程</h1><p>整个过程就如同一句广告词：”我们不生产水，我们只是大自然的搬运工。“</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15229391298441.jpg" alt=""><br>ApplicationContext （高富帅IOC）提供了供不同Resource类型的读入功能的类，如FileSystemXmlApplicationContext ，ClassPathXmlApplicationContext，XmlWebApplicationContext等等</p>
+<p>这里以FileSystemXmlApplicationContext为例。</p>
+<h2 id="一-设置资源加载器和BeanDefinition-的-Resource-定位"><a href="#一-设置资源加载器和BeanDefinition-的-Resource-定位" class="headerlink" title="一.设置资源加载器和BeanDefinition 的 Resource 定位"></a>一.设置资源加载器和BeanDefinition 的 Resource 定位</h2><p><em>这个定位过程类似于容器寻找数据的过程，就像”拿着水桶去找水源“。</em></p>
+<p>该过程中涉及的类和方法时序图调用如下：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15229956918457.jpg" alt=""></p>
+<h3 id="1-设置资源加载器：FileSystemXmlApplicationContext的初始化"><a href="#1-设置资源加载器：FileSystemXmlApplicationContext的初始化" class="headerlink" title="1.设置资源加载器：FileSystemXmlApplicationContext的初始化"></a>1.设置资源加载器：FileSystemXmlApplicationContext的初始化</h3><p><em>这里要完成创建“水桶”的过程。</em></p>
+<p>在FileSystemXmlApplicationContext的构造函数中<strong>通过refresh方法来启动IOC容器的初始化</strong></p>
+<h3 id="2-资源定位：AbstractRefreshableConfigApplicationContext确定资源路径"><a href="#2-资源定位：AbstractRefreshableConfigApplicationContext确定资源路径" class="headerlink" title="2.资源定位：AbstractRefreshableConfigApplicationContext确定资源路径"></a>2.资源定位：AbstractRefreshableConfigApplicationContext确定资源路径</h3><p><em>这里要完成“确定水源”的过程。</em></p>
+<p>此处做了以下两件事：</p>
 <ol>
 <li>调用父类容器的构造方法 (super(parent) 方法)为容器设置好 Bean 资源加载器。</li>
 <li><p>再调用父类 AbstractRefreshableConfigApplicationContext 的 setConfigLocations(configLocations) 方法设置 Bean 定义资源文件的定位路径。</p>
 <p> 可以使用两种方式匹配资源文件路径：<br> 1).一个字符串来配置多个 Spring Bean 定义资源文件<br> 2).使用字符串数组</p>
 </li>
 </ol>
-<h2 id="3-AbstractApplicationContext-的-refresh-函数载入-Bean-定义"><a href="#3-AbstractApplicationContext-的-refresh-函数载入-Bean-定义" class="headerlink" title="3.AbstractApplicationContext 的 refresh 函数载入 Bean 定义"></a>3.AbstractApplicationContext 的 refresh 函数载入 Bean 定义</h2><p>是 refresh() 函数之后：<strong>开始 Spring IoC 容器对 Bean 定义资源的载入</strong></p>
+<h2 id="二-BeanDefinition-的载入"><a href="#二-BeanDefinition-的载入" class="headerlink" title="二.BeanDefinition 的载入"></a>二.BeanDefinition 的载入</h2><p><em>接下来需要进行的就是“将水装入水桶”的过程。</em></p>
+<p>该过程中涉及的类和方法调用的时序图如下：<br><img src="http://p4lmrb1gp.bkt.clouddn.com/15230065191510.jpg" alt=""></p>
+<h3 id="3-AbstractApplicationContext-的-refresh-函数载入Bean定义"><a href="#3-AbstractApplicationContext-的-refresh-函数载入Bean定义" class="headerlink" title="3.AbstractApplicationContext 的 refresh 函数载入Bean定义"></a>3.AbstractApplicationContext 的 refresh 函数载入Bean定义</h3><p>refresh() 函数：<strong>开始 Spring IoC 容器对 Bean 定义资源的载入</strong></p>
 <p>refresh() 方法的作用是：在创建 IoC 容器前，如果已经有容器存在，则需要把已有的容器销毁和关闭，以保证在 refresh 之后使用的是新建立起来的 IoC 容器。refresh 的作用类似于对 IoC 容器的重启，在新建立好的容器中对容器进行初始化，对 Bean 定义资源进行载入</p>
-<h2 id="4、AbstractApplicationContext-子类的-refreshBeanFactory-方法："><a href="#4、AbstractApplicationContext-子类的-refreshBeanFactory-方法：" class="headerlink" title="4、AbstractApplicationContext 子类的 refreshBeanFactory() 方法："></a>4、AbstractApplicationContext 子类的 refreshBeanFactory() 方法：</h2><p>使用了<strong>委派模式</strong>：在当前类中只定义了抽象的loadBeanDefinitions方法，具体是调用其子类AbstractRefreshableApplicationContext 实现的 refreshBeanFactory() 方法</p>
+<h3 id="4、AbstractApplicationContext-子类的-refreshBeanFactory-方法："><a href="#4、AbstractApplicationContext-子类的-refreshBeanFactory-方法：" class="headerlink" title="4、AbstractApplicationContext 子类的 refreshBeanFactory() 方法："></a>4、AbstractApplicationContext 子类的 refreshBeanFactory() 方法：</h3><p>使用了<strong>委派模式</strong>：在当前类中只定义了抽象的loadBeanDefinitions方法，具体是调用其子类AbstractRefreshableApplicationContext 实现的 refreshBeanFactory() 方法</p>
 <p>子类的具体实现功能：</p>
 <p>先判断 BeanFactory 是否存在，如果存在则先销毁 beans 并关闭 beanFactory，接着创建 DefaultListableBeanFactory，并调用 loadBeanDefinitions(beanFactory) <strong>装载 bean定义</strong>。</p>
-<h2 id="5、AbstractRefreshableApplicationContext-子类的-loadBeanDefinitions-方法："><a href="#5、AbstractRefreshableApplicationContext-子类的-loadBeanDefinitions-方法：" class="headerlink" title="5、AbstractRefreshableApplicationContext 子类的 loadBeanDefinitions 方法："></a>5、AbstractRefreshableApplicationContext 子类的 loadBeanDefinitions 方法：</h2><p>使用了<strong>委托模式</strong>：当前类AbstractRefreshableApplicationContext 中只定义了抽象的 loadBeanDefinitions 方法，容器真正调用的是其子类 AbstractXmlApplicationContext 对该方法的实现。</p>
+<h3 id="5、AbstractRefreshableApplicationContext-子类的-loadBeanDefinitions-方法："><a href="#5、AbstractRefreshableApplicationContext-子类的-loadBeanDefinitions-方法：" class="headerlink" title="5、AbstractRefreshableApplicationContext 子类的 loadBeanDefinitions 方法："></a>5、AbstractRefreshableApplicationContext 子类的 loadBeanDefinitions 方法：</h3><p>使用了<strong>委派模式</strong>：当前类AbstractRefreshableApplicationContext 中只定义了抽象的 loadBeanDefinitions 方法，容器真正调用的是其子类 AbstractXmlApplicationContext 对该方法的实现。</p>
 <p>子类的具体实现功能：</p>
 <p><strong>Xml Bean 读取器</strong> (XmlBeanDefinitionReader) 调用其父类 AbstractBeanDefinitionReader 的 reader.loadBeanDefinitions 方法<strong>读取 Bean 定义资源</strong>。</p>
-<h2 id="6、AbstractBeanDefinitionReader-读取-Bean-定义资源（loadBeanDefinitions-方法）："><a href="#6、AbstractBeanDefinitionReader-读取-Bean-定义资源（loadBeanDefinitions-方法）：" class="headerlink" title="6、AbstractBeanDefinitionReader 读取 Bean 定义资源（loadBeanDefinitions 方法）："></a>6、AbstractBeanDefinitionReader 读取 Bean 定义资源（loadBeanDefinitions 方法）：</h2><p>该方法做了以下两件事：</p>
+<h3 id="6、AbstractBeanDefinitionReader-读取-Bean-定义资源（只是一个接口类）："><a href="#6、AbstractBeanDefinitionReader-读取-Bean-定义资源（只是一个接口类）：" class="headerlink" title="6、AbstractBeanDefinitionReader 读取 Bean 定义资源（只是一个接口类）："></a>6、AbstractBeanDefinitionReader 读取 Bean 定义资源（只是一个接口类）：</h3><p>该方法做了以下两件事：</p>
 <p>1.<strong>调用资源加载器</strong>的获取资源方法 resourceLoader.getResource(location)，<strong>获取到要加载的资源</strong>。</p>
 <p>2.<strong>真正执行加载功能</strong>是其子类 XmlBeanDefinitionReader 的 loadBeanDefinitions 方法。</p>
-<h2 id="7、资源加载器获取要读入的资源："><a href="#7、资源加载器获取要读入的资源：" class="headerlink" title="7、资源加载器获取要读入的资源："></a>7、资源加载器获取要读入的资源：</h2><p>XmlBeanDefinitionReader 通过调用其父类 DefaultResourceLoader 的 getResource 方法获取要加载的资源</p>
+<h3 id="7、资源加载器获取要读入的资源："><a href="#7、资源加载器获取要读入的资源：" class="headerlink" title="7、资源加载器获取要读入的资源："></a>7、资源加载器获取要读入的资源：</h3><p>XmlBeanDefinitionReader 通过调用其父类 DefaultResourceLoader 的 getResource 方法获取要加载的资源</p>
 <p>通过资源路径来获取Resource的具体实现方法分为以下三种情况：</p>
 <p>1.如果是类路径的方式，那需要使用ClassPathResource 来得到bean 文件的资源对象<br>2.如果是URL 方式，使用UrlResource 作为bean 文件的资源对象<br>3.如果既不是classpath标识，又不是URL标识的Resource定位，则调用容器本身的getResourceByPath方法获取Resource  </p>
-<h2 id="8、XmlBeanDefinitionReader-加载-Bean-定义资源："><a href="#8、XmlBeanDefinitionReader-加载-Bean-定义资源：" class="headerlink" title="8、XmlBeanDefinitionReader 加载 Bean 定义资源："></a>8、XmlBeanDefinitionReader 加载 Bean 定义资源：</h2><p>XmlBeanDefinitionReader加载资源的入口方法：分为以下几步：</p>
+<h3 id="8、XmlBeanDefinitionReader-加载-Bean-定义资源：（整体是加载过程，其中有一个转换过程）"><a href="#8、XmlBeanDefinitionReader-加载-Bean-定义资源：（整体是加载过程，其中有一个转换过程）" class="headerlink" title="8、XmlBeanDefinitionReader 加载 Bean 定义资源：（整体是加载过程，其中有一个转换过程）"></a>8、XmlBeanDefinitionReader 加载 Bean 定义资源：（整体是加载过程，其中有一个转换过程）</h3><p>XmlBeanDefinitionReader加载资源的入口方法：分为以下几步：</p>
 <p>1.将读入的XML资源进行特殊编码处理<br>2.将资源文件转为InputStream的IO流<br>3.从InputStream中得到XML的解析源<br>4.<strong>将XML文件转换为DOM对象，解析过程由documentLoader实现</strong><br>5.关闭从Resource中得到的IO流</p>
-<h2 id="9、DocumentLoader-将-Bean-定义资源转换为-Document-对象："><a href="#9、DocumentLoader-将-Bean-定义资源转换为-Document-对象：" class="headerlink" title="9、DocumentLoader 将 Bean 定义资源转换为 Document 对象："></a>9、DocumentLoader 将 Bean 定义资源转换为 Document 对象：</h2><p>使用 JavaEE标准的JAXP<strong>将载入的Bean定义资源转换成document对象</strong></p>
-<h2 id="10、XmlBeanDefinitionReader-解析载入的-Bean-定义资源文件："><a href="#10、XmlBeanDefinitionReader-解析载入的-Bean-定义资源文件：" class="headerlink" title="10、XmlBeanDefinitionReader 解析载入的 Bean 定义资源文件："></a>10、XmlBeanDefinitionReader 解析载入的 Bean 定义资源文件：</h2><p>Bean 定义资源的载入解析分为以下两个过程：</p>
+<h2 id="三-BeanDefinition-的解析"><a href="#三-BeanDefinition-的解析" class="headerlink" title="三.BeanDefinition 的解析"></a>三.BeanDefinition 的解析</h2><p><em>接下来需要进行的就是“将水中的杂质逐一过滤掉变成饮用水”的过程。</em></p>
+<p>该过程中涉及的类和方法时序图调用如下：<br><img src="http://p4lmrb1gp.bkt.clouddn.com/15229976605941.jpg" alt=""></p>
+<h3 id="9、DocumentLoader-将-Bean-定义资源转换为-Document-对象："><a href="#9、DocumentLoader-将-Bean-定义资源转换为-Document-对象：" class="headerlink" title="9、DocumentLoader 将 Bean 定义资源转换为 Document 对象："></a>9、DocumentLoader 将 Bean 定义资源转换为 Document 对象：</h3><p>使用 JavaEE标准的JAXP<strong>将载入的Bean定义资源转换成document对象</strong></p>
+<h3 id="10、XmlBeanDefinitionReader-解析载入的-Bean-定义资源文件："><a href="#10、XmlBeanDefinitionReader-解析载入的-Bean-定义资源文件：" class="headerlink" title="10、XmlBeanDefinitionReader 解析载入的 Bean 定义资源文件："></a>10、XmlBeanDefinitionReader 解析载入的 Bean 定义资源文件：</h3><p>Bean 定义资源的载入解析分为以下两个过程：</p>
 <p>首先，通过调用 XML 解析器将 Bean 定义资源文件转换得到 Document 对象，但是这些 Document 对象并没有按照 Spring 的 Bean 规则进行解析。这一步是<strong>载入</strong>的过程</p>
 <p>其次，在完成通用的 XML 解析之后，<strong>按照 Spring 的 Bean 规则对 Document 对象进行解析</strong>。</p>
-<h2 id="11、DefaultBeanDefinitionDocumentReader-对-Bean-定义的-Document-对象解析："><a href="#11、DefaultBeanDefinitionDocumentReader-对-Bean-定义的-Document-对象解析：" class="headerlink" title="11、DefaultBeanDefinitionDocumentReader 对 Bean 定义的 Document 对象解析："></a>11、DefaultBeanDefinitionDocumentReader 对 Bean 定义的 Document 对象解析：</h2><p>对 Bean 定义的 Document 对象解析不同标签来导入 IoC 容器所需要的其他资源，分为三种情况： </p>
+<h3 id="11、DefaultBeanDefinitionDocumentReader-对-Bean-定义的-Document-对象解析："><a href="#11、DefaultBeanDefinitionDocumentReader-对-Bean-定义的-Document-对象解析：" class="headerlink" title="11、DefaultBeanDefinitionDocumentReader 对 Bean 定义的 Document 对象解析："></a>11、DefaultBeanDefinitionDocumentReader 对 Bean 定义的 Document 对象解析：</h3><p>对 Bean 定义的 Document 对象解析不同标签来导入 IoC 容器所需要的其他资源，分为三种情况： </p>
 <ol>
 <li><p>使用<code>&lt;Import&gt;</code> 元素：<br>Spring IoC 容器在解析时会首先将指定导入的资源加载进容器中。</p>
 </li>
@@ -450,8 +472,8 @@
 </li>
 <li>对于既不是 <code>&lt;Import&gt;</code>元素，又不是 <code>&lt; Alias &gt;</code>元素的元素：<br>即 Spring 配置文件中普通的 <code>&lt; Bean &gt;</code> 元素的解析由 BeanDefinitionParserDelegate 类的 parseBeanDefinitionElement 方法来实现。</li>
 </ol>
-<h2 id="12、BeanDefinitionParserDelegate-解析-Bean-定义资源文件中的-lt-Bean-gt-元素："><a href="#12、BeanDefinitionParserDelegate-解析-Bean-定义资源文件中的-lt-Bean-gt-元素：" class="headerlink" title="12、BeanDefinitionParserDelegate 解析 Bean 定义资源文件中的 &lt;Bean&gt; 元素："></a>12、BeanDefinitionParserDelegate 解析 Bean 定义资源文件中的 <code>&lt;Bean&gt;</code> 元素：</h2><p>注意：在解析 <code>&lt;Bean&gt;</code> 元素过程中没有创建和实例化 Bean 对象，只是创建了 Bean 对象的定义类 BeanDefinition，将 <code>&lt; Bean &gt;</code> 元素中的配置信息设置到 BeanDefinition 中作为记录，当依赖注入时才使用这些记录信息创建和实例化具体的 Bean 对象。</p>
-<h2 id="13、BeanDefinitionParserDelegate-解析-lt-property-gt-元素："><a href="#13、BeanDefinitionParserDelegate-解析-lt-property-gt-元素：" class="headerlink" title="13、BeanDefinitionParserDelegate 解析 &lt;property&gt; 元素："></a>13、BeanDefinitionParserDelegate 解析 <code>&lt;property&gt;</code> 元素：</h2><p>我们在使用 Spring 的 <code>&lt; Bean &gt;</code> 元素时，配置最多的是 <code>&lt; property &gt;</code> 属性。在 Spring 配置文件中，<code>&lt;Bean&gt;</code>元素中 <code>&lt; property &gt;</code> 元素的相关配置是按照如下处理的：</p>
+<h3 id="12、BeanDefinitionParserDelegate-解析-Bean-定义资源文件中的-lt-Bean-gt-元素："><a href="#12、BeanDefinitionParserDelegate-解析-Bean-定义资源文件中的-lt-Bean-gt-元素：" class="headerlink" title="12、BeanDefinitionParserDelegate 解析 Bean 定义资源文件中的 &lt;Bean&gt; 元素："></a>12、BeanDefinitionParserDelegate 解析 Bean 定义资源文件中的 <code>&lt;Bean&gt;</code> 元素：</h3><p>注意：在解析 <code>&lt;Bean&gt;</code> 元素过程中没有创建和实例化 Bean 对象，只是创建了 Bean 对象的定义类 BeanDefinition，将 <code>&lt; Bean &gt;</code> 元素中的配置信息设置到 BeanDefinition 中作为记录，当依赖注入时才使用这些记录信息创建和实例化具体的 Bean 对象。</p>
+<h3 id="13、BeanDefinitionParserDelegate-解析-lt-property-gt-元素："><a href="#13、BeanDefinitionParserDelegate-解析-lt-property-gt-元素：" class="headerlink" title="13、BeanDefinitionParserDelegate 解析 &lt;property&gt; 元素："></a>13、BeanDefinitionParserDelegate 解析 <code>&lt;property&gt;</code> 元素：</h3><p>我们在使用 Spring 的 <code>&lt; Bean &gt;</code> 元素时，配置最多的是 <code>&lt; property &gt;</code> 属性。在 Spring 配置文件中，<code>&lt;Bean&gt;</code>元素中 <code>&lt; property &gt;</code> 元素的相关配置是按照如下处理的：</p>
 <ol>
 <li><p>ref 被封装为指向依赖对象一个引用。</p>
 </li>
@@ -460,9 +482,9 @@
 <li><p>ref 和 value 都通过 “解析的数据类型属性值. setSource(extractSource(ele));” 方法将属性值 / 引用与所引用的属性关联起来。</p>
 </li>
 </ol>
-<h2 id="14、解析-lt-property-gt-元素的子元素："><a href="#14、解析-lt-property-gt-元素的子元素：" class="headerlink" title="14、解析 &lt;property&gt; 元素的子元素："></a>14、解析 <code>&lt;property&gt;</code> 元素的子元素：</h2><p>在 BeanDefinitionParserDelegate 类中的 parsePropertySubElement 方法对 <code>&lt;property&gt;</code>中的子元素解析</p>
+<h3 id="14、解析-lt-property-gt-元素的子元素："><a href="#14、解析-lt-property-gt-元素的子元素：" class="headerlink" title="14、解析 &lt;property&gt; 元素的子元素："></a>14、解析 <code>&lt;property&gt;</code> 元素的子元素：</h3><p>在 BeanDefinitionParserDelegate 类中的 parsePropertySubElement 方法对 <code>&lt;property&gt;</code>中的子元素解析</p>
 <p>在 Spring 配置文件中，对 <code>&lt;property&gt;</code> 元素中配置的 Array、List、Set、Map、Prop 等各种集合子元素的都通过上述方法解析，生成对应的数据对象，比如 ManagedList、ManagedArray、ManagedSet 等，这些 Managed 类是 Spring 对象 BeanDefiniton 的数据封装，对集合数据类型的具体解析有各自的解析方法实现，解析方法的命名非常规范，一目了然。</p>
-<h2 id="15、解析-lt-list-gt-子元素："><a href="#15、解析-lt-list-gt-子元素：" class="headerlink" title="15、解析 &lt;list&gt;子元素："></a>15、解析 <code>&lt;list&gt;</code>子元素：</h2><p>在 BeanDefinitionParserDelegate 类中的 parseListElement 方法就是具体实现解析 <code>&lt;property&gt;</code>元素中的 <code>&lt; list &gt;</code>集合子元素</p>
+<h3 id="15、解析-lt-list-gt-子元素："><a href="#15、解析-lt-list-gt-子元素：" class="headerlink" title="15、解析 &lt;list&gt;子元素："></a>15、解析 <code>&lt;list&gt;</code>子元素：</h3><p>在 BeanDefinitionParserDelegate 类中的 parseListElement 方法就是具体实现解析 <code>&lt;property&gt;</code>元素中的 <code>&lt; list &gt;</code>集合子元素</p>
 <p>解析过程如下：</p>
 <ol>
 <li>获取<code>&lt;list&gt;</code>元素中的value-type属性，即获取集合元素的数据类型 </li>
@@ -471,14 +493,17 @@
 <li>设置集合目标数据类型  </li>
 <li>具体解析<list>集合元素，<array>、<list>和<set>都使用该方法解析</set></list></array></list></li>
 </ol>
-<h2 id="16、解析过后的-BeanDefinition-在-IoC-容器中的注册："><a href="#16、解析过后的-BeanDefinition-在-IoC-容器中的注册：" class="headerlink" title="16、解析过后的 BeanDefinition 在 IoC 容器中的注册："></a>16、解析过后的 BeanDefinition 在 IoC 容器中的注册：</h2><p>通过 Spring IoC 容器对 Bean 定义资源的解析后，IoC 容器大致完成了管理 Bean 对象的准备工作，即初始化过程，但是最为重要的<strong>依赖注入</strong>还没有发生，现在在 IoC 容器中 BeanDefinition 存储的只是一些静态信息，接下来需要<strong>向容器注册 Bean 定义信息</strong>才能全部完成 IoC 容器的初始化过程</p>
+<h2 id="四-BeanDefinition-的注册"><a href="#四-BeanDefinition-的注册" class="headerlink" title="四.BeanDefinition 的注册"></a>四.BeanDefinition 的注册</h2><p><em>接下来需要进行的就是“将水桶中的饮用水封装好”的过程。</em></p>
+<p>该过程中涉及的类和方法时序图调用如下：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15229975568629.jpg" alt=""></p>
+<h3 id="16、解析过后的-BeanDefinition-在-IoC-容器中的注册："><a href="#16、解析过后的-BeanDefinition-在-IoC-容器中的注册：" class="headerlink" title="16、解析过后的 BeanDefinition 在 IoC 容器中的注册："></a>16、解析过后的 BeanDefinition 在 IoC 容器中的注册：</h3><p>通过 Spring IoC 容器对 Bean 定义资源的解析后，IoC 容器大致完成了管理 Bean 对象的准备工作，即初始化过程，但是最为重要的<strong>依赖注入</strong>还没有发生，现在在 IoC 容器中 BeanDefinition 存储的只是一些静态信息，接下来需要<strong>向容器注册 Bean 定义信息</strong>才能全部完成 IoC 容器的初始化过程</p>
 <p>具体过程如下：</p>
 <ol>
 <li>获取解析的BeanDefinition的名称</li>
 <li>向IoC容器注册BeanDefinition </li>
 <li>如果解析的BeanDefinition有别名，向容器为其注册别名</li>
 </ol>
-<h2 id="17、DefaultListableBeanFactory-向-IoC-容器注册解析后的-BeanDefinition："><a href="#17、DefaultListableBeanFactory-向-IoC-容器注册解析后的-BeanDefinition：" class="headerlink" title="17、DefaultListableBeanFactory 向 IoC 容器注册解析后的 BeanDefinition："></a>17、DefaultListableBeanFactory 向 IoC 容器注册解析后的 BeanDefinition：</h2><p>当调用 BeanDefinitionReaderUtils 向 IoC 容器注册解析的 BeanDefinition 时，真正完成注册功能的是 DefaultListableBeanFactory，它使用一个 HashMap 的集合对象存放 IoC 容器中注册解析的 BeanDefinition</p>
+<h3 id="17、DefaultListableBeanFactory-向-IoC-容器注册解析后的-BeanDefinition："><a href="#17、DefaultListableBeanFactory-向-IoC-容器注册解析后的-BeanDefinition：" class="headerlink" title="17、DefaultListableBeanFactory 向 IoC 容器注册解析后的 BeanDefinition："></a>17、DefaultListableBeanFactory 向 IoC 容器注册解析后的 BeanDefinition：</h3><p>当调用 BeanDefinitionReaderUtils 向 IoC 容器注册解析的 BeanDefinition 时，真正完成注册功能的是 DefaultListableBeanFactory，它使用一个 HashMap 的集合对象存放 IoC 容器中注册解析的 BeanDefinition</p>
 <p>至此，Bean 定义资源文件中配置的 Bean 被解析过后，已经注册到 IoC 容器中，被容器管理起来，真正完成了 IoC 容器初始化所做的全部工作。现 在 IoC 容器中已经建立了整个 Bean 的配置信息，这些 BeanDefinition 信息已经可以使用，并且可以被检索，IoC 容器的作用就是对这些注册的 Bean 定义信息进行处理和维护。这些的注册的 Bean 定义信息是 IoC 容器控制反转的基础，正是有了这些注册的数据，容器才可以进行依赖注入。</p>
 <h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><p>现在通过上面的代码，总结一下 IOC 容器初始化的基本步骤：</p>
 <p>初始化的入口在容器实现中的 refresh() 调用来完成</p>
@@ -490,6 +515,10 @@
 <p>在使用 IOC 容器的时候，我们注意到除了少量粘合代码，绝大多数以正确 IoC 风格编写的应用程序代码完全不用关心如何到达工厂，因为容器将把这些对象与容器管理的其他对象钩在一起。<strong>基本的策略是把工厂放到已知的地方，最好是放在对预期使用的上下文有意义的地方，以及代码将实际需要访问工厂的地方</strong>。 Spring 本身提供了对声明式载入 web 应用程序用法的应用程序上下文, 并将其存储在 ServletContext 中的框架实现。具体可以参见以后的文章 </p>
 <p>在使用 Spring IOC 容器的时候我们还需要区别两个概念:</p>
 <p>Beanfactory 和 Factory bean，其中 <strong>BeanFactory 指的是 IOC 容器的编程抽象</strong>，比如 ApplicationContext， XmlBeanFactory 等，这些都是 IOC 容器的具体表现，需要使用什么样的容器由客户决定, 但 Spring 为我们提供了丰富的选择。 FactoryBean 只是一个可以在 IOC 而容器中被管理的一个 bean, 是对各种处理过程和资源使用的抽象, <strong>Factory bean 在需要时产生另一个对象，而不返回 FactoryBean 本身, 我们可以把它看成是一个抽象工厂</strong>，对它的调用返回的是工厂生产的产品。所有的 Factory bean 都实现特殊的 org.springframework.beans.factory.FactoryBean 接口，当使用容器中 factory bean 的时候，<strong>该容器不会返回 factory bean 本身, 而是返回其生成的对象</strong>。Spring 包括了大部分的通用资源和服务访问抽象的 Factory bean 的实现，其中包括: 对 JNDI 查询的处理，对代理对象的处理，对事务性代理的处理，对 RMI 代理的处理等，这些我们都可以看成是具体的工厂, 看成是 SPRING 为我们建立好的工厂。也就是说 <strong>Spring 通过使用抽象工厂模式为我们准备了一系列工厂来生产一些特定的对象, 免除我们手工重复的工作</strong>，我们要使用时只需要在 IOC 容器里配置好就能很方便的使用了</p>
+<hr>
+<blockquote>
+<p>参考：<br>Spring IOC启动流程 | ProcessOn免费在线作图,在线流程图,在线思维导图 |<br><a href="https://www.processon.com/view/58b68e55e4b0e3cc9fc28725" target="_blank" rel="noopener">https://www.processon.com/view/58b68e55e4b0e3cc9fc28725</a></p>
+</blockquote>
 
       
     </div>
@@ -773,7 +802,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#IOC设计精髓："><span class="nav-text">IOC设计精髓：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#具体实现流程"><span class="nav-text">具体实现流程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-设置资源加载器和资源定位"><span class="nav-text">2.设置资源加载器和资源定位</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-AbstractApplicationContext-的-refresh-函数载入-Bean-定义"><span class="nav-text">3.AbstractApplicationContext 的 refresh 函数载入 Bean 定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、AbstractApplicationContext-子类的-refreshBeanFactory-方法："><span class="nav-text">4、AbstractApplicationContext 子类的 refreshBeanFactory() 方法：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、AbstractRefreshableApplicationContext-子类的-loadBeanDefinitions-方法："><span class="nav-text">5、AbstractRefreshableApplicationContext 子类的 loadBeanDefinitions 方法：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6、AbstractBeanDefinitionReader-读取-Bean-定义资源（loadBeanDefinitions-方法）："><span class="nav-text">6、AbstractBeanDefinitionReader 读取 Bean 定义资源（loadBeanDefinitions 方法）：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7、资源加载器获取要读入的资源："><span class="nav-text">7、资源加载器获取要读入的资源：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8、XmlBeanDefinitionReader-加载-Bean-定义资源："><span class="nav-text">8、XmlBeanDefinitionReader 加载 Bean 定义资源：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9、DocumentLoader-将-Bean-定义资源转换为-Document-对象："><span class="nav-text">9、DocumentLoader 将 Bean 定义资源转换为 Document 对象：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10、XmlBeanDefinitionReader-解析载入的-Bean-定义资源文件："><span class="nav-text">10、XmlBeanDefinitionReader 解析载入的 Bean 定义资源文件：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11、DefaultBeanDefinitionDocumentReader-对-Bean-定义的-Document-对象解析："><span class="nav-text">11、DefaultBeanDefinitionDocumentReader 对 Bean 定义的 Document 对象解析：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12、BeanDefinitionParserDelegate-解析-Bean-定义资源文件中的-lt-Bean-gt-元素："><span class="nav-text">12、BeanDefinitionParserDelegate 解析 Bean 定义资源文件中的 &lt;Bean&gt; 元素：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13、BeanDefinitionParserDelegate-解析-lt-property-gt-元素："><span class="nav-text">13、BeanDefinitionParserDelegate 解析 &lt;property&gt; 元素：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14、解析-lt-property-gt-元素的子元素："><span class="nav-text">14、解析 &lt;property&gt; 元素的子元素：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15、解析-lt-list-gt-子元素："><span class="nav-text">15、解析 &lt;list&gt;子元素：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16、解析过后的-BeanDefinition-在-IoC-容器中的注册："><span class="nav-text">16、解析过后的 BeanDefinition 在 IoC 容器中的注册：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17、DefaultListableBeanFactory-向-IoC-容器注册解析后的-BeanDefinition："><span class="nav-text">17、DefaultListableBeanFactory 向 IoC 容器注册解析后的 BeanDefinition：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结："><span class="nav-text">总结：</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#IOC设计精髓："><span class="nav-text">IOC设计精髓：</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#具体实现流程"><span class="nav-text">具体实现流程</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一-设置资源加载器和BeanDefinition-的-Resource-定位"><span class="nav-text">一.设置资源加载器和BeanDefinition 的 Resource 定位</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-设置资源加载器：FileSystemXmlApplicationContext的初始化"><span class="nav-text">1.设置资源加载器：FileSystemXmlApplicationContext的初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-资源定位：AbstractRefreshableConfigApplicationContext确定资源路径"><span class="nav-text">2.资源定位：AbstractRefreshableConfigApplicationContext确定资源路径</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二-BeanDefinition-的载入"><span class="nav-text">二.BeanDefinition 的载入</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-AbstractApplicationContext-的-refresh-函数载入Bean定义"><span class="nav-text">3.AbstractApplicationContext 的 refresh 函数载入Bean定义</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、AbstractApplicationContext-子类的-refreshBeanFactory-方法："><span class="nav-text">4、AbstractApplicationContext 子类的 refreshBeanFactory() 方法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5、AbstractRefreshableApplicationContext-子类的-loadBeanDefinitions-方法："><span class="nav-text">5、AbstractRefreshableApplicationContext 子类的 loadBeanDefinitions 方法：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6、AbstractBeanDefinitionReader-读取-Bean-定义资源（只是一个接口类）："><span class="nav-text">6、AbstractBeanDefinitionReader 读取 Bean 定义资源（只是一个接口类）：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7、资源加载器获取要读入的资源："><span class="nav-text">7、资源加载器获取要读入的资源：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8、XmlBeanDefinitionReader-加载-Bean-定义资源：（整体是加载过程，其中有一个转换过程）"><span class="nav-text">8、XmlBeanDefinitionReader 加载 Bean 定义资源：（整体是加载过程，其中有一个转换过程）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三-BeanDefinition-的解析"><span class="nav-text">三.BeanDefinition 的解析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#9、DocumentLoader-将-Bean-定义资源转换为-Document-对象："><span class="nav-text">9、DocumentLoader 将 Bean 定义资源转换为 Document 对象：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10、XmlBeanDefinitionReader-解析载入的-Bean-定义资源文件："><span class="nav-text">10、XmlBeanDefinitionReader 解析载入的 Bean 定义资源文件：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#11、DefaultBeanDefinitionDocumentReader-对-Bean-定义的-Document-对象解析："><span class="nav-text">11、DefaultBeanDefinitionDocumentReader 对 Bean 定义的 Document 对象解析：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#12、BeanDefinitionParserDelegate-解析-Bean-定义资源文件中的-lt-Bean-gt-元素："><span class="nav-text">12、BeanDefinitionParserDelegate 解析 Bean 定义资源文件中的 &lt;Bean&gt; 元素：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#13、BeanDefinitionParserDelegate-解析-lt-property-gt-元素："><span class="nav-text">13、BeanDefinitionParserDelegate 解析 &lt;property&gt; 元素：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#14、解析-lt-property-gt-元素的子元素："><span class="nav-text">14、解析 &lt;property&gt; 元素的子元素：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#15、解析-lt-list-gt-子元素："><span class="nav-text">15、解析 &lt;list&gt;子元素：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四-BeanDefinition-的注册"><span class="nav-text">四.BeanDefinition 的注册</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#16、解析过后的-BeanDefinition-在-IoC-容器中的注册："><span class="nav-text">16、解析过后的 BeanDefinition 在 IoC 容器中的注册：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#17、DefaultListableBeanFactory-向-IoC-容器注册解析后的-BeanDefinition："><span class="nav-text">17、DefaultListableBeanFactory 向 IoC 容器注册解析后的 BeanDefinition：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结："><span class="nav-text">总结：</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -808,7 +837,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">624.3k</span>
+    <span title="Site words total count">624.7k</span>
   
 </div>
 
