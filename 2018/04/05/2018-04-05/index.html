@@ -84,7 +84,7 @@
 <meta name="description" content="IOC设计精髓：主要实用了设计模式中的委托模式通过某类的子类来实现该类的功能，以达到功能实现类与该类之间的解耦。 IoC 容器的初始化包括 BeanDefinition 的 Resource 定位、载入和解析和注册这三个基本的过程。 这三个过程是分开进行的，也是解耦的一个体现。   IOC容器用来管理对象依赖关系的，对IOC容器来说 BeanDefinition就是对依赖关反转模式中管理的对象依">
 <meta name="keywords" content="Spring,源码,IOC">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Spring技术内幕：IoC容器的初始化全过程总结">
+<meta property="og:title" content="Spring-IoC容器的初始化全过程：源码分析总结">
 <meta property="og:url" content="http://cloudpai.site/2018/04/05/2018-04-05/index.html">
 <meta property="og:site_name" content="CloudPai">
 <meta property="og:description" content="IOC设计精髓：主要实用了设计模式中的委托模式通过某类的子类来实现该类的功能，以达到功能实现类与该类之间的解耦。 IoC 容器的初始化包括 BeanDefinition 的 Resource 定位、载入和解析和注册这三个基本的过程。 这三个过程是分开进行的，也是解耦的一个体现。   IOC容器用来管理对象依赖关系的，对IOC容器来说 BeanDefinition就是对依赖关反转模式中管理的对象依">
@@ -92,13 +92,13 @@
 <meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15229860759923.jpg">
 <meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15229391298441.jpg">
 <meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/Jietu20180406-210342.jpg">
-<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/Jietu20180406-210421.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/Jietu20180407-151810.jpg">
 <meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/Jietu20180406-210728.jpg">
 <meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/Jietu20180406-210807.jpg">
-<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/spring ioc 初始化全过程时序图1.png">
-<meta property="og:updated_time" content="2018-04-06T13:42:39.645Z">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/spring ioc 初始化全过程时序图.jpg">
+<meta property="og:updated_time" content="2018-04-07T07:20:27.463Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Spring技术内幕：IoC容器的初始化全过程总结">
+<meta name="twitter:title" content="Spring-IoC容器的初始化全过程：源码分析总结">
 <meta name="twitter:description" content="IOC设计精髓：主要实用了设计模式中的委托模式通过某类的子类来实现该类的功能，以达到功能实现类与该类之间的解耦。 IoC 容器的初始化包括 BeanDefinition 的 Resource 定位、载入和解析和注册这三个基本的过程。 这三个过程是分开进行的，也是解耦的一个体现。   IOC容器用来管理对象依赖关系的，对IOC容器来说 BeanDefinition就是对依赖关反转模式中管理的对象依">
 <meta name="twitter:image" content="http://p4lmrb1gp.bkt.clouddn.com/15229860759923.jpg">
 
@@ -136,7 +136,7 @@
 
 
 
-  <title>Spring技术内幕：IoC容器的初始化全过程总结 | CloudPai</title>
+  <title>Spring-IoC容器的初始化全过程：源码分析总结 | CloudPai</title>
   
 
 
@@ -314,7 +314,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Spring技术内幕：IoC容器的初始化全过程总结</h1>
+          <h1 class="post-title" itemprop="name headline">Spring-IoC容器的初始化全过程：源码分析总结</h1>
         
 
         <div class="post-meta">
@@ -342,8 +342,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-04-06T21:42:39+08:00">
-                2018-04-06
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-07T15:20:27+08:00">
+                2018-04-07
               </time>
             
           </span>
@@ -438,7 +438,7 @@
 <p>调用父类 AbstractRefreshableConfigApplicationContext 的 setConfigLocations(configLocations) 方法设置 Bean 定义资源文件的定位路径。</p>
 <p>可以使用两种方式匹配资源文件路径：<br>1).一个字符串来配置多个 Spring Bean 定义资源文件<br>2).使用字符串数组</p>
 <h2 id="二-BeanDefinition-的载入"><a href="#二-BeanDefinition-的载入" class="headerlink" title="二.BeanDefinition 的载入"></a>二.BeanDefinition 的载入</h2><p><em>接下来需要进行的就是“将水装入水桶”的过程。</em></p>
-<p>该过程中涉及的类和方法调用的时序图如下：<br><img src="http://p4lmrb1gp.bkt.clouddn.com/Jietu20180406-210421.jpg" alt="Jietu20180406-210421"></p>
+<p>该过程中涉及的类和方法调用的时序图如下：<br><img src="http://p4lmrb1gp.bkt.clouddn.com/Jietu20180407-151810.jpg" alt="Jietu20180407-151810"></p>
 <h3 id="3-AbstractApplicationContext-的-refresh-函数载入Bean定义"><a href="#3-AbstractApplicationContext-的-refresh-函数载入Bean定义" class="headerlink" title="3.AbstractApplicationContext 的 refresh 函数载入Bean定义"></a>3.AbstractApplicationContext 的 refresh 函数载入Bean定义</h3><p>refresh() 函数：<strong>开始 Spring IoC 容器对 Bean 定义资源的载入</strong></p>
 <p>refresh() 方法的作用是：在创建 IoC 容器前，如果已经有容器存在，则需要把已有的容器销毁和关闭，以保证在 refresh 之后使用的是新建立起来的 IoC 容器。refresh 的作用类似于对 IoC 容器的重启，在新建立好的容器中对容器进行初始化，对 Bean 定义资源进行载入</p>
 <h3 id="4、AbstractApplicationContext-子类的-refreshBeanFactory-方法："><a href="#4、AbstractApplicationContext-子类的-refreshBeanFactory-方法：" class="headerlink" title="4、AbstractApplicationContext 子类的 refreshBeanFactory() 方法："></a>4、AbstractApplicationContext 子类的 refreshBeanFactory() 方法：</h3><p>使用了<strong>委派模式</strong>：在当前类中只定义了抽象的loadBeanDefinitions方法，具体是调用其子类AbstractRefreshableApplicationContext 实现的 refreshBeanFactory() 方法</p>
@@ -501,7 +501,7 @@
 </ol>
 <h3 id="17、DefaultListableBeanFactory-向-IoC-容器注册解析后的-BeanDefinition："><a href="#17、DefaultListableBeanFactory-向-IoC-容器注册解析后的-BeanDefinition：" class="headerlink" title="17、DefaultListableBeanFactory 向 IoC 容器注册解析后的 BeanDefinition："></a>17、DefaultListableBeanFactory 向 IoC 容器注册解析后的 BeanDefinition：</h3><p>当调用 BeanDefinitionReaderUtils 向 IoC 容器注册解析的 BeanDefinition 时，真正完成注册功能的是 DefaultListableBeanFactory，它使用一个 HashMap 的集合对象存放 IoC 容器中注册解析的 BeanDefinition</p>
 <p>至此，Bean 定义资源文件中配置的 Bean 被解析过后，已经注册到 IoC 容器中，被容器管理起来，真正完成了 IoC 容器初始化所做的全部工作。现 在 IoC 容器中已经建立了整个 Bean 的配置信息，这些 BeanDefinition 信息已经可以使用，并且可以被检索，IoC 容器的作用就是对这些注册的 Bean 定义信息进行处理和维护。这些的注册的 Bean 定义信息是 IoC 容器控制反转的基础，正是有了这些注册的数据，容器才可以进行依赖注入。</p>
-<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><p><img src="http://p4lmrb1gp.bkt.clouddn.com/spring ioc 初始化全过程时序图1.png" alt="spring ioc 初始化全过程时序图1"></p>
+<h2 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h2><p><img src="http://p4lmrb1gp.bkt.clouddn.com/spring ioc 初始化全过程时序图.jpg" alt="spring ioc 初始化全过程时序图"></p>
 <p>现在通过上面的代码，总结一下 IOC 容器初始化的基本步骤：</p>
 <p>初始化的入口在容器实现中的 refresh() 调用来完成</p>
 <p>对 bean 定义载入 IOC 容器使用的方法是 loadBeanDefinition, 其中的大致过程如下：</p>
@@ -548,7 +548,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://cloudpai.site/2018/04/05/2018-04-05/" title="Spring技术内幕：IoC容器的初始化全过程总结">http://cloudpai.site/2018/04/05/2018-04-05/</a>
+    <a href="http://cloudpai.site/2018/04/05/2018-04-05/" title="Spring-IoC容器的初始化全过程：源码分析总结">http://cloudpai.site/2018/04/05/2018-04-05/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -593,8 +593,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/04/06/2018-04-06/" rel="prev" title="Spring技术内幕：IoC容器的依赖注入总结">
-                Spring技术内幕：IoC容器的依赖注入总结 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/04/06/2018-04-06/" rel="prev" title="Spring-IoC容器的依赖注入:源码分析总结">
+                Spring-IoC容器的依赖注入:源码分析总结 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -691,7 +691,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">129</span>
+                  <span class="site-state-item-count">130</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -838,7 +838,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">626.7k</span>
+    <span title="Site words total count">627.1k</span>
   
 </div>
 
@@ -991,7 +991,7 @@
         var disqus_config = function () {
           this.page.url = 'http://cloudpai.site/2018/04/05/2018-04-05/';
           this.page.identifier = '2018/04/05/2018-04-05/';
-          this.page.title = 'Spring技术内幕：IoC容器的初始化全过程总结';
+          this.page.title = 'Spring-IoC容器的初始化全过程：源码分析总结';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://cloudpai.disqus.com/embed.js';
