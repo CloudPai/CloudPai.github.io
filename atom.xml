@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cloudpai.site/"/>
-  <updated>2018-04-08T09:45:23.233Z</updated>
+  <updated>2018-04-09T06:29:27.175Z</updated>
   <id>http://cloudpai.site/</id>
   
   <author>
@@ -17,17 +17,43 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Spring技术内幕：Spring-AOP的实现:源码分析总结</title>
-    <link href="http://cloudpai.site/2018/04/08/2018-04-08-1/"/>
-    <id>http://cloudpai.site/2018/04/08/2018-04-08-1/</id>
-    <published>2018-04-08T08:15:39.000Z</published>
-    <updated>2018-04-08T09:45:23.233Z</updated>
+    <title>在 Mac 终端导入 &amp; 导出. sql 文件</title>
+    <link href="http://cloudpai.site/2018/04/09/2018-04-09/"/>
+    <id>http://cloudpai.site/2018/04/09/2018-04-09/</id>
+    <published>2018-04-09T06:28:17.000Z</published>
+    <updated>2018-04-09T06:29:27.175Z</updated>
     
     <summary type="html">
     
       
       
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;AopProxy的生成过程及拦截器调用的实现（aop核心）&quot;&gt;&lt;a href=&quot;#AopProxy的生成过程及拦截器调用的实现（aop核心）&quot; class=&quot;hea
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;ul&gt;
+&lt;li&gt;导入&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;打开终端输入：（前提是已经配置过 MySQL 环境变量）&lt;/p&gt;
+&lt;pre&gt;mysql -u root -p
+create da
+      
+    
+    </summary>
+    
+    
+      <category term="mysql" scheme="http://cloudpai.site/tags/mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring技术内幕：Spring-AOP的实现:源码分析总结</title>
+    <link href="http://cloudpai.site/2018/04/08/2018-04-08-1/"/>
+    <id>http://cloudpai.site/2018/04/08/2018-04-08-1/</id>
+    <published>2018-04-08T08:15:39.000Z</published>
+    <updated>2018-04-09T12:14:25.830Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;一-建立AopProxy代理对象&quot;&gt;&lt;a href=&quot;#一-建立AopProxy代理对象&quot; class=&quot;headerlink&quot; title=&quot;一.建立AopPro
       
     
     </summary>
@@ -46,7 +72,7 @@
     <link href="http://cloudpai.site/2018/04/08/2018-04-08/"/>
     <id>http://cloudpai.site/2018/04/08/2018-04-08/</id>
     <published>2018-04-08T02:32:49.000Z</published>
-    <updated>2018-04-08T09:45:08.888Z</updated>
+    <updated>2018-04-08T10:37:03.974Z</updated>
     
     <summary type="html">
     
@@ -448,27 +474,6 @@
       
       
         &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;这几天刚刚刚接触了软件测试，感觉内容挺简单的，无非就是该怎么测试一个软件能否正确运行。其中主要讲述了测试的方法与原则。实际上测试都是要依据各种测试方法协调完成测试工作，而这个
-      
-    
-    </summary>
-    
-    
-      <category term="软件工程" scheme="http://cloudpai.site/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>软件工程 笔记二:软件分析</title>
-    <link href="http://cloudpai.site/2018/04/01/2018-04-01-5/"/>
-    <id>http://cloudpai.site/2018/04/01/2018-04-01-5/</id>
-    <published>2018-04-01T13:01:33.000Z</published>
-    <updated>2018-04-01T13:11:07.759Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;strong&gt;软件工程（Software Engineering，简称 SE）&lt;/strong&gt;，是一门研究用工程化方法构建和维护有效的、实用的和高质量的软件的学科，就是和
       
     
     </summary>

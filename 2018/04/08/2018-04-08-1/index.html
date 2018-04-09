@@ -81,21 +81,25 @@
 
 
 
-<meta name="description" content="AopProxy的生成过程及拦截器调用的实现（aop核心）时序图如下： 1. ProxyFactoryBean的getObject方法作为入口获取FactoryBean中的对象getObject 方法中的initializeAdvisorChain首先对通知器链进行初始化 然后SingleTon和prototype的类型进行区分，生成对应的proxy：生成 SingleTon 代理对象在 get">
+<meta name="description" content="一.建立AopProxy代理对象时序图如下： 1. ProxyFactoryBean的getObject方法作为入口获取FactoryBean中的对象getObject 方法中的initializeAdvisorChain首先对通知器链进行初始化 然后SingleTon和prototype的类型进行区分，生成对应的proxy：生成 SingleTon 代理对象在 getSingleTonInst">
 <meta name="keywords" content="Spring,源码,AOP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Spring技术内幕：Spring-AOP的实现:源码分析总结">
 <meta property="og:url" content="http://cloudpai.site/2018/04/08/2018-04-08-1/index.html">
 <meta property="og:site_name" content="CloudPai">
-<meta property="og:description" content="AopProxy的生成过程及拦截器调用的实现（aop核心）时序图如下： 1. ProxyFactoryBean的getObject方法作为入口获取FactoryBean中的对象getObject 方法中的initializeAdvisorChain首先对通知器链进行初始化 然后SingleTon和prototype的类型进行区分，生成对应的proxy：生成 SingleTon 代理对象在 get">
+<meta property="og:description" content="一.建立AopProxy代理对象时序图如下： 1. ProxyFactoryBean的getObject方法作为入口获取FactoryBean中的对象getObject 方法中的initializeAdvisorChain首先对通知器链进行初始化 然后SingleTon和prototype的类型进行区分，生成对应的proxy：生成 SingleTon 代理对象在 getSingleTonInst">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15231806282104.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/Jietu20180409-200813.jpg">
 <meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15231562598241.jpg">
-<meta property="og:updated_time" content="2018-04-08T09:45:23.233Z">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15231890938249.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15231891071545.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/Jietu20180409-200616.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/Jietu20180409-200117.jpg">
+<meta property="og:updated_time" content="2018-04-09T12:14:25.830Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Spring技术内幕：Spring-AOP的实现:源码分析总结">
-<meta name="twitter:description" content="AopProxy的生成过程及拦截器调用的实现（aop核心）时序图如下： 1. ProxyFactoryBean的getObject方法作为入口获取FactoryBean中的对象getObject 方法中的initializeAdvisorChain首先对通知器链进行初始化 然后SingleTon和prototype的类型进行区分，生成对应的proxy：生成 SingleTon 代理对象在 get">
-<meta name="twitter:image" content="http://p4lmrb1gp.bkt.clouddn.com/15231806282104.jpg">
+<meta name="twitter:description" content="一.建立AopProxy代理对象时序图如下： 1. ProxyFactoryBean的getObject方法作为入口获取FactoryBean中的对象getObject 方法中的initializeAdvisorChain首先对通知器链进行初始化 然后SingleTon和prototype的类型进行区分，生成对应的proxy：生成 SingleTon 代理对象在 getSingleTonInst">
+<meta name="twitter:image" content="http://p4lmrb1gp.bkt.clouddn.com/Jietu20180409-200813.jpg">
 
 
 
@@ -337,8 +341,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-04-08T17:45:23+08:00">
-                2018-04-08
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-09T20:14:25+08:00">
+                2018-04-09
               </time>
             
           </span>
@@ -376,7 +380,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  484
+                  2,676
                 </span>
               
 
@@ -392,7 +396,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  2
+                  10
                 </span>
               
             </div>
@@ -413,7 +417,7 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="AopProxy的生成过程及拦截器调用的实现（aop核心）"><a href="#AopProxy的生成过程及拦截器调用的实现（aop核心）" class="headerlink" title="AopProxy的生成过程及拦截器调用的实现（aop核心）"></a>AopProxy的生成过程及拦截器调用的实现（aop核心）</h1><p>时序图如下：<br><img src="http://p4lmrb1gp.bkt.clouddn.com/15231806282104.jpg" alt=""></p>
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="一-建立AopProxy代理对象"><a href="#一-建立AopProxy代理对象" class="headerlink" title="一.建立AopProxy代理对象"></a>一.建立AopProxy代理对象</h1><p>时序图如下：<br><img src="http://p4lmrb1gp.bkt.clouddn.com/Jietu20180409-200813.jpg" alt="Jietu20180409-200813"></p>
 <h2 id="1-ProxyFactoryBean的getObject方法作为入口获取FactoryBean中的对象"><a href="#1-ProxyFactoryBean的getObject方法作为入口获取FactoryBean中的对象" class="headerlink" title="1. ProxyFactoryBean的getObject方法作为入口获取FactoryBean中的对象"></a>1. ProxyFactoryBean的getObject方法作为入口获取FactoryBean中的对象</h2><p>getObject 方法中的initializeAdvisorChain首先对通知器链进行初始化</p>
 <p>然后SingleTon和prototype的类型进行区分，生成对应的proxy：<br>生成 SingleTon 代理对象在 getSingleTonInstance 方法中完成，这个方法是ProxyFactoryBean 生成 AopProxy 对象的入口。代理对象会封装对 target 目标对象的调用，也就是说针对 target 对象的方法调用行为会被这里生成的代理对象所拦截。</p>
 <h2 id="2-ProxyFactoryBean的createAopProxy-调用接口"><a href="#2-ProxyFactoryBean的createAopProxy-调用接口" class="headerlink" title="2.ProxyFactoryBean的createAopProxy()调用接口"></a>2.ProxyFactoryBean的createAopProxy()调用接口</h2><p>ProxyCreatorSupport 中createAopProxy通过AopProxyFactory取得AopProxy，这个AopProxyFactory是在初始化函数中定义的，使用的是DefaultAopProxyFactory</p>
@@ -423,6 +427,28 @@
 <p>分别是步骤3或者步骤4</p>
 <h2 id="4-JDK-生成-AopProxy-对象（接口实现类）"><a href="#4-JDK-生成-AopProxy-对象（接口实现类）" class="headerlink" title="4.JDK 生成 AopProxy 对象（接口实现类）"></a>4.JDK 生成 AopProxy 对象（接口实现类）</h2><p>调用JDK生成Proxy</p>
 <h2 id="5-CGLIB-生成-AopProxy-对象（非接口实现类）"><a href="#5-CGLIB-生成-AopProxy-对象（非接口实现类）" class="headerlink" title="5.CGLIB 生成 AopProxy 对象（非接口实现类）"></a>5.CGLIB 生成 AopProxy 对象（非接口实现类）</h2><p>CGLIB 是第三方类库，本身不在 JDK 基类库中<br>CGLIB 生成 AopProxy 对象（非接口实现类）是通过createCglibProxy()设置DynamicAdvisedInterceptor拦截器来完成AOP功能。</p>
+<h1 id="二-Spring-AOP-拦截器调用的实现"><a href="#二-Spring-AOP-拦截器调用的实现" class="headerlink" title="二.Spring AOP 拦截器调用的实现"></a>二.Spring AOP 拦截器调用的实现</h1><p>在 Spring AOP 通过 JDK 的 Proxy 方式或 CGLIB 方式生成代理对象的时候，相关的拦截器已经配置到代理对象中去了，拦截器在代理对象中起作用是通过对这些方法的回调来完成的。<br>如果使用 JDK 的 Proxy 来生成代理对象，那么需要 <em>InvocationHandler</em> 来设置拦截器回调，而如果使用 CGLIB 来生成代理对象，通过 <em>DynamicAdvisedInterceptor</em> 来完成回调。</p>
+<h2 id="1、JdkDynamicAopProxy-的-invoke-拦截"><a href="#1、JdkDynamicAopProxy-的-invoke-拦截" class="headerlink" title="1、JdkDynamicAopProxy 的 invoke 拦截"></a>1、JdkDynamicAopProxy 的 invoke 拦截</h2><p><img src="http://p4lmrb1gp.bkt.clouddn.com/15231890938249.jpg" alt=""></p>
+<p>在 JDKDynamicAopProxy 生成代理对象时，他的 AopProxy 代理对象生成调用：</p>
+<p>this 指的是 InvocationHandler 对象，InvocationHandler 是 JDK 定义反射类的一个接口，这个接口定义了 invoke 方法，此方法为回调方法。通过 invoke 的具体实现，来完成对目标对象方法调用的拦截器或者功能增强工作。在这个方法中，包含一个完整的拦截器链对目标对象的拦截过程，比如获取拦截器链中的拦截器进行配置，逐个运行拦截器链里的拦截器增强，知道最后的目标对象方法的运行。</p>
+<h2 id="2-CglibAopProxy-的-intercept-拦截"><a href="#2-CglibAopProxy-的-intercept-拦截" class="headerlink" title="2. CglibAopProxy 的 intercept 拦截"></a>2. CglibAopProxy 的 intercept 拦截</h2><p><img src="http://p4lmrb1gp.bkt.clouddn.com/15231891071545.jpg" alt=""></p>
+<p>使用 CglibAopProxy 生成 AopProxy 对象时候，对于 AOP 拦截器调用，回调的是 DynamicAdvisedInterceptor 对象生成的。回调的方法是 intercept。</p>
+<h1 id="三-AOP-拦截器链的调用及配置通知器"><a href="#三-AOP-拦截器链的调用及配置通知器" class="headerlink" title="三.AOP 拦截器链的调用及配置通知器"></a>三.AOP 拦截器链的调用及配置通知器</h1><p><img src="http://p4lmrb1gp.bkt.clouddn.com/Jietu20180409-200616.jpg" alt="Jietu20180409-200616"></p>
+<h2 id="1、AOP-拦截器链的调用"><a href="#1、AOP-拦截器链的调用" class="headerlink" title="1、AOP 拦截器链的调用"></a>1、AOP 拦截器链的调用</h2><p>下面进入 AOP 的核心部分，Aop 是怎样完成对目标的增强的。这些都封装在 Aop 拦截器链中，由一个具体的拦截器完成。<br>无论是使用 JDKDynamicAopProxy 还是使用 CglibAopProxy 创建代理对象最终对 AOP 拦截链的调用都是在 ReflectiveMethodInvocation 中通过 proceed 方法实现的。在 proceed 方法中逐个运行拦截器的拦截方法。在运行拦截器的拦截方法之前需要对代理方法完成一个匹配，通过这个匹配判断来决定拦截器是否满足切面增强的要求。</p>
+<p>这时我们会有疑问，这些 advisor 是怎样从配置文件中获得并配置到 proxy 的拦截器链中，我们使用的 advisor 通知时怎样起作用的，让我们带着这些问题继续往下看。</p>
+<h3 id="2-配置通知器"><a href="#2-配置通知器" class="headerlink" title="2.配置通知器"></a>2.配置通知器</h3><p>在整个 AopProxy 代理对象拦截回调过程中，先回到 ReflectionMethodInvocation 类的 proceed 方法，在这个方法里，可以看到得到了配置的 interceptorOrInterceptionAdvice</p>
+<p>interceptorOrInterceptionAdvice 是获得的拦截器，他通过拦截器机制对目标对象进行增强。这个拦截器来自 interceptorsAndDynamicMethodMatchers。具体来说，他是 interceptorsAndDynamicMathers 持有的 List 中的一个元素。关于如何配置拦截器的问题就转化为了 List 中的拦截器元素是从哪里来的，在哪里配置的问题。接着对 invoke 调用进行回放，回到 JDKDynamicAopProxy 中的 invoke 方法中，可以看到这个 List 中的 interceptors 是从哪个调用中获取的。对于 CglibAopProxy，也有类似过程，只不过这个过程是在 DynamicAdvisedInterceptor 的 intercept 回调中实现的，如下所示：</p>
+<p>从上面的代码可以看出，获取 intercptors 的操作是由 advised 对象完成的，这个 advised 是一个 AdvisedSupport 对象，从 AdvisedSupport 类中可以看到 getInterceptorsAndDynamicInterceptionAdvice 的实现。在这个方法中取得了拦截器链，再取得拦截器链的时候，为了提高拦截器链的效率，还为这个拦截器链这是了缓存。</p>
+<p>在 DefaultAdvisorChainFactory 中实现了 interceptor 链的获取过程，在这个过程中，首先设置了一个 List，其长度是配置的通知器的个数来决定的，这个配置时在 XML 中对 ProxyFactoryBean 做的 interceptNames 属性的配置，然后，DefaultAdvisorChainFactory 会通过一个 AdvisorAdapterRegistry 来实现拦截器的注册。AdvisorAdapterRegistry 对 advice 通知的织入功能起了很大作用。有了 AdvisorAdapterRegistry 注册器，利用他来对 ProxyFactoryBean 配置中得到的通知进行适配，从而得到相应的拦截器，再把他前面设置好的 List 中去，完成所谓的拦截器注册过程。在拦截器适配和注册过程完成以后，List 中的拦截器会被 JDK 生成的 AopProxy 代理对象的 invoke 方法或者 CGLIB 代理对象的 intercept 拦截方法获得，并启动拦截器的 invoke 方法调用，最终触发通知的切面增强。<br>下面看看 DefaultAdvisorChainFactory 是怎样生成拦截器链的：</p>
+<p>在 ProxyFactoryBean 的 getObject 方法中对 adviosr 进行初始化，从 XML 配置中获取了 advisor 通知器。下面看下在 ProxyFactoryBean 拦截器链的初始化中获取 advisor 通知器</p>
+<p>advisor 通知器的取得时委托给 IOC 容器完成的，但是在 ProxyFactoryBean 中是如何获得 IOC 容器，然后通过回调 IOC 容器的 getBean 方法来得到需要的通知 advisor？在这里大家可以回顾下 IOC 容器的原理。</p>
+<h2 id="四-Advice-通知的实现"><a href="#四-Advice-通知的实现" class="headerlink" title="四.Advice 通知的实现"></a>四.Advice 通知的实现</h2><p><img src="http://p4lmrb1gp.bkt.clouddn.com/Jietu20180409-200117.jpg" alt="Jietu20180409-200117"></p>
+<p>AopProxy 代理对象生成时，其拦截器也一并生成。下面我们来分析下 Aop 是如何对目标对象进行增强的。在为 AopProxy 配置拦截器的实现中，有一个取得拦截器配置过程，这个过程由 DefaultAvisorChainFactory 实现的，而这个工厂类负责生成拦截器链，在它的 getInterceptorsAndDynamicInterceptionA-<br>dvice 方法中，有一个适配器的注册过程，通过配置 Spring 预先设计好的拦截器，Spring 加入了它对 Aop 实现的处理。为详细了解这个过程，先从 Defau-<br>ltAdvisorChainFactory 的实现开始，通过以下代码可以看到，在 DefaultAdvisorChainFactory 实现中，首先构造了一个 GlobalAdvisorAdapterRegistry 单例，然后对配置的 Advisor 通知器进行逐个遍历，这些通知链都是配置在 interceptorNames 中的，从 getInterceptorsAndDynamicInterceptionAdvice 传递进来的 advised 参数对象中，可以方便的取得配置的通知器，有了这些通知器，接着就是一个由<br>GlobalAdvisorAdapterRegistry 来完成的拦截器的适配和注册。</p>
+<p>GlobalAdvisorAdapterRegistry 的 getInterceptors 方法为 AOP 的实现做出了很大的贡献，这个方法封装着 advice 织入实现的入口，我们先从 GlobalAdvisorAdapterRegistry 的实现入手，他基本起一个适配器的作用，但同时也是单例模式</p>
+<p>到这里，我们知道在 DefaultAdvisorAdapterRegistry 中，设置了一系列的 adapter 适配器，这是这些适配器的实现，为 Spring 的 advice 提供了编织能力，下面我们看看 DefaultAdvisorAdapterRegistry 究竟发生了什么？adapter 的作用具体分为两个：<br>1、调用 adapter 的 support 方法，通过这个方法来判断取得的 advice 属于什么类型的 advice 通知，从而根据不同的 advice 类型来注册不同的 AdviceInterceptor，也就是前面我们看到的拦截器<br>2、这些 AdviceInterceptor 都是 Spring AOP 框架设计好的，是为实现不同的 advice 功能提供服务的。有了这些 AdviceInterceptor，可以方便的使用由 Spring 提供的各种不同的 advice 来设计 AOP 应用。也就是说，正是这些 AdviceInterceptor 最终实现了 advice 通知在 AopProxy 对象中的织入功能。</p>
+<p>剥茧抽丝，继续看 adapter，在 DefaultAdvisorRegistry 的 getInterceptors 调用中，从 MethodBeforeAdviceAdapter、AfterReturningAdviceAdapter、ThrowsAdviceAdaper 这几个通知适配器的名字上可以看出和 Advice 一一对应，在这里，他们作为适配器被加入到 adapter 的 List 中，他们都是实现 AdvisorAdapter 接口的同一层次的类，只是各自承担着不同的适配的任务，一对一的服务于不同的 advice 实现。<br>以 MethodBeforeAdviceAdapter 为例</p>
+<p>到这里就非常清楚了，Spring AOP 为了实现 advice 的织入，设计了特定拦截器对这些功能进行了封装。虽然应用不会直接用到这些拦截器，但却是 advice 发挥作用不可缺少的准备。还是以 MethodBeforeAdviceInterceptor 为例，我们看看 advice 是如何封装的。在 invoke 回调方法中，看到首先触发了 advice 的 before 的回调，然后才是 MethodInvocation 的 proceed 方法的调用。看到这里，就已经和前面的在 ReflectionMethodInvocation 的 Proceed 分析中联系起来。回忆了一下，在 AopProxy 代理对象触发的 ReflectionMethodInvocation 的 proceed 方法中，在取得拦截器以后，启动了对拦截器 invoke 方法的调用。按照 AOP 的规则，ReflectiveMethodInvocation 触发的拦截器 invoke 方法，最终会根据不同的 advice 类型，触发 Spring 对不同的 advice 的拦截器封装，比如对 MethodBeforeAdvice, 最终会根据不同的 advice 类型触发 Spring 对不同的 advice 的拦截器封装。比如对 MethodBeforeAdvice，最终会触发 MethodBeforeAdviceInterceptor 的 invoke 方法。在 MethodBeforeAdviceInterceptor 方法中，会调用 advice 的 before 方法，这就是 MethodBeforeAdvice 所需要的对目标对象的增强效果：在方法调用之前通知增强。</p>
+<p>完成 MethodBeforeAdviceInterceptor 的调用，然后启动 advice 通知的 afterReturning 回调</p>
 
       
     </div>
@@ -499,6 +525,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/09/2018-04-09/" rel="prev" title="在 Mac 终端导入 & 导出. sql 文件">
+                在 Mac 终端导入 & 导出. sql 文件 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -594,7 +624,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">134</span>
+                  <span class="site-state-item-count">135</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -706,7 +736,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#AopProxy的生成过程及拦截器调用的实现（aop核心）"><span class="nav-text">AopProxy的生成过程及拦截器调用的实现（aop核心）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-ProxyFactoryBean的getObject方法作为入口获取FactoryBean中的对象"><span class="nav-text">1. ProxyFactoryBean的getObject方法作为入口获取FactoryBean中的对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-ProxyFactoryBean的createAopProxy-调用接口"><span class="nav-text">2.ProxyFactoryBean的createAopProxy()调用接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-DefaultAopProxyFactory生成-AopProxy-目标代理对象"><span class="nav-text">3.DefaultAopProxyFactory生成 AopProxy 目标代理对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-JDK-生成-AopProxy-对象（接口实现类）"><span class="nav-text">4.JDK 生成 AopProxy 对象（接口实现类）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-CGLIB-生成-AopProxy-对象（非接口实现类）"><span class="nav-text">5.CGLIB 生成 AopProxy 对象（非接口实现类）</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一-建立AopProxy代理对象"><span class="nav-text">一.建立AopProxy代理对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-ProxyFactoryBean的getObject方法作为入口获取FactoryBean中的对象"><span class="nav-text">1. ProxyFactoryBean的getObject方法作为入口获取FactoryBean中的对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-ProxyFactoryBean的createAopProxy-调用接口"><span class="nav-text">2.ProxyFactoryBean的createAopProxy()调用接口</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-DefaultAopProxyFactory生成-AopProxy-目标代理对象"><span class="nav-text">3.DefaultAopProxyFactory生成 AopProxy 目标代理对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-JDK-生成-AopProxy-对象（接口实现类）"><span class="nav-text">4.JDK 生成 AopProxy 对象（接口实现类）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-CGLIB-生成-AopProxy-对象（非接口实现类）"><span class="nav-text">5.CGLIB 生成 AopProxy 对象（非接口实现类）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二-Spring-AOP-拦截器调用的实现"><span class="nav-text">二.Spring AOP 拦截器调用的实现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、JdkDynamicAopProxy-的-invoke-拦截"><span class="nav-text">1、JdkDynamicAopProxy 的 invoke 拦截</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-CglibAopProxy-的-intercept-拦截"><span class="nav-text">2. CglibAopProxy 的 intercept 拦截</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三-AOP-拦截器链的调用及配置通知器"><span class="nav-text">三.AOP 拦截器链的调用及配置通知器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、AOP-拦截器链的调用"><span class="nav-text">1、AOP 拦截器链的调用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-配置通知器"><span class="nav-text">2.配置通知器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四-Advice-通知的实现"><span class="nav-text">四.Advice 通知的实现</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -741,7 +771,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">643.1k</span>
+    <span title="Site words total count">644.9k</span>
   
 </div>
 
