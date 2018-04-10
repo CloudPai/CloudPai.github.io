@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cloudpai.site/"/>
-  <updated>2018-04-09T06:29:27.175Z</updated>
+  <updated>2018-04-10T13:34:30.908Z</updated>
   <id>http://cloudpai.site/</id>
   
   <author>
@@ -15,6 +15,72 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>史上最简单的 MySQL 教程</title>
+    <link href="http://cloudpai.site/2018/04/10/2018-04-10/"/>
+    <id>http://cloudpai.site/2018/04/10/2018-04-10/</id>
+    <published>2018-04-10T11:33:23.000Z</published>
+    <updated>2018-04-10T13:34:30.908Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;（一）「数据库」&quot;&gt;&lt;a href=&quot;#（一）「数据库」&quot; class=&quot;headerlink&quot; title=&quot;（一）「数据库」&quot;&gt;&lt;/a&gt;（一）「数据库」&lt;/h1
+      
+    
+    </summary>
+    
+    
+      <category term="mysql" scheme="http://cloudpai.site/tags/mysql/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>数据库和mysql 学习规划</title>
+    <link href="http://cloudpai.site/2018/04/09/2018-04-09-2/"/>
+    <id>http://cloudpai.site/2018/04/09/2018-04-09-2/</id>
+    <published>2018-04-09T13:35:15.000Z</published>
+    <updated>2018-04-10T01:17:40.025Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;img src=&quot;http://p4lmrb1gp.bkt.clouddn.com/15232811112090.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;先学习基础知识概念
+      
+    
+    </summary>
+    
+    
+      <category term="数据库" scheme="http://cloudpai.site/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring中用到的设计模式</title>
+    <link href="http://cloudpai.site/2018/04/09/2018-04-09-1/"/>
+    <id>http://cloudpai.site/2018/04/09/2018-04-09-1/</id>
+    <published>2018-04-09T12:25:50.000Z</published>
+    <updated>2018-04-09T12:37:43.053Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;应该说设计模式是我们在写代码时候的一种被承认的较好的模式。好的设计模式就像是给代码造了一个很好的骨架，在这个骨架里，你可以知道心在哪里，肺在哪里，因为大多数人都认识这样的骨架
+      
+    
+    </summary>
+    
+    
+      <category term="Spring" scheme="http://cloudpai.site/tags/Spring/"/>
+    
+      <category term="设计模式" scheme="http://cloudpai.site/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
   
   <entry>
     <title>在 Mac 终端导入 &amp; 导出. sql 文件</title>
@@ -47,7 +113,7 @@ create da
     <link href="http://cloudpai.site/2018/04/08/2018-04-08-1/"/>
     <id>http://cloudpai.site/2018/04/08/2018-04-08-1/</id>
     <published>2018-04-08T08:15:39.000Z</published>
-    <updated>2018-04-09T12:14:25.830Z</updated>
+    <updated>2018-04-09T12:20:23.500Z</updated>
     
     <summary type="html">
     
@@ -410,70 +476,6 @@ create da
       
       
         &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;一个好的工程需要配套的管理体系，软件工程也不列外。软件工程就我的理解就是对软件工程的各个阶段都一定规范，俗话说 “不以规矩，不能成方圆”，而这个规矩就由管理来充当。&lt;br&gt;一
-      
-    
-    </summary>
-    
-    
-      <category term="软件工程" scheme="http://cloudpai.site/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>软件工程 笔记五:面向对象技术</title>
-    <link href="http://cloudpai.site/2018/04/01/2018-04-01-8/"/>
-    <id>http://cloudpai.site/2018/04/01/2018-04-01-8/</id>
-    <published>2018-04-01T13:20:16.000Z</published>
-    <updated>2018-04-01T13:23:06.638Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;strong&gt;面向对象&lt;/strong&gt;：Coad 和 Yourdon 给出定义是：“面向对象 = 对象 + 类 + 继承 + 通信”&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;对象（
-      
-    
-    </summary>
-    
-    
-      <category term="软件工程" scheme="http://cloudpai.site/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>软件工程 笔记四:用户界面设计</title>
-    <link href="http://cloudpai.site/2018/04/01/2018-04-01-7/"/>
-    <id>http://cloudpai.site/2018/04/01/2018-04-01-7/</id>
-    <published>2018-04-01T13:18:17.000Z</published>
-    <updated>2018-04-01T13:19:48.967Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;用户界面 (UserInterface，简称 UI) 是直接面对用户的界面，是系统与用户之间的媒介，一个软件的好坏，UI 起着重要因素。UI 是软件的人机交互界面、操作逻辑、
-      
-    
-    </summary>
-    
-    
-      <category term="软件工程" scheme="http://cloudpai.site/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>软件工程 笔记三:软件测试</title>
-    <link href="http://cloudpai.site/2018/04/01/2018-04-01-6/"/>
-    <id>http://cloudpai.site/2018/04/01/2018-04-01-6/</id>
-    <published>2018-04-01T13:11:48.000Z</published>
-    <updated>2018-04-01T13:17:41.775Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;这几天刚刚刚接触了软件测试，感觉内容挺简单的，无非就是该怎么测试一个软件能否正确运行。其中主要讲述了测试的方法与原则。实际上测试都是要依据各种测试方法协调完成测试工作，而这个
       
     
     </summary>
