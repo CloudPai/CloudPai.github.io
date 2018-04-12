@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cloudpai.site/"/>
-  <updated>2018-04-10T13:34:30.908Z</updated>
+  <updated>2018-04-12T14:53:07.526Z</updated>
   <id>http://cloudpai.site/</id>
   
   <author>
@@ -15,6 +15,219 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>memcached redis 对比分析</title>
+    <link href="http://cloudpai.site/2018/04/12/2018-04-12-7/"/>
+    <id>http://cloudpai.site/2018/04/12/2018-04-12-7/</id>
+    <published>2018-04-12T14:52:11.000Z</published>
+    <updated>2018-04-12T14:53:07.526Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h4 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h4&gt;&lt;p&gt;memcached 和 redis 都属
+      
+    
+    </summary>
+    
+    
+      <category term="redis" scheme="http://cloudpai.site/tags/redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>mysql 数据库引擎</title>
+    <link href="http://cloudpai.site/2018/04/12/2018-04-12-6/"/>
+    <id>http://cloudpai.site/2018/04/12/2018-04-12-6/</id>
+    <published>2018-04-12T11:22:36.000Z</published>
+    <updated>2018-04-12T13:11:17.888Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;mysql-数据库引擎&quot;&gt;&lt;a href=&quot;#mysql-数据库引擎&quot; class=&quot;headerlink&quot; title=&quot;mysql 数据库引擎&quot;&gt;&lt;/a&gt;mys
+      
+    
+    </summary>
+    
+    
+      <category term="mysql" scheme="http://cloudpai.site/tags/mysql/"/>
+    
+      <category term="数据库" scheme="http://cloudpai.site/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+      <category term="Innodb" scheme="http://cloudpai.site/tags/Innodb/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>数据挖掘</title>
+    <link href="http://cloudpai.site/2018/04/12/2018-04-12-5/"/>
+    <id>http://cloudpai.site/2018/04/12/2018-04-12-5/</id>
+    <published>2018-04-12T09:16:55.000Z</published>
+    <updated>2018-04-12T11:19:11.649Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;近期需要完成的，先看课件了解个大概。&lt;/p&gt;
+&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;参考：&lt;br&gt;如何系统地学习数据挖掘？ - 知乎&lt;br&gt;&lt;a href=&quot;https:
+      
+    
+    </summary>
+    
+    
+      <category term="数据库" scheme="http://cloudpai.site/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+      <category term="数据挖掘" scheme="http://cloudpai.site/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>数据库设计和 E-R 模型</title>
+    <link href="http://cloudpai.site/2018/04/12/2018-04-12-4/"/>
+    <id>http://cloudpai.site/2018/04/12/2018-04-12-4/</id>
+    <published>2018-04-12T08:28:45.000Z</published>
+    <updated>2018-04-12T10:32:33.445Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;strong&gt;《数据库系统概念》第 7 章知识点总结&lt;/strong&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;数据库设计和 E-R 模型&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;本章我们
+      
+    
+    </summary>
+    
+    
+      <category term="数据库" scheme="http://cloudpai.site/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+      <category term="E-R图" scheme="http://cloudpai.site/tags/E-R%E5%9B%BE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>数据库索引为什么使用 B + 树</title>
+    <link href="http://cloudpai.site/2018/04/12/2018-04-12-3/"/>
+    <id>http://cloudpai.site/2018/04/12/2018-04-12-3/</id>
+    <published>2018-04-12T07:28:51.000Z</published>
+    <updated>2018-04-12T11:13:54.210Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;B tree：&lt;/str
+      
+    
+    </summary>
+    
+    
+      <category term="数据库" scheme="http://cloudpai.site/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+      <category term="B+树" scheme="http://cloudpai.site/tags/B-%E6%A0%91/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python多进程程实战</title>
+    <link href="http://cloudpai.site/2018/04/12/2018-04-12-2/"/>
+    <id>http://cloudpai.site/2018/04/12/2018-04-12-2/</id>
+    <published>2018-04-12T07:07:55.000Z</published>
+    <updated>2018-04-12T07:21:10.127Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;多进程中，每个进程都是独立的，各自持有一份数据，无法共享。本篇文章介绍三种用于进程数据共享的方法&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;queues&lt;/li&gt;
+&lt;li&gt;Array&lt;/li
+      
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://cloudpai.site/tags/python/"/>
+    
+      <category term="多进程" scheme="http://cloudpai.site/tags/%E5%A4%9A%E8%BF%9B%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>数据库系统概念 总结</title>
+    <link href="http://cloudpai.site/2018/04/12/2018-04-12-1/"/>
+    <id>http://cloudpai.site/2018/04/12/2018-04-12-1/</id>
+    <published>2018-04-12T07:04:45.000Z</published>
+    <updated>2018-04-12T11:16:36.167Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;该书的思维导图svg文件如下：&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://p4lmrb1gp.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E5%
+      
+    
+    </summary>
+    
+    
+      <category term="数据库" scheme="http://cloudpai.site/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>高性能计算环境搭建</title>
+    <link href="http://cloudpai.site/2018/04/12/2018-04-12/"/>
+    <id>http://cloudpai.site/2018/04/12/2018-04-12/</id>
+    <published>2018-04-12T01:57:32.000Z</published>
+    <updated>2018-04-12T11:13:48.242Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;blockquote&gt;
+&lt;p&gt;Linux高性能计算集群 – Beowulf集群&lt;br&gt;&lt;a href=&quot;http://www.jointforce.com.cn/page/har
+      
+    
+    </summary>
+    
+    
+      <category term="高性能计算" scheme="http://cloudpai.site/tags/%E9%AB%98%E6%80%A7%E8%83%BD%E8%AE%A1%E7%AE%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>python多线程实战</title>
+    <link href="http://cloudpai.site/2018/04/11/2018-04-11/"/>
+    <id>http://cloudpai.site/2018/04/11/2018-04-11/</id>
+    <published>2018-04-11T14:24:22.000Z</published>
+    <updated>2018-04-11T15:04:11.454Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;当初在刚学习 python 多线程时，上网搜索资料几乎都是一片倒的反应 python 没有真正意义上的多线程，python 多线程就是鸡肋。当时不明所以，只是了解到 pyth
+      
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://cloudpai.site/tags/python/"/>
+    
+      <category term="多线程" scheme="http://cloudpai.site/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    
+  </entry>
   
   <entry>
     <title>史上最简单的 MySQL 教程</title>
@@ -276,212 +489,6 @@ create da
       <category term="源码" scheme="http://cloudpai.site/tags/%E6%BA%90%E7%A0%81/"/>
     
       <category term="IOC" scheme="http://cloudpai.site/tags/IOC/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>ANTLR4 学习</title>
-    <link href="http://cloudpai.site/2018/04/04/2018-04-04/"/>
-    <id>http://cloudpai.site/2018/04/04/2018-04-04/</id>
-    <published>2018-04-04T10:50:47.000Z</published>
-    <updated>2018-04-04T11:56:15.641Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;自述 · ANTLR 4简明教程&lt;br&gt;&lt;a href=&quot;https://dohkoos.gitbooks.io/antlr4-short-course/content/&quot; 
-      
-    
-    </summary>
-    
-    
-      <category term="ANTLR" scheme="http://cloudpai.site/tags/ANTLR/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring技术内幕-IOC 笔记</title>
-    <link href="http://cloudpai.site/2018/04/03/2018-04-03/"/>
-    <id>http://cloudpai.site/2018/04/03/2018-04-03/</id>
-    <published>2018-04-03T14:15:54.000Z</published>
-    <updated>2018-04-07T10:12:58.219Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;一、什么是-Ioc-DI？&quot;&gt;&lt;a href=&quot;#一、什么是-Ioc-DI？&quot; class=&quot;headerlink&quot; title=&quot;一、什么是 Ioc/DI？&quot;&gt;&lt;
-      
-    
-    </summary>
-    
-    
-      <category term="Spring" scheme="http://cloudpai.site/tags/Spring/"/>
-    
-      <category term="源码" scheme="http://cloudpai.site/tags/%E6%BA%90%E7%A0%81/"/>
-    
-      <category term="IOC" scheme="http://cloudpai.site/tags/IOC/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring 源码学习流程</title>
-    <link href="http://cloudpai.site/2018/04/02/2018-04-02-1/"/>
-    <id>http://cloudpai.site/2018/04/02/2018-04-02-1/</id>
-    <published>2018-04-02T11:50:20.000Z</published>
-    <updated>2018-04-03T09:57:24.541Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;ul&gt;
-&lt;li&gt;要想快速了解一门技术的大概，先看官方文档：&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;spring4的文档：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Introduction 
-      
-    
-    </summary>
-    
-    
-      <category term="Spring" scheme="http://cloudpai.site/tags/Spring/"/>
-    
-      <category term="源码" scheme="http://cloudpai.site/tags/%E6%BA%90%E7%A0%81/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>高性能mysql 学习</title>
-    <link href="http://cloudpai.site/2018/04/02/2018-04-02/"/>
-    <id>http://cloudpai.site/2018/04/02/2018-04-02/</id>
-    <published>2018-04-02T11:08:17.000Z</published>
-    <updated>2018-04-05T13:29:34.877Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;hr&gt;
-&lt;blockquote&gt;
-&lt;p&gt;参考：&lt;/p&gt;
-&lt;/blockquote&gt;
-
-      
-    
-    </summary>
-    
-    
-      <category term="mysql" scheme="http://cloudpai.site/tags/mysql/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>设计模式 学习</title>
-    <link href="http://cloudpai.site/2018/04/01/2018-04-01-13/"/>
-    <id>http://cloudpai.site/2018/04/01/2018-04-01-13/</id>
-    <published>2018-04-01T14:09:28.000Z</published>
-    <updated>2018-04-03T11:08:41.779Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;专栏：设计模式 - CSDN博客&lt;br&gt;&lt;a href=&quot;https://blog.csdn.net/column/details/pattern.html&quot; target=
-      
-    
-    </summary>
-    
-    
-      <category term="设计模式" scheme="http://cloudpai.site/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>软件工程 总结</title>
-    <link href="http://cloudpai.site/2018/04/01/2018-04-01-12/"/>
-    <id>http://cloudpai.site/2018/04/01/2018-04-01-12/</id>
-    <published>2018-04-01T13:34:09.000Z</published>
-    <updated>2018-04-01T13:41:24.886Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;blockquote&gt;
-&lt;p&gt;通过对软工视频的学习，已了解软工视频大致是在为写文档做预习，一个软件工程必不可少的一部分就是文档的编辑，文档亦难亦不难。不难在我们都能理解每一份文档
-      
-    
-    </summary>
-    
-    
-      <category term="软件工程" scheme="http://cloudpai.site/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>软件工程 笔记八:相关文档</title>
-    <link href="http://cloudpai.site/2018/04/01/2018-04-01-11/"/>
-    <id>http://cloudpai.site/2018/04/01/2018-04-01-11/</id>
-    <published>2018-04-01T13:31:33.000Z</published>
-    <updated>2018-04-01T13:32:58.650Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;经过长达 10 天左右的时间，软件工程文档基本完成，只差师傅验收了，虽然这个期间，一直都是借鉴的好多人的文档以及从网上找对各个文档的相关理解，但终究还是有自己的收获的。&lt;/p
-      
-    
-    </summary>
-    
-    
-      <category term="软件工程" scheme="http://cloudpai.site/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>软件工程 笔记七:项目管理</title>
-    <link href="http://cloudpai.site/2018/04/01/2018-04-01-10/"/>
-    <id>http://cloudpai.site/2018/04/01/2018-04-01-10/</id>
-    <published>2018-04-01T13:27:51.000Z</published>
-    <updated>2018-04-01T13:30:53.604Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;软件工程中必须有的一项就是项目，故而项目管理也是必要的。软件项目分为项目管理过程、软件生产率和质量的度量、软件项目的估算、软件项目计划的目标、软件开发成本估算。&lt;/p&gt;
-&lt;p
-      
-    
-    </summary>
-    
-    
-      <category term="软件工程" scheme="http://cloudpai.site/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>软件工程 笔记六:软件工程管理</title>
-    <link href="http://cloudpai.site/2018/04/01/2018-04-01-9/"/>
-    <id>http://cloudpai.site/2018/04/01/2018-04-01-9/</id>
-    <published>2018-04-01T13:24:04.000Z</published>
-    <updated>2018-04-01T13:27:12.289Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;一个好的工程需要配套的管理体系，软件工程也不列外。软件工程就我的理解就是对软件工程的各个阶段都一定规范，俗话说 “不以规矩，不能成方圆”，而这个规矩就由管理来充当。&lt;br&gt;一
-      
-    
-    </summary>
-    
-    
-      <category term="软件工程" scheme="http://cloudpai.site/tags/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/"/>
     
   </entry>
   

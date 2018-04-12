@@ -1,0 +1,1347 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="python,多线程," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="CloudPai" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="当初在刚学习 python 多线程时，上网搜索资料几乎都是一片倒的反应 python 没有真正意义上的多线程，python 多线程就是鸡肋。当时不明所以，只是了解到 python 带有 GIL 解释器锁的概念，同一时刻只能有一个线程在运行，遇到 IO 操作才会释放切换。那么，python 多线程是否真的很鸡肋呢？要解决这个疑惑，我想必须亲自动手测试。　　经过对比 python 与 java 的多">
+<meta name="keywords" content="python,多线程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python多线程实战">
+<meta property="og:url" content="http://cloudpai.site/2018/04/11/2018-04-11/index.html">
+<meta property="og:site_name" content="CloudPai">
+<meta property="og:description" content="当初在刚学习 python 多线程时，上网搜索资料几乎都是一片倒的反应 python 没有真正意义上的多线程，python 多线程就是鸡肋。当时不明所以，只是了解到 python 带有 GIL 解释器锁的概念，同一时刻只能有一个线程在运行，遇到 IO 操作才会释放切换。那么，python 多线程是否真的很鸡肋呢？要解决这个疑惑，我想必须亲自动手测试。　　经过对比 python 与 java 的多">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-04-11T15:04:11.454Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python多线程实战">
+<meta name="twitter:description" content="当初在刚学习 python 多线程时，上网搜索资料几乎都是一片倒的反应 python 没有真正意义上的多线程，python 多线程就是鸡肋。当时不明所以，只是了解到 python 带有 GIL 解释器锁的概念，同一时刻只能有一个线程在运行，遇到 IO 操作才会释放切换。那么，python 多线程是否真的很鸡肋呢？要解决这个疑惑，我想必须亲自动手测试。　　经过对比 python 与 java 的多">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'TZAS2SFOJR',
+      apiKey: 'e2a9cd036eede8026382b302001ec261',
+      indexName: 'cloudpai_blogs_search',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cloudpai.site/2018/04/11/2018-04-11/"/>
+
+
+
+
+
+  <title>python多线程实战 | CloudPai</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-114643720-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CloudPai</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/04/11/2018-04-11/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CloudPai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudPai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">python多线程实战</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-11T22:24:22+08:00">
+                2018-04-11
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-11T23:04:11+08:00">
+                2018-04-11
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/11/2018-04-11/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/04/11/2018-04-11/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,651
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  11
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><p>当初在刚学习 python 多线程时，上网搜索资料几乎都是一片倒的反应 python 没有真正意义上的多线程，python 多线程就是鸡肋。当时不明所以，只是了解到 python 带有 GIL 解释器锁的概念，同一时刻只能有一个线程在运行，遇到 IO 操作才会释放切换。那么，python 多线程是否真的很鸡肋呢？要解决这个疑惑，我想必须亲自动手测试。<br><a id="more"></a><br>　　经过对比 python 与 java 的多线程测试，我发现 python 多线程的效率确实不如 java，但远还没有达到鸡肋的程度，那么跟其他机制相比较呢？</p>
+<h3 id="观点：用多进程替代多线程需求"><a href="#观点：用多进程替代多线程需求" class="headerlink" title="观点：用多进程替代多线程需求"></a><a href="#观点：用多进程替代多线程需求" title="观点：用多进程替代多线程需求"></a>观点：用多进程替代多线程需求</h3><p>　　辗转了多篇博文，我看到了一些网友的观点，觉得应该使用 python 多进程来代替多线程的需求，因为多进程不受 GIL 的限制。于是我便动手使用多进程去解决一些并发问题，期间也遇到了一些坑，所幸大部分查找资料解决了，然后对多进程做了简单汇总介绍 <a href="http://thief.one/2016/11/23/Python-multiprocessing/" target="_blank" rel="noopener">Python 多进程</a>。<br>　　那么是否多进程能完全替代多线程呢？别急，我们继续往下看。</p>
+<h3 id="观点：协程为最佳方案"><a href="#观点：协程为最佳方案" class="headerlink" title="观点：协程为最佳方案"></a><a href="#观点：协程为最佳方案" title="观点：协程为最佳方案"></a>观点：协程为最佳方案</h3><p>　　协程的概念目前来说是比较火热的，协程不同于线程的地方在于协程不是操作系统进行切换，而是由程序员编码进行切换的，也就是说切换是由程序员控制的，这样就没有了线程所谓的安全问题。协程的概念非常广而深，本文暂不做具体介绍，以后会单独成文。</p>
+<h3 id="测试数据"><a href="#测试数据" class="headerlink" title="测试数据"></a><a href="#测试数据" title="测试数据"></a>测试数据</h3><p>　　好了，网上的观点无非是使用多进程或者协程来代替多线程（当然换编程语言，换解释器之类方法除外），那么我们就来测试下这三者的性能之差。既然要公平测试，就应该考虑 IO 密集型与 CPU 密集型的问题，所以分两组数据进行测试。</p>
+<h4 id="IO-密集型测试"><a href="#IO-密集型测试" class="headerlink" title="IO 密集型测试"></a><a href="#IO密集型测试" title="IO密集型测试"></a>IO 密集型测试</h4><p>　　测试 IO 密集型，我选择最常用的爬虫功能，计算爬虫访问 bing 所需要的时间。（主要测试多线程与协程，单线程与多进程就不测了，因为没有必要）<br>测试代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#! -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="keyword">from</span> gevent <span class="keyword">import</span> monkey;monkey.patch_all()</span><br><span class="line"><span class="keyword">import</span> gevent</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"><span class="keyword">import</span> urllib2</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">urllib2_</span><span class="params">(url)</span>:</span></span><br><span class="line">	<span class="keyword">try</span>:</span><br><span class="line">		urllib2.urlopen(url,timeout=<span class="number">10</span>).read()</span><br><span class="line">	<span class="keyword">except</span> Exception,e:</span><br><span class="line">		<span class="keyword">print</span> e</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">gevent_</span><span class="params">(urls)</span>:</span></span><br><span class="line">	jobs=[gevent.spawn(urllib2_,url) <span class="keyword">for</span> url <span class="keyword">in</span> urls]</span><br><span class="line">	gevent.joinall(jobs,timeout=<span class="number">10</span>)</span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> jobs:</span><br><span class="line">		i.join()</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">thread_</span><span class="params">(urls)</span>:</span></span><br><span class="line">	a=[]</span><br><span class="line">	<span class="keyword">for</span> url <span class="keyword">in</span> urls:</span><br><span class="line">		t=threading.Thread(target=urllib2_,args=(url,))</span><br><span class="line">		a.append(t)</span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> a:</span><br><span class="line">		i.start()</span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> a:</span><br><span class="line">		i.join()</span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">	urls=[<span class="string">"https://www.bing.com/"</span>]*<span class="number">10</span>      </span><br><span class="line">	t1=time.time()</span><br><span class="line">	gevent_(urls)</span><br><span class="line">	t2=time.time()</span><br><span class="line">	<span class="keyword">print</span> <span class="string">'gevent-time:%s'</span> % str(t2-t1)</span><br><span class="line">	thread_(urls)</span><br><span class="line">	t4=time.time()</span><br><span class="line">	<span class="keyword">print</span> <span class="string">'thread-time:%s'</span> % str(t4-t2)</span><br></pre></td></tr></table></figure>
+<p>测试结果：<br>访问 10 次<br>gevent-time:0.380326032639<br>thread-time:0.376606941223<br>访问 50 次<br>gevent-time:1.3358900547<br>thread-time:1.59564089775<br>访问 100 次<br>gevent-time:2.42984986305<br>thread-time:2.5669670105<br>访问 300 次<br>gevent-time:6.66330099106<br>thread-time:10.7605059147<br>从结果可以看出，当并发数不断增大时，协程的效率确实比多线程要高，但在并发数不是那么高时，两者差异不大。</p>
+<h4 id="CPU-密集型"><a href="#CPU-密集型" class="headerlink" title="CPU 密集型"></a><a href="#CPU密集型" title="CPU密集型"></a>CPU 密集型</h4><p>CPU 密集型，我选择科学计算的一些功能，计算所需时间。（主要测试单线程、多线程、协程、多进程）<br>测试代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#! -*- coding:utf-8 -*-</span></span><br><span class="line"><span class="keyword">from</span> multiprocessing <span class="keyword">import</span> Process <span class="keyword">as</span> pro</span><br><span class="line"><span class="keyword">from</span> multiprocessing.dummy <span class="keyword">import</span> Process <span class="keyword">as</span> thr</span><br><span class="line"><span class="keyword">from</span> gevent <span class="keyword">import</span> monkey;monkey.patch_all()</span><br><span class="line"><span class="keyword">import</span> gevent</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(i)</span>:</span></span><br><span class="line">	lists=range(i)</span><br><span class="line">	list(set(lists))</span><br><span class="line">	</span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">	<span class="string">'''</span></span><br><span class="line"><span class="string">	多进程</span></span><br><span class="line"><span class="string">	'''</span></span><br><span class="line">	<span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">30</span>):      <span class="comment">##10-2.1s 20-3.8s 30-5.9s</span></span><br><span class="line">		t=pro(target=run,args=(<span class="number">5000000</span>,))</span><br><span class="line">		t.start()</span><br><span class="line">	<span class="string">'''</span></span><br><span class="line"><span class="string">	多线程</span></span><br><span class="line"><span class="string">	'''</span></span><br><span class="line">	<span class="comment"># for i in range(30):    ##10-3.8s  20-7.6s  30-11.4s</span></span><br><span class="line">	<span class="comment"># 	t=thr(target=run,args=(5000000,))</span></span><br><span class="line">	<span class="comment"># 	t.start()</span></span><br><span class="line">	<span class="string">'''</span></span><br><span class="line"><span class="string">	协程</span></span><br><span class="line"><span class="string">	'''</span></span><br><span class="line">	<span class="comment"># jobs=[gevent.spawn(run,5000000) for i in range(30)]  ##10-4.0s 20-7.7s 30-11.5s</span></span><br><span class="line">	<span class="comment"># gevent.joinall(jobs)</span></span><br><span class="line">	<span class="comment"># for i in jobs:</span></span><br><span class="line">	<span class="comment"># 	i.join()</span></span><br><span class="line">	<span class="string">'''</span></span><br><span class="line"><span class="string">	单线程</span></span><br><span class="line"><span class="string">	'''</span></span><br><span class="line">	<span class="comment"># for i in range(30):  ##10-3.5s  20-7.6s 30-11.3s</span></span><br><span class="line">	<span class="comment"># 	run(5000000)</span></span><br></pre></td></tr></table></figure>
+<p>测试结果：</p>
+<ul>
+<li>并发 10 次：【多进程】2.1s 【多线程】3.8s 【协程】4.0s 【单线程】3.5s</li>
+<li>并发 20 次：【多进程】3.8s 【多线程】7.6s 【协程】7.7s 【单线程】7.6s</li>
+<li>并发 30 次：【多进程】5.9s 【多线程】11.4s 【协程】11.5s 【单线程】11.3s</li>
+</ul>
+<p>　　可以看到，在 CPU 密集型的测试下，多进程效果明显比其他的好，多线程、协程与单线程效果差不多。这是因为只有多进程完全使用了 CPU 的计算能力。在代码运行时，我们也能够看到，只有多进程可以将 CPU 使用率占满。</p>
+<h3 id="本文结论"><a href="#本文结论" class="headerlink" title="本文结论"></a><a href="#本文结论" title="本文结论"></a>本文结论</h3><p>　　从两组数据我们不难发现，python 多线程并没有那么鸡肋。如若不然，Python3 为何不去除 GIL 呢？对于此问题，Python 社区也有两派意见，这里不再论述，我们应该尊重 Python 之父的决定。<br>　　至于何时该用多线程，何时用多进程，何时用协程？想必答案已经很明显了。<br>　　当我们需要编写并发爬虫等 IO 密集型的程序时，应该选用多线程或者协程（亲测差距不是特别明显）；当我们需要科学计算，设计 CPU 密集型程序，应该选用多进程。当然以上结论的前提是，不做分布式，只在一台服务器上测试。<br>　　答案已经给出，本文是否就此收尾？既然已经论述 Python 多线程尚有用武之地，那么就来介绍介绍其用法吧。</p>
+<h3 id="Multiprocessing-dummy-模块"><a href="#Multiprocessing-dummy-模块" class="headerlink" title="Multiprocessing.dummy 模块"></a><a href="#Multiprocessing-dummy模块" title="Multiprocessing.dummy模块"></a>Multiprocessing.dummy 模块</h3><p>Multiprocessing.dummy 用法与多进程 Multiprocessing 用法类似，只是在 import 包的时候，加上. dummy。<br>用法参考 <a href="http://thief.one/2016/11/23/Python-multiprocessing/" target="_blank" rel="noopener">Multiprocessing 用法</a></p>
+<h3 id="threading-模块"><a href="#threading-模块" class="headerlink" title="threading 模块"></a><a href="#threading模块" title="threading模块"></a>threading 模块</h3><p>　　这是 python 自带的 threading 多线程模块，其创建多线程主要有 2 种方式。一种为继承 threading 类，另一种使用 threading.Thread 函数，接下来将会分别介绍这两种用法。</p>
+<h4 id="Usage【1】"><a href="#Usage【1】" class="headerlink" title="Usage【1】"></a><a href="#Usage【1】" title="Usage【1】"></a>Usage【1】</h4><p>利用 threading.Thread() 函数创建线程。<br>代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(i)</span>:</span></span><br><span class="line">	<span class="keyword">print</span> i</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>):</span><br><span class="line">	t=threading.Thread(target=run,args=(i,))</span><br><span class="line">	t.start()</span><br></pre></td></tr></table></figure>
+<p>　　说明：Thread() 函数有 2 个参数，一个是 target，内容为子线程要执行的函数名称；另一个是 args，内容为需要传递的参数。创建完子线程，将会返回一个对象，调用对象的 start 方法，可以启动子线程。</p>
+<p>线程对象的方法：</p>
+<ul>
+<li>Start() 开始线程的执行</li>
+<li>Run() 定义线程的功能的函数</li>
+<li>Join(timeout=None) 程序挂起，直到线程结束；如果给了 timeout，则最多阻塞 timeout 秒</li>
+<li>getName() 返回线程的名字</li>
+<li>setName() 设置线程的名字</li>
+<li>isAlive() 布尔标志，表示这个线程是否还在运行</li>
+<li>isDaemon() 返回线程的 daemon 标志</li>
+<li>setDaemon(daemonic) 把线程的 daemon 标志设为 daemonic（一定要在 start（）函数前调用）</li>
+<li>t.setDaemon(True) 把父线程设置为守护线程，当父进程结束时，子进程也结束。</li>
+</ul>
+<p>threading 类的方法：</p>
+<ul>
+<li>threading.enumerate() 正在运行的线程数量</li>
+</ul>
+<h4 id="Usage【2】"><a href="#Usage【2】" class="headerlink" title="Usage【2】"></a><a href="#Usage【2】" title="Usage【2】"></a>Usage【2】</h4><p>通过继承 threading 类，创建线程。<br>代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span><span class="params">(threading.Thread)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        threading.Thread.__init__(self)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="keyword">print</span> <span class="string">"code one"</span></span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>):</span><br><span class="line">    cur=test()</span><br><span class="line">    cur.start()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>):</span><br><span class="line">    cur.join()</span><br></pre></td></tr></table></figure>
+<p>说明：此方法继承了 threading 类，并且重构了 run 函数功能。</p>
+<h3 id="获取线程返回值问题"><a href="#获取线程返回值问题" class="headerlink" title="获取线程返回值问题"></a><a href="#获取线程返回值问题" title="获取线程返回值问题"></a>获取线程返回值问题</h3><p>　　有时候，我们往往需要获取每个子线程的返回值。然而通过调用普通函数，获取 return 值的方式在多线程中并不适用。因此需要一种新的方式去获取子线程返回值。<br>代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> threading</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span><span class="params">(threading.Thread)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        threading.Thread.__init__(self)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.tag=<span class="number">1</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_result</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">if</span> self.tag==<span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">True</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">False</span></span><br><span class="line">f=test()</span><br><span class="line">f.start()</span><br><span class="line"><span class="keyword">while</span> f.isAlive():</span><br><span class="line">    <span class="keyword">continue</span></span><br><span class="line"><span class="keyword">print</span> f.get_result()</span><br></pre></td></tr></table></figure>
+<p>　　说明：多线程获取返回值的首要问题，就是子线程什么时候结束？我们应该什么时候去获取返回值？可以使用 isAlive() 方法判断子线程是否存活。</p>
+<h3 id="控制线程运行数目"><a href="#控制线程运行数目" class="headerlink" title="控制线程运行数目"></a><a href="#控制线程运行数目" title="控制线程运行数目"></a>控制线程运行数目</h3><p>当需要执行的任务非常多时，我们往往需要控制线程的数量，threading 类自带有控制线程数量的方法。<br>代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> threading</span><br><span class="line">maxs=<span class="number">10</span>  <span class="comment">##并发的线程数量</span></span><br><span class="line">threadLimiter=threading.BoundedSemaphore(maxs)</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">test</span><span class="params">(threading.Thread)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        threading.Thread.__init__(self)</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">run</span><span class="params">(self)</span>:</span></span><br><span class="line">        threadLimiter.acquire()  <span class="comment">#获取</span></span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="keyword">print</span> <span class="string">"code one"</span></span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line">        <span class="keyword">finally</span>:</span><br><span class="line">            threadLimiter.release() <span class="comment">#释放</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">100</span>):</span><br><span class="line">    cur=test()</span><br><span class="line">    cur.start()</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">100</span>):</span><br><span class="line">    cur.join()</span><br></pre></td></tr></table></figure>
+<p>说明：以上程序可以控制多线程并发数为 10，超过这个数量会引发异常。<br>除了自带的方法，我们还可以设计其他方案：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">threads=[]</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">创建所有线程</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">10</span>):</span><br><span class="line">	t=threading.Thread(target=run,args=(i,))</span><br><span class="line">	threads.append(t)</span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">启动列表中的线程</span></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="keyword">for</span> t <span class="keyword">in</span> threads:</span><br><span class="line">    t.start()</span><br><span class="line">    <span class="keyword">while</span> <span class="keyword">True</span>:</span><br><span class="line">        <span class="comment">#判断正在运行的线程数量,如果小于5则退出while循环,</span></span><br><span class="line">        <span class="comment">#进入for循环启动新的进程.否则就一直在while循环进入死循环</span></span><br><span class="line">        <span class="keyword">if</span>(len(threading.enumerate())&lt;<span class="number">5</span>):</span><br><span class="line">            <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+<p>以上两种方式皆可以，本人更喜欢用下面那种方式。</p>
+<h3 id="线程池"><a href="#线程池" class="headerlink" title="线程池"></a><a href="#线程池" title="线程池"></a>线程池</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> threadpool</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ThreadFun</span><span class="params">(arg1,arg2)</span>:</span></span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">main</span><span class="params">()</span>:</span></span><br><span class="line">    device_list=[object1,object2,object3......,objectn]<span class="comment">#需要处理的设备个数</span></span><br><span class="line">    task_pool=threadpool.ThreadPool(<span class="number">8</span>)<span class="comment">#8是线程池中线程的个数</span></span><br><span class="line">    request_list=[]<span class="comment">#存放任务列表</span></span><br><span class="line">    <span class="comment">#首先构造任务列表</span></span><br><span class="line">    <span class="keyword">for</span> device <span class="keyword">in</span> device_list:</span><br><span class="line">        request_list.append(threadpool.makeRequests(ThreadFun,[((device, ), &#123;&#125;)]))</span><br><span class="line">    <span class="comment">#将每个任务放到线程池中，等待线程池中线程各自读取任务，然后进行处理，使用了map函数，不了解的可以去了解一下。</span></span><br><span class="line">    map(task_pool.putRequest,request_list)</span><br><span class="line">    <span class="comment">#等待所有任务处理完成，则返回，如果没有处理完，则一直阻塞</span></span><br><span class="line">    task_pool.poll()</span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    main()</span><br></pre></td></tr></table></figure>
+<hr>
+<blockquote>
+<p>参考：<br>Python多线程鸡年不鸡肋 | nMask’s Blog<br><a href="https://thief.one/2017/02/17/Python%E5%A4%9A%E7%BA%BF%E7%A8%8B%E9%B8%A1%E5%B9%B4%E4%B8%8D%E9%B8%A1%E8%82%8B/" target="_blank" rel="noopener">https://thief.one/2017/02/17/Python%E5%A4%9A%E7%BA%BF%E7%A8%8B%E9%B8%A1%E5%B9%B4%E4%B8%8D%E9%B8%A1%E8%82%8B/</a><br>python异步并发模块concurrent.futures简析 | 大爱<br><a href="http://lovesoo.org/analysis-of-asynchronous-concurrent-python-module-concurrent-futures.html" target="_blank" rel="noopener">http://lovesoo.org/analysis-of-asynchronous-concurrent-python-module-concurrent-futures.html</a><br>【Multiprocessing系列】Multiprocessing基础 | nMask’s Blog<br><a href="https://thief.one/2016/11/23/Python-multiprocessing/" target="_blank" rel="noopener">https://thief.one/2016/11/23/Python-multiprocessing/</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+
+     
+    
+      <div>
+        
+    <div style="text-align:center;color: #ccc;font-size:14px;">
+        ------ 本文结束<i class="fa fa-paw"></i>感谢您的阅读 ------</div>
+
+      </div>
+    
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    CloudPai
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://cloudpai.site/2018/04/11/2018-04-11/" title="python多线程实战">http://cloudpai.site/2018/04/11/2018-04-11/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python/" rel="tag"><i class="fa fa-tag"></i> python</a>
+          
+            <a href="/tags/多线程/" rel="tag"><i class="fa fa-tag"></i> 多线程</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/10/2018-04-10/" rel="next" title="史上最简单的 MySQL 教程">
+                <i class="fa fa-chevron-left"></i> 史上最简单的 MySQL 教程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/12/2018-04-12/" rel="prev" title="高性能计算环境搭建">
+                高性能计算环境搭建 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+
+
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg"
+                alt="CloudPai" />
+            
+              <p class="site-author-name" itemprop="name">CloudPai</p>
+              <p class="site-description motion-element" itemprop="description">加油(๑•̀ㅂ•́)و✧加油</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">147</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+
+<div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=240 src="//music.163.com/outchain/player?type=0&id=2113726971&auto=0&height=430"></iframe>
+</div>
+<!-- 459004290 -->
+
+
+
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CloudPai" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:liupai024@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.douban.com/people/57965969/doulists/all" target="_blank" title="豆瓣">
+                      
+                        <i class="fa fa-fw fa-book"></i>豆瓣</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/cloudPai/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-edit"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.dlut.edu.cn/" title="DUT" target="_blank">DUT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bupt.edu.cn/" title="BUPT" target="_blank">BUPT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://campus.alibaba.com/index.htm" title="Alibaba Group" target="_blank">Alibaba Group</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#观点：用多进程替代多线程需求"><span class="nav-text">观点：用多进程替代多线程需求</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#观点：协程为最佳方案"><span class="nav-text">观点：协程为最佳方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#测试数据"><span class="nav-text">测试数据</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#IO-密集型测试"><span class="nav-text">IO 密集型测试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CPU-密集型"><span class="nav-text">CPU 密集型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#本文结论"><span class="nav-text">本文结论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Multiprocessing-dummy-模块"><span class="nav-text">Multiprocessing.dummy 模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#threading-模块"><span class="nav-text">threading 模块</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Usage【1】"><span class="nav-text">Usage【1】</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Usage【2】"><span class="nav-text">Usage【2】</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#获取线程返回值问题"><span class="nav-text">获取线程返回值问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#控制线程运行数目"><span class="nav-text">控制线程运行数目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线程池"><span class="nav-text">线程池</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CloudPai</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">703.9k</span>
+  
+</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv">  </span>
+</span>
+</div>
+
+
+
+
+
+
+
+  <div class="theme-info">&#12288;主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://cloudpai.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://cloudpai.site/2018/04/11/2018-04-11/';
+          this.page.identifier = '2018/04/11/2018-04-11/';
+          this.page.title = 'python多线程实战';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cloudpai.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!-- <!-- <script src="https://cdn.bootcss.com/aplayer/1.6.0/APlayer.min.js"></script>
+
+<script src="https://api.i-meto.com/music/player.js"></script> --> -->
+  
+  <!--移动端判断，是否引入背景-->
+  <script>
+  var browser={  
+      versions:function(){   
+             var u = navigator.userAgent, app = navigator.appVersion;   
+             return {//移动终端浏览器版本信息
+                  trident: u.indexOf('Trident') > -1, //IE内核
+                  presto: u.indexOf('Presto') > -1, //opera内核
+                  webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                  gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                  mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                  ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                  android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                  iPhone: u.indexOf('iPhone') > -1 , //是否为iPhone或者QQHD浏览器
+                  iPad: u.indexOf('iPad') > -1, //是否iPad
+                  webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+              };  
+           }(),  
+           language:(navigator.browserLanguage || navigator.language).toLowerCase()  
+  }   
+    if(browser.versions.mobile || browser.versions.ios || browser.versions.android ||   
+      browser.versions.iPhone || browser.versions.iPad){        
+               
+    }else{
+    document.write("<script type=\'text/javascript\'  src=\'/js/src/particle.js\'><\/script>");
+    }
+  </script>
+
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":-80,"vOffset":-50},"mobile":{"show":false,"scale":0.2},"react":{"opacityDefault":1,"opacityOnHover":0.2}});</script></body>
+</html>

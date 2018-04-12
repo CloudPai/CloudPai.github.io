@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="redis," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="CloudPai" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="简介memcached 和 redis 都属于内存 (memory) 键 - 值 (key-value) 数据库，在设计和思想上有许多相同之处，功能和应用在很多场合 (如分布式缓存服务) 也相似。它们都从属于数据库解决方案中的 nosql 家族，由于两者都将数据存储在内存中，自然而然，它们都是非常理想的缓存实现方案。 memcached 最初是由 Brad Fitzpatrick 于 2003">
+<meta name="keywords" content="redis">
+<meta property="og:type" content="article">
+<meta property="og:title" content="memcached redis 对比分析">
+<meta property="og:url" content="http://cloudpai.site/2018/04/12/2018-04-12-7/index.html">
+<meta property="og:site_name" content="CloudPai">
+<meta property="og:description" content="简介memcached 和 redis 都属于内存 (memory) 键 - 值 (key-value) 数据库，在设计和思想上有许多相同之处，功能和应用在很多场合 (如分布式缓存服务) 也相似。它们都从属于数据库解决方案中的 nosql 家族，由于两者都将数据存储在内存中，自然而然，它们都是非常理想的缓存实现方案。 memcached 最初是由 Brad Fitzpatrick 于 2003">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1767425-aaf40fbf5552c83a">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1767425-8bc7cc4ac684c093">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1767425-daeb03be97dcbd3f">
+<meta property="og:updated_time" content="2018-04-12T14:53:07.526Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="memcached redis 对比分析">
+<meta name="twitter:description" content="简介memcached 和 redis 都属于内存 (memory) 键 - 值 (key-value) 数据库，在设计和思想上有许多相同之处，功能和应用在很多场合 (如分布式缓存服务) 也相似。它们都从属于数据库解决方案中的 nosql 家族，由于两者都将数据存储在内存中，自然而然，它们都是非常理想的缓存实现方案。 memcached 最初是由 Brad Fitzpatrick 于 2003">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1767425-aaf40fbf5552c83a">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'TZAS2SFOJR',
+      apiKey: 'e2a9cd036eede8026382b302001ec261',
+      indexName: 'cloudpai_blogs_search',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cloudpai.site/2018/04/12/2018-04-12-7/"/>
+
+
+
+
+
+  <title>memcached redis 对比分析 | CloudPai</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-114643720-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CloudPai</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/04/12/2018-04-12-7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CloudPai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudPai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">memcached redis 对比分析</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-12T22:52:11+08:00">
+                2018-04-12
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-12T22:53:07+08:00">
+                2018-04-12
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/12/2018-04-12-7/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/04/12/2018-04-12-7/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4,416
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  16
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>memcached 和 redis 都属于内存 (memory) 键 - 值 (key-value) 数据库，在设计和思想上有许多相同之处，功能和应用在很多场合 (如分布式缓存服务) 也相似。它们都从属于数据库解决方案中的 nosql 家族，由于两者都将数据存储在内存中，自然而然，它们都是非常理想的缓存实现方案。</p>
+<p>memcached 最初是由 Brad Fitzpatrick 于 2003 年开发而成。而 redis 则由 Salvatore Sanfilippo 于 2009 年创建，它本身也从 memcached 上吸取借鉴大量宝贵经验教训，被称为 “强化版 memcached”。确实，redis 在功能多样性方面要胜过 memcached，虽然强大且更具灵活性，但复杂程度也比 memcached 更甚。</p>
+<hr>
+<h4 id="基本架构和思想"><a href="#基本架构和思想" class="headerlink" title="基本架构和思想"></a>基本架构和思想</h4><p>两者的架构和设计思想</p>
+<h5 id="memcached"><a href="#memcached" class="headerlink" title="memcached"></a>memcached</h5><p>memcached 采用客户端 - 服务器 (C/S) 的架构，客户端和服务器端的通讯使用自定义的协议标准，只要满足协议格式要求，客户端 Library 可以用任何语言实现。</p>
+<p>从用户的角度来说，服务器维护了一个键 - 值关系的数据表，服务器之间相互独立，互相之间不共享数据也不做任何通讯操作。也就是说，memcached 本身不支持分布式扩展。客户端需要知道所有的服务器，并自行负责管理数据在各个服务器间的分配。</p>
+<p>在服务器端，内部的数据存储，使用基于 Slab 的内存管理方式，有利于减少内存碎片和频繁分配销毁内存所带来的开销。各个 Slab 按需动态分配一个 page 的内存（和 4Kpage 的概念不同，这里默认 page 为 1M），page 内部按照不同 slab class 的尺寸再划分为内存 chunk 供服务器存储 KV 键值对使用。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1767425-aaf40fbf5552c83a" alt=""></p>
+<p>memcached 的基本应用模型：</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1767425-8bc7cc4ac684c093" alt=""></p>
+<h5 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h5><p>redis 的基本应用模式和上图 memcached 的基本相似，不难发现网上到处都是关于 redis 是否可以完全替代 memcached 使用的问题。</p>
+<p>redis 内部的数据结构最终也会落实到 key-value 对应的形式，不过从暴露给用户的数据结构来看，要比 memcached 丰富，除了标准的通常意义的键值对，redis 还支持 List，Set， Hashes，Sorted Set 等数据结构。</p>
+<hr>
+<h4 id="基本命令"><a href="#基本命令" class="headerlink" title="基本命令"></a>基本命令</h4><p>memcached 的命令或者说通讯协议非常简单，server 所支持的命令基本就是对特定 key 的添加，删除，替换，原子更新，读取等，具体包括 set, get, add, replace, append, inc/dec 等等。</p>
+<p>memcached 的通讯协议包括文本格式和二进制格式，用于满足简单网络客户端工具（如 telnet）和对性能要求更高的客户端的不同需求。</p>
+<p>redis 的命令在 kv(string 类型) 上提供与 memcached 类似的基本操作，在其它数据结构上也支持基本类似的操作（当然还有这些数据结构所特有的操作，如 set 的 union，list 的 pop 等）而支持更多的数据结构，在一定程度上也就意味着更加广泛的应用场合</p>
+<p>除了多种数据结构的支持，redis 相比 memcached 还提供了许多额外的特性，比如 subscribe/publish 命令，以支持发布 / 订阅模式这样的通知机制等等，这些额外的特性同样有助于拓展它的应用场景。</p>
+<p>redis 的客户端 - 服务器通讯协议完全采用文本格式 (在将来可能的服务器间通讯会采用二进制格式)。</p>
+<hr>
+<h4 id="事务"><a href="#事务" class="headerlink" title="事务"></a>事务</h4><p>redis 通过 multi / watch / exec 等命令可以支持事务的概念，原子性的执行一批命令。在 2.6 以后的版本中由于添加了对 script 脚本的支持，而脚本固有的是以 transaction 事务的方式执行的，并且更加易于使用，所以不排除将来取消 multi 等命令接口的可能性。</p>
+<p>memcached 的应用模式中，除了 increment/decrement 这样的原子操作命令，不存在对事务的支持。</p>
+<hr>
+<h4 id="数据备份，有效性，持久化等"><a href="#数据备份，有效性，持久化等" class="headerlink" title="数据备份，有效性，持久化等"></a>数据备份，有效性，持久化等</h4><p>memcached 不保证存储的数据的有效性，slab 内部基于 LRU 也会自动淘汰旧数据，客户端不能假设数据在服务器端的当前状态，这应该说是 memcached 的 feature 设定，用户不必太多关心或者自己管理数据的淘汰更新工作，当然是否适合你的应用，取决于具体的需求，它也可能成为你需要精确自行控制 cache 生命周期的一个障碍。</p>
+<p>memcached 也不做数据的持久化工作，但是有许多基于 memcached 协议的项目实现了数据的持久化，例如 memcache DB 使用 BerkeleyDB 进行数据存储，但本质上它已经不是一个 cache server，而只是一个兼容 memcached 的协议 key-valueData Store 了</p>
+<p>redis 可以以 master-slave 的方式配置服务器，slave 节点对数据进行 replica 备份，slave 节点也可以充当 read only 的节点分担数据读取的工作</p>
+<p>redis 内建支持两种持久化方案，snapshot 快照和 AOF 增量 Log 方式。快照顾名思义就是隔一段时间将完整的数据 dump 下来存储在文件中。AOF 增量 Log 则是记录对数据的修改操作（实际上记录的就是每个对数据产生修改的命令本身），两种方案可以并存，也各有优缺点，具体参见 <a href="https://link.jianshu.com?t=http://redis.io/topics/persistence" target="_blank" rel="noopener">http://redis.io/topics/persistence</a></p>
+<p>以上 Redis 的数据备份持久化方案等，如果不需要，为了提高性能，也完全可以 Disable</p>
+<hr>
+<h4 id="性能"><a href="#性能" class="headerlink" title="性能"></a>性能</h4><h5 id="memcached-1"><a href="#memcached-1" class="headerlink" title="memcached"></a>memcached</h5><p>memcached 自身并不主动定期检查和标记哪些数据需要被淘汰，只有当再次读取相关数据时才检查时间戳，或者当内存不够使用需要主动淘汰数据时进一步检查 LRU 数据。</p>
+<h5 id="redis-1"><a href="#redis-1" class="headerlink" title="redis"></a>redis</h5><p>redis 为了减少大量小数据 CMD 操作的网络通讯时间开销 RTT (Round Trip Time)，支持 pipeline 和 script 技术。</p>
+<p>所谓的 pipeline 就是支持在一次通讯中，发送多个命令给服务器批量执行，带来的代价是服务器端需要更多的内存来缓存查询结果。</p>
+<p>redis 内嵌了 LUA 解析器，可以执行 lua 脚本，脚本可以通过 eval 等命令直接执行，也可以使用 script load 等方式上传到服务器端的 script cache 中重复使用。</p>
+<p>这两种方式都可以有效地减少网络通讯开销，增加数据吞吐率。</p>
+<p>对于 KV 的操作，memcached 和 redis 都支持 multiple 的 get 和 set 命令（memcached 的 multiple set 命令貌似只在二进制的协议中支持），这同样有利于性能的提升。</p>
+<p>实际性能方面，网上有很多测试比较，给出的结果各不相同，这无疑和各种测试的测试用例，测试环境，和测试时具体使用的客户端 Library 实现有关。但是总体看下来，比较靠谱的结论是在 kv 类操作上，两者的性能接近，memcached 的结构更加简单，理论上应该会略微快一些。</p>
+<hr>
+<h4 id="集群"><a href="#集群" class="headerlink" title="集群"></a>集群</h4><p>memcached 的服务器端互相完全独立，客户端通常通过对键值应用 hash 算法决定数据的分区，为了减少服务器的增减对 hash 结果的影响，导致大面积的缓存失效，多数客户端实现了一致性 hash 算法。</p>
+<p>redis 计划在服务器端内建对集群的支持，在此之前，同样可以认为每个 redis 服务器实例相互之间是完全独立的，需要依靠客户端处理分区算法和可用服务器列表管理的工作。</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1767425-daeb03be97dcbd3f" alt=""></p>
+<p>redis 官方推荐的用于 sharding 的客户端程序库是 Twitter 的开源项目 Twemproxy， Twemproxy 同时支持 Memcached 和 Redis 的文本通讯协议。</p>
+<p>需要注意的是，redis 的许多命令在集群环境下是不能正确运行的，例如 set 的交集，以及跨节点的事务操作等等，因为目前的 redis 集群设计，根本目标也就是服务器之间互相汇报一下存活状态，以及对数据做荣誉备份平衡负载等而已，本质上对数据的跨节点操作并不提供任何额外支持，所以在数据服务的层面上来说，各个服务器依旧是完全独立的。</p>
+<p>这些操作如果一定要实现，当然可以通过客户端代码来实现（效率有多高且不说），类似的问题 memcached 集群当然也会遇上，但是原本 memcached 就不支持复杂的操作和数据类型，许多运算逻辑原本就是由客户端代码或应用程序自己处理的。</p>
+<hr>
+<h4 id="如何选择"><a href="#如何选择" class="headerlink" title="如何选择"></a>如何选择</h4><h5 id="何时应该使用-memcached"><a href="#何时应该使用-memcached" class="headerlink" title="何时应该使用 memcached"></a>何时应该使用 memcached</h5><p>相对 memcached 而言，redis 的面世时间更晚且具备更多功能，因此开发人员通常将其视为默认性首选方案。不过有两类特殊场景仍然是 memcached 的一家天下。首先就是对小型静态数据进行缓存处理，最具代表性的例子就是 HTML 代码片段。memcached 的内部内存管理机制虽然不像 redis 的那样复杂，但却更具实际效率——这是因为 memcached 在处理元数据时所消耗的内存资源相对更少。作为 memcached 所支持的惟一一种数据类型，字符串非常适合用于保存那些只需要进行读取操作的数据，因为字符串本身无需进行进一步处理。</p>
+<p>除此之外，memcached 在横向扩展方面也比 redis 更具优势。由于其在设计上的思路倾向以及相对更为简单的功能设置，memcached 在实现扩展时的难度比 redis 低得多。不过根据我们了解到的情况，目前已经有多种经过测试且切实有效的方案能够将 redis 扩展至多台服务器之上，而其即将发布的 3.0 版本 (感兴趣的朋友可以点击此处查看其候选版本说明) 将包含专门针对横向扩展场景的内置集群化机制。</p>
+<h5 id="何时应该使用-redis"><a href="#何时应该使用-redis" class="headerlink" title="何时应该使用 redis"></a>何时应该使用 redis</h5><p>除非大家需要考虑某种限定性条件 (例如处理传统应用程序) 对于 memcached 的特殊依赖性，或者自己的实际用例属于前面提到的两类场景中的一种，否则请直接选择 redis 并加以运用。凭借着 redis 所带来的卓越缓存方案，我们将拥有强大的处理能力——例如对缓存内容及持久性进行细节调整的能力——以及出色的整体执行效率。</p>
+<p>redis 几乎在缓存管理工作中的每一个侧面都表现出显而易见的优越性。这套缓存方案采用所谓数据回收机制，能够将陈旧数据从内存中删除以提供新数据所必需的缓存空间。memcached 的数据回收机制使用的是 LRU(即最低近期使用量) 算法，而且往往会比较武断地直接删除掉与新数据体系相近的原有内容。相比之下，redis 允许用户更为精准地进行细化控制，利用六种不同回收策略确切提高缓存资源的实际利用率。redis 还采用更为复杂的内存管理与回收对象备选方案。</p>
+<p>redis 还能为我们带来最大程度的灵活性空间，从而保证管理员在打理缓存对象时拥有充裕的施展平台。在这方面，memcached 将键名限制在 250 字节，值也被限制在不超过 1MB，且只适用于普通字符串。相比之下，redis 则将键名与值的最大上限各自设定为 512MB，且支持二进制格式。redis 支持六种数据类型，因此能够更加智能地对数据进行缓存处理及操作，这相当于为应用程序开发人员敞开了一道通往无尽可能性的大门。</p>
+<p>相对于将对象保存为序列化字符串，redis 允许开发人员以散列方式将对象域及值加以保存，并利用单一键对其进行管理。redis 散列机制的存在保证开发人员无需经历获取完整字符串、反序列化、更新值、对象重新序列化并在每次值更新后利用其替代缓存内完整字符串这一系列复杂的流程——这也意味着资源消耗量得以降低、性能表现迎来显著提升。redis 所支持的其它数据类型，例如 lists 以及 sets——也可被用于实现更加复杂的缓存管理模式。</p>
+<p>redis 的另一大重要优势在于，它所保存的数据具备透明化特性，也就是说服务器能够直接对这些数据进行操作。redis 当中提供 160 多种可用命令，其中大部分用于实现数据处理操作并通过服务器端脚本将逻辑嵌入至数据存储体系当中。这些内置命令及用户脚本带来了极大的灵活性优势，足以帮助大家直接在 redis 内部完成数据处理任务——而不必将数据在网络中的其它专门处理系统之间来回移动。</p>
+<p>redis 还提供可选而且能够具体调整的数据持久性方案，其设计目的在于在发生规划内停机或者计划外故障之后对缓存内容进行重新引导。虽然我们更倾向于强调缓存内数据的易失性与暂时性，但将数据在磁盘中加以持久保存在某些缓存场景当中仍然极具现实意义。这种机制能够在设备重启之后快速将保存在磁盘上的数据重新载入至缓存当中，从而大大缩短缓存预热周期并根据主数据存储内容对当前缓存内容进行重新评估。</p>
+<p>最后但也同样重要的一点是，redis 能够提供复制功能。复制功能旨在帮助缓存体系实现高可用性配置方案，从而在遭遇故障的情况下继续为应用程序提供不间断的缓存服务。很明显，一套成熟的缓存方案应该能够在应用程序发生故障时略微甚至完全不给用户体验或者应用程序性能表现带来任何影响，而这种对缓存内容及服务可用性的有力保障在大多数情况下也成为缓存解决方案的一大主要优势。</p>
+<h5 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h5><p>redis 的作者 Salvatore Sanfilippo 曾经对这两种基于内存的数据存储系统进行过比较，总体来看还是比较客观的，现总结如下：</p>
+<ol>
+<li>性能对比：由于 redis 只使用单核，而 memcached 可以使用多核，所以平均每一个核上 redis 在存储小数据时比 memcached 性能更高。而在 100k 以上的数据中，memcached 性能要高于 redis，虽然 redis 最近也在存储大数据的性能上进行优化，但是比起 memcached，还是稍有逊色。</li>
+<li>内存使用效率对比：使用简单的 key-value 存储的话，memcached 的内存利用率更高，而如果 redis 采用 hash 结构来做 key-value 存储，由于其组合式的压缩，其内存利用率会高于 memcached。另外，memcached 使用预分配的内存池的方式，带来一定程度的空间浪费 并且在内存仍然有很大空间时，新的数据也可能会被剔除，而 redis 使用现场申请内存的方式来存储数据，不会剔除任何非临时数据 redis 更适合作为存储而不是 cache。</li>
+<li>redis 支持服务器端的数据操作：redis 相比 memcached 来说，拥有更多的数据结构和并支持更丰富的数据操作，通常在 memcached 里，你需要将数据拿到客户端来进行类似的修改再 set 回去。这大大增加了网络 IO 的次数和数据体积。在 redis 中，这些复杂的操作通常和一般的 GET/SET 一样高效。所以，如果需要缓存能够支持更复杂的结构和操作，那么 redis 会是不错的选择。</li>
+</ol>
+<p>另外，贴一些前辈们使用 redis 的经验和教训：</p>
+<ol>
+<li>要进行 master-slave 配置，出现服务故障时可以支持切换。</li>
+<li>在 master 侧禁用数据持久化，只需在 slave 上配置数据持久化。</li>
+<li>物理内存 + 虚拟内存不足，这个时候 dump 一直死着，时间久了机器挂掉。这个情况就是灾难。</li>
+<li>当 redis 物理内存使用超过内存总容量的 3/5 时就会开始比较危险了，就开始做 swap, 内存碎片大。</li>
+<li>当达到最大内存时，会清空带有过期时间的 key，即使 key 未到过期时间。</li>
+<li>redis 与 DB 同步写的问题，先写 DB，后写 redis，因为写内存基本上没有问题。</li>
+</ol>
+<hr>
+<blockquote>
+<p>原文：<br>memcached redis 对比分析 - 简书<br><a href="https://www.jianshu.com/p/e94fa7340923" target="_blank" rel="noopener">https://www.jianshu.com/p/e94fa7340923</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+
+     
+    
+      <div>
+        
+    <div style="text-align:center;color: #ccc;font-size:14px;">
+        ------ 本文结束<i class="fa fa-paw"></i>感谢您的阅读 ------</div>
+
+      </div>
+    
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    CloudPai
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://cloudpai.site/2018/04/12/2018-04-12-7/" title="memcached redis 对比分析">http://cloudpai.site/2018/04/12/2018-04-12-7/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/redis/" rel="tag"><i class="fa fa-tag"></i> redis</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/12/2018-04-12-6/" rel="next" title="mysql 数据库引擎">
+                <i class="fa fa-chevron-left"></i> mysql 数据库引擎
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+
+
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg"
+                alt="CloudPai" />
+            
+              <p class="site-author-name" itemprop="name">CloudPai</p>
+              <p class="site-description motion-element" itemprop="description">加油(๑•̀ㅂ•́)و✧加油</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">147</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+
+<div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=240 src="//music.163.com/outchain/player?type=0&id=2113726971&auto=0&height=430"></iframe>
+</div>
+<!-- 459004290 -->
+
+
+
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">65</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CloudPai" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:liupai024@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.douban.com/people/57965969/doulists/all" target="_blank" title="豆瓣">
+                      
+                        <i class="fa fa-fw fa-book"></i>豆瓣</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/cloudPai/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-edit"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.dlut.edu.cn/" title="DUT" target="_blank">DUT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bupt.edu.cn/" title="BUPT" target="_blank">BUPT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://campus.alibaba.com/index.htm" title="Alibaba Group" target="_blank">Alibaba Group</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#简介"><span class="nav-text">简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基本架构和思想"><span class="nav-text">基本架构和思想</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#memcached"><span class="nav-text">memcached</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#redis"><span class="nav-text">redis</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基本命令"><span class="nav-text">基本命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事务"><span class="nav-text">事务</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据备份，有效性，持久化等"><span class="nav-text">数据备份，有效性，持久化等</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#性能"><span class="nav-text">性能</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#memcached-1"><span class="nav-text">memcached</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#redis-1"><span class="nav-text">redis</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#集群"><span class="nav-text">集群</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如何选择"><span class="nav-text">如何选择</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#何时应该使用-memcached"><span class="nav-text">何时应该使用 memcached</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#何时应该使用-redis"><span class="nav-text">何时应该使用 redis</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#小结"><span class="nav-text">小结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CloudPai</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">703.9k</span>
+  
+</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv">  </span>
+</span>
+</div>
+
+
+
+
+
+
+
+  <div class="theme-info">&#12288;主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://cloudpai.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://cloudpai.site/2018/04/12/2018-04-12-7/';
+          this.page.identifier = '2018/04/12/2018-04-12-7/';
+          this.page.title = 'memcached redis 对比分析';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cloudpai.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!-- <!-- <script src="https://cdn.bootcss.com/aplayer/1.6.0/APlayer.min.js"></script>
+
+<script src="https://api.i-meto.com/music/player.js"></script> --> -->
+  
+  <!--移动端判断，是否引入背景-->
+  <script>
+  var browser={  
+      versions:function(){   
+             var u = navigator.userAgent, app = navigator.appVersion;   
+             return {//移动终端浏览器版本信息
+                  trident: u.indexOf('Trident') > -1, //IE内核
+                  presto: u.indexOf('Presto') > -1, //opera内核
+                  webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                  gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                  mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                  ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                  android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                  iPhone: u.indexOf('iPhone') > -1 , //是否为iPhone或者QQHD浏览器
+                  iPad: u.indexOf('iPad') > -1, //是否iPad
+                  webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+              };  
+           }(),  
+           language:(navigator.browserLanguage || navigator.language).toLowerCase()  
+  }   
+    if(browser.versions.mobile || browser.versions.ios || browser.versions.android ||   
+      browser.versions.iPhone || browser.versions.iPad){        
+               
+    }else{
+    document.write("<script type=\'text/javascript\'  src=\'/js/src/particle.js\'><\/script>");
+    }
+  </script>
+
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":-80,"vOffset":-50},"mobile":{"show":false,"scale":0.2},"react":{"opacityDefault":1,"opacityOnHover":0.2}});</script></body>
+</html>
