@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cloudpai.site/"/>
-  <updated>2018-04-14T10:07:07.905Z</updated>
+  <updated>2018-04-15T13:17:40.288Z</updated>
   <id>http://cloudpai.site/</id>
   
   <author>
@@ -15,6 +15,58 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Raft协议:分布式一致性算法</title>
+    <link href="http://cloudpai.site/2018/04/15/2018-04-15-1/"/>
+    <id>http://cloudpai.site/2018/04/15/2018-04-15-1/</id>
+    <published>2018-04-15T13:09:06.000Z</published>
+    <updated>2018-04-15T13:17:40.288Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;hr&gt;
+&lt;blockquote&gt;
+&lt;p&gt;参考：&lt;br&gt;Raft协议详解&lt;br&gt;&lt;a href=&quot;https://zhuanlan.zhihu.com/p/27207160&quot; ta
+      
+    
+    </summary>
+    
+    
+      <category term="分布式" scheme="http://cloudpai.site/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+      <category term="协议" scheme="http://cloudpai.site/tags/%E5%8D%8F%E8%AE%AE/"/>
+    
+      <category term="Raft" scheme="http://cloudpai.site/tags/Raft/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MyBatis 缓存机制&amp;源码分析</title>
+    <link href="http://cloudpai.site/2018/04/15/2018-04-15/"/>
+    <id>http://cloudpai.site/2018/04/15/2018-04-15/</id>
+    <published>2018-04-15T11:16:37.000Z</published>
+    <updated>2018-04-15T12:48:50.673Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;MyBatis 是常见的 Java 数据
+      
+    
+    </summary>
+    
+    
+      <category term="源码" scheme="http://cloudpai.site/tags/%E6%BA%90%E7%A0%81/"/>
+    
+      <category term="MyBatis" scheme="http://cloudpai.site/tags/MyBatis/"/>
+    
+      <category term="缓存" scheme="http://cloudpai.site/tags/%E7%BC%93%E5%AD%98/"/>
+    
+  </entry>
   
   <entry>
     <title>人工智能、机器学习和深度学习</title>
@@ -438,52 +490,6 @@ create da
       <category term="源码" scheme="http://cloudpai.site/tags/%E6%BA%90%E7%A0%81/"/>
     
       <category term="AOP" scheme="http://cloudpai.site/tags/AOP/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Intellij IDEA 中查看方法之间调用关系的方法</title>
-    <link href="http://cloudpai.site/2018/04/07/2018-04-07-1/"/>
-    <id>http://cloudpai.site/2018/04/07/2018-04-07-1/</id>
-    <published>2018-04-07T14:20:40.000Z</published>
-    <updated>2018-04-07T14:25:01.294Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;Eclipse的”Call Hierarchy”可以查看一个Java方法或类成员变量的调用树（caller和callee两个方向），非常方便。 在IDEA中类似功能被划分到了
-      
-    
-    </summary>
-    
-    
-      <category term="IDEA" scheme="http://cloudpai.site/tags/IDEA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring-IoC容器的高级特性:源码分析总结</title>
-    <link href="http://cloudpai.site/2018/04/07/2018-04-07/"/>
-    <id>http://cloudpai.site/2018/04/07/2018-04-07/</id>
-    <published>2018-04-07T03:37:24.000Z</published>
-    <updated>2018-04-07T10:06:49.558Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;Spring-IoC容器的高级特性-源码分析总结&quot;&gt;&lt;a href=&quot;#Spring-IoC容器的高级特性-源码分析总结&quot; class=&quot;headerlink&quot; t
-      
-    
-    </summary>
-    
-    
-      <category term="Spring" scheme="http://cloudpai.site/tags/Spring/"/>
-    
-      <category term="源码" scheme="http://cloudpai.site/tags/%E6%BA%90%E7%A0%81/"/>
-    
-      <category term="IOC" scheme="http://cloudpai.site/tags/IOC/"/>
     
   </entry>
   
