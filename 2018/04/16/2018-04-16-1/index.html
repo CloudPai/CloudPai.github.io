@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Spring,远程服务," />
+  <meta name="keywords" content="Spring,待阅,远程服务," />
 
 
 
@@ -81,20 +81,20 @@
 
 
 
-<meta name="description" content="一、前言 Spring 框架提供了通过 HTTP 协议实现远程调用的方式，具体是调用方使用 HttpInvokerProxyFactoryBean 生成一个代理对象，通过代理对象远程通过 http 服务调用服务提供方法的服务并，服务提供方通过 HttpInvokerServiceExporter 在服务端暴漏远程调用接口。 二、远程服务暴露 2.1 简单使用  第一步需要定义需要暴露的服务接口和">
-<meta name="keywords" content="Spring,远程服务">
+<meta name="description" content="这里要结合《spring技术内幕》进一步研究 一、前言 Spring 框架提供了通过 HTTP 协议实现远程调用的方式，具体是调用方使用 HttpInvokerProxyFactoryBean 生成一个代理对象，通过代理对象远程通过 http 服务调用服务提供方法的服务并，服务提供方通过 HttpInvokerServiceExporter 在服务端暴漏远程调用接口。 二、远程服务暴露 2.1">
+<meta name="keywords" content="Spring,待阅,远程服务">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用Spring框架实现远程服务暴露与调用">
 <meta property="og:url" content="http://cloudpai.site/2018/04/16/2018-04-16-1/index.html">
 <meta property="og:site_name" content="CloudPai">
-<meta property="og:description" content="一、前言 Spring 框架提供了通过 HTTP 协议实现远程调用的方式，具体是调用方使用 HttpInvokerProxyFactoryBean 生成一个代理对象，通过代理对象远程通过 http 服务调用服务提供方法的服务并，服务提供方通过 HttpInvokerServiceExporter 在服务端暴漏远程调用接口。 二、远程服务暴露 2.1 简单使用  第一步需要定义需要暴露的服务接口和">
+<meta property="og:description" content="这里要结合《spring技术内幕》进一步研究 一、前言 Spring 框架提供了通过 HTTP 协议实现远程调用的方式，具体是调用方使用 HttpInvokerProxyFactoryBean 生成一个代理对象，通过代理对象远程通过 http 服务调用服务提供方法的服务并，服务提供方通过 HttpInvokerServiceExporter 在服务端暴漏远程调用接口。 二、远程服务暴露 2.1">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15238934362846.jpg">
 <meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15238934518941.jpg">
-<meta property="og:updated_time" content="2018-04-16T16:25:24.532Z">
+<meta property="og:updated_time" content="2018-04-17T16:53:43.732Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用Spring框架实现远程服务暴露与调用">
-<meta name="twitter:description" content="一、前言 Spring 框架提供了通过 HTTP 协议实现远程调用的方式，具体是调用方使用 HttpInvokerProxyFactoryBean 生成一个代理对象，通过代理对象远程通过 http 服务调用服务提供方法的服务并，服务提供方通过 HttpInvokerServiceExporter 在服务端暴漏远程调用接口。 二、远程服务暴露 2.1 简单使用  第一步需要定义需要暴露的服务接口和">
+<meta name="twitter:description" content="这里要结合《spring技术内幕》进一步研究 一、前言 Spring 框架提供了通过 HTTP 协议实现远程调用的方式，具体是调用方使用 HttpInvokerProxyFactoryBean 生成一个代理对象，通过代理对象远程通过 http 服务调用服务提供方法的服务并，服务提供方通过 HttpInvokerServiceExporter 在服务端暴漏远程调用接口。 二、远程服务暴露 2.1">
 <meta name="twitter:image" content="http://p4lmrb1gp.bkt.clouddn.com/15238934362846.jpg">
 
 
@@ -337,8 +337,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-04-17T00:25:24+08:00">
-                2018-04-17
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-18T00:53:43+08:00">
+                2018-04-18
               </time>
             
           </span>
@@ -376,7 +376,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  508
+                  523
                 </span>
               
 
@@ -413,7 +413,8 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><p>一、前言</p>
+        <script src="/assets/js/APlayer.min.js"> </script><p>这里要结合《spring技术内幕》进一步研究</p>
+<p>一、前言</p>
 <p>Spring 框架提供了通过 HTTP 协议实现远程调用的方式，具体是调用方使用 HttpInvokerProxyFactoryBean 生成一个代理对象，通过代理对象远程通过 http 服务调用服务提供方法的服务并，服务提供方通过 HttpInvokerServiceExporter 在服务端暴漏远程调用接口。</p>
 <p>二、远程服务暴露</p>
 <p>2.1 简单使用</p>
@@ -499,6 +500,8 @@
           
             <a href="/tags/Spring/" rel="tag"><i class="fa fa-tag"></i> Spring</a>
           
+            <a href="/tags/待阅/" rel="tag"><i class="fa fa-tag"></i> 待阅</a>
+          
             <a href="/tags/远程服务/" rel="tag"><i class="fa fa-tag"></i> 远程服务</a>
           
         </div>
@@ -521,6 +524,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/18/2018-04-18/" rel="prev" title="Spring注解">
+                Spring注解 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -607,7 +614,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">153</span>
+                  <span class="site-state-item-count">154</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -629,7 +636,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">73</span>
+                  <span class="site-state-item-count">74</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -738,7 +745,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">714.4k</span>
+    <span title="Site words total count">716.4k</span>
   
 </div>
 

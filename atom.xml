@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cloudpai.site/"/>
-  <updated>2018-04-16T16:25:24.532Z</updated>
+  <updated>2018-04-17T16:51:27.041Z</updated>
   <id>http://cloudpai.site/</id>
   
   <author>
@@ -17,24 +17,50 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>使用Spring框架实现远程服务暴露与调用</title>
-    <link href="http://cloudpai.site/2018/04/16/2018-04-16-1/"/>
-    <id>http://cloudpai.site/2018/04/16/2018-04-16-1/</id>
-    <published>2018-04-16T15:41:57.000Z</published>
-    <updated>2018-04-16T16:25:24.532Z</updated>
+    <title>Spring注解</title>
+    <link href="http://cloudpai.site/2018/04/18/2018-04-18/"/>
+    <id>http://cloudpai.site/2018/04/18/2018-04-18/</id>
+    <published>2018-04-17T16:01:33.000Z</published>
+    <updated>2018-04-17T16:51:27.041Z</updated>
     
     <summary type="html">
     
       
       
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;一、前言&lt;/p&gt;
-&lt;p&gt;Spring 框架提供了通过 HTTP 协议实现远程调用的方式，具体是调用方使用 HttpInvokerProxyFactoryBean 生成一个代理
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h2 id=&quot;注解是什么？&quot;&gt;&lt;a href=&quot;#注解是什么？&quot; class=&quot;headerlink&quot; title=&quot;注解是什么？&quot;&gt;&lt;/a&gt;注解是什么？&lt;/h2&gt;&lt;p&gt;注解（A
       
     
     </summary>
     
     
       <category term="Spring" scheme="http://cloudpai.site/tags/Spring/"/>
+    
+      <category term="注解" scheme="http://cloudpai.site/tags/%E6%B3%A8%E8%A7%A3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>使用Spring框架实现远程服务暴露与调用</title>
+    <link href="http://cloudpai.site/2018/04/16/2018-04-16-1/"/>
+    <id>http://cloudpai.site/2018/04/16/2018-04-16-1/</id>
+    <published>2018-04-16T15:41:57.000Z</published>
+    <updated>2018-04-17T16:53:43.732Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;这里要结合《spring技术内幕》进一步研究&lt;/p&gt;
+&lt;p&gt;一、前言&lt;/p&gt;
+&lt;p&gt;Spring 框架提供了通过 HTTP 协议实现远程调用的方式，具体是调用方使用 Http
+      
+    
+    </summary>
+    
+    
+      <category term="Spring" scheme="http://cloudpai.site/tags/Spring/"/>
+    
+      <category term="待阅" scheme="http://cloudpai.site/tags/%E5%BE%85%E9%98%85/"/>
     
       <category term="远程服务" scheme="http://cloudpai.site/tags/%E8%BF%9C%E7%A8%8B%E6%9C%8D%E5%8A%A1/"/>
     
@@ -45,7 +71,7 @@
     <link href="http://cloudpai.site/2018/04/16/2018-04-16/"/>
     <id>http://cloudpai.site/2018/04/16/2018-04-16/</id>
     <published>2018-04-16T10:53:05.000Z</published>
-    <updated>2018-04-16T15:03:13.343Z</updated>
+    <updated>2018-04-17T14:32:23.764Z</updated>
     
     <summary type="html">
     
@@ -464,31 +490,6 @@ create da
     
     
       <category term="mysql" scheme="http://cloudpai.site/tags/mysql/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring技术内幕：Spring-AOP的实现:源码分析总结</title>
-    <link href="http://cloudpai.site/2018/04/08/2018-04-08-1/"/>
-    <id>http://cloudpai.site/2018/04/08/2018-04-08-1/</id>
-    <published>2018-04-08T08:15:39.000Z</published>
-    <updated>2018-04-09T12:20:23.500Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;一-建立AopProxy代理对象&quot;&gt;&lt;a href=&quot;#一-建立AopProxy代理对象&quot; class=&quot;headerlink&quot; title=&quot;一.建立AopPro
-      
-    
-    </summary>
-    
-    
-      <category term="Spring" scheme="http://cloudpai.site/tags/Spring/"/>
-    
-      <category term="源码" scheme="http://cloudpai.site/tags/%E6%BA%90%E7%A0%81/"/>
-    
-      <category term="AOP" scheme="http://cloudpai.site/tags/AOP/"/>
     
   </entry>
   
