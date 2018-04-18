@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cloudpai.site/"/>
-  <updated>2018-04-17T16:51:27.041Z</updated>
+  <updated>2018-04-18T14:28:56.905Z</updated>
   <id>http://cloudpai.site/</id>
   
   <author>
@@ -15,6 +15,100 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>分布式服务框架概述</title>
+    <link href="http://cloudpai.site/2018/04/18/2018-04-18-4/"/>
+    <id>http://cloudpai.site/2018/04/18/2018-04-18-4/</id>
+    <published>2018-04-18T13:35:53.000Z</published>
+    <updated>2018-04-18T14:28:56.905Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt; 分布式架构知识脑图：&lt;br&gt;&lt;img src=&quot;http://p4lmrb1gp.bkt.clouddn.com/15240585817545.jpg&quot; alt=&quot;&quot;&gt;&lt;/
+      
+    
+    </summary>
+    
+    
+      <category term="分布式" scheme="http://cloudpai.site/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Redis面试总结&amp;史上最全Redis面试题及答案</title>
+    <link href="http://cloudpai.site/2018/04/18/2018-04-18-3/"/>
+    <id>http://cloudpai.site/2018/04/18/2018-04-18-3/</id>
+    <published>2018-04-18T12:13:24.000Z</published>
+    <updated>2018-04-18T13:26:25.341Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;Redis 在互联网技术存储方面使用如此广泛，几乎所有的后端技术面试官都要在 Redis 的使用和原理方面对小伙伴们进行各种刁难。作为一名在互联网技术行业打击过成百上千名【请
+      
+    
+    </summary>
+    
+    
+      <category term="面试" scheme="http://cloudpai.site/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+      <category term="待阅" scheme="http://cloudpai.site/tags/%E5%BE%85%E9%98%85/"/>
+    
+      <category term="Redis" scheme="http://cloudpai.site/tags/Redis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Redis持久化（RDB、AOF）</title>
+    <link href="http://cloudpai.site/2018/04/18/2018-04-18-2/"/>
+    <id>http://cloudpai.site/2018/04/18/2018-04-18-2/</id>
+    <published>2018-04-18T10:49:17.000Z</published>
+    <updated>2018-04-18T13:01:19.788Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;第5章-持久化&quot;&gt;&lt;a href=&quot;#第5章-持久化&quot; class=&quot;headerlink&quot; title=&quot;第5章　持久化&quot;&gt;&lt;/a&gt;第5章　持久化&lt;/h1&gt;&lt;h2
+      
+    
+    </summary>
+    
+    
+      <category term="Redis" scheme="http://cloudpai.site/tags/Redis/"/>
+    
+      <category term="RDB" scheme="http://cloudpai.site/tags/RDB/"/>
+    
+      <category term="AOF" scheme="http://cloudpai.site/tags/AOF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Fabric 架构深度解读</title>
+    <link href="http://cloudpai.site/2018/04/18/2018-04-18-1/"/>
+    <id>http://cloudpai.site/2018/04/18/2018-04-18-1/</id>
+    <published>2018-04-18T09:11:26.000Z</published>
+    <updated>2018-04-18T09:14:21.101Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;&lt;strong&gt;前言&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;Hyp
+      
+    
+    </summary>
+    
+    
+      <category term="区块链" scheme="http://cloudpai.site/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
+    
+      <category term="Fabric" scheme="http://cloudpai.site/tags/Fabric/"/>
+    
+  </entry>
   
   <entry>
     <title>Spring注解</title>
@@ -71,7 +165,7 @@
     <link href="http://cloudpai.site/2018/04/16/2018-04-16/"/>
     <id>http://cloudpai.site/2018/04/16/2018-04-16/</id>
     <published>2018-04-16T10:53:05.000Z</published>
-    <updated>2018-04-17T14:32:23.764Z</updated>
+    <updated>2018-04-18T13:24:56.399Z</updated>
     
     <summary type="html">
     
@@ -398,98 +492,6 @@
       <category term="python" scheme="http://cloudpai.site/tags/python/"/>
     
       <category term="多线程" scheme="http://cloudpai.site/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>史上最简单的 MySQL 教程</title>
-    <link href="http://cloudpai.site/2018/04/10/2018-04-10/"/>
-    <id>http://cloudpai.site/2018/04/10/2018-04-10/</id>
-    <published>2018-04-10T11:33:23.000Z</published>
-    <updated>2018-04-10T13:34:30.908Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;（一）「数据库」&quot;&gt;&lt;a href=&quot;#（一）「数据库」&quot; class=&quot;headerlink&quot; title=&quot;（一）「数据库」&quot;&gt;&lt;/a&gt;（一）「数据库」&lt;/h1
-      
-    
-    </summary>
-    
-    
-      <category term="mysql" scheme="http://cloudpai.site/tags/mysql/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数据库和mysql 学习规划</title>
-    <link href="http://cloudpai.site/2018/04/09/2018-04-09-2/"/>
-    <id>http://cloudpai.site/2018/04/09/2018-04-09-2/</id>
-    <published>2018-04-09T13:35:15.000Z</published>
-    <updated>2018-04-10T01:17:40.025Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;img src=&quot;http://p4lmrb1gp.bkt.clouddn.com/15232811112090.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;先学习基础知识概念
-      
-    
-    </summary>
-    
-    
-      <category term="数据库" scheme="http://cloudpai.site/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring中用到的设计模式</title>
-    <link href="http://cloudpai.site/2018/04/09/2018-04-09-1/"/>
-    <id>http://cloudpai.site/2018/04/09/2018-04-09-1/</id>
-    <published>2018-04-09T12:25:50.000Z</published>
-    <updated>2018-04-09T12:37:43.053Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;应该说设计模式是我们在写代码时候的一种被承认的较好的模式。好的设计模式就像是给代码造了一个很好的骨架，在这个骨架里，你可以知道心在哪里，肺在哪里，因为大多数人都认识这样的骨架
-      
-    
-    </summary>
-    
-    
-      <category term="Spring" scheme="http://cloudpai.site/tags/Spring/"/>
-    
-      <category term="设计模式" scheme="http://cloudpai.site/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>在 Mac 终端导入 &amp; 导出. sql 文件</title>
-    <link href="http://cloudpai.site/2018/04/09/2018-04-09/"/>
-    <id>http://cloudpai.site/2018/04/09/2018-04-09/</id>
-    <published>2018-04-09T06:28:17.000Z</published>
-    <updated>2018-04-09T06:29:27.175Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;ul&gt;
-&lt;li&gt;导入&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;打开终端输入：（前提是已经配置过 MySQL 环境变量）&lt;/p&gt;
-&lt;pre&gt;mysql -u root -p
-create da
-      
-    
-    </summary>
-    
-    
-      <category term="mysql" scheme="http://cloudpai.site/tags/mysql/"/>
     
   </entry>
   
