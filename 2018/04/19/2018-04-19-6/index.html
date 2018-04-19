@@ -1,0 +1,1392 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="架构," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="CloudPai" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="4 瞬时响应：网站的高性能架构 一、网站性能测试（1）性能测试指标：①响应时间；②并发数；③吞吐量；④性能计数器； （2）性能测试方法：①性能测试；②负载测试；③压力测试；④稳定性测试； （3）性能优化策略： 　　①性能分析：检查请求处理各个环节的日志，分析哪个环节响应时间不合理，检查监控数据分析影响性能的因素； 　　②性能优化：Web 前端优化，应用服务器优化，存储服务器优化； 二、Web 前">
+<meta name="keywords" content="架构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《大型网站技术架构》笔记4 瞬时响应：网站的高性能架构">
+<meta property="og:url" content="http://cloudpai.site/2018/04/19/2018-04-19-6/index.html">
+<meta property="og:site_name" content="CloudPai">
+<meta property="og:description" content="4 瞬时响应：网站的高性能架构 一、网站性能测试（1）性能测试指标：①响应时间；②并发数；③吞吐量；④性能计数器； （2）性能测试方法：①性能测试；②负载测试；③压力测试；④稳定性测试； （3）性能优化策略： 　　①性能分析：检查请求处理各个环节的日志，分析哪个环节响应时间不合理，检查监控数据分析影响性能的因素； 　　②性能优化：Web 前端优化，应用服务器优化，存储服务器优化； 二、Web 前">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15241397433815.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记四：瞬时响应之网站的高性能架构/image1">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记四：瞬时响应之网站的高性能架构/image2">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记四：瞬时响应之网站的高性能架构/image3">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记四：瞬时响应之网站的高性能架构/image4">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记四：瞬时响应之网站的高性能架构/image5">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记四：瞬时响应之网站的高性能架构/image6">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记四：瞬时响应之网站的高性能架构/image7">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记四：瞬时响应之网站的高性能架构/image8">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记四：瞬时响应之网站的高性能架构/image9">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记四：瞬时响应之网站的高性能架构/image10">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记四：瞬时响应之网站的高性能架构/image11">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记四：瞬时响应之网站的高性能架构/image12">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记四：瞬时响应之网站的高性能架构/image13">
+<meta property="og:updated_time" content="2018-04-19T14:20:15.894Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《大型网站技术架构》笔记4 瞬时响应：网站的高性能架构">
+<meta name="twitter:description" content="4 瞬时响应：网站的高性能架构 一、网站性能测试（1）性能测试指标：①响应时间；②并发数；③吞吐量；④性能计数器； （2）性能测试方法：①性能测试；②负载测试；③压力测试；④稳定性测试； （3）性能优化策略： 　　①性能分析：检查请求处理各个环节的日志，分析哪个环节响应时间不合理，检查监控数据分析影响性能的因素； 　　②性能优化：Web 前端优化，应用服务器优化，存储服务器优化； 二、Web 前">
+<meta name="twitter:image" content="http://p4lmrb1gp.bkt.clouddn.com/15241397433815.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'TZAS2SFOJR',
+      apiKey: 'e2a9cd036eede8026382b302001ec261',
+      indexName: 'cloudpai_blogs_search',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cloudpai.site/2018/04/19/2018-04-19-6/"/>
+
+
+
+
+
+  <title>《大型网站技术架构》笔记4 瞬时响应：网站的高性能架构 | CloudPai</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-114643720-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CloudPai</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/04/19/2018-04-19-6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CloudPai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudPai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《大型网站技术架构》笔记4 瞬时响应：网站的高性能架构</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-19T22:05:51+08:00">
+                2018-04-19
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-19T22:20:15+08:00">
+                2018-04-19
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/19/2018-04-19-6/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/04/19/2018-04-19-6/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,890
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  10
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="4-瞬时响应：网站的高性能架构"><a href="#4-瞬时响应：网站的高性能架构" class="headerlink" title="4 瞬时响应：网站的高性能架构"></a>4 瞬时响应：网站的高性能架构</h1><p><img src="http://p4lmrb1gp.bkt.clouddn.com/15241397433815.jpg" alt=""></p>
+<h2 id="一、网站性能测试"><a href="#一、网站性能测试" class="headerlink" title="一、网站性能测试"></a>一、网站性能测试</h2><p>（1）性能测试指标：①响应时间；②并发数；③吞吐量；④性能计数器；</p>
+<p>（2）性能测试方法：①性能测试；②负载测试；③压力测试；④稳定性测试；</p>
+<p>（3）性能优化策略：</p>
+<p>　　①性能分析：检查请求处理各个环节的日志，分析哪个环节响应时间不合理，检查监控数据分析影响性能的因素；</p>
+<p>　　②性能优化：Web 前端优化，应用服务器优化，存储服务器优化；</p>
+<h2 id="二、Web-前端性能优化"><a href="#二、Web-前端性能优化" class="headerlink" title="二、Web 前端性能优化"></a>二、Web 前端性能优化</h2><p>（1）浏览器访问优化：</p>
+<p>　　①减少 http 请求：<strong>因为 http 是无状态的，每次请求的开销都比较昂贵</strong>（需要建立通信链路、进行数据传输，而服务器端对于每个 http 请求都需要启动独立的线程去处理）；减少 http 的主要手段是合并 CSS、合并 JS、合并图片（CSS 精灵，利用偏移定位 image）；</p>
+<p>　　②使用浏览器缓存：设置 http 头中 Cache-Control 和 Expires 属性；</p>
+<p>　　③启用压缩：可以对 html、css、js 文件启用 Gzip 压缩，可以达到较高的压缩效率，但是压缩会对服务器及浏览器产生一定的压力；</p>
+<p>　　④CSS 放页面最上面，JS 放页面最下面：<strong>浏览器会在下载完全部 CSS 之后才开始对整个页面进行渲染</strong>，因此最好将 CSS 放在页面最上面；而<strong>浏览器在加载 JS 后会立即执行，有可能会阻塞整个页面，造成页面显示缓慢</strong>，因此最好将 JS 放在页面最下面；</p>
+<p>　　⑤减少 Cookie 传输：一方面，太大的 Cookie 会严重影响数据传输；另一方面，对于某些静态资源的访问（如 CSS、JS 等）发送 Cookie 没有意义；</p>
+<p>（2）CDN 加速：</p>
+<p>　　CDN（内容分发网络）仍然是一个<strong>缓存</strong>，它<strong>将数据缓存在离用户最近的地方</strong>，便于用户以最快速度获取数据。即所谓的 “<strong>网络访问第一跳</strong>”，如下图所示：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记四：瞬时响应之网站的高性能架构/image1" alt=""></p>
+<p>　　<strong>CDN 只将访问频度很高的热点内容（例如：图片、视频、CSS、JS 脚本等访问频度很高的内容）进行缓存</strong>，可以极大地加快用户访问速度，减少数据中心负载。</p>
+<p>（3）反向代理：</p>
+<p>　　反向代理服务器位于网站机房，代理网站 Web 服务器接收 Http 请求，对请求进行转发，如下图所示：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记四：瞬时响应之网站的高性能架构/image2" alt=""></p>
+<p>　　反向代理服务器具有以下功能：</p>
+<p>　　①保护网站安全：任何来自 Internet 的请求都必须先经过代理服务器；</p>
+<p>　　②通过配置缓存功能加速 Web 请求：减轻真实 Web 服务器的负载压力；</p>
+<p>　　③实现负载均衡：均衡地分发请求，平衡集群中各个服务器的负载压力；</p>
+<h2 id="三、应用服务器性能优化"><a href="#三、应用服务器性能优化" class="headerlink" title="三、应用服务器性能优化"></a>三、应用服务器性能优化</h2><p>（1）分布式缓存：</p>
+<blockquote>
+<p><em><strong>PS：</strong></em>网站性能优化第一定律：<strong>优先考虑使用缓存优化性能</strong>。缓存是指将数据存储在相对较高访问速度的存储介质中（如内存），以供系统进行快速处理响应用户请求。</p>
+</blockquote>
+<p>　　①缓存本质是一个<strong>内存 Hash 表</strong>，数据以 (Key,Value) 形式存储在内存中。</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记四：瞬时响应之网站的高性能架构/image3" alt=""></p>
+<p>　　②缓存主要用来<strong>存放那些读写比很高、很少变化的数据</strong>，如商品的类目信息、热门商品信息等。这样，应用程序读取数据时，先到缓存中取，如缓存中没有或失效，再到数据库中取出，重新写入缓存以供下一次访问。因此，可以<strong>很好地改善系统性能，提高数据读取速度，降低存储访问压力</strong>。</p>
+<p>　　③分布式缓存架构：一方面是以以 JBoss Cache 为代表的<strong>互相通信</strong>派；另一方面是以 Memcached 为代表的<strong>互不通信</strong>派；</p>
+<p>　　JBoss Cache 需要将缓存信息同步到集群中的所有机器，代价比较大；而 Memcached 采用一种集中式的缓存集群管理，缓存与应用分离部署，应用程序通过<strong>一致性 Hash 算法</strong>选择缓存服务器远程访问缓存数据，缓存服务器之间互不通信，因而集群规模可以轻易地扩容，具有良好的伸缩性。</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记四：瞬时响应之网站的高性能架构/image4" alt=""></p>
+<p>　　Memcached 由两个核心组件组成：服务端（ms）和客户端（mc），在一个 memcached 的查询中，mc 先通过计算 key 的 hash 值来确定 kv 对所处在的 ms 位置。当 ms 确定后，客户端就会发送一个查询请求给对应的 ms，让它来查找确切的数据。因为这之间没有交互以及多播协议，所以 memcached 交互带给网络的影响是最小化的。</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记四：瞬时响应之网站的高性能架构/image5" alt=""></p>
+<p>（2）异步操作：</p>
+<p>　　①使用<strong>消息队列</strong>将调用异步化，可改善网站的扩展性，还可改善网站性能；</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记四：瞬时响应之网站的高性能架构/image6" alt=""></p>
+<p>　　②消息队列具有<strong>削峰</strong>的作用 -&gt; 将短时间高并发产生的事务消息存储在消息队列中，从而削平高峰期的并发事务；</p>
+<blockquote>
+<p><em><strong>PS：</strong></em><strong>任何可以晚点做的事情都应该晚点再做</strong>。前提是：这个事儿确实可以晚点再做。</p>
+</blockquote>
+<p>（3）使用集群：</p>
+<p>　　①在高并发场景下，使用<strong>负载均衡</strong>技术为一个应用构建多台服务器组成的服务器集群；</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记四：瞬时响应之网站的高性能架构/image7" alt=""></p>
+<p>　　②可以避免单一服务器因负载压力过大而响应缓慢，使用户请求具有<strong>更好的响应延迟特性</strong>；</p>
+<p>　　③负载均衡可以采用硬件设备，也可以采用软件负载。商用硬件负载设备（例如出名的 F5）成本通常较高（一台几十万上百万很正常），所以在条件允许的情况下我们会采用软负载，软负载解决的两个核心问题是：选谁、转发，其中最著名的是 <strong>LVS</strong>（Linux Virtual Server）。</p>
+<blockquote>
+<p>_<strong>PS：</strong>_LVS 是四层负载均衡，也就是说建立在 OSI 模型的第四层——传输层之上，传输层上有我们熟悉的 TCP/UDP，LVS 支持 TCP/UDP 的负载均衡。</p>
+<p>LVS 的转发主要通过修改 IP 地址（NAT 模式，分为源地址修改 SNAT 和目标地址修改 DNAT）、修改目标 MAC（DR 模式）来实现。有关 LVS 的详情请参考：<a href="http://www.importnew.com/11229.html" target="_blank" rel="noopener">http://www.importnew.com/11229.html</a></p>
+</blockquote>
+<p>（4）代码优化：</p>
+<p>　　①多线程：使用多线程的原因：一是 IO 阻塞，二是多 CPU，都是为了最大限度地利用 CPU 资源，提高系统吞吐能力，改善系统性能；</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记四：瞬时响应之网站的高性能架构/image8" alt=""></p>
+<p>　　②资源复用：目的是<strong>减少开销很大的系统资源的创建和销毁</strong>，主要采用两种模式实现：单例（Singleton）和对象池（Object Pool）。例如，在. NET 开发中，经常使用到的线程池，数据库连接池等，本质上都是对象池。</p>
+<p>　　③数据结构：在不同场合合理使用恰当的数据结构，可以极大优化程序的性能。</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记四：瞬时响应之网站的高性能架构/image9" alt=""></p>
+<p>　　④垃圾回收：理解垃圾回收机制有助于程序优化和参数调优，以及编写内存安安全的代码。这里主要针对 Java（JVM）和 C#（CLR）一类的具有 GC（垃圾回收机制）的语言。</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记四：瞬时响应之网站的高性能架构/image10" alt=""></p>
+<h2 id="四、存储性能优化"><a href="#四、存储性能优化" class="headerlink" title="四、存储性能优化"></a>四、存储性能优化</h2><p>（1）机械硬盘 还是 固态硬盘？</p>
+<p>　　①机械硬盘：<strong>通过马达驱动磁头臂，带动磁头到指定的磁盘位置访问数据</strong>。它能够实现<strong>快速顺序读写，慢速随机读写</strong>。</p>
+<p>　　②固态硬盘（又称 SSD）：无机械装置，<strong>数据存储在可持久记忆的硅晶体上</strong>，因此可以像内存一样<strong>快速随机访问</strong>。</p>
+<p>　　在目前的网站应用中，大部分应用访问数据都是随机的，这种情况下 SSD 具有更好的性能表现，但是性价比有待提升（蛮贵的，么么嗒）。</p>
+<p>（2）B + 树 vs LSM 树</p>
+<p>　　①传统关系型数据库广泛采用 B + 树，B + 树是对数据排好序后再存储，加快数据检索速度。</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记四：瞬时响应之网站的高性能架构/image11" alt=""></p>
+<blockquote>
+<p><em><strong>PS：</strong></em>目前大多数 DB 多采用两级索引的 B + 树，树的层次最多三层。因此可能需要 <strong>5 次磁盘访问</strong>才能更新一条记录（三次磁盘访问获得数据索引及行 ID，一次数据文件读操作，一次数据文件写操作，终于知道数据库操作有多麻烦多耗时了）</p>
+</blockquote>
+<p>　　②NoSQL（例如：HBase）产品广泛采用 LSM 树：</p>
+<p>　　具体思想是：<strong>将对数据的修改增量保持在内存中，达到指定的大小限制后将这些修改操作批量写入磁盘。</strong>不过读取的时候稍微麻烦，需要合并磁盘中历史数据和内存中最近的修改操作，所以写入性能大大提升，读取时可能需要先看是否命中内存，否则需要访问较多的磁盘文件。</p>
+<p>　　LSM 树的原理是：把一棵大树拆分成 N 棵小树，它首先写入内存中，随着小树越来越大，内存中的小树会被清除并写入到磁盘中，磁盘中的树定期可以做合并操作，合并成一棵大树，以优化读性能。</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记四：瞬时响应之网站的高性能架构/image12" alt=""></p>
+<p>　　LSM 树的优势在于：在 LSM 树上进行一次数据更新不需要磁盘访问，在内存即可完成，速度远快于 B + 树。</p>
+<h2 id="五、学习总结"><a href="#五、学习总结" class="headerlink" title="五、学习总结"></a>五、学习总结</h2><p>　　对于网站的高性能架构这一章的阅读，通过大牛的书籍我们学到了从三个主要方面的性能优化策略，虽然都是理论，而且还只是浅显地说明，但是对于我们这些广大的开发菜鸟来说，扩展知识面，了解一点优化策略不是一件坏事，我们可以从中注意到日常的代码规范，如何写出高效的代码也是一件值得研究的事儿。在书中，看到了作者写了这样一句话，贴出来与各位正在学习途中的菜鸟们共享：<strong>“归根结底，技术是为业务服务的，技术选型和架构决策依赖业务规划乃至企业战略规划，离开业务发展的支撑和驱动，技术走不远，甚至还会迷路”</strong>。出来实习了一年多，对这句话感慨颇多，也吃了很多的亏，在和客户的沟通交流上也有了自己的一点感悟，所以贴出来与各位园友共勉。最后，希望作为菜鸟的我们，在技术这条路上能够走得远一些，迷路不重要，重要的是能够迷途知返，么么嗒！再过一个多月，就要开始找工作了，希望在此期间能够认真阅读完自己的计划书单，加油！</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>（1）李智慧，《大型网站技术架构 - 核心原理与案例分析》，<a href="http://item.jd.com/11322972.html" target="_blank" rel="noopener">http://item.jd.com/11322972.html</a></p>
+<p>（2）周言之，《Memcached 详解》，<a href="http://blog.csdn.net/zlb824/article/details/7466943" target="_blank" rel="noopener">http://blog.csdn.net/zlb824/article/details/7466943</a></p>
+<p>（3）百度百科，CDN，<a href="http://baike.baidu.com/view/8689800.htm" target="_blank" rel="noopener">http://baike.baidu.com/view/8689800.htm</a></p>
+<p>（4）王晨纯，《Web 基础架构：负载均衡和 LVS》，<a href="http://www.importnew.com/11229.html" target="_blank" rel="noopener">http://www.importnew.com/11229.html</a></p>
+<p>（5）辉之光，《B 树、B - 树、B + 树》，<a href="http://www.cnblogs.com/oldhorse/archive/2009/11/16/1604009.html" target="_blank" rel="noopener">http://www.cnblogs.com/oldhorse/archive/2009/11/16/1604009.html</a></p>
+<p>（6）yanghuahui’s blog<a href="http://www.cnblogs.com/yanghuahui/" target="_blank" rel="noopener"></a>，《LSM 树由来、设计思想以及应用到 HBase 的索引》，<a href="http://www.cnblogs.com/yanghuahui/p/3483754.html" target="_blank" rel="noopener">http://www.cnblogs.com/yanghuahui/p/3483754.html</a></p>
+<h2 id="本章思维导图"><a href="#本章思维导图" class="headerlink" title="本章思维导图"></a>本章思维导图</h2><p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记四：瞬时响应之网站的高性能架构/image13" alt=""></p>
+<hr>
+<blockquote>
+<p>参考：<br>大型网站技术架构（12篇） - 综合区 - [ 博客精选 ] - 手册网<br><a href="http://www.shouce.ren/api/view/a/15512" target="_blank" rel="noopener">http://www.shouce.ren/api/view/a/15512</a><br>Edison Chou - 博客园<br><a href="http://www.cnblogs.com/edisonchou/" target="_blank" rel="noopener">http://www.cnblogs.com/edisonchou/</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+
+     
+    
+      <div>
+        
+    <div style="text-align:center;color: #ccc;font-size:14px;">
+        ------ 本文结束<i class="fa fa-paw"></i>感谢您的阅读 ------</div>
+
+      </div>
+    
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    CloudPai
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://cloudpai.site/2018/04/19/2018-04-19-6/" title="《大型网站技术架构》笔记4 瞬时响应：网站的高性能架构">http://cloudpai.site/2018/04/19/2018-04-19-6/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/架构/" rel="tag"><i class="fa fa-tag"></i> 架构</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/19/2018-04-19-5/" rel="next" title="《大型网站技术架构》笔记3 大型网站核心架构要素">
+                <i class="fa fa-chevron-left"></i> 《大型网站技术架构》笔记3 大型网站核心架构要素
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/19/2018-04-19-7/" rel="prev" title="《大型网站技术架构》笔记5 万无一失：网站的高可用架构">
+                《大型网站技术架构》笔记5 万无一失：网站的高可用架构 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+
+
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg"
+                alt="CloudPai" />
+            
+              <p class="site-author-name" itemprop="name">CloudPai</p>
+              <p class="site-description motion-element" itemprop="description">加油(๑•̀ㅂ•́)و✧加油</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">170</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+
+<div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=240 src="//music.163.com/outchain/player?type=0&id=2113726971&auto=0&height=430"></iframe>
+</div>
+<!-- 459004290 -->
+
+
+
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">83</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CloudPai" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:liupai024@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.douban.com/people/57965969/doulists/all" target="_blank" title="豆瓣">
+                      
+                        <i class="fa fa-fw fa-book"></i>豆瓣</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/cloudPai/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-edit"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.dlut.edu.cn/" title="DUT" target="_blank">DUT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bupt.edu.cn/" title="BUPT" target="_blank">BUPT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://campus.alibaba.com/index.htm" title="Alibaba Group" target="_blank">Alibaba Group</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#4-瞬时响应：网站的高性能架构"><span class="nav-text">4 瞬时响应：网站的高性能架构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、网站性能测试"><span class="nav-text">一、网站性能测试</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、Web-前端性能优化"><span class="nav-text">二、Web 前端性能优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、应用服务器性能优化"><span class="nav-text">三、应用服务器性能优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、存储性能优化"><span class="nav-text">四、存储性能优化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、学习总结"><span class="nav-text">五、学习总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-text">参考文献</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本章思维导图"><span class="nav-text">本章思维导图</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CloudPai</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">754.1k</span>
+  
+</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv">  </span>
+</span>
+</div>
+
+
+
+
+
+
+
+  <div class="theme-info">&#12288;主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://cloudpai.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://cloudpai.site/2018/04/19/2018-04-19-6/';
+          this.page.identifier = '2018/04/19/2018-04-19-6/';
+          this.page.title = '《大型网站技术架构》笔记4 瞬时响应：网站的高性能架构';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cloudpai.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!-- <!-- <script src="https://cdn.bootcss.com/aplayer/1.6.0/APlayer.min.js"></script>
+
+<script src="https://api.i-meto.com/music/player.js"></script> --> -->
+  
+  <!--移动端判断，是否引入背景-->
+  <script>
+  var browser={  
+      versions:function(){   
+             var u = navigator.userAgent, app = navigator.appVersion;   
+             return {//移动终端浏览器版本信息
+                  trident: u.indexOf('Trident') > -1, //IE内核
+                  presto: u.indexOf('Presto') > -1, //opera内核
+                  webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                  gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                  mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                  ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                  android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                  iPhone: u.indexOf('iPhone') > -1 , //是否为iPhone或者QQHD浏览器
+                  iPad: u.indexOf('iPad') > -1, //是否iPad
+                  webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+              };  
+           }(),  
+           language:(navigator.browserLanguage || navigator.language).toLowerCase()  
+  }   
+    if(browser.versions.mobile || browser.versions.ios || browser.versions.android ||   
+      browser.versions.iPhone || browser.versions.iPad){        
+               
+    }else{
+    document.write("<script type=\'text/javascript\'  src=\'/js/src/particle.js\'><\/script>");
+    }
+  </script>
+
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":-80,"vOffset":-50},"mobile":{"show":false,"scale":0.2},"react":{"opacityDefault":1,"opacityOnHover":0.2}});</script></body>
+</html>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cloudpai.site/"/>
-  <updated>2018-04-18T14:28:56.905Z</updated>
+  <updated>2018-04-19T14:29:52.336Z</updated>
   <id>http://cloudpai.site/</id>
   
   <author>
@@ -17,17 +17,280 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>分布式服务框架概述</title>
-    <link href="http://cloudpai.site/2018/04/18/2018-04-18-4/"/>
-    <id>http://cloudpai.site/2018/04/18/2018-04-18-4/</id>
-    <published>2018-04-18T13:35:53.000Z</published>
-    <updated>2018-04-18T14:28:56.905Z</updated>
+    <title>【大型网站技术实践】初级篇</title>
+    <link href="http://cloudpai.site/2018/04/19/2018-04-19-11/"/>
+    <id>http://cloudpai.site/2018/04/19/2018-04-19-11/</id>
+    <published>2018-04-19T14:25:33.000Z</published>
+    <updated>2018-04-19T14:29:52.336Z</updated>
     
     <summary type="html">
     
       
       
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt; 分布式架构知识脑图：&lt;br&gt;&lt;img src=&quot;http://p4lmrb1gp.bkt.clouddn.com/15240585817545.jpg&quot; alt=&quot;&quot;&gt;&lt;/
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;a href=&quot;http://www.cnblogs.com/edisonchou/p/4126742.html&quot; target=&quot;_blank&quot; rel=&quot;noopene
+      
+    
+    </summary>
+    
+    
+      <category term="架构" scheme="http://cloudpai.site/tags/%E6%9E%B6%E6%9E%84/"/>
+    
+      <category term="实践" scheme="http://cloudpai.site/tags/%E5%AE%9E%E8%B7%B5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《大型网站技术架构》笔记8 固若金汤：网站的安全架构</title>
+    <link href="http://cloudpai.site/2018/04/19/2018-04-19-10/"/>
+    <id>http://cloudpai.site/2018/04/19/2018-04-19-10/</id>
+    <published>2018-04-19T14:06:55.000Z</published>
+    <updated>2018-04-19T14:38:46.619Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;8-固若金汤：网站的安全架构&quot;&gt;&lt;a href=&quot;#8-固若金汤：网站的安全架构&quot; class=&quot;headerlink&quot; title=&quot;8 固若金汤：网站的安全架构
+      
+    
+    </summary>
+    
+    
+      <category term="架构" scheme="http://cloudpai.site/tags/%E6%9E%B6%E6%9E%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《大型网站技术架构》笔记7 随机应变：网站的可扩展架构</title>
+    <link href="http://cloudpai.site/2018/04/19/2018-04-19-9/"/>
+    <id>http://cloudpai.site/2018/04/19/2018-04-19-9/</id>
+    <published>2018-04-19T14:06:40.000Z</published>
+    <updated>2018-04-19T14:38:12.806Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;7-随机应变：网站的可扩展架构&quot;&gt;&lt;a href=&quot;#7-随机应变：网站的可扩展架构&quot; class=&quot;headerlink&quot; title=&quot;7 随机应变：网站的可扩
+      
+    
+    </summary>
+    
+    
+      <category term="架构" scheme="http://cloudpai.site/tags/%E6%9E%B6%E6%9E%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《大型网站技术架构》笔记6 永无止境：网站的伸缩性架构</title>
+    <link href="http://cloudpai.site/2018/04/19/2018-04-19-8/"/>
+    <id>http://cloudpai.site/2018/04/19/2018-04-19-8/</id>
+    <published>2018-04-19T14:06:10.000Z</published>
+    <updated>2018-04-19T14:37:14.294Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;6-永无止境：网站的伸缩性架构&quot;&gt;&lt;a href=&quot;#6-永无止境：网站的伸缩性架构&quot; class=&quot;headerlink&quot; title=&quot;6 永无止境：网站的伸缩
+      
+    
+    </summary>
+    
+    
+      <category term="架构" scheme="http://cloudpai.site/tags/%E6%9E%B6%E6%9E%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《大型网站技术架构》笔记5 万无一失：网站的高可用架构</title>
+    <link href="http://cloudpai.site/2018/04/19/2018-04-19-7/"/>
+    <id>http://cloudpai.site/2018/04/19/2018-04-19-7/</id>
+    <published>2018-04-19T14:06:10.000Z</published>
+    <updated>2018-04-19T14:36:20.972Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;5-万无一失：网站的高可用架构&quot;&gt;&lt;a href=&quot;#5-万无一失：网站的高可用架构&quot; class=&quot;headerlink&quot; title=&quot;5 万无一失：网站的高可
+      
+    
+    </summary>
+    
+    
+      <category term="架构" scheme="http://cloudpai.site/tags/%E6%9E%B6%E6%9E%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《大型网站技术架构》笔记4 瞬时响应：网站的高性能架构</title>
+    <link href="http://cloudpai.site/2018/04/19/2018-04-19-6/"/>
+    <id>http://cloudpai.site/2018/04/19/2018-04-19-6/</id>
+    <published>2018-04-19T14:05:51.000Z</published>
+    <updated>2018-04-19T14:20:15.894Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;4-瞬时响应：网站的高性能架构&quot;&gt;&lt;a href=&quot;#4-瞬时响应：网站的高性能架构&quot; class=&quot;headerlink&quot; title=&quot;4 瞬时响应：网站的高性
+      
+    
+    </summary>
+    
+    
+      <category term="架构" scheme="http://cloudpai.site/tags/%E6%9E%B6%E6%9E%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《大型网站技术架构》笔记3 大型网站核心架构要素</title>
+    <link href="http://cloudpai.site/2018/04/19/2018-04-19-5/"/>
+    <id>http://cloudpai.site/2018/04/19/2018-04-19-5/</id>
+    <published>2018-04-19T14:04:32.000Z</published>
+    <updated>2018-04-19T14:20:09.676Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;3-大型网站核心架构要素&quot;&gt;&lt;a href=&quot;#3-大型网站核心架构要素&quot; class=&quot;headerlink&quot; title=&quot;3 大型网站核心架构要素&quot;&gt;&lt;/a&gt;
+      
+    
+    </summary>
+    
+    
+      <category term="架构" scheme="http://cloudpai.site/tags/%E6%9E%B6%E6%9E%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《大型网站技术架构》笔记2 大型架构模式</title>
+    <link href="http://cloudpai.site/2018/04/19/2018-04-19-4/"/>
+    <id>http://cloudpai.site/2018/04/19/2018-04-19-4/</id>
+    <published>2018-04-19T13:45:40.000Z</published>
+    <updated>2018-04-19T14:20:04.100Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;2-大型架构模式&quot;&gt;&lt;a href=&quot;#2-大型架构模式&quot; class=&quot;headerlink&quot; title=&quot;2 大型架构模式&quot;&gt;&lt;/a&gt;2 大型架构模式&lt;/h1
+      
+    
+    </summary>
+    
+    
+      <category term="架构" scheme="http://cloudpai.site/tags/%E6%9E%B6%E6%9E%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《大型网站技术架构》笔记1 大型网站架构演化</title>
+    <link href="http://cloudpai.site/2018/04/19/2018-04-19-3/"/>
+    <id>http://cloudpai.site/2018/04/19/2018-04-19-3/</id>
+    <published>2018-04-19T13:44:27.000Z</published>
+    <updated>2018-04-19T14:19:57.152Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;1-大型网站架构演化&quot;&gt;&lt;a href=&quot;#1-大型网站架构演化&quot; class=&quot;headerlink&quot; title=&quot;1 大型网站架构演化&quot;&gt;&lt;/a&gt;1 大型网站
+      
+    
+    </summary>
+    
+    
+      <category term="架构" scheme="http://cloudpai.site/tags/%E6%9E%B6%E6%9E%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《大型网站技术架构》 笔记概览</title>
+    <link href="http://cloudpai.site/2018/04/19/2018-04-19-2/"/>
+    <id>http://cloudpai.site/2018/04/19/2018-04-19-2/</id>
+    <published>2018-04-19T11:54:40.000Z</published>
+    <updated>2018-04-19T14:26:44.003Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;思维导图：&lt;br&gt;&lt;img src=&quot;http://p4lmrb1gp.bkt.clouddn.com/15241393182841.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h1
+      
+    
+    </summary>
+    
+    
+      <category term="架构" scheme="http://cloudpai.site/tags/%E6%9E%B6%E6%9E%84/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>markdown文件中图片到图床的转换的解决方法</title>
+    <link href="http://cloudpai.site/2018/04/19/2018-04-19-1/"/>
+    <id>http://cloudpai.site/2018/04/19/2018-04-19-1/</id>
+    <published>2018-04-18T16:48:42.000Z</published>
+    <updated>2018-04-18T16:50:20.170Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;使用:&lt;/p&gt;
+&lt;p&gt;python 脚本名 文件名 [是否图片压缩]&lt;/p&gt;
+&lt;p&gt;例： &lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;tabl
+      
+    
+    </summary>
+    
+    
+      <category term="图床" scheme="http://cloudpai.site/tags/%E5%9B%BE%E5%BA%8A/"/>
+    
+      <category term="markdown" scheme="http://cloudpai.site/tags/markdown/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mac系统中python导入第三方模块失败的解决方法</title>
+    <link href="http://cloudpai.site/2018/04/19/2018-04-19/"/>
+    <id>http://cloudpai.site/2018/04/19/2018-04-19/</id>
+    <published>2018-04-18T16:44:27.000Z</published>
+    <updated>2018-04-19T02:33:59.505Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;问题：在 mac OSx 操作系统下，安装了 python 第三方模块，requests、xlrt、xlwt、selenium 等等，在 pip 中可以成功安装这些模块，但是
+      
+    
+    </summary>
+    
+    
+      <category term="python" scheme="http://cloudpai.site/tags/python/"/>
+    
+      <category term="Mac" scheme="http://cloudpai.site/tags/Mac/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>分布式服务框架</title>
+    <link href="http://cloudpai.site/2018/04/18/2018-04-18-4/"/>
+    <id>http://cloudpai.site/2018/04/18/2018-04-18-4/</id>
+    <published>2018-04-18T13:35:53.000Z</published>
+    <updated>2018-04-18T15:02:32.422Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;img src=&quot;http://p4lmrb1gp.bkt.clouddn.com/15240585817545.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;分
       
     
     </summary>
@@ -67,7 +330,7 @@
     <link href="http://cloudpai.site/2018/04/18/2018-04-18-2/"/>
     <id>http://cloudpai.site/2018/04/18/2018-04-18-2/</id>
     <published>2018-04-18T10:49:17.000Z</published>
-    <updated>2018-04-18T13:01:19.788Z</updated>
+    <updated>2018-04-18T14:46:42.449Z</updated>
     
     <summary type="html">
     
@@ -138,15 +401,15 @@
     <link href="http://cloudpai.site/2018/04/16/2018-04-16-1/"/>
     <id>http://cloudpai.site/2018/04/16/2018-04-16-1/</id>
     <published>2018-04-16T15:41:57.000Z</published>
-    <updated>2018-04-17T16:53:43.732Z</updated>
+    <updated>2018-04-19T11:37:13.408Z</updated>
     
     <summary type="html">
     
       
       
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;这里要结合《spring技术内幕》进一步研究&lt;/p&gt;
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;strong&gt;这里要结合《spring技术内幕》进一步研究&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;一、前言&lt;/p&gt;
-&lt;p&gt;Spring 框架提供了通过 HTTP 协议实现远程调用的方式，具体是调用方使用 Http
+&lt;p&gt;Spring 框架提供了通过 HTTP 协议实现远程调用
       
     
     </summary>
@@ -165,7 +428,7 @@
     <link href="http://cloudpai.site/2018/04/16/2018-04-16/"/>
     <id>http://cloudpai.site/2018/04/16/2018-04-16/</id>
     <published>2018-04-16T10:53:05.000Z</published>
-    <updated>2018-04-18T13:24:56.399Z</updated>
+    <updated>2018-04-19T11:34:49.655Z</updated>
     
     <summary type="html">
     
@@ -209,289 +472,6 @@
       <category term="协议" scheme="http://cloudpai.site/tags/%E5%8D%8F%E8%AE%AE/"/>
     
       <category term="Raft" scheme="http://cloudpai.site/tags/Raft/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MyBatis 缓存机制&amp;源码分析</title>
-    <link href="http://cloudpai.site/2018/04/15/2018-04-15/"/>
-    <id>http://cloudpai.site/2018/04/15/2018-04-15/</id>
-    <published>2018-04-15T11:16:37.000Z</published>
-    <updated>2018-04-15T12:48:50.673Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;MyBatis 是常见的 Java 数据
-      
-    
-    </summary>
-    
-    
-      <category term="源码" scheme="http://cloudpai.site/tags/%E6%BA%90%E7%A0%81/"/>
-    
-      <category term="MyBatis" scheme="http://cloudpai.site/tags/MyBatis/"/>
-    
-      <category term="缓存" scheme="http://cloudpai.site/tags/%E7%BC%93%E5%AD%98/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>人工智能、机器学习和深度学习</title>
-    <link href="http://cloudpai.site/2018/04/14/2018-04-14/"/>
-    <id>http://cloudpai.site/2018/04/14/2018-04-14/</id>
-    <published>2018-04-14T07:46:19.000Z</published>
-    <updated>2018-04-14T10:07:07.905Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;img src=&quot;http://p4lmrb1gp.bkt.clouddn.com/15236919915536.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=
-      
-    
-    </summary>
-    
-    
-      <category term="机器学习" scheme="http://cloudpai.site/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-      <category term="深度学习" scheme="http://cloudpai.site/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>redis 笔记</title>
-    <link href="http://cloudpai.site/2018/04/13/2018-04-13/"/>
-    <id>http://cloudpai.site/2018/04/13/2018-04-13/</id>
-    <published>2018-04-13T13:52:57.000Z</published>
-    <updated>2018-04-15T15:06:53.665Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;a href=&quot;http://www.redis.cn/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://www.redis.cn/&lt;/a&gt;&lt;
-      
-    
-    </summary>
-    
-    
-      <category term="redis" scheme="http://cloudpai.site/tags/redis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>memcached redis 对比分析</title>
-    <link href="http://cloudpai.site/2018/04/12/2018-04-12-7/"/>
-    <id>http://cloudpai.site/2018/04/12/2018-04-12-7/</id>
-    <published>2018-04-12T14:52:11.000Z</published>
-    <updated>2018-04-12T14:53:07.526Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h4 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;简介&lt;/h4&gt;&lt;p&gt;memcached 和 redis 都属
-      
-    
-    </summary>
-    
-    
-      <category term="redis" scheme="http://cloudpai.site/tags/redis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>mysql 数据库引擎</title>
-    <link href="http://cloudpai.site/2018/04/12/2018-04-12-6/"/>
-    <id>http://cloudpai.site/2018/04/12/2018-04-12-6/</id>
-    <published>2018-04-12T11:22:36.000Z</published>
-    <updated>2018-04-12T13:11:17.888Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;mysql-数据库引擎&quot;&gt;&lt;a href=&quot;#mysql-数据库引擎&quot; class=&quot;headerlink&quot; title=&quot;mysql 数据库引擎&quot;&gt;&lt;/a&gt;mys
-      
-    
-    </summary>
-    
-    
-      <category term="mysql" scheme="http://cloudpai.site/tags/mysql/"/>
-    
-      <category term="数据库" scheme="http://cloudpai.site/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
-      <category term="Innodb" scheme="http://cloudpai.site/tags/Innodb/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数据挖掘</title>
-    <link href="http://cloudpai.site/2018/04/12/2018-04-12-5/"/>
-    <id>http://cloudpai.site/2018/04/12/2018-04-12-5/</id>
-    <published>2018-04-12T09:16:55.000Z</published>
-    <updated>2018-04-12T11:19:11.649Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;近期需要完成的，先看课件了解个大概。&lt;/p&gt;
-&lt;hr&gt;
-&lt;blockquote&gt;
-&lt;p&gt;参考：&lt;br&gt;如何系统地学习数据挖掘？ - 知乎&lt;br&gt;&lt;a href=&quot;https:
-      
-    
-    </summary>
-    
-    
-      <category term="数据库" scheme="http://cloudpai.site/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
-      <category term="数据挖掘" scheme="http://cloudpai.site/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数据库设计和 E-R 模型</title>
-    <link href="http://cloudpai.site/2018/04/12/2018-04-12-4/"/>
-    <id>http://cloudpai.site/2018/04/12/2018-04-12-4/</id>
-    <published>2018-04-12T08:28:45.000Z</published>
-    <updated>2018-04-12T10:32:33.445Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;strong&gt;《数据库系统概念》第 7 章知识点总结&lt;/strong&gt; &lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;数据库设计和 E-R 模型&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;本章我们
-      
-    
-    </summary>
-    
-    
-      <category term="数据库" scheme="http://cloudpai.site/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
-      <category term="E-R图" scheme="http://cloudpai.site/tags/E-R%E5%9B%BE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数据库索引为什么使用 B + 树</title>
-    <link href="http://cloudpai.site/2018/04/12/2018-04-12-3/"/>
-    <id>http://cloudpai.site/2018/04/12/2018-04-12-3/</id>
-    <published>2018-04-12T07:28:51.000Z</published>
-    <updated>2018-04-12T11:13:54.210Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h2 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerlink&quot; title=&quot;概述&quot;&gt;&lt;/a&gt;概述&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;B tree：&lt;/str
-      
-    
-    </summary>
-    
-    
-      <category term="数据库" scheme="http://cloudpai.site/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
-      <category term="B+树" scheme="http://cloudpai.site/tags/B-%E6%A0%91/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>python多进程程实战</title>
-    <link href="http://cloudpai.site/2018/04/12/2018-04-12-2/"/>
-    <id>http://cloudpai.site/2018/04/12/2018-04-12-2/</id>
-    <published>2018-04-12T07:07:55.000Z</published>
-    <updated>2018-04-12T07:21:10.127Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;多进程中，每个进程都是独立的，各自持有一份数据，无法共享。本篇文章介绍三种用于进程数据共享的方法&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;queues&lt;/li&gt;
-&lt;li&gt;Array&lt;/li
-      
-    
-    </summary>
-    
-    
-      <category term="python" scheme="http://cloudpai.site/tags/python/"/>
-    
-      <category term="多进程" scheme="http://cloudpai.site/tags/%E5%A4%9A%E8%BF%9B%E7%A8%8B/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>数据库系统概念 总结</title>
-    <link href="http://cloudpai.site/2018/04/12/2018-04-12-1/"/>
-    <id>http://cloudpai.site/2018/04/12/2018-04-12-1/</id>
-    <published>2018-04-12T07:04:45.000Z</published>
-    <updated>2018-04-12T11:16:36.167Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;该书的思维导图svg文件如下：&lt;/p&gt;
-&lt;p&gt;&lt;a href=&quot;http://p4lmrb1gp.bkt.clouddn.com/%E6%95%B0%E6%8D%AE%E5%
-      
-    
-    </summary>
-    
-    
-      <category term="数据库" scheme="http://cloudpai.site/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>高性能计算环境搭建</title>
-    <link href="http://cloudpai.site/2018/04/12/2018-04-12/"/>
-    <id>http://cloudpai.site/2018/04/12/2018-04-12/</id>
-    <published>2018-04-12T01:57:32.000Z</published>
-    <updated>2018-04-12T11:13:48.242Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;blockquote&gt;
-&lt;p&gt;Linux高性能计算集群 – Beowulf集群&lt;br&gt;&lt;a href=&quot;http://www.jointforce.com.cn/page/har
-      
-    
-    </summary>
-    
-    
-      <category term="高性能计算" scheme="http://cloudpai.site/tags/%E9%AB%98%E6%80%A7%E8%83%BD%E8%AE%A1%E7%AE%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>python多线程实战</title>
-    <link href="http://cloudpai.site/2018/04/11/2018-04-11/"/>
-    <id>http://cloudpai.site/2018/04/11/2018-04-11/</id>
-    <published>2018-04-11T14:24:22.000Z</published>
-    <updated>2018-04-11T15:04:11.454Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;当初在刚学习 python 多线程时，上网搜索资料几乎都是一片倒的反应 python 没有真正意义上的多线程，python 多线程就是鸡肋。当时不明所以，只是了解到 pyth
-      
-    
-    </summary>
-    
-    
-      <category term="python" scheme="http://cloudpai.site/tags/python/"/>
-    
-      <category term="多线程" scheme="http://cloudpai.site/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
     
   </entry>
   

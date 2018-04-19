@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="架构," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="CloudPai" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="5 万无一失：网站的高可用架构 一、可用性度量与考核　　首先，不得不说：要保证一个网站永远完全可用几乎是一件不可能完成的任务（Mission Impossible，是不是有点碟中谍的感觉）。   　　（1）如何度量网站可用性？ 　　一个神奇的数字—9！你有几个 9，就代表了你的可用性。例如 QQ 可用性达到了 4 个 9：99.99% 　　①2 个 9 = 基本可用　　②3 个 9 = 较高可用">
+<meta name="keywords" content="架构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《大型网站技术架构》笔记5 万无一失：网站的高可用架构">
+<meta property="og:url" content="http://cloudpai.site/2018/04/19/2018-04-19-7/index.html">
+<meta property="og:site_name" content="CloudPai">
+<meta property="og:description" content="5 万无一失：网站的高可用架构 一、可用性度量与考核　　首先，不得不说：要保证一个网站永远完全可用几乎是一件不可能完成的任务（Mission Impossible，是不是有点碟中谍的感觉）。   　　（1）如何度量网站可用性？ 　　一个神奇的数字—9！你有几个 9，就代表了你的可用性。例如 QQ 可用性达到了 4 个 9：99.99% 　　①2 个 9 = 基本可用　　②3 个 9 = 较高可用">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15241397711002.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之五：万无一失之网站的高可用架构/image1">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之五：万无一失之网站的高可用架构/image2">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之五：万无一失之网站的高可用架构/image3">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之五：万无一失之网站的高可用架构/image4">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之五：万无一失之网站的高可用架构/image5">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之五：万无一失之网站的高可用架构/image6">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之五：万无一失之网站的高可用架构/image7">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之五：万无一失之网站的高可用架构/image8">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之五：万无一失之网站的高可用架构/image9">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之五：万无一失之网站的高可用架构/image10">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之五：万无一失之网站的高可用架构/image13">
+<meta property="og:updated_time" content="2018-04-19T14:36:20.972Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《大型网站技术架构》笔记5 万无一失：网站的高可用架构">
+<meta name="twitter:description" content="5 万无一失：网站的高可用架构 一、可用性度量与考核　　首先，不得不说：要保证一个网站永远完全可用几乎是一件不可能完成的任务（Mission Impossible，是不是有点碟中谍的感觉）。   　　（1）如何度量网站可用性？ 　　一个神奇的数字—9！你有几个 9，就代表了你的可用性。例如 QQ 可用性达到了 4 个 9：99.99% 　　①2 个 9 = 基本可用　　②3 个 9 = 较高可用">
+<meta name="twitter:image" content="http://p4lmrb1gp.bkt.clouddn.com/15241397711002.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'TZAS2SFOJR',
+      apiKey: 'e2a9cd036eede8026382b302001ec261',
+      indexName: 'cloudpai_blogs_search',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cloudpai.site/2018/04/19/2018-04-19-7/"/>
+
+
+
+
+
+  <title>《大型网站技术架构》笔记5 万无一失：网站的高可用架构 | CloudPai</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-114643720-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CloudPai</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/04/19/2018-04-19-7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CloudPai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudPai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《大型网站技术架构》笔记5 万无一失：网站的高可用架构</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-19T22:06:10+08:00">
+                2018-04-19
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-19T22:36:20+08:00">
+                2018-04-19
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/19/2018-04-19-7/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/04/19/2018-04-19-7/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,909
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  10
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="5-万无一失：网站的高可用架构"><a href="#5-万无一失：网站的高可用架构" class="headerlink" title="5 万无一失：网站的高可用架构"></a>5 万无一失：网站的高可用架构</h1><p><img src="http://p4lmrb1gp.bkt.clouddn.com/15241397711002.jpg" alt=""></p>
+<h2 id="一、可用性度量与考核"><a href="#一、可用性度量与考核" class="headerlink" title="一、可用性度量与考核"></a>一、可用性度量与考核</h2><p>　　首先，不得不说：要保证一个网站永远完全可用几乎是一件<strong>不可能完成的任务（Mission Impossible，是不是有点碟中谍的感觉）</strong>。</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之五：万无一失之网站的高可用架构/image1" alt=""></p>
+<p> 　　（1）如何度量网站可用性？</p>
+<p>　　一个神奇的数字—9！你有几个 9，就代表了你的可用性。例如 QQ 可用性达到了 4 个 9：99.99%</p>
+<p>　　①2 个 9 = 基本可用　　②3 个 9 = 较高可用　　③4 个 9 = 具有自动恢复能力的高可用　　④<strong>5 个 9 = 极高可用 -&gt; 理想状态</strong></p>
+<p>　　那么，可用性的 9 又是怎么计算出来的呢：</p>
+<p>　　①网站不可用时间 = 故障修复时间点 - 故障发现时间点</p>
+<p>　　②网站年度可用性指标 =（1 - 网站不可用时间 / 年度总时间）*100%</p>
+<p>　　（2）如何考核网站可用性？</p>
+<p>　　广泛采用<strong>故障分</strong>的，它是对网站故障进行分类加权计算故障责任的方法。一般会给每个分类的故障设置一个权重（例如事故级故障权重为 100，A 类为 20 等），其计算公式为：故障分 = 故障时间（分钟）* 故障权重。公司对技术团队的考核一般会参考故障分，例如某团队今年发生了几个事故级故障，那么其绩效考核估计受到很大影响，年终奖什么的就悲剧了。</p>
+<h2 id="二、高可用的架构"><a href="#二、高可用的架构" class="headerlink" title="二、高可用的架构"></a>二、高可用的架构</h2><p>　　目前，通常企业级应用系统（特别是政府部门和大企业的应用系统）一般会采用安规的软硬件设备，如 IOE（IBM 的小型机、Oracle 数据、EMC 存储设备）系列。而一般互联网公司更多地采用 PC 级服务器（x86），开源的数据库（MySQL）和操作系统（Linux）组建廉价且高容错（<strong>硬件故障是常态</strong>）的应用集群。</p>
+<p>　　（1）设计的目的？</p>
+<p>　　<strong>保证服务器硬件故障服务依然可用，数据依然保存并能够被访问</strong>。</p>
+<p>　　（2）主要的手段？</p>
+<p>　　<strong>数据和服务的①冗余备份以及②失效转移</strong>：</p>
+<p>　　对于服务而言，一旦某个服务器宕机，就将服务切换到其他可用的服务器上；</p>
+<p>　　对于数据而言，如果某个磁盘损坏，就从备份的磁盘（事先就做好了数据的同步复制）读取数据。</p>
+<h2 id="三、高可用的应用"><a href="#三、高可用的应用" class="headerlink" title="三、高可用的应用"></a>三、高可用的应用</h2><p>　　应用层处理网站应用的业务逻辑，应用的一个最显著的特点是：<strong>应用的无状态性</strong>。</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之五：万无一失之网站的高可用架构/image2" alt=""></p>
+<blockquote>
+<p><strong>PS：</strong>提到无状态特性，不得不说下 <strong>Http 协议</strong>。我们常常听到说，Http 是一个无状态协议，同一个会话的连续两个请求互相不了解，他们由最新实例化的环境进行解析，除了应用本身可能已经存储在全局对象中的所有信息外，该环境不保存与会话有关的任何信息。之所以我们在使用 ASP.NET WebForm 开发中会感觉不到 Http 的无状态特性，完全是因为 Microsoft 帮我们实现了 <strong>ViewState</strong>，它是 ASP.NET WebForm 中保存页面信息的基本单位，本质是一个 HTML 中的隐藏域，回调时会将这个隐藏域中的数据提交到服务器端。</p>
+</blockquote>
+<p>　　（1）通过<strong>负载均衡</strong>进行无状态服务的失效转移</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之五：万无一失之网站的高可用架构/image3" alt=""></p>
+<p>　　（2）应用服务器集群的 Session 管理</p>
+<p>　　首先，不得不说的是：<strong>Web 应用中将上下文对象称为会话（Session），单机情况下由部署在服务器上得 Web 容器（如 IIS、Tomcat、JBoss 等）管理。在使用了负载均衡的集群环境中，由于请求的分发是随机的，所以保证每次请求依然能够获得正确的 Session 比单机时要复杂得多</strong>。</p>
+<p>　　其次，我们来看看在集群环境中，Session 管理的几种常见手段。</p>
+<p>　　①Session 复制：该方案简单易行，集群中的几台服务器之间同步 Session 对象，任何一台服务器宕机都不会导致 Session 对象的丢失，服务器也只需要从本机获取即可。但是，<strong>该方案只适合集群规模较小的情况下。当规模较大时，大量的 Session 复制操作会占用服务器和网络的大量资源，系统不堪重负</strong>。</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之五：万无一失之网站的高可用架构/image4" alt=""></p>
+<p>　　②Session 绑定：利用负载均衡的<strong>源地址 Hash</strong> 算法，总是将源于同一 IP 地址的请求分发到同一台服务器上。这样的话，在整个会话期间，用户所有的请求都在同一台服务器上进行处理，即 Session 绑定在某台特定服务器上，保证 Session 总能在这台服务器上获取。（这种方案又叫做<strong>会话粘滞</strong>）。</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之五：万无一失之网站的高可用架构/image5" alt=""></p>
+<p>　　但是，这种方案<strong><em>不符合高可用的需求</em></strong>。因为一旦某台服务器宕机，那么该机器上得 Session 也就不复存在了，用户请求切换到其他机器后因为没有 Session 而无法完成业务处理。因此，很少有网站采用此方案进行 Session 管理。</p>
+<p>　　③Cookie 记录 Session：利用浏览器支持的 Cookie 记录 Session 简单易行，可用性高，并且支持服务器的线性伸缩，因此，许多网站都或多或少地使用了 Cookie 来记录 Session。但是 Cookie 记录 Session 有缺点：比如受 Cookie 大小限制、每次请求响应都要传输 Cookie 影响性能、用户关闭了 Cookie 会造成访问不正常等。</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之五：万无一失之网站的高可用架构/image6" alt=""></p>
+<p>　　④<strong>Session 服务器</strong>：利用独立部署的 Session 服务器（集群）统一管理 Session，应用服务器每次读写 Session 时，都访问 Session 服务器。这种方案<strong>实际上是将应用服务器的状态分离</strong>，分为<strong>无状态的应用服务器</strong>和<strong>有状态的 Session 服务器</strong>。</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之五：万无一失之网站的高可用架构/image7" alt=""></p>
+<p>　　对于，有状态的 Session 服务器，一种较简单的方法是利用<strong>分布式缓存</strong>（如 Memcached、Redis 等，有关 Redis 的简单介绍可以阅读我的博文：<a href="http://www.cnblogs.com/edisonchou/p/3821228.html" target="_blank" rel="noopener">NoSQL 初探之人人都爱 Redis</a>）、<strong>数据库</strong>等，在这些产品的基础上进行封装，使其符合 Session 的存储和访问要求。</p>
+<h2 id="四、高可用的服务"><a href="#四、高可用的服务" class="headerlink" title="四、高可用的服务"></a>四、高可用的服务</h2><p>　　高可用的服务模块为业务产品提供基础公共服务，在大型站点中这些服务通常都独立分布式部署，被具体应用远程调用。</p>
+<p>　　在具体实践中，有以下几点高可用的服务策略可以参考：</p>
+<p>　　①分级管理：核心应用和服务具有更高的优先级，比如用户及时付款比能否评价商品更重要；</p>
+<p>　　②超时设置：设置服务调用的超时时间，一旦超时后，通信框架抛出异常，应用程序则根据服务调度策略选择重试 or 请求转移到其他服务器上；</p>
+<p>　　③异步调用：通过消息队列等异步方式完成，避免一个服务失败导致整个应用请求失败的情况。</p>
+<blockquote>
+<p><strong>PS：</strong>不是所有服务都可以异步调用，对于获取用户信息这类调用，采用异步方式会延长响应时间，得不偿失。对于那些必须确认服务调用成功后才能继续进行下一步的操作的应用也不适合异步调用。有关具体使用消息队列实现异步调用的案例，请阅读我的博文：《<a href="http://www.cnblogs.com/edisonchou/p/3825682.html" target="_blank" rel="noopener">使用 Redis 作为消息队列服务场景的应用案例</a>》。</p>
+</blockquote>
+<p>　　④服务降级：网站访问高峰期间，为了保证核心应用的正常运行，需要对服务降级。</p>
+<p>　　降级有两种手段：一是拒绝服务，拒绝较低优先级的应用的调用，减少服务调用并发数，确保核心应用的正常运行；二是关闭功能，关闭部分不重要的服务，或者服务内部关闭部分不重要的功能，以节约系统开销，为核心应用服务让出资源；</p>
+<p>　　⑤幂等性设计：保证服务重复调用和调用一次产生的结果相同；</p>
+<h2 id="五、高可用的数据"><a href="#五、高可用的数据" class="headerlink" title="五、高可用的数据"></a>五、高可用的数据</h2><p>　　对于大多数网站而言，数据是其最宝贵的物质资产。</p>
+<p>　　保证数据高可用的主要手段有两种：一是数据备份，二是失效转移机制；</p>
+<p>　　①数据备份：又分为冷备份和热备份，冷备份是定期复制，不能保证数据可用性。热备份又分为异步热备和同步热备，异步热备是指多份数据副本的写入操作异步完成，而同步方式则是指多份数据副本的写入操作同时完成。</p>
+<p>　　关系数据库的热备机制就是通常所说的主从同步机制，实践中通常使用读写分离的方法来访问 Master 和 Slave 数据库，也就是说写操作只访问 Master 库，读操作均访问 Slave 库。</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之五：万无一失之网站的高可用架构/image8" alt=""></p>
+<blockquote>
+<p>PS：在 MS SQL Server 中，可以通过<strong>发布订阅</strong>功能实现主从分离。关于发布订阅，可以参考 MSDN 的这篇文章：<a href="http://technet.microsoft.com/zh-cn/ff806143.aspx" target="_blank" rel="noopener">http://technet.microsoft.com/zh-cn/ff806143.aspx</a></p>
+</blockquote>
+<p>　　②失效转移：若数据服务器集群中任何一台服务器宕机，那么应用程序针对这台服务器的所有读写操作都要重新路由到其他服务器，保证数据访问不会失败。</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之五：万无一失之网站的高可用架构/image9" alt=""></p>
+<h2 id="六、高可用的-QA"><a href="#六、高可用的-QA" class="headerlink" title="六、高可用的 QA"></a>六、高可用的 QA</h2><p>　　①网站发布：在柔性的发布过程中，每次关闭的服务都是集群中的一小部分，并在发布完成后立即可以访问；</p>
+<p>　　②自动化测试：使用自动测试工具或脚本完成测试；</p>
+<p>　　③预发布验证：引入预发布服务器，与正式服务器几乎一致，只是没有配置在负载均衡服务器上，外部用户无法访问；</p>
+<p>　　④代码控制：目前大多数网站采用 SVN，分支开发，主干发布模式；另外，目前开源社区广泛采用 Git 作为版本控制工具，正逐步取代 SVN 的地位；</p>
+<h2 id="七、网站运行监控"><a href="#七、网站运行监控" class="headerlink" title="七、网站运行监控"></a>七、网站运行监控</h2><p>　　<strong>” 不允许没有监控的系统上线 “</strong></p>
+<p><strong><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之五：万无一失之网站的高可用架构/image10" alt=""></strong></p>
+<p>　　（1）监控数据采集</p>
+<p>　　①用户行为日志收集：服务器端的日志收集和客户端的日志收集；目前许多网站逐步开发基于实时计算框架 Storm 的日志统计与分析工具；</p>
+<p>　　②服务器性能监控：收集服务器性能指标，如系统 Load、内存占用、磁盘 IO 等，及时判断，防患于未然；</p>
+<p>　　③运行数据报告：采集并报告，汇总后统一显示，应用程序需要在代码中处理运行数据采集的逻辑；</p>
+<p>　　（2）监控管理</p>
+<p>　　①系统报警：配置报警阀值和值守人员联系方式，系统发生报警时，即使工程师在千里之外，也可以被及时通知；</p>
+<p>　　②失效转移：监控系统在发现故障时，主动通知应用进行失效转移；</p>
+<p>　　③自动优雅降级：为了应付网站访问高峰，主动关闭部分功能，释放部分系统资源，保证核心应用服务的正常运行；—&gt; <strong>网站柔性架构的理想状态</strong></p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>　　（1）李智慧，《大型网站技术架构 - 核心原理与案例分析》，<a href="http://item.jd.com/11322972.html" target="_blank" rel="noopener">http://item.jd.com/11322972.html</a></p>
+<h2 id="本章思维导图"><a href="#本章思维导图" class="headerlink" title="本章思维导图"></a>本章思维导图</h2><p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之五：万无一失之网站的高可用架构/image13" alt=""></p>
+<hr>
+<blockquote>
+<p>参考：<br>大型网站技术架构（12篇） - 综合区 - [ 博客精选 ] - 手册网<br><a href="http://www.shouce.ren/api/view/a/15512" target="_blank" rel="noopener">http://www.shouce.ren/api/view/a/15512</a><br>Edison Chou - 博客园<br><a href="http://www.cnblogs.com/edisonchou/" target="_blank" rel="noopener">http://www.cnblogs.com/edisonchou/</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+
+     
+    
+      <div>
+        
+    <div style="text-align:center;color: #ccc;font-size:14px;">
+        ------ 本文结束<i class="fa fa-paw"></i>感谢您的阅读 ------</div>
+
+      </div>
+    
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    CloudPai
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://cloudpai.site/2018/04/19/2018-04-19-7/" title="《大型网站技术架构》笔记5 万无一失：网站的高可用架构">http://cloudpai.site/2018/04/19/2018-04-19-7/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/架构/" rel="tag"><i class="fa fa-tag"></i> 架构</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/19/2018-04-19-6/" rel="next" title="《大型网站技术架构》笔记4 瞬时响应：网站的高性能架构">
+                <i class="fa fa-chevron-left"></i> 《大型网站技术架构》笔记4 瞬时响应：网站的高性能架构
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/19/2018-04-19-8/" rel="prev" title="《大型网站技术架构》笔记6 永无止境：网站的伸缩性架构">
+                《大型网站技术架构》笔记6 永无止境：网站的伸缩性架构 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+
+
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg"
+                alt="CloudPai" />
+            
+              <p class="site-author-name" itemprop="name">CloudPai</p>
+              <p class="site-description motion-element" itemprop="description">加油(๑•̀ㅂ•́)و✧加油</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">170</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+
+<div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=240 src="//music.163.com/outchain/player?type=0&id=2113726971&auto=0&height=430"></iframe>
+</div>
+<!-- 459004290 -->
+
+
+
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">83</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CloudPai" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:liupai024@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.douban.com/people/57965969/doulists/all" target="_blank" title="豆瓣">
+                      
+                        <i class="fa fa-fw fa-book"></i>豆瓣</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/cloudPai/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-edit"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.dlut.edu.cn/" title="DUT" target="_blank">DUT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bupt.edu.cn/" title="BUPT" target="_blank">BUPT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://campus.alibaba.com/index.htm" title="Alibaba Group" target="_blank">Alibaba Group</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#5-万无一失：网站的高可用架构"><span class="nav-text">5 万无一失：网站的高可用架构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、可用性度量与考核"><span class="nav-text">一、可用性度量与考核</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、高可用的架构"><span class="nav-text">二、高可用的架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、高可用的应用"><span class="nav-text">三、高可用的应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、高可用的服务"><span class="nav-text">四、高可用的服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、高可用的数据"><span class="nav-text">五、高可用的数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六、高可用的-QA"><span class="nav-text">六、高可用的 QA</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#七、网站运行监控"><span class="nav-text">七、网站运行监控</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-text">参考文献</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本章思维导图"><span class="nav-text">本章思维导图</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CloudPai</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">754.1k</span>
+  
+</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv">  </span>
+</span>
+</div>
+
+
+
+
+
+
+
+  <div class="theme-info">&#12288;主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://cloudpai.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://cloudpai.site/2018/04/19/2018-04-19-7/';
+          this.page.identifier = '2018/04/19/2018-04-19-7/';
+          this.page.title = '《大型网站技术架构》笔记5 万无一失：网站的高可用架构';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cloudpai.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!-- <!-- <script src="https://cdn.bootcss.com/aplayer/1.6.0/APlayer.min.js"></script>
+
+<script src="https://api.i-meto.com/music/player.js"></script> --> -->
+  
+  <!--移动端判断，是否引入背景-->
+  <script>
+  var browser={  
+      versions:function(){   
+             var u = navigator.userAgent, app = navigator.appVersion;   
+             return {//移动终端浏览器版本信息
+                  trident: u.indexOf('Trident') > -1, //IE内核
+                  presto: u.indexOf('Presto') > -1, //opera内核
+                  webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                  gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                  mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                  ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                  android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                  iPhone: u.indexOf('iPhone') > -1 , //是否为iPhone或者QQHD浏览器
+                  iPad: u.indexOf('iPad') > -1, //是否iPad
+                  webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+              };  
+           }(),  
+           language:(navigator.browserLanguage || navigator.language).toLowerCase()  
+  }   
+    if(browser.versions.mobile || browser.versions.ios || browser.versions.android ||   
+      browser.versions.iPhone || browser.versions.iPad){        
+               
+    }else{
+    document.write("<script type=\'text/javascript\'  src=\'/js/src/particle.js\'><\/script>");
+    }
+  </script>
+
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":-80,"vOffset":-50},"mobile":{"show":false,"scale":0.2},"react":{"opacityDefault":1,"opacityOnHover":0.2}});</script></body>
+</html>

@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="架构," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="CloudPai" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="6 永无止境：网站的伸缩性架构 一、网站架构的伸缩性设计1.1 不同功能进行物理分离实现伸缩　　（1）纵向分离：将业务处理流程上得不同部分分离部署，实现系统的伸缩性；  　　（2）横向分离：将不同的业务模块分离部署，实现系统的伸缩性；  1.2 单一功通过集群规模实现伸缩　　使用服务器集群，即将相同服务部署在多台服务器上构成一个集群整体对外提供服务。具体来说，集群伸缩性又分为应用服务器集群伸缩性">
+<meta name="keywords" content="架构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《大型网站技术架构》笔记6 永无止境：网站的伸缩性架构">
+<meta property="og:url" content="http://cloudpai.site/2018/04/19/2018-04-19-8/index.html">
+<meta property="og:site_name" content="CloudPai">
+<meta property="og:description" content="6 永无止境：网站的伸缩性架构 一、网站架构的伸缩性设计1.1 不同功能进行物理分离实现伸缩　　（1）纵向分离：将业务处理流程上得不同部分分离部署，实现系统的伸缩性；  　　（2）横向分离：将不同的业务模块分离部署，实现系统的伸缩性；  1.2 单一功通过集群规模实现伸缩　　使用服务器集群，即将相同服务部署在多台服务器上构成一个集群整体对外提供服务。具体来说，集群伸缩性又分为应用服务器集群伸缩性">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15241397897070.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image1">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image2">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image3">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image4">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image5">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image6">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image7">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image8">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image9">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image10">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image11">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image12">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image13">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image14">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image15">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image16">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image17">
+<meta property="og:updated_time" content="2018-04-19T14:37:14.294Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《大型网站技术架构》笔记6 永无止境：网站的伸缩性架构">
+<meta name="twitter:description" content="6 永无止境：网站的伸缩性架构 一、网站架构的伸缩性设计1.1 不同功能进行物理分离实现伸缩　　（1）纵向分离：将业务处理流程上得不同部分分离部署，实现系统的伸缩性；  　　（2）横向分离：将不同的业务模块分离部署，实现系统的伸缩性；  1.2 单一功通过集群规模实现伸缩　　使用服务器集群，即将相同服务部署在多台服务器上构成一个集群整体对外提供服务。具体来说，集群伸缩性又分为应用服务器集群伸缩性">
+<meta name="twitter:image" content="http://p4lmrb1gp.bkt.clouddn.com/15241397897070.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'TZAS2SFOJR',
+      apiKey: 'e2a9cd036eede8026382b302001ec261',
+      indexName: 'cloudpai_blogs_search',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cloudpai.site/2018/04/19/2018-04-19-8/"/>
+
+
+
+
+
+  <title>《大型网站技术架构》笔记6 永无止境：网站的伸缩性架构 | CloudPai</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-114643720-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CloudPai</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/04/19/2018-04-19-8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CloudPai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudPai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《大型网站技术架构》笔记6 永无止境：网站的伸缩性架构</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-19T22:06:10+08:00">
+                2018-04-19
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-19T22:37:14+08:00">
+                2018-04-19
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/19/2018-04-19-8/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/04/19/2018-04-19-8/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4,343
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  15
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="6-永无止境：网站的伸缩性架构"><a href="#6-永无止境：网站的伸缩性架构" class="headerlink" title="6 永无止境：网站的伸缩性架构"></a>6 永无止境：网站的伸缩性架构</h1><p><img src="http://p4lmrb1gp.bkt.clouddn.com/15241397897070.jpg" alt=""></p>
+<h2 id="一、网站架构的伸缩性设计"><a href="#一、网站架构的伸缩性设计" class="headerlink" title="一、网站架构的伸缩性设计"></a>一、网站架构的伸缩性设计</h2><h4 id="1-1-不同功能进行物理分离实现伸缩"><a href="#1-1-不同功能进行物理分离实现伸缩" class="headerlink" title="1.1 不同功能进行物理分离实现伸缩"></a>1.1 不同功能进行物理分离实现伸缩</h4><p>　　（1）纵向分离：将业务处理流程上得不同部分分离部署，实现系统的伸缩性；</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image1" alt=""><iframe id="tmp_downloadhelper_iframe" style="display: none;"></iframe></p>
+<p>　　（2）横向分离：将不同的业务模块分离部署，实现系统的伸缩性；</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image2" alt=""></p>
+<h4 id="1-2-单一功通过集群规模实现伸缩"><a href="#1-2-单一功通过集群规模实现伸缩" class="headerlink" title="1.2 单一功通过集群规模实现伸缩"></a>1.2 单一功通过集群规模实现伸缩</h4><p>　　使用服务器集群，即将相同服务部署在多台服务器上构成一个集群整体对外提供服务。具体来说，集群伸缩性又分为应用服务器集群伸缩性和数据服务器集群伸缩性。这两种集群对于数据状态管理的不同，技术实现也有很大的区别。</p>
+<blockquote>
+<p>It is said that <strong>当一头牛拉不动车的时候，不要去寻找一头更强壮的牛，而是用两头牛来拉车</strong>。</p>
+</blockquote>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image3" alt=""></p>
+<h2 id="二、应用服务器集群的伸缩性设计"><a href="#二、应用服务器集群的伸缩性设计" class="headerlink" title="二、应用服务器集群的伸缩性设计"></a>二、应用服务器集群的伸缩性设计</h2><h4 id="2-1-应用服务器那点必须知道的事儿"><a href="#2-1-应用服务器那点必须知道的事儿" class="headerlink" title="2.1 应用服务器那点必须知道的事儿"></a>2.1 应用服务器那点必须知道的事儿</h4><p>　　（1）应用服务器应该被设计成<strong>无状态</strong>的，即应用服务器不存储请求上下文信息；构建集群后，每次用户的请求都可以发到集群中任意一台服务器上处理，任何一台服务器的处理结果都是相同的；</p>
+<p>　　（2）HTTP 本身是一个无状态的连接协议，为了支持客户端与服务器之间的交互，我们就需要通过不同的技术为交互存储状态，而这些不同的技术就是 Cookie 和 Session 了。</p>
+<p>　　（3）HTTP 请求的分发是应用服务器集群实现伸缩性的核心问题，而负载均衡服务器就是 HTTP 请求的分发装置，它是网站必不可少的基础手段，也被称为网站的<strong>杀手锏</strong>之一。</p>
+<h4 id="2-2-负载均衡技术—网站必不可少的基础技术手段"><a href="#2-2-负载均衡技术—网站必不可少的基础技术手段" class="headerlink" title="2.2 负载均衡技术—网站必不可少的基础技术手段"></a>2.2 负载均衡技术—网站必不可少的基础技术手段</h4><p>　　负载均衡的实现方式多种多样，从硬件到软件，从商业产品到开源产品，应有尽有。但是，实现负载均衡的基础技术不外乎以下几种：</p>
+<p>　　（1）<strong>HTTP 重定向负载均衡</strong>　　评价：★★</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image4" alt=""></p>
+<p>　　此方案的优点是<strong>简单易行</strong>，缺点是：</p>
+<p>　　①浏览器需要两次请求才能完成一次访问，<strong>性能较差</strong>；</p>
+<p>　　②重定向服务器自身的处理能力有可能成为瓶颈，整个集群的<strong>伸缩性规模有限</strong>；</p>
+<p>　　③使用 HTTP 302 重定向有可能使搜索引擎判断为 <strong>SEO 作弊</strong>，降低搜索排名；</p>
+<p>　　（2）<strong>DNS 域名解析负载均衡</strong>　　评价：★★★</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image5" alt=""></p>
+<p>　　此方案要求在 DNS 服务器中配置多个 A 记录，例如：</p>
+<p>| <a href="http://www.mysite.com" target="_blank" rel="noopener">www.mysite.com</a> IN A | 114.100.80.1 |<br>| <a href="http://www.mysite.com" target="_blank" rel="noopener">www.mysite.com</a> IN A | 114.100.80.2 |<br>| <a href="http://www.mysite.com" target="_blank" rel="noopener">www.mysite.com</a> IN A | 114.100.80.3 |</p>
+<p>　　此方案的优点是将负载均衡的工作转交给了 DNS，省掉了网站管理维护负载均衡服务器的麻烦。而缺点是：</p>
+<p>　　①目前的 DNS 是<strong>多级解析</strong>，每一级 DNS 都可能缓存 A 记录，当某台服务器下线后，即使修改了 DNS 的 A 记录，要使其生效仍然需要较长时间。这段期间，会导致用户访问已经下线的服务器造成访问失败。</p>
+<p>　　②DNS 负载均衡的控制权在域名服务商那里，网站无法对其做更多改善和管理；</p>
+<blockquote>
+<p><strong>TIPS：</strong>事实上，大型网站总是部分使用 DNS 域名解析，利用域名解析作为第一级负载均很手段，即域名解析得到的一组服务器不是实际的 Web 服务器，而是同样提供负载均衡的内部服务器，这组内部服务器再进行负载均衡，请求分发到真实的 Web 服务器上。</p>
+</blockquote>
+<p>　　（3）<strong>反向代理负载均衡</strong>　　评价：★★★★</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image6" alt=""></p>
+<p>　　Web 服务器不需要使用外部 IP 地址，而反向代理服务器则需要配置双网卡和内外部两套 IP 地址。</p>
+<p>　　此方案的优点是<strong>和反向代理服务器功能集成在一起，部署简单</strong>。缺点是<strong>反向代理服务器是所有请求和响应的中转站，其性能可能会成为瓶颈</strong>。</p>
+<p>　　（4）<strong>IP 负载均衡</strong>　　评价：★★★★</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image7" alt=""></p>
+<p>　　此方案优点在于在<strong>内核进程</strong>完成数据分发，较反向代理负载均衡（在应用程序中分发数据）有更好的处理性能。缺点是由于所有请求响应都需要经过负载均衡服务器，集群的最大响应数据吞吐量不得不<strong>受制于负载均衡服务器网卡带宽</strong>。</p>
+<p>　　（5）<strong>数据链路层负载均衡</strong>　　评价：★★★★★</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image8" alt=""></p>
+<p>　　此种方式又称作<strong>三角传输模式</strong>，负载均衡数据分发过程中不修改 IP 地址，只修改 mac 地址，由于实际处理请求的真实物理 IP 地址和数据请求目的 IP 地址一致，所以不需要通过负载均衡服务器进行地址转换，可将响应数据包直接返回给用户浏览器，避免负载均衡服务器网卡带宽成为瓶颈。这种负载均衡方式又称作<strong>直接路由方式（DR）</strong>。</p>
+<p>　　<strong>使用三角传输模式的链路层负载均衡是目前大型网站使用最广泛的一种负载均衡手段</strong>。在 Linux 平台上最好的链路层负载均衡开源产品是 LVS（Linux Virutal Server）。</p>
+<h4 id="2-3-负载均衡算法—负载均衡技术赖以生存的核心"><a href="#2-3-负载均衡算法—负载均衡技术赖以生存的核心" class="headerlink" title="2.3 负载均衡算法—负载均衡技术赖以生存的核心"></a>2.3 负载均衡算法—负载均衡技术赖以生存的核心</h4><p>　　前面的方法解决了负载均衡通过何种方式实现，而更为重要的则是如何从 Web 服务器列表中计算得到一台 Web 服务器的地址，而这正是负载均衡的核心—算法。这里简单介绍一下通常的集中负载均衡计算的算法，如果需要深入了解请自行百度。</p>
+<p>　　（1）轮询</p>
+<p>　　所有请求被以此分发到每台应用服务器上，即每台服务器需要处理的请求数目都相同，适合于所有服务器硬件都相同的场景。</p>
+<p>　　（2）加权轮询</p>
+<p>　　根据应用服务器的配置性能的情况，在轮询的基础上，按照配置的权重将请求分发到每个服务器，高性能的服务器能分配更多的请求。</p>
+<p>　　（3）随机</p>
+<p>　　此算法比较简单实用，请求被随机分配到各个应用服务器，因为好的随机数本身就很均衡。</p>
+<p>　　（4）最少连接</p>
+<p>　　记录每个应用服务器正在处理的连接数（请求数），将新到的请求分发到最少连接的服务器上，应该说，这是最符合负载均衡定义的算法。</p>
+<p>　　（5）<strong>源地址散列</strong></p>
+<p>　　根据请求来源的 IP 地址进行 Hash 计算得到应用服务器，这样<strong>来自同一个 IP 地址的请求总在同一个服务器上处理</strong>，该请求的上下文信息可以存储在这台服务器上，在一个会话周期内重复使用，从而实现会话粘滞。</p>
+<h2 id="三、分布式缓存集群的伸缩性设计"><a href="#三、分布式缓存集群的伸缩性设计" class="headerlink" title="三、分布式缓存集群的伸缩性设计"></a>三、分布式缓存集群的伸缩性设计</h2><p>　　不同于应用服务器集群的伸缩性设计，分布式缓存集群的伸缩性不能使用简单的负载均衡手段来实现。因为：<strong>分布式缓存服务器集群中缓存的数据各不相同，缓存访问请求不可以在缓存服务器集群中的任意一台处理，必须先找到缓存有需要的数据的服务器，然后才能访问</strong>。</p>
+<p>　　分布式缓存集群伸缩性设计的目标：<strong>让新上线的缓存服务器对整个分布式缓存集群影响最小，也就是说新加入缓存服务器后应使整个缓存服务器集群中已经缓存的数据尽可能还被访问到。</strong></p>
+<p>（1）以 Memcached 为代表的分布式缓存集群的访问模型</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image9" alt=""></p>
+<p>　　以上图片展示了一个典型的缓存写操作，应用程序需要写缓存数据 &lt;’CHENGDU’,DATA&gt;，API 将 KEY（’CHENGDU’）输入路由算法模块，路由算法根据 KEY 和 Memcached 服务器集群列表计算得到一台服务器编号（如 Node1），进而得到该机器的 IP 地址和端口（10.0.0.1:91000）。然后，API 调用通信模块和编号为 Node1 的 Memcached 服务器进行通信，将数据 &lt;’CHENGDU’,DATA &gt; 写入该服务器，至此便完成了一次分布式缓存的写操作。</p>
+<p>　　而读操作和写操作一样，使用同样的路由算法和服务器列表，只要提供相同的 KEY（如上面提到的’CHENGDU’），Memcached 客户端总是访问相通的服务器（如上面计算得到的 Node1）去读取数据。</p>
+<p>　　（2）以 Memcached 为代表的分布式缓存集群的伸缩性挑战</p>
+<p>　　简单的路由算法（通过使用余数 Hash）无法满足业务发展时服务器扩容的需要：<strong>缓存命中率下降</strong>。例如：当 3 台服务器扩容至 4 台时，采用普通的余数 Hash 算法会导致大约 75%（3/4）被缓存了的数据无法正确命中，随着服务器集群规模的增大，这个比例会线性地上升。那么，可以想象，当 100 台服务器的急群众加入一台服务器，不能命中的概率大概是 99%（N/N+1），这个结果显然是无法接受的。</p>
+<p>　　那么，能否通过改进路由算法，使得新加入的服务器不影响大部分缓存数据的正确性呢？请看下面的一致性 Hash 算法。</p>
+<p>　　（3）<strong>分布式缓存的<em>一致性 Hash</em> 算法</strong></p>
+<blockquote>
+<p><strong>说明：</strong>一致性 Hash 算法是分布式缓存的核心理论，这里只是简单介绍一下，后续有空我会单独写一篇文章来详细介绍一致性 Hash 算法，以及用 C## 实现一致性 Hash 算法。</p>
+</blockquote>
+<p>　　一致性 Hash 算法通过一个叫做一致性 Hash 还的数据结构实现 KEY 到缓存服务器的 Hash 映射，如下图所示：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image10" alt=""></p>
+<p>　　具体算法过程是：</p>
+<p>　　①先构造一个长度为 0~2^32（2 的 32 次幂）个的整数环（又称：一致性 Hash 环），根据节点名称的 Hash 值将缓存服务器节点防置在这个 Hash 环中，如上图中的 node1，node2 等；</p>
+<p>　　②根据需要缓存的数据的 KEY 值计算得到其 Hash 值，如上图中右半部分的 “键”，计算其 Hash 值后离 node2 很近；</p>
+<p>　　③在 Hash 环上顺时针查找距离这个 KEY 的 Hash 值最近的缓存服务器节点，完成 KEY 到服务器的 Hash 映射查找，如上图中离右边这个键的 Hash 值最近的顺时针方向的服务器节点是 node2，因此这个 KEY 会到 node2 中读取数据；</p>
+<p>　　当缓存服务器集群需要扩容的时候，只需要将新加入的节点名称（如 node5）的 Hash 值放入一致性 Hash 环中，<strong>由于 KEY 总是顺时针查找距离其最近的节点，因此新加入的节点只影响整个环中的一部分</strong>。如下图中所示，添加 node5 后，只影响右边逆时针方向的三个 Key/Value 对数据，只占整个 Hash 环中的一小部分。</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image11" alt=""></p>
+<p>　　因此，我们可以与之前的普通余数 Hash 作对比：采用一直性 Hash 算法时，当 3 台服务器扩容到 4 台时，可以继续命中原有缓存数据的概率为 75%，远高于普通余数 Hash 的 25%，而且随着集群规模越大，继续命中原有缓存数据的概率也会随之增大。当 100 台服务器增加 1 台时，继续命中的概率是 99%。<strong>虽然，仍有小部分数据缓存在服务器中无法被读取到，但是这个比例足够小，通过访问数据库也不会对数据库造成致命的负载压力</strong>。</p>
+<h2 id="四、数据存储服务器集群的伸缩性设计"><a href="#四、数据存储服务器集群的伸缩性设计" class="headerlink" title="四、数据存储服务器集群的伸缩性设计"></a>四、数据存储服务器集群的伸缩性设计</h2><p>　　首先，<strong>数据存储服务器必须保证数据的可靠存储，任何情况下都必须保证数据的可用性和正确性</strong>。因此，缓存服务器集群的伸缩性架构方案不能直接适用于数据库等存储服务器。</p>
+<p>　　（1）关系数据库集群的伸缩性设计</p>
+<p>　　①市场上主要的关系数据库都支持数据复制功能，使用这个功能可以对数据库进行简单伸缩。下图显示了使用数据复制的 MySQL 集群伸缩性方案：多台 MySQL 的角色有主从之分，写操作都在主服务器上，由主服务器将数据同步到集群中其他从服务器。而读操作及数据分析等离线操作都会在从服务器上完成。</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image12" alt=""></p>
+<p>　　②前面提到的业务分割模式也可以用在数据库，不同业务数据表部署在不同的数据库集群上，这就是所谓的 “<strong>数据分库</strong>”；但是其有一个制约条件：跨库的表无法进行 Join 操作；</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image13" alt=""></p>
+<p>　　③在实际运维中，对一些单表数据仍然很大的表，例如 Facebook 的用户数据库、淘宝的商品数据库等，还需要进行分片，将一张表拆分开分别存储在多个数据库中，这就是所谓的 “<strong>数据分片</strong>”；</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image14" alt=""></p>
+<p>　　（2）NoSQL 数据库的伸缩性设计</p>
+<p>　　首先，NoSQL 主要指非关系的、分布式的数据库设计模式。也有许多专家将 NoSQL 解读为 <strong>Not Only SQL</strong>，表示 NoSQL 是关系数据库的补充，而不是替代方案。一般而言，NoSQL 数据库产品都放弃了关系数据库的两大重要基础：①以关系代数为基础的结构化查询语言（SQL）②事务的一致性保证（ACID）；与之对应的是强化一些大型网站更关注的特性：<strong>高可用性和可伸缩性</strong>；</p>
+<p>　　开源社区的 NoSQL 产品不尽其数，其支持的数据结构和伸缩性特性也各不相同。目前看来，应用最广泛的是 Apache HBase。HBase 的伸缩性主要依赖于其<strong>可分裂的 HRegion</strong> 及<strong>可伸缩的分布式文件系统 HDFS</strong>（如果您不知道 HDFS 又对 HDFS 有兴趣，可以阅读我的另一篇博文《<a href="http://www.cnblogs.com/edisonchou/p/3538524.html" target="_blank" rel="noopener">不怕故障的海量存储—HDFS 基础入门</a>》）实现。</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image15" alt=""></p>
+<p>　　上图是 HBase 的整体架构图：</p>
+<p>　　①HBase 中数据<strong>以 HRegion 为单位</strong>进行管理，也就是说应用程序如果想要访问一个数据，必须先找到 HRegion，然后将数据读写操作提交给 HRegion，由 HRegion 完成存储层面的数据操作。</p>
+<p>　　②每个 HRegion 中存储一段 Key 区间（例如：[Key1,Key2)）的数据，HRegionServer 是物理服务器，每个 HRegionServer 上可以启动多个 HRegion 实例。<strong>当一个 HRegion 中写入的数据太多，达到配置的阀值时，HRegion 会分裂成两个 HRegion</strong>，并将 HRegion 在整个集群中进行迁移，以使 HRegionServer 的负载均衡。</p>
+<p>　　③所有的 <strong>HRegion 的信息都</strong>（例如：存储的 Key 值区间、所在 HRegionServer 的 IP 地址和端口号等）<strong>记录在 HMaster 服务器</strong>上。同时为了保证高可用，HBase 启动了多个 HMaster，并通过 ZooKeeper（一个支持分布式一致性的数据管理服务）选举出一个主服务器，通过这个主 HMaster 服务器获得 Key 值所在的 HRegionServer，最后请求该 HRegionServer 上的 HRegion 实例，获得需要的数据。其具体的数据寻址访问流程如下图所示：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image16" alt=""></p>
+<h2 id="五、学习小结"><a href="#五、学习小结" class="headerlink" title="五、学习小结"></a>五、学习小结</h2><p>　　在本章的学习中，我们了解到要实现网站的可伸缩性，关键技术就在于如何构建 “良好” 的服务器集群。要达到良好的目标，就要求每次扩容和减少服务器时，对整个网站的影响是最小的，甚至无影响的。伸缩性是复杂的，没有通用的、完美的解决方案和产品。一个具有良好伸缩性的网站，其设计总是走在业务发展的前面，在业务需要处理更多访问和处理之前，就已经做好了充分的准备，当业务需要时，只需要增加服务器并简单部署就可以了，技术团队便可轻松应对了。</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>　　（1）李智慧，《大型网站技术架构 - 核心原理与案例分析》，<a href="http://item.jd.com/11322972.html" target="_blank" rel="noopener">http://item.jd.com/11322972.html</a></p>
+<p>　　（2）老徐的私房菜，《HTTP 无状态协议和 Session 原理》，<a href="http://laoxu.blog.51cto.com/4120547/1219699" target="_blank" rel="noopener">http://laoxu.blog.51cto.com/4120547/1219699</a></p>
+<p>　　（3）百度百科，《一致性 Hash 算法》，<a href="http://baike.baidu.com/view/1588037.htm" target="_blank" rel="noopener">http://baike.baidu.com/view/1588037.htm</a></p>
+<p>　　（4）charlee，《Memcached 完全剖析》，<a href="http://kb.cnblogs.com/page/42731/" target="_blank" rel="noopener">http://kb.cnblogs.com/page/42731/</a></p>
+<p>　　（5）bluishglc，《数据库 Sharding 的基本思想和切分策略》，<a href="http://blog.csdn.net/bluishglc/article/details/6161475" target="_blank" rel="noopener">http://blog.csdn.net/bluishglc/article/details/6161475</a></p>
+<h2 id="本章思维导图"><a href="#本章思维导图" class="headerlink" title="本章思维导图"></a>本章思维导图</h2><p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image17" alt=""></p>
+<hr>
+<blockquote>
+<p>参考：<br>大型网站技术架构（12篇） - 综合区 - [ 博客精选 ] - 手册网<br><a href="http://www.shouce.ren/api/view/a/15512" target="_blank" rel="noopener">http://www.shouce.ren/api/view/a/15512</a><br>Edison Chou - 博客园<br><a href="http://www.cnblogs.com/edisonchou/" target="_blank" rel="noopener">http://www.cnblogs.com/edisonchou/</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+
+     
+    
+      <div>
+        
+    <div style="text-align:center;color: #ccc;font-size:14px;">
+        ------ 本文结束<i class="fa fa-paw"></i>感谢您的阅读 ------</div>
+
+      </div>
+    
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    CloudPai
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://cloudpai.site/2018/04/19/2018-04-19-8/" title="《大型网站技术架构》笔记6 永无止境：网站的伸缩性架构">http://cloudpai.site/2018/04/19/2018-04-19-8/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/架构/" rel="tag"><i class="fa fa-tag"></i> 架构</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/19/2018-04-19-7/" rel="next" title="《大型网站技术架构》笔记5 万无一失：网站的高可用架构">
+                <i class="fa fa-chevron-left"></i> 《大型网站技术架构》笔记5 万无一失：网站的高可用架构
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/19/2018-04-19-9/" rel="prev" title="《大型网站技术架构》笔记7 随机应变：网站的可扩展架构">
+                《大型网站技术架构》笔记7 随机应变：网站的可扩展架构 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+
+
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg"
+                alt="CloudPai" />
+            
+              <p class="site-author-name" itemprop="name">CloudPai</p>
+              <p class="site-description motion-element" itemprop="description">加油(๑•̀ㅂ•́)و✧加油</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">170</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+
+<div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=240 src="//music.163.com/outchain/player?type=0&id=2113726971&auto=0&height=430"></iframe>
+</div>
+<!-- 459004290 -->
+
+
+
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">83</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CloudPai" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:liupai024@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.douban.com/people/57965969/doulists/all" target="_blank" title="豆瓣">
+                      
+                        <i class="fa fa-fw fa-book"></i>豆瓣</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/cloudPai/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-edit"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.dlut.edu.cn/" title="DUT" target="_blank">DUT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bupt.edu.cn/" title="BUPT" target="_blank">BUPT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://campus.alibaba.com/index.htm" title="Alibaba Group" target="_blank">Alibaba Group</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#6-永无止境：网站的伸缩性架构"><span class="nav-text">6 永无止境：网站的伸缩性架构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、网站架构的伸缩性设计"><span class="nav-text">一、网站架构的伸缩性设计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-1-不同功能进行物理分离实现伸缩"><span class="nav-text">1.1 不同功能进行物理分离实现伸缩</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-2-单一功通过集群规模实现伸缩"><span class="nav-text">1.2 单一功通过集群规模实现伸缩</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、应用服务器集群的伸缩性设计"><span class="nav-text">二、应用服务器集群的伸缩性设计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-应用服务器那点必须知道的事儿"><span class="nav-text">2.1 应用服务器那点必须知道的事儿</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-负载均衡技术—网站必不可少的基础技术手段"><span class="nav-text">2.2 负载均衡技术—网站必不可少的基础技术手段</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-3-负载均衡算法—负载均衡技术赖以生存的核心"><span class="nav-text">2.3 负载均衡算法—负载均衡技术赖以生存的核心</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、分布式缓存集群的伸缩性设计"><span class="nav-text">三、分布式缓存集群的伸缩性设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四、数据存储服务器集群的伸缩性设计"><span class="nav-text">四、数据存储服务器集群的伸缩性设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#五、学习小结"><span class="nav-text">五、学习小结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-text">参考文献</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#本章思维导图"><span class="nav-text">本章思维导图</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CloudPai</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">754.1k</span>
+  
+</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv">  </span>
+</span>
+</div>
+
+
+
+
+
+
+
+  <div class="theme-info">&#12288;主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://cloudpai.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://cloudpai.site/2018/04/19/2018-04-19-8/';
+          this.page.identifier = '2018/04/19/2018-04-19-8/';
+          this.page.title = '《大型网站技术架构》笔记6 永无止境：网站的伸缩性架构';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cloudpai.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!-- <!-- <script src="https://cdn.bootcss.com/aplayer/1.6.0/APlayer.min.js"></script>
+
+<script src="https://api.i-meto.com/music/player.js"></script> --> -->
+  
+  <!--移动端判断，是否引入背景-->
+  <script>
+  var browser={  
+      versions:function(){   
+             var u = navigator.userAgent, app = navigator.appVersion;   
+             return {//移动终端浏览器版本信息
+                  trident: u.indexOf('Trident') > -1, //IE内核
+                  presto: u.indexOf('Presto') > -1, //opera内核
+                  webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                  gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                  mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                  ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                  android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                  iPhone: u.indexOf('iPhone') > -1 , //是否为iPhone或者QQHD浏览器
+                  iPad: u.indexOf('iPad') > -1, //是否iPad
+                  webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+              };  
+           }(),  
+           language:(navigator.browserLanguage || navigator.language).toLowerCase()  
+  }   
+    if(browser.versions.mobile || browser.versions.ios || browser.versions.android ||   
+      browser.versions.iPhone || browser.versions.iPad){        
+               
+    }else{
+    document.write("<script type=\'text/javascript\'  src=\'/js/src/particle.js\'><\/script>");
+    }
+  </script>
+
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":-80,"vOffset":-50},"mobile":{"show":false,"scale":0.2},"react":{"opacityDefault":1,"opacityOnHover":0.2}});</script></body>
+</html>
