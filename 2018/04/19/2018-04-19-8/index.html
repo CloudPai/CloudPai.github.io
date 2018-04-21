@@ -92,7 +92,6 @@
 <meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15241397897070.jpg">
 <meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image1">
 <meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image2">
-<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image3">
 <meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image4">
 <meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image5">
 <meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image6">
@@ -107,7 +106,7 @@
 <meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image15">
 <meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image16">
 <meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image17">
-<meta property="og:updated_time" content="2018-04-19T14:37:14.294Z">
+<meta property="og:updated_time" content="2018-04-20T13:46:45.271Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《大型网站技术架构》笔记6 永无止境：网站的伸缩性架构">
 <meta name="twitter:description" content="6 永无止境：网站的伸缩性架构 一、网站架构的伸缩性设计1.1 不同功能进行物理分离实现伸缩　　（1）纵向分离：将业务处理流程上得不同部分分离部署，实现系统的伸缩性；  　　（2）横向分离：将不同的业务模块分离部署，实现系统的伸缩性；  1.2 单一功通过集群规模实现伸缩　　使用服务器集群，即将相同服务部署在多台服务器上构成一个集群整体对外提供服务。具体来说，集群伸缩性又分为应用服务器集群伸缩性">
@@ -353,8 +352,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-04-19T22:37:14+08:00">
-                2018-04-19
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-20T21:46:45+08:00">
+                2018-04-20
               </time>
             
           </span>
@@ -392,7 +391,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  4,343
+                  4,307
                 </span>
               
 
@@ -438,7 +437,6 @@
 <blockquote>
 <p>It is said that <strong>当一头牛拉不动车的时候，不要去寻找一头更强壮的牛，而是用两头牛来拉车</strong>。</p>
 </blockquote>
-<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image3" alt=""></p>
 <h2 id="二、应用服务器集群的伸缩性设计"><a href="#二、应用服务器集群的伸缩性设计" class="headerlink" title="二、应用服务器集群的伸缩性设计"></a>二、应用服务器集群的伸缩性设计</h2><h4 id="2-1-应用服务器那点必须知道的事儿"><a href="#2-1-应用服务器那点必须知道的事儿" class="headerlink" title="2.1 应用服务器那点必须知道的事儿"></a>2.1 应用服务器那点必须知道的事儿</h4><p>　　（1）应用服务器应该被设计成<strong>无状态</strong>的，即应用服务器不存储请求上下文信息；构建集群后，每次用户的请求都可以发到集群中任意一台服务器上处理，任何一台服务器的处理结果都是相同的；</p>
 <p>　　（2）HTTP 本身是一个无状态的连接协议，为了支持客户端与服务器之间的交互，我们就需要通过不同的技术为交互存储状态，而这些不同的技术就是 Cookie 和 Session 了。</p>
 <p>　　（3）HTTP 请求的分发是应用服务器集群实现伸缩性的核心问题，而负载均衡服务器就是 HTTP 请求的分发装置，它是网站必不可少的基础手段，也被称为网站的<strong>杀手锏</strong>之一。</p>
@@ -457,7 +455,7 @@
 <p>　　①目前的 DNS 是<strong>多级解析</strong>，每一级 DNS 都可能缓存 A 记录，当某台服务器下线后，即使修改了 DNS 的 A 记录，要使其生效仍然需要较长时间。这段期间，会导致用户访问已经下线的服务器造成访问失败。</p>
 <p>　　②DNS 负载均衡的控制权在域名服务商那里，网站无法对其做更多改善和管理；</p>
 <blockquote>
-<p><strong>TIPS：</strong>事实上，大型网站总是部分使用 DNS 域名解析，利用域名解析作为第一级负载均很手段，即域名解析得到的一组服务器不是实际的 Web 服务器，而是同样提供负载均衡的内部服务器，这组内部服务器再进行负载均衡，请求分发到真实的 Web 服务器上。</p>
+<p><strong>TIPS：</strong>事实上，大型网站总是部分使用 DNS 域名解析，利用域名解析作为第一级负载均衡手段，即域名解析得到的一组服务器不是实际的 Web 服务器，而是同样提供负载均衡的内部服务器，这组内部服务器再进行负载均衡，请求分发到真实的 Web 服务器上。</p>
 </blockquote>
 <p>　　（3）<strong>反向代理负载均衡</strong>　　评价：★★★★</p>
 <p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image6" alt=""></p>
@@ -468,7 +466,7 @@
 <p>　　此方案优点在于在<strong>内核进程</strong>完成数据分发，较反向代理负载均衡（在应用程序中分发数据）有更好的处理性能。缺点是由于所有请求响应都需要经过负载均衡服务器，集群的最大响应数据吞吐量不得不<strong>受制于负载均衡服务器网卡带宽</strong>。</p>
 <p>　　（5）<strong>数据链路层负载均衡</strong>　　评价：★★★★★</p>
 <p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image8" alt=""></p>
-<p>　　此种方式又称作<strong>三角传输模式</strong>，负载均衡数据分发过程中不修改 IP 地址，只修改 mac 地址，由于实际处理请求的真实物理 IP 地址和数据请求目的 IP 地址一致，所以不需要通过负载均衡服务器进行地址转换，可将响应数据包直接返回给用户浏览器，避免负载均衡服务器网卡带宽成为瓶颈。这种负载均衡方式又称作<strong>直接路由方式（DR）</strong>。</p>
+<p>　　此种方式又称作<strong>三角传输模式</strong>，负载均衡数据分发过程中不修改 IP 地址，<strong>只修改 mac 地址</strong>，由于实际处理请求的真实物理 IP 地址和数据请求目的 IP 地址一致，所以不需要通过负载均衡服务器进行地址转换，可将响应数据包直接返回给用户浏览器，避免负载均衡服务器网卡带宽成为瓶颈。这种负载均衡方式又称作<strong>直接路由方式（DR）</strong>。</p>
 <p>　　<strong>使用三角传输模式的链路层负载均衡是目前大型网站使用最广泛的一种负载均衡手段</strong>。在 Linux 平台上最好的链路层负载均衡开源产品是 LVS（Linux Virutal Server）。</p>
 <h4 id="2-3-负载均衡算法—负载均衡技术赖以生存的核心"><a href="#2-3-负载均衡算法—负载均衡技术赖以生存的核心" class="headerlink" title="2.3 负载均衡算法—负载均衡技术赖以生存的核心"></a>2.3 负载均衡算法—负载均衡技术赖以生存的核心</h4><p>　　前面的方法解决了负载均衡通过何种方式实现，而更为重要的则是如何从 Web 服务器列表中计算得到一台 Web 服务器的地址，而这正是负载均衡的核心—算法。这里简单介绍一下通常的集中负载均衡计算的算法，如果需要深入了解请自行百度。</p>
 <p>　　（1）轮询</p>
@@ -478,7 +476,7 @@
 <p>　　（3）随机</p>
 <p>　　此算法比较简单实用，请求被随机分配到各个应用服务器，因为好的随机数本身就很均衡。</p>
 <p>　　（4）最少连接</p>
-<p>　　记录每个应用服务器正在处理的连接数（请求数），将新到的请求分发到最少连接的服务器上，应该说，这是最符合负载均衡定义的算法。</p>
+<p>　　记录每个应用服务器正在处理的连接数（请求数），将新到的请求分发到最少连接的服务器上，应该说，这是<strong>最符合负载均衡定义的算法</strong>。</p>
 <p>　　（5）<strong>源地址散列</strong></p>
 <p>　　根据请求来源的 IP 地址进行 Hash 计算得到应用服务器，这样<strong>来自同一个 IP 地址的请求总在同一个服务器上处理</strong>，该请求的上下文信息可以存储在这台服务器上，在一个会话周期内重复使用，从而实现会话粘滞。</p>
 <h2 id="三、分布式缓存集群的伸缩性设计"><a href="#三、分布式缓存集群的伸缩性设计" class="headerlink" title="三、分布式缓存集群的伸缩性设计"></a>三、分布式缓存集群的伸缩性设计</h2><p>　　不同于应用服务器集群的伸缩性设计，分布式缓存集群的伸缩性不能使用简单的负载均衡手段来实现。因为：<strong>分布式缓存服务器集群中缓存的数据各不相同，缓存访问请求不可以在缓存服务器集群中的任意一台处理，必须先找到缓存有需要的数据的服务器，然后才能访问</strong>。</p>
@@ -486,13 +484,13 @@
 <p>（1）以 Memcached 为代表的分布式缓存集群的访问模型</p>
 <p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image9" alt=""></p>
 <p>　　以上图片展示了一个典型的缓存写操作，应用程序需要写缓存数据 &lt;’CHENGDU’,DATA&gt;，API 将 KEY（’CHENGDU’）输入路由算法模块，路由算法根据 KEY 和 Memcached 服务器集群列表计算得到一台服务器编号（如 Node1），进而得到该机器的 IP 地址和端口（10.0.0.1:91000）。然后，API 调用通信模块和编号为 Node1 的 Memcached 服务器进行通信，将数据 &lt;’CHENGDU’,DATA &gt; 写入该服务器，至此便完成了一次分布式缓存的写操作。</p>
-<p>　　而读操作和写操作一样，使用同样的路由算法和服务器列表，只要提供相同的 KEY（如上面提到的’CHENGDU’），Memcached 客户端总是访问相通的服务器（如上面计算得到的 Node1）去读取数据。</p>
+<p>　　而读操作和写操作一样，使用同样的路由算法和服务器列表，只要提供相同的 KEY（如上面提到的’CHENGDU’），Memcached 客户端总是访问相同的服务器（如上面计算得到的 Node1）去读取数据。</p>
 <p>　　（2）以 Memcached 为代表的分布式缓存集群的伸缩性挑战</p>
 <p>　　简单的路由算法（通过使用余数 Hash）无法满足业务发展时服务器扩容的需要：<strong>缓存命中率下降</strong>。例如：当 3 台服务器扩容至 4 台时，采用普通的余数 Hash 算法会导致大约 75%（3/4）被缓存了的数据无法正确命中，随着服务器集群规模的增大，这个比例会线性地上升。那么，可以想象，当 100 台服务器的急群众加入一台服务器，不能命中的概率大概是 99%（N/N+1），这个结果显然是无法接受的。</p>
 <p>　　那么，能否通过改进路由算法，使得新加入的服务器不影响大部分缓存数据的正确性呢？请看下面的一致性 Hash 算法。</p>
 <p>　　（3）<strong>分布式缓存的<em>一致性 Hash</em> 算法</strong></p>
 <blockquote>
-<p><strong>说明：</strong>一致性 Hash 算法是分布式缓存的核心理论，这里只是简单介绍一下，后续有空我会单独写一篇文章来详细介绍一致性 Hash 算法，以及用 C## 实现一致性 Hash 算法。</p>
+<p><strong>说明：</strong>一致性 Hash 算法是分布式缓存的<strong>核心理论</strong>，这里只是简单介绍一下</p>
 </blockquote>
 <p>　　一致性 Hash 算法通过一个叫做一致性 Hash 还的数据结构实现 KEY 到缓存服务器的 Hash 映射，如下图所示：</p>
 <p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记之六：永无止境之网站的伸缩性架构/image10" alt=""></p>
@@ -702,7 +700,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">170</span>
+                  <span class="site-state-item-count">174</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -724,7 +722,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">83</span>
+                  <span class="site-state-item-count">85</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -849,7 +847,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">754.1k</span>
+    <span title="Site words total count">755.2k</span>
   
 </div>
 

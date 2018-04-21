@@ -100,10 +100,11 @@
 <meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记四：瞬时响应之网站的高性能架构/image8">
 <meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记四：瞬时响应之网站的高性能架构/image9">
 <meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记四：瞬时响应之网站的高性能架构/image10">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15242259965870.jpg">
 <meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记四：瞬时响应之网站的高性能架构/image11">
 <meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记四：瞬时响应之网站的高性能架构/image12">
 <meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记四：瞬时响应之网站的高性能架构/image13">
-<meta property="og:updated_time" content="2018-04-19T14:20:15.894Z">
+<meta property="og:updated_time" content="2018-04-20T12:11:31.933Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="《大型网站技术架构》笔记4 瞬时响应：网站的高性能架构">
 <meta name="twitter:description" content="4 瞬时响应：网站的高性能架构 一、网站性能测试（1）性能测试指标：①响应时间；②并发数；③吞吐量；④性能计数器； （2）性能测试方法：①性能测试；②负载测试；③压力测试；④稳定性测试； （3）性能优化策略： 　　①性能分析：检查请求处理各个环节的日志，分析哪个环节响应时间不合理，检查监控数据分析影响性能的因素； 　　②性能优化：Web 前端优化，应用服务器优化，存储服务器优化； 二、Web 前">
@@ -349,8 +350,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-04-19T22:20:15+08:00">
-                2018-04-19
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-20T20:11:31+08:00">
+                2018-04-20
               </time>
             
           </span>
@@ -388,7 +389,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  2,890
+                  2,797
                 </span>
               
 
@@ -474,7 +475,7 @@
 <p>　　③负载均衡可以采用硬件设备，也可以采用软件负载。商用硬件负载设备（例如出名的 F5）成本通常较高（一台几十万上百万很正常），所以在条件允许的情况下我们会采用软负载，软负载解决的两个核心问题是：选谁、转发，其中最著名的是 <strong>LVS</strong>（Linux Virtual Server）。</p>
 <blockquote>
 <p>_<strong>PS：</strong>_LVS 是四层负载均衡，也就是说建立在 OSI 模型的第四层——传输层之上，传输层上有我们熟悉的 TCP/UDP，LVS 支持 TCP/UDP 的负载均衡。</p>
-<p>LVS 的转发主要通过修改 IP 地址（NAT 模式，分为源地址修改 SNAT 和目标地址修改 DNAT）、修改目标 MAC（DR 模式）来实现。有关 LVS 的详情请参考：<a href="http://www.importnew.com/11229.html" target="_blank" rel="noopener">http://www.importnew.com/11229.html</a></p>
+<p>LVS 的转发主要通过修改 IP 地址（NAT 模式，分为源地址修改 SNAT 和目标地址修改 DNAT）、修改目标 MAC（DR 模式）来实现。有关 LVS 的详情请参考：<a href="http://www.importnew.com/11229.html" target="_blank" rel="noopener">http://www.importnew.com/11229.html</a><br>实际上LVS的机器代替真实的服务器与用户通过TCP三次握手建立了连接，所以LVS是需要关心「连接」级别的状态的。</p>
 </blockquote>
 <p>（4）代码优化：</p>
 <p>　　①多线程：使用多线程的原因：一是 IO 阻塞，二是多 CPU，都是为了最大限度地利用 CPU 资源，提高系统吞吐能力，改善系统性能；</p>
@@ -482,12 +483,14 @@
 <p>　　②资源复用：目的是<strong>减少开销很大的系统资源的创建和销毁</strong>，主要采用两种模式实现：单例（Singleton）和对象池（Object Pool）。例如，在. NET 开发中，经常使用到的线程池，数据库连接池等，本质上都是对象池。</p>
 <p>　　③数据结构：在不同场合合理使用恰当的数据结构，可以极大优化程序的性能。</p>
 <p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记四：瞬时响应之网站的高性能架构/image9" alt=""></p>
-<p>　　④垃圾回收：理解垃圾回收机制有助于程序优化和参数调优，以及编写内存安安全的代码。这里主要针对 Java（JVM）和 C#（CLR）一类的具有 GC（垃圾回收机制）的语言。</p>
+<p>　　④垃圾回收：理解垃圾回收机制有助于程序优化和参数调优，以及编写内存安全的代码。这里主要针对 Java（JVM）和 C#（CLR）一类的具有 GC（垃圾回收机制）的语言。</p>
 <p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记四：瞬时响应之网站的高性能架构/image10" alt=""></p>
+<hr>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15242259965870.jpg" alt=""></p>
 <h2 id="四、存储性能优化"><a href="#四、存储性能优化" class="headerlink" title="四、存储性能优化"></a>四、存储性能优化</h2><p>（1）机械硬盘 还是 固态硬盘？</p>
 <p>　　①机械硬盘：<strong>通过马达驱动磁头臂，带动磁头到指定的磁盘位置访问数据</strong>。它能够实现<strong>快速顺序读写，慢速随机读写</strong>。</p>
 <p>　　②固态硬盘（又称 SSD）：无机械装置，<strong>数据存储在可持久记忆的硅晶体上</strong>，因此可以像内存一样<strong>快速随机访问</strong>。</p>
-<p>　　在目前的网站应用中，大部分应用访问数据都是随机的，这种情况下 SSD 具有更好的性能表现，但是性价比有待提升（蛮贵的，么么嗒）。</p>
+<p>　　在目前的网站应用中，大部分应用访问数据都是随机的，这种情况下 SSD 具有更好的性能表现，但是性价比有待提升（蛮贵的）。</p>
 <p>（2）B + 树 vs LSM 树</p>
 <p>　　①传统关系型数据库广泛采用 B + 树，B + 树是对数据排好序后再存储，加快数据检索速度。</p>
 <p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记四：瞬时响应之网站的高性能架构/image11" alt=""></p>
@@ -499,7 +502,7 @@
 <p>　　LSM 树的原理是：把一棵大树拆分成 N 棵小树，它首先写入内存中，随着小树越来越大，内存中的小树会被清除并写入到磁盘中，磁盘中的树定期可以做合并操作，合并成一棵大树，以优化读性能。</p>
 <p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180419_simpread-《大型网站技术架构》读书笔记四：瞬时响应之网站的高性能架构/image12" alt=""></p>
 <p>　　LSM 树的优势在于：在 LSM 树上进行一次数据更新不需要磁盘访问，在内存即可完成，速度远快于 B + 树。</p>
-<h2 id="五、学习总结"><a href="#五、学习总结" class="headerlink" title="五、学习总结"></a>五、学习总结</h2><p>　　对于网站的高性能架构这一章的阅读，通过大牛的书籍我们学到了从三个主要方面的性能优化策略，虽然都是理论，而且还只是浅显地说明，但是对于我们这些广大的开发菜鸟来说，扩展知识面，了解一点优化策略不是一件坏事，我们可以从中注意到日常的代码规范，如何写出高效的代码也是一件值得研究的事儿。在书中，看到了作者写了这样一句话，贴出来与各位正在学习途中的菜鸟们共享：<strong>“归根结底，技术是为业务服务的，技术选型和架构决策依赖业务规划乃至企业战略规划，离开业务发展的支撑和驱动，技术走不远，甚至还会迷路”</strong>。出来实习了一年多，对这句话感慨颇多，也吃了很多的亏，在和客户的沟通交流上也有了自己的一点感悟，所以贴出来与各位园友共勉。最后，希望作为菜鸟的我们，在技术这条路上能够走得远一些，迷路不重要，重要的是能够迷途知返，么么嗒！再过一个多月，就要开始找工作了，希望在此期间能够认真阅读完自己的计划书单，加油！</p>
+<h2 id="五、学习总结"><a href="#五、学习总结" class="headerlink" title="五、学习总结"></a>五、学习总结</h2><p>　　对于网站的高性能架构这一章的阅读，通过大牛的书籍我们学到了从三个主要方面的性能优化策略，虽然都是理论，而且还只是浅显地说明，但是对于我们这些广大的开发菜鸟来说，扩展知识面，了解一点优化策略不是一件坏事，我们可以从中注意到日常的代码规范，如何写出高效的代码也是一件值得研究的事儿。在书中，看到了作者写了这样一句话，贴出来与各位正在学习途中的菜鸟们共享：<strong>“归根结底，技术是为业务服务的，技术选型和架构决策依赖业务规划乃至企业战略规划，离开业务发展的支撑和驱动，技术走不远，甚至还会迷路”</strong>。</p>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>（1）李智慧，《大型网站技术架构 - 核心原理与案例分析》，<a href="http://item.jd.com/11322972.html" target="_blank" rel="noopener">http://item.jd.com/11322972.html</a></p>
 <p>（2）周言之，《Memcached 详解》，<a href="http://blog.csdn.net/zlb824/article/details/7466943" target="_blank" rel="noopener">http://blog.csdn.net/zlb824/article/details/7466943</a></p>
 <p>（3）百度百科，CDN，<a href="http://baike.baidu.com/view/8689800.htm" target="_blank" rel="noopener">http://baike.baidu.com/view/8689800.htm</a></p>
@@ -682,7 +685,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">170</span>
+                  <span class="site-state-item-count">174</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -704,7 +707,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">83</span>
+                  <span class="site-state-item-count">85</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -829,7 +832,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">754.1k</span>
+    <span title="Site words total count">755.2k</span>
   
 </div>
 
