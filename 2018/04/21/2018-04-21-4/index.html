@@ -1,0 +1,1510 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="分布式,一致性," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="CloudPai" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="1 背景无论是水平拆分还是垂直拆分，都解决了特定场景下的特定问题，凡事有好的一面，都会有坏的一面，拆分后的系统或者服务化的系统最大的问题就是一致性问题，这么多个具有元功能的模块，或者同一个功能池中的多个节点之间，如何保证他们的信息是一致的、工作步伐是一致的、状态是一致的、互相协调有序的工作呢？ 本文根据作者在互联网企业的实际项目经验，对服务化系统中最难解决的一致性问题进行研究和探讨，试图从实践经">
+<meta name="keywords" content="分布式,一致性">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分布式服务化系统一致性（分布式事务、ACID、BASE、CAP）原理与解决方案">
+<meta property="og:url" content="http://cloudpai.site/2018/04/21/2018-04-21-4/index.html">
+<meta property="og:site_name" content="CloudPai">
+<meta property="og:description" content="1 背景无论是水平拆分还是垂直拆分，都解决了特定场景下的特定问题，凡事有好的一面，都会有坏的一面，拆分后的系统或者服务化的系统最大的问题就是一致性问题，这么多个具有元功能的模块，或者同一个功能池中的多个节点之间，如何保证他们的信息是一致的、工作步伐是一致的、状态是一致的、互相协调有序的工作呢？ 本文根据作者在互联网企业的实际项目经验，对服务化系统中最难解决的一致性问题进行研究和探讨，试图从实践经">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180421_simpread-分布式服务化系统一致性的 “最佳实干”/image1">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180421_simpread-分布式服务化系统一致性的 “最佳实干”/image2">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180421_simpread-分布式服务化系统一致性的 “最佳实干”/image3">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180421_simpread-分布式服务化系统一致性的 “最佳实干”/image4">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180421_simpread-分布式服务化系统一致性的 “最佳实干”/image5">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180421_simpread-分布式服务化系统一致性的 “最佳实干”/image6">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180421_simpread-分布式服务化系统一致性的 “最佳实干”/image7">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180421_simpread-分布式服务化系统一致性的 “最佳实干”/image8">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180421_simpread-分布式服务化系统一致性的 “最佳实干”/image9">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180421_simpread-分布式服务化系统一致性的 “最佳实干”/image10">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180421_simpread-分布式服务化系统一致性的 “最佳实干”/image11">
+<meta property="og:updated_time" content="2018-04-21T11:53:39.627Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="分布式服务化系统一致性（分布式事务、ACID、BASE、CAP）原理与解决方案">
+<meta name="twitter:description" content="1 背景无论是水平拆分还是垂直拆分，都解决了特定场景下的特定问题，凡事有好的一面，都会有坏的一面，拆分后的系统或者服务化的系统最大的问题就是一致性问题，这么多个具有元功能的模块，或者同一个功能池中的多个节点之间，如何保证他们的信息是一致的、工作步伐是一致的、状态是一致的、互相协调有序的工作呢？ 本文根据作者在互联网企业的实际项目经验，对服务化系统中最难解决的一致性问题进行研究和探讨，试图从实践经">
+<meta name="twitter:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180421_simpread-分布式服务化系统一致性的 “最佳实干”/image1">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'TZAS2SFOJR',
+      apiKey: 'e2a9cd036eede8026382b302001ec261',
+      indexName: 'cloudpai_blogs_search',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cloudpai.site/2018/04/21/2018-04-21-4/"/>
+
+
+
+
+
+  <title>分布式服务化系统一致性（分布式事务、ACID、BASE、CAP）原理与解决方案 | CloudPai</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-114643720-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CloudPai</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/04/21/2018-04-21-4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CloudPai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudPai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">分布式服务化系统一致性（分布式事务、ACID、BASE、CAP）原理与解决方案</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-21T16:57:09+08:00">
+                2018-04-21
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-21T19:53:39+08:00">
+                2018-04-21
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/21/2018-04-21-4/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/04/21/2018-04-21-4/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  11,905
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  41
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="1-背景"><a href="#1-背景" class="headerlink" title="1 背景"></a>1 背景</h2><p>无论是水平拆分还是垂直拆分，都解决了特定场景下的特定问题，凡事有好的一面，都会有坏的一面，拆分后的系统或者服务化的系统最大的问题就是一致性问题，这么多个具有元功能的模块，或者同一个功能池中的多个节点之间，<strong>如何保证他们的信息是一致的、工作步伐是一致的、状态是一致的、互相协调有序的工作呢？</strong></p>
+<p>本文根据作者在互联网企业的实际项目经验，对服务化系统中最难解决的一致性问题进行研究和探讨，试图从实践经验中找到规律，抽象出模式，分享给大家，希望对大家的项目实施有所帮助，在对实践的总结中也会对相关的一致性术语做最朴实的解释，希望能帮助大家彻底理解一致性的本质，并能将其应用到实践，解决读者现实中遇到的服务化系统的一致性问题，本文使用理论与实践相结合的方法，突出<strong>在实践中解决问题的模式</strong>，因此叫做《分布式服务化系统一致性的 “最佳实干”》。</p>
+<h2 id="2-问题"><a href="#2-问题" class="headerlink" title="2 问题"></a>2 问题</h2><p>本节列举不一致会导致的种种问题，这也包括一例生活中的问题。</p>
+<h3 id="案例-1：买房"><a href="#案例-1：买房" class="headerlink" title="案例 1：买房"></a>案例 1：买房</h3><p>假如你想要享受生活的随意，只想买个两居，不想让房贷有太大压力，而你媳妇却想要买个三居，还得带花园的，那么你们就不一致了，不一致导致生活不愉快、不协调，严重情况下还会吵架，可见生活中的不一致问题影响很大。</p>
+<h3 id="案例-2：转账"><a href="#案例-2：转账" class="headerlink" title="案例 2：转账"></a>案例 2：转账</h3><p>转账是经典的不一致案例，设想一下银行为你处理一笔转账，扣减你账户上的余额，然后增加别人账户的余额；如果扣减你的账户余额成功，增加别人账户余额失败，那么你就会损失这笔资金。反过来，如果扣减你的账户余额失败，增加别人账户余额成功，那么银行就会损失这笔资金，银行需要赔付。对于资金处理系统来说，上面任何一种场景都是不允许发生的，一旦发生就会有资金损失，后果是不堪设想的，严重情况会让一个公司瞬间倒闭，可参考<a href="https://link.jianshu.com?t=http://blog.jobbole.com/50392/" target="_blank" rel="noopener">案例</a>。</p>
+<h3 id="案例-3：下订单和扣库存"><a href="#案例-3：下订单和扣库存" class="headerlink" title="案例 3：下订单和扣库存"></a>案例 3：下订单和扣库存</h3><p>电商系统中也有一个经典的案例，下订单和扣库存如何保持一致，如果先下订单，扣库存失败，那么将会导致超卖；如果下订单没有成功，扣库存成功，那么会导致少卖。两种情况都会导致运营成本的增加，严重情况下需要赔付。</p>
+<h3 id="案例-4：同步超时"><a href="#案例-4：同步超时" class="headerlink" title="案例 4：同步超时"></a>案例 4：同步超时</h3><p>服务化的系统间调用常常因为网络问题导致系统间调用超时，即使是网络很好的机房，在亿次流量的基数下，同步调用超时也是家常便饭。系统 A 同步调用系统 B 超时，系统 A 可以明确得到超时反馈，但是无法确定系统 B 是否已经完成了预定的功能或者没有完成预定的功能。于是，系统 A 就迷茫了，不知道应该继续做什么，如何反馈给使用方。（曾经的一个 B2B 产品的客户要求接口超时重新通知他们，这个在技术上是难以实现的，因为服务器本身可能并不知道自己超时，可能会继续正常的返回数据，只是客户端并没有接受到结果罢了，因此这不是一个合理的解决方案）。</p>
+<h3 id="案例-5：异步回调超时"><a href="#案例-5：异步回调超时" class="headerlink" title="案例 5：异步回调超时"></a>案例 5：异步回调超时</h3><p>此案例和上一个同步超时案例类似，不过这个场景使用了异步回调，系统 A 同步调用系统 B 发起指令，系统 B 采用受理模式，受理后则返回受理成功，然后系统 B 异步通知系统 A。在这个过程中，如果系统 A 由于某种原因迟迟没有收到回调结果，那么两个系统间的状态就不一致，互相认知不同会导致系统间发生错误，严重情况下会影响核心事务，甚至会导致资金损失。</p>
+<h3 id="案例-6：掉单"><a href="#案例-6：掉单" class="headerlink" title="案例 6：掉单"></a>案例 6：掉单</h3><p>分布式系统中，两个系统协作处理一个流程，分别为对方的上下游，如果一个系统中存在一个请求，通常指订单，另外一个系统不存在，则导致掉单，掉单的后果很严重，有时候也会导致资金损失。</p>
+<h3 id="案例-7：系统间状态不一致"><a href="#案例-7：系统间状态不一致" class="headerlink" title="案例 7：系统间状态不一致"></a>案例 7：系统间状态不一致</h3><p>这个案例与上面掉单案例类似，不同的是两个系统间都存在请求，但是请求的状态不一致。</p>
+<h3 id="案例-8：缓存和数据库不一致"><a href="#案例-8：缓存和数据库不一致" class="headerlink" title="案例 8：缓存和数据库不一致"></a>案例 8：缓存和数据库不一致</h3><p>交易相关系统基本离不开关系型数据库，依赖关系型数据库提供的 ACID 特性（后面介绍），但是在大规模高并发的互联网系统里，一些特殊的场景对读的性能要求极高，服务于交易的数据库难以抗住大规模的读流量，通常需要在数据库前垫缓存，那么缓存和数据库之间的数据如何保持一致性？是要保持强一致呢还是弱一致性呢？</p>
+<h3 id="案例-9：本地缓存节点间不一致"><a href="#案例-9：本地缓存节点间不一致" class="headerlink" title="案例 9：本地缓存节点间不一致"></a>案例 9：本地缓存节点间不一致</h3><p>一个服务池上的多个节点为了满足较高的性能需求，需要使用本地缓存，使用了本地缓存，每个节点都会有一份缓存数据的拷贝，如果这些数据是静态的、不变的，那永远都不会有问题，但是如果这些数据是半静态的或者常被更新的，当被更新的时候，各个节点更新是有先后顺序的，在更新的瞬间，各个节点的数据是不一致的，如果这些数据是为某一个开关服务的，想象一下重复的请求走进了不同的节点（在 failover 或者补偿导致的场景下，重复请求是一定会发生的，也是服务化系统必须处理的），一个请求走了开关打开的逻辑，同时另外一个请求走了开关关闭的逻辑，这导致请求被处理两次，最坏的情况下会导致灾难性的后果，就是资金损失。</p>
+<h3 id="案例-10：缓存数据结构不一致"><a href="#案例-10：缓存数据结构不一致" class="headerlink" title="案例 10：缓存数据结构不一致"></a>案例 10：缓存数据结构不一致</h3><p>这个案例会时有发生，某系统需要种某一数据结构的缓存，这一数据结构有多个数据元素组成，其中，某个数据元素都需要从数据库中或者服务中获取，如果一部分数据元素获取失败，由于程序处理不正确，仍然将不完全的数据结构存入缓存，那么缓存的消费者消费的时候很有可能因为没有合理处理异常情况而出错。</p>
+<h2 id="3-模式"><a href="#3-模式" class="headerlink" title="3 模式"></a>3 模式</h2><h3 id="3-1-生活中不一致问题的解决"><a href="#3-1-生活中不一致问题的解决" class="headerlink" title="3.1 生活中不一致问题的解决"></a>3.1 生活中不一致问题的解决</h3><p>大家回顾一下上一节列举的生活中的<em>案例 1 - 买房</em>，如果置身事外来看，解决这种不一致的办法有两个，一个是避免不一致的发生，如果已经是媳妇了就不好办了:)，还有一种方法就是慢慢的补偿，先买个两居，然后慢慢的等资金充裕了再换三居，买比特币赚了再换带花园的房子，于是问题最终被解决了，最终大家处于一致的状态，都开心了。这样可以解决案例 1 的问题，很自然由于有了过渡的方法，问题在不经意间就消失了，可见 “过渡” 也是解决一致性问题的一个模式。</p>
+<p>从案例 1 的解决方案来看，我们要解决一致性问题，一个最直接最简单的方法就是保持强一致性，对于案例 1 的情况，尽量避免在结婚前两个人能够互相了解达成一致，避免不一致问题的发生；不过有些事情事已至此，发生了就是发生了，出现了不一致的问题，我们应该考虑去补偿，尽最大的努力从不一致状态修复到一致状态，避免损失全部或者一部分，也不失为一个好方法。</p>
+<p>因此，避免不一致是上策，出现了不一致及时发现及时修复是中策，有问题不积极解决留给他人解决是下策。</p>
+<h3 id="3-2-酸碱平衡理论"><a href="#3-2-酸碱平衡理论" class="headerlink" title="3.2 酸碱平衡理论"></a>3.2 酸碱平衡理论</h3><p>ACID 在英文中的意思是 “酸”，BASE 的意思是“碱”，这一段讲的是“酸碱平衡” 的故事。</p>
+<h4 id="1-ACID（酸）"><a href="#1-ACID（酸）" class="headerlink" title="1. ACID（酸）"></a><em>1. ACID（酸）</em></h4><p>如何保证强一致性呢？计算机专业的童鞋在学习关系型数据库的时候都学习了 ACID 原理，这里对 ACID 做个简单的介绍。如果想全面的学习 ACID 原理，请参考 <a href="https://link.jianshu.com?t=https://en.wikipedia.org/wiki/ACID" target="_blank" rel="noopener">ACID</a>。</p>
+<p>关系型数据库天生就是解决具有复杂事务场景的问题，关系型数据库完全满足 ACID 的特性。</p>
+<p>ACID 指的是：</p>
+<blockquote>
+<ul>
+<li>A: Atomicity，原子性</li>
+<li>C: Consistency，一致性</li>
+<li>I: Isolation，隔离性</li>
+<li>D: Durability，持久性</li>
+</ul>
+</blockquote>
+<p>具有 ACID 的特性的数据库支持<strong>强一致性</strong>，强一致性代表数据库本身不会出现不一致，每个事务是原子的，或者成功或者失败，事物间是隔离的，互相完全不影响，而且最终状态是持久落盘的，因此，数据库会从一个明确的状态到另外一个明确的状态，中间的临时状态是不会出现的，如果出现也会及时的自动的修复，因此是强一致的。</p>
+<p>3 个典型的关系型数据库 Oracle、Mysql、Db2 都能保证强一致性，Oracle 和 Mysql 使用多版本控制协议实现，而 DB2 使用改进的两阶段提交协议来实现。</p>
+<p>如果你在为交易相关系统做技术选型，交易的存储应该只考虑关系型数据库，对于核心系统，如果需要较好的性能，可以考虑使用更强悍的硬件，这种向上扩展（升级硬件）虽然成本较高，但是是最简单粗暴有效的方式，另外，<strong>Nosql 完全不适合交易场景</strong>，<strong>Nosql 主要用来做数据分析、ETL（数据仓库技术）、报表、数据挖掘、推荐、日志处理等非交易场景</strong>。</p>
+<p>前面提到的<em>案例 2 - 转账</em>和<em>案例 3 - 下订单和扣库存</em>都可以利用关系型数据库的强一致性解决。</p>
+<p>然而，前面提到，互联网项目多数具有大规模高并发的特性，必须应用拆分的理念，对高并发的压力采取 “大而化小、小而化了” 的方法，否则难以满足动辄亿级流量的需求，即使使用关系型数据库，单机也难以满足存储和 TPS 上的需求。为了保证<em>案例 2 - 转账</em>可以利用关系型数据库的强一致性，在拆分的时候尽量的把转账相关的账户放入一个数据库分片，对于案例 3，尽量的保证把订单和库存放入同一个数据库分片，这样通过关系型数据库自然就解决了不一致的问题。</p>
+<p>然而，有些时候事与愿违，由于业务规则的限制，无法将相关的数据分到同一个数据库分片，这个时候我们就需要实现最终一致性。</p>
+<p>对于<em>案例 2 - 转账</em>场景，假设账户数量巨大，对账户存储进行了拆分，关系型数据库一共分了 8 个实例，每个实例 8 个库，每个库 8 个表，共 512 张表，假如要转账的两个账户正好落在了一个库里，那么可以依赖关系型数据库的事务保持强一致性。</p>
+<p>如果要转账的两个账户正好落在了不同的库里，转账操作是无法封装在同一个数据库事务中的，这个时候会发生一个库的账户扣减余额成功，另外一个库的账户增加余额失败的情况。</p>
+<p>对于这种情况，我们需要继续探讨解决之道，CAP 原理和 BASE 原理，BASE 原理通过记录事务的中间的临时状态，实现最终一致性。</p>
+<h4 id="2-CAP（帽子理论）"><a href="#2-CAP（帽子理论）" class="headerlink" title="2. CAP（帽子理论）"></a><em>2. CAP（帽子理论）</em></h4><p>如果想深入的学习 CAP 理论，请参考 <a href="https://link.jianshu.com?t=https://en.wikipedia.org/wiki/CAP_theorem" target="_blank" rel="noopener">CAP</a>。</p>
+<p>由于对系统或者数据进行了拆分，我们的系统不再是单机系统，而是分布式系统，针对分布式系的帽子理论包含三个元素：</p>
+<blockquote>
+<ul>
+<li>C：Consistency，一致性, 数据一致更新，所有数据变动都是同步的</li>
+<li>A：Availability，可用性, 好的响应性能，完全的可用性指的是在任何故障模型下，服务都会在有限的时间处理响应</li>
+<li>P：Partition tolerance，分区容错性，可靠性</li>
+</ul>
+</blockquote>
+<p>帽子理论证明，任何分布式系统只可同时满足二点，没法三者兼顾。关系型数据库由于关系型数据库是单节点的，因此，不具有分区容错性，但是具有一致性和可用性，而分布式的服务化系统都需要满足分区容错性，那么我们必须在一致性和可用性中进行权衡，具体表现在服务化系统处理的异常请求在某一个时间段内可能是不完全的，但是经过自动的或者手工的补偿后，达到了最终的一致性。</p>
+<h4 id="3-BASE（碱）"><a href="#3-BASE（碱）" class="headerlink" title="3. BASE（碱）"></a><em>3. BASE（碱）</em></h4><p>BASE 理论解决 CAP 理论提出了分布式系统的一致性和可用性不能兼得的问题，如果想全面的学习 BASE 原理，请参考 <a href="https://link.jianshu.com?t=https://en.wikipedia.org/wiki/Eventual_consistency" target="_blank" rel="noopener">Eventual consistency</a>。</p>
+<p>BASE 在英文中有 “碱” 的意思，对应本节开头的 ACID 在英文中 “酸” 的意思，基于这两个名词提出了酸碱平衡的结论，简单来说是在不同的场景下，可以分别利用 ACID 和 BASE 来解决分布式服务化系统的一致性问题。</p>
+<p>BASE 模型与 ACID 模型截然不同，满足 CAP 理论，通过牺牲强一致性，获得可用性，一般应用在服务化系统的应用层或者大数据处理系统，通过达到最终一致性来尽量满足业务的绝大部分需求。</p>
+<p>BASE 模型包含个三个元素：</p>
+<blockquote>
+<ul>
+<li>BA：Basically Available，基本可用</li>
+<li>S：Soft State，软状态，状态可以有一段时间不同步</li>
+<li>E：Eventually Consistent，最终一致，最终数据是一致的就可以了，而不是时时保持强一致</li>
+</ul>
+</blockquote>
+<p>BASE 模型的软状态是实现 BASE 理论的方法，基本可用和最终一致是目标。按照 BASE 模型实现的系统，由于不保证强一致性，系统在处理请求的过程中，可以存在短暂的不一致，在短暂的不一致窗口请求处理处在临时状态中，系统在做每步操作的时候，通过记录每一个临时状态，在系统出现故障的时候，可以从这些中间状态继续未完成的请求处理或者退回到原始状态，最后达到一致的状态。</p>
+<p>以<em>案例 1 - 转账</em>为例，我们把用户 A 给用户 B 转账分成四个阶段，第一个阶段用户 A 准备转账，第二个阶段从用户 A 账户扣减余额，第三个阶段对用户 B 增加余额，第四个阶段完成转账。系统需要记录操作过程中每一步骤的状态，一旦系统出现故障，系统能够自动发现没有完成的任务，然后，根据任务所处的状态，继续执行任务，最终完成任务，达到一致的最终状态。</p>
+<p>在实际应用中，上面这个过程通常是通过持久化执行任务的状态和环境信息，一旦出现问题，定时任务会捞取未执行完的任务，继续未执行完的任务，直到执行完成为止，或者取消已经完成的部分操作回到原始状态。这种方法在任务完成每个阶段的时候，都要更新数据库中任务的状态，这在大规模高并发系统中不会有太好的性能，一个更好的办法是用 Write-Ahead Log（写前日志），这和数据库的 Bin Log（操作日志）相似，<strong>在做每一个操作步骤，都先写入日志，如果操作遇到问题而停止的时候，可以读取日志按照步骤进行恢复，并且继续执行未完成的工作，最后达到一致</strong>。写前日志可以利用机械硬盘的追加写而达到较好性能，因此，这是一种专业化的实现方式，多数业务系系统还是使用数据库记录的字段来记录任务的执行状态，也就是记录中间的 “软状态”，一个任务的状态流转一般可以通过数据库的行级锁来实现，这比使用 Write-Ahead Log 实现更简单、更快速。</p>
+<p>有了 BASE 理论作为基础，我们对复杂的分布式事务进行拆解，对其中的每一步骤都记录其状态，有问题的时候可以根据记录的状态来继续执行任务，达到最终的一致，通过这个方法我们可以解决<em>案例 2 - 转账</em>和<em>案例 3 - 下订单和扣库存</em>中遇到的问题。</p>
+<h4 id="4-酸碱平衡的总结"><a href="#4-酸碱平衡的总结" class="headerlink" title="4. 酸碱平衡的总结"></a><em>4. 酸碱平衡的总结</em></h4><blockquote>
+<ol>
+<li>使用向上扩展（强悍的硬件）运行专业的关系型数据库（例如：Oracle 或者 DB2）能够保证强一致性，钱能解决的问题就不是问题</li>
+</ol>
+</blockquote>
+<ol>
+<li>如果钱是问题，可以对廉价硬件运行的开源关系型数据库（例如：Mysql）进行分片，将相关的数据分到数据库的同一个片，仍然能够使用关系型数据库保证事务</li>
+<li>如果业务规则限制，<strong>无法</strong>将相关的数据<strong>分到同一个片</strong>，就需要实现<strong>最终一致性</strong>，通过记录事务的软状态（中间状态、临时状态），一旦处于不一致，可以通过系统自动化或者人工干预来修复不一致的情况</li>
+</ol>
+<h3 id="3-3-分布式一致性协议"><a href="#3-3-分布式一致性协议" class="headerlink" title="3.3 分布式一致性协议"></a>3.3 分布式一致性协议</h3><p>国际开放标准组织 <a href="https://link.jianshu.com?t=http://opengroup.org/" target="_blank" rel="noopener">Open Group</a> 定义了 DTS（分布式事务处理模型），模型中包含 4 个角色：<strong>应用程序、事务管理器、资源管理器、通信资源管理器</strong>四部分。事务处理器是统管全局的管理者，资源处理器和通信资源处理器是事务的参与者。</p>
+<p>J2EE 规范也包含此分布式事务处理模型的规范，并在所有的 AppServer 中进行实现，J2EE 规范中定义了 TX 协议和 XA 协议，TX 协议定义<strong>应用程序</strong>与<strong>事务管理器</strong>之间的接口，而 XA 协议定义了<strong>事务管理器</strong>与<strong>资源处理器</strong>之间的接口，在过去，大家使用 AppServer，例如：Websphere、Weblogic、Jboss 等配置数据源的时候会看见类似 XADatasource 的数据源，这就是实现了 DTS 的关系型数据库的数据源。企业级开发 JEE 中，关系型数据库、JMS 服务扮演资源管理器的角色，而 EJB 容器则扮演事务管理器的角色。</p>
+<p>下面我们就介绍<a href="https://link.jianshu.com?t=https://en.wikipedia.org/wiki/Two-phase_commit_protocol" target="_blank" rel="noopener">两阶段提交协议</a>、<a href="https://link.jianshu.com?t=https://en.wikipedia.org/wiki/Three-phase_commit_protocol" target="_blank" rel="noopener">三阶段提交协议</a>以及阿里巴巴提出的 <strong>TCC</strong>，它们都是根据 DTS 这一思想演变出来的。</p>
+<h4 id="1-两阶段提交协议"><a href="#1-两阶段提交协议" class="headerlink" title="1. 两阶段提交协议"></a><em>1. 两阶段提交协议</em></h4><p>上面描述的 JEE 的 XA 协议就是根据两阶段提交来保证事务的完整性，并实现分布式服务化的强一致性。</p>
+<p>两阶段提交协议把分布式事务分成两个过程，一个是准备阶段，一个是提交阶段，准备阶段和提交阶段都是由事务管理器发起的，为了接下来讲解方便，我们把<strong>事务管理器</strong>称为<strong>协调者</strong>，把<strong>资管管理器</strong>称为<strong>参与者</strong>。</p>
+<p>两阶段如下：</p>
+<blockquote>
+<ol>
+<li>准备阶段：协调者向参与者发起指令，参与者评估自己的状态，如果参与者评估指令可以完成，参与者会写 redo 或者 undo 日志（这也是前面提起的 Write-Ahead Log 的一种），然后锁定资源，执行操作，但是并不提交</li>
+</ol>
+</blockquote>
+<ol>
+<li>提交阶段：如果每个参与者明确返回准备成功，也就是预留资源和执行操作成功，协调者向参与者发起提交指令，参与者提交资源变更的事务，释放锁定的资源；如果任何一个参与者明确返回准备失败，也就是预留资源或者执行操作失败，协调者向参与者发起中止指令，参与者取消已经变更的事务，执行 undo 日志，释放锁定的资源</li>
+</ol>
+<p>两阶段提交协议成功场景示意图如下：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180421_simpread-分布式服务化系统一致性的 “最佳实干”/image1" alt=""></p>
+<p>我们看到两阶段提交协议在准备阶段锁定资源，是一个重量级的操作，并能保证强一致性，但是实现起来复杂、成本较高，不够灵活，更重要的是它有如下致命的问题：</p>
+<ol>
+<li><p>阻塞：从上面的描述来看，对于任何一次指令必须收到<strong>明确的响应</strong>，才会继续做下一步，否则处于阻塞状态，占用的资源被一直锁定，不会被释放</p>
+</li>
+<li><p>单点故障：如果协调者宕机，参与者没有了协调者指挥，会一直阻塞，尽管可以通过选举新的协调者替代原有协调者，但是如果之前协调者在发送一个提交指令后宕机，而提交指令仅仅被一个参与者接受，并且参与者接收后也宕机，新上任的协调者无法处理这种情况</p>
+</li>
+<li>脑裂：协调者发送提交指令，有的参与者接收到执行了事务，有的参与者没有接收到事务，就没有执行事务，多个参与者之间是不一致的</li>
+</ol>
+<p>上面所有的这些问题，都是需要人工干预处理，没有自动化的解决方案，因此两阶段提交协议在正常情况下能保证系统的强一致性，但是在出现异常情况下，当前处理的操作处于错误状态，需要管理员人工干预解决，因此可用性不够好，这也符合 CAP 协议的一致性和可用性不能兼得的原理。</p>
+<h4 id="2-三阶段提交协议"><a href="#2-三阶段提交协议" class="headerlink" title="2. 三阶段提交协议"></a><em>2. 三阶段提交协议</em></h4><p>三阶段提交协议是两阶段提交协议的改进版本。它通过<strong>超时机制</strong>解决了阻塞的问题，并且把两个阶段增加为三个阶段：</p>
+<ol>
+<li><p>询问阶段：协调者询问参与者是否可以完成指令，协调者只需要回答是还是不是，而不需要做真正的操作，这个阶段超时导致中止</p>
+</li>
+<li><p>准备阶段：如果在询问阶段所有的参与者都返回可以执行操作，协调者向参与者发送预执行请求，然后参与者写 redo 和 undo 日志，执行操作，但是不提交操作；如果在询问阶段任何参与者返回不能执行操作的结果，则协调者向参与者发送中止请求，这里的逻辑与两阶段提交协议的的准备阶段是相似的，这个阶段超时导致成功</p>
+</li>
+<li>提交阶段：如果每个参与者在准备阶段返回准备成功，也就是预留资源和执行操作成功，协调者向参与者发起提交指令，参与者提交资源变更的事务，释放锁定的资源；如果任何一个参与者返回准备失败，也就是预留资源或者执行操作失败，协调者向参与者发起中止指令，参与者取消已经变更的事务，执行 undo 日志，释放锁定的资源，这里的逻辑与两阶段提交协议的提交阶段一致</li>
+</ol>
+<p>三阶段提交协议成功场景示意图如下：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180421_simpread-分布式服务化系统一致性的 “最佳实干”/image2" alt=""></p>
+<p>然而，这里与两阶段提交协议有两个主要的不同：</p>
+<ol>
+<li>增加了一个询问阶段，询问阶段可以确保尽可能早的发现无法执行操作而需要中止的行为，但是它并不能发现所有的这种行为，只会减少这种情况的发生</li>
+<li>在准备阶段以后，协调者和参与者执行的任务中都增加了超时，<strong>一旦超时，协调者和参与者都继续提交事务</strong>，默认为成功，这也是根据概率统计上超时后默认成功的正确性最大</li>
+</ol>
+<p>三阶段提交协议与两阶段提交协议相比，具有如上的优点，但是一旦发生超时，系统仍然会发生不一致，只不过这种情况很少见罢了，好处就是至少不会阻塞和永远锁定资源。</p>
+<h4 id="3-TCC"><a href="#3-TCC" class="headerlink" title="3. TCC"></a><em>3. TCC</em></h4><p>上面两节讲解了两阶段提交协议和三阶段提交协议，实际上他们能解决<em>案例 2 - 转账</em>和<em>案例 3 - 下订单和扣库存</em>中的分布式事务的问题，但是遇到极端情况，系统会发生阻塞或者不一致的问题，需要运营或者技术人工解决。无论两阶段还是三阶段方案中都包含多个参与者、多个阶段实现一个事务，实现复杂，性能也是一个很大的问题，因此，在互联网高并发系统中，鲜有使用两阶段提交和三阶段提交协议的场景。</p>
+<p>阿里巴巴提出了新的 TCC 协议，TCC 协议将一个任务拆分成 Try、Confirm、Cancel，正常的流程会先执行 Try，如果执行没有问题，再执行 Confirm，如果执行过程中出了问题，则执行操作的逆操 Cancel，从正常的流程上讲，这仍然是一个两阶段的提交协议，但是，在执行出现问题的时候，有一定的自我修复能力，如果任何一个参与者出现了问题，协调者通过执行操作的逆操作来取消之前的操作，达到最终的一致状态。</p>
+<p>可以看出，从时序上，如果遇到极端情况下 TCC 会有很多问题的，例如，如果在 Cancel 的时候一些参与者收到指令，而一些参与者没有收到指令，整个系统仍然是不一致的，这种复杂的情况，系统首先会通过补偿的方式，尝试自动修复的，如果系统无法修复，必须由人工参与解决。</p>
+<p>从 TCC 的逻辑上看，可以说 <strong>TCC 是简化版的三阶段提交协议</strong>，解决了两阶段提交协议的阻塞问题，但是没有解决极端情况下会出现不一致和脑裂的问题。然而，TCC 通过自动化补偿手段，会把需要人工处理的不一致情况降到到最少，也是一种非常有用的解决方案，<strong>据说阿里在内部的一些中间件上实现了 TCC 模式</strong>。</p>
+<p>我们给出一个使用 TCC 的实际案例，在秒杀的场景，用户发起下单请求，应用层先查询库存，确认商品库存还有余量，则锁定库存，此时订单状态为待支付，然后指引用户去支付，由于某种原因用户支付失败，或者支付超时，系统会自动将锁定的库存解锁供其他用户秒杀。</p>
+<p>TCC 协议使用场景示意图如下：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180421_simpread-分布式服务化系统一致性的 “最佳实干”/image3" alt=""></p>
+<p>总结一下，两阶段提交协议、三阶段提交协议、TCC 协议都能保证分布式事务的一致性，他们保证的分布式系统的一致性从强到弱，TCC 达到的目标是最终一致性，其中任何一种方法都可以不同程度的解决<em>案例 2：转账、案例 3：下订单和扣库存</em>的问题，只是实现的一致性的级别不一样而已，对于<em>案例 4：同步超时</em>可以通过 TCC 的理念解决，如果同步调用超时，调用方可以使用 fastfail 策略，返回调用方的使用方失败的结果，同时调用服务的逆向 cancel 操作，保证服务的最终一致性。</p>
+<h3 id="3-4-保证最终一致性的模式"><a href="#3-4-保证最终一致性的模式" class="headerlink" title="3.4 保证最终一致性的模式"></a>3.4 保证最终一致性的模式</h3><p>在大规模高并发服务化系统中，一个功能被拆分成多个具有单一功能的元功能，一个流程会有多个系统的多个元功能组合实现，如果使用两阶段提交协议和三阶段提交协议，确实能解决系统间一致性问题，除了这两个协议带来的自身的问题，这些协议的实现比较复杂、成本比较高，最重要的是性能并不好，相比来看，TCC 协议更简单、容易实现，但是 TCC 协议由于每个事务都需要执行 Try，再执行 Confirm，略微显得臃肿，因此，在现实的系统中，底线要求仅仅需要能达到最终一致性，而不需要实现专业的、复杂的一致性协议，实现最终一致性有一些非常有效的、简单粗暴的模式，下面就介绍这些模式及其应用场景。</p>
+<h4 id="1-查询模式"><a href="#1-查询模式" class="headerlink" title="1. 查询模式"></a><em>1. 查询模式</em></h4><p>任何一个服务操作都需要提供一个查询接口，用来向外部输出操作执行的状态。服务操作的使用方可以通过查询接口，得知服务操作执行的状态，然后根据不同状态来做不同的处理操作。</p>
+<p>为了能够实现查询，每个服务操作都需要有唯一的流水号标识，也可使用此次服务操作对应的资源 ID 来标志，例如：请求流水号、订单号等。</p>
+<p>首先，单笔查询操作是必须提供的，我们也鼓励使用单笔订单查询，这是因为每次调用需要占用的负载是可控的，批量查询则根据需要来提供，<strong>如果使用了批量查询，需要有合理的分页机制，并且必须限制分页的大小，以及对批量查询的 QPS 需要有容量评估和流控等</strong>。</p>
+<p>查询模式的示意图如下：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180421_simpread-分布式服务化系统一致性的 “最佳实干”/image4" alt=""></p>
+<p>对于<em>案例 4：同步超时、案例 5：异步回调超时、案例 6：掉单、案例 7：系统间状态不一致</em>，我们都需要使用查询模式来了解被调用服务的处理情况，来决定下一步做什么：补偿未完成的操作还是回滚已经完成的操作。</p>
+<h4 id="2-补偿模式"><a href="#2-补偿模式" class="headerlink" title="2. 补偿模式"></a><em>2. 补偿模式</em></h4><p>有了上面的查询模式，在任何情况下，我们都能得知具体的操作所处的状态，如果整个操作处于不正常的状态，我们需要修正操作中有问题的子操作，这可能需要重新执行未完成的子操作，后者取消已经完成的子操作，通过修复使整个分布式系统达到一致，为了让系统最终一致而做的努力都叫做补偿。</p>
+<p>对于服务化系统中同步调用的操作，业务操作发起的主动方在还没有得到业务操作执行方的明确返回或者调用超时，场景可参考<em>案例 4：同步超时</em>，这个时候业务发起的主动方需要及时的调用业务执行方获得操作执行的状态，这里使用查询模式，获得业务操作的执行方的状态后，如果业务执行方已经完预设的工作，则业务发起方给业务的使用方返回成功，如果业务操作的执行方的状态为失败或者未知，则会立即告诉业务的使用方失败，然后调用业务操作的<strong>逆向操作</strong>，保证操作不被执行或者回滚已经执行的操作，让业务的使用方、业务发起的主动方、业务的操作方最终达成一致的状态。</p>
+<p>补偿模式的示意图如下：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180421_simpread-分布式服务化系统一致性的 “最佳实干”/image5" alt=""></p>
+<p>补偿操作根据发起形式分为：</p>
+<ol>
+<li>自动恢复：程序根据发生不一致的环境，通过继续未完成的操作，或者回滚已经完成的操作，自动来达到一致</li>
+<li>通知运营：如果程序无法自动恢复，并且设计时考虑到了不一致的场景，可以提供运营功能，通过运营手工进行补偿</li>
+<li>通知技术：如果很不巧，系统无法自动回复，又没有运营功能，那必须通过技术手段来解决，技术手段包括走<strong>数据库变更</strong>或者<strong>代码变更</strong>来解决，这是最糟的一种场景</li>
+</ol>
+<h4 id="3-异步确保模式"><a href="#3-异步确保模式" class="headerlink" title="3. 异步确保模式"></a><em>3. 异步确保模式</em></h4><p>异步确保模式是补偿模式的一个典型案例，经常应用到使用方对响应时间要求并不太高，我们通常把这类操作从主流程中摘除，通过异步的方式进行处理，处理后把结果通过通知系统通知给使用方，这个方案最大的好处能够<strong>对高并发流量进行消峰</strong>，例如：电商系统中的物流、配送，以及支付系统中的计费、入账等。</p>
+<p>实践中，将要执行的异步操作封装后持久入库，然后通过定时捞取未完成的任务进行补偿操作来实现异步确保模式，只要定时系统足够健壮，任何一个任务最终会被成功执行。</p>
+<p>异步确保模式的示意图如下：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180421_simpread-分布式服务化系统一致性的 “最佳实干”/image6" alt=""></p>
+<p>对于<em>案例 5：异步回调超时</em>，使用的就是异步确保模式，这种情况下对于某个操作，如果迟迟没有收到响应，我们通过查询模式和补偿模式来继续未完成的操作。</p>
+<h4 id="4-定期校对模式"><a href="#4-定期校对模式" class="headerlink" title="4. 定期校对模式"></a><em>4. 定期校对模式</em></h4><p>既然我们在系统中实现最终一致性，系统在没有达到一致之前，系统间的状态是不一致的，甚至是混乱的，需要补偿操作来达到一致的目的，但是我们如何来发现需要补偿的操作呢？</p>
+<p>在操作的主流程中的系统间执行校对操作，我们可以事后异步的批量校对操作的状态，如果发现不一致的操作，则进行补偿，补偿操作与补偿模式中的补偿操作是一致的。</p>
+<p>另外，实现定期校对的一个关键就是分布式系统中需要有一个自始至终唯一的 ID，ID 的生成请参考 <a href="https://link.jianshu.com?t=https://github.com/twitter/snowflake" target="_blank" rel="noopener">SnowFlake</a>。</p>
+<p>在分布式系统中，全局唯一 ID 的示意图如下：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180421_simpread-分布式服务化系统一致性的 “最佳实干”/image7" alt=""></p>
+<p>一般情况下，生成全局唯一 ID 有两种方法：</p>
+<blockquote>
+<ol>
+<li>持久型：使用数据库表自增字段或者 Sequence 生成，为了提高效率，每个应用节点可以缓存一批次的 ID，如果机器重启可能会损失一部分 ID，但是这并不会产生任何问题</li>
+<li>时间型：一般由机器号、业务号、时间、单节点内自增 ID 组成，由于时间一般精确到秒或者毫秒，因此不需要持久就能保证在分布式系统中全局唯一、粗略递增等特点</li>
+</ol>
+</blockquote>
+<p>实践中，为了能在分布式系统中迅速的定位问题，一般的分布式系统都有技术支持系统，它能够跟踪一个请求的调用链，调用链是在二维的维度跟踪一个调用请求，最后形成一个调用树，原理可参考谷歌的论文 <a href="https://link.jianshu.com?t=https://research.google.com/pubs/pub36356.html" target="_blank" rel="noopener">Dapper, a Large-Scale Distributed Systems Tracing Infrastructure</a>，一个开源的参考实现为 <a href="https://link.jianshu.com?t=https://github.com/naver/pinpoint" target="_blank" rel="noopener">pinpoint</a>。</p>
+<p>在分布式系统中，调用链的示意图如下：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180421_simpread-分布式服务化系统一致性的 “最佳实干”/image8" alt=""></p>
+<p>全局的唯一流水 ID 可以把一个请求在分布式系统中的流转的路径聚合，而调用链中的 spanid 可以把聚合的请求路径通过树形结构进行展示，让技术支持人员轻松的发现系统出现的问题，能够快速定位出现问题的服务节点，提高应急效率。</p>
+<p>关于订单跟踪、调用链跟踪、业务链跟踪，我们会在后续文章中详细介绍。</p>
+<p>在分布式系统中构建了唯一 ID，调用链等基础设施，我们很容易对系统间的不一致进行核对，通常我们需要构建第三方的定期核对系统，以第三方的角度来监控服务执行的健康程度。</p>
+<p>定期核对系统示意图如下：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180421_simpread-分布式服务化系统一致性的 “最佳实干”/image9" alt=""></p>
+<p>对于<em>案例 6：掉单、案例 7：系统间状态不一致</em>通常通过定期校对模式发现问题，并通过补偿模式来修复，最后完成系统间的最终一致性。</p>
+<p>定期校对模式多应用在金融系统，金融系统由于涉及到资金安全，需要保证百分之百的准确性，所以，需要多重的一致性保证机制，包括：系统间的一致性对账、现金对账、账务对账、手续费对账等等，这些都属于定期校对模式，顺便说一下，金融系统与社交应用在技术上本质的区别在于社交应用在于<strong>量大</strong>，而金融系统在于数据的<strong>准确性</strong>。</p>
+<p>到现在为止，我们看到通过查询模式、补偿模式、定期核对模式可以解决案例 4 到案例 7 的所有问题，对于<em>案例 4：同步超时</em>，如果同步超时，我们需要<strong>查询状态</strong>进行补偿，对于<em>案例 5：异步回调超时</em>，如果迟迟没有收到回调响应，我们也会通过<strong>查询状态</strong>进行补偿，对于<em>案例 6：掉单、案例 7：系统间状态不一致</em>，我们通过<strong>定期核对模式</strong>可以保证系统间操作的一致性，避免掉单和状态不一致导致问题。</p>
+<h4 id="5-可靠消息模式"><a href="#5-可靠消息模式" class="headerlink" title="5. 可靠消息模式"></a><em>5. 可靠消息模式</em></h4><p>在分布式系统中，对于主流程中优先级比较低的操作，大多采用异步的方式执行，也就是前面提到的异步确保型，为了让异步操作的调用方和被调用方充分的解耦，也由于专业的消息队列本身具有可伸缩、可分片、可持久等功能，我们通常通过消息队列实现异步化，对于消息队列，我们需要建立特殊的设施保证可靠的消息发送以及处理机的幂等等。</p>
+<p><strong>消息的可靠发送</strong></p>
+<p>消息的可靠发送可以认为是尽最大努力发送消息通知，有两种实现方法：</p>
+<p>第一种，发送消息<strong>之前</strong>，把消息持久到数据库，状态标记为待发送，然后发送消息，如果发送成功，将消息改为发送成功。定时任务定时从数据库捞取一定时间内未发送的消息，将消息发送。</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180421_simpread-分布式服务化系统一致性的 “最佳实干”/image10" alt=""></p>
+<p>第二种，实现方式与第一种类似，不同的是持久消息的数据库是<strong>独立的</strong>，并不耦合在业务系统中。发送消息之前，先发送一个预消息给某一个第三方的消息管理器，消息管理器将其持久到数据库，并标记状态为待发送，发送成功后，标记消息为发送成功。定时任务定时从数据库捞取一定时间内未发送的消息，回查业务系统是否要继续发送，根据查询结果来确定消息的状态。</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180421_simpread-分布式服务化系统一致性的 “最佳实干”/image11" alt=""></p>
+<p>一些公司把消息的可靠发送实现在了<strong>中间件</strong>里，通过 Spring 的注入，在消息发送的时候自动持久消息记录，如果有消息记录没有发送成功，定时会补偿发送。</p>
+<p><strong>消息处理器的幂等性</strong></p>
+<p>如果我们要保证消息可靠的发送，简单来说，要保证消息一定要发送出去，那么就需要有重试机制，有了<strong>重试机制</strong>，消息一定会重复，那么我们需要对重复做处理。</p>
+<p>处理重复的最佳方式为保证操作的幂等性，幂等性的数学公式为：</p>
+<blockquote>
+<p>f(f(x)) = f(x)</p>
+</blockquote>
+<p>保证操作的幂等性常用的几个方法：</p>
+<ol>
+<li>使用数据库表的唯一键进行滤重，拒绝重复的请求</li>
+<li>使用分布式表对请求进行滤重</li>
+<li>使用状态流转的方向性来滤重，通常使用<strong>行级锁</strong>来实现 (后续在锁相关的文章中详细说明)</li>
+<li>根据业务的特点，操作本身就是幂等的，例如：删除一个资源、增加一个资源、获得一个资源等</li>
+</ol>
+<h4 id="6-缓存一致性模型"><a href="#6-缓存一致性模型" class="headerlink" title="6. 缓存一致性模型"></a><em>6. 缓存一致性模型</em></h4><p>大规模高并发系统中一个常见的核心需求就是亿级的读需求，显然，关系型数据库并不是解决高并发读需求的最佳方案，互联网的经典做法就是使用缓存抗读需求，下面有一些使用缓存的保证一致性的最佳实践：</p>
+<ol>
+<li>如果性能要求不是非常的高，尽量使用分布式缓存，而不要使用本地缓存</li>
+<li>缓存的时候一定种完全，如果缓存数据的一部分有效，一部分无效，宁可放弃种缓存，也不要把部分数据种入缓存</li>
+<li>数据库与缓存只需要保持弱一致性，而不需要强一致性，<strong>读的顺序要先缓存，后数据库，写的顺序要先数据库，后缓存</strong></li>
+</ol>
+<p>这里的最佳实践能够解决<em>案例 8：缓存和数据库不一致、案例 9：本地缓存节点间不一致、案例 10：缓存数据结构不一致</em>的问题，对于数据存储层、缓存与数据库、Nosql 等的一致性是更深入的存储一致性技术，将会在后续文章单独介绍，这里的数据一致性主要是处理应用层与缓存、应用层与数据库、一部分的缓存与数据库的一致性。</p>
+<h3 id="3-5-专题模式"><a href="#3-5-专题模式" class="headerlink" title="3.5 专题模式"></a>3.5 专题模式</h3><p>这一节介绍特殊场景下的一致性问题和解决方案。</p>
+<h4 id="迁移开关的设计"><a href="#迁移开关的设计" class="headerlink" title="迁移开关的设计"></a><em>迁移开关的设计</em></h4><p>在大多数企业里，新项目和老项目一般会共存，大家都在努力的下掉老项目，但是由于种种原因总是下不掉，如果要彻底的下掉老项目，就必须要有非常完善的迁移方案，迁移是一项非常复杂而艰巨的任务，我会在将来的文章中详细探讨迁移方案、流程和技术，这里我们只对迁移中使用的开关进行描述。</p>
+<p>迁移过程必须使用<strong>开关</strong>，开关一般都会基于多个维度来设计，例如：全局的、用户的、角色的、商户的、产品的等等，如果迁移过程中遇到问题，我们需要关闭开关，迁移回老的系统，这需要我们的新系统兼容老的数据，老的系统也兼容新的数据，从某种意义上来讲，<strong>迁移比实现新系统更加困难</strong>。</p>
+<p>曾经看过很多简单的开关设计，有的开关设计在应用层次，通过一个 curl 语句调用，没有权限控制，这样的开关在服务池的每个节点都是不同步的、不一致的；还有的系统把开关配置放在中心化的配置系统、数据库或者缓存等，处理的每个请求都通过统一的开关来判断是否迁移等等，这样的开关有一个致命的缺点，服务请求在处理过程中，开关可能会变化，各个节点之间开关可能不同步、不一致，导致重复的请求可能走到新的逻辑又走了老的逻辑，如果新的逻辑和老的逻辑没有保证幂等性，这个请求就被重复处理了，如果是金融行业的应用，可能会导致资金损失，电商系统可能会导致发货并退款等问题。</p>
+<p>这里面我们推荐使用<strong>订单开关</strong>，不管我们在什么维度上设计了开关，接收到服务请求后，我们在请求创建的关联实体（例如：订单）上标记开关，以后的任何处理流程，包括同步的和异步的处理流程，都通过<strong>订单上的开关</strong>来判断，<strong>而不是通过全局的或者基于配置的开关</strong>，这样在订单创建的时候，开关已经确定，不再变更，一旦一份数据不再发生变化(类似<strong>单例模式</strong>)，那么它永远是线程安全的，并且不会有不一致的问题。</p>
+<p>这个模式在生产中使用比较频繁，建议每个企业都把这个模式作为设计评审的一项，如果不检查这一项，很多开发童鞋都会偷懒，直接在配置中或者数据库中做个开关就上线了。</p>
+<h2 id="4-总结"><a href="#4-总结" class="headerlink" title="4 总结"></a>4 总结</h2><p>本文从一致性问题的实践出发，从大规模高并发服务化系统的实践经验中进行总结，列举导致不一致的具体问题，围绕着具体问题，总结出解决不一致的方法，并且抽象成模式，供大家在开发服务化系统的过程中参考。</p>
+<p>另外，由于篇幅有限，还有一些关于分布式一致性的技术无法在一篇文章中与大家分享，包括：paxos 算法、raft 算法、zab 算法、nwr 算法、一致性哈希等，我会在后续文章中详细介绍。</p>
+<hr>
+<blockquote>
+<p>原文：<br>分布式服务化系统一致性的“最佳实干” - 简书<br><a href="https://www.jianshu.com/p/1156151e20c8" target="_blank" rel="noopener">https://www.jianshu.com/p/1156151e20c8</a><br>原作者个人信息<a href="https://www.jianshu.com/u/581f548ef0ec" target="_blank" rel="noopener">李艳鹏</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+
+     
+    
+      <div>
+        
+    <div style="text-align:center;color: #ccc;font-size:14px;">
+        ------ 本文结束<i class="fa fa-paw"></i>感谢您的阅读 ------</div>
+
+      </div>
+    
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    CloudPai
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://cloudpai.site/2018/04/21/2018-04-21-4/" title="分布式服务化系统一致性（分布式事务、ACID、BASE、CAP）原理与解决方案">http://cloudpai.site/2018/04/21/2018-04-21-4/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/分布式/" rel="tag"><i class="fa fa-tag"></i> 分布式</a>
+          
+            <a href="/tags/一致性/" rel="tag"><i class="fa fa-tag"></i> 一致性</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/21/2018-04-21-3/" rel="next" title="大工版小幸运">
+                <i class="fa fa-chevron-left"></i> 大工版小幸运
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/21/2018-04-21-5/" rel="prev" title="分布式事务处理模型(DTP)">
+                分布式事务处理模型(DTP) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+
+
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg"
+                alt="CloudPai" />
+            
+              <p class="site-author-name" itemprop="name">CloudPai</p>
+              <p class="site-description motion-element" itemprop="description">加油(๑•̀ㅂ•́)و✧加油</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">182</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+
+<div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=240 src="//music.163.com/outchain/player?type=0&id=2113726971&auto=0&height=430"></iframe>
+</div>
+<!-- 459004290 -->
+
+
+
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">89</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CloudPai" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:liupai024@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.douban.com/people/57965969/doulists/all" target="_blank" title="豆瓣">
+                      
+                        <i class="fa fa-fw fa-book"></i>豆瓣</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/cloudPai/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-edit"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.dlut.edu.cn/" title="DUT" target="_blank">DUT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bupt.edu.cn/" title="BUPT" target="_blank">BUPT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://campus.alibaba.com/index.htm" title="Alibaba Group" target="_blank">Alibaba Group</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-背景"><span class="nav-text">1 背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-问题"><span class="nav-text">2 问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#案例-1：买房"><span class="nav-text">案例 1：买房</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#案例-2：转账"><span class="nav-text">案例 2：转账</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#案例-3：下订单和扣库存"><span class="nav-text">案例 3：下订单和扣库存</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#案例-4：同步超时"><span class="nav-text">案例 4：同步超时</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#案例-5：异步回调超时"><span class="nav-text">案例 5：异步回调超时</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#案例-6：掉单"><span class="nav-text">案例 6：掉单</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#案例-7：系统间状态不一致"><span class="nav-text">案例 7：系统间状态不一致</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#案例-8：缓存和数据库不一致"><span class="nav-text">案例 8：缓存和数据库不一致</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#案例-9：本地缓存节点间不一致"><span class="nav-text">案例 9：本地缓存节点间不一致</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#案例-10：缓存数据结构不一致"><span class="nav-text">案例 10：缓存数据结构不一致</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-模式"><span class="nav-text">3 模式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-生活中不一致问题的解决"><span class="nav-text">3.1 生活中不一致问题的解决</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-酸碱平衡理论"><span class="nav-text">3.2 酸碱平衡理论</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-ACID（酸）"><span class="nav-text">1. ACID（酸）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-CAP（帽子理论）"><span class="nav-text">2. CAP（帽子理论）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-BASE（碱）"><span class="nav-text">3. BASE（碱）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-酸碱平衡的总结"><span class="nav-text">4. 酸碱平衡的总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-分布式一致性协议"><span class="nav-text">3.3 分布式一致性协议</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-两阶段提交协议"><span class="nav-text">1. 两阶段提交协议</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-三阶段提交协议"><span class="nav-text">2. 三阶段提交协议</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-TCC"><span class="nav-text">3. TCC</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-保证最终一致性的模式"><span class="nav-text">3.4 保证最终一致性的模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-查询模式"><span class="nav-text">1. 查询模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-补偿模式"><span class="nav-text">2. 补偿模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-异步确保模式"><span class="nav-text">3. 异步确保模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#4-定期校对模式"><span class="nav-text">4. 定期校对模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5-可靠消息模式"><span class="nav-text">5. 可靠消息模式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#6-缓存一致性模型"><span class="nav-text">6. 缓存一致性模型</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-5-专题模式"><span class="nav-text">3.5 专题模式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#迁移开关的设计"><span class="nav-text">迁移开关的设计</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-总结"><span class="nav-text">4 总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CloudPai</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">786.0k</span>
+  
+</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv">  </span>
+</span>
+</div>
+
+
+
+
+
+
+
+  <div class="theme-info">&#12288;主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://cloudpai.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://cloudpai.site/2018/04/21/2018-04-21-4/';
+          this.page.identifier = '2018/04/21/2018-04-21-4/';
+          this.page.title = '分布式服务化系统一致性（分布式事务、ACID、BASE、CAP）原理与解决方案';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cloudpai.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!-- <!-- <script src="https://cdn.bootcss.com/aplayer/1.6.0/APlayer.min.js"></script>
+
+<script src="https://api.i-meto.com/music/player.js"></script> --> -->
+  
+  <!--移动端判断，是否引入背景-->
+  <script>
+  var browser={  
+      versions:function(){   
+             var u = navigator.userAgent, app = navigator.appVersion;   
+             return {//移动终端浏览器版本信息
+                  trident: u.indexOf('Trident') > -1, //IE内核
+                  presto: u.indexOf('Presto') > -1, //opera内核
+                  webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                  gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                  mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                  ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                  android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                  iPhone: u.indexOf('iPhone') > -1 , //是否为iPhone或者QQHD浏览器
+                  iPad: u.indexOf('iPad') > -1, //是否iPad
+                  webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+              };  
+           }(),  
+           language:(navigator.browserLanguage || navigator.language).toLowerCase()  
+  }   
+    if(browser.versions.mobile || browser.versions.ios || browser.versions.android ||   
+      browser.versions.iPhone || browser.versions.iPad){        
+               
+    }else{
+    document.write("<script type=\'text/javascript\'  src=\'/js/src/particle.js\'><\/script>");
+    }
+  </script>
+
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":-80,"vOffset":-50},"mobile":{"show":false,"scale":0.2},"react":{"opacityDefault":1,"opacityOnHover":0.2}});</script></body>
+</html>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cloudpai.site/"/>
-  <updated>2018-04-21T03:44:32.144Z</updated>
+  <updated>2018-04-21T15:05:56.260Z</updated>
   <id>http://cloudpai.site/</id>
   
   <author>
@@ -15,6 +15,189 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>消息队列之 ActiveMQ</title>
+    <link href="http://cloudpai.site/2018/04/21/2018-04-21-11/"/>
+    <id>http://cloudpai.site/2018/04/21/2018-04-21-11/</id>
+    <published>2018-04-21T15:01:46.000Z</published>
+    <updated>2018-04-21T15:05:56.260Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;过了个春节，回到公司的成小胖变成了成大胖。但是你们千万别以为他那个大肚子里面装的都是肥肉，里面的墨水也多了不少嘞，毕竟成小胖利用春节的半个月时间专心学习并研究了 Active
+      
+    
+    </summary>
+    
+    
+      <category term="分布式" scheme="http://cloudpai.site/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+      <category term="消息队列" scheme="http://cloudpai.site/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>了解JMS</title>
+    <link href="http://cloudpai.site/2018/04/21/2018-04-21-10/"/>
+    <id>http://cloudpai.site/2018/04/21/2018-04-21-10/</id>
+    <published>2018-04-21T15:00:01.000Z</published>
+    <updated>2018-04-21T15:00:39.222Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h2 id=&quot;1-JMS-简介&quot;&gt;&lt;a href=&quot;#1-JMS-简介&quot; class=&quot;headerlink&quot; title=&quot;1.JMS 简介&quot;&gt;&lt;/a&gt;&lt;a&gt;&lt;/a&gt;1.JMS
+      
+    
+    </summary>
+    
+    
+      <category term="分布式" scheme="http://cloudpai.site/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+      <category term="消息队列" scheme="http://cloudpai.site/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>消息队列之 ZeroMQ</title>
+    <link href="http://cloudpai.site/2018/04/21/2018-04-21-9/"/>
+    <id>http://cloudpai.site/2018/04/21/2018-04-21-9/</id>
+    <published>2018-04-21T14:39:56.000Z</published>
+    <updated>2018-04-21T14:50:41.023Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;ZeroMQ-消息队列介绍&quot;&gt;&lt;a href=&quot;#ZeroMQ-消息队列介绍&quot; class=&quot;headerlink&quot; title=&quot;ZeroMQ 消息队列介绍&quot;&gt;&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="分布式" scheme="http://cloudpai.site/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+      <category term="消息队列" scheme="http://cloudpai.site/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>消息队列之 RabbitMQ</title>
+    <link href="http://cloudpai.site/2018/04/21/2018-04-21-8/"/>
+    <id>http://cloudpai.site/2018/04/21/2018-04-21-8/</id>
+    <published>2018-04-21T13:40:53.000Z</published>
+    <updated>2018-04-21T14:29:52.885Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;市面上的消息队列产品有很多，比如老牌的 ActiveMQ、RabbitMQ ，目前我看最火的 Kafka ，还有 ZeroMQ ，去年底阿里巴巴捐赠给 Apache 的 Ro
+      
+    
+    </summary>
+    
+    
+      <category term="分布式" scheme="http://cloudpai.site/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+      <category term="消息队列" scheme="http://cloudpai.site/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>负载均衡和LVS</title>
+    <link href="http://cloudpai.site/2018/04/21/2018-04-21-7/"/>
+    <id>http://cloudpai.site/2018/04/21/2018-04-21-7/</id>
+    <published>2018-04-21T13:16:53.000Z</published>
+    <updated>2018-04-21T13:20:24.706Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;在大规模互联网应用中，负载均衡设备是必不可少的一个节点，源于互联网应用的高并发和大流量的冲击压力，我们通常会在服务端部署多个无状态的应用服务器和若干有状态的存储服务器（数据库
+      
+    
+    </summary>
+    
+    
+      <category term="分布式" scheme="http://cloudpai.site/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+      <category term="负载均衡" scheme="http://cloudpai.site/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Redisson项目介绍</title>
+    <link href="http://cloudpai.site/2018/04/21/2018-04-21-6/"/>
+    <id>http://cloudpai.site/2018/04/21/2018-04-21-6/</id>
+    <published>2018-04-21T12:39:21.000Z</published>
+    <updated>2018-04-21T13:11:24.000Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;img src=&quot;https://redisson.org/logo.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Redisson项目介绍&quot;&gt;&lt;a href=&quot;#Re
+      
+    
+    </summary>
+    
+    
+      <category term="分布式" scheme="http://cloudpai.site/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+      <category term="锁" scheme="http://cloudpai.site/tags/%E9%94%81/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>分布式事务处理模型(DTP)</title>
+    <link href="http://cloudpai.site/2018/04/21/2018-04-21-5/"/>
+    <id>http://cloudpai.site/2018/04/21/2018-04-21-5/</id>
+    <published>2018-04-21T10:44:23.000Z</published>
+    <updated>2018-04-21T11:56:37.462Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;一、传统的分布式事务模型&quot;&gt;&lt;a href=&quot;#一、传统的分布式事务模型&quot; class=&quot;headerlink&quot; title=&quot;一、传统的分布式事务模型&quot;&gt;&lt;/a&gt;
+      
+    
+    </summary>
+    
+    
+      <category term="分布式" scheme="http://cloudpai.site/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>分布式服务化系统一致性（分布式事务、ACID、BASE、CAP）原理与解决方案</title>
+    <link href="http://cloudpai.site/2018/04/21/2018-04-21-4/"/>
+    <id>http://cloudpai.site/2018/04/21/2018-04-21-4/</id>
+    <published>2018-04-21T08:57:09.000Z</published>
+    <updated>2018-04-21T11:53:39.627Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h2 id=&quot;1-背景&quot;&gt;&lt;a href=&quot;#1-背景&quot; class=&quot;headerlink&quot; title=&quot;1 背景&quot;&gt;&lt;/a&gt;1 背景&lt;/h2&gt;&lt;p&gt;无论是水平拆分还是垂直拆
+      
+    
+    </summary>
+    
+    
+      <category term="分布式" scheme="http://cloudpai.site/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
+    
+      <category term="一致性" scheme="http://cloudpai.site/tags/%E4%B8%80%E8%87%B4%E6%80%A7/"/>
+    
+  </entry>
   
   <entry>
     <title>大工版小幸运</title>
@@ -299,193 +482,6 @@
     
     
       <category term="架构" scheme="http://cloudpai.site/tags/%E6%9E%B6%E6%9E%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>《大型网站技术架构》笔记1 大型网站架构演化</title>
-    <link href="http://cloudpai.site/2018/04/19/2018-04-19-3/"/>
-    <id>http://cloudpai.site/2018/04/19/2018-04-19-3/</id>
-    <published>2018-04-19T13:44:27.000Z</published>
-    <updated>2018-04-19T14:19:57.152Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;1-大型网站架构演化&quot;&gt;&lt;a href=&quot;#1-大型网站架构演化&quot; class=&quot;headerlink&quot; title=&quot;1 大型网站架构演化&quot;&gt;&lt;/a&gt;1 大型网站
-      
-    
-    </summary>
-    
-    
-      <category term="架构" scheme="http://cloudpai.site/tags/%E6%9E%B6%E6%9E%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>《大型网站技术架构》 笔记概览</title>
-    <link href="http://cloudpai.site/2018/04/19/2018-04-19-2/"/>
-    <id>http://cloudpai.site/2018/04/19/2018-04-19-2/</id>
-    <published>2018-04-19T11:54:40.000Z</published>
-    <updated>2018-04-19T14:26:44.003Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;思维导图：&lt;br&gt;&lt;img src=&quot;http://p4lmrb1gp.bkt.clouddn.com/15241393182841.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h1
-      
-    
-    </summary>
-    
-    
-      <category term="架构" scheme="http://cloudpai.site/tags/%E6%9E%B6%E6%9E%84/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>markdown文件中图片到图床的转换的解决方法</title>
-    <link href="http://cloudpai.site/2018/04/19/2018-04-19-1/"/>
-    <id>http://cloudpai.site/2018/04/19/2018-04-19-1/</id>
-    <published>2018-04-18T16:48:42.000Z</published>
-    <updated>2018-04-18T16:50:20.170Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;使用:&lt;/p&gt;
-&lt;p&gt;python 脚本名 文件名 [是否图片压缩]&lt;/p&gt;
-&lt;p&gt;例： &lt;/p&gt;
-&lt;figure class=&quot;highlight plain&quot;&gt;&lt;tabl
-      
-    
-    </summary>
-    
-    
-      <category term="图床" scheme="http://cloudpai.site/tags/%E5%9B%BE%E5%BA%8A/"/>
-    
-      <category term="markdown" scheme="http://cloudpai.site/tags/markdown/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Mac系统中python导入第三方模块失败的解决方法</title>
-    <link href="http://cloudpai.site/2018/04/19/2018-04-19/"/>
-    <id>http://cloudpai.site/2018/04/19/2018-04-19/</id>
-    <published>2018-04-18T16:44:27.000Z</published>
-    <updated>2018-04-19T02:33:59.505Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;问题：在 mac OSx 操作系统下，安装了 python 第三方模块，requests、xlrt、xlwt、selenium 等等，在 pip 中可以成功安装这些模块，但是
-      
-    
-    </summary>
-    
-    
-      <category term="python" scheme="http://cloudpai.site/tags/python/"/>
-    
-      <category term="Mac" scheme="http://cloudpai.site/tags/Mac/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>分布式服务框架</title>
-    <link href="http://cloudpai.site/2018/04/18/2018-04-18-4/"/>
-    <id>http://cloudpai.site/2018/04/18/2018-04-18-4/</id>
-    <published>2018-04-18T13:35:53.000Z</published>
-    <updated>2018-04-18T15:02:32.422Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;img src=&quot;http://p4lmrb1gp.bkt.clouddn.com/15240585817545.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;分
-      
-    
-    </summary>
-    
-    
-      <category term="分布式" scheme="http://cloudpai.site/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Redis面试总结&amp;史上最全Redis面试题及答案</title>
-    <link href="http://cloudpai.site/2018/04/18/2018-04-18-3/"/>
-    <id>http://cloudpai.site/2018/04/18/2018-04-18-3/</id>
-    <published>2018-04-18T12:13:24.000Z</published>
-    <updated>2018-04-18T13:26:25.341Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;Redis 在互联网技术存储方面使用如此广泛，几乎所有的后端技术面试官都要在 Redis 的使用和原理方面对小伙伴们进行各种刁难。作为一名在互联网技术行业打击过成百上千名【请
-      
-    
-    </summary>
-    
-    
-      <category term="面试" scheme="http://cloudpai.site/tags/%E9%9D%A2%E8%AF%95/"/>
-    
-      <category term="待阅" scheme="http://cloudpai.site/tags/%E5%BE%85%E9%98%85/"/>
-    
-      <category term="Redis" scheme="http://cloudpai.site/tags/Redis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Redis持久化（RDB、AOF）</title>
-    <link href="http://cloudpai.site/2018/04/18/2018-04-18-2/"/>
-    <id>http://cloudpai.site/2018/04/18/2018-04-18-2/</id>
-    <published>2018-04-18T10:49:17.000Z</published>
-    <updated>2018-04-18T14:46:42.449Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;第5章-持久化&quot;&gt;&lt;a href=&quot;#第5章-持久化&quot; class=&quot;headerlink&quot; title=&quot;第5章　持久化&quot;&gt;&lt;/a&gt;第5章　持久化&lt;/h1&gt;&lt;h2
-      
-    
-    </summary>
-    
-    
-      <category term="Redis" scheme="http://cloudpai.site/tags/Redis/"/>
-    
-      <category term="RDB" scheme="http://cloudpai.site/tags/RDB/"/>
-    
-      <category term="AOF" scheme="http://cloudpai.site/tags/AOF/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Fabric 架构深度解读</title>
-    <link href="http://cloudpai.site/2018/04/18/2018-04-18-1/"/>
-    <id>http://cloudpai.site/2018/04/18/2018-04-18-1/</id>
-    <published>2018-04-18T09:11:26.000Z</published>
-    <updated>2018-04-18T09:14:21.101Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;&lt;strong&gt;前言&lt;/strong&gt;&lt;/h2&gt;&lt;p&gt;Hyp
-      
-    
-    </summary>
-    
-    
-      <category term="区块链" scheme="http://cloudpai.site/tags/%E5%8C%BA%E5%9D%97%E9%93%BE/"/>
-    
-      <category term="Fabric" scheme="http://cloudpai.site/tags/Fabric/"/>
     
   </entry>
   

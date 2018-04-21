@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="分布式,消息队列," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="CloudPai" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="1.JMS 简介学习 ActiveMQ 之前，先来学习一下 JMS：  JMS（Java Messaging Service），即 Java 消息服务，是 Java 平台上关于面向消息中间件 (MOM) 的 API，它便于应用程序之间，或分布式系统之间进行异步的消息交换, 并且通过提供标准的产生、发送、接收消息的接口简化企业应用的开发。  JMS 是 Java 消息服务的标准（或者叫规范），它使">
+<meta name="keywords" content="分布式,消息队列">
+<meta property="og:type" content="article">
+<meta property="og:title" content="了解JMS">
+<meta property="og:url" content="http://cloudpai.site/2018/04/21/2018-04-21-10/index.html">
+<meta property="og:site_name" content="CloudPai">
+<meta property="og:description" content="1.JMS 简介学习 ActiveMQ 之前，先来学习一下 JMS：  JMS（Java Messaging Service），即 Java 消息服务，是 Java 平台上关于面向消息中间件 (MOM) 的 API，它便于应用程序之间，或分布式系统之间进行异步的消息交换, 并且通过提供标准的产生、发送、接收消息的接口简化企业应用的开发。  JMS 是 Java 消息服务的标准（或者叫规范），它使">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180421_simpread-ActiveMQ 学习（一）了解 JMS - CSDN 博客/image1">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180421_simpread-ActiveMQ 学习（一）了解 JMS - CSDN 博客/image2">
+<meta property="og:updated_time" content="2018-04-21T15:00:39.222Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="了解JMS">
+<meta name="twitter:description" content="1.JMS 简介学习 ActiveMQ 之前，先来学习一下 JMS：  JMS（Java Messaging Service），即 Java 消息服务，是 Java 平台上关于面向消息中间件 (MOM) 的 API，它便于应用程序之间，或分布式系统之间进行异步的消息交换, 并且通过提供标准的产生、发送、接收消息的接口简化企业应用的开发。  JMS 是 Java 消息服务的标准（或者叫规范），它使">
+<meta name="twitter:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180421_simpread-ActiveMQ 学习（一）了解 JMS - CSDN 博客/image1">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'TZAS2SFOJR',
+      apiKey: 'e2a9cd036eede8026382b302001ec261',
+      indexName: 'cloudpai_blogs_search',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cloudpai.site/2018/04/21/2018-04-21-10/"/>
+
+
+
+
+
+  <title>了解JMS | CloudPai</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-114643720-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CloudPai</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/04/21/2018-04-21-10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CloudPai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudPai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">了解JMS</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-21T23:00:01+08:00">
+                2018-04-21
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-21T23:00:39+08:00">
+                2018-04-21
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/21/2018-04-21-10/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/04/21/2018-04-21-10/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1,701
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="1-JMS-简介"><a href="#1-JMS-简介" class="headerlink" title="1.JMS 简介"></a><a></a>1.JMS 简介</h2><p>学习 ActiveMQ 之前，先来学习一下 JMS：</p>
+<blockquote>
+<p>JMS（Java Messaging Service），即 Java 消息服务，是 Java 平台上关于面向消息中间件 (MOM) 的 API，它便于应用程序之间，或分布式系统之间进行异步的消息交换, 并且通过提供标准的产生、发送、接收消息的接口简化企业应用的开发。</p>
+</blockquote>
+<p>JMS 是 Java 消息服务的<strong>标准</strong>（或者叫<strong>规范</strong>），它使分布式通信耦合更低，消息服务更加可靠，这个标准在企业应用中十分的重要和广泛，所以开篇来重点学习一下它。好了，必要的概念大致就这么多，其他细节网上还有很多，不再赘述。</p>
+<h2 id="2-消息的模型"><a href="#2-消息的模型" class="headerlink" title="2. 消息的模型"></a><a></a>2. 消息的模型</h2><blockquote>
+<p>点对点队列模型：Point-to-Point（P2P）<br>发布订阅模型：Publish/Subscribe（Pub/Sub）</p>
+</blockquote>
+<h3 id="2-1-P2P-模型"><a href="#2-1-P2P-模型" class="headerlink" title="2.1 P2P 模型"></a><a></a>2.1 P2P 模型</h3><p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180421_simpread-ActiveMQ 学习（一）了解 JMS - CSDN 博客/image1" alt=""></p>
+<h4 id="2-1-1-相关对象"><a href="#2-1-1-相关对象" class="headerlink" title="2.1.1 相关对象"></a><a></a>2.1.1 相关对象</h4><ul>
+<li><strong>消息队列（Queue）</strong></li>
+<li><strong>发送者（Sender）</strong></li>
+<li><strong>接收者（Receiver）</strong></li>
+</ul>
+<h4 id="2-1-2-过程"><a href="#2-1-2-过程" class="headerlink" title="2.1.2 过程"></a><a></a>2.1.2 过程</h4><p><strong>发送者将消息发送到一个特定的队列，接收者从队列中获取消息。队列保留着消息，直到他们被接收者消费或超时。</strong></p>
+<h4 id="2-1-3-特点"><a href="#2-1-3-特点" class="headerlink" title="2.1.3 特点"></a><a></a>2.1.3 特点</h4><ul>
+<li>每个消息只有一个消费者（Consumer），消息一旦被消费就会从队列中移除</li>
+<li>发送者和接收者在时间上没有依赖性（异步），即发送者发送消息时接收者无需处于运行状态，同样接收者接收消息时发送者无需处于运行状态</li>
+<li>接收者接收消息之后需向队列应答成功</li>
+</ul>
+<h3 id="2-2-Pub-Sub-模型"><a href="#2-2-Pub-Sub-模型" class="headerlink" title="2.2 Pub/Sub 模型"></a><a></a>2.2 Pub/Sub 模型</h3><p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180421_simpread-ActiveMQ 学习（一）了解 JMS - CSDN 博客/image2" alt=""></p>
+<h4 id="2-2-1-相关对象"><a href="#2-2-1-相关对象" class="headerlink" title="2.2.1 相关对象"></a><a></a>2.2.1 相关对象</h4><ul>
+<li><strong>主题（Topic）</strong></li>
+<li><strong>发布者（Publisher）</strong></li>
+<li><strong>订阅者（Subscriber）</strong></li>
+</ul>
+<h4 id="2-2-2-过程"><a href="#2-2-2-过程" class="headerlink" title="2.2.2 过程"></a><a></a>2.2.2 过程</h4><p><strong>发布者向一个特定的主题发布消息，0 或多个订阅者可能对该特定主题的消息感兴趣并接收；这种模型下，发布者和订阅者彼此不知道对方。</strong></p>
+<h4 id="2-2-3-特点"><a href="#2-2-3-特点" class="headerlink" title="2.2.3 特点"></a><a></a>2.2.3 特点</h4><ul>
+<li>每个消息可以有多个消费者</li>
+<li>发布者和订阅者之间有时间上的依赖性。订阅者必须保持持续的运行状态才能接收到消息</li>
+<li>JMS 提供了持久化订阅，这时候，订阅者未连接主题时（发布者）发布的消息，将在订阅者重新连接时进行重新发布，以便订阅者接收消息</li>
+</ul>
+<h2 id="3-消息的消费"><a href="#3-消息的消费" class="headerlink" title="3. 消息的消费"></a><a></a>3. 消息的消费</h2><p>在 JMS 中，消息的产生和消息是异步的。对于消费来说，JMS 的消息者可以通过两种方式来消费消息。</p>
+<ul>
+<li><strong>同步</strong>：接收者或订阅者调用<code>receive()</code>方法来接收消息，消息到达（或超时）之前将一直阻塞。</li>
+<li><strong>异步</strong>：接收者或订阅者可以注册为一个消息监听器，当消息到达之后，系统会自动调用监听器的<code>onMessage</code>方法。</li>
+</ul>
+<h2 id="4-消息的组成"><a href="#4-消息的组成" class="headerlink" title="4. 消息的组成"></a><a></a>4. 消息的组成</h2><p>消息传递系统的中心就是消息，一条消息由三个部分组成：<strong>头、属性、主体</strong>。</p>
+<h3 id="4-1-头（head）"><a href="#4-1-头（head）" class="headerlink" title="4.1 头（head）"></a><a></a>4.1 头（head）</h3><p>每条 JMS 消息都必须具有消息头。头字段包含用于路由和识别消息的值。可以通过多种方式来设置消息头的值：<br>1. 由 JMS 提供者在生成或传送消息的过程中自动设置<br>2. 由生产者客户机通过在创建消息生产者时指定的设置进行设置<br>3. 由生产者客户机逐一对各条消息进行设置</p>
+<h3 id="4-2-属性（property）"><a href="#4-2-属性（property）" class="headerlink" title="4.2 属性（property）"></a><a></a>4.2 属性（property）</h3><p>消息可以包含称作属性的可选头字段。他们是以属性名和属性值对的形式制定的。可以将属性是为消息头得扩展，其中可以包括如下信息：创建数据的进程、数据的创建时间以及每条数据的结构。JMS 提供者也可以添加影响消息处理的属性，如是否应压缩消息或如何在消息生命周期结束时废弃消息。</p>
+<h3 id="4-3-主体（body）"><a href="#4-3-主体（body）" class="headerlink" title="4.3 主体（body）"></a><a></a>4.3 主体（body）</h3><p>包含要发送的内容。每个消息接口特定于它所支持的内容类型。JMS 为不同类型的内容提供了他们各自的消息类型，但是所有消息都派生自 Message 接口。</p>
+<ul>
+<li>StreamMessage：一种主体中包含 Java 基元值流的消息。其填充和读取均按顺序进行。</li>
+<li>MapMessage：一种主体中包含一组键–值对的消息。没有定义条目顺序。</li>
+<li>TextMessage：一种主体中包含 Java 字符串的消息（例如，XML 消息）。</li>
+<li>ObjectMessage：一种主体中包含序列化 Java 对象的消息。</li>
+<li>BytesMessage：一种主体中包含连续字节流的消息。</li>
+</ul>
+<h2 id="5-JMS-编程模型"><a href="#5-JMS-编程模型" class="headerlink" title="5. JMS 编程模型"></a><a></a>5. JMS 编程模型</h2><h3 id="5-1-ConnectionFactory（连接工厂）"><a href="#5-1-ConnectionFactory（连接工厂）" class="headerlink" title="5.1 ConnectionFactory（连接工厂）"></a><a></a>5.1 ConnectionFactory（连接工厂）</h3><p>创建 Connection 对象的工厂，针对两种不同的 jms 消息模型，分别有 QueueConnectionFactory 和 TopicConnectionFactory 两种。可以通过 JNDI 来查找 ConnectionFactory 对象。</p>
+<h3 id="5-2-Destination（目标）"><a href="#5-2-Destination（目标）" class="headerlink" title="5.2 Destination（目标）"></a><a></a>5.2 Destination（目标）</h3><p>Destination 的意思是消息生产者的消息发送目标或者说消息消费者的消息来源。对于消息生产者来说，它的 Destination 是某个队列（Queue）或某个主题（Topic）; 对于消息消费者来说，它的 Destination 也是某个队列或主题（即消息来源）。</p>
+<p>所以，Destination 实际上就是两种类型的对象：Queue、Topic 可以通过 JNDI 来查找 Destination。</p>
+<h3 id="5-3-Connection（连接）"><a href="#5-3-Connection（连接）" class="headerlink" title="5.3 Connection（连接）"></a><a></a>5.3 Connection（连接）</h3><p>Connection 表示在客户端和 JMS 系统之间建立的链接（对 TCP/IP socket 的包装）。Connection 可以产生一个或多个 Session。跟 ConnectionFactory 一样，Connection 也有两种类型：QueueConnection 和 TopicConnection。</p>
+<h3 id="5-4-Session（会话）"><a href="#5-4-Session（会话）" class="headerlink" title="5.4 Session（会话）"></a><a></a>5.4 Session（会话）</h3><p>Session 是我们操作消息的接口。可以通过 session 创建生产者、消费者、消息等。Session 提供了事务的功能。当我们需要使用 session 发送 / 接收多个消息时，可以将这些发送 / 接收动作放到一个事务中。同样，也分 QueueSession 和 TopicSession。</p>
+<h3 id="5-5-MessageProducer（消息生产者）"><a href="#5-5-MessageProducer（消息生产者）" class="headerlink" title="5.5 MessageProducer（消息生产者）"></a><a></a>5.5 MessageProducer（消息生产者）</h3><p>消息生产者由 Session 创建，并用于将消息发送到 Destination。同样，消息生产者分两种类型：QueueSender 和 TopicPublisher。可以调用消息生产者的方法（send 或 publish 方法）发送消息。</p>
+<h3 id="5-6-MessageConsumer（消息消费者）"><a href="#5-6-MessageConsumer（消息消费者）" class="headerlink" title="5.6 MessageConsumer（消息消费者）"></a><a></a>5.6 MessageConsumer（消息消费者）</h3><p>消息消费者由 Session 创建，用于接收被发送到 Destination 的消息。两种类型：QueueReceiver 和 TopicSubscriber。可分别通过 session 的 createReceiver(Queue) 或 createSubscriber(Topic) 来创建。当然，也可以 session 的 creatDurableSubscriber 方法来创建持久化的订阅者。</p>
+<h3 id="5-7-Message（消息）"><a href="#5-7-Message（消息）" class="headerlink" title="5.7 Message（消息）"></a><a></a>5.7 Message（消息）</h3><p>是在消费者和生产者之间传送的对象，也就是说从一个应用程序传送到另一个应用程序。</p>
+<h3 id="5-7-MessageListener"><a href="#5-7-MessageListener" class="headerlink" title="5.7 MessageListener"></a><a></a>5.7 MessageListener</h3><p>消息监听器。如果注册了消息监听器，一旦消息到达，将自动调用监听器的 onMessage 方法。</p>
+<hr>
+<blockquote>
+<p>参考：<br>ActiveMQ学习（一）了解JMS - CSDN博客<br><a href="https://blog.csdn.net/qq_16313365/article/details/78452396" target="_blank" rel="noopener">https://blog.csdn.net/qq_16313365/article/details/78452396</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+
+     
+    
+      <div>
+        
+    <div style="text-align:center;color: #ccc;font-size:14px;">
+        ------ 本文结束<i class="fa fa-paw"></i>感谢您的阅读 ------</div>
+
+      </div>
+    
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    CloudPai
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://cloudpai.site/2018/04/21/2018-04-21-10/" title="了解JMS">http://cloudpai.site/2018/04/21/2018-04-21-10/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/分布式/" rel="tag"><i class="fa fa-tag"></i> 分布式</a>
+          
+            <a href="/tags/消息队列/" rel="tag"><i class="fa fa-tag"></i> 消息队列</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/21/2018-04-21-9/" rel="next" title="消息队列之 ZeroMQ">
+                <i class="fa fa-chevron-left"></i> 消息队列之 ZeroMQ
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/21/2018-04-21-11/" rel="prev" title="消息队列之 ActiveMQ">
+                消息队列之 ActiveMQ <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+
+
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg"
+                alt="CloudPai" />
+            
+              <p class="site-author-name" itemprop="name">CloudPai</p>
+              <p class="site-description motion-element" itemprop="description">加油(๑•̀ㅂ•́)و✧加油</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">182</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+
+<div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=240 src="//music.163.com/outchain/player?type=0&id=2113726971&auto=0&height=430"></iframe>
+</div>
+<!-- 459004290 -->
+
+
+
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">89</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CloudPai" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:liupai024@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.douban.com/people/57965969/doulists/all" target="_blank" title="豆瓣">
+                      
+                        <i class="fa fa-fw fa-book"></i>豆瓣</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/cloudPai/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-edit"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.dlut.edu.cn/" title="DUT" target="_blank">DUT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bupt.edu.cn/" title="BUPT" target="_blank">BUPT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://campus.alibaba.com/index.htm" title="Alibaba Group" target="_blank">Alibaba Group</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-JMS-简介"><span class="nav-text">1.JMS 简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-消息的模型"><span class="nav-text">2. 消息的模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-P2P-模型"><span class="nav-text">2.1 P2P 模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-1-相关对象"><span class="nav-text">2.1.1 相关对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-2-过程"><span class="nav-text">2.1.2 过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-1-3-特点"><span class="nav-text">2.1.3 特点</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-Pub-Sub-模型"><span class="nav-text">2.2 Pub/Sub 模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-1-相关对象"><span class="nav-text">2.2.1 相关对象</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-2-过程"><span class="nav-text">2.2.2 过程</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-2-3-特点"><span class="nav-text">2.2.3 特点</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-消息的消费"><span class="nav-text">3. 消息的消费</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-消息的组成"><span class="nav-text">4. 消息的组成</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-头（head）"><span class="nav-text">4.1 头（head）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-属性（property）"><span class="nav-text">4.2 属性（property）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-主体（body）"><span class="nav-text">4.3 主体（body）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-JMS-编程模型"><span class="nav-text">5. JMS 编程模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#5-1-ConnectionFactory（连接工厂）"><span class="nav-text">5.1 ConnectionFactory（连接工厂）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-2-Destination（目标）"><span class="nav-text">5.2 Destination（目标）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-3-Connection（连接）"><span class="nav-text">5.3 Connection（连接）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-4-Session（会话）"><span class="nav-text">5.4 Session（会话）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-5-MessageProducer（消息生产者）"><span class="nav-text">5.5 MessageProducer（消息生产者）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-6-MessageConsumer（消息消费者）"><span class="nav-text">5.6 MessageConsumer（消息消费者）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-7-Message（消息）"><span class="nav-text">5.7 Message（消息）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-7-MessageListener"><span class="nav-text">5.7 MessageListener</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CloudPai</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">786.0k</span>
+  
+</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv">  </span>
+</span>
+</div>
+
+
+
+
+
+
+
+  <div class="theme-info">&#12288;主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://cloudpai.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://cloudpai.site/2018/04/21/2018-04-21-10/';
+          this.page.identifier = '2018/04/21/2018-04-21-10/';
+          this.page.title = '了解JMS';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cloudpai.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!-- <!-- <script src="https://cdn.bootcss.com/aplayer/1.6.0/APlayer.min.js"></script>
+
+<script src="https://api.i-meto.com/music/player.js"></script> --> -->
+  
+  <!--移动端判断，是否引入背景-->
+  <script>
+  var browser={  
+      versions:function(){   
+             var u = navigator.userAgent, app = navigator.appVersion;   
+             return {//移动终端浏览器版本信息
+                  trident: u.indexOf('Trident') > -1, //IE内核
+                  presto: u.indexOf('Presto') > -1, //opera内核
+                  webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                  gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                  mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                  ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                  android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                  iPhone: u.indexOf('iPhone') > -1 , //是否为iPhone或者QQHD浏览器
+                  iPad: u.indexOf('iPad') > -1, //是否iPad
+                  webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+              };  
+           }(),  
+           language:(navigator.browserLanguage || navigator.language).toLowerCase()  
+  }   
+    if(browser.versions.mobile || browser.versions.ios || browser.versions.android ||   
+      browser.versions.iPhone || browser.versions.iPad){        
+               
+    }else{
+    document.write("<script type=\'text/javascript\'  src=\'/js/src/particle.js\'><\/script>");
+    }
+  </script>
+
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":-80,"vOffset":-50},"mobile":{"show":false,"scale":0.2},"react":{"opacityDefault":1,"opacityOnHover":0.2}});</script></body>
+</html>
