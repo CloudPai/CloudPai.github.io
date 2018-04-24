@@ -1,0 +1,1469 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="分布式,微服务," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="CloudPai" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="研究了一段时间 Spring Boot 了准备向 Spring Cloud 进发，公司架构和项目也全面拥抱了 Spring Cloud。在使用了一段时间后发现 Spring Cloud 从技术架构上降低了对大型系统构建的要求，使我们以非常低的成本（技术或者硬件）搭建一套高效、分布式、容错的平台，但 Spring Cloud 也不是没有缺点，小型独立的项目不适合使用。 Spring Cloud 是">
+<meta name="keywords" content="分布式,微服务">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分布式微服务之 spring cloud">
+<meta property="og:url" content="http://cloudpai.site/2018/04/22/2018-04-22-4/index.html">
+<meta property="og:site_name" content="CloudPai">
+<meta property="og:description" content="研究了一段时间 Spring Boot 了准备向 Spring Cloud 进发，公司架构和项目也全面拥抱了 Spring Cloud。在使用了一段时间后发现 Spring Cloud 从技术架构上降低了对大型系统构建的要求，使我们以非常低的成本（技术或者硬件）搭建一套高效、分布式、容错的平台，但 Spring Cloud 也不是没有缺点，小型独立的项目不适合使用。 Spring Cloud 是">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15244146175666.jpg">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/15244146480986.jpg">
+<meta property="og:updated_time" content="2018-04-23T14:10:49.300Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="分布式微服务之 spring cloud">
+<meta name="twitter:description" content="研究了一段时间 Spring Boot 了准备向 Spring Cloud 进发，公司架构和项目也全面拥抱了 Spring Cloud。在使用了一段时间后发现 Spring Cloud 从技术架构上降低了对大型系统构建的要求，使我们以非常低的成本（技术或者硬件）搭建一套高效、分布式、容错的平台，但 Spring Cloud 也不是没有缺点，小型独立的项目不适合使用。 Spring Cloud 是">
+<meta name="twitter:image" content="http://p4lmrb1gp.bkt.clouddn.com/15244146175666.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'TZAS2SFOJR',
+      apiKey: 'e2a9cd036eede8026382b302001ec261',
+      indexName: 'cloudpai_blogs_search',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cloudpai.site/2018/04/22/2018-04-22-4/"/>
+
+
+
+
+
+  <title>分布式微服务之 spring cloud | CloudPai</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-114643720-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CloudPai</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/04/22/2018-04-22-4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CloudPai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudPai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">分布式微服务之 spring cloud</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-22T17:32:53+08:00">
+                2018-04-22
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-23T22:10:49+08:00">
+                2018-04-23
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/22/2018-04-22-4/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/04/22/2018-04-22-4/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  9,905
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  35
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><p>研究了一段时间 Spring Boot 了准备向 Spring Cloud 进发，公司架构和项目也全面拥抱了 Spring Cloud。在使用了一段时间后发现 Spring Cloud 从技术架构上降低了对大型系统构建的要求，使我们以非常低的成本（技术或者硬件）搭建一套高效、分布式、容错的平台，但 Spring Cloud 也不是没有缺点，小型独立的项目不适合使用。</p>
+<h2 id="Spring-Cloud-是什么鬼？"><a href="#Spring-Cloud-是什么鬼？" class="headerlink" title="Spring Cloud 是什么鬼？"></a>Spring Cloud 是什么鬼？</h2><p>Spring Cloud 是一系列框架的有序集合。它利用 Spring Boot 的开发便利性巧妙地简化了分布式系统基础设施的开发，如服务发现注册、配置中心、消息总线、负载均衡、断路器、数据监控等，都可以用 Spring Boot 的开发风格做到一键启动和部署。Spring 并没有重复制造轮子，它只是将目前各家公司开发的比较成熟、经得起实际考验的服务框架组合起来，通过 Spring Boot 风格进行再封装屏蔽掉了复杂的配置和实现原理，最终给开发者留出了一套简单易懂、易部署和易维护的分布式系统开发工具包。</p>
+<p>微服务是可以独立部署、水平扩展、独立访问（或者有独立的数据库）的服务单元，<strong>springcloud 就是这些微服务的大管家</strong>，采用了微服务这种架构之后，项目的数量会非常多，springcloud 做为大管家需要管理好这些微服务，自然需要很多小弟来帮忙。</p>
+<p>主要的小弟有：Spring Cloud Config、Spring Cloud Netflix（Eureka、Hystrix、Zuul、Archaius…）、Spring Cloud Bus、Spring Cloud for Cloud Foundry、Spring Cloud Cluster、Spring Cloud Consul、Spring Cloud Security、Spring Cloud Sleuth、Spring Cloud Data Flow、Spring Cloud Stream、Spring Cloud Task、Spring Cloud Zookeeper、Spring Cloud Connectors、Spring Cloud Starters、Spring Cloud CLI，每个小弟身怀独门绝技武功高强下面来做一一介绍。</p>
+<h2 id="核心成员"><a href="#核心成员" class="headerlink" title="核心成员"></a>核心成员</h2><h3 id="Spring-Cloud-Netflix"><a href="#Spring-Cloud-Netflix" class="headerlink" title="Spring Cloud Netflix"></a>Spring Cloud Netflix</h3><p>这可是个大 boss，地位仅次于老大，老大各项服务依赖与它，与各种 Netflix OSS 组件集成，组成微服务的核心，它的小弟主要有 Eureka, Hystrix, Zuul, Archaius… 太多了</p>
+<p><strong>Netflix Eureka</strong></p>
+<p>服务中心，云端服务发现，一个基于 REST 的服务，用于定位服务，以实现云端中间层服务发现和故障转移。这个可是 springcloud 最牛鼻的小弟，服务中心，任何小弟需要其它小弟支持什么都需要从这里来拿，同样的你有什么独门武功的都赶紧过报道，方便以后其它小弟来调用；它的好处是你不需要直接找各种什么小弟支持，只需要到服务中心来领取，也不需要知道提供支持的其它小弟在哪里，还是几个小弟来支持的，反正拿来用就行，服务中心来保证稳定性和质量。</p>
+<p><strong>Netflix Hystrix</strong></p>
+<p>熔断器，容错管理工具，旨在通过熔断机制控制服务和第三方库的节点, 从而对延迟和故障提供更强大的容错能力。比如突然某个小弟生病了，但是你还需要它的支持，然后调用之后它半天没有响应，你却不知道，一直在等等这个响应；有可能别的小弟也正在调用你的武功绝技，那么当请求多之后，就会发生严重的阻塞影响老大的整体计划。这个时候 Hystrix 就派上用场了，当 Hystrix 发现某个小弟不在状态不稳定立马马上让它下线，让其它小弟来顶上来，或者给你说不用等了这个小弟今天肯定不行，该干嘛赶紧干嘛去别在这排队了。</p>
+<p><strong>Netflix Zuul</strong></p>
+<p>Zuul 是在云平台上提供动态路由, 监控, 弹性, 安全等边缘服务的框架。Zuul 相当于是设备和 Netflix 流应用的 Web 网站后端所有请求的前门。当其它门派来找大哥办事的时候一定要先经过 zuul, 看下有没有带刀子什么的给拦截回去，或者是需要找那个小弟的直接给带过去。</p>
+<p><strong>Netflix Archaius</strong></p>
+<p>配置管理 API，包含一系列配置管理 API，提供动态类型化属性、线程安全配置操作、轮询框架、回调机制等功能。可以实现动态获取配置， 原理是每隔 60s（默认，可配置）从配置源读取一次内容，这样修改了配置文件后不需要重启服务就可以使修改后的内容生效，前提使用 archaius 的 API 来读取。</p>
+<h3 id="Spring-Cloud-Config"><a href="#Spring-Cloud-Config" class="headerlink" title="Spring Cloud Config"></a>Spring Cloud Config</h3><p>俗称的配置中心，配置管理工具包，让你可以把配置放到远程服务器，集中化管理集群配置，目前支持本地存储、Git 以及 Subversion。就是以后大家武器、枪火什么的东西都集中放到一起，别随便自己带，方便以后统一管理、升级装备。</p>
+<h3 id="Spring-Cloud-Bus"><a href="#Spring-Cloud-Bus" class="headerlink" title="Spring Cloud Bus"></a>Spring Cloud Bus</h3><p>事件、消息总线，用于在集群（例如，配置变化事件）中传播状态变化，可与 Spring Cloud Config 联合实现热部署。相当于水浒传中日行八百里的神行太保戴宗，确保各个小弟之间消息保持畅通。</p>
+<h3 id="Spring-Cloud-for-Cloud-Foundry"><a href="#Spring-Cloud-for-Cloud-Foundry" class="headerlink" title="Spring Cloud for Cloud Foundry"></a>Spring Cloud for Cloud Foundry</h3><p>Cloud Foundry 是 VMware 推出的业界第一个开源 PaaS 云平台，它支持多种框架、语言、运行时环境、云平台及应用服务，使开发人员能够在几秒钟内进行应用程序的部署和扩展，无需担心任何基础架构的问题</p>
+<p>其实就是与 CloudFoundry 进行集成的一套解决方案，抱了 Cloud Foundry 的大腿。</p>
+<h3 id="Spring-Cloud-Cluster"><a href="#Spring-Cloud-Cluster" class="headerlink" title="Spring Cloud Cluster"></a>Spring Cloud Cluster</h3><p>Spring Cloud Cluster 将取代 Spring Integration。提供在分布式系统中的集群所需要的基础功能支持，如：选举、集群的状态一致性、全局锁、tokens 等常见状态模式的抽象和实现。</p>
+<p>如果把不同的帮派组织成统一的整体，Spring Cloud Cluster 已经帮你提供了很多方便组织成统一的工具。</p>
+<h3 id="Spring-Cloud-Consul"><a href="#Spring-Cloud-Consul" class="headerlink" title="Spring Cloud Consul"></a>Spring Cloud Consul</h3><p>Consul 是一个支持多数据中心分布式高可用的服务发现和配置共享的服务软件, 由 HashiCorp 公司用 Go 语言开发, 基于 Mozilla Public License 2.0 的协议进行开源. Consul 支持健康检查, 并允许 HTTP 和 DNS 协议调用 API 存储键值对.</p>
+<p>Spring Cloud Consul 封装了 Consul 操作，consul 是一个服务发现与配置工具，与 Docker 容器可以无缝集成。</p>
+<h2 id="其它小弟"><a href="#其它小弟" class="headerlink" title="其它小弟"></a>其它小弟</h2><p><strong>Spring Cloud Security</strong></p>
+<p>基于 spring security 的安全工具包，为你的应用程序添加安全控制。这个小弟很牛鼻专门负责整个帮派的安全问题，设置不同的门派访问特定的资源，不能把秘籍葵花宝典泄漏了。</p>
+<p><strong>Spring Cloud Sleuth</strong></p>
+<p>日志收集工具包，封装了 Dapper 和 log-based 追踪以及 Zipkin 和 HTrace 操作，为 SpringCloud 应用实现了一种分布式追踪解决方案。</p>
+<p><strong>Spring Cloud Data Flow</strong></p>
+<ul>
+<li><p>Data flow 是一个用于开发和执行大范围数据处理其模式包括 ETL，批量运算和持续运算的统一编程模型和托管服务。</p>
+</li>
+<li><p>对于在现代运行环境中可组合的微服务程序来说，Spring Cloud data flow 是一个原生云可编配的服务。使用 Spring Cloud data flow，开发者可以为像数据抽取，实时分析，和数据导入 / 导出这种常见用例创建和编配数据通道 （data pipelines）。</p>
+</li>
+<li><p>Spring Cloud data flow 是基于原生云对 spring XD 的重新设计，该项目目标是简化大数据应用的开发。Spring XD 的流处理和批处理模块的重构分别是基于 Spring Boot 的 stream 和 task/batch 的微服务程序。这些程序现在都是自动部署单元而且他们原生的支持像 Cloud Foundry、Apache YARN、Apache Mesos 和 Kubernetes 等现代运行环境。</p>
+</li>
+<li><p>Spring Cloud data flow 为基于微服务的分布式流处理和批处理数据通道提供了一系列模型和最佳实践。</p>
+</li>
+</ul>
+<p><strong>Spring Cloud Stream</strong></p>
+<p>Spring Cloud Stream 是创建消息驱动微服务应用的框架。Spring Cloud Stream 是基于 Spring Boot 创建，用来建立单独的／工业级 spring 应用，使用 spring integration 提供与消息代理之间的连接。数据流操作开发包，封装了与 Redis,Rabbit、Kafka 等发送接收消息。</p>
+<p>一个业务会牵扯到多个任务，任务之间是通过事件触发的，这就是 Spring Cloud stream 要干的事了</p>
+<p><strong>Spring Cloud Task</strong></p>
+<p>Spring Cloud Task 主要解决短命微服务的任务管理，任务调度的工作，比如说某些定时任务晚上就跑一次，或者某项数据分析临时就跑几次。</p>
+<p><strong>Spring Cloud Zookeeper</strong></p>
+<p>ZooKeeper 是一个分布式的，开放源码的分布式应用程序协调服务，是 Google 的 Chubby 一个开源的实现，是 Hadoop 和 Hbase 的重要组件。它是一个为分布式应用提供一致性服务的软件，提供的功能包括：配置维护、域名服务、分布式同步、组服务等。ZooKeeper 的目标就是封装好复杂易出错的关键服务，将简单易用的接口和性能高效、功能稳定的系统提供给用户。</p>
+<p>操作 Zookeeper 的工具包，用于使用 zookeeper 方式的服务发现和配置管理，抱了 Zookeeper 的大腿。</p>
+<p><strong>Spring Cloud Connectors</strong></p>
+<p>Spring Cloud Connectors 简化了连接到服务的过程和从云平台获取操作的过程，有很强的扩展性，可以利用 Spring Cloud Connectors 来构建你自己的云平台。</p>
+<p>便于云端应用程序在各种 PaaS 平台连接到后端，如：数据库和消息代理服务。</p>
+<p><strong>Spring Cloud Starters</strong></p>
+<p>Spring Boot 式的启动项目，为 Spring Cloud 提供开箱即用的依赖管理。</p>
+<p><strong>Spring Cloud CLI</strong></p>
+<p>基于 Spring Boot CLI，可以让你以命令行方式快速建立云组件。</p>
+<h2 id="和-Spring-Boot-是什么关系"><a href="#和-Spring-Boot-是什么关系" class="headerlink" title="和 Spring Boot 是什么关系"></a>和 Spring Boot 是什么关系</h2><p>Spring Boot 是 Spring 的一套快速配置脚手架，可以基于 Spring Boot 快速开发单个微服务，Spring Cloud 是一个基于 Spring Boot 实现的云应用开发工具；Spring Boot 专注于快速、方便集成的<strong>单个个体</strong>，Spring Cloud 是<strong>关注全局</strong>的服务治理框架；Spring Boot 使用了默认大于配置的理念，很多集成方案已经帮你选择好了，能不配置就不配置，Spring Cloud 很大的一部分是基于 Spring Boot 来实现, 可以不基于 Spring Boot 吗？不可以。</p>
+<p>Spring Boot 可以离开 Spring Cloud 独立使用开发项目，但是 Spring Cloud 离不开 Spring Boot，属于依赖的关系。</p>
+<blockquote>
+<p>spring -&gt; spring boot &gt; Spring Cloud 这样的关系。</p>
+</blockquote>
+<h2 id="Spring-Cloud-的优势"><a href="#Spring-Cloud-的优势" class="headerlink" title="Spring Cloud 的优势"></a>Spring Cloud 的优势</h2><p>微服务的框架那么多比如：dubbo、Kubernetes，为什么就要使用 Spring Cloud 的呢？</p>
+<ul>
+<li>产出于 spring 大家族，spring 在企业级开发框架中无人能敌，来头很大，可以保证后续的更新、完善。比如 dubbo 现在就差不多死了</li>
+<li>有 Spring Boot 这个独立干将可以省很多事，大大小小的活 Spring Boot 都搞的挺不错。</li>
+<li>作为一个微服务治理的大家伙，考虑的很全面，几乎服务治理的方方面面都考虑到了，方便开发开箱即用。</li>
+<li>Spring Cloud 活跃度很高，教程很丰富，遇到问题很容易找到解决方案</li>
+<li>轻轻松松几行代码就完成了熔断、均衡负责、服务中心的各种平台功能</li>
+</ul>
+<p>Spring Cloud 对于中小型互联网公司来说是一种福音，因为这类公司往往没有实力或者没有足够的资金投入去开发自己的分布式系统基础设施，使用 Spring Cloud 一站式解决方案能在从容应对业务发展的同时大大减少开发成本。同时，随着近几年微服务架构和 Docker 容器概念的火爆，也会让 Spring Cloud 在未来越来越 “云” 化的软件开发风格中立有一席之地，尤其是在目前五花八门的分布式解决方案中提供了标准化的、全站式的技术方案，意义可能会堪比当前 Servlet 规范的诞生，有效推进服务端软件系统技术水平的进步。</p>
+<p><strong><a href="https://github.com/ityouknow/spring-cloud-examples" target="_blank" rel="noopener">示例代码 - github</a></strong></p>
+<p><strong><a href="https://gitee.com/ityouknow/spring-cloud-examples" target="_blank" rel="noopener">示例代码 - 码云</a></strong></p>
+<hr>
+<p><strong>作者：纯洁的微笑</strong><br><strong>出处：<a href="http://www.ityouknow.com/springcloud/2017/05/01/simple-springcloud.html" target="_blank" rel="noopener">http://www.ityouknow.com/</a></strong></p>
+<hr>
+<p>上次写了一篇文章叫 <a href="https://mp.weixin.qq.com/s/vnWXpH5pv-FAzLZfbgTGvg" target="_blank" rel="noopener">Spring Cloud 在国内中小型公司能用起来吗?</a> 介绍了 Spring Cloud 是否能在中小公司使用起来，这篇文章是它的姊妹篇。其实我们在这条路上已经走了一年多，从 16 年初到现在。在使用 Spring Cloud 之前我们对微服务实践是没有太多的体会和经验的。从最初的开源软件<a href="https://github.com/cloudfavorites/favorites-web" target="_blank" rel="noopener">云收藏</a>来熟悉 Spring Boot，到项目中的慢慢使用，再到最后全面拥抱 Spring Cloud。这篇文章就给大家介绍一下我们使用 Spring Boot/Cloud 一年多的经验。</p>
+<p>在开始之前我们先介绍一下几个概念，什么是微服务，它的特点是什么? Spring Boot/Cloud 都做了那些事情？他们三者之间又有什么联系？</p>
+<h2 id="技术背景"><a href="#技术背景" class="headerlink" title="技术背景"></a>技术背景</h2><h3 id="什么是微服务"><a href="#什么是微服务" class="headerlink" title="什么是微服务"></a>什么是微服务</h3><p>微服务的概念源于 2014 年 3 月 Martin Fowler 所写的一篇文章 “<a href="http://martinfowler.com/articles/microservices.html" target="_blank" rel="noopener">Microservices</a>”。</p>
+<p>微服务架构是一种架构模式，它提倡将单一应用程序划分成一组小的服务，服务之间互相协调、互相配合，为用户提供最终价值。每个服务运行在其独立的进程中，服务与服务间采用轻量级的通信机制互相沟通（通常是基于 HTTP 的 RESTful API）。每个服务都围绕着具体业务进行构建，并且能够被独立地部署到生产环境、类生产环境等。另外，应尽量避免统一的、集中式的服务管理机制，对具体的一个服务而言，应根据业务上下文，选择合适的语言、工具对其进行构建。</p>
+<p>微服务是一种架构风格，一个大型复杂软件应用由一个或多个微服务组成。系统中的各个微服务可被独立部署，各个微服务之间是松耦合的。每个微服务仅关注于完成一件任务并很好地完成该任务。在所有情况下，每个任务代表着一个小的业务能力。</p>
+<h3 id="微服务架构优势"><a href="#微服务架构优势" class="headerlink" title="微服务架构优势"></a>微服务架构优势</h3><p><strong>复杂度可控</strong>：在将应用分解的同时，规避了原本复杂度无止境的积累。每一个微服务专注于单一功能，并通过定义良好的接口清晰表述服务边界。由于体积小、复杂度低，每个微服务可由一个小规模开发团队完全掌控，易于保持高可维护性和开发效率。</p>
+<p><strong>独立部署</strong>：由于微服务具备独立的运行进程，所以每个微服务也可以独立部署。当某个微服务发生变更时无需编译、部署整个应用。由微服务组成的应用相当于具备一系列可并行的发布流程，使得发布更加高效，同时降低对生产环境所造成的风险，最终缩短应用交付周期。</p>
+<p><strong>技术选型灵活</strong>：微服务架构下，技术选型是去中心化的。每个团队可以根据自身服务的需求和行业发展的现状，自由选择最适合的技术栈。由于每个微服务相对简单，故需要对技术栈进行升级时所面临的风险就较低，甚至完全重构一个微服务也是可行的。</p>
+<p><strong>容错</strong>：当某一组件发生故障时，在单一进程的传统架构下，故障很有可能在进程内扩散，形成应用全局性的不可用。在微服务架构下，故障会被隔离在单个服务中。若设计良好，其他服务可通过重试、平稳退化等机制实现应用层面的容错。</p>
+<p><strong>扩展</strong>：单块架构应用也可以实现横向扩展，就是将整个应用完整的复制到不同的节点。当应用的不同组件在扩展需求上存在差异时，微服务架构便体现出其灵活性，因为每个服务可以根据实际需求独立进行扩展。</p>
+<h3 id="什么是-Spring-Boot"><a href="#什么是-Spring-Boot" class="headerlink" title="什么是 Spring Boot"></a>什么是 Spring Boot</h3><p>Spring Boot 是由 Pivotal 团队提供的全新框架，其设计目的是用来简化新 Spring 应用的初始搭建以及开发过程。该框架使用了特定的方式来进行配置，从而使开发人员不再需要定义样板化的配置。用我的话来理解，就是 Spring Boot 其实不是什么新的框架，它默认配置了很多框架的使用方式，就像 maven 整合了所有的 jar 包，Spring Boot 整合了所有的框架（不知道这样比喻是否合适）。</p>
+<p>Spring Boot 简化了基于 Spring 的应用开发，通过少量的代码就能创建一个独立的、产品级别的 Spring 应用。 Spring Boot 为 Spring 平台及第三方库提供开箱即用的设置，这样你就可以有条不紊地开始。Spring Boot 的核心思想就是约定大于配置，多数 Spring Boot 应用只需要很少的 Spring 配置。采用 Spring Boot 可以大大的简化你的开发模式，所有你想集成的常用框架，它都有对应的组件支持。</p>
+<h3 id="Spring-Cloud-都做了哪些事"><a href="#Spring-Cloud-都做了哪些事" class="headerlink" title="Spring Cloud 都做了哪些事"></a>Spring Cloud 都做了哪些事</h3><p>Spring Cloud 是一系列框架的有序集合。它利用 Spring Boot 的开发便利性巧妙地简化了分布式系统基础设施的开发，如服务发现注册、配置中心、消息总线、负载均衡、断路器、数据监控等，都可以用 Spring Boot 的开发风格做到一键启动和部署。Spring 并没有重复制造轮子，它只是将目前各家公司开发的比较成熟、经得起实际考验的服务框架组合起来，通过 Spring Boot 风格进行再封装屏蔽掉了复杂的配置和实现原理，最终给开发者留出了一套简单易懂、易部署和易维护的分布式系统开发工具包</p>
+<p>以下为 Spring Cloud 的核心功能：</p>
+<ul>
+<li>分布式 / 版本化配置</li>
+<li>服务注册和发现</li>
+<li>路由</li>
+<li>服务和服务之间的调用</li>
+<li>负载均衡</li>
+<li>断路器</li>
+<li>分布式消息传递</li>
+</ul>
+<p>我们再来看一张图：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15244146175666.jpg" alt=""></p>
+<p>通过这张图，我们来了解一下各组件配置使用运行流程：</p>
+<ul>
+<li>1、请求统一通过 API 网关（Zuul）来访问内部服务.</li>
+<li>2、网关接收到请求后，从注册中心（Eureka）获取可用服务</li>
+<li>3、由 Ribbon 进行均衡负载后，分发到后端具体实例</li>
+<li>4、微服务之间通过 Feign 进行通信处理业务</li>
+<li>5、Hystrix 负责处理服务超时熔断</li>
+<li>6、Turbine 监控服务间的调用和熔断相关指标</li>
+</ul>
+<h3 id="Spring-Cloud-体系介绍"><a href="#Spring-Cloud-体系介绍" class="headerlink" title="Spring Cloud 体系介绍"></a>Spring Cloud 体系介绍</h3><p>上图只是 Spring Cloud 体系的一部分，Spring Cloud 共集成了 19 个子项目，里面都包含一个或者多个第三方的组件或者框架！</p>
+<p>Spring Cloud 工具框架</p>
+<p>1、Spring Cloud Config 配置中心，利用 git 集中管理程序的配置。<br>2、Spring Cloud Netflix 集成众多 Netflix 的开源软件<br>3、Spring Cloud Bus 消息总线，利用分布式消息将服务和服务实例连接在一起，用于在一个集群中传播状态的变化<br>4、Spring Cloud for Cloud Foundry 利用 Pivotal Cloudfoundry 集成你的应用程序<br>5、Spring Cloud Cloud Foundry Service Broker 为建立管理云托管服务的服务代理提供了一个起点。<br>6、Spring Cloud Cluster 基于 Zookeeper, Redis, Hazelcast, Consul 实现的领导选举和平民状态模式的抽象和实现。<br>7、Spring Cloud Consul 基于 Hashicorp Consul 实现的服务发现和配置管理。<br>8、Spring Cloud Security 在 Zuul 代理中为 OAuth2 rest 客户端和认证头转发提供负载均衡<br>9、Spring Cloud Sleuth SpringCloud 应用的分布式追踪系统，和 Zipkin，HTrace，ELK 兼容。<br>10、Spring Cloud Data Flow 一个云本地程序和操作模型，组成数据微服务在一个结构化的平台上。<br>11、Spring Cloud Stream 基于 Redis,Rabbit,Kafka 实现的消息微服务，简单声明模型用以在 Spring Cloud 应用中收发消息。<br>12、Spring Cloud Stream App Starters 基于 Spring Boot 为外部系统提供 spring 的集成<br>13、Spring Cloud Task 短生命周期的微服务，为 SpringBooot 应用简单声明添加功能和非功能特性。<br>14、Spring Cloud Task App Starters<br>15、Spring Cloud Zookeeper 服务发现和配置管理基于 Apache Zookeeper。<br>16、Spring Cloud for Amazon Web Services 快速和亚马逊网络服务集成。<br>17、Spring Cloud Connectors 便于 PaaS 应用在各种平台上连接到后端像数据库和消息经纪服务。<br>18、Spring Cloud Starters （项目已经终止并且在 Angel.SR2 后的版本和其他项目合并）<br>19、Spring Cloud CLI 插件用 Groovy 快速的创建 Spring Cloud 组件应用。</p>
+<blockquote>
+<p>当然这个数量还在一直增加…</p>
+</blockquote>
+<h3 id="三者之间的关系"><a href="#三者之间的关系" class="headerlink" title="三者之间的关系"></a>三者之间的关系</h3><p>微服务是一种架构的理念，提出了微服务的设计原则，从理论为具体的技术落地提供了指导思想。Spring Boot 是一套快速配置脚手架，可以基于 Spring Boot 快速开发单个微服务；Spring Cloud 是一个基于 Spring Boot 实现的服务治理工具包；Spring Boot 专注于快速、方便集成的单个微服务个体，Spring Cloud 关注全局的服务治理框架。</p>
+<p><strong>Spring Boot/Cloud 是微服务实践的最佳落地方案。</strong></p>
+<h2 id="实战经历"><a href="#实战经历" class="headerlink" title="实战经历"></a>实战经历</h2><h3 id="遇到问题，寻找方案"><a href="#遇到问题，寻找方案" class="headerlink" title="遇到问题，寻找方案"></a>遇到问题，寻找方案</h3><p>2015 年初的时候，因为公司业务的大量发展，我们开始对原有的业务进行拆分，新上的业务线也全部使用独立的项目来开发，项目和项目之间通过 http 接口进行访问。15 年的业务发展非常迅速，项目数量也就相应急剧扩大，到了 15 底的时候项目达 60 多个，当项目数达到 30 几个的时候，其实我们就遇到了问题，经常某个项目因为扩展增加了新的 IP 地址，我们就需要被动的更新好几个相关的项目。服务越来越多，服务之间的调用关系也越来越复杂，有时候想画一张图来表示项目和项目之间的依赖关系，线条密密麻麻无法看清。</p>
+<p>这个时候我们就想找一种方案，可以将我们这么多分布式的服务给管理起来，到网上进行了技术调研。我们发现有两款开源软件比较适合我们，一个是 Dubbo，一个是 Spring Cloud。</p>
+<p>其实刚开始我们是走了一些弯路的。这两款框架我们当时都不熟悉，当时国内使用 Spring Cloud 进行开发的企业非常的少，我在网上也几乎没找到太多应用的案例。但是 Dubbo 当时在国内的使用还是挺普遍的，相关的资料各方面都比较完善。因此在公司扩展新业务线众筹平台的时候，技术选型就先定了 Dubbo，因为也是全新的业务没有什么负担，这个项目我们大概开发了六个月投产，上线之初也遇到了一些问题，但最终还比较顺利。</p>
+<p>在新业务线选型使用 Dubbo 的同时，我们也没有完全放弃 Spring Cloud，我们抽出了一两名开发人员学习 Spring Boot 我也参与其中，为了验证 Spring Boot 是否可以到达实战的标准，我们在业余的时间使用 Spring Boot 开发了一款开源软件<a href="http://favorites.ren/" target="_blank" rel="noopener">云收藏</a>，经过这个项目的实战验证我们对 Spring Boot 就有了信心。最重要的是大家体会到使用 Spring Boot 的各种便利之后，就再也不想使用传统的方式来进行开发了。</p>
+<p>但是还有一个问题，在选择了 Spring Boot 进行新业务开发的同时，并没有解决我们上面的那个问题，服务于服务直接调用仍然比较复杂和传统，这时候我们就开始研究 Spring Cloud。因为大家在前期对 Spring Boot 有了足够的了解，因此学习 Sprig Cloud 就显得顺风顺水了。所以在使用 Dubbo 半年之后，我们又全面开始拥抱 Spring Cloud。</p>
+<h3 id="为什么选择使用-Spring-Cloud-而放弃了-Dubbo"><a href="#为什么选择使用-Spring-Cloud-而放弃了-Dubbo" class="headerlink" title="为什么选择使用 Spring Cloud 而放弃了 Dubbo"></a>为什么选择使用 Spring Cloud 而放弃了 Dubbo</h3><p>可能大家会问，为什么选择了使用 Dubbo 之后，而又选择全面使用 Spring Cloud 呢？其中有几个原因：</p>
+<p>1）从两个公司的背景来谈：Dubbo，是阿里巴巴服务化治理的核心框架，并被广泛应用于中国各互联网公司；Spring Cloud 是大名鼎鼎的 Spring 家族的产品。阿里巴巴是一个商业公司，虽然也开源了很多的顶级的项目，但从整体战略上来讲，仍然是服务于自身的业务为主。Spring 专注于企业级开源框架的研发，不论是在中国还是在世界上使用都非常广泛，开发出通用、开源、稳健的开源框架就是他们的主业。</p>
+<p>2）从社区活跃度这个角度来对比，Dubbo 虽然也是一个非常优秀的服务治理框架，并且在服务治理、灰度发布、流量分发这方面做的比 Spring Cloud 还好，除过当当网在基础上增加了 rest 支持外，已有两年多的时间几乎都没有任何更新了。在使用过程中出现问题，提交到 github 的 Issue 也少有回复。</p>
+<p>相反 Spring Cloud 自从发展到现在，仍然在不断的高速发展，从 github 上提交代码的频度和发布版本的时间间隔就可以看出，现在 Spring Cloud 即将发布 2.0 版本，到了后期会更加完善和稳定。</p>
+<p>3) 从整个大的平台架构来讲，dubbo 框架只是专注于服务之间的治理，如果我们需要使用配置中心、分布式跟踪这些内容都需要自己去集成，这样无形中使用 dubbo 的难度就会增加。Spring Cloud 几乎考虑了服务治理的方方面面，更有 Spring Boot 这个大将的支持，开发起来非常的便利和简单。</p>
+<p>4）从技术发展的角度来讲，Dubbo 刚出来的那会技术理念还是非常先进，解决了各大互联网公司服务治理的问题，中国的各中小公司也从中受益不少。经过了这么多年的发展，互联网行业也是涌现了更多先进的技术和理念，Dubbo 一直停滞不前，自然有些掉队，有时候我个人也会感到有点可惜，如果 Dubbo 一直沿着当初的那个路线发展，并且延伸到周边，今天可能又是另一番景象了。</p>
+<p>Spring 推出 Spring Boot/Cloud 也是因为自身的很多原因。Spring 最初推崇的轻量级框架，随着不断的发展也越来越庞大，随着集成项目越来越多，配置文件也越来越混乱，慢慢的背离最初的理念。随着这么多年的发展，微服务、分布式链路跟踪等更多新的技术理念的出现，Spring 急需一款框架来改善以前的开发模式，因此才会出现 Spring Boot/Cloud 项目，我们现在访问 Spring 官网，会发现 Spring Boot 和 Spring Cloud 已经放到首页最重点突出的三个项目中的前两个，可见 Spring 对这两个框架的重视程度。</p>
+<p><strong>总结一下，dubbo 曾经确实很牛逼，但是 Spring Cloud 是站在近些年技术发展之上进行开发，因此更具技术代表性。</strong></p>
+<h3 id="如何进行微服务架构演进"><a href="#如何进行微服务架构演进" class="headerlink" title="如何进行微服务架构演进"></a>如何进行微服务架构演进</h3><p>当我们将所有的新业务都使用 Spring Cloud 这套架构之后，就会出现这样一个现象，公司的系统被分成了两部分，一部分是传统架构的项目，一部分是微服务架构的项目，如何让这两套配合起来使用就成为了关键，这时候 Spring Cloud 里面的一个关键组件解决了我们的问题，就是 Zuul。在 Spring Cloud 架构体系内的所有微服务都通过 Zuul 来对外提供统一的访问入口，所有需要和微服务架构内部服务进行通讯的请求都走统一网关。如下图：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/15244146480986.jpg" alt=""></p>
+<p>从上图可以看出我们对服务进行了分类，有四种：基础服务、业务服务、组合服务、前置服务。不同服务迁移的优先级不同</p>
+<ul>
+<li><strong>基础服务</strong>，是一些基础组件，与具体的业务无关。比如：短信服务、邮件服务。这里的服务最容易摘出来做微服务，也是我们第一优先级分离出来的服务。</li>
+<li><strong>业务服务</strong>，是一些垂直的业务系统，只处理单一的业务类型，比如：风控系统、积分系统、合同系统。这类服务职责比较单一，根据业务情况来选择是否迁移，比如：如果突然有需求对积分系统进行大优化，我们就趁机将积分系统进行改造，是我们的第二优先级分离出来的服务。</li>
+<li><strong>前置服务</strong>，前置服务一般为服务的接入或者输出服务，比如网站的前端服务、app 的服务接口这类，这是我们第三优先级分离出来的服务。</li>
+<li><strong>组合服务</strong>，组合服务就是涉及到了具体的业务，比如买标过程，需要调用很多垂直的业务服务，这类的服务我们一般放到最后再进行微服务化架构来改造，因为这类服务最为复杂，除非涉及到大的业务逻辑变更，我们是不会轻易进行迁移。</li>
+</ul>
+<p>在这四类服务之外，新上线的业务全部使用 Sprng Boot/Cloud 这套技术栈。就这样，我们从开源项目<a href="https://github.com/cloudfavorites/favorites-web" target="_blank" rel="noopener">云收藏</a>开始，上线几个 Spring Boot 项目，到现在公司绝大部分的项目都是在 Spring Cloud 这个架构体系中。</p>
+<h2 id="经验和教训"><a href="#经验和教训" class="headerlink" title="经验和教训"></a>经验和教训</h2><h3 id="架构演化的步骤"><a href="#架构演化的步骤" class="headerlink" title="架构演化的步骤"></a>架构演化的步骤</h3><ul>
+<li>在确定使用 Spring Boot/Cloud 这套技术栈进行微服务改造之前，先梳理平台的服务，对不同的服务进行分类，以确认演化的节奏。</li>
+<li>先让团队熟悉 Spring Boot 技术，并且优先在基础服务上进行技术改造，推动改动后的项目投产上线</li>
+<li>当团队熟悉 Spring Boot 之后，再推进使用 Spring Cloud 对原有的项目进行改造。</li>
+<li>在进行微服务改造过程中，优先应用于新业务系统，前期可以只是少量的项目进行了微服务化改造，随着大家对技术的熟悉度增加，可以加快加大微服务改造的范围</li>
+<li>传统项目和微服务项目共存是一个很常见的情况，除非公司业务有大的变化，不建议直接迁移核心项目。</li>
+</ul>
+<h3 id="服务拆分原则"><a href="#服务拆分原则" class="headerlink" title="服务拆分原则"></a>服务拆分原则</h3><p>服务拆分有以下几个原则和大家分享</p>
+<p><strong>横向拆分</strong>。按照不同的业务域进行拆分，例如订单、营销、风控、积分资源等。形成独立的业务领域微服务集群。</p>
+<p><strong>纵向拆分</strong>。把一个业务功能里的不同模块或者组件进行拆分。例如把公共组件拆分成独立的原子服务，下沉到底层，形成相对独立的原子服务层。这样一纵一横，就可以实现业务的服务化拆分。</p>
+<p>要做好微服务的分层：梳理和抽取核心应用、公共应用，作为独立的服务下沉到核心和公共能力层，逐渐形成稳定的服务中心，使前端应用能更快速的响应多变的市场需求</p>
+<p>服务拆分是越小越好吗？微服务的大与小是相对的。比如在初期，我们把交易拆分为一个微服务，但是随着业务量的增大，可能一个交易系统已经慢慢变得很大，并且并发流量也不小，为了支撑更多的交易量，我会把交易系统，拆分为订单服务、投标服务、转让服务等。因此微服务的拆分力度需与具体业务相结合，总的原则是<strong>服务内部高内聚，服务之间低耦合。</strong></p>
+<h3 id="微服务-vs-传统开发"><a href="#微服务-vs-传统开发" class="headerlink" title="微服务 vs 传统开发"></a>微服务 vs 传统开发</h3><p>使用微服务有一段时间了，这种开发模式和传统的开发模式对比，有很大的不同。</p>
+<ul>
+<li>分工不同，以前我们可能是一个一个模块，现在可能是一人一个系统。</li>
+<li>架构不同，服务的拆分是一个技术含量很高的问题，拆分是否合理对以后发展影响巨大。</li>
+<li>部署方式不同，如果还像以前一样部署估计累死了，<strong>自动化运维</strong>不可不上。</li>
+<li>容灾不同，好的微服务可以隔离故障避免服务整体 down 掉，坏的微服务设计仍然可以因为一个子服务出现问题导致连锁反应。</li>
+</ul>
+<h3 id="给数据库带来的挑战"><a href="#给数据库带来的挑战" class="headerlink" title="给数据库带来的挑战"></a>给数据库带来的挑战</h3><p>每个微服务都有自己独立的数据库，那么后台管理的<strong>联合查询</strong>怎么处理？这应该是大家会普遍遇到的一个问题，有三种处理方案。</p>
+<p>1）严格按照微服务的划分来做，微服务相互独立，各微服务数据库也独立，后台需要展示数据时，调用各微服务的接口来获取对应的数据，再进行数据处理后展示出来，这是标准的用法，也是最麻烦的用法。</p>
+<p>2) 将业务高度相关的表放到一个库中，将业务关系不是很紧密的表严格按照微服务模式来拆分，这样既可以使用微服务，也避免了数据库分散导致后台系统统计功能难以实现，是一个折中的方案。</p>
+<p>3）数据库严格按照微服务的要求来切分，以满足业务高并发，实时或者准实时将各微服务数据库数据同步到 <strong>NoSQL</strong> 数据库中，在同步的过程中进行数据清洗，用来满足后台业务系统的使用，推荐使用 MongoDB、HBase 等。</p>
+<p>三种方案在不同的公司我都使用过，第一种方案适合业务较为简单的小公司；第二种方案，适合在原有系统之上，慢慢演化为微服务架构的公司；第三种适合大型高并发的互联网公司。</p>
+<h3 id="微服务的经验和建议"><a href="#微服务的经验和建议" class="headerlink" title="微服务的经验和建议"></a>微服务的经验和建议</h3><p>1、建议尽量不要使用 Jsp，页面开发推荐使用 Thymeleaf。Web 项目建议独立部署 Tomcat，不要使用内嵌的 Tomcat，内嵌 Tomcat 部署 Jsp 项目会偶现龟速访问的情况。</p>
+<p>2、<strong>服务编排</strong>是个好东西，主要的作用是减少项目中的相互依赖。比如现在有项目 a 调用项目 b，项目 b 调用项目 c… 一直到 h，是一个<strong>调用链</strong>，那么项目上线的时候需要先更新最底层的 h 再更新 g… 更新 c 更新 b 最后是更新项目 a。这只是这一个调用链，在复杂的业务中有非常多的调用，如果要记住每一个调用链对开发运维人员来说就是灾难。</p>
+<p>有这样一个好办法可以尽量的减少项目的相互依赖，就是服务编排，一个核心的业务处理项目，负责和各个微服务打交道。比如之前是 a 调用 b，b 掉用 c，c 调用 d，现在统一在一个<strong>核心项目</strong> W 中来处理，W 服务使用 a 的时候去调用 b，使用 b 的时候 W 去调用 c，举个例子：在第三方支付业务中，有一个核心支付项目是服务编排，负责处理支付的业务逻辑，W 项目使用商户信息的时候就去调用 “商户系统”，需要校验设备的时候就去调用 “终端系统”，需要风控的时候就调用 “风控系统”，各个项目需要的依赖参数都由 W 来做主控。以后项目部署的时候，只需要<strong>最后启动服务编排项目</strong>即可。</p>
+<p>3、不要为了追求技术而追求技术，确定进行微服务架构改造之前，需要考虑以下几方面的因素：<br>1）团队的技术人员是否已经具备相关技术基础。<br>2）公司业务是否适合进行微服务化改造，并不是所有的平台都适合进行微服务化改造，比如：传统行业有很多复杂垂直的业务系统。<br>3）Spring Cloud 生态的技术有很多，并不是每一种技术方案都需要用上，适合自己的才是最好的。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><strong>Spring Cloud 对于中小型互联网公司来说是一种福音</strong>，因为这类公司往往没有实力或者没有足够的资金投入去开发自己的分布式系统基础设施，使用 Spring Cloud 一站式解决方案能在从容应对业务发展的同时大大减少开发成本。同时，随着近几年微服务架构和 Docker 容器概念的火爆，也会让 Spring Cloud 在未来越来越 “云” 化的软件开发风格中立有一席之地，尤其是在目前五花八门的分布式解决方案中提供了标准化的、全站式的技术方案，意义可能会堪比当前 Servlet 规范的诞生，有效推进服务端软件系统技术水平的进步。</p>
+<p><strong>近期我会在 GitChat 分享<a href="http://gitbook.cn/m/mazi/activity/59d9f8f83c47cd7bb69447df?sceneId=bfbec890b01611e7b05d87f805be1357" target="_blank" rel="noopener">从架构演进的角度聊聊 Spring Cloud 都做了些什么？</a></strong>，如果你感兴趣也可以来听听。</p>
+<hr>
+<p><strong>作者：纯洁的微笑</strong><br><strong>出处：<a href="http://www.ityouknow.com/springcloud/2017/10/19/micro-service-practice.html" target="_blank" rel="noopener">http://www.ityouknow.com/</a></strong><br><strong>版权所有，欢迎保留原文链接进行转载：)</strong></p>
+<hr>
+<p>推荐一个关注spring boot 和 spring cloud 的博客：</p>
+<blockquote>
+<p>纯洁的微笑<br><a href="http://www.ityouknow.com/" target="_blank" rel="noopener">http://www.ityouknow.com/</a></p>
+</blockquote>
+<h1 id="12-2-Spring-Cloud-构建微服务架构"><a href="#12-2-Spring-Cloud-构建微服务架构" class="headerlink" title="12.2 Spring Cloud 构建微服务架构"></a>12.2 Spring Cloud 构建微服务架构</h1><p>参考资料：<br>1.<a href="https://link.jianshu.com?t=https://eacdy.gitbooks.io/spring-cloud-book/content/" target="_blank" rel="noopener">https://eacdy.gitbooks.io/spring-cloud-book/content/</a><br>2.<a href="https://link.jianshu.com?t=https://springcloud.cc/" target="_blank" rel="noopener">https://springcloud.cc/</a><br>3.<a href="https://link.jianshu.com?t=https://springcloud.cc/spring-cloud-netflix-zhcn.html" target="_blank" rel="noopener">https://springcloud.cc/spring-cloud-netflix-zhcn.html</a><br>4.<a href="https://link.jianshu.com?t=http://projects.spring.io/spring-cloud/" target="_blank" rel="noopener">http://projects.spring.io/spring-cloud/</a><br>5.<a href="https://link.jianshu.com?t=http://www.infoworld.com/article/2878659/application-development/reducing-technical-debt-with-microservices.html" target="_blank" rel="noopener">http://www.infoworld.com/article/2878659/application-development/reducing-technical-debt-with-microservices.html</a><br>6.<a href="https://link.jianshu.com?t=http://blog.csdn.net/stubborn_cow/article/details/50287597" target="_blank" rel="noopener">http://blog.csdn.net/stubborn_cow/article/details/50287597</a><br>7.<a href="https://link.jianshu.com?t=http://www.javacodegeeks.com/2015/04/microservices-monoliths-and-noops.html" target="_blank" rel="noopener">http://www.javacodegeeks.com/2015/04/microservices-monoliths-and-noops.html</a><br>8.<a href="https://link.jianshu.com?t=http://www.infoq.com/cn/articles/analysis-the-architecture-of-microservice-part-02" target="_blank" rel="noopener">http://www.infoq.com/cn/articles/analysis-the-architecture-of-microservice-part-02</a><br>9.<a href="https://link.jianshu.com?t=https://www.oschina.net/news/70121/microservice" target="_blank" rel="noopener">https://www.oschina.net/news/70121/microservice</a></p>
+
+      
+    </div>
+    
+    
+    
+
+
+     
+    
+      <div>
+        
+    <div style="text-align:center;color: #ccc;font-size:14px;">
+        ------ 本文结束<i class="fa fa-paw"></i>感谢您的阅读 ------</div>
+
+      </div>
+    
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    CloudPai
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://cloudpai.site/2018/04/22/2018-04-22-4/" title="分布式微服务之 spring cloud">http://cloudpai.site/2018/04/22/2018-04-22-4/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/分布式/" rel="tag"><i class="fa fa-tag"></i> 分布式</a>
+          
+            <a href="/tags/微服务/" rel="tag"><i class="fa fa-tag"></i> 微服务</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/22/2018-04-22-7/" rel="next" title="分布式微服务之 spring boot">
+                <i class="fa fa-chevron-left"></i> 分布式微服务之 spring boot
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/22/2018-04-22-5/" rel="prev" title="分布式微服务之 Dubbo">
+                分布式微服务之 Dubbo <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+
+
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg"
+                alt="CloudPai" />
+            
+              <p class="site-author-name" itemprop="name">CloudPai</p>
+              <p class="site-description motion-element" itemprop="description">加油(๑•̀ㅂ•́)و✧加油</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">192</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+
+<div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=240 src="//music.163.com/outchain/player?type=0&id=2113726971&auto=0&height=430"></iframe>
+</div>
+<!-- 459004290 -->
+
+
+
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">93</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CloudPai" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:liupai024@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.douban.com/people/57965969/doulists/all" target="_blank" title="豆瓣">
+                      
+                        <i class="fa fa-fw fa-book"></i>豆瓣</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/cloudPai/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-edit"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.dlut.edu.cn/" title="DUT" target="_blank">DUT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bupt.edu.cn/" title="BUPT" target="_blank">BUPT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://campus.alibaba.com/index.htm" title="Alibaba Group" target="_blank">Alibaba Group</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Cloud-是什么鬼？"><span class="nav-text">Spring Cloud 是什么鬼？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#核心成员"><span class="nav-text">核心成员</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Cloud-Netflix"><span class="nav-text">Spring Cloud Netflix</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Cloud-Config"><span class="nav-text">Spring Cloud Config</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Cloud-Bus"><span class="nav-text">Spring Cloud Bus</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Cloud-for-Cloud-Foundry"><span class="nav-text">Spring Cloud for Cloud Foundry</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Cloud-Cluster"><span class="nav-text">Spring Cloud Cluster</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Cloud-Consul"><span class="nav-text">Spring Cloud Consul</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其它小弟"><span class="nav-text">其它小弟</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#和-Spring-Boot-是什么关系"><span class="nav-text">和 Spring Boot 是什么关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spring-Cloud-的优势"><span class="nav-text">Spring Cloud 的优势</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#技术背景"><span class="nav-text">技术背景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是微服务"><span class="nav-text">什么是微服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#微服务架构优势"><span class="nav-text">微服务架构优势</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是-Spring-Boot"><span class="nav-text">什么是 Spring Boot</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Cloud-都做了哪些事"><span class="nav-text">Spring Cloud 都做了哪些事</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Cloud-体系介绍"><span class="nav-text">Spring Cloud 体系介绍</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三者之间的关系"><span class="nav-text">三者之间的关系</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实战经历"><span class="nav-text">实战经历</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#遇到问题，寻找方案"><span class="nav-text">遇到问题，寻找方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么选择使用-Spring-Cloud-而放弃了-Dubbo"><span class="nav-text">为什么选择使用 Spring Cloud 而放弃了 Dubbo</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何进行微服务架构演进"><span class="nav-text">如何进行微服务架构演进</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#经验和教训"><span class="nav-text">经验和教训</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#架构演化的步骤"><span class="nav-text">架构演化的步骤</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务拆分原则"><span class="nav-text">服务拆分原则</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#微服务-vs-传统开发"><span class="nav-text">微服务 vs 传统开发</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#给数据库带来的挑战"><span class="nav-text">给数据库带来的挑战</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#微服务的经验和建议"><span class="nav-text">微服务的经验和建议</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#12-2-Spring-Cloud-构建微服务架构"><span class="nav-text">12.2 Spring Cloud 构建微服务架构</span></a></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CloudPai</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">836.0k</span>
+  
+</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv">  </span>
+</span>
+</div>
+
+
+
+
+
+
+
+  <div class="theme-info">&#12288;主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://cloudpai.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://cloudpai.site/2018/04/22/2018-04-22-4/';
+          this.page.identifier = '2018/04/22/2018-04-22-4/';
+          this.page.title = '分布式微服务之 spring cloud';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cloudpai.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!-- <!-- <script src="https://cdn.bootcss.com/aplayer/1.6.0/APlayer.min.js"></script>
+
+<script src="https://api.i-meto.com/music/player.js"></script> --> -->
+  
+  <!--移动端判断，是否引入背景-->
+  <script>
+  var browser={  
+      versions:function(){   
+             var u = navigator.userAgent, app = navigator.appVersion;   
+             return {//移动终端浏览器版本信息
+                  trident: u.indexOf('Trident') > -1, //IE内核
+                  presto: u.indexOf('Presto') > -1, //opera内核
+                  webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                  gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                  mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                  ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                  android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                  iPhone: u.indexOf('iPhone') > -1 , //是否为iPhone或者QQHD浏览器
+                  iPad: u.indexOf('iPad') > -1, //是否iPad
+                  webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+              };  
+           }(),  
+           language:(navigator.browserLanguage || navigator.language).toLowerCase()  
+  }   
+    if(browser.versions.mobile || browser.versions.ios || browser.versions.android ||   
+      browser.versions.iPhone || browser.versions.iPad){        
+               
+    }else{
+    document.write("<script type=\'text/javascript\'  src=\'/js/src/particle.js\'><\/script>");
+    }
+  </script>
+
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":-80,"vOffset":-50},"mobile":{"show":false,"scale":0.2},"react":{"opacityDefault":1,"opacityOnHover":0.2}});</script></body>
+</html>

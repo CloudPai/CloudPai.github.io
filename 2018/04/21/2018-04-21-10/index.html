@@ -91,7 +91,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180421_simpread-ActiveMQ 学习（一）了解 JMS - CSDN 博客/image1">
 <meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180421_simpread-ActiveMQ 学习（一）了解 JMS - CSDN 博客/image2">
-<meta property="og:updated_time" content="2018-04-21T15:00:39.222Z">
+<meta property="og:updated_time" content="2018-04-22T02:40:44.818Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="了解JMS">
 <meta name="twitter:description" content="1.JMS 简介学习 ActiveMQ 之前，先来学习一下 JMS：  JMS（Java Messaging Service），即 Java 消息服务，是 Java 平台上关于面向消息中间件 (MOM) 的 API，它便于应用程序之间，或分布式系统之间进行异步的消息交换, 并且通过提供标准的产生、发送、接收消息的接口简化企业应用的开发。  JMS 是 Java 消息服务的标准（或者叫规范），它使">
@@ -337,8 +337,8 @@
               
                 <span class="post-meta-item-text">更新于&#58;</span>
               
-              <time title="更新于" itemprop="dateModified" datetime="2018-04-21T23:00:39+08:00">
-                2018-04-21
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-22T10:40:44+08:00">
+                2018-04-22
               </time>
             
           </span>
@@ -376,7 +376,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  1,701
+                  1,674
                 </span>
               
 
@@ -415,9 +415,9 @@
       
         <script src="/assets/js/APlayer.min.js"> </script><h2 id="1-JMS-简介"><a href="#1-JMS-简介" class="headerlink" title="1.JMS 简介"></a><a></a>1.JMS 简介</h2><p>学习 ActiveMQ 之前，先来学习一下 JMS：</p>
 <blockquote>
-<p>JMS（Java Messaging Service），即 Java 消息服务，是 Java 平台上关于面向消息中间件 (MOM) 的 API，它便于应用程序之间，或分布式系统之间进行异步的消息交换, 并且通过提供标准的产生、发送、接收消息的接口简化企业应用的开发。</p>
+<p>JMS（Java Messaging Service），即 Java 消息服务，是 Java 平台上关于面向消息中间件 (MOM) 的 API，它便于应用程序之间，或分布式系统之间进行<strong>异步</strong>的消息交换, 并且通过提供标准的产生、发送、接收消息的接口简化企业应用的开发。</p>
 </blockquote>
-<p>JMS 是 Java 消息服务的<strong>标准</strong>（或者叫<strong>规范</strong>），它使分布式通信耦合更低，消息服务更加可靠，这个标准在企业应用中十分的重要和广泛，所以开篇来重点学习一下它。好了，必要的概念大致就这么多，其他细节网上还有很多，不再赘述。</p>
+<p>JMS 是 Java 消息服务的<strong>标准</strong>（或者叫<strong>规范</strong>），它使分布式通信耦合更低，消息服务更加可靠，这个标准在企业应用中十分的重要和广泛，所以开篇来重点学习一下它。</p>
 <h2 id="2-消息的模型"><a href="#2-消息的模型" class="headerlink" title="2. 消息的模型"></a><a></a>2. 消息的模型</h2><blockquote>
 <p>点对点队列模型：Point-to-Point（P2P）<br>发布订阅模型：Publish/Subscribe（Pub/Sub）</p>
 </blockquote>
@@ -443,7 +443,7 @@
 <h4 id="2-2-3-特点"><a href="#2-2-3-特点" class="headerlink" title="2.2.3 特点"></a><a></a>2.2.3 特点</h4><ul>
 <li>每个消息可以有多个消费者</li>
 <li>发布者和订阅者之间有时间上的依赖性。订阅者必须保持持续的运行状态才能接收到消息</li>
-<li>JMS 提供了持久化订阅，这时候，订阅者未连接主题时（发布者）发布的消息，将在订阅者重新连接时进行重新发布，以便订阅者接收消息</li>
+<li>JMS 提供了<strong>持久化订阅</strong>，这时候，订阅者未连接主题时（发布者）发布的消息，将在订阅者重新连接时进行重新发布，以便订阅者接收消息</li>
 </ul>
 <h2 id="3-消息的消费"><a href="#3-消息的消费" class="headerlink" title="3. 消息的消费"></a><a></a>3. 消息的消费</h2><p>在 JMS 中，消息的产生和消息是异步的。对于消费来说，JMS 的消息者可以通过两种方式来消费消息。</p>
 <ul>
@@ -452,7 +452,7 @@
 </ul>
 <h2 id="4-消息的组成"><a href="#4-消息的组成" class="headerlink" title="4. 消息的组成"></a><a></a>4. 消息的组成</h2><p>消息传递系统的中心就是消息，一条消息由三个部分组成：<strong>头、属性、主体</strong>。</p>
 <h3 id="4-1-头（head）"><a href="#4-1-头（head）" class="headerlink" title="4.1 头（head）"></a><a></a>4.1 头（head）</h3><p>每条 JMS 消息都必须具有消息头。头字段包含用于路由和识别消息的值。可以通过多种方式来设置消息头的值：<br>1. 由 JMS 提供者在生成或传送消息的过程中自动设置<br>2. 由生产者客户机通过在创建消息生产者时指定的设置进行设置<br>3. 由生产者客户机逐一对各条消息进行设置</p>
-<h3 id="4-2-属性（property）"><a href="#4-2-属性（property）" class="headerlink" title="4.2 属性（property）"></a><a></a>4.2 属性（property）</h3><p>消息可以包含称作属性的可选头字段。他们是以属性名和属性值对的形式制定的。可以将属性是为消息头得扩展，其中可以包括如下信息：创建数据的进程、数据的创建时间以及每条数据的结构。JMS 提供者也可以添加影响消息处理的属性，如是否应压缩消息或如何在消息生命周期结束时废弃消息。</p>
+<h3 id="4-2-属性（property）"><a href="#4-2-属性（property）" class="headerlink" title="4.2 属性（property）"></a><a></a>4.2 属性（property）</h3><p>消息可以包含称作属性的可选头字段。他们是以<strong>属性名</strong>和<strong>属性值对</strong>的形式制定的。可以将属性视为消息头的扩展，其中可以包括如下信息：创建数据的进程、数据的创建时间以及每条数据的结构。JMS 提供者也可以添加影响消息处理的属性，如是否应压缩消息或如何在消息生命周期结束时废弃消息。</p>
 <h3 id="4-3-主体（body）"><a href="#4-3-主体（body）" class="headerlink" title="4.3 主体（body）"></a><a></a>4.3 主体（body）</h3><p>包含要发送的内容。每个消息接口特定于它所支持的内容类型。JMS 为不同类型的内容提供了他们各自的消息类型，但是所有消息都派生自 Message 接口。</p>
 <ul>
 <li>StreamMessage：一种主体中包含 Java 基元值流的消息。其填充和读取均按顺序进行。</li>
@@ -647,7 +647,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">182</span>
+                  <span class="site-state-item-count">192</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -669,7 +669,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">89</span>
+                  <span class="site-state-item-count">93</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -794,7 +794,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">786.0k</span>
+    <span title="Site words total count">836.0k</span>
   
 </div>
 

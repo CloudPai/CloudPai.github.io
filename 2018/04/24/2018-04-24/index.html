@@ -1,0 +1,1479 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="分布式,计算," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="CloudPai" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="离线计算MapReduce Google 的三篇论文开启了大数据处理的篇章，其中 MapReduce 被各大公司作为数据处理的主要方案。MapReduce 的思想也是从早期的函数式编程语言中借鉴而来，推广到了分布式系统中，接触的东西多了，发现原来很多知识都是相通的。 传统的数据处理方式通常是将数据导入至专门的数据分析工具中，这样会面临两个问题：1、如果源数据非常大时，往往数据的移动就要花费较长时">
+<meta name="keywords" content="分布式,计算">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分布式计算平台 之 实时&#x2F;离线平台">
+<meta property="og:url" content="http://cloudpai.site/2018/04/24/2018-04-24/index.html">
+<meta property="og:site_name" content="CloudPai">
+<meta property="og:description" content="离线计算MapReduce Google 的三篇论文开启了大数据处理的篇章，其中 MapReduce 被各大公司作为数据处理的主要方案。MapReduce 的思想也是从早期的函数式编程语言中借鉴而来，推广到了分布式系统中，接触的东西多了，发现原来很多知识都是相通的。 传统的数据处理方式通常是将数据导入至专门的数据分析工具中，这样会面临两个问题：1、如果源数据非常大时，往往数据的移动就要花费较长时">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180424_simpread-离线计算——聊一聊我所经历的计算框架/image1">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180424_simpread-离线计算——聊一聊我所经历的计算框架/image2">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180424_simpread-离线计算——聊一聊我所经历的计算框架/image3">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180424_simpread-离线计算——聊一聊我所经历的计算框架/image4">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180424_simpread-离线计算——聊一聊我所经历的计算框架/image5">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180424_simpread-实时计算——聊一聊我所经历的计算框架/image1">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180424_simpread-实时计算——聊一聊我所经历的计算框架/image2">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180424_simpread-实时计算——聊一聊我所经历的计算框架/image3">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180424_simpread-实时计算——聊一聊我所经历的计算框架/image4">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180424_simpread-实时计算——聊一聊我所经历的计算框架/image5">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180424_simpread-实时计算——聊一聊我所经历的计算框架/image6">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180424_simpread-实时计算——聊一聊我所经历的计算框架/image7">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180424_simpread-实时计算——聊一聊我所经历的计算框架/image8">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180424_simpread-实时计算——聊一聊我所经历的计算框架/image9">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180424_simpread-实时计算——聊一聊我所经历的计算框架/image10">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180424_simpread-实时计算——聊一聊我所经历的计算框架/image11">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180424_simpread-实时计算——聊一聊我所经历的计算框架/image12">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180424_simpread-实时计算——聊一聊我所经历的计算框架/image13">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180424_simpread-实时计算——聊一聊我所经历的计算框架/image14">
+<meta property="og:updated_time" content="2018-04-24T14:13:52.847Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="分布式计算平台 之 实时&#x2F;离线平台">
+<meta name="twitter:description" content="离线计算MapReduce Google 的三篇论文开启了大数据处理的篇章，其中 MapReduce 被各大公司作为数据处理的主要方案。MapReduce 的思想也是从早期的函数式编程语言中借鉴而来，推广到了分布式系统中，接触的东西多了，发现原来很多知识都是相通的。 传统的数据处理方式通常是将数据导入至专门的数据分析工具中，这样会面临两个问题：1、如果源数据非常大时，往往数据的移动就要花费较长时">
+<meta name="twitter:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180424_simpread-离线计算——聊一聊我所经历的计算框架/image1">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'TZAS2SFOJR',
+      apiKey: 'e2a9cd036eede8026382b302001ec261',
+      indexName: 'cloudpai_blogs_search',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cloudpai.site/2018/04/24/2018-04-24/"/>
+
+
+
+
+
+  <title>分布式计算平台 之 实时/离线平台 | CloudPai</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-114643720-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CloudPai</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/04/24/2018-04-24/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CloudPai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudPai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">分布式计算平台 之 实时/离线平台</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-24T19:50:52+08:00">
+                2018-04-24
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-24T22:13:52+08:00">
+                2018-04-24
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/24/2018-04-24/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/04/24/2018-04-24/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  8,243
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  30
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="离线计算"><a href="#离线计算" class="headerlink" title="离线计算"></a>离线计算</h1><h4 id="MapReduce"><a href="#MapReduce" class="headerlink" title="MapReduce"></a>MapReduce</h4><hr>
+<p>Google 的三篇论文开启了大数据处理的篇章，其中 MapReduce 被各大公司作为数据处理的主要方案。MapReduce 的思想也是从早期的函数式编程语言中借鉴而来，推广到了分布式系统中，接触的东西多了，发现原来很多知识都是相通的。</p>
+<p>传统的数据处理方式通常是将数据导入至专门的数据分析工具中，这样会面临两个问题：1、如果源数据非常大时，往往数据的移动就要花费较长时间。2、传统的数据处理工具往往是单机模型，面对海量数据时，数据处理的时间也是一个很大的问题。</p>
+<p>MapReduce 是<strong>离线批量计算</strong>的代表，采用移动计算优于移动数据的理念，计算任务通常直接在 HDFS 的 datanode 上运行，这样避免了数据的移动（当然 reduce 阶段还是需要节点间传输数据），并且采用并行计算的方式，大大减少了数据处理时间。</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180424_simpread-离线计算——聊一聊我所经历的计算框架/image1" alt=""></p>
+<p>如图所示，MR 模型将数据切分成大小相同的数据块，分别在对应的数据节点上启动 map 任务，map 任务并行读取 HDFS 上的数据，根据 reduce 任务的个数将结果写入不同的临时文件中，map 任务计算完毕之后，reduce 任务从 map 节点处拉取自己负责处理的数据，并输出最终结果。</p>
+<p><strong>wordcount 例子：</strong></p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180424_simpread-离线计算——聊一聊我所经历的计算框架/image2" alt=""></p>
+<p>拿 wordcount 例子举例，map 任务读取自身负责的数据，统计词频后，中间结果发送到对应的 reduce 节点，reduce 节点负责统计最终的词频结果。</p>
+<p>MR 结合 HDFS 通过并行计算的方式，很大程度上解决了我们对数据存储、计算的需求，但是大家并不满足于现状，慢慢大家发现了 MR 依然存在一些问题。</p>
+<p><strong>1.API 较单一，对复杂的迭代计算并不友好</strong></p>
+<p>下面我们来看一个解方程的例子：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180424_simpread-离线计算——聊一聊我所经历的计算框架/image3" alt=""></p>
+<p>如图，上过初中的人一眼都能看出 X=1，但是计算机不会因式分解呀，那如何利用计算机思想来求解方程呢？</p>
+<p>首先，我们需要将方程转换（图中红色部分），将其看成一个级数，并且保证该级数收敛。</p>
+<p>然后，在该级数收敛区间假设一个初始值，这里我们选取了 X=1.5，代入方程右端，求出新的 X 值。</p>
+<p>最后，将新的 X 值不断的进行迭代，当第 K+1 次和第 K 次的结果的差值小于我们预先定义好的阈值时，我们可以认为此时的 X 值已经无限接近于真实值，计算结束。</p>
+<p><em>对计算机解决数学计算感兴趣的同学可以复习一下线性代数和数值分析</em></p>
+<p>这里我们可以看到，计算机求解方程需要多次迭代，如果用 MR 实现，每一次迭代都要启动一次 MR 任务，这仅仅还只是一个最简单的例子，当面对数据挖掘这类涉及到比较复杂的组合计算时，采用 MR 效率就显得比较低下了。</p>
+<p><strong>2.MR 任务不能有效的利用内存</strong></p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180424_simpread-离线计算——聊一聊我所经历的计算框架/image4" alt=""></p>
+<p>map 任务在处理数据后，会根据 reduce 的个数，生成对应个数中间文件，这些文件保存在磁盘上，map 计算完成后 reduce 将文件 fetch 过来进行汇总。也就是说如果采用 MR，<strong>无论输入源数据有多少，哪怕内存放得下，中间结果还是需要落盘</strong>，而我们知道 io 是计算机中最耗时的操作，这也是造成 MR 效率较低的一个原因。</p>
+<p><strong>从上面的介绍可以看出 MR 存在两个缺点：</strong></p>
+<p>1. 无论源数据有多少，shuffle 过程的中间数据都需要落盘，效率较低，不能很好的利用内存。</p>
+<p>2.MapReduce 只提供了 map 和 reduce 函数，api 不够友好，编写代码时，首先都需要将计算思想转化成 MapReduce 模型，<strong>非常反人类</strong>（写过 MR 的应该非常有感触），而且稍微复杂点的计算需要多次迭代（尤其现在都在提人工智能，深度学习，这些都是比较复杂的逻辑计算），迭代启动任务也有较大的开销。</p>
+<h4 id="Spark"><a href="#Spark" class="headerlink" title="Spark"></a>Spark</h4><hr>
+<p>Spark 对这两点进行了优化，Spark 也是一个批量计算框架，我们来看一下 Spark 的 job 逻辑图：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180424_simpread-离线计算——聊一聊我所经历的计算框架/image5" alt=""></p>
+<p>Spark 的将数据抽象成 RDD，RDD：<strong>弹性分布式数据集（Resilient Distributed Datasets）</strong>，这是一种分布式的内存抽象，允许在大型集群上执行基于内存的计算，与此同时还保持了 MapReduce 等数据流模型的容错特性。RDD 可以常驻的内存的属性，大大简化了迭代计算所需的开销，Spark 任务可以立马利用上一次计算出来的 RDD 来进行下次迭代。</p>
+<p>Spark 不仅仅提供 Map 和 Reduce 函数，还提供了额外的 api，比如 join，图中我们看到数据源 data1 和 data2 在中间处进行了 join，丰富的 api 大大简化了编码逻辑，开发更高效（更详细 api 的可以在 <a href="https://link.jianshu.com?t=https://spark.apache.org/docs/latest/rdd-programming-guide.html#transformations" target="_blank" rel="noopener">Spark 官网</a>了解）。</p>
+<p><strong>RDD 优化：</strong></p>
+<p>需要注意的是内存不够用时 RDD 也可以采用磁盘作为其第二存储介质，而且如果计算中包含 <strong>shuffle 过程</strong>为了保证容灾，shuffle 处的 RDD 也是需要落盘的。</p>
+<blockquote>
+<p>Shuffle描述着数据从map task输出到reduce task输入的这段过程。在分布式情况下，reduce task需要跨节点去拉取其它节点上的map task结果。这一过程将会产生网络资源消耗和内存，磁盘IO的消耗。</p>
+</blockquote>
+<p>上图中我们可以看到任务被划分为 3 个 stage，这里简单解释一下 stage 的意义，如果采用 MR 的运行方式，每个 partition 都启动一个 task，stage1 应该启动 6 个 task，因为 RDD 需要存放在内存（内存不够时放磁盘），这样来看开销还是很大的，而且上下游 task 的 RDD 传输也会占用不小的开销。</p>
+<p>Spark 为了提高效率，采取了如下优化：当下游的 RDD 和上游的 RDD 是 NarrowDependency 时（也就是上游 partition 和下游 partition 是 1 对 1，或 n 对 1 的关系，不涉及 shuffle 逻辑，比如 map，flatmap 等操作），将这些 RDD 放在一个 task 里面执行，大大减少了计算时所需的内存开销，也减少了网络传输的数据量，详细可以<a href="https://link.jianshu.com?t=https://github.com/JerryLead/SparkInternals/blob/master/markdown/3-JobPhysicalPlan.md" target="_blank" rel="noopener">参考</a>。（很多计算框架都有采用这种优化，比如 Flink）</p>
+<p><strong>总结一下 Spark 的优点：</strong></p>
+<p>1. 它不止提供了 map 和 reduce 逻辑，还提供了额外的 api，更好的支持了复杂的迭代计算，如：groupby、join 等函数。</p>
+<p>2. 更好的利用内存：内存够用的情况下，数据直接在内存进行处理，减少数据落盘次数，提高计算效率。</p>
+<p>这时候问题来了：那既然 Spark 这么好，是不是 Spark 可以完全取代 MR 了？</p>
+<p>答：也没有那么绝对，任何东西都有它存在的理由，都有它发光发热的地方，比如当数据量非常大，Spark 内存放不下的时候，数据也是需要落盘的。对海数据简单清洗，排序时，Spark 的性能并不一定就比 MR 好，所以还需要看具体的业务。</p>
+<p><em>而且前两年大家都在说 Spark 将会取代 Hadoop，与其说是取代 Hadoop，倒不如说 Spark 有可能取代 MapReduce，因为 Spark 自身是没有存储功能的，数据源往往依赖 HDFS 存储。</em></p>
+<p>MR 和 Spark 采用<strong>批量</strong>的方式解决离线计算业务，那想象一下另一些场景：在金融业务中，我们希望能够马上检测到有问题的账单，或者我们希望实时得到系统状态的统计信息，若采用批量框架，很难及时的得到反馈结果，这时就需要实时计算。</p>
+<h1 id="实时计算"><a href="#实时计算" class="headerlink" title="实时计算"></a>实时计算</h1><p>上篇文章大致介绍了离线计算 MapReduce 和 Spark，但是无法满足对实时性要求较高的业务，下面我们来了解一下实时计算。</p>
+<h3 id="离线和批量、实时和流式"><a href="#离线和批量、实时和流式" class="headerlink" title="离线和批量、实时和流式"></a><strong>离线和批量、实时和流式</strong></h3><hr>
+<p>在聊实时计算之前，先说一下我对离线和批量、实时和流式的一些看法。</p>
+<p>我们首先来简单看一下计算任务的大致流程：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180424_simpread-实时计算——聊一聊我所经历的计算框架/image1" alt=""></p>
+<p><strong>首先说下批量计算和流式计算：</strong></p>
+<p>图中显示了一个计算的基本流程，receiver 处负责从数据源接收数据，并发送给下游的 task，数据由 task 处理后由 sink 端输出。</p>
+<p>以图为例，批量和流式处理<strong>数据粒度</strong>不一样，批量每次处理一定大小的<strong>数据块</strong>（输入一般采用文件系统），一个 task 处理完一个数据块之后，才将处理好的中间数据发送给下游。流式计算则是以 record 为单位，task 在处理完一条记录之后，立马发送给下游。</p>
+<p>假如我们是对一些固定大小的数据做统计，那么采用批量和流式效果基本相同，但是流式有一个好处就是可以实时得到计算中的结果，这对某些应用很有帮助，比如每 1 分钟统计一下请求 server 的 request 次数。</p>
+<p><strong>那问题来了</strong>，既然流式系统也可以做批量系统的事情，而且还提供了更多的功能，那为什么还需要批量系统呢？因为早期的流式系统并不成熟，存在如下问题：</p>
+<p>1. 流式系统的吞吐不如批量系统</p>
+<p>2. 流式系统无法提供精准的计算</p>
+<p><em>后面的介绍 Storm、Spark streaming、Flink 主要根据这两点来进行介绍。</em></p>
+<p><strong>批量和流式的区别：</strong></p>
+<p><strong>1. 数据处理单位：</strong></p>
+<p>批量计算按数据块来处理数据，每一个 task 接收一定大小的数据块，比如 MR，map 任务在处理完<strong>一个完整的数据块</strong>后（比如 128M），然后将中间数据发送给 reduce 任务。</p>
+<p>流式计算的上游算子处理完<strong>一条数据</strong>后，会立马发送给下游算子，所以一条数据从进入流式系统到输出结果的时间间隔较短（当然有的流式系统为了保证吞吐，也会对数据做 buffer）。</p>
+<p>这样的结果就是：批量计算往往得等任务全部跑完之后才能得到结果，而流式计算则可以实时获取最新的计算结果。</p>
+<p><strong>2. 数据源：</strong></p>
+<p>批量计算通常处理的是<strong>有限数据</strong>（bound data），数据源一般采用文件系统，而流式计算通常处理<strong>无限数据</strong>（unbound data），一般采用消息队列作为数据源。</p>
+<p><strong>3. 任务类型：</strong></p>
+<p>批量计算中的每个任务都是短任务，任务在处理完其负责的数据后关闭，而流式计算往往是长任务，每个 work 一直运行，持续接受数据源传过来的数据。</p>
+<h4 id="离线-批量？实时-流式？"><a href="#离线-批量？实时-流式？" class="headerlink" title="离线 = 批量？实时 = 流式？"></a><strong>离线 = 批量？实时 = 流式？</strong></h4><p>习惯上我们认为<strong>离线和批量等价；实时和流式等价</strong>，但其实这种观点并不完全正确。</p>
+<p>假设一种情况：当我们拥有一个非常强大的硬件系统，可以毫秒级的处理 Gb 级别的数据，那么批量计算也可以毫秒级得到统计结果（当然这种情况非常极端，目前不可能），那我们还能说它是离线计算吗？</p>
+<p><strong>所以说离线和实时应该指的是：数据处理的延迟；批量和流式指的是：数据处理的方式。</strong>两者并没有必然的关系。事实上 Spark streaming 就是采用<strong>小批量</strong>（batch）的方式来实现实时计算。</p>
+<p><em>可以参考下面链接：<a href="https://www.oreilly.com/ideas/the-world-beyond-batch-streaming-101。作者是" target="_blank" rel="noopener">https://www.oreilly.com/ideas/the-world-beyond-batch-streaming-101。作者是</a> Google 实时计算的负责人，里面阐述了他对批量和实时的理解，并且作者认为批量计算只是流式计算的子集，一个设计良好的流式系统完全可以替代批量系统。本人也从中受到了很多启发。</em></p>
+<p>介绍完这些概念后，下面我们就来简单看看目前流行的实时计算框架的实现和区别。</p>
+<h2 id="Storm"><a href="#Storm" class="headerlink" title="Storm"></a>Storm</h2><hr>
+<p>Storm 做为最早的一个<strong>实时计算框架</strong>，早期应用于各大互联网公司，这里我们依然使用 work count 举例：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180424_simpread-实时计算——聊一聊我所经历的计算框架/image2" alt=""></p>
+<p>spout：负责从数据源接收数据</p>
+<p>bolt：负责数据处理，最下游的 bolt 负责数据输出</p>
+<p>spout 不断从数据源接收数据，然后按一定规则发送给下游的 bolt 进行计算，最下游的 bolt 将最终结果输出到外部系统中（这里假设输出到 DB），这样我们在 DB 中就可以看到最新的数据统计结果。Storm 每一层的算子都可以配置多个，这样保证的水平扩展性。因为往往处理的是 unbound data，所以 storm 中的算子都是长任务。</p>
+<h4 id="容灾"><a href="#容灾" class="headerlink" title="容灾"></a>容灾</h4><p>容灾是所有系统都需要考虑的一个问题，考虑一下：假如运行过程中，一个算子（bolt）因某种原因挂了，Storm 如何恢复这个任务呢？</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180424_simpread-实时计算——聊一聊我所经历的计算框架/image3" alt=""></p>
+<p>批处理解决方案就比较简单，拿 MR 举例，假如一个运行中 map 或 reduce 失败，那么任务重新提交一遍就 ok（只不过重头计算又要花费大量时间），下面我们看看 Storm 是如何解决的：</p>
+<p>storm 的 spout 有一个 <strong>buffer</strong>，会缓存接收到的 record，并且 Storm 还有一个 acker（可以认为是一个特殊的 bolt 任务），每条 record 和该 record 所产生的所有 tuple 在处理完成后都会向对应的 acker 发送 ack 消息，当 acker 接收到该 record 所有的 ack 消息之后，便认为该 record 处理成功，并通知 spout 从 buffer 中将该 record 移除，若 receiver 没有在规定的时间内接收到 ack，acker 则通知 spout 重放数据。</p>
+<p>acker 个数可以由用户指定，因为数据量比较大时，一个 acker 可能处理不过来所有的 ack 信息，成为系统瓶颈（如果可以容忍数据丢失，当然也可以关闭 ack 机制，可以显著提高系统性能）。并且 acker 采用了巧妙的机制，优化了 ack 机制的资源占用（有兴趣的同学可以参考官网，网上也有很多博客介绍 ack 具体实现）。</p>
+<p>Storm 采用 ack 机制实现了数据的重放，尽管做了很多优化，但是毕竟每条 record 和它产生的 tuple 都需要 ack，对吞吐还是有较大的影响，关闭 ack 的话，对于某些不允许丢数据的业务来说又是不可接受的。</p>
+<p>Storm 的这种特点会导致大家认为：<strong>流式计算的吞吐不如批量计算</strong>。（这点其实是不对的，只能说 Storm 的设计导致了它的吞吐不如批量计算，一个设计优秀的流式系统是有可能拥有和批处理系统一样的吞吐）</p>
+<h4 id="数据不重不丢"><a href="#数据不重不丢" class="headerlink" title="数据不重不丢"></a><strong>数据不重不丢</strong></h4><p>之前我们提到早期的流式系统无法提供精准的计算服务，下面我们详细了解一下：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180424_simpread-实时计算——聊一聊我所经历的计算框架/image4" alt=""></p>
+<p>sink 处的重复输出：假如运行过程中，boltA 数据入库后，boltB 因为某种原因 crash 了，这时候会导致该 record 重放，boltA 中已经处理过的数据会再次入库，导致部分数据重复输出。</p>
+<p>不仅 sink 处存在重复输出的问题，receiver 处也同样存在这种问题。（在讲解 Spark streaming 处会详细介绍什么情况下 receiver 会重复接收数据）</p>
+<p>Storm 没有提供 exactly once 的功能，并且开启 ack 功能后又会严重影响吞吐，<strong>所以会给大家一种印象</strong>：<strong>流式系统只适合吞吐相对较小的、低延迟不精确的计算；而精确的计算则需要由批处理系统来完成</strong>，所以出现了 <strong>Lambda 架构</strong>，该架构由 Storm 的创始人提出，简单的理解就是同时运行两个系统：一个流式，一个批量，用批量计算的精确性来弥补流式计算的不足，但是这个架构存在一个问题就是需要同时维护两套系统，代价比较大。</p>
+<p>那么有没有一种架构，可以满足高吞吐、低延迟的要求，同时也提供 exactly once 功能？有的，下面我们来看看 Spark streaming。</p>
+<h2 id="Spark-streaming"><a href="#Spark-streaming" class="headerlink" title="Spark streaming"></a>Spark streaming</h2><hr>
+<h4 id="吞吐"><a href="#吞吐" class="headerlink" title="吞吐"></a>吞吐</h4><p>Spark streaming 采用小批量的方式，提高了吞吐性能：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180424_simpread-实时计算——聊一聊我所经历的计算框架/image5" alt=""></p>
+<p>这里我们简单展示 Spark streaming 的运行机制，主要是与 Storm 做下对比。Spark streaming 批量读取数据源中的数据，然后把每个 batch 转化成内部的 RDD。Spark streaming 以 batch 为单位进行计算（默认 1s 产生一个 batch），而不是以 record 为单位，大大减少了 ack 所需的开销，显著提高了吞吐。</p>
+<p><em>但也因为处理数据的粒度变大，导致 Spark streaming 的数据延时不如 Storm，Spark streaming 是秒级返回结果（与设置的 batch 间隔有关），Storm 则是毫秒级。</em></p>
+<h4 id="不重不丢（exactly-once）"><a href="#不重不丢（exactly-once）" class="headerlink" title="不重不丢（exactly once）"></a>不重不丢（exactly once）</h4><p>Spark streaming 通过 batch 的方式提高了吞吐，但是同样存在上面所说的数据丢失和重复的问题。</p>
+<p>在解答这个问题之前，我们先来了解一下一些概念：</p>
+<p>1.at most once：最多消费一次，会存在数据丢失</p>
+<p>2.at least once：最少消费一次，保证数据不丢，但是有可能重复消费</p>
+<p>3.exactly once：精确一次，无论何种情况下，数据都只会消费一次，这是我们最希望看到的结果</p>
+<p>大部分流式系统都提供了 at most once 和 at least once 功能，但不是所有系统都能提供 exactly once。</p>
+<p>我们先看看 Spark streaming 的 at least once 是如何实现的，Spark streaming 的每个 batch 可以看做是一个 Spark 任务，receiver 会先将数据写入 WAL，保证 receiver 宕机时，从数据源获取的数据能够从日志中恢复（注意这里，早期的 Spark streaming 的 receiver 存在重复接收数据的情况），并且依赖 RDD 实现内部的 exactly once（可以简单的理解采用批量计算的方式来实现）。RDD：Resilient Distributed Dataset 弹性分布式数据集，Spark 保存着 RDD 之间的依赖关系，保证 RDD 计算失败时，可以通过上游 RDD 进行重新计算（RDD 如何实现容错这里就不解释了，可以自行查资料）。</p>
+<p>上面简单解释了 Spark streaming 依赖源数据写 WAL 和自身 RDD 机制提供了容灾功能，保证 at least once，但是依然无法保证 exactly once，在回答这个问题前，我们再来看一下，什么情况 Spark streaming 的数据会重复计算。</p>
+<blockquote>
+<p>WAL 即 write ahead log（预写日志）。作用就是，将数据通过日志的方式写到可靠的存储，比如 HDFS、s3，在 driver 或 worker failure 时可以从在可靠存储上的日志文件恢复数据。WAL 在 driver 端和 executor 端都有应用。我们分别来介绍。</p>
+</blockquote>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180424_simpread-实时计算——聊一聊我所经历的计算框架/image6" alt=""></p>
+<p>这里我们主要关注图中的 3 个红框：</p>
+<p>Spark streaming 的 RDD 机制只能保证内部计算 exactly once（图中的 1），但这是不够的，回想一下刚才 Storm 的例子，假如某个 batch 中，sink 处一部分数据已经入库，这时候某个 sink 节点宕机，导致该节点处理的数据重复输出（图中的 3，Storm 处已经解释过了）。还有另一种情况就是 receiver 处重复接收数据（图中的 2），我们看一下 receiver 重复接收数据的情况：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180424_simpread-实时计算——聊一聊我所经历的计算框架/image7" alt=""></p>
+<p>假如 receiverA 目前从 kafka 读到 pos=100 的记录，并且已经持久化到 HDFS，但是由于网络延迟没有及时更新 pos，此时 receiverA 宕机了，receiverB 接管 A 的数据，并且后续的任务还会从 pos=100 处重新读取，导致重复消费。造成这种情况的主要原因就是：<strong>receiver 处数据消费和 Kafka 中 position 的更新没有做到原子性</strong>。</p>
+<p>根据上面的讨论，可以得出：一个流式系统如果要做到 exactly once，必须满足 3 点：</p>
+<p>1.receiver 处保证 exactly once</p>
+<p>2. 流式系统自身保证 exactly once</p>
+<p>3.sink 处保证 exactly once</p>
+<p>这里数据源采用 Kafka 举例是因为 Kafka 作为目前主流的分布式消息队列，比较有代表性。Kafka consumer 的 position 可以保存在 ZK 或者 Kafka 中，也可以由 consumer 自己来保存。前者的话就可能存在数据消费和 position 更新不一致的问题（因为无法保证原子性，也是之前 Spark streaming 采用的方式），而采用后者的话，consumer 可以采用<strong>事务更新</strong>的方式（写本地或者采用事务的方式写数据库），<strong>保证数据消费和 position 更新的原子性</strong>，从而实现 exactly once（<a href="https://link.jianshu.com?t=https://kafka.apache.org/documentation/#semantics" target="_blank" rel="noopener">参考</a>）。</p>
+<h4 id="Spark-streaming-实现-exactly-once"><a href="#Spark-streaming-实现-exactly-once" class="headerlink" title="Spark streaming 实现 exactly once"></a>Spark streaming 实现 exactly once</h4><p>Spark streaming1.3 版本新添加了 <a href="https://link.jianshu.com?t=https://spark.apache.org/docs/latest/streaming-programming-guide.html#fault-tolerance-semantics" target="_blank" rel="noopener">Kafka Direct API</a> 来实现数据接收的 exactly once，本质上就是上面提到的后者，Spark streaming 自己维护 position，streaming 的 worker 直接从 Kafka 读取数据，position 由 Spark streaming 管理，不再依赖 ZK 保存，<strong>同时保证数据消费和更新 position 的原子性</strong>，从而实现 exactly once。</p>
+<p><em>并且新的方式已经不再需要 receiver 持久化数据，因为 Kafka 本身就支持数据持久化，可以避免 receiver 处持久化数据的开销，实现 exactly once 的同时也提高了性能。</em></p>
+<p>而 sink 处的 exactly once 的实现则视外部系统而定，比如文件系统本身就支持<strong>幂等</strong>（同一个操作执行多次，不会改变之前的结果），同时 Spark streaming 也提供了 api，用户可以自己实现 sink 处的<a href="https://link.jianshu.com?t=https://spark.apache.org/docs/latest/streaming-programming-guide.html#fault-tolerance-semantics" target="_blank" rel="noopener">事务更新</a>，receiver、sink 和 Spark streaming 三者结合起来才能实现了真正的 exactly once。</p>
+<p><em>Storm trident 本质上也是采用了小批量的方式，并且也实现了 exactly once 语义，这里就不做过多讨论。</em></p>
+<p>直到这里，我们了解到 Spark streaming 拥有较好的吞吐和 exactly once 语义，解决了 Storm 一些不足，<strong>是不是只有采用类似 Spark streaming 这种小批量（micro-batch）的方式才能实现这些功能？</strong>答案是：NO。下面我们来看看 Flink。</p>
+<h2 id="Flink"><a href="#Flink" class="headerlink" title="Flink"></a>Flink</h2><hr>
+<p>Flink 在数据处理的方式上和 Storm 类似，并没有采用小批量，是一个<strong>真正的流式系统</strong>。它不仅拥有了不弱于 Spark streaming 的吞吐，并且提供了 exactly once 语义。既然 Flink 也是逐条处理记录，那么它是怎么做到的呢？跟上我的脚步…（下面内容大部分参考官网，捡重点的翻译，想起来一个段子：如何快速成为业界大牛？答：翻译英文文档。。hahaha，开个玩笑 ^ ^）</p>
+<p>简单来说，Flink 采用<strong>轻量级分布式快照实现容错</strong>，大致流程是：Flink 不断的对整个系统做 snapshot，snapshot 数据可以放在 master 上或外部系统（如 HDFS），假如发生故障时，Flink 停止整个数据流，并选出最近完成的 snapshot，将整个数据流恢复到该 snapshot 那个时间点，snapshot 本身比较轻量，而且用户可以自行配置 snapshot 的间隔，snapshot 的性能开销对系统的影响很小（官方测试 snapshot 开启前后的性能差距不大）。</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180424_simpread-实时计算——聊一聊我所经历的计算框架/image8" alt=""></p>
+<p>barrier 是分布式 snapshot 实现中一个非常核心的元素，barrier 和 records 一起在流式系统中传输，<strong>barrier 是当前 snapshot 和下一个 snapshot 的分界点</strong>，它携带了当前 snapshot 的 id，假设目前在做 snapshot N，算子在发送 barrier N 之前，都会对当前的状态做 checkpoint（checkpoint 数据可以保存在外部系统中，如 HDFS），checkpoint 只包含了 barrier N 之前的数据状态，不会涉及 barrier N 之后的数据。</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180424_simpread-实时计算——聊一聊我所经历的计算框架/image9" alt=""></p>
+<p>因为算子很多情况下需要接收多个算子的数据（shuffle 操作），所以只有当所有上游的发送的 barrier N 都到达之后，算子才会将 barrier N 发送给下游（所有的下游）。当所有的 sink 算子都接收到 barrier N 之后，才会认为该 snapshot N 成功完成。</p>
+<p>为了保证一致性，需要遵守以下几个原则：</p>
+<p>1. 一旦算子接收到某一个上游算子的 barrier 之后，它不能再处理该上游后面的数据，只有当它所有上游算子的 barrier 都到达，并将 barrier 发送给下游之后，才能继续处理数据，否则的话会造成 snapshot N 和 N+1 的数据重叠。</p>
+<p>2. 某个上游算子的 barrier 到达之后，该上游算子后续的数据将会被缓存在 input buffer 中。</p>
+<p>3. 一旦所有上游的算子的 barrier 都到达之后，该算子将数据和 barrier 发送给下游。</p>
+<p>4. 发送成功之后，该算子继续处理 input buffer 中的数据，并继续接收处理上游算子发送过来的数据。（有点啰嗦啊）</p>
+<p>下面我们来看一个完整的 snapshot 流程图：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180424_simpread-实时计算——聊一聊我所经历的计算框架/image10" alt=""></p>
+<p>图中的 Master 保存了 snapshot 的状态，假设数据还是从 Kafka 中获取，首先 receiver 算子会先将当前的 position 发送给 master，记录在 snapshot 中，并同时向下游发送 barrier，下游的算子接收到 barrier 后，发起 checkpoint 操作，将当前的状态记录在外部系统中，并更新 Master 中 snapshot 状态，最后当所有的 sink 算子都接收到 barrier 之后，更新 snapshot 中的状态，此时认为该 snapshot 完成。</p>
+<p>通过这种轻量级的分布式 snapshot 方式，Flink 实现了 exactly once，同时 Flink 也支持 at least once，也就是算子不阻塞 barrier 已经到达的上游算子的数据（多个上游算子的情况），这样可以降低延迟，但是不保证 exactly once。</p>
+<p>从图中我们可以看出 Kafka position 也是由 Flink 自己维护的，所以能够保证 receiver 处的 exactly once，sink 处也同样存在 Spark streaming 一样的问题，exactly once 依赖外部系统或需要用户自己实现。Flink 官网给出了目前支持的 <a href="https://link.jianshu.com?t=https://ci.apache.org/projects/flink/flink-docs-release-1.3/dev/connectors/guarantees.html" target="_blank" rel="noopener">Data Sources 和 Sinks</a> 以及容错的粒度。</p>
+<p><em>其中 sink 处采用 Kafka 的话不支持 exactly once，个人猜想是不是因为早期的 Kafka producer 没有支持 exactly once 语义，而导致 Flink 无法支持。Kafka0.11 版本中添加了 producer exactly once 的支持，是否后续能够添加进来？</em></p>
+<p>讲到这里，我们可以了解到：</p>
+<p>1. 流式系统并不一定就是吞吐差的代名词</p>
+<p>2. 流式系统也可以做到 exactly once</p>
+<p>就如 Google 流式系统负责人 Tyler Akidau 所说：<strong>一个设计良好的流式系统是能够在吞吐完全媲美批量系统，并且提供精准的实时服务。</strong><em>（那是不是以后可以完全用流式系统取代批量系统？）</em></p>
+<h3 id="window-和-event-time"><a href="#window-和-event-time" class="headerlink" title="window 和 event time"></a>window 和 event time</h3><hr>
+<p>Flink 相比 Spark streaming 不仅提供了更低的延迟，而且 Flink 还对 window 和 event time 提供了更好的支持。window 和 event time 又是什么呢？</p>
+<h4 id="window"><a href="#window" class="headerlink" title="window"></a><strong>window</strong></h4><p>现实生活中，大部分数据源其实是 unbound data，没有边界，我们没有办法得到一个最终的统计结果，很多情况下我们会对固定时间间隔的数据进行统计，比如每 5s 统计一下服务器的 qps，window 机制能够帮我们很好的完成这项需求。</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180424_simpread-实时计算——聊一聊我所经历的计算框架/image11" alt=""></p>
+<p>如图（标号代表事件发生的时间），流式系统会每隔 5s 创建一个 window，将该时间段的数据放入 buffer，累加后输出结果。图中 0-5s 产生的数据放在第一个 window 中（3s 处有两条数据），累加后输出 count=6。</p>
+<p><em>window 类型也有很多种，上图是一个 Tumbling Windows 的例子，另外还有 Sliding Windows 和 session window，具体区别读者可以自行查资料。</em></p>
+<p><a href="https://link.jianshu.com?t=https://ci.apache.org/projects/flink/flink-docs-release-1.3/dev/windows.html#tumbling-windows" target="_blank" rel="noopener"></a></p>
+<p>上图是一个比较理想的示例图，理想很丰满，现实很骨感，事情往往不尽如人意（情不自禁的都想唱起来了：人生已经如此的艰难，有些事情就不要 ao…… 流式系统的破事怎么这么多！！），直接按接收时间来划分 window 可能会存在误差：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180424_simpread-实时计算——聊一聊我所经历的计算框架/image12" alt=""></p>
+<p>假设由于网络延迟，应该属于第一个窗口的数据 3 延迟到达，被分到了第二个窗口，这时候计算结果并不准确。怎么办呢？</p>
+<h4 id="event-time-和-process-time："><a href="#event-time-和-process-time：" class="headerlink" title="event time 和 process time："></a>event time 和 process time：</h4><p>假设一个流式系统目前正在接收并处理用户手机的日志，但是由于网络延迟，或者用户手机离线，导致日志没有及时发送到流式系统，流式系统观察到数据的时间和数据真正产生的时间可能存在偏差，我们把数据真正产生的时间叫做：event time，把流式系统处理该数据的时间叫做：process time。</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180424_simpread-实时计算——聊一聊我所经历的计算框架/image13" alt=""></p>
+<p>event time 和 process time 往往会存在延迟，这种不一致会导致数据乱序，如图所示：蓝色事件晚于黄色事件发生，但是事件的处理却先于黄色事件。</p>
+<p>早期的流式系统并没有区分 process time 和 event time，往往将 process time 等同于 event time。针对这一问题，一个很直观的解决方案就是：让数据自身携带 timestamp，该 timestamp 记录该数据产生的时间，即为 event time，流式系统按数据的 event time 来将数据分配到对应的窗口，而不是按处理数据的时间。</p>
+<p>window 需要知道该窗口的数据都已经全部到达，然后触发计算逻辑，window 如何判断时间 T 之前的数据是否都已经到达呢？</p>
+<h4 id="watermark"><a href="#watermark" class="headerlink" title="watermark"></a>watermark</h4><p>那就是引入 watermark 机制，watermark 同样也携带一个时间戳，<strong>当算子接收到 watermark T 后，就代表时间 T 之前的数据已经接收完毕</strong>，不会再有小于时间 T 的数据。</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180424_simpread-实时计算——聊一聊我所经历的计算框架/image14" alt=""></p>
+<p>如图：W(17）到达后，表示后续数据的时间戳不会小于 17。那可能有人会问了：<strong>那就是有一部分小于 17 的数据他喵的就是比 w(17) 还晚到了怎么办？</strong></p>
+<p>watermark 还会配合一个 allow lateness 参数，window 接收到 watermark 后，再等待一段时间才会关闭窗口，如果这段时间有些数据依然没有发送过来，那就只能忽略它们了（window 的内心 os：我也尝试过等待，但我还有更重要的事情要做），而且考虑到流式系统的实时性，假如可接受的时间内，数据没有传输过来，那就算等到它过来再计算，从实时性这个角度来说，这时计算的结果也有可能也已经没有意义了。</p>
+<p>Flink 对 window 和 watermark 都提供了较好的支持，Spark streaming 从 2.0 中也开始引入 watermark 功能，但是支持的功能有限，并且真正的流式可以更优雅、简单的实现 window 和 watermark，从这个角度来看，Flink 是优于 Spark streaming 的。</p>
+<h1 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h1><hr>
+<p>了解了 Storm、Spark streaming、Flink 各自的特点后，我们知道<br> <strong>Storm</strong> 提供了低延迟的计算，但是吞吐较低，并且无法保证 exactly once（Storm trident 采用 batch 的方式改善了这两点）<br> <strong>Spark streaming</strong> 通过小批量的方式保证了吞吐的情况下，同时提供了 exactly once 语义，但是实时性不如 Storm，而且由于采用 micro-batch 的方式，对 window 和 event time 的支持比较有限（Spark streaming2.0 中引入了 window 和 event time，还在起步阶段）。<br> <strong>Flink</strong> 采用分布式快照的方式实现了一个高吞吐、低延迟、支持 exactly once 的流式系统，流式处理的方式也能更优雅的支持 window 和 event time。</p>
+<p>当然也不是说 Flink 一定就比 Storm、Spark streaming 好，没有最好的框架，只有最合适的框架，根据自身的业务、公司的技术储备选择最合适的框架才是正确的选择。</p>
+<hr>
+<blockquote>
+<p>参考：<br>离线计算——聊一聊我所经历的计算框架 - 简书<br><a href="https://www.jianshu.com/p/fdae83981422" target="_blank" rel="noopener">https://www.jianshu.com/p/fdae83981422</a><br>实时计算——聊一聊我所经历的计算框架 - 简书<br><a href="https://www.jianshu.com/p/16323566f3c6" target="_blank" rel="noopener">https://www.jianshu.com/p/16323566f3c6</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+
+     
+    
+      <div>
+        
+    <div style="text-align:center;color: #ccc;font-size:14px;">
+        ------ 本文结束<i class="fa fa-paw"></i>感谢您的阅读 ------</div>
+
+      </div>
+    
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    CloudPai
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://cloudpai.site/2018/04/24/2018-04-24/" title="分布式计算平台 之 实时/离线平台">http://cloudpai.site/2018/04/24/2018-04-24/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/分布式/" rel="tag"><i class="fa fa-tag"></i> 分布式</a>
+          
+            <a href="/tags/计算/" rel="tag"><i class="fa fa-tag"></i> 计算</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/24/2018-04-24-1/" rel="next" title="分布式计算平台 之 数据库">
+                <i class="fa fa-chevron-left"></i> 分布式计算平台 之 数据库
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+
+
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg"
+                alt="CloudPai" />
+            
+              <p class="site-author-name" itemprop="name">CloudPai</p>
+              <p class="site-description motion-element" itemprop="description">加油(๑•̀ㅂ•́)و✧加油</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">192</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+
+<div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=240 src="//music.163.com/outchain/player?type=0&id=2113726971&auto=0&height=430"></iframe>
+</div>
+<!-- 459004290 -->
+
+
+
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">93</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CloudPai" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:liupai024@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.douban.com/people/57965969/doulists/all" target="_blank" title="豆瓣">
+                      
+                        <i class="fa fa-fw fa-book"></i>豆瓣</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/cloudPai/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-edit"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.dlut.edu.cn/" title="DUT" target="_blank">DUT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bupt.edu.cn/" title="BUPT" target="_blank">BUPT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://campus.alibaba.com/index.htm" title="Alibaba Group" target="_blank">Alibaba Group</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#离线计算"><span class="nav-text">离线计算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#MapReduce"><span class="nav-text">MapReduce</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spark"><span class="nav-text">Spark</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#实时计算"><span class="nav-text">实时计算</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#离线和批量、实时和流式"><span class="nav-text">离线和批量、实时和流式</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#离线-批量？实时-流式？"><span class="nav-text">离线 = 批量？实时 = 流式？</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Storm"><span class="nav-text">Storm</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#容灾"><span class="nav-text">容灾</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据不重不丢"><span class="nav-text">数据不重不丢</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Spark-streaming"><span class="nav-text">Spark streaming</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#吞吐"><span class="nav-text">吞吐</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不重不丢（exactly-once）"><span class="nav-text">不重不丢（exactly once）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Spark-streaming-实现-exactly-once"><span class="nav-text">Spark streaming 实现 exactly once</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flink"><span class="nav-text">Flink</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#window-和-event-time"><span class="nav-text">window 和 event time</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#window"><span class="nav-text">window</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#event-time-和-process-time："><span class="nav-text">event time 和 process time：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#watermark"><span class="nav-text">watermark</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#总结："><span class="nav-text">总结：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CloudPai</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">836.0k</span>
+  
+</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv">  </span>
+</span>
+</div>
+
+
+
+
+
+
+
+  <div class="theme-info">&#12288;主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://cloudpai.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://cloudpai.site/2018/04/24/2018-04-24/';
+          this.page.identifier = '2018/04/24/2018-04-24/';
+          this.page.title = '分布式计算平台 之 实时/离线平台';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cloudpai.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!-- <!-- <script src="https://cdn.bootcss.com/aplayer/1.6.0/APlayer.min.js"></script>
+
+<script src="https://api.i-meto.com/music/player.js"></script> --> -->
+  
+  <!--移动端判断，是否引入背景-->
+  <script>
+  var browser={  
+      versions:function(){   
+             var u = navigator.userAgent, app = navigator.appVersion;   
+             return {//移动终端浏览器版本信息
+                  trident: u.indexOf('Trident') > -1, //IE内核
+                  presto: u.indexOf('Presto') > -1, //opera内核
+                  webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                  gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                  mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                  ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                  android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                  iPhone: u.indexOf('iPhone') > -1 , //是否为iPhone或者QQHD浏览器
+                  iPad: u.indexOf('iPad') > -1, //是否iPad
+                  webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+              };  
+           }(),  
+           language:(navigator.browserLanguage || navigator.language).toLowerCase()  
+  }   
+    if(browser.versions.mobile || browser.versions.ios || browser.versions.android ||   
+      browser.versions.iPhone || browser.versions.iPad){        
+               
+    }else{
+    document.write("<script type=\'text/javascript\'  src=\'/js/src/particle.js\'><\/script>");
+    }
+  </script>
+
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":-80,"vOffset":-50},"mobile":{"show":false,"scale":0.2},"react":{"opacityDefault":1,"opacityOnHover":0.2}});</script></body>
+</html>

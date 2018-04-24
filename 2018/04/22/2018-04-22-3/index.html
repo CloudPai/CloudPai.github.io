@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="分布式,微服务," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="CloudPai" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="推荐一个关注spring boot 和 spring cloud 的博客：  纯洁的微笑http://www.ityouknow.com/  对微服务的详解：  Martin Fowler的《微服务》 · 微服务学习笔记https://skyao.gitbooks.io/learning-microservice/content/definition/Martin-Fowler/microser">
+<meta name="keywords" content="分布式,微服务">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分布式微服务">
+<meta property="og:url" content="http://cloudpai.site/2018/04/22/2018-04-22-3/index.html">
+<meta property="og:site_name" content="CloudPai">
+<meta property="og:description" content="推荐一个关注spring boot 和 spring cloud 的博客：  纯洁的微笑http://www.ityouknow.com/  对微服务的详解：  Martin Fowler的《微服务》 · 微服务学习笔记https://skyao.gitbooks.io/learning-microservice/content/definition/Martin-Fowler/microser">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-第 12 章 Spring Boot 与微服务/image1">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-第 12 章 Spring Boot 与微服务/image2">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-第 12 章 Spring Boot 与微服务/image3">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-第 12 章 Spring Boot 与微服务/image4">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-第 12 章 Spring Boot 与微服务/image5">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-第 12 章 Spring Boot 与微服务/image6">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-第 12 章 Spring Boot 与微服务/image7">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-第 12 章 Spring Boot 与微服务/image8">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-第 12 章 Spring Boot 与微服务/image9">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-第 12 章 Spring Boot 与微服务/image10">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-第 12 章 Spring Boot 与微服务/image11">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-第 12 章 Spring Boot 与微服务/image12">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-第 12 章 Spring Boot 与微服务/image13">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-第 12 章 Spring Boot 与微服务/image14">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-第 12 章 Spring Boot 与微服务/image15">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-第 12 章 Spring Boot 与微服务/image16">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-第 12 章 Spring Boot 与微服务/image17">
+<meta property="og:updated_time" content="2018-04-22T12:42:25.165Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="分布式微服务">
+<meta name="twitter:description" content="推荐一个关注spring boot 和 spring cloud 的博客：  纯洁的微笑http://www.ityouknow.com/  对微服务的详解：  Martin Fowler的《微服务》 · 微服务学习笔记https://skyao.gitbooks.io/learning-microservice/content/definition/Martin-Fowler/microser">
+<meta name="twitter:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-第 12 章 Spring Boot 与微服务/image1">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'TZAS2SFOJR',
+      apiKey: 'e2a9cd036eede8026382b302001ec261',
+      indexName: 'cloudpai_blogs_search',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cloudpai.site/2018/04/22/2018-04-22-3/"/>
+
+
+
+
+
+  <title>分布式微服务 | CloudPai</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-114643720-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CloudPai</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/04/22/2018-04-22-3/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CloudPai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudPai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">分布式微服务</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-22T17:28:15+08:00">
+                2018-04-22
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-22T20:42:25+08:00">
+                2018-04-22
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/22/2018-04-22-3/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/04/22/2018-04-22-3/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  5,357
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  19
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><p>推荐一个关注spring boot 和 spring cloud 的博客：</p>
+<blockquote>
+<p>纯洁的微笑<br><a href="http://www.ityouknow.com/" target="_blank" rel="noopener">http://www.ityouknow.com/</a></p>
+</blockquote>
+<p>对微服务的详解：</p>
+<blockquote>
+<p>Martin Fowler的《微服务》 · 微服务学习笔记<br><a href="https://skyao.gitbooks.io/learning-microservice/content/definition/Martin-Fowler/microservices.html" target="_blank" rel="noopener">https://skyao.gitbooks.io/learning-microservice/content/definition/Martin-Fowler/microservices.html</a></p>
+</blockquote>
+<h1 id="分布式微服务"><a href="#分布式微服务" class="headerlink" title="分布式微服务"></a>分布式微服务</h1><p>随着 RESTful web 服务和 JSON 数据交换格式流行，简单快速建立一个可连接的服务已经越来越方便了。随着<strong>持续交付概念</strong>推广以及 <strong>Docker 容器</strong>普及，微服务将这两种理念和技术结合起来，形成新的<strong>微服务</strong> + <strong>API</strong> + <strong>平台</strong>的开发模式，以及<strong>容器化微服务的持续交付</strong>概念。</p>
+<blockquote>
+<p>如何理解持续集成、持续交付、持续部署？</p>
+</blockquote>
+<blockquote>
+<ul>
+<li>集成是指软件个人研发的部分向软件整体部分交付，以便尽早发现个人开发部分的问题；</li>
+<li>部署是代码尽快向可运行的开发/测试节交付，以便尽早测试；</li>
+<li>交付是指研发尽快向客户交付，以便尽早发现生产环境中存在的问题。</li>
+</ul>
+</blockquote>
+<blockquote>
+<p>如果说等到所有东西都完成了才向下个环节交付，导致所有的问题只能再最后才爆发出来，解决成本巨大甚至无法解决。而所谓的持续，就是说每完成一个完整的部分，就向下个环节交付，发现问题可以马上调整。使得问题不会放大到其他部分和后面的环节。<br>这种做法的核心思想在于：既然事实上难以做到事先完全了解完整的、正确的需求，那么就干脆一小块一小块的做，并且加快交付的速度和频率，使得交付物尽早在下个环节得到验证。早发现问题早返工。<br>——————–补充：<br>从敏捷思想中提出的这三个观点，还强调一件事：通过技术手段自动化这三个工作。加快交付速度。<br>作者：赵劼<br>链接：<a href="https://www.zhihu.com/question/23444990/answer/26995938" target="_blank" rel="noopener">https://www.zhihu.com/question/23444990/answer/26995938</a><br>来源：知乎</p>
+</blockquote>
+<p>微服务 (micro services) 这个概念不是新概念，很多公司已经在实践了，例如亚马逊、Google、FaceBook，Alibaba。微服务架构模式 (Microservices Architecture Pattern) 的目的是将大型的、复杂的、长期运行的应用程序构建为一组相互配合的服务，每个服务可以<strong>独立</strong>迭代开发运维。</p>
+<p>Micro 这个词意味着每个服务都应该足够小，但是，这里的小不能用代码量来比较，而应该是从业务逻辑上比较——符合 “<strong>单一职责模式</strong>”（SRP）原则的才叫微服务。</p>
+<blockquote>
+<p><strong>单一职责原则</strong>是最简单的面向对象设计原则，它用于控制类的粒度大小。单一职责原则定义如下： 单一职责原则(Single Responsibility Principle, SRP)：一个类只负责一个功能领域中的相应职责，或者可以定义为：就一个类而言，应该只有<strong>一个</strong>引起它变化的<strong>原因</strong>。</p>
+<p>来源：面向对象设计原则之单一职责原则 · 设计模式Java版<br><a href="https://quanke.gitbooks.io/design-pattern-java/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99%E4%B9%8B%E5%8D%95%E4%B8%80%E8%81%8C%E8%B4%A3%E5%8E%9F%E5%88%99.html" target="_blank" rel="noopener">https://quanke.gitbooks.io/design-pattern-java/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E8%AE%BE%E8%AE%A1%E5%8E%9F%E5%88%99%E4%B9%8B%E5%8D%95%E4%B8%80%E8%81%8C%E8%B4%A3%E5%8E%9F%E5%88%99.html</a></p>
+</blockquote>
+<hr>
+<blockquote>
+<p>分布式的、去中心化的。Smart endpoints and dumb pipes, 本质就是去 ESB，把所有的 “思考” 逻辑包括路由、消息解析等放在服务内部（Smart endpoints），去掉一个大一统的 ESB，服务间轻（dumb pipes）通信，是比 <strong>SOA</strong> 更彻底的拆分。</p>
+</blockquote>
+<blockquote>
+<p>要搞微服务架构，先要搞定 <strong>RPC 框架</strong>。</p>
+</blockquote>
+<h1 id="12-1-微服务架构"><a href="#12-1-微服务架构" class="headerlink" title="12.1 微服务架构"></a>12.1 微服务架构</h1><p>先来看看传统的 web 开发方式，通过对比比较容易理解什么是 Microservice Architecture。和 Microservice 相对应的，这种方式一般被称为 Monolithic（比较难传神的翻译）。所有的功能打包在一个 WAR 包里，基本没有外部依赖（除了容器），部署在一个 JEE 容器（Tomcat，JBoss，WebLogic）里，包含了 DO/DAO，Service，UI 等所有逻辑。</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-第 12 章 Spring Boot 与微服务/image1" alt=""></p>
+<p>Monolithic 比较适合小项目，优点是：</p>
+<ul>
+<li><p>开发简单直接，集中式管理</p>
+</li>
+<li><p>基本不会重复开发</p>
+</li>
+<li><p>功能都在本地，没有分布式的管理开销和调用开销</p>
+</li>
+</ul>
+<p>它的缺点也非常明显，特别对于互联网公司来说：</p>
+<ul>
+<li><p>开发效率低：所有的开发在一个项目改代码，递交代码相互等待，代码冲突不断</p>
+</li>
+<li><p>代码维护难：代码功能耦合在一起，新人不知道何从下手</p>
+</li>
+<li><p>部署不灵活：构建时间长，任何小修改必须重新构建整个项目，这个过程往往很长</p>
+</li>
+<li><p>稳定性不高：一个微不足道的小问题，可以导致整个应用挂掉</p>
+</li>
+<li><p>扩展性不够：无法满足高并发情况下的业务需求</p>
+</li>
+</ul>
+<p>于是诞生了基于微服务的架构。简单来说， <strong>微服务的目的是有效的拆分应用，实现敏捷开发和部署</strong> 。</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-第 12 章 Spring Boot 与微服务/image2" alt=""> <img src="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-第 12 章 Spring Boot 与微服务/image3" alt=""></p>
+<h2 id="SOA-简述"><a href="#SOA-简述" class="headerlink" title="SOA 简述"></a>SOA 简述</h2><p>早在 1996 年，Gartner 就提出面向服务架构（SOA）。SOA 阐述了 “对于复杂的企业 IT 系统，应按照不同的、可重用的粒度划分，将功能相关的一组功能提供者组织在一起为消费者提供服务”，其目的是为了解决企业内部不同 IT 资源之间无法互联而导致的信息孤岛问题。</p>
+<p>2002 年，SOA 被称作 “现代应用开发领域最重要的课题之一”，其正在帮助企业从资源利用的角度出发，将 IT 资源整合成可操作的、基于标准的服务，使其能被重新组合和应用。</p>
+<p>但是，由于 SOA 本身的广义性以及抽象性，在其诞生的相当长一段时间内，人们对 SOA 存在着不同的认知和理解。</p>
+<p>到 2000 年左右，ESB(Enterprise Service Bus)、WebService、SOAP 等这类技术的出现，才使得 SOA 渐渐落地。同时，更多的厂商像 IBM、Oracle 等也分别提出基于 SOA 的解决方案或者产品。</p>
+<p>实际上，微服务架构并不是一个全新的概念。仔细分析 SOA 的概念，就会发现，其和我们今天所谈到的微服务思想几乎一致。那在 SOA 诞生这么多年后，为什么又提出了微服务架构呢？</p>
+<p>鉴于过去十几年互联网行业的高速发展，以及敏捷、持续集成、持续交付、DevOps，云技术等的深入人心，服务架构的开发、测试、部署以及监控等，相比我们提到的传统的 SOA 实现，已经大相径庭，主要区别如下表所示：</p>
+<table>
+<thead>
+<tr>
+<th>SOA 实现</th>
+<th>微服务架构实现</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>企业级，自顶向下开展实施</td>
+<td>团队级，自底向上开展实施</td>
+</tr>
+<tr>
+<td>服务由多个子系统组成，粒度大</td>
+<td>一个系统被拆分成多个服务，粒度细</td>
+</tr>
+<tr>
+<td>企业服务总线，集中式的服务架构</td>
+<td>无集中式总线，松散的服务架构</td>
+</tr>
+<tr>
+<td>集成方式复杂（ESB/WS/SOAP）</td>
+<td>集成方式简单（HTTP/REST/JSON）</td>
+</tr>
+<tr>
+<td>单块架构系统，相互依赖，部署复杂</td>
+<td>服务都能独立部署</td>
+</tr>
+</tbody>
+</table>
+<p>相比传统 SOA 的服务实现方式，微服务更具有灵活性、可实施性以及可扩展性，其强调的是一种独立测试、独立部署、独立运行的软件架构模式。</p>
+<h2 id="微服务是什么？"><a href="#微服务是什么？" class="headerlink" title="微服务是什么？"></a>微服务是什么？</h2><p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-第 12 章 Spring Boot 与微服务/image4" alt=""></p>
+<p>在 CPU 处理器的指令集中，有 CISC 与 RISC。<br>在操作系统中，有宏内核与微内核。</p>
+<p>微服务，本质是一个<strong>系统架构解耦</strong>的过程。它是把一个大型复杂系统服务 M（Monolithic Architecture，整体式架构）拆分成多个相对简单独立的子系统的服务 MS（Microservice Architecture, 微服务架构）ms1, ms2, ms3, … 。</p>
+<p>系统中的各个微服务可被独立部署，各个微服务之间松耦合。之前整体的系统服务 M，在 MS 中通过微服务提供的 API 交互完成。API 之间的通信由 <strong>RPC 框架</strong>来完成。</p>
+<p>这个思想理念，跟 UNIX 哲学理念——</p>
+<blockquote>
+<p>小是美的。（Small is Beautiful）</p>
+</blockquote>
+<p>是相通的。</p>
+<p>另外，不同的微服务 MS 可以使用不同的技术架构，比如 Node.js ，Java， Ruby， Python 等等，这些单个的服务都可以独立完成交付生命周期。</p>
+<p>我们最早使用传统的整体式架构应用开发系统，如 CRM、ERP 等大型应用，可能会遇到以下的一些问题：</p>
+<p>1. 随着新需求的不断增加，更新和迭代大型的整体式应用会变得越来越困难；</p>
+<p>2. 随着移动互联网的快速发展，要求我们能够实现功能的快速迭代上线；</p>
+<p>3. 但对于快速变化的需求，受到整体式应用架构的限制，有时候显得力不从心；</p>
+<p>此外，大量开源轻量级技术不断涌现并日渐成熟：</p>
+<ul>
+<li>轻量级运行时技术的出现 (node.js, WAS Liberty 等)；</li>
+<li>新的思想方法论与工具 (Agile, DevOps, TDD, CI, XP, Puppet, Chef…)；</li>
+<li>新的轻量级协议 (RESTful API 接口, 轻量级消息机制)；</li>
+<li>简化的基础设施：操作系统虚拟化, 容器化 (e.g. Docker), 基础设施即服务 (IaaS), 工作负载虚拟化(Kubernetes,Spark…) 等；</li>
+<li>服务平台化 (PaaS)： 云服务平台上具有自动缩放、工作负载管理、SLA 管理、消息机制、缓存、构建管理等各种按需使用的服务；</li>
+<li>新的可替代数据持久化模型：如 NoSQL, MapReduce, BASE, CQRS 等；</li>
+<li>标准化代码管理，如：Gitlab 等。</li>
+</ul>
+<p>这一切都催生了新的架构设计风格 – 微服务架构的出现。</p>
+<p>在整体式架构应用中，我们将所有功能都打成一个包，可以是 JAR、WAR、EAR 或其它归档格式，然后，直接运行它，或者丢到一个容器（例如 Tomcat）里跑。</p>
+<p>整体式架构应用的一些不足：</p>
+<p><strong>不够灵活</strong>：对应用程序做任何细微的修改都需要将整个应用程序重新构建、重新部署。开发人员需要等到整个应用程序部署完成后才能看到变化。如果多个开发人员共同开发一个应用程序，那么还要等待其他开发人员完成了各自的开发。这降低了团队的灵活性和功能交付频率；</p>
+<p><strong>妨碍持续交付</strong>：单体应用可能会比较大，构建和部署时间也相应地比较长，不利于频繁部署，阻碍持续交付。在移动应用开发中，这个问题会显得尤为严重；</p>
+<p><strong>受技术栈限制</strong>：对于这类应用，技术是在开发之前经过慎重评估后选定的，每个团队成员都必须使用相同的开发语言、持久化存储及消息系统，而且要使用类似的工具，无法根据具体的场景做出其它选择；</p>
+<p><strong>技术债务</strong>：“不坏不修（Not broken，don’t fix）”，这在软件开发中非常常见，单体应用尤其如此。系统设计或写好的代码难以修改，因为应用程序的其它部分可能会以意料之外的方式使用它。随着时间推移、人员更迭，这必然会增加应用程序的技术债务。</p>
+<p>而随着业务需求的快速发展变化，敏捷性、灵活性和可扩展性需求不断增长，迫切需要一种更加快速高效的软件交付方式。于是，微服务架构应运而生。<br>（当然，如果你没有遇到诸如上面的问题，你可能也就用不到微服务的架构了。）</p>
+<p>这里的 “微” 不是针对代码行数而言，而是说服务的范围限定到单个功能。</p>
+<h2 id="微服务特点"><a href="#微服务特点" class="headerlink" title="微服务特点"></a>微服务特点</h2><blockquote>
+<p>康威定律：任何设计系统的组织，最终产生的设计等同于组织之内、之间的沟通结构。系统架构的设计符合组织沟通结构取得的收益最大。</p>
+</blockquote>
+<p>微服务有如下特点：</p>
+<ul>
+<li>小, 且专注于做⼀件事情</li>
+<li>进程独立</li>
+<li>轻量级的通信机制</li>
+<li>松耦合</li>
+<li>独立部署</li>
+</ul>
+<p><strong>领域驱动设计</strong>：应用程序功能分解可以通过 Eric Evans 在<a href="https://link.jianshu.com?t=http://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215" target="_blank" rel="noopener">《领域驱动设计》</a>中明确定义的规则实现；每个团队负责与一个领域或业务功能相关的全部开发；团队拥有全系列的开发人员，具备用户界面、业务逻辑和持久化存储等方面的开发技能；</p>
+<p><strong>单一职责原则</strong>：每个服务应该负责该功能的一个单独的部分，这是 <a href="https://link.jianshu.com?t=http://en.wikipedia.org/wiki/SOLID_(object-oriented_design" target="_blank" rel="noopener">SOLID</a>) 原则之一；</p>
+<p><strong>明确发布接口</strong>：每个服务都会发布一个定义明确的接口，而且保持不变；服务消费者只关心接口，而对于被消费的服务没有任何运行依赖；</p>
+<p><strong>独立部署、升级、扩展和替换</strong>：每个服务都可以单独部署及重新部署而不影响整个系统。这使得服务很容易升级，每个服务都可以沿着<a href="https://link.jianshu.com?t=http://theartofscalability.com/" target="_blank" rel="noopener">《Art of Scalability》</a>一书定义的 X 轴和 Z 轴进行扩展；</p>
+<p><strong>可以异构 / 采用多种语言</strong>：每个服务的实现细节都与其它服务无关，这使得服务之间能够解耦，团队可以针对每个服务选择最合适的开发语言、持久化存储、工具和方法；</p>
+<p><strong>轻量级通信</strong>：服务通信使用轻量级的通信协议，例如，同步的 REST，异步的 AMQP、STOMP、MQTT 等。</p>
+<p>微服务架构的思想本质跟互联网的思想是一致的。它的组件对外发布的服务视同 HTTP 协议，采用 HTTP Rest API 的方式来进行。很多开放平台的 API 服务，基本都采用了 Http API 的方式进行服务的发布和管理。</p>
+<p>Fictitious e-commerce application</p>
+<p>Let’s imagine that you are building an e-commerce application that takes orders from customers, verifies inventory and available credit, and ships them. The application consists of several components including the StoreFrontUI, which implements the user interface, along with some backend services for checking credit, maintaining inventory and shipping orders. The application consists of a set of services.</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-第 12 章 Spring Boot 与微服务/image5" alt=""></p>
+<p>基于微服务的架构, 目的是有效的拆分应用，实现敏捷开发和部署 。</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-第 12 章 Spring Boot 与微服务/image6" alt=""></p>
+<p>服务之间如何通信？</p>
+<p>因为所有的微服务都是独立的 Java 进程跑在独立的虚拟机上，所以服务间的通行就是 IPC（inter process communication），最通用的有两种方式：</p>
+<h3 id="同步调用"><a href="#同步调用" class="headerlink" title="同步调用"></a>同步调用</h3><ul>
+<li><p>REST（JAX-RS，Spring Boot）</p>
+</li>
+<li><p>RPC（Thrift, Dubbo）</p>
+</li>
+</ul>
+<h3 id="异步消息调用"><a href="#异步消息调用" class="headerlink" title="异步消息调用"></a>异步消息调用</h3><p>Kafka， Notify， MetaQ</p>
+<h2 id="微服务优点"><a href="#微服务优点" class="headerlink" title="微服务优点"></a>微服务优点</h2><p>相应地，微服务具有如下优点：</p>
+<ul>
+<li>迭代开发灵活，快速适应需求变化（前提是，得架构良好才行）；</li>
+<li>局部修改很容易部署，有利于持续集成和持续交付；</li>
+<li>故障隔离，一个服务出现问题不会影响整个应用；</li>
+<li>技术栈自由。</li>
+</ul>
+<p>随着持续交付概念推广以及 Docker 容器普及，微服务将这两种理念和技术结合起来，形成新的微服务 + API + 平台的开发模式，提出了容器化微服务的持续交付概念。</p>
+<p>传统 Monolithic 的 DevOps 开发队伍方式，如下图：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-第 12 章 Spring Boot 与微服务/image7" alt=""></p>
+<p>这种整体型架构要求产品队伍横跨产品管理 Dev 开发 QA DBA 以及系统运营管理，而微服务架构引入以后，如下图：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-第 12 章 Spring Boot 与微服务/image8" alt=""></p>
+<p>微服务促进了 DevOps 方式的重组，将一个大臃肿的整体产品开发队伍切分为根据不同微服务的划分的产品队伍，以及一个大的整体的平台队伍负责运营管理，两者之间通过 API 交互，做到了松耦合隔绝。<br>　　由于 Docker 引入，不同的微服务可以使用不同的技术架构，比如 Node.js Java Ruby Python 等等，这些单个的服务都可以独立完成交付生命周期，如下：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-第 12 章 Spring Boot 与微服务/image9" alt=""></p>
+<h2 id="微服务缺点"><a href="#微服务缺点" class="headerlink" title="微服务缺点"></a>微服务缺点</h2><p>微服务看上去像一枚银弹，可以解决许多软件开发方面的问题。这看上去很美好，但并不易于实现。微服务会极大地增加运维工作量，使用微服务，一些技术债务势必从开发转到运维，因此，你最好有一个一流的开发运维团队。</p>
+<p>总体来看，微服务架构可能带来过多的操作。缺点如下：</p>
+<ul>
+<li>分布式系统可能复杂难以管理。</li>
+<li>分布式部署跟踪解决问题难。</li>
+<li>当服务数量增加，管理复杂性增加。</li>
+<li>系统部署依赖（DevOps）</li>
+<li>服务间通信成本（RPC 框架）</li>
+<li>数据一致性</li>
+<li>系统集成测试</li>
+<li>系统监控等。</li>
+</ul>
+<p>当然，这是一个循序渐进的重构的过程。</p>
+<p>因此，微服务对基础设施提出了一些额外的需求。通常，我们将它们总称为 <a href="https://link.jianshu.com?t=http://blogs.forrester.com/mike_gualtieri/11-02-07-i_dont_want_devops_i_want_noops" target="_blank" rel="noopener">NoOps</a>，本质上讲，就是一组服务，提供一个更好的应用程序部署流程并确保其运行，包括服务复制、服务发现、服务恢复和服务监控等。</p>
+<p>服务化的一个好处就是，不限定服务的提供方使用什么技术选型，能够实现大公司跨团队的技术解耦，如下图：<br><a href="https://link.jianshu.com?t=http://s3.51cto.com/wyfs02/M01/87/DC/wKioL1fjkrrT13oyAABA4e8Pso0245.jpg-wh_651x-s_3855256452.jpg" target="_blank" rel="noopener"></a></p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-第 12 章 Spring Boot 与微服务/image10" alt=""> 服务 A 是欧洲团队提供服务，欧洲团队的技术背景是 Java，可以用 Java 实现服务;<br>服务 B 是美洲团队提供服务，可以用 C++ 实现服务;<br>服务 C 是中国团队提供服务，可以用 Go 实现服务;<br>服务的上游调用方，按照接口、协议即可完成对远端服务的调用。<br>但实际上，99.9% 的公司的团队规模有限，技术团队人数也有限，基本是使用同一套技术体系来调用和提供服务的：<br><a href="https://link.jianshu.com?t=http://s1.51cto.com/wyfs02/M01/87/E0/wKiom1fjk2HRnIdfAABCzQCSmyE215.jpg" target="_blank" rel="noopener"><img src="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-第 12 章 Spring Boot 与微服务/image11" alt=""></a><br>这样的话，如果没有统一的服务框架，RPC 框架，各个团队的服务提供方就需要各自实现一套序列化、反序列化、网络框架、连接池、收发线程、超时处理、状态机等 “业务之外” 的重复技术劳动，造成整体的低效。所以，统一 RPC 框架把上述 “业务之外” 的技术劳动统一处理，是服务化首要解决的问题。</p>
+<h2 id="六种微服务架构"><a href="#六种微服务架构" class="headerlink" title="六种微服务架构"></a>六种微服务架构</h2><p>简单介绍六种微服务架构模式 [7]。</p>
+<h3 id="聚合器微服务设计模式"><a href="#聚合器微服务设计模式" class="headerlink" title="聚合器微服务设计模式"></a>聚合器微服务设计模式</h3><p>这是一种最常用也最简单的设计模式，如下图所示：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-第 12 章 Spring Boot 与微服务/image12" alt=""> 聚合器调用多个服务实现应用程序所需的功能。它可以是一个简单的 Web 页面，将检索到的数据进行处理展示。它也可以是一个更高层次的组合微服务， 对检索到的数据增加业务逻辑后进一步发布成一个新的微服务，这符合 DRY 原则。另外，每个服务都有自己的缓存和<a href="https://link.jianshu.com?t=http://lib.csdn.net/base/mysql" target="_blank" rel="noopener">数据库</a>。如果聚合器是一个组合服务，那么它 也有自己的缓存和数据库。聚合器可以沿 X 轴和 Z 轴独立扩展。</p>
+<h3 id="代理微服务设计模式"><a href="#代理微服务设计模式" class="headerlink" title="代理微服务设计模式"></a>代理微服务设计模式</h3><p>这是聚合器模式的一个变种，如下图所示：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-第 12 章 Spring Boot 与微服务/image13" alt=""></p>
+<p>在这种情况下，客户端并不聚合数据，但会根据业务需求的差别调用不同的微服务。代理可以仅仅委派请求，也可以进行数据转换工作。</p>
+<h3 id="链式微服务设计模式"><a href="#链式微服务设计模式" class="headerlink" title="链式微服务设计模式"></a>链式微服务设计模式</h3><p>这种模式在接收到请求后会产生一个经过合并的响应，如下图所示：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-第 12 章 Spring Boot 与微服务/image14" alt=""></p>
+<p>在这种情况下，服务 A 接收到请求后会与服务 B 进行通信，类似地，服务 B 会同服务 C 进行通信。所有服务都使用<strong>同步消息传递</strong>。在整个链式调用完成之前，客户端会一直阻塞。因此，服务调用链不宜过长，以免客户端长时间等待。</p>
+<h3 id="分支微服务设计模式"><a href="#分支微服务设计模式" class="headerlink" title="分支微服务设计模式"></a>分支微服务设计模式</h3><p>这种模式是聚合器模式的扩展，<strong>允许同时调用两个微服务链</strong>，如下图所示：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-第 12 章 Spring Boot 与微服务/image15" alt=""></p>
+<h3 id="数据共享微服务设计模式"><a href="#数据共享微服务设计模式" class="headerlink" title="数据共享微服务设计模式"></a>数据共享微服务设计模式</h3><p>自治是微服务的设计原则之一，就是说微服务是<strong>全栈式服务</strong>。但在重构现有的 “单体应用（monolithic application）” 时，SQL 数据库反规范化可能会导致数据重复和不一致。因此，在单体应用到微服务架构的过渡阶段，可以使用这种设计模式，如下图所示：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-第 12 章 Spring Boot 与微服务/image16" alt=""></p>
+<p>在这种情况下，部分微服务可能会共享缓存和数据库存储。不过，这只有在两个服务之间存在强耦合关系时才可以。对于基于微服务的新建应用程序而言，这是一种反模式。</p>
+<h3 id="异步消息传递微服务设计模式"><a href="#异步消息传递微服务设计模式" class="headerlink" title="异步消息传递微服务设计模式"></a>异步消息传递微服务设计模式</h3><p>虽然 REST 设计模式非常流行，但它是<strong>同步</strong>的，<strong>会造成阻塞</strong>。因此部分基于微服务的架构可能会选择使用<strong>消息队列</strong>代替 REST 请求 / 响应，如下图所示：</p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-第 12 章 Spring Boot 与微服务/image17" alt=""></p>
+<hr>
+<blockquote>
+<p>原文：<br>第12章 Spring Boot与微服务 - 简书<br><a href="https://www.jianshu.com/p/572f264d0bb5" target="_blank" rel="noopener">https://www.jianshu.com/p/572f264d0bb5</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+
+     
+    
+      <div>
+        
+    <div style="text-align:center;color: #ccc;font-size:14px;">
+        ------ 本文结束<i class="fa fa-paw"></i>感谢您的阅读 ------</div>
+
+      </div>
+    
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    CloudPai
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://cloudpai.site/2018/04/22/2018-04-22-3/" title="分布式微服务">http://cloudpai.site/2018/04/22/2018-04-22-3/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/分布式/" rel="tag"><i class="fa fa-tag"></i> 分布式</a>
+          
+            <a href="/tags/微服务/" rel="tag"><i class="fa fa-tag"></i> 微服务</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/22/2018-04-22-2/" rel="next" title="分布式协调服务之 zookeeper">
+                <i class="fa fa-chevron-left"></i> 分布式协调服务之 zookeeper
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/22/2018-04-22-7/" rel="prev" title="分布式微服务之 spring boot">
+                分布式微服务之 spring boot <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+
+
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg"
+                alt="CloudPai" />
+            
+              <p class="site-author-name" itemprop="name">CloudPai</p>
+              <p class="site-description motion-element" itemprop="description">加油(๑•̀ㅂ•́)و✧加油</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">192</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+
+<div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=240 src="//music.163.com/outchain/player?type=0&id=2113726971&auto=0&height=430"></iframe>
+</div>
+<!-- 459004290 -->
+
+
+
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">93</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CloudPai" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:liupai024@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.douban.com/people/57965969/doulists/all" target="_blank" title="豆瓣">
+                      
+                        <i class="fa fa-fw fa-book"></i>豆瓣</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/cloudPai/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-edit"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.dlut.edu.cn/" title="DUT" target="_blank">DUT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bupt.edu.cn/" title="BUPT" target="_blank">BUPT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://campus.alibaba.com/index.htm" title="Alibaba Group" target="_blank">Alibaba Group</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#分布式微服务"><span class="nav-text">分布式微服务</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#12-1-微服务架构"><span class="nav-text">12.1 微服务架构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#SOA-简述"><span class="nav-text">SOA 简述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#微服务是什么？"><span class="nav-text">微服务是什么？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#微服务特点"><span class="nav-text">微服务特点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#同步调用"><span class="nav-text">同步调用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异步消息调用"><span class="nav-text">异步消息调用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#微服务优点"><span class="nav-text">微服务优点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#微服务缺点"><span class="nav-text">微服务缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#六种微服务架构"><span class="nav-text">六种微服务架构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#聚合器微服务设计模式"><span class="nav-text">聚合器微服务设计模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代理微服务设计模式"><span class="nav-text">代理微服务设计模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#链式微服务设计模式"><span class="nav-text">链式微服务设计模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分支微服务设计模式"><span class="nav-text">分支微服务设计模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据共享微服务设计模式"><span class="nav-text">数据共享微服务设计模式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异步消息传递微服务设计模式"><span class="nav-text">异步消息传递微服务设计模式</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CloudPai</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">836.0k</span>
+  
+</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv">  </span>
+</span>
+</div>
+
+
+
+
+
+
+
+  <div class="theme-info">&#12288;主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://cloudpai.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://cloudpai.site/2018/04/22/2018-04-22-3/';
+          this.page.identifier = '2018/04/22/2018-04-22-3/';
+          this.page.title = '分布式微服务';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cloudpai.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!-- <!-- <script src="https://cdn.bootcss.com/aplayer/1.6.0/APlayer.min.js"></script>
+
+<script src="https://api.i-meto.com/music/player.js"></script> --> -->
+  
+  <!--移动端判断，是否引入背景-->
+  <script>
+  var browser={  
+      versions:function(){   
+             var u = navigator.userAgent, app = navigator.appVersion;   
+             return {//移动终端浏览器版本信息
+                  trident: u.indexOf('Trident') > -1, //IE内核
+                  presto: u.indexOf('Presto') > -1, //opera内核
+                  webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                  gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                  mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                  ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                  android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                  iPhone: u.indexOf('iPhone') > -1 , //是否为iPhone或者QQHD浏览器
+                  iPad: u.indexOf('iPad') > -1, //是否iPad
+                  webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+              };  
+           }(),  
+           language:(navigator.browserLanguage || navigator.language).toLowerCase()  
+  }   
+    if(browser.versions.mobile || browser.versions.ios || browser.versions.android ||   
+      browser.versions.iPhone || browser.versions.iPad){        
+               
+    }else{
+    document.write("<script type=\'text/javascript\'  src=\'/js/src/particle.js\'><\/script>");
+    }
+  </script>
+
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":-80,"vOffset":-50},"mobile":{"show":false,"scale":0.2},"react":{"opacityDefault":1,"opacityOnHover":0.2}});</script></body>
+</html>

@@ -1,0 +1,1433 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="分布式,微服务," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="CloudPai" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="一、导览本文主要介绍以下几部分：1. 什么是 spring Boot?2. 为什么使用 Spring Boot?3. Spring Boot 提供哪些功能？4. Spring Boot 有哪些模块？5. 如何使用 Spring Boot？6. Spring Boot 有哪些不足？ 二、什么是 Spring Boot?Spring Boot 是由 Pivotal 团队提供的全新框架，其设计目的是用">
+<meta name="keywords" content="分布式,微服务">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分布式微服务之 spring boot">
+<meta property="og:url" content="http://cloudpai.site/2018/04/22/2018-04-22-7/index.html">
+<meta property="og:site_name" content="CloudPai">
+<meta property="og:description" content="一、导览本文主要介绍以下几部分：1. 什么是 spring Boot?2. 为什么使用 Spring Boot?3. Spring Boot 提供哪些功能？4. Spring Boot 有哪些模块？5. 如何使用 Spring Boot？6. Spring Boot 有哪些不足？ 二、什么是 Spring Boot?Spring Boot 是由 Pivotal 团队提供的全新框架，其设计目的是用">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-Spring-boot 介绍 - CSDN 博客/image1">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-Spring-boot 介绍 - CSDN 博客/image2">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-Spring-boot 介绍 - CSDN 博客/image3">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-Spring-boot 介绍 - CSDN 博客/image4">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-Spring-boot 介绍 - CSDN 博客/image5">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-Spring-boot 介绍 - CSDN 博客/image6">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-Spring-boot 介绍 - CSDN 博客/image7">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-Spring-boot 介绍 - CSDN 博客/image8">
+<meta property="og:updated_time" content="2018-04-22T15:02:20.678Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="分布式微服务之 spring boot">
+<meta name="twitter:description" content="一、导览本文主要介绍以下几部分：1. 什么是 spring Boot?2. 为什么使用 Spring Boot?3. Spring Boot 提供哪些功能？4. Spring Boot 有哪些模块？5. 如何使用 Spring Boot？6. Spring Boot 有哪些不足？ 二、什么是 Spring Boot?Spring Boot 是由 Pivotal 团队提供的全新框架，其设计目的是用">
+<meta name="twitter:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-Spring-boot 介绍 - CSDN 博客/image1">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'TZAS2SFOJR',
+      apiKey: 'e2a9cd036eede8026382b302001ec261',
+      indexName: 'cloudpai_blogs_search',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cloudpai.site/2018/04/22/2018-04-22-7/"/>
+
+
+
+
+
+  <title>分布式微服务之 spring boot | CloudPai</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-114643720-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CloudPai</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/04/22/2018-04-22-7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CloudPai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudPai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">分布式微服务之 spring boot</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-22T17:30:15+08:00">
+                2018-04-22
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-04-22T23:02:20+08:00">
+                2018-04-22
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/04/22/2018-04-22-7/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/04/22/2018-04-22-7/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3,640
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  14
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="一、导览"><a href="#一、导览" class="headerlink" title="一、导览"></a><a></a>一、导览</h1><p>本文主要介绍以下几部分：<br>1. 什么是 <a href="http://lib.csdn.net/base/javaee" title="Java EE知识库" target="_blank" rel="noopener">spring</a> Boot?<br>2. 为什么使用 Spring Boot?<br>3. Spring Boot 提供哪些功能？<br>4. Spring Boot 有哪些模块？<br>5. 如何使用 Spring Boot？<br>6. Spring Boot 有哪些不足？</p>
+<h1 id="二、什么是-Spring-Boot"><a href="#二、什么是-Spring-Boot" class="headerlink" title="二、什么是 Spring Boot?"></a><a></a><a></a>二、什么是 Spring Boot?</h1><p>Spring Boot 是由 Pivotal 团队提供的全新框架，其设计目的是用来简化新 Spring 应用的初始搭建以及开发过程。<br>该框架使用了特定的方式 (继承 starter，约定优先于配置) 来进行配置，从而使开发人员不再需要定义样板化的配置。通过这种方式，Boot 致力于在蓬勃发展的快速应用开发领域（rapid application development）成为领导者。<br>Spring Boot 并不是一个框架，从根本上将，它就是<strong>一些库的集合</strong>，maven 或者 gradle 项目导入相应依赖即可使用 Spring Boot，而且无需自行管理这些库的版本。<br>目前最新的稳定版本是 1.3.6.RELEASE，github 地址：<a href="https://github.com/spring-projects/spring-boot" target="_blank" rel="noopener">https://github.com/spring-projects/spring-boot</a></p>
+<h1 id="三、为什么使用-Spring-Boot"><a href="#三、为什么使用-Spring-Boot" class="headerlink" title="三、为什么使用 Spring Boot?"></a><a></a><a></a>三、为什么使用 Spring Boot?</h1><p>Spring Boot 是为简化 Spring 项目配置而生，使用它使得 jar 依赖管理以及应用编译和部署更为简单。Spring Boot 提供自动化配置，使用 Spring Boot，你只需编写必要的代码和配置必须的属性。<br>使用 Spring Boot，只需 20 行左右的代码即可生成一个基本的 Spring Web 应用，并且内置了 tomcat，构建的 fat Jar 包通过 Java -jar 就可以直接运行。<br>如下特性使得 Spring Boot 非常契合<a href="http://lib.csdn.net/base/microservice" title="微服务知识库" target="_blank" rel="noopener">微服务</a>的概念，可以结合 Spring Boot 与 Spring Cloud 和 <a href="http://lib.csdn.net/base/docker" title="Docker知识库" target="_blank" rel="noopener">Docker</a> 技术来构建微服务并部署到云端：</p>
+<ul>
+<li>一个可执行 jar 即为一个独立服务</li>
+<li>很容易加载到容器，每个服务可以在自己的容器（例如 docker）中运行</li>
+<li>通过一个脚本就可以实现配置与部署，很适合云端部署，并且自动扩展也更容易</li>
+</ul>
+<p>简单而言，即 Spring Boot 使编码更简单，使配置更简单，使部署更简单，使监控更简单。</p>
+<h1 id="四、Spring-Boot-提供哪些功能？"><a href="#四、Spring-Boot-提供哪些功能？" class="headerlink" title="四、Spring Boot 提供哪些功能？"></a><a></a><a></a>四、Spring Boot 提供哪些功能？</h1><h2 id="1-无需手动管理依赖-jar-包的版本"><a href="#1-无需手动管理依赖-jar-包的版本" class="headerlink" title="1. 无需手动管理依赖 jar 包的版本"></a><a></a><a></a>1. 无需手动管理依赖 jar 包的版本</h2><p>Spring boot 通过 spring boot starter 项目管理其提供的所有依赖的版本，当升级 spring boot 时，这些依赖的版本也会随之升级。个人无需指定版本号，但是也可以自定义版本号覆盖 spring boot 的默认值。每个版本的 boot 都有对应的 base spring version，不建议明确地指定 spring 版本。<br>例如，使用 maven 时，只需简单的在 pom 中包含 spring-boot-starter-web 即引入了 Spring MVC 和 Tomcat 的依赖。<br>下面是 Spring Boot 在 org.springframework.boot 组下提供的一些 Starters：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>spring-boot-starter</td>
+<td>核心 Spring Boot starter，包括自动配置支持，日志和 YAML</td>
+</tr>
+<tr>
+<td>spring-boot-starter-actuator</td>
+<td>生产准备的特性，用于帮你监控和管理应用</td>
+</tr>
+<tr>
+<td>spring-boot-starter-web</td>
+<td>对全栈 web 开发的支持，包括 Tomcat 和 spring-webmvc</td>
+</tr>
+<tr>
+<td>spring-boot-starter-aop</td>
+<td>对面向切面编程的支持，包括 spring-aop 和 AspectJ</td>
+</tr>
+<tr>
+<td>spring-boot-starter-data-jpa</td>
+<td>对”Java 持久化 API” 的支持，包括 spring-data-jpa ， spring-orm 和 Hibernate</td>
+</tr>
+<tr>
+<td>spring-boot-starter-jdbc</td>
+<td>对 JDBC 数据库的支持</td>
+</tr>
+<tr>
+<td>spring-boot-starter-security</td>
+<td>对 spring-security 的支持</td>
+</tr>
+</tbody>
+</table>
+<h3 id="1-1-starter-poms"><a href="#1-1-starter-poms" class="headerlink" title="1.1 starter poms"></a><a></a><a></a>1.1 starter poms</h3><p>每个 starter 都包含特定的依赖集，并且都遵循统一的命名模式：spring-boot-starter-*。</p>
+<blockquote>
+<p>如何修改依赖的版本？<br>1. 如果你使用 Maven 进行一个直接或间接继承 spring-boot-dependencies （比如 spring-boot-starter-parent ）的构建，并想覆盖一个特定的第三方依赖，那你可以添加合适的 properties 元素。浏览  <a href="https://github.com/spring-projects/spring-boot/blob/master/spring-boot-dependencies/pom.xml" target="_blank" rel="noopener">spring-boot-dependencies POM</a> 可以获取一个全面的属性列表。例如，想要选择一个不同的 slf4j 版本，你可以添加以下内容： </p>
+<p><properties> </properties></p>
+<p>&lt;slf4j.version&gt;1.7.5&lt;slf4j.version&gt;<br><br>2. 如果你使用 <scope>import</scope> 将 spring-boot-dependencies 添加到自己的 dependencyManagement 片段，那你必须自己重新定义 artifact 而不是覆盖属性。<br>※ 每个 Spring Boot 发布都是基于一些特定的第三方依赖集进行设计和<a href="http://lib.csdn.net/base/softwaretest" title="软件测试知识库" target="_blank" rel="noopener">测试</a>的，覆盖版本可能导致兼容性问题。</p>
+</blockquote>
+<h3 id="1-2-spring-boot-starter-parent-提供的特性"><a href="#1-2-spring-boot-starter-parent-提供的特性" class="headerlink" title="1.2 spring-boot-starter-parent 提供的特性"></a><a></a><a></a>1.2 spring-boot-starter-parent 提供的特性</h3><ul>
+<li>默认的编译级别是 java1.6</li>
+<li>source 编码是 UTF-8</li>
+<li>一个 dependency management 区域，继承自 spring-boot-dependencies POM。用户可以省略普通依赖的 <version> 标签。</version></li>
+<li>资源过滤 （maven 中的 filter）。</li>
+<li>插件配置（exec, surefile, git commit ID, shade）</li>
+<li>针对 application.properties 和 application.yml 的资源过滤。<br>※ 因为默认的配置文件接受 spring 表达式 ${}，因此 maven 的资源过滤符号被修改为 @..@。可使用 maven 属性 resource.delimiter 来修改。</li>
+</ul>
+<h2 id="2-自动配置，无需-xml"><a href="#2-自动配置，无需-xml" class="headerlink" title="2. 自动配置，无需 xml"></a><a></a><a></a>2. 自动配置，无需 xml</h2><p>Spring Boot 尝试根据你添加的 jar 依赖自动配置你的应用。例如，如果 HSQLDB 在类路径中，并且你没有手动配置任何 db 连接 bean，则 Spring Boot 会自动配置一个内存 db。<br>使用 @EnableAutoConfiguration 或者 @SpringBootApplication 注解，配合 @Configuration 注解类，即可达到自动配置的目的。<br>Spring Boot 的这种自动配置是非侵入式的，你可以定义自己的配置或 bean 来替代自动配置的内容。</p>
+<h2 id="3-可执行-jar-包"><a href="#3-可执行-jar-包" class="headerlink" title="3. 可执行 jar 包"></a><a></a><a></a>3. 可执行 jar 包</h2><p>Spring Boot 默认将应用打包成一个可执行的 jar 包文件，构建成功后使用 java -jar 命令即可运行应用。<br>Java 并没有提供任何标准的方式来加载 jar 包中内嵌的 jar 包。一般开发者使用影子 jar 技术来解决这种问题。一个影子 jar 只是简单的将所有 jar 的类打包到一个单独的超级 jar 包中。由此带来的问题是它很难分辨在你的应用中实际可以使用哪些库，并且多个 jar 文件中的同名文件也是一个问题。<br>Spring Boot 则另辟蹊径，使用如下文件格式让你能够直接嵌套 jar 包：<br><img src="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-Spring-boot 介绍 - CSDN 博客/image1" alt=""><br>依赖需要放到内部的 lib 文件夹下。</p>
+<blockquote>
+<p>Spring Boot 可执行 jar 的原理是什么？<br>Spring Boot 用于支持加载内嵌 jars 的核心类是 org.springframework.boot.loader.jar.JarFile（继承<br>自 java.util.jar.JarFile） 。它允许你从一个标准的 jar 文件<br>或内嵌的子 jar 数据中加载 jar 内容。当首次加载的时候，每个 JarEntry 的位置被映射到一个偏移于外部 jar 的物理文件：<br><img src="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-Spring-boot 介绍 - CSDN 博客/image2" alt=""><br>上面的示例展示了如何在 myapp.jar 的 0063 处找到 A.class。来自于内嵌 jar 的 B.class 实际可以在 myapp.jar 的 3452 处找到，C.class 可以在 3980 处找到。</p>
+</blockquote>
+<h2 id="4-外部化配置"><a href="#4-外部化配置" class="headerlink" title="4. 外部化配置"></a><a></a><a></a>4. 外部化配置</h2><p>Spring Boot 可以使用 properties 文件，YAML 文件，环境变量，命令行参数等来外部化配置。属性值可以使用 @Value 注解直接注入到 bean 中，并通过 Spring 的 Environment 抽象或经过 @ConfigurationProperties 注解绑定到结构化对象来访问。<br>例子：<br>YAML 配置文件内容：<br><img src="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-Spring-boot 介绍 - CSDN 博客/image3" alt=""><br>使用 @Value 注解注入单个属性：<br><img src="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-Spring-boot 介绍 - CSDN 博客/image4" alt=""><br>使用 @ConfigurationProperties 注入属性组：<br><img src="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-Spring-boot 介绍 - CSDN 博客/image5" alt=""></p>
+<h2 id="5-嵌入式-servlet-容器"><a href="#5-嵌入式-servlet-容器" class="headerlink" title="5. 嵌入式 servlet 容器"></a><a></a><a></a>5. 嵌入式 servlet 容器</h2><p>Spring Boot 的 web 模块内置嵌入的 Tomcat, Jetty, Undertow 来构建自包含的 Servlet 容器。web 应用打包成可执行 jar 包时，相应的 servlet 容器也会被嵌入到应用 jar 中。并且 servlets, filters 和 listeners 都可以通过声明为 bean 来被容器注册。servlet 容器还可以通过外部化配置来相关定制属性，如 server.port, server.session.persistence 等。</p>
+<h2 id="6-无缝集成-Spring-security，Spring-data-Spring-Message-等"><a href="#6-无缝集成-Spring-security，Spring-data-Spring-Message-等" class="headerlink" title="6. 无缝集成 Spring security，Spring data, Spring Message 等"></a><a></a><a></a>6. 无缝集成 Spring security，Spring data, Spring Message 等</h2><p>Spring Boot 通过 stater pom 来导入这些依赖，当发现相关 jar 在 classpath 中时，Spring Boot 将启动相应的自动配置。例如，如果 security 的 jar 在 classpath 中，Spring Boot 的 web 应用将自动启动安全限制，并且默认启动 basic 认证（默认用户名是 user，密码在启动 log 里会显示）。后面教程里会演示 Spring jpa，Spring DATA REST，Spring Security 的集成。</p>
+<h2 id="7-devtools-提供的开发时特性"><a href="#7-devtools-提供的开发时特性" class="headerlink" title="7.devtools 提供的开发时特性"></a><a></a><a></a>7.devtools 提供的开发时特性</h2><p>Spring Boot 的 devtools 模块可以为应用增加开发时（development time）特性，例如开发环境属性默认值，自动重启，LiveReload（在自愿发生变化时触发浏览器刷新），全局设置等。</p>
+<h3 id="7-1-开启-devtools-特性"><a href="#7-1-开启-devtools-特性" class="headerlink" title="7.1 开启 devtools 特性"></a><a></a><a></a>7.1 开启 devtools 特性</h3><p>pom 中引入 spring-boot-devtools 依赖即可打开 devtools 特性。<br>developer tools 在运行完整的 packaged app 时是自动关闭的，即若使用 java –jar 时会被当做生产应用。安全起见，可以在 maven 中增加 excludeDevtools 编译属性来移除 jar 包。</p>
+<h3 id="7-2-devtools-的自动重启"><a href="#7-2-devtools-的自动重启" class="headerlink" title="7.2 devtools 的自动重启"></a><a></a><a></a>7.2 devtools 的自动重启</h3><p>要想在 Eclipse 中使用 Devtools 的重启功能，需要将自动编译功能打开。每次保存文件并自动编译后，devtools 会检测到 classpath 内容的修改，并触发应用重启。重启时实际只重新加载了一部分类，因此速度会非常快。详细原理会在后面教程里介绍。</p>
+<h3 id="7-3-devtools-的-livereload"><a href="#7-3-devtools-的-livereload" class="headerlink" title="7.3 devtools 的 livereload"></a><a></a><a></a>7.3 devtools 的 livereload</h3><p>开启 devtools 特性的应用在启动时会启动一个 livereload 的 server，在浏览器（如 chrome，Firefox）安装 livereload 插件后，该插件会监测到 livereload server 的更新，并自动刷新页面。详细介绍会在后面教程里介绍。</p>
+<h2 id="8-Actuator-提供的生产特性（health，metrics-等）"><a href="#8-Actuator-提供的生产特性（health，metrics-等）" class="headerlink" title="8.Actuator 提供的生产特性（health，metrics 等）"></a><a></a><a></a>8.Actuator 提供的生产特性（health，metrics 等）</h2><p>Actuator 是个机器术语，目前没有统一的翻译，可以直译为促动器或执行器，Actuator 通过微小的改变就可以产生很大的移动。<br>Spring Boot Actuator 为你的应用提供一些生产环境必需的特性，如审计 (audit)，健康(health) 和数据采集 (metrics) 等。使你可以在部署应用到生产环境后，通过 HTTP（需要 SpringMVC），JMX 甚至 remote shell(SSH, Telnet)等来管理和监视应用。例如，HTTP 环境下，访问 contextUrl/health 路径即可查询当前环境的磁盘空间，应用和<a href="http://lib.csdn.net/base/mysql" title="MySQL知识库" target="_blank" rel="noopener">数据库</a>的状态等；访问 contextUrl/metrics 路径即可查询当前 jvm 的内存使用情况，线程池的状态等。</p>
+<h1 id="五、Spring-Boot-各模块介绍"><a href="#五、Spring-Boot-各模块介绍" class="headerlink" title="五、Spring Boot 各模块介绍"></a><a></a><a></a>五、Spring Boot 各模块介绍</h1><p>Spring Boot 由一些模块构成，如 spring-boot, spring-boot-autoconfigure, spring-boot-starters, spring-boot-cli, spring-boot-actuator 等。下面简单介绍以下各模块。</p>
+<h2 id="1-spring-boot"><a href="#1-spring-boot" class="headerlink" title="1. spring-boot"></a><a></a><a></a>1. spring-boot</h2><p>主库，为其他模块提供特性支持。包括以下内容：<br>SpringApplication 类，提供静态方法，方便编写独立运行的 Spring 应用。唯一的任务是创建和刷新一个合适的 Spring ApplicationContext。<br><a href="http://lib.csdn.net/base/embeddeddevelopment" title="嵌入式开发知识库" target="_blank" rel="noopener">嵌入式</a> web 应用，自带容器 (Tomcat, Jetty 等)。</p>
+<h2 id="2-spring-boot-autoconfigure"><a href="#2-spring-boot-autoconfigure" class="headerlink" title="2. spring-boot-autoconfigure"></a><a></a><a></a>2. spring-boot-autoconfigure</h2><p>Spring Boot 可以基于 classpath 下的内容配置通用应用的大部分模块。一个 @EnableAutoConfiguration 注解触发 Spring 上下文的自动配置。<br>自动配置尝试推测用户可能需要的 bean。例如，如果 H2DB 在 classpath 中，但是用户没有配置任何 db 连接，那么 spring-boot-autoconfigure 推断用户需要一个 in-memory 的 db，因此自动配置为用户配置（默认创建的 h2db 的 db 名为 testdb, 用户名为 sa，密码无）。自动配置优先级低于用户自定义的 bean。</p>
+<h2 id="3-spring-boot-starters"><a href="#3-spring-boot-starters" class="headerlink" title="3. spring-boot-starters"></a><a></a><a></a>3. spring-boot-starters</h2><p>starters 是一系列便利的依赖描述，用户可以增加到应用中，并由此取得 Spring 和相关技术的一站式配置体验，无需查看 sample 代码并贴来贴去。例如，若用户想要使用 Spring 和 JPA 来访问 db，则只需包含 spring-boot-starter-data-jpa 依赖到 pom 中即可。</p>
+<h2 id="4-spring-boot-cli"><a href="#4-spring-boot-cli" class="headerlink" title="4. spring-boot-cli"></a><a></a><a></a>4. spring-boot-cli</h2><p>Spring 的命令行应用，编译和运行 Groovy 源码，只需极少的代码就可以运行应用，Spring CLI 还可以监视文件，在它们改变时自动重新编译和重启。</p>
+<h2 id="5-spring-boot-actuator"><a href="#5-spring-boot-actuator" class="headerlink" title="5. spring-boot-actuator"></a><a></a><a></a>5. spring-boot-actuator</h2><p>spring boot actuator 提供额外的自动配置，为你的应用装饰一些特性，使应用在生产环境下也可以快速部署和支持。例如，若你正在编写一个 JSON web 服务，该模块会提供一个服务器，安全，日志，外部化配置，管理端点 (management endpoints)，评审等。关闭这些内建特性，或者扩展或替代它们都很容易。</p>
+<h2 id="6-spring-boot-loader"><a href="#6-spring-boot-loader" class="headerlink" title="6. spring-boot-loader"></a><a></a><a></a>6. spring-boot-loader</h2><p>Spring Boot Loader 提供秘籍允许你构建可用 java –jar 直接运行的 jar 包。一般无需直接使用 spring-boot-loader, 而是通过 Gradle 或 Maven 插件使用。</p>
+<h1 id="六、如何使用-Spring-Boot"><a href="#六、如何使用-Spring-Boot" class="headerlink" title="六、如何使用 Spring Boot?"></a><a></a><a></a>六、如何使用 Spring Boot?</h1><h2 id="1-系统要求"><a href="#1-系统要求" class="headerlink" title="1. 系统要求"></a><a></a><a></a>1. 系统要求</h2><p>默认情况下，Spring Boot 1.3.6.RELEASE 需要 Java7 和 Spring 框架 4.2.7.RELEASE 或以上。你可以在 Java6 下使用 Spring Boot，不过需要添加额外配置。明确支持的构建工具是 Maven（3.2+）和 Gradle（1.12+）。<br>注：尽管你可以在 Java6 或 Java7 环境下使用 Spring Boot，通常我们建议你如果可能的话就使用 Java8。</p>
+<h2 id="2-内嵌-Servlet-容器要求"><a href="#2-内嵌-Servlet-容器要求" class="headerlink" title="2. 内嵌 Servlet 容器要求"></a><a></a><a></a>2. 内嵌 Servlet 容器要求</h2><p>下列内嵌容器在满足对应的 Servlet 和 JDK 版本要求时，支持开箱即用（out of the box）：</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>Servlet 版本</th>
+<th>Java 版本</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Tomcat 8</td>
+<td>3.1</td>
+<td>Java7+</td>
+</tr>
+<tr>
+<td>Tomcat 7</td>
+<td>3.0</td>
+<td>Java6+</td>
+</tr>
+<tr>
+<td>Jetty 9</td>
+<td>3.1</td>
+<td>Java7+</td>
+</tr>
+<tr>
+<td>Jetty 8</td>
+<td>3.0</td>
+<td>Java6+</td>
+</tr>
+<tr>
+<td>Undertow 1.1</td>
+<td>3.1</td>
+<td>Java7+</td>
+</tr>
+</tbody>
+</table>
+<p>※ Undertow 是一个采用 Java 开发的灵活的高性能 Web 服务器，提供包括阻塞和基于 NIO 的非堵塞机制。Undertow 是红帽公司的开源产品，是 Wildfly 默认的 Web 服务器。</p>
+<p>你也可以将 Spring Boot 应用部署到任何兼容 Servlet 3.0 + 的容器。</p>
+<h2 id="3-使用-Spring-Boot"><a href="#3-使用-Spring-Boot" class="headerlink" title="3. 使用 Spring Boot"></a><a></a><a></a>3. 使用 Spring Boot</h2><h3 id="3-1-直接在-Spring-Boot-CLI-上运行，或者在-http-start-spring-io-上构建。"><a href="#3-1-直接在-Spring-Boot-CLI-上运行，或者在-http-start-spring-io-上构建。" class="headerlink" title="3.1 直接在 Spring Boot CLI 上运行，或者在 http://start.spring.io/ 上构建。"></a><a></a><a></a>3.1 直接在 Spring Boot CLI 上运行，或者在 <a href="http://start.spring.io/" target="_blank" rel="noopener">http://start.spring.io/</a> 上构建。</h3><h3 id="3-2-Eclipse-上使用-Spring-IDE-插件提供的-New-gt-Spring-Stater-Project-菜单。"><a href="#3-2-Eclipse-上使用-Spring-IDE-插件提供的-New-gt-Spring-Stater-Project-菜单。" class="headerlink" title="3.2 Eclipse 上使用 Spring IDE 插件提供的 New -&gt; Spring Stater Project 菜单。"></a><a></a><a></a>3.2 Eclipse 上使用 Spring IDE 插件提供的 New -&gt; Spring Stater Project 菜单。</h3><p>此方法和 3.1 中的 start.spring.io 是一样的。</p>
+<h3 id="3-3-Maven-的-pom-直接继承-spring-boot-starter-parent。"><a href="#3-3-Maven-的-pom-直接继承-spring-boot-starter-parent。" class="headerlink" title="3.3 Maven 的 pom 直接继承 spring-boot-starter-parent。"></a><a></a><a></a>3.3 Maven 的 pom 直接继承 spring-boot-starter-parent。</h3><p>Spring Boot 依赖的 groupId 为 org.springframework.boot 。通常你的 Maven POM 文件需要继承 spring-boot-starter-parent ，然后声明一个或多个 “Starter POMs” 依赖。<br>典型的 spring boot 项目的 pom 文件结构如下所述：<br><img src="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-Spring-boot 介绍 - CSDN 博客/image6" alt=""></p>
+<h3 id="3-4-不使用继承，使用-import"><a href="#3-4-不使用继承，使用-import" class="headerlink" title="3.4 不使用继承，使用 import"></a><a></a><a></a>3.4 不使用继承，使用 import</h3><p>Scope=import 可以使你无需继承 spring-boot-starter-parent，而又保留 spring-boot-starter-parent 提供的依赖管理（插件管理除外）：<br><img src="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-Spring-boot 介绍 - CSDN 博客/image7" alt=""></p>
+<p>※ 除了 3.4 以外，3.1 到 3.3 最终形成的 pom 文件和项目结构是一样的。</p>
+<h1 id="七、Spring-Boot-有哪些不足？"><a href="#七、Spring-Boot-有哪些不足？" class="headerlink" title="七、Spring Boot 有哪些不足？"></a><a></a><a></a>七、Spring Boot 有哪些不足？</h1><p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180422_simpread-Spring-boot 介绍 - CSDN 博客/image8" alt=""><br>如图所示，Spring Boot 没有提供相应的服务发现和注册的配套功能（例如需要借助 Spring Cloud 和 Netflix 的 Eureka），自身的 Actuator 所提供的监控功能，也需要与现有的监控对接。没有配套的安全管控方案，对于 REST 的落地，还需要自行结合实际进行 URI 的规范化工作。<br>可见 Spring Boot 作为一个微框架，离微服务的实现还是有些距离的。</p>
+<hr>
+<blockquote>
+<p>参考：<br>Spring-boot介绍 - CSDN博客<br><a href="https://blog.csdn.net/tanga842428/article/details/54425387" target="_blank" rel="noopener">https://blog.csdn.net/tanga842428/article/details/54425387</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+
+     
+    
+      <div>
+        
+    <div style="text-align:center;color: #ccc;font-size:14px;">
+        ------ 本文结束<i class="fa fa-paw"></i>感谢您的阅读 ------</div>
+
+      </div>
+    
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    CloudPai
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://cloudpai.site/2018/04/22/2018-04-22-7/" title="分布式微服务之 spring boot">http://cloudpai.site/2018/04/22/2018-04-22-7/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/分布式/" rel="tag"><i class="fa fa-tag"></i> 分布式</a>
+          
+            <a href="/tags/微服务/" rel="tag"><i class="fa fa-tag"></i> 微服务</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/22/2018-04-22-3/" rel="next" title="分布式微服务">
+                <i class="fa fa-chevron-left"></i> 分布式微服务
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/22/2018-04-22-4/" rel="prev" title="分布式微服务之 spring cloud">
+                分布式微服务之 spring cloud <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+
+
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg"
+                alt="CloudPai" />
+            
+              <p class="site-author-name" itemprop="name">CloudPai</p>
+              <p class="site-description motion-element" itemprop="description">加油(๑•̀ㅂ•́)و✧加油</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">192</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+
+<div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=240 src="//music.163.com/outchain/player?type=0&id=2113726971&auto=0&height=430"></iframe>
+</div>
+<!-- 459004290 -->
+
+
+
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">93</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CloudPai" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:liupai024@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.douban.com/people/57965969/doulists/all" target="_blank" title="豆瓣">
+                      
+                        <i class="fa fa-fw fa-book"></i>豆瓣</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/cloudPai/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-edit"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.dlut.edu.cn/" title="DUT" target="_blank">DUT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bupt.edu.cn/" title="BUPT" target="_blank">BUPT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://campus.alibaba.com/index.htm" title="Alibaba Group" target="_blank">Alibaba Group</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一、导览"><span class="nav-text">一、导览</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二、什么是-Spring-Boot"><span class="nav-text">二、什么是 Spring Boot?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三、为什么使用-Spring-Boot"><span class="nav-text">三、为什么使用 Spring Boot?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四、Spring-Boot-提供哪些功能？"><span class="nav-text">四、Spring Boot 提供哪些功能？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-无需手动管理依赖-jar-包的版本"><span class="nav-text">1. 无需手动管理依赖 jar 包的版本</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-starter-poms"><span class="nav-text">1.1 starter poms</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-spring-boot-starter-parent-提供的特性"><span class="nav-text">1.2 spring-boot-starter-parent 提供的特性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-自动配置，无需-xml"><span class="nav-text">2. 自动配置，无需 xml</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-可执行-jar-包"><span class="nav-text">3. 可执行 jar 包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-外部化配置"><span class="nav-text">4. 外部化配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-嵌入式-servlet-容器"><span class="nav-text">5. 嵌入式 servlet 容器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-无缝集成-Spring-security，Spring-data-Spring-Message-等"><span class="nav-text">6. 无缝集成 Spring security，Spring data, Spring Message 等</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-devtools-提供的开发时特性"><span class="nav-text">7.devtools 提供的开发时特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#7-1-开启-devtools-特性"><span class="nav-text">7.1 开启 devtools 特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-2-devtools-的自动重启"><span class="nav-text">7.2 devtools 的自动重启</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-3-devtools-的-livereload"><span class="nav-text">7.3 devtools 的 livereload</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-Actuator-提供的生产特性（health，metrics-等）"><span class="nav-text">8.Actuator 提供的生产特性（health，metrics 等）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#五、Spring-Boot-各模块介绍"><span class="nav-text">五、Spring Boot 各模块介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-spring-boot"><span class="nav-text">1. spring-boot</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-spring-boot-autoconfigure"><span class="nav-text">2. spring-boot-autoconfigure</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-spring-boot-starters"><span class="nav-text">3. spring-boot-starters</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-spring-boot-cli"><span class="nav-text">4. spring-boot-cli</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-spring-boot-actuator"><span class="nav-text">5. spring-boot-actuator</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-spring-boot-loader"><span class="nav-text">6. spring-boot-loader</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#六、如何使用-Spring-Boot"><span class="nav-text">六、如何使用 Spring Boot?</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-系统要求"><span class="nav-text">1. 系统要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-内嵌-Servlet-容器要求"><span class="nav-text">2. 内嵌 Servlet 容器要求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-使用-Spring-Boot"><span class="nav-text">3. 使用 Spring Boot</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-直接在-Spring-Boot-CLI-上运行，或者在-http-start-spring-io-上构建。"><span class="nav-text">3.1 直接在 Spring Boot CLI 上运行，或者在 http://start.spring.io/ 上构建。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-Eclipse-上使用-Spring-IDE-插件提供的-New-gt-Spring-Stater-Project-菜单。"><span class="nav-text">3.2 Eclipse 上使用 Spring IDE 插件提供的 New -&gt; Spring Stater Project 菜单。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-3-Maven-的-pom-直接继承-spring-boot-starter-parent。"><span class="nav-text">3.3 Maven 的 pom 直接继承 spring-boot-starter-parent。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-4-不使用继承，使用-import"><span class="nav-text">3.4 不使用继承，使用 import</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#七、Spring-Boot-有哪些不足？"><span class="nav-text">七、Spring Boot 有哪些不足？</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CloudPai</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">836.0k</span>
+  
+</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv">  </span>
+</span>
+</div>
+
+
+
+
+
+
+
+  <div class="theme-info">&#12288;主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://cloudpai.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://cloudpai.site/2018/04/22/2018-04-22-7/';
+          this.page.identifier = '2018/04/22/2018-04-22-7/';
+          this.page.title = '分布式微服务之 spring boot';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cloudpai.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!-- <!-- <script src="https://cdn.bootcss.com/aplayer/1.6.0/APlayer.min.js"></script>
+
+<script src="https://api.i-meto.com/music/player.js"></script> --> -->
+  
+  <!--移动端判断，是否引入背景-->
+  <script>
+  var browser={  
+      versions:function(){   
+             var u = navigator.userAgent, app = navigator.appVersion;   
+             return {//移动终端浏览器版本信息
+                  trident: u.indexOf('Trident') > -1, //IE内核
+                  presto: u.indexOf('Presto') > -1, //opera内核
+                  webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                  gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                  mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                  ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                  android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                  iPhone: u.indexOf('iPhone') > -1 , //是否为iPhone或者QQHD浏览器
+                  iPad: u.indexOf('iPad') > -1, //是否iPad
+                  webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+              };  
+           }(),  
+           language:(navigator.browserLanguage || navigator.language).toLowerCase()  
+  }   
+    if(browser.versions.mobile || browser.versions.ios || browser.versions.android ||   
+      browser.versions.iPhone || browser.versions.iPad){        
+               
+    }else{
+    document.write("<script type=\'text/javascript\'  src=\'/js/src/particle.js\'><\/script>");
+    }
+  </script>
+
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":-80,"vOffset":-50},"mobile":{"show":false,"scale":0.2},"react":{"opacityDefault":1,"opacityOnHover":0.2}});</script></body>
+</html>
