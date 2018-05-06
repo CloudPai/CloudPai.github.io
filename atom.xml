@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cloudpai.site/"/>
-  <updated>2018-04-24T14:13:52.847Z</updated>
+  <updated>2018-05-06T11:34:34.701Z</updated>
   <id>http://cloudpai.site/</id>
   
   <author>
@@ -15,6 +15,215 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MyBatis 笔记（五）动态 SQL</title>
+    <link href="http://cloudpai.site/2018/05/06/2018-05-06-4/"/>
+    <id>http://cloudpai.site/2018/05/06/2018-05-06-4/</id>
+    <published>2018-05-06T08:39:39.000Z</published>
+    <updated>2018-05-06T11:34:34.701Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;在开发中，经常会遇到要执行的 SQL 语句其实并不是固定，而是随条件的变化而变化的。对于这种情况 MyBatis 也有解决方案。&lt;/p&gt;
+&lt;h1 id=&quot;随条件变化的-SQL
+      
+    
+    </summary>
+    
+    
+      <category term="Mybatis" scheme="http://cloudpai.site/tags/Mybatis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MyBatis 笔记（四）实体类属性和表字段的映射</title>
+    <link href="http://cloudpai.site/2018/05/06/2018-05-06-3/"/>
+    <id>http://cloudpai.site/2018/05/06/2018-05-06-3/</id>
+    <published>2018-05-06T08:37:59.000Z</published>
+    <updated>2018-05-06T11:34:17.746Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;之前的章节将的实体类属性名和表字段名都是相同的，MyBatis 会自动去映射。那么问题来了，如果实体类属性名和表字段名不相同时，MyBatis 能智能地去映射到吗？答案是：&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="Mybatis" scheme="http://cloudpai.site/tags/Mybatis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MyBatis 笔记（三）优化配置</title>
+    <link href="http://cloudpai.site/2018/05/06/2018-05-06-2/"/>
+    <id>http://cloudpai.site/2018/05/06/2018-05-06-2/</id>
+    <published>2018-05-06T08:36:22.000Z</published>
+    <updated>2018-05-06T11:34:09.033Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;在之前的讲解中，不难发现 MyBatis 的配置有些笨重，这一节就讲 MyBatis 的配置优化。毫无疑问，主要是两方面：&lt;br&gt;1. 优化 MyBatis 基础配置文件。&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="Mybatis" scheme="http://cloudpai.site/tags/Mybatis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MyBatis 笔记（二） XML vs 注解</title>
+    <link href="http://cloudpai.site/2018/05/06/2018-05-06-1/"/>
+    <id>http://cloudpai.site/2018/05/06/2018-05-06-1/</id>
+    <published>2018-05-06T08:34:35.000Z</published>
+    <updated>2018-05-06T11:33:59.319Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;MyBatis 支持注解和 XML 两种配置。这一节延续 MyBatis 笔记（一）继续讲。&lt;/p&gt;
+&lt;h1 id=&quot;1-基于-XML-的配置&quot;&gt;&lt;a href=&quot;#1-基于
+      
+    
+    </summary>
+    
+    
+      <category term="Mybatis" scheme="http://cloudpai.site/tags/Mybatis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>MyBatis 笔记（一）快速入门</title>
+    <link href="http://cloudpai.site/2018/05/06/2018-05-06/"/>
+    <id>http://cloudpai.site/2018/05/06/2018-05-06/</id>
+    <published>2018-05-06T08:32:24.000Z</published>
+    <updated>2018-05-06T11:33:06.112Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;&lt;a&gt;&lt;/a&gt;简介&lt;/h1&gt;&lt;p&gt;MyBatis 是支持定制
+      
+    
+    </summary>
+    
+    
+      <category term="Mybatis" scheme="http://cloudpai.site/tags/Mybatis/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>spring 常用注解</title>
+    <link href="http://cloudpai.site/2018/05/05/2018-05-05/"/>
+    <id>http://cloudpai.site/2018/05/05/2018-05-05/</id>
+    <published>2018-05-05T14:14:02.000Z</published>
+    <updated>2018-05-05T14:46:01.492Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;spring-常用注解&quot;&gt;&lt;a href=&quot;#spring-常用注解&quot; class=&quot;headerlink&quot; title=&quot;spring 常用注解&quot;&gt;&lt;/a&gt;spr
+      
+    
+    </summary>
+    
+    
+      <category term="Spring" scheme="http://cloudpai.site/tags/Spring/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Elasticsearch－基础介绍及索引原理分析</title>
+    <link href="http://cloudpai.site/2018/05/01/2018-05-01/"/>
+    <id>http://cloudpai.site/2018/05/01/2018-05-01/</id>
+    <published>2018-05-01T02:49:07.000Z</published>
+    <updated>2018-05-01T03:31:11.008Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;Elasticsearch－基础介绍及索引原理分析&quot;&gt;&lt;a href=&quot;#Elasticsearch－基础介绍及索引原理分析&quot; class=&quot;headerlink&quot;
+      
+    
+    </summary>
+    
+    
+      <category term="Elasticsearch" scheme="http://cloudpai.site/tags/Elasticsearch/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SpringBoot 实战学习总结</title>
+    <link href="http://cloudpai.site/2018/04/28/2018-04-28-1/"/>
+    <id>http://cloudpai.site/2018/04/28/2018-04-28-1/</id>
+    <published>2018-04-28T14:12:54.000Z</published>
+    <updated>2018-04-28T15:01:19.546Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;blockquote&gt;
+&lt;p&gt;spring-boot - 纯洁的微笑博客&lt;br&gt;&lt;a href=&quot;http://www.ityouknow.com/spring-boot.htm
+      
+    
+    </summary>
+    
+    
+      <category term="SpringBoot" scheme="http://cloudpai.site/tags/SpringBoot/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Spring Boot技术栈博客企业前后端</title>
+    <link href="http://cloudpai.site/2018/04/28/2018-04-28/"/>
+    <id>http://cloudpai.site/2018/04/28/2018-04-28/</id>
+    <published>2018-04-28T12:32:07.000Z</published>
+    <updated>2018-04-29T06:41:44.924Z</updated>
+    
+    <summary type="html">
+    
+      「这是一篇加密博客，项目结束后会公开内容」
+    
+    </summary>
+    
+    
+      <category term="SpringBoot" scheme="http://cloudpai.site/tags/SpringBoot/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>企业级电商项目架构演进</title>
+    <link href="http://cloudpai.site/2018/04/25/2018-04-25/"/>
+    <id>http://cloudpai.site/2018/04/25/2018-04-25/</id>
+    <published>2018-04-25T14:17:27.000Z</published>
+    <updated>2018-05-01T13:11:20.069Z</updated>
+    
+    <summary type="html">
+    
+      「这是一篇加密博客，项目结束后会公开内容」
+    
+    </summary>
+    
+    
+      <category term="Spring" scheme="http://cloudpai.site/tags/Spring/"/>
+    
+      <category term="IDEA" scheme="http://cloudpai.site/tags/IDEA/"/>
+    
+  </entry>
   
   <entry>
     <title>分布式计算平台 之 实时/离线平台</title>
@@ -248,247 +457,6 @@
       <category term="分布式" scheme="http://cloudpai.site/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
     
       <category term="消息队列" scheme="http://cloudpai.site/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>消息队列之 ActiveMQ</title>
-    <link href="http://cloudpai.site/2018/04/21/2018-04-21-11/"/>
-    <id>http://cloudpai.site/2018/04/21/2018-04-21-11/</id>
-    <published>2018-04-21T15:01:46.000Z</published>
-    <updated>2018-04-22T02:21:12.573Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;ActiveMQ-是什么&quot;&gt;&lt;a href=&quot;#ActiveMQ-是什么&quot; class=&quot;headerlink&quot; title=&quot;ActiveMQ 是什么&quot;&gt;&lt;/a&gt;
-      
-    
-    </summary>
-    
-    
-      <category term="分布式" scheme="http://cloudpai.site/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
-    
-      <category term="消息队列" scheme="http://cloudpai.site/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>了解JMS</title>
-    <link href="http://cloudpai.site/2018/04/21/2018-04-21-10/"/>
-    <id>http://cloudpai.site/2018/04/21/2018-04-21-10/</id>
-    <published>2018-04-21T15:00:01.000Z</published>
-    <updated>2018-04-22T02:40:44.818Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h2 id=&quot;1-JMS-简介&quot;&gt;&lt;a href=&quot;#1-JMS-简介&quot; class=&quot;headerlink&quot; title=&quot;1.JMS 简介&quot;&gt;&lt;/a&gt;&lt;a&gt;&lt;/a&gt;1.JMS
-      
-    
-    </summary>
-    
-    
-      <category term="分布式" scheme="http://cloudpai.site/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
-    
-      <category term="消息队列" scheme="http://cloudpai.site/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>消息队列之 ZeroMQ</title>
-    <link href="http://cloudpai.site/2018/04/21/2018-04-21-9/"/>
-    <id>http://cloudpai.site/2018/04/21/2018-04-21-9/</id>
-    <published>2018-04-21T14:39:56.000Z</published>
-    <updated>2018-04-21T14:50:41.023Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;ZeroMQ-消息队列介绍&quot;&gt;&lt;a href=&quot;#ZeroMQ-消息队列介绍&quot; class=&quot;headerlink&quot; title=&quot;ZeroMQ 消息队列介绍&quot;&gt;&lt;
-      
-    
-    </summary>
-    
-    
-      <category term="分布式" scheme="http://cloudpai.site/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
-    
-      <category term="消息队列" scheme="http://cloudpai.site/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>消息队列之 RabbitMQ</title>
-    <link href="http://cloudpai.site/2018/04/21/2018-04-21-8/"/>
-    <id>http://cloudpai.site/2018/04/21/2018-04-21-8/</id>
-    <published>2018-04-21T13:40:53.000Z</published>
-    <updated>2018-04-21T14:29:52.885Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;市面上的消息队列产品有很多，比如老牌的 ActiveMQ、RabbitMQ ，目前我看最火的 Kafka ，还有 ZeroMQ ，去年底阿里巴巴捐赠给 Apache 的 Ro
-      
-    
-    </summary>
-    
-    
-      <category term="分布式" scheme="http://cloudpai.site/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
-    
-      <category term="消息队列" scheme="http://cloudpai.site/tags/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>负载均衡和LVS</title>
-    <link href="http://cloudpai.site/2018/04/21/2018-04-21-7/"/>
-    <id>http://cloudpai.site/2018/04/21/2018-04-21-7/</id>
-    <published>2018-04-21T13:16:53.000Z</published>
-    <updated>2018-04-21T13:20:24.706Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;在大规模互联网应用中，负载均衡设备是必不可少的一个节点，源于互联网应用的高并发和大流量的冲击压力，我们通常会在服务端部署多个无状态的应用服务器和若干有状态的存储服务器（数据库
-      
-    
-    </summary>
-    
-    
-      <category term="分布式" scheme="http://cloudpai.site/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
-    
-      <category term="负载均衡" scheme="http://cloudpai.site/tags/%E8%B4%9F%E8%BD%BD%E5%9D%87%E8%A1%A1/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Redisson项目介绍</title>
-    <link href="http://cloudpai.site/2018/04/21/2018-04-21-6/"/>
-    <id>http://cloudpai.site/2018/04/21/2018-04-21-6/</id>
-    <published>2018-04-21T12:39:21.000Z</published>
-    <updated>2018-04-21T13:11:24.000Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;img src=&quot;https://redisson.org/logo.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
-&lt;h2 id=&quot;Redisson项目介绍&quot;&gt;&lt;a href=&quot;#Re
-      
-    
-    </summary>
-    
-    
-      <category term="分布式" scheme="http://cloudpai.site/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
-    
-      <category term="锁" scheme="http://cloudpai.site/tags/%E9%94%81/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>分布式事务处理模型(DTP)</title>
-    <link href="http://cloudpai.site/2018/04/21/2018-04-21-5/"/>
-    <id>http://cloudpai.site/2018/04/21/2018-04-21-5/</id>
-    <published>2018-04-21T10:44:23.000Z</published>
-    <updated>2018-04-21T11:56:37.462Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;一、传统的分布式事务模型&quot;&gt;&lt;a href=&quot;#一、传统的分布式事务模型&quot; class=&quot;headerlink&quot; title=&quot;一、传统的分布式事务模型&quot;&gt;&lt;/a&gt;
-      
-    
-    </summary>
-    
-    
-      <category term="分布式" scheme="http://cloudpai.site/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>分布式服务化系统一致性（分布式事务、ACID、BASE、CAP）原理与解决方案</title>
-    <link href="http://cloudpai.site/2018/04/21/2018-04-21-4/"/>
-    <id>http://cloudpai.site/2018/04/21/2018-04-21-4/</id>
-    <published>2018-04-21T08:57:09.000Z</published>
-    <updated>2018-04-21T11:53:39.627Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h2 id=&quot;1-背景&quot;&gt;&lt;a href=&quot;#1-背景&quot; class=&quot;headerlink&quot; title=&quot;1 背景&quot;&gt;&lt;/a&gt;1 背景&lt;/h2&gt;&lt;p&gt;无论是水平拆分还是垂直拆
-      
-    
-    </summary>
-    
-    
-      <category term="分布式" scheme="http://cloudpai.site/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
-    
-      <category term="一致性" scheme="http://cloudpai.site/tags/%E4%B8%80%E8%87%B4%E6%80%A7/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>大工版小幸运</title>
-    <link href="http://cloudpai.site/2018/04/21/2018-04-21-3/"/>
-    <id>http://cloudpai.site/2018/04/21/2018-04-21-3/</id>
-    <published>2018-04-21T03:40:20.000Z</published>
-    <updated>2018-04-21T03:44:32.144Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;blockquote&gt;
-&lt;p&gt;母校69周年，怀念逝去的青春&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;strong&gt;大工版小幸运&lt;/strong&gt; &lt;/p&gt;
-&lt;div id=&quot;
-      
-    
-    </summary>
-    
-    
-      <category term="大连理工" scheme="http://cloudpai.site/tags/%E5%A4%A7%E8%BF%9E%E7%90%86%E5%B7%A5/"/>
-    
-      <category term="母校" scheme="http://cloudpai.site/tags/%E6%AF%8D%E6%A0%A1/"/>
-    
-      <category term="音乐" scheme="http://cloudpai.site/tags/%E9%9F%B3%E4%B9%90/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>大工版《成都》_ 和我在西山一条街走一走</title>
-    <link href="http://cloudpai.site/2018/04/21/2018-04-21-2/"/>
-    <id>http://cloudpai.site/2018/04/21/2018-04-21-2/</id>
-    <published>2018-04-21T03:40:15.000Z</published>
-    <updated>2018-04-21T03:40:17.487Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;blockquote&gt;
-&lt;p&gt;母校69周年，怀念逝去的青春&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;&lt;strong&gt;大工版《成都》&lt;/strong&gt; &lt;/p&gt;
-&lt;div id=
-      
-    
-    </summary>
-    
-    
-      <category term="大连理工" scheme="http://cloudpai.site/tags/%E5%A4%A7%E8%BF%9E%E7%90%86%E5%B7%A5/"/>
-    
-      <category term="母校" scheme="http://cloudpai.site/tags/%E6%AF%8D%E6%A0%A1/"/>
-    
-      <category term="音乐" scheme="http://cloudpai.site/tags/%E9%9F%B3%E4%B9%90/"/>
     
   </entry>
   
