@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cloudpai.site/"/>
-  <updated>2018-05-07T12:47:40.941Z</updated>
+  <updated>2018-05-10T12:14:14.066Z</updated>
   <id>http://cloudpai.site/</id>
   
   <author>
@@ -15,6 +15,140 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>为什么要使用SLF4J而不是Log4J</title>
+    <link href="http://cloudpai.site/2018/05/10/2018-05-10/"/>
+    <id>http://cloudpai.site/2018/05/10/2018-05-10/</id>
+    <published>2018-05-10T12:06:03.000Z</published>
+    <updated>2018-05-10T12:14:14.066Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;每一个 Java 程序员都知道日志对于任何一个 Java 应用程序，尤其是服务端程序是至关重要的，而很多程序员也已经熟悉各种不同的日志库如 java.util.logging
+      
+    
+    </summary>
+    
+    
+      <category term="日志" scheme="http://cloudpai.site/tags/%E6%97%A5%E5%BF%97/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>lombok插件使用实战</title>
+    <link href="http://cloudpai.site/2018/05/09/2018-05-09-3/"/>
+    <id>http://cloudpai.site/2018/05/09/2018-05-09-3/</id>
+    <published>2018-05-09T13:33:53.000Z</published>
+    <updated>2018-05-09T15:02:27.765Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;blockquote&gt;
+&lt;p&gt;Lombok 是一种 Java™ 实用工具，可用来帮助开发人员消除 Java 的冗长，尤其是对于简单的 Java 对象（POJO）。它通过注解实现这
+      
+    
+    </summary>
+    
+    
+      <category term="lombok" scheme="http://cloudpai.site/tags/lombok/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>logger.error 完整打印错误堆栈信息</title>
+    <link href="http://cloudpai.site/2018/05/09/2018-05-09-2/"/>
+    <id>http://cloudpai.site/2018/05/09/2018-05-09-2/</id>
+    <published>2018-05-09T11:58:36.000Z</published>
+    <updated>2018-05-09T11:59:17.079Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;有时候 logger.error 不能完全地打印出网站的错误堆栈信息，只能打印这个错误是一个什么错误。&lt;/p&gt;
+&lt;p&gt;为什么？&lt;/p&gt;
+&lt;p&gt;看 Logger.error 源
+      
+    
+    </summary>
+    
+    
+      <category term="logger" scheme="http://cloudpai.site/tags/logger/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>maven 插件maven-compiler-plugin</title>
+    <link href="http://cloudpai.site/2018/05/09/2018-05-09-1/"/>
+    <id>http://cloudpai.site/2018/05/09/2018-05-09-1/</id>
+    <published>2018-05-09T11:20:08.000Z</published>
+    <updated>2018-05-09T11:21:57.237Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;a href=&quot;https://link.jianshu.com/?t=http://maven.apache.org/components/plugins/maven-c
+      
+    
+    </summary>
+    
+    
+      <category term="maven" scheme="http://cloudpai.site/tags/maven/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>IDEA mac 快捷键</title>
+    <link href="http://cloudpai.site/2018/05/09/2018-05-09/"/>
+    <id>http://cloudpai.site/2018/05/09/2018-05-09/</id>
+    <published>2018-05-09T11:10:52.000Z</published>
+    <updated>2018-05-09T11:11:29.605Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;Mac 键盘符号和修饰键说明&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;
+      
+    
+    </summary>
+    
+    
+      <category term="IDEA" scheme="http://cloudpai.site/tags/IDEA/"/>
+    
+      <category term="快捷键" scheme="http://cloudpai.site/tags/%E5%BF%AB%E6%8D%B7%E9%94%AE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>微信公众号开发</title>
+    <link href="http://cloudpai.site/2018/05/07/2018-05-07-5/"/>
+    <id>http://cloudpai.site/2018/05/07/2018-05-07-5/</id>
+    <published>2018-05-07T14:46:02.000Z</published>
+    <updated>2018-05-09T01:31:32.570Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;如何实现需要微信授权网站的本地调试？&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;微信公众平台：微信网页授权&lt;br&gt;&lt;a href=&quot;https://mp.weixin.qq.c
+      
+    
+    </summary>
+    
+    
+      <category term="微信" scheme="http://cloudpai.site/tags/%E5%BE%AE%E4%BF%A1/"/>
+    
+  </entry>
   
   <entry>
     <title>SpringMVC 学习笔记 (5)——参数绑定</title>
@@ -123,24 +257,25 @@
   </entry>
   
   <entry>
-    <title></title>
-    <link href="http://cloudpai.site/2018/05/06/2018-05-06-5/"/>
-    <id>http://cloudpai.site/2018/05/06/2018-05-06-5/</id>
-    <published>2018-05-06T13:53:36.482Z</published>
-    <updated>2018-05-07T06:54:56.010Z</updated>
+    <title>简单数据快速处理技巧</title>
+    <link href="http://cloudpai.site/2018/05/07/2018-05-06-5/"/>
+    <id>http://cloudpai.site/2018/05/07/2018-05-06-5/</id>
+    <published>2018-05-07T06:54:28.000Z</published>
+    <updated>2018-05-07T13:12:09.587Z</updated>
     
     <summary type="html">
     
       
       
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;hr&gt;
-&lt;p&gt;title:  简单数据快速处理技巧&lt;br&gt;tag: [Excel]&lt;br&gt;date: 2018-05-07 14:54:28&lt;/p&gt;
-&lt;hr&gt;
-&lt;blockquo
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;blockquote&gt;
+&lt;p&gt;问：在给excel单元格设置格式后,为什么必须双击才会生效？如何才能让设置直接生效？&lt;/p&gt;
+&lt;p&gt;答：选定一个空白格，右键复制，然后到你的列，右键
       
     
     </summary>
     
+    
+      <category term="Excel" scheme="http://cloudpai.site/tags/Excel/"/>
     
   </entry>
   
@@ -312,136 +447,6 @@
     
     
       <category term="SpringBoot" scheme="http://cloudpai.site/tags/SpringBoot/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Spring Boot技术栈博客企业前后端</title>
-    <link href="http://cloudpai.site/2018/04/28/2018-04-28/"/>
-    <id>http://cloudpai.site/2018/04/28/2018-04-28/</id>
-    <published>2018-04-28T12:32:07.000Z</published>
-    <updated>2018-04-29T06:41:44.924Z</updated>
-    
-    <summary type="html">
-    
-      「这是一篇加密博客，项目结束后会公开内容」
-    
-    </summary>
-    
-    
-      <category term="SpringBoot" scheme="http://cloudpai.site/tags/SpringBoot/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>企业级电商项目架构演进</title>
-    <link href="http://cloudpai.site/2018/04/25/2018-04-25/"/>
-    <id>http://cloudpai.site/2018/04/25/2018-04-25/</id>
-    <published>2018-04-25T14:17:27.000Z</published>
-    <updated>2018-05-01T13:11:20.069Z</updated>
-    
-    <summary type="html">
-    
-      「这是一篇加密博客，项目结束后会公开内容」
-    
-    </summary>
-    
-    
-      <category term="Spring" scheme="http://cloudpai.site/tags/Spring/"/>
-    
-      <category term="IDEA" scheme="http://cloudpai.site/tags/IDEA/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>分布式计算平台 之 实时/离线平台</title>
-    <link href="http://cloudpai.site/2018/04/24/2018-04-24/"/>
-    <id>http://cloudpai.site/2018/04/24/2018-04-24/</id>
-    <published>2018-04-24T11:50:52.000Z</published>
-    <updated>2018-04-24T14:13:52.847Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;离线计算&quot;&gt;&lt;a href=&quot;#离线计算&quot; class=&quot;headerlink&quot; title=&quot;离线计算&quot;&gt;&lt;/a&gt;离线计算&lt;/h1&gt;&lt;h4 id=&quot;MapRedu
-      
-    
-    </summary>
-    
-    
-      <category term="分布式" scheme="http://cloudpai.site/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
-    
-      <category term="计算" scheme="http://cloudpai.site/tags/%E8%AE%A1%E7%AE%97/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>分布式计算平台 之 数据库</title>
-    <link href="http://cloudpai.site/2018/04/24/2018-04-24-1/"/>
-    <id>http://cloudpai.site/2018/04/24/2018-04-24-1/</id>
-    <published>2018-04-24T11:50:41.000Z</published>
-    <updated>2018-04-24T13:00:31.287Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;互联网时代各种存储框架层出不穷，眼花缭乱，比如传统的关系型数据库：Oracle、MySQL；新兴的 NoSQL：HBase、Cassandra、Redis；全文检索框架：ES
-      
-    
-    </summary>
-    
-    
-      <category term="数据库" scheme="http://cloudpai.site/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
-      <category term="分布式" scheme="http://cloudpai.site/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>分布式虚拟化之 Docker</title>
-    <link href="http://cloudpai.site/2018/04/22/2018-04-22-6/"/>
-    <id>http://cloudpai.site/2018/04/22/2018-04-22-6/</id>
-    <published>2018-04-22T09:41:01.000Z</published>
-    <updated>2018-04-24T11:17:01.012Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h2 id=&quot;什么是-Docker&quot;&gt;&lt;a href=&quot;#什么是-Docker&quot; class=&quot;headerlink&quot; title=&quot;什么是 Docker&quot;&gt;&lt;/a&gt;什么是 Do
-      
-    
-    </summary>
-    
-    
-      <category term="分布式" scheme="http://cloudpai.site/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
-    
-      <category term="虚拟化" scheme="http://cloudpai.site/tags/%E8%99%9A%E6%8B%9F%E5%8C%96/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>分布式微服务之 Dubbo</title>
-    <link href="http://cloudpai.site/2018/04/22/2018-04-22-5/"/>
-    <id>http://cloudpai.site/2018/04/22/2018-04-22-5/</id>
-    <published>2018-04-22T09:33:10.000Z</published>
-    <updated>2018-04-23T15:06:53.235Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;背景&quot;&gt;&lt;a href=&quot;#背景&quot; class=&quot;headerlink&quot; title=&quot;背景&quot;&gt;&lt;/a&gt;背景&lt;/h1&gt;&lt;p&gt;随着互联网的发展，网站应用的规模不断扩大
-      
-    
-    </summary>
-    
-    
-      <category term="分布式" scheme="http://cloudpai.site/tags/%E5%88%86%E5%B8%83%E5%BC%8F/"/>
-    
-      <category term="微服务" scheme="http://cloudpai.site/tags/%E5%BE%AE%E6%9C%8D%E5%8A%A1/"/>
     
   </entry>
   
