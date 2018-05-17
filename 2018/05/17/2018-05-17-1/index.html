@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="tomcat,IDEA," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="CloudPai" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="大型项目架构演进过程及思考的点高大上的淘宝架构 我们以淘宝架构为例，了解下大型的电商项目的服务端的架构是怎样，如图所示 上面是一些安全体系系统，如数据安全体系、应用安全体系、前端安全体系等。中间是业务运营服务系统，如会员服务、商品服务、店铺服务、交易服务等。还有共享业务，如分布式数据层、数据分析服务、配置服务、数据搜索服务等。最下面呢，是中间件服务，如 MQS 即队列服务，OCS 即缓存服务等。">
+<meta name="keywords" content="tomcat,IDEA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="大型项目架构演进过程及思考的点">
+<meta property="og:url" content="http://cloudpai.site/2018/05/17/2018-05-17-1/index.html">
+<meta property="og:site_name" content="CloudPai">
+<meta property="og:description" content="大型项目架构演进过程及思考的点高大上的淘宝架构 我们以淘宝架构为例，了解下大型的电商项目的服务端的架构是怎样，如图所示 上面是一些安全体系系统，如数据安全体系、应用安全体系、前端安全体系等。中间是业务运营服务系统，如会员服务、商品服务、店铺服务、交易服务等。还有共享业务，如分布式数据层、数据分析服务、配置服务、数据搜索服务等。最下面呢，是中间件服务，如 MQS 即队列服务，OCS 即缓存服务等。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180517_simpread-大型项目架构演进过程及思考的点_慕课手记/image1">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180517_simpread-大型项目架构演进过程及思考的点_慕课手记/image2">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180517_simpread-大型项目架构演进过程及思考的点_慕课手记/image3">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180517_simpread-大型项目架构演进过程及思考的点_慕课手记/image4">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180517_simpread-大型项目架构演进过程及思考的点_慕课手记/image5">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180517_simpread-大型项目架构演进过程及思考的点_慕课手记/image6">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180517_simpread-大型项目架构演进过程及思考的点_慕课手记/image7">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180517_simpread-大型项目架构演进过程及思考的点_慕课手记/image8">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180517_simpread-大型项目架构演进过程及思考的点_慕课手记/image9">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180517_simpread-大型项目架构演进过程及思考的点_慕课手记/image10">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180517_simpread-大型项目架构演进过程及思考的点_慕课手记/image11">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180517_simpread-大型项目架构演进过程及思考的点_慕课手记/image12">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180517_simpread-大型项目架构演进过程及思考的点_慕课手记/image13">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180517_simpread-大型项目架构演进过程及思考的点_慕课手记/image14">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180517_simpread-大型项目架构演进过程及思考的点_慕课手记/image15">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180517_simpread-大型项目架构演进过程及思考的点_慕课手记/image16">
+<meta property="og:updated_time" content="2018-05-17T12:43:38.078Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="大型项目架构演进过程及思考的点">
+<meta name="twitter:description" content="大型项目架构演进过程及思考的点高大上的淘宝架构 我们以淘宝架构为例，了解下大型的电商项目的服务端的架构是怎样，如图所示 上面是一些安全体系系统，如数据安全体系、应用安全体系、前端安全体系等。中间是业务运营服务系统，如会员服务、商品服务、店铺服务、交易服务等。还有共享业务，如分布式数据层、数据分析服务、配置服务、数据搜索服务等。最下面呢，是中间件服务，如 MQS 即队列服务，OCS 即缓存服务等。">
+<meta name="twitter:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180517_simpread-大型项目架构演进过程及思考的点_慕课手记/image1">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'TZAS2SFOJR',
+      apiKey: 'e2a9cd036eede8026382b302001ec261',
+      indexName: 'cloudpai_blogs_search',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cloudpai.site/2018/05/17/2018-05-17-1/"/>
+
+
+
+
+
+  <title>大型项目架构演进过程及思考的点 | CloudPai</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-114643720-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CloudPai</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/05/17/2018-05-17-1/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CloudPai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudPai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">大型项目架构演进过程及思考的点</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-17T20:43:36+08:00">
+                2018-05-17
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-05-17T20:43:38+08:00">
+                2018-05-17
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/17/2018-05-17-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/05/17/2018-05-17-1/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3,425
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  12
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="大型项目架构演进过程及思考的点"><a href="#大型项目架构演进过程及思考的点" class="headerlink" title="大型项目架构演进过程及思考的点"></a>大型项目架构演进过程及思考的点</h1><p><a></a><strong>高大上的淘宝架构</strong></p>
+<p>我们以淘宝架构为例，了解下大型的电商项目的服务端的架构是怎样，如图所示<br><img src="http://p4lmrb1gp.bkt.clouddn.com/20180517_simpread-大型项目架构演进过程及思考的点_慕课手记/image1" alt=""></p>
+<p>上面是一些安全体系系统，如数据安全体系、应用安全体系、前端安全体系等。<br>中间是业务运营服务系统，如会员服务、商品服务、店铺服务、交易服务等。<br>还有共享业务，如分布式数据层、数据分析服务、配置服务、数据搜索服务等。<br>最下面呢，是中间件服务，如 MQS 即队列服务，OCS 即缓存服务等。</p>
+<p>图中也有一些看不到，例如高可用的一个体现，实现双机房容灾和异地机房单元化部署，为淘宝业务提供稳定、高效和易于维护的基础架构支撑。</p>
+<p>这是一个含金量非常高的架构，也是一个非常复杂而庞大的架构。当然这个也不是一天两天演进成这样的，也不是一上来就设计并开发成这样高大上的架构的。</p>
+<p>这边就要说一下，小型公司要怎么做呢？对很多创业公司而言，很难在初期就预估到流量十倍、百倍以及千倍以后网站架构会是什么样的一个状况。同时，如果系统初期就设计一个千万级并发的流量架构，很难有公司可以支撑这个成本。</p>
+<p>因此，一个大型服务系统都是从小一步一步走过来的，在每个阶段，找到对应该阶段网站架构所面临的问题，然后在不断解决这些问题，在这个过程中整个架构会一直演进。<br>那我们来一起看一下。</p>
+<p><a></a><strong>单服务器 - 俗称 all in one</strong></p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180517_simpread-大型项目架构演进过程及思考的点_慕课手记/image2" alt=""></p>
+<p>从一个小网站说起。一台服务器也就足够了。文件服务器，数据库，还有应用都部署在一台机器，俗称 ALL IN ONE</p>
+<p>随着我们用户越来越多，访问越来越大，硬盘，CPU，内存等都开始吃紧。一台服务器已经满足不了。这个时候看一下下一步演进</p>
+<p><a></a><strong>数据服务与应用服务分离</strong></p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180517_simpread-大型项目架构演进过程及思考的点_慕课手记/image3" alt=""></p>
+<p>我们将数据服务和应用服务分离，给应用服务器配置更好的 CPU，内存。而给数据服务器配置更好更大的硬盘。</p>
+<p>分离之后提高一定的可用性，例如 Files Server 挂了，我们还是可以操作应用和数据库等。<br>随着访问 qps 越来越高，降低接口访问时间，提高服务性能和并发，成为了我们下一个目标，发现有很多业务数据不需要每次都从数据库获取。</p>
+<p><a></a><strong>使用缓存，包括本地缓存，远程缓存，远程分布式缓存</strong></p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180517_simpread-大型项目架构演进过程及思考的点_慕课手记/image4" alt=""></p>
+<p>因为 80% 的业务访问都集中在 20% 的数据上，也就是我们经常说的 28 法则。如果我们能将这部分数据缓存下来，性能一下子就上来了。而缓存又分为两种：本地缓存和远程缓存缓存，以及远程分布式缓存，我们这里面的远程缓存图上画的是分布式的缓存集群 (Cluster)。</p>
+<p><a></a><strong>思考的点</strong></p>
+<ol>
+<li>具有哪种业务特点数据使用缓存？</li>
+<li>具有哪种业务特点的数据使用本地缓存？</li>
+<li>具有哪种务特点的数据使用远程缓存？</li>
+<li>分布式缓存在扩容时候会碰到什么问题？如何解决？分布式缓存的算法都有哪几种？各有什么优缺点？</li>
+</ol>
+<p>这个时候随着访问 qps 的提高，服务器的处理能力会成为瓶颈。虽然是可以通过购买更强大的硬件，但总会有上限，而且这个到后期成本就是指数级增长了，这时，我们就需要服务器的集群。需要使我们的服务器可以横向扩展，这时，就必须加个新东西：负载均衡调度服务器。</p>
+<p><a></a><strong>使用负载均衡，进行服务器集群</strong></p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180517_simpread-大型项目架构演进过程及思考的点_慕课手记/image5" alt=""><br>增加了负载均衡，服务器集群之后，我们可以横向扩展服务器，解决了服务器处理能力的瓶颈。</p>
+<p><a></a><strong>思考的点</strong></p>
+<ol>
+<li>负载均衡的调度策略都有哪些？</li>
+<li>各有什么优缺点？</li>
+<li>各适合什么场景？</li>
+</ol>
+<p>打个比方，我们有轮询，权重，地址散列，地址散列又分为原 ip 地址散列 hash，目标 ip 地址散列 hash，最少连接，加权最少连接，还有继续升级的很多种策略…… 我们一起来分析一下</p>
+<h3 id="典型负载均衡策略分析"><a href="#典型负载均衡策略分析" class="headerlink" title="典型负载均衡策略分析"></a>典型负载均衡策略分析</h3><ol>
+<li>轮询：优点：实现简单，缺点：不考虑每台服务器处理能力</li>
+<li>权重：优点：考虑了服务器处理能力的不同</li>
+<li>地址散列：优点：能实现同一个用户访问同一个服务器</li>
+<li>最少连接：优点：使集群中各个服务器负载更加均匀</li>
+<li>加权最少连接：在最少连接的基础上，为每台服务器加上权值。算法为 (活动连接数 * 256 + 非活动连接数)/ 权重，计算出来的值小的服务器优先被选择。</li>
+</ol>
+<h3 id="继续引出问题的场景："><a href="#继续引出问题的场景：" class="headerlink" title="继续引出问题的场景："></a>继续引出问题的场景：</h3><p>我们的登录的时候登录了 A 服务器，session 信息存储到 A 服务器上了，假设我们使用的负载均衡策略是 ip hash，那么登录信息还可以从 A 服务器上访问，但是这个有可能造成某些服务器压力过大，某些服务器又没有什么压力，这个时候压力过大的机器 (包括网卡带宽) 有可能成为瓶颈，并且请求不够分散。</p>
+<p>这时候我们使用轮询或者最小连接负载均衡策略，就导致了，第一次访问 A 服务器，第二次可能访问到 B 服务器，这个时候存储在 A 服务器上的 session 信息在 B 服务器上读取不到。</p>
+<p><a></a><strong>Session 管理 - Session Sticky 粘滞会话：</strong></p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180517_simpread-大型项目架构演进过程及思考的点_慕课手记/image6" alt=""></p>
+<p>打个比方就是如果我们每次吃饭都要保证我们用的是自己的碗筷，而只要我们在一家饭店里存着我们的碗筷，只要我们每次去这家饭店吃饭就好了。</p>
+<p>对于同一个连接中的数据包，负载均衡会将其转发至后端固定的服务器进行处理。</p>
+<p>解决了我们 session 共享的问题，但是它有什么缺点呢？</p>
+<ol>
+<li>一台服务器运行的服务挂掉，或者重启，上面的 session 都没了</li>
+<li>负载均衡器成了有状态的机器，为以后实现容灾造成了羁绊</li>
+</ol>
+<p><a></a><strong>Session 管理 - Session 复制</strong></p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180517_simpread-大型项目架构演进过程及思考的点_慕课手记/image7" alt=""></p>
+<p>就像我们在所有的饭店里都存一份自己的碗筷。我们随意去哪一家饭店吃饭都 OK，不适合做大规模集群，适合机器不多的情况。</p>
+<p>解决了我们 session 共享的问题，但是它有什么缺点呢？</p>
+<ol>
+<li>应用服务器间带宽问题，因为需要不断同步 session 数据</li>
+<li>大量用户在线时，服务器占用内存过多</li>
+</ol>
+<p><a></a><strong>Session 管理 - 基于 Cookie</strong></p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180517_simpread-大型项目架构演进过程及思考的点_慕课手记/image8" alt=""></p>
+<p>打个比方，就是我们每次去饭店吃饭，都自己带着自己的碗筷。</p>
+<p>解决了我们 session 共享的问题，但是它有什么缺点呢？</p>
+<ol>
+<li>cookie 的长度限制</li>
+<li>cookie 存于浏览器，安全性是一个问题</li>
+</ol>
+<p><a></a><strong>Session 管理 - Session 服务器</strong></p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180517_simpread-大型项目架构演进过程及思考的点_慕课手记/image9" alt=""></p>
+<p>打个比方，就是我们的碗筷都存在了一个庞大的橱柜里，我们去任何一家饭店吃饭，都可以从橱柜中拿到属于我们自己的碗筷。</p>
+<p>解决了我们 session 共享的问题，这种方案需要思考哪些问题呢？</p>
+<ol>
+<li>保证 session 服务器的可用性，session 服务器单点如何解决？</li>
+<li>我们在写应用时需要做调整存储 session 的业务逻辑</li>
+</ol>
+<p>打个比方，我们为了提高 session server 的可用性，可以继续给 session server 做集群</p>
+<p><a></a><strong>中间总结</strong></p>
+<p>所以说，网站架构在遇到某些指标瓶颈时，演进的过程中，都有哪些解决方案，他们都有什么优缺点？业务功能上如何取舍？如何做出选择？这个过程才是最重要的。</p>
+<p>在解决了横向扩展应用服务器之后，那我们继续~~</p>
+<h3 id="继续回到目前架构图"><a href="#继续回到目前架构图" class="headerlink" title="继续回到目前架构图"></a>继续回到目前架构图</h3><p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180517_simpread-大型项目架构演进过程及思考的点_慕课手记/image10" alt=""></p>
+<p>数据库的读及写操作都还需要经过数据库。当用户量达到一定量，数据库将会成为瓶颈。那我们如何来解决呢？</p>
+<p><a></a><strong>数据库读写分离</strong></p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180517_simpread-大型项目架构演进过程及思考的点_慕课手记/image11" alt=""></p>
+<p>使用数据库提供的热备功能，将所有的读操作引入 slave 服务器，因为数据库的读写分离了，所以，我们的应用程序也得做相应的变化。我们实现一个数据访问模块 (图中的 data access module) 使上层写代码的人不知道读写分离的存在。这样多数据源读写分离就对业务代码没有了侵入。这里就引出了代码层次的演变</p>
+<p><a></a><strong>思考的点</strong></p>
+<ol>
+<li>如何支持多数据源？</li>
+<li>如何封装对业务没有侵入？</li>
+<li>如何使用目前业务的 ORM 框架完成主从读写分离？是否需要更换 ORM 模型？ORM 模型之间各有什么优缺点？</li>
+<li>如何取舍？</li>
+</ol>
+<p>数据库读写分离会遇到如下问题：</p>
+<ol>
+<li>在 master 和 slave 复制的时候，考虑延时问题、数据库的支持、复制条件的支持。</li>
+<li>当为了提高可用性，将数据库分机房后，跨机房传输同步数据，这个更是问题。</li>
+<li>应用对于数据源的路由问题</li>
+</ol>
+<p><a></a><strong>使用反向代理和 CDN 加速网站响应</strong></p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180517_simpread-大型项目架构演进过程及思考的点_慕课手记/image12" alt=""></p>
+<p>使用 CDN 可以很好的解决不同的地区的访问速度问题，反向代理则在服务器机房中缓存用户资源。</p>
+<p>访问量越来越大，我们文件服务器也出现了瓶颈。</p>
+<p><a></a><strong>分布式文件系统</strong></p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180517_simpread-大型项目架构演进过程及思考的点_慕课手记/image13" alt=""></p>
+<p><a></a><strong>思考的点</strong></p>
+<ol>
+<li>分布式文件系统如何不影响已部署在线上的业务访问？不能让某个图片突然访问不到呀</li>
+<li>是否需要业务部门清洗数据？</li>
+<li>是否需要重新做域名解析？</li>
+</ol>
+<p>这个时候数据库又出现了瓶颈</p>
+<p><a></a><strong>数据垂直拆分</strong></p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180517_simpread-大型项目架构演进过程及思考的点_慕课手记/image14" alt=""></p>
+<p>数据库专库专用，如图 Products、Users、Deal 库。</p>
+<p>解决写数据时，并发，量大的问题。</p>
+<p><a></a><strong>思考的点</strong></p>
+<ol>
+<li>跨业务的事务？如何解决？使用分布式事务、去掉事务或不追求强事务</li>
+<li>应用的配置项多了</li>
+<li>如何跨库进行数据的 join 操作</li>
+</ol>
+<p>这个时候，某个业务的数据表的数据量或者更新量达到了单个数据库的瓶颈</p>
+<p><a></a><strong>数据水平拆分</strong></p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180517_simpread-大型项目架构演进过程及思考的点_慕课手记/image15" alt=""></p>
+<p>如图，我们把 User 拆成了 User1 和 User2，将同一个表的数据拆分到两个数据库中，解决了单数据库的瓶颈。</p>
+<p><a></a><strong>思考的点</strong></p>
+<ol>
+<li>水平拆分的策略都有哪些？各有什么优缺点？</li>
+<li>水平拆分的时候如何清洗数据？</li>
+<li>SQL 的路由问题，需要知道某个 User 在哪个数据库上。</li>
+<li>主键的策略会有不同。</li>
+<li>假设我们系统中需要查询 2017 年 4 月份已经下单过的用户名的明细，而这些用户分布在 user1 和 user2 上，我们后台运营系统在展示时如何分页？</li>
+</ol>
+<p>这个时候，公司对外部做了流量导入，我们应用中的搜索量飙升，继续演进</p>
+<p><a></a><strong>拆分搜索引擎</strong></p>
+<p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180517_simpread-大型项目架构演进过程及思考的点_慕课手记/image16" alt=""></p>
+<p>使用搜索引擎，解决数据查询问题。部分场景可使用 NoSQL 提高性能，开发数据统一访问模块，解决上层应用开发的数据源问题。如图 data access module 可以访问数据库，搜索引擎，NoSQL</p>
+<p><a></a><strong>最后总结</strong></p>
+<p>这个只是一个举例演示，各个服务的技术架构是需要根据自己业务特点进行优化和演进的，所以大家的过程也不完全相同。</p>
+<p>最后的这个也不是完美的，例如负载均衡还是一个单点，也需要集群，我们的这个架构呢也只是冰山一角，沧海一粟。在架构演进的过程中，还要考虑系统的安全性、数据分析、监控、反作弊等等……，同时继续发展呢，SOA 架构、服务化、消息队列、任务调度、多机房等等… …</p>
+<p>从刚才对架构演进的讲解，也可以看出来，所有大型项目的架构和代码，都是这么一步一步的根据实际的业务场景，和发展情况发展演变而来的，在不同的阶段，会使用的不同的技术，不同的架构来解决实际的问题，所以说，高大上的项目技术架构和开发设计实现不是一蹴而就的。</p>
+<p>正是所谓的万丈高楼平地起。在架构演进的过程中，小到核心模块代码，大到核心架构，都会不断演进的，这个过程值得我们去深入学习和思考。一起加油吧~~</p>
+<hr>
+<blockquote>
+<p>参考：<br>大型项目架构演进过程及思考的点_慕课手记<br><a href="https://www.imooc.com/article/17545" target="_blank" rel="noopener">https://www.imooc.com/article/17545</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+
+     
+    
+      <div>
+        
+    <div style="text-align:center;color: #ccc;font-size:14px;">
+        ------ 本文结束<i class="fa fa-paw"></i>感谢您的阅读 ------</div>
+
+      </div>
+    
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    CloudPai
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://cloudpai.site/2018/05/17/2018-05-17-1/" title="大型项目架构演进过程及思考的点">http://cloudpai.site/2018/05/17/2018-05-17-1/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/tomcat/" rel="tag"><i class="fa fa-tag"></i> tomcat</a>
+          
+            <a href="/tags/IDEA/" rel="tag"><i class="fa fa-tag"></i> IDEA</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/17/2018-05-17/" rel="next" title="Tomcat 集群">
+                <i class="fa fa-chevron-left"></i> Tomcat 集群
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/17/2018-05-17-2/" rel="prev" title="Cookie,Session 和 Token 机制和区别">
+                Cookie,Session 和 Token 机制和区别 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+
+
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg"
+                alt="CloudPai" />
+            
+              <p class="site-author-name" itemprop="name">CloudPai</p>
+              <p class="site-description motion-element" itemprop="description">加油(๑•̀ㅂ•́)و✧加油</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">226</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+
+<div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=240 src="//music.163.com/outchain/player?type=0&id=2113726971&auto=0&height=430"></iframe>
+</div>
+<!-- 459004290 -->
+
+
+
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">111</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CloudPai" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:liupai024@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.douban.com/people/57965969/doulists/all" target="_blank" title="豆瓣">
+                      
+                        <i class="fa fa-fw fa-book"></i>豆瓣</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/cloudPai/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-edit"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.dlut.edu.cn/" title="DUT" target="_blank">DUT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bupt.edu.cn/" title="BUPT" target="_blank">BUPT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://campus.alibaba.com/index.htm" title="Alibaba Group" target="_blank">Alibaba Group</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#大型项目架构演进过程及思考的点"><span class="nav-text">大型项目架构演进过程及思考的点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#典型负载均衡策略分析"><span class="nav-text">典型负载均衡策略分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#继续引出问题的场景："><span class="nav-text">继续引出问题的场景：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#继续回到目前架构图"><span class="nav-text">继续回到目前架构图</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CloudPai</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">892.5k</span>
+  
+</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv">  </span>
+</span>
+</div>
+
+
+
+
+
+
+
+  <div class="theme-info">&#12288;主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://cloudpai.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://cloudpai.site/2018/05/17/2018-05-17-1/';
+          this.page.identifier = '2018/05/17/2018-05-17-1/';
+          this.page.title = '大型项目架构演进过程及思考的点';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cloudpai.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!-- <!-- <script src="https://cdn.bootcss.com/aplayer/1.6.0/APlayer.min.js"></script>
+
+<script src="https://api.i-meto.com/music/player.js"></script> --> -->
+  
+  <!--移动端判断，是否引入背景-->
+  <script>
+  var browser={  
+      versions:function(){   
+             var u = navigator.userAgent, app = navigator.appVersion;   
+             return {//移动终端浏览器版本信息
+                  trident: u.indexOf('Trident') > -1, //IE内核
+                  presto: u.indexOf('Presto') > -1, //opera内核
+                  webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                  gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                  mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                  ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                  android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                  iPhone: u.indexOf('iPhone') > -1 , //是否为iPhone或者QQHD浏览器
+                  iPad: u.indexOf('iPad') > -1, //是否iPad
+                  webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+              };  
+           }(),  
+           language:(navigator.browserLanguage || navigator.language).toLowerCase()  
+  }   
+    if(browser.versions.mobile || browser.versions.ios || browser.versions.android ||   
+      browser.versions.iPhone || browser.versions.iPad){        
+               
+    }else{
+    document.write("<script type=\'text/javascript\'  src=\'/js/src/particle.js\'><\/script>");
+    }
+  </script>
+
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":-80,"vOffset":-50},"mobile":{"show":false,"scale":0.2},"react":{"opacityDefault":1,"opacityOnHover":0.2}});</script></body>
+</html>

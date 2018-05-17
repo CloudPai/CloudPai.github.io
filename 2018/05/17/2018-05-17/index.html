@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="tomcat,IDEA," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="CloudPai" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Tomcat 集群Tomcat 集群 Tomcat 单服务 “毛坯版”  单服务很简单，一层 Nginx，首先 Nginx 主要职责给 Tomcat 一层反向代理。 在这个架构图中，Nginx 第二次职责是给 FTPServer 指定的目录再做一层目录转发，保证上传上去的图片实时可以通过 http 协议访问到。 单服务架构先不用考虑集群碰到的各种问题 Tomcat 集群 “体验版”  那在架构演">
+<meta name="keywords" content="tomcat,IDEA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tomcat 集群">
+<meta property="og:url" content="http://cloudpai.site/2018/05/17/2018-05-17/index.html">
+<meta property="og:site_name" content="CloudPai">
+<meta property="og:description" content="Tomcat 集群Tomcat 集群 Tomcat 单服务 “毛坯版”  单服务很简单，一层 Nginx，首先 Nginx 主要职责给 Tomcat 一层反向代理。 在这个架构图中，Nginx 第二次职责是给 FTPServer 指定的目录再做一层目录转发，保证上传上去的图片实时可以通过 http 协议访问到。 单服务架构先不用考虑集群碰到的各种问题 Tomcat 集群 “体验版”  那在架构演">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://img.mukewang.com/5a1598570001edc207600714.png">
+<meta property="og:image" content="https://img.mukewang.com/5a1598f800017f9509460766.png">
+<meta property="og:image" content="https://img.mukewang.com/5a159a0b0001f75212700874.png">
+<meta property="og:image" content="https://img.mukewang.com/5a159f5a0001d35421720690.png">
+<meta property="og:image" content="https://img.mukewang.com/5a15a03a0001289319600618.png">
+<meta property="og:image" content="https://img.mukewang.com/5a15a16300012c8907740530.png">
+<meta property="og:updated_time" content="2018-05-17T12:46:26.090Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Tomcat 集群">
+<meta name="twitter:description" content="Tomcat 集群Tomcat 集群 Tomcat 单服务 “毛坯版”  单服务很简单，一层 Nginx，首先 Nginx 主要职责给 Tomcat 一层反向代理。 在这个架构图中，Nginx 第二次职责是给 FTPServer 指定的目录再做一层目录转发，保证上传上去的图片实时可以通过 http 协议访问到。 单服务架构先不用考虑集群碰到的各种问题 Tomcat 集群 “体验版”  那在架构演">
+<meta name="twitter:image" content="https://img.mukewang.com/5a1598570001edc207600714.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'TZAS2SFOJR',
+      apiKey: 'e2a9cd036eede8026382b302001ec261',
+      indexName: 'cloudpai_blogs_search',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cloudpai.site/2018/05/17/2018-05-17/"/>
+
+
+
+
+
+  <title>Tomcat 集群 | CloudPai</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-114643720-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CloudPai</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/05/17/2018-05-17/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CloudPai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudPai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Tomcat 集群</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-17T20:17:28+08:00">
+                2018-05-17
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-05-17T20:46:26+08:00">
+                2018-05-17
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/17/2018-05-17/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/05/17/2018-05-17/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,268
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  9
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="Tomcat-集群"><a href="#Tomcat-集群" class="headerlink" title="Tomcat 集群"></a>Tomcat 集群</h1><p><a></a><strong>Tomcat 集群</strong> <a></a><strong>Tomcat 单服务 “毛坯版”</strong></p>
+<p><img src="https:///img.mukewang.com/5a1598570001edc207600714.png" alt=""></p>
+<p>单服务很简单，一层 Nginx，首先 Nginx 主要职责给 Tomcat 一层反向代理。</p>
+<p>在这个架构图中，Nginx 第二次职责是给 FTPServer 指定的目录再做一层目录转发，保证上传上去的图片实时可以通过 http 协议访问到。</p>
+<p>单服务架构先不用考虑集群碰到的各种问题</p>
+<p><a></a><strong>Tomcat 集群 “体验版”</strong></p>
+<p><img src="https:///img.mukewang.com/5a1598f800017f9509460766.png" alt=""></p>
+<p>那在架构演进过程中，首先演进成这样的架构的也是有的。这种架构每个 Session 还都是每个 Tomcat 实例自己来维护的。</p>
+<p>那这个架构图中的首先要解决 Session 共享的问题，具体如何解决以及各种优缺点，请参考 <a href="https://www.imooc.com/article/17545" target="_blank" rel="noopener">https://www.imooc.com/article/17545</a> 《大型项目架构演进过程及思考的点》 这篇手记，里面写的非常之详细。</p>
+<p><a></a><strong>Tomcat 集群 “正式版”</strong></p>
+<p><img src="https:///img.mukewang.com/5a159a0b0001f75212700874.png" alt=""></p>
+<p>如图，在此架构图中，nginx 使用的是轮询的负载均衡策略。session 不交给 tomcat 自己管理，已经交由左侧的 redis 分布式集群来管理。那紧接着就要说一下，在从 Tomcat 单服务演进到 Tomcat 集群环境下 (使用) 目前<a href="http://coding.imooc.com/class/96.html" target="_blank" rel="noopener">一期项目 - Java 从零到企业级电商项目实战</a> 碰到的各种问题</p>
+<p>简单理解为，在 Tomcat 集群下，各个 Tomcat 服务是分布式的。所以必须要解决业务逻辑碰到的各种分布式的问题。下</p>
+<p><a></a><strong>架构演进到代码演进及解决方案</strong></p>
+<p>下面列出典型的三点来过一遍。</p>
+<p><a></a><strong>解决 session 共享问题</strong></p>
+<h3 id="原生-Redis-Cookie-Filter-解决"><a href="#原生-Redis-Cookie-Filter-解决" class="headerlink" title="原生 Redis+Cookie+Filter 解决"></a>原生 Redis+Cookie+Filter 解决</h3><p>首先通过 Response 写入 Cookie 一个登陆的 “SessionId”，这里是用引号的，它并不是真正意义上 Tomcat Servlet 原生的 SessionId。</p>
+<p>代码片段如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">public static void writeLoginToken(HttpServletResponse response,String token)&#123;</span><br><span class="line">        Cookie ck = new Cookie(COOKIE_NAME,token);</span><br><span class="line">        ck.setDomain(COOKIE_DOMAIN);</span><br><span class="line">        ck.setPath(&quot;/&quot;);//代表设置在根目录</span><br><span class="line">        ck.setHttpOnly(true);</span><br><span class="line">        //单位是秒。</span><br><span class="line">        //如果这个maxage不设置的话，cookie就不会写入硬盘，而是写在内存。只在当前页面有效。</span><br><span class="line">        ck.setMaxAge(60 * 60 * 24 * 365);//如果是-1，代表永久</span><br><span class="line">        log.info(&quot;write cookieName:&#123;&#125;,cookieValue:&#123;&#125;&quot;,ck.getName(),ck.getValue());</span><br><span class="line">        response.addCookie(ck);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>其中 COOKIE_NAME 和 COOKIE_DOMAIN 是根据实际项目，线上的域名来配置的，如果扩展开来讲，对于里面每个属性，在二级 / 三级域名下的读写问题是必须要细化讲的，这里暂时先不过多深入。举个栗子</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//X:domain=&quot;.happymmall.com&quot;</span><br><span class="line">//a:A.happymmall.com            cookie:domain=A.happymmall.com;path=&quot;/&quot;</span><br><span class="line">//b:B.happymmall.com            cookie:domain=B.happymmall.com;path=&quot;/&quot;</span><br><span class="line">//c:A.happymmall.com/test/cc    cookie:domain=A.happymmall.com;path=&quot;/ee/cc/&quot;</span><br><span class="line">//d:A.happymmall.com/test/dd    cookie:domain=A.happymmall.com;path=&quot;/ee/dd/&quot;</span><br><span class="line">//e:A.happymmall.com/test       cookie:domain=A.happymmall.com;path=&quot;/ee&quot;</span><br></pre></td></tr></table></figure>
+<p>例如我们的线上网站是 <a href="http://www.happymmall.com，例如" target="_blank" rel="noopener">http://www.happymmall.com，例如</a> a 和 b 他们之间是无法读取到对方的 cookie 的。而 c 和 d 的访问 URL 下均可以读取到小 a… 更多的详细解读在此次进阶课程当中。我们继续回到主线来讲。</p>
+<p>写完 Cookie 之后就要通过 Redis 把用户登录的 Session 存储到 Redis 当中。然后通过 “SessionId” 来在 Redis 中做一个映射。</p>
+<p>所以整体流程是在登录的时候写 Cookie，写 Redis，使用的时候读 Cookie，读 Redis，登出的时候删除 Cookie，删除 Redis 中的 session 信息。</p>
+<h3 id="解决时间重置问题"><a href="#解决时间重置问题" class="headerlink" title="解决时间重置问题"></a>解决时间重置问题</h3><p>Session 在和服务器交互的时候有效期会重置，当然我们自己写了一个，代码片段如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">    public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException &#123;</span><br><span class="line">        HttpServletRequest httpServletRequest = (HttpServletRequest)servletRequest;</span><br><span class="line"></span><br><span class="line">        String loginToken = CookieUtil.readLoginToken(httpServletRequest);</span><br><span class="line"></span><br><span class="line">        if(StringUtils.isNotEmpty(loginToken))&#123;</span><br><span class="line">            //判断logintoken是否为空或者&quot;&quot;；</span><br><span class="line">            //如果不为空的话，符合条件，继续拿user信息</span><br><span class="line"></span><br><span class="line">            String userJsonStr = RedisShardedPoolUtil.get(loginToken);</span><br><span class="line">            User user = JsonUtil.string2Obj(userJsonStr,User.class);</span><br><span class="line">            if(user != null)&#123;</span><br><span class="line">                //如果user不为空，则重置session的时间，即调用expire命令</span><br><span class="line">                RedisShardedPoolUtil.expire(loginToken, Const.RedisCacheExtime.REDIS_SESSION_EXTIME);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        filterChain.doFilter(servletRequest,servletResponse);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Spring-Session-框架"><a href="#Spring-Session-框架" class="headerlink" title="Spring Session 框架"></a>Spring Session 框架</h3><p>Spring Session 框架可以零侵入解决 session 共享的问题，当然也是通过 redis。</p>
+<p>官方文档：<a href="https://docs.spring.io/spring-session/docs/current/reference/html5/" target="_blank" rel="noopener">https://docs.spring.io/spring-session/docs/current/reference/html5/</a></p>
+<p>Spring Session 官方文档写的非常好，例子也很多，小伙伴们仔细阅读即可，这里简单介绍一下几个关键类及代码</p>
+<h3 id="DelegatingFilterProxy"><a href="#DelegatingFilterProxy" class="headerlink" title="DelegatingFilterProxy"></a>DelegatingFilterProxy</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&lt;filter-name&gt;springSessionRepositoryFilter&lt;/filter-name&gt;</span><br><span class="line">&lt;filter-class&gt;org.springframework.web.filter.DelegatingFilterProxy&lt;/filter-class&gt;</span><br></pre></td></tr></table></figure>
+<p>通过配置这个 filter 来做代理，它获取了委托的过滤器。通过源码结构可知<img src="https:///img.mukewang.com/5a159f5a0001d35421720690.png" alt=""></p>
+<p>它继承了 GenericFilterBean 其中 GenericFilterBean 的 init 方法调用了 DelegatingFilterProxy 的 initFilterBean()，那其实这里面就是获取委托的过滤器啦。并调用委托过滤器的 doFilter()。</p>
+<p>源码片段</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> Filter <span class="title">initDelegate</span><span class="params">(WebApplicationContext wac)</span> <span class="keyword">throws</span> ServletException </span>&#123;</span><br><span class="line">    Filter delegate = wac.getBean(getTargetBeanName(), Filter.class);</span><br><span class="line">    <span class="keyword">if</span> (isTargetFilterLifecycle()) &#123;</span><br><span class="line">        delegate.init(getFilterConfig());</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> delegate;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后注意看 init 的实现类都有哪些？<img src="https:///img.mukewang.com/5a15a03a0001289319600618.png" alt="">观察蓝色背景 OncePerRequestFilter 这个类，名字起的很好。见名知意，继续看。</p>
+<p><img src="https:///img.mukewang.com/5a15a16300012c8907740530.png" alt=""></p>
+<p>如图，而主角 SessionRepositoryFilter 正是继承了这个抽象类。通过 Attribute 判断是否已经被过滤。而这个 Attribute 的 key 就是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SessionRepository.class.getName();</span><br></pre></td></tr></table></figure>
+<p>先跳出来继续说。</p>
+<p>另外两个主角就是</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SessionRepositoryRequestWrapper</span><br></pre></td></tr></table></figure>
+<p>和</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SessionRepositoryResponseWrapper</span><br></pre></td></tr></table></figure>
+<p>例如 SessionRepositoryRequestWrapper 继承了 HttpServletWrapper，所以它可以在目前的 HttpRequest 上进行包装，重写了 getSession 方法。</p>
+<p>那 Spring Session 是如何和 Redis 如何交互的呢，session 的有效期如何配置呢？那就要看看</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration</span><br></pre></td></tr></table></figure>
+<p>还有</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">org.springframework.session.data.redis.RedisOperationsSessionRepository</span><br></pre></td></tr></table></figure>
+<p>这两个类啦，例如下面的代码是描述 spring session 存储在 redis 的 session 的 namespace 的一个常量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * The default prefix for each key and channel in Redis used by Spring Session.</span><br><span class="line"> */</span><br><span class="line">static final String DEFAULT_SPRING_SESSION_REDIS_PREFIX = &quot;spring:session:&quot;;</span><br></pre></td></tr></table></figure>
+<p>还有下面这段，通过 Spring Schedule 来清理过期 session</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Scheduled(cron = &quot;0 * * * * *&quot;)</span><br><span class="line">public void cleanupExpiredSessions() &#123;</span><br><span class="line">    this.expirationPolicy.cleanExpiredSessions();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>而 Cookie 的注入等默认设置 (当然自己修改也是 ok 的，我们的项目就会通过注入的方式修改它，例如 domain、path 等等)</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">org.springframework.session.web.http.DefaultCookieSerializer</span><br></pre></td></tr></table></figure>
+<p>这个类有很多写的有意思的地方，例如 servlet3 才开始支持 httponly，源码是这么判断的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Returns true if the Servlet 3 APIs are detected.</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> whether the Servlet 3 APIs are detected</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isServlet3</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            ServletRequest.class.getMethod(<span class="string">"startAsync"</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> (NoSuchMethodException e) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>那其实 spring session 框架是真的非常有意思，里面牵扯的点非常多，redis、cookie、session，wrapper，proxy 等等，那这些呢详细的在 <a href="http://coding.imooc.com/class/162.html" target="_blank" rel="noopener">Java 企业级电商项目架构演进之路 Tomcat 集群和 Redis 分布式课程</a> 中也会详细来讲解的。</p>
+<p>我们先跳出来，以上两种方式都行，也各有优缺点，第一种更灵活，第二种对业务的侵入性更低。</p>
+<p><a></a><strong>解决定时任务分布式调度问题</strong></p>
+<p>问题的原因是我们有定时关单的 Job，单个 Tomcat OK，没有任何问题，但是在集群环境下，Spring Schedule 定时执行的时候，会都一起执行，然而我们只希望执行一个就可以啦，避免数据错乱和资源浪费。所以在集群环境下，这种 case 也必须解决。</p>
+<p>那分布式锁如果搞不好非常容易造成死锁，所以这种场景下要格外细致。</p>
+<p>以 Redisson 实现分布式锁为例。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Scheduled</span>(cron=<span class="string">"0 */1 * * * ?"</span>)<span class="comment">//每1分钟(每个1分钟的整数倍)</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">closeOrderTaskV4</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">    RLock lock = redissonManager.getRedisson().getLock(Const.REDIS_LOCK.CLOSE_ORDER_TASK_LOCK);</span><br><span class="line">    <span class="keyword">boolean</span> getLock = <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(getLock = lock.tryLock(<span class="number">2</span>,<span class="number">50</span>, TimeUnit.SECONDS))&#123;<span class="comment">//trylock增加锁</span></span><br><span class="line">            log.info(<span class="string">"===获取&#123;&#125;,ThreadName:&#123;&#125;"</span>,Const.REDIS_LOCK.CLOSE_ORDER_TASK_LOCK,Thread.currentThread().getName());</span><br><span class="line">            <span class="keyword">int</span> hour = Integer.parseInt(PropertiesUtil.getProperty(<span class="string">"close.order.task.time.hour"</span>,<span class="string">"2"</span>));</span><br><span class="line">            iOrderService.closeOrder(hour);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            log.info(<span class="string">"===没有获得分布式锁:&#123;&#125;"</span>,Const.REDIS_LOCK.CLOSE_ORDER_TASK_LOCK);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;<span class="keyword">finally</span> &#123;</span><br><span class="line">        <span class="keyword">if</span>(!getLock)&#123;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        log.info(<span class="string">"===释放分布式锁:&#123;&#125;"</span>,Const.REDIS_LOCK.CLOSE_ORDER_TASK_LOCK);</span><br><span class="line">        lock.unlock();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当然这个方法名字是 closeOrderTaskV4，就代表着我们还有 closeOrderTaskV1、closeOrderTaskV2、closeOrderTaskV3。架构演进，代码也是要演进的，从复杂到简单拆解，从不完美到完美这么一个过程，从原生实现到框架解析，代码不断升级优化，并对比其中业务场景，缺陷，优点这个过程还是非常有意思的。</p>
+<p><a></a><strong>解决本地 guava cache 迁移问题</strong></p>
+<p>问题的原因是 Tomcat 之前使用的 guava cache，它只存在于 tomcat 实例上，tomcat 及 tomcat 之间并不共享，所以必须迁移。否则负载均衡就 TomcatA 存储了 guava cache，TomcatB 想拿并拿不到… 就尴尬了。</p>
+<p><a></a><strong>继续解决…</strong></p>
+<p>那在 Tomcat 集群环境下根据实际的业务场景，会有很多地方深入到代码的演进，以上 3 个点仅仅是一小部分。从项目架构到系统架构的思维转变，然后通过系统架构再深入到项目架构，再深入到代码当中，这个过程还是非常有趣味的。</p>
+<hr>
+<blockquote>
+<p>参考：<br>Tomcat集群后引发的…_慕课手记<br><a href="https://www.imooc.com/article/21377" target="_blank" rel="noopener">https://www.imooc.com/article/21377</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+
+     
+    
+      <div>
+        
+    <div style="text-align:center;color: #ccc;font-size:14px;">
+        ------ 本文结束<i class="fa fa-paw"></i>感谢您的阅读 ------</div>
+
+      </div>
+    
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    CloudPai
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://cloudpai.site/2018/05/17/2018-05-17/" title="Tomcat 集群">http://cloudpai.site/2018/05/17/2018-05-17/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/tomcat/" rel="tag"><i class="fa fa-tag"></i> tomcat</a>
+          
+            <a href="/tags/IDEA/" rel="tag"><i class="fa fa-tag"></i> IDEA</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/15/2018-05-15/" rel="next" title="idea 远程部署tomcat 配置">
+                <i class="fa fa-chevron-left"></i> idea 远程部署tomcat 配置
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/17/2018-05-17-1/" rel="prev" title="大型项目架构演进过程及思考的点">
+                大型项目架构演进过程及思考的点 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+
+
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg"
+                alt="CloudPai" />
+            
+              <p class="site-author-name" itemprop="name">CloudPai</p>
+              <p class="site-description motion-element" itemprop="description">加油(๑•̀ㅂ•́)و✧加油</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">226</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+
+<div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=240 src="//music.163.com/outchain/player?type=0&id=2113726971&auto=0&height=430"></iframe>
+</div>
+<!-- 459004290 -->
+
+
+
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">111</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CloudPai" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:liupai024@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.douban.com/people/57965969/doulists/all" target="_blank" title="豆瓣">
+                      
+                        <i class="fa fa-fw fa-book"></i>豆瓣</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/cloudPai/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-edit"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.dlut.edu.cn/" title="DUT" target="_blank">DUT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bupt.edu.cn/" title="BUPT" target="_blank">BUPT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://campus.alibaba.com/index.htm" title="Alibaba Group" target="_blank">Alibaba Group</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Tomcat-集群"><span class="nav-text">Tomcat 集群</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原生-Redis-Cookie-Filter-解决"><span class="nav-text">原生 Redis+Cookie+Filter 解决</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决时间重置问题"><span class="nav-text">解决时间重置问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Spring-Session-框架"><span class="nav-text">Spring Session 框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DelegatingFilterProxy"><span class="nav-text">DelegatingFilterProxy</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CloudPai</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">892.5k</span>
+  
+</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv">  </span>
+</span>
+</div>
+
+
+
+
+
+
+
+  <div class="theme-info">&#12288;主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://cloudpai.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://cloudpai.site/2018/05/17/2018-05-17/';
+          this.page.identifier = '2018/05/17/2018-05-17/';
+          this.page.title = 'Tomcat 集群';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cloudpai.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!-- <!-- <script src="https://cdn.bootcss.com/aplayer/1.6.0/APlayer.min.js"></script>
+
+<script src="https://api.i-meto.com/music/player.js"></script> --> -->
+  
+  <!--移动端判断，是否引入背景-->
+  <script>
+  var browser={  
+      versions:function(){   
+             var u = navigator.userAgent, app = navigator.appVersion;   
+             return {//移动终端浏览器版本信息
+                  trident: u.indexOf('Trident') > -1, //IE内核
+                  presto: u.indexOf('Presto') > -1, //opera内核
+                  webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                  gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                  mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                  ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                  android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                  iPhone: u.indexOf('iPhone') > -1 , //是否为iPhone或者QQHD浏览器
+                  iPad: u.indexOf('iPad') > -1, //是否iPad
+                  webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+              };  
+           }(),  
+           language:(navigator.browserLanguage || navigator.language).toLowerCase()  
+  }   
+    if(browser.versions.mobile || browser.versions.ios || browser.versions.android ||   
+      browser.versions.iPhone || browser.versions.iPad){        
+               
+    }else{
+    document.write("<script type=\'text/javascript\'  src=\'/js/src/particle.js\'><\/script>");
+    }
+  </script>
+
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":-80,"vOffset":-50},"mobile":{"show":false,"scale":0.2},"react":{"opacityDefault":1,"opacityOnHover":0.2}});</script></body>
+</html>

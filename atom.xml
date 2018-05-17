@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://cloudpai.site/"/>
-  <updated>2018-05-10T12:14:14.066Z</updated>
+  <updated>2018-05-17T12:47:21.649Z</updated>
   <id>http://cloudpai.site/</id>
   
   <author>
@@ -15,6 +15,266 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Cookie,Session 和 Token 机制和区别</title>
+    <link href="http://cloudpai.site/2018/05/17/2018-05-17-2/"/>
+    <id>http://cloudpai.site/2018/05/17/2018-05-17-2/</id>
+    <published>2018-05-17T12:43:41.000Z</published>
+    <updated>2018-05-17T12:47:21.649Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;1-背景介绍&quot;&gt;&lt;a href=&quot;#1-背景介绍&quot; class=&quot;headerlink&quot; title=&quot;1. 背景介绍&quot;&gt;&lt;/a&gt;&lt;strong&gt;1. 背景介绍&lt;/
+      
+    
+    </summary>
+    
+    
+      <category term="Cookie" scheme="http://cloudpai.site/tags/Cookie/"/>
+    
+      <category term="Session" scheme="http://cloudpai.site/tags/Session/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>大型项目架构演进过程及思考的点</title>
+    <link href="http://cloudpai.site/2018/05/17/2018-05-17-1/"/>
+    <id>http://cloudpai.site/2018/05/17/2018-05-17-1/</id>
+    <published>2018-05-17T12:43:36.000Z</published>
+    <updated>2018-05-17T12:43:38.078Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;大型项目架构演进过程及思考的点&quot;&gt;&lt;a href=&quot;#大型项目架构演进过程及思考的点&quot; class=&quot;headerlink&quot; title=&quot;大型项目架构演进过程及思
+      
+    
+    </summary>
+    
+    
+      <category term="tomcat" scheme="http://cloudpai.site/tags/tomcat/"/>
+    
+      <category term="IDEA" scheme="http://cloudpai.site/tags/IDEA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Tomcat 集群</title>
+    <link href="http://cloudpai.site/2018/05/17/2018-05-17/"/>
+    <id>http://cloudpai.site/2018/05/17/2018-05-17/</id>
+    <published>2018-05-17T12:17:28.000Z</published>
+    <updated>2018-05-17T12:46:26.090Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;Tomcat-集群&quot;&gt;&lt;a href=&quot;#Tomcat-集群&quot; class=&quot;headerlink&quot; title=&quot;Tomcat 集群&quot;&gt;&lt;/a&gt;Tomcat 集群
+      
+    
+    </summary>
+    
+    
+      <category term="tomcat" scheme="http://cloudpai.site/tags/tomcat/"/>
+    
+      <category term="IDEA" scheme="http://cloudpai.site/tags/IDEA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>idea 远程部署tomcat 配置</title>
+    <link href="http://cloudpai.site/2018/05/15/2018-05-15/"/>
+    <id>http://cloudpai.site/2018/05/15/2018-05-15/</id>
+    <published>2018-05-15T12:50:43.000Z</published>
+    <updated>2018-05-15T12:54:55.183Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;之前做项目，一直都是把本地的源码上传到 svn，服务器是通过 ant 或者 maven 脚本来编译的生成项目的。每次都要单独登录接服务器进行项目的部署和发布，感觉特别繁琐。（
+      
+    
+    </summary>
+    
+    
+      <category term="tomcat" scheme="http://cloudpai.site/tags/tomcat/"/>
+    
+      <category term="IDEA" scheme="http://cloudpai.site/tags/IDEA/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Jackson实现Object对象与Json字符串的互转</title>
+    <link href="http://cloudpai.site/2018/05/14/2018-05-14-4/"/>
+    <id>http://cloudpai.site/2018/05/14/2018-05-14-4/</id>
+    <published>2018-05-14T14:46:18.000Z</published>
+    <updated>2018-05-14T14:56:03.953Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;在项目开发过程中，当客户端与服务器响应时，数据交互是必不可少的。然而通过 Json 实现数据交互成为我们开发中的一部分，进而 Jackson 为我们的 Json 转化提供了很
+      
+    
+    </summary>
+    
+    
+      <category term="Jackson" scheme="http://cloudpai.site/tags/Jackson/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>TypeReference -- 让Jackson Json在List/Map中识别自己的Object</title>
+    <link href="http://cloudpai.site/2018/05/14/2018-05-14-3/"/>
+    <id>http://cloudpai.site/2018/05/14/2018-05-14-3/</id>
+    <published>2018-05-14T14:39:05.000Z</published>
+    <updated>2018-05-14T14:39:40.500Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt; 最近使用了 jackson json 来格式化数据输出，但是反序列化生成对象的时候碰到点麻烦，jackson 把数据默认解析成了 Map 对象，经查询文档，问题解决，在 O
+      
+    
+    </summary>
+    
+    
+      <category term="Jackson" scheme="http://cloudpai.site/tags/Jackson/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Jackson 框架的高阶应用</title>
+    <link href="http://cloudpai.site/2018/05/14/2018-05-14-2/"/>
+    <id>http://cloudpai.site/2018/05/14/2018-05-14-2/</id>
+    <published>2018-05-14T14:33:35.000Z</published>
+    <updated>2018-05-14T14:33:51.300Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;Jackson 是当前用的比较广泛的，用来序列化和反序列化 json 的 Java 的开源框架。Jackson 社 区相对比较活跃，更新速度也比较快， 从 Github 中的
+      
+    
+    </summary>
+    
+    
+      <category term="Jackson" scheme="http://cloudpai.site/tags/Jackson/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>关于 Java 泛型 &quot;擦除&quot; 的一点思考</title>
+    <link href="http://cloudpai.site/2018/05/14/2018-05-14-1/"/>
+    <id>http://cloudpai.site/2018/05/14/2018-05-14-1/</id>
+    <published>2018-05-14T14:17:15.000Z</published>
+    <updated>2018-05-14T14:20:34.404Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;泛型是 JDK1.5 后的一个特性，是一个参数类型的应用，可以将这个参数声明在类、接口、方法中，就像我们方法中定义的局部变量一样；在工作中，我们常在 List，Map，Set
+      
+    
+    </summary>
+    
+    
+      <category term="泛型" scheme="http://cloudpai.site/tags/%E6%B3%9B%E5%9E%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JAVA泛型通配符T，E，K，V区别，T以及Class&lt;T&gt;，Class&lt;?&gt;的区别</title>
+    <link href="http://cloudpai.site/2018/05/14/2018-05-14/"/>
+    <id>http://cloudpai.site/2018/05/14/2018-05-14/</id>
+    <published>2018-05-14T12:59:12.000Z</published>
+    <updated>2018-05-14T13:04:50.322Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;1-先解释下泛型概念&quot;&gt;&lt;a href=&quot;#1-先解释下泛型概念&quot; class=&quot;headerlink&quot; title=&quot;1. 先解释下泛型概念&quot;&gt;&lt;/a&gt;1. 先解
+      
+    
+    </summary>
+    
+    
+      <category term="泛型" scheme="http://cloudpai.site/tags/%E6%B3%9B%E5%9E%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>SSO CAS 单点登录</title>
+    <link href="http://cloudpai.site/2018/05/13/2018-05-13/"/>
+    <id>http://cloudpai.site/2018/05/13/2018-05-13/</id>
+    <published>2018-05-13T12:17:47.000Z</published>
+    <updated>2018-05-13T12:34:11.834Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;《SSO-CAS-单点系列》之-15-分钟让你了解-SSO-技术到底是个什么鬼！&quot;&gt;&lt;a href=&quot;#《SSO-CAS-单点系列》之-15-分钟让你了解-SSO-
+      
+    
+    </summary>
+    
+    
+      <category term="SSO" scheme="http://cloudpai.site/tags/SSO/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Nginx 负载均衡配置</title>
+    <link href="http://cloudpai.site/2018/05/12/2018-05-12/"/>
+    <id>http://cloudpai.site/2018/05/12/2018-05-12/</id>
+    <published>2018-05-12T03:05:20.000Z</published>
+    <updated>2018-05-12T03:06:11.891Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;Nginx 安装请参考：《&lt;a href=&quot;http://blog.csdn.net/xyang81/article/details/51476293&quot; target=&quot;_b
+      
+    
+    </summary>
+    
+    
+      <category term="Nginx" scheme="http://cloudpai.site/tags/Nginx/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Maven 实现环境隔离</title>
+    <link href="http://cloudpai.site/2018/05/10/2018-05-10-1/"/>
+    <id>http://cloudpai.site/2018/05/10/2018-05-10-1/</id>
+    <published>2018-05-10T14:41:16.000Z</published>
+    <updated>2018-05-10T14:42:16.559Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h2 id=&quot;一、前言&quot;&gt;&lt;a href=&quot;#一、前言&quot; class=&quot;headerlink&quot; title=&quot;一、前言&quot;&gt;&lt;/a&gt;&lt;a href=&quot;#一、前言&quot; title=&quot;一
+      
+    
+    </summary>
+    
+    
+      <category term="Maven" scheme="http://cloudpai.site/tags/Maven/"/>
+    
+  </entry>
   
   <entry>
     <title>为什么要使用SLF4J而不是Log4J</title>
@@ -189,264 +449,6 @@
     
     
       <category term="SpringMVC" scheme="http://cloudpai.site/tags/SpringMVC/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SpringMVC学习笔记(3)——Spring+SpringMVC+MyBatis框架整合</title>
-    <link href="http://cloudpai.site/2018/05/07/2018-05-07-2/"/>
-    <id>http://cloudpai.site/2018/05/07/2018-05-07-2/</id>
-    <published>2018-05-07T14:27:33.000Z</published>
-    <updated>2018-05-07T12:47:17.459Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;strong&gt;SpringMVC+Spring+MyBatis&lt;/strong&gt; 框架的组合，是标准的 MVC 程序架构模式，将整个系统划分为&lt;strong&gt;显示层&lt;/st
-      
-    
-    </summary>
-    
-    
-      <category term="SpringMVC" scheme="http://cloudpai.site/tags/SpringMVC/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SpringMVC 学习笔记 (2)——商品列表查询入门程序</title>
-    <link href="http://cloudpai.site/2018/05/07/2018-05-07/"/>
-    <id>http://cloudpai.site/2018/05/07/2018-05-07/</id>
-    <published>2018-05-07T13:01:13.000Z</published>
-    <updated>2018-05-07T12:47:07.835Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;在商品订单管理为例，做一个商品列表查询的简单案例。&lt;/p&gt;
-&lt;h1 id=&quot;开发环境和运行环境&quot;&gt;&lt;a href=&quot;#开发环境和运行环境&quot; class=&quot;headerlink
-      
-    
-    </summary>
-    
-    
-      <category term="SpringMVC" scheme="http://cloudpai.site/tags/SpringMVC/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SpringMVC 学习笔记 (1)——SpringMVC 介绍</title>
-    <link href="http://cloudpai.site/2018/05/07/2018-05-07-1/"/>
-    <id>http://cloudpai.site/2018/05/07/2018-05-07-1/</id>
-    <published>2018-05-07T11:58:53.000Z</published>
-    <updated>2018-05-07T12:46:54.040Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;MVC-架构模式&quot;&gt;&lt;a href=&quot;#MVC-架构模式&quot; class=&quot;headerlink&quot; title=&quot;MVC 架构模式&quot;&gt;&lt;/a&gt;MVC 架构模式&lt;a h
-      
-    
-    </summary>
-    
-    
-      <category term="SpringMVC" scheme="http://cloudpai.site/tags/SpringMVC/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>简单数据快速处理技巧</title>
-    <link href="http://cloudpai.site/2018/05/07/2018-05-06-5/"/>
-    <id>http://cloudpai.site/2018/05/07/2018-05-06-5/</id>
-    <published>2018-05-07T06:54:28.000Z</published>
-    <updated>2018-05-07T13:12:09.587Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;blockquote&gt;
-&lt;p&gt;问：在给excel单元格设置格式后,为什么必须双击才会生效？如何才能让设置直接生效？&lt;/p&gt;
-&lt;p&gt;答：选定一个空白格，右键复制，然后到你的列，右键
-      
-    
-    </summary>
-    
-    
-      <category term="Excel" scheme="http://cloudpai.site/tags/Excel/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MyBatis 笔记（五）动态 SQL</title>
-    <link href="http://cloudpai.site/2018/05/06/2018-05-06-4/"/>
-    <id>http://cloudpai.site/2018/05/06/2018-05-06-4/</id>
-    <published>2018-05-06T08:39:39.000Z</published>
-    <updated>2018-05-06T11:34:34.701Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;在开发中，经常会遇到要执行的 SQL 语句其实并不是固定，而是随条件的变化而变化的。对于这种情况 MyBatis 也有解决方案。&lt;/p&gt;
-&lt;h1 id=&quot;随条件变化的-SQL
-      
-    
-    </summary>
-    
-    
-      <category term="Mybatis" scheme="http://cloudpai.site/tags/Mybatis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MyBatis 笔记（四）实体类属性和表字段的映射</title>
-    <link href="http://cloudpai.site/2018/05/06/2018-05-06-3/"/>
-    <id>http://cloudpai.site/2018/05/06/2018-05-06-3/</id>
-    <published>2018-05-06T08:37:59.000Z</published>
-    <updated>2018-05-06T11:34:17.746Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;之前的章节将的实体类属性名和表字段名都是相同的，MyBatis 会自动去映射。那么问题来了，如果实体类属性名和表字段名不相同时，MyBatis 能智能地去映射到吗？答案是：&lt;
-      
-    
-    </summary>
-    
-    
-      <category term="Mybatis" scheme="http://cloudpai.site/tags/Mybatis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MyBatis 笔记（三）优化配置</title>
-    <link href="http://cloudpai.site/2018/05/06/2018-05-06-2/"/>
-    <id>http://cloudpai.site/2018/05/06/2018-05-06-2/</id>
-    <published>2018-05-06T08:36:22.000Z</published>
-    <updated>2018-05-06T11:34:09.033Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;在之前的讲解中，不难发现 MyBatis 的配置有些笨重，这一节就讲 MyBatis 的配置优化。毫无疑问，主要是两方面：&lt;br&gt;1. 优化 MyBatis 基础配置文件。&lt;
-      
-    
-    </summary>
-    
-    
-      <category term="Mybatis" scheme="http://cloudpai.site/tags/Mybatis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MyBatis 笔记（二） XML vs 注解</title>
-    <link href="http://cloudpai.site/2018/05/06/2018-05-06-1/"/>
-    <id>http://cloudpai.site/2018/05/06/2018-05-06-1/</id>
-    <published>2018-05-06T08:34:35.000Z</published>
-    <updated>2018-05-06T11:33:59.319Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;MyBatis 支持注解和 XML 两种配置。这一节延续 MyBatis 笔记（一）继续讲。&lt;/p&gt;
-&lt;h1 id=&quot;1-基于-XML-的配置&quot;&gt;&lt;a href=&quot;#1-基于
-      
-    
-    </summary>
-    
-    
-      <category term="Mybatis" scheme="http://cloudpai.site/tags/Mybatis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MyBatis 笔记（一）快速入门</title>
-    <link href="http://cloudpai.site/2018/05/06/2018-05-06/"/>
-    <id>http://cloudpai.site/2018/05/06/2018-05-06/</id>
-    <published>2018-05-06T08:32:24.000Z</published>
-    <updated>2018-05-06T11:33:06.112Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;简介&quot;&gt;&lt;a href=&quot;#简介&quot; class=&quot;headerlink&quot; title=&quot;简介&quot;&gt;&lt;/a&gt;&lt;a&gt;&lt;/a&gt;简介&lt;/h1&gt;&lt;p&gt;MyBatis 是支持定制
-      
-    
-    </summary>
-    
-    
-      <category term="Mybatis" scheme="http://cloudpai.site/tags/Mybatis/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>spring 常用注解</title>
-    <link href="http://cloudpai.site/2018/05/05/2018-05-05/"/>
-    <id>http://cloudpai.site/2018/05/05/2018-05-05/</id>
-    <published>2018-05-05T14:14:02.000Z</published>
-    <updated>2018-05-05T14:46:01.492Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;spring-常用注解&quot;&gt;&lt;a href=&quot;#spring-常用注解&quot; class=&quot;headerlink&quot; title=&quot;spring 常用注解&quot;&gt;&lt;/a&gt;spr
-      
-    
-    </summary>
-    
-    
-      <category term="Spring" scheme="http://cloudpai.site/tags/Spring/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Elasticsearch－基础介绍及索引原理分析</title>
-    <link href="http://cloudpai.site/2018/05/01/2018-05-01/"/>
-    <id>http://cloudpai.site/2018/05/01/2018-05-01/</id>
-    <published>2018-05-01T02:49:07.000Z</published>
-    <updated>2018-05-01T03:31:11.008Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h1 id=&quot;Elasticsearch－基础介绍及索引原理分析&quot;&gt;&lt;a href=&quot;#Elasticsearch－基础介绍及索引原理分析&quot; class=&quot;headerlink&quot;
-      
-    
-    </summary>
-    
-    
-      <category term="Elasticsearch" scheme="http://cloudpai.site/tags/Elasticsearch/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>SpringBoot 实战学习总结</title>
-    <link href="http://cloudpai.site/2018/04/28/2018-04-28-1/"/>
-    <id>http://cloudpai.site/2018/04/28/2018-04-28-1/</id>
-    <published>2018-04-28T14:12:54.000Z</published>
-    <updated>2018-04-28T15:01:19.546Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;blockquote&gt;
-&lt;p&gt;spring-boot - 纯洁的微笑博客&lt;br&gt;&lt;a href=&quot;http://www.ityouknow.com/spring-boot.htm
-      
-    
-    </summary>
-    
-    
-      <category term="SpringBoot" scheme="http://cloudpai.site/tags/SpringBoot/"/>
     
   </entry>
   
