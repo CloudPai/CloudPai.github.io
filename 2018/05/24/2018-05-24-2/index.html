@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="SpringMVC,Restful," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="CloudPai" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="本文我们将使用 Spring MVC 4 实现 CRUD Restful WebService , 通过 RestTemplate 写一个 REST 客户端，定义这些服务. 我们也可以通过外部的一些客户端来测试这些服务。 简短 &amp;amp; 快速介绍 RESTREST 表示 Representational State Transfer（表示性状态转换）. 它是可以用来设计 web service">
+<meta name="keywords" content="SpringMVC,Restful">
+<meta property="og:type" content="article">
+<meta property="og:title" content="springmvc restful 教程">
+<meta property="og:url" content="http://cloudpai.site/2018/05/24/2018-05-24-2/index.html">
+<meta property="og:site_name" content="CloudPai">
+<meta property="og:description" content="本文我们将使用 Spring MVC 4 实现 CRUD Restful WebService , 通过 RestTemplate 写一个 REST 客户端，定义这些服务. 我们也可以通过外部的一些客户端来测试这些服务。 简短 &amp;amp; 快速介绍 RESTREST 表示 Representational State Transfer（表示性状态转换）. 它是可以用来设计 web service">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180525_simpread-Spring_MVC_4_RESTFul_Web_Services_CRUD_例子（带源码）【这才是_restful，超经典】_-_CSDN_博客/image1">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180525_simpread-Spring_MVC_4_RESTFul_Web_Services_CRUD_例子（带源码）【这才是_restful，超经典】_-_CSDN_博客/image2">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180525_simpread-Spring_MVC_4_RESTFul_Web_Services_CRUD_例子（带源码）【这才是_restful，超经典】_-_CSDN_博客/image3">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180525_simpread-Spring_MVC_4_RESTFul_Web_Services_CRUD_例子（带源码）【这才是_restful，超经典】_-_CSDN_博客/image4">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180525_simpread-Spring_MVC_4_RESTFul_Web_Services_CRUD_例子（带源码）【这才是_restful，超经典】_-_CSDN_博客/image5">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180525_simpread-Spring_MVC_4_RESTFul_Web_Services_CRUD_例子（带源码）【这才是_restful，超经典】_-_CSDN_博客/image6">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180525_simpread-Spring_MVC_4_RESTFul_Web_Services_CRUD_例子（带源码）【这才是_restful，超经典】_-_CSDN_博客/image7">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180525_simpread-Spring_MVC_4_RESTFul_Web_Services_CRUD_例子（带源码）【这才是_restful，超经典】_-_CSDN_博客/image8">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180525_simpread-Spring_MVC_4_RESTFul_Web_Services_CRUD_例子（带源码）【这才是_restful，超经典】_-_CSDN_博客/image9">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180525_simpread-Spring_MVC_4_RESTFul_Web_Services_CRUD_例子（带源码）【这才是_restful，超经典】_-_CSDN_博客/image10">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180525_simpread-Spring_MVC_4_RESTFul_Web_Services_CRUD_例子（带源码）【这才是_restful，超经典】_-_CSDN_博客/image11">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180525_simpread-Spring_MVC_4_RESTFul_Web_Services_CRUD_例子（带源码）【这才是_restful，超经典】_-_CSDN_博客/image12">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180525_simpread-Spring_MVC_4_RESTFul_Web_Services_CRUD_例子（带源码）【这才是_restful，超经典】_-_CSDN_博客/image13">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180525_simpread-Spring_MVC_4_RESTFul_Web_Services_CRUD_例子（带源码）【这才是_restful，超经典】_-_CSDN_博客/image14">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180525_simpread-Spring_MVC_4_RESTFul_Web_Services_CRUD_例子（带源码）【这才是_restful，超经典】_-_CSDN_博客/image15">
+<meta property="og:updated_time" content="2018-05-25T09:29:57.613Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="springmvc restful 教程">
+<meta name="twitter:description" content="本文我们将使用 Spring MVC 4 实现 CRUD Restful WebService , 通过 RestTemplate 写一个 REST 客户端，定义这些服务. 我们也可以通过外部的一些客户端来测试这些服务。 简短 &amp;amp; 快速介绍 RESTREST 表示 Representational State Transfer（表示性状态转换）. 它是可以用来设计 web service">
+<meta name="twitter:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180525_simpread-Spring_MVC_4_RESTFul_Web_Services_CRUD_例子（带源码）【这才是_restful，超经典】_-_CSDN_博客/image1">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'TZAS2SFOJR',
+      apiKey: 'e2a9cd036eede8026382b302001ec261',
+      indexName: 'cloudpai_blogs_search',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cloudpai.site/2018/05/24/2018-05-24-2/"/>
+
+
+
+
+
+  <title>springmvc restful 教程 | CloudPai</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-114643720-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CloudPai</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/05/24/2018-05-24-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CloudPai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudPai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">springmvc restful 教程</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-24T23:07:04+08:00">
+                2018-05-24
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-05-25T17:29:57+08:00">
+                2018-05-25
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/24/2018-05-24-2/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/05/24/2018-05-24-2/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3,961
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  21
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><p>本文我们将使用 Spring MVC 4 实现 CRUD Restful WebService , 通过 RestTemplate 写一个 REST 客户端，定义这些服务. 我们也可以通过外部的一些客户端来测试这些服务。</p>
+<h3 id="简短-amp-快速介绍-REST"><a href="#简短-amp-快速介绍-REST" class="headerlink" title="简短 &amp; 快速介绍 REST"></a><a></a>简短 &amp; 快速介绍 REST</h3><p><a href="http://stackoverflow.com/questions/671118/what-exactly-is-restful-programming" target="_blank" rel="noopener">REST</a> 表示 Representational State Transfer（表示性状态转换）.</p>
+<p>它是可以用来设计 web services 的框架，可以被不同的客户端调用。</p>
+<p>核心思想是：使用简单的 HTTP 协议来实现调用，而不是 CORBA, RPC 或者 SOAP 等负责的机制。</p>
+<p>在 Rest 基础设计中，资源使用以下动词进行操作。</p>
+<ul>
+<li>创建资源 : 使用 HTTP POST</li>
+<li>获取资源 : 使用 HTTP GET</li>
+<li>更新资源 : 使用 HTTP PUT </li>
+<li>删除资源 : 使用 HTTP DELETE </li>
+</ul>
+<p>也意味着, 你作为 Rest 服务开发者或者客户，应该遵循以上的标准。</p>
+<p>尽管没有限制必须返回的类型，但是一般基于 Web services 的 Rest 返回 JSON 或者 XML 作为响应。</p>
+<p>客户端可以指定（使用 HTTP Accept header）他们想要的资源类型吗，服务器返回需要的资源。</p>
+<p>指明资源的 Content-Type。如果想详细的理解 restful 可以参考这里：<a href="http://stackoverflow.com/questions/671118/what-exactly-is-restful-programming" target="_blank" rel="noopener">StackOverflow link</a> </p>
+<h2 id="基于-Rest-的-Controller（控制器）"><a href="#基于-Rest-的-Controller（控制器）" class="headerlink" title="基于 Rest 的 Controller（控制器）"></a><a></a>基于 Rest 的 Controller（控制器）</h2><p>我们的 REST API :</p>
+<ul>
+<li>GET 方式请求 /api/user/ 返回用户列表</li>
+<li>GET 方式请求 /api/user/1 返回 id 为 1 的用户</li>
+<li>POST 方式请求 /api/user/ 通过 user 对象的 JSON 参数创建新的 user 对象</li>
+<li>PUT 方式请求 /api/user/3 更新 id 为 3 的发送 json 格式的用户对象 </li>
+<li>DELETE 方式请求 / api/user/4 删除 ID 为 4 的 user 对象</li>
+<li>DELETE 方式请求 /api/user / 删除所有 user</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.websystique.springmvc.controller;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> org.springframework.beans.factory.annotation.Autowired;</span><br><span class="line"><span class="keyword">import</span> org.springframework.http.HttpHeaders;</span><br><span class="line"><span class="keyword">import</span> org.springframework.http.HttpStatus;</span><br><span class="line"><span class="keyword">import</span> org.springframework.http.MediaType;</span><br><span class="line"><span class="keyword">import</span> org.springframework.http.ResponseEntity;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.PathVariable;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestBody;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMapping;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RequestMethod;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.bind.annotation.RestController;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.util.UriComponentsBuilder;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> com.websystique.springmvc.model.User;</span><br><span class="line"><span class="keyword">import</span> com.websystique.springmvc.service.UserService;</span><br><span class="line"> </span><br><span class="line"><span class="meta">@RestController</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorldRestController</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    UserService userService;  <span class="comment">//Service which will do all data retrieval/manipulation work</span></span><br><span class="line"> </span><br><span class="line">     </span><br><span class="line">    <span class="comment">//-------------------Retrieve All Users--------------------------------------------------------</span></span><br><span class="line">     </span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/user/"</span>, method = RequestMethod.GET)</span><br><span class="line">    <span class="keyword">public</span> ResponseEntity&lt;List&lt;User&gt;&gt; listAllUsers() &#123;</span><br><span class="line">        List&lt;User&gt; users = userService.findAllUsers();</span><br><span class="line">        <span class="keyword">if</span>(users.isEmpty())&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> ResponseEntity&lt;List&lt;User&gt;&gt;(HttpStatus.NO_CONTENT);<span class="comment">//You many decide to return HttpStatus.NOT_FOUND</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ResponseEntity&lt;List&lt;User&gt;&gt;(users, HttpStatus.OK);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">    <span class="comment">//-------------------Retrieve Single User--------------------------------------------------------</span></span><br><span class="line">     </span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/user/&#123;id&#125;"</span>, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ResponseEntity&lt;User&gt; <span class="title">getUser</span><span class="params">(@PathVariable(<span class="string">"id"</span>)</span> <span class="keyword">long</span> id) </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Fetching User with id "</span> + id);</span><br><span class="line">        User user = userService.findById(id);</span><br><span class="line">        <span class="keyword">if</span> (user == <span class="keyword">null</span>) &#123;</span><br><span class="line">            System.out.println(<span class="string">"User with id "</span> + id + <span class="string">" not found"</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> ResponseEntity&lt;User&gt;(HttpStatus.NOT_FOUND);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ResponseEntity&lt;User&gt;(user, HttpStatus.OK);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">     </span><br><span class="line">     </span><br><span class="line">    <span class="comment">//-------------------Create a User--------------------------------------------------------</span></span><br><span class="line">     </span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/user/"</span>, method = RequestMethod.POST)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ResponseEntity&lt;Void&gt; <span class="title">createUser</span><span class="params">(@RequestBody User user,    UriComponentsBuilder ucBuilder)</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Creating User "</span> + user.getName());</span><br><span class="line"> </span><br><span class="line">        <span class="keyword">if</span> (userService.isUserExist(user)) &#123;</span><br><span class="line">            System.out.println(<span class="string">"A User with name "</span> + user.getName() + <span class="string">" already exist"</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> ResponseEntity&lt;Void&gt;(HttpStatus.CONFLICT);</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        userService.saveUser(user);</span><br><span class="line"> </span><br><span class="line">        HttpHeaders headers = <span class="keyword">new</span> HttpHeaders();</span><br><span class="line">        headers.setLocation(ucBuilder.path(<span class="string">"/user/&#123;id&#125;"</span>).buildAndExpand(user.getId()).toUri());</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ResponseEntity&lt;Void&gt;(headers, HttpStatus.CREATED);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">     </span><br><span class="line">    <span class="comment">//------------------- Update a User --------------------------------------------------------</span></span><br><span class="line">     </span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/user/&#123;id&#125;"</span>, method = RequestMethod.PUT)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ResponseEntity&lt;User&gt; <span class="title">updateUser</span><span class="params">(@PathVariable(<span class="string">"id"</span>)</span> <span class="keyword">long</span> id, @RequestBody User user) </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Updating User "</span> + id);</span><br><span class="line">         </span><br><span class="line">        User currentUser = userService.findById(id);</span><br><span class="line">         </span><br><span class="line">        <span class="keyword">if</span> (currentUser==<span class="keyword">null</span>) &#123;</span><br><span class="line">            System.out.println(<span class="string">"User with id "</span> + id + <span class="string">" not found"</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> ResponseEntity&lt;User&gt;(HttpStatus.NOT_FOUND);</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        currentUser.setName(user.getName());</span><br><span class="line">        currentUser.setAge(user.getAge());</span><br><span class="line">        currentUser.setSalary(user.getSalary());</span><br><span class="line">         </span><br><span class="line">        userService.updateUser(currentUser);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ResponseEntity&lt;User&gt;(currentUser, HttpStatus.OK);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">//------------------- Delete a User --------------------------------------------------------</span></span><br><span class="line">     </span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/user/&#123;id&#125;"</span>, method = RequestMethod.DELETE)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ResponseEntity&lt;User&gt; <span class="title">deleteUser</span><span class="params">(@PathVariable(<span class="string">"id"</span>)</span> <span class="keyword">long</span> id) </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Fetching &amp; Deleting User with id "</span> + id);</span><br><span class="line"> </span><br><span class="line">        User user = userService.findById(id);</span><br><span class="line">        <span class="keyword">if</span> (user == <span class="keyword">null</span>) &#123;</span><br><span class="line">            System.out.println(<span class="string">"Unable to delete. User with id "</span> + id + <span class="string">" not found"</span>);</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> ResponseEntity&lt;User&gt;(HttpStatus.NOT_FOUND);</span><br><span class="line">        &#125;</span><br><span class="line"> </span><br><span class="line">        userService.deleteUserById(id);</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ResponseEntity&lt;User&gt;(HttpStatus.NO_CONTENT);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">     </span><br><span class="line">    <span class="comment">//------------------- Delete All Users --------------------------------------------------------</span></span><br><span class="line">     </span><br><span class="line">    <span class="meta">@RequestMapping</span>(value = <span class="string">"/user/"</span>, method = RequestMethod.DELETE)</span><br><span class="line">    <span class="function"><span class="keyword">public</span> ResponseEntity&lt;User&gt; <span class="title">deleteAllUsers</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Deleting All Users"</span>);</span><br><span class="line"> </span><br><span class="line">        userService.deleteAllUsers();</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> ResponseEntity&lt;User&gt;(HttpStatus.NO_CONTENT);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>详解：</p>
+<p>@RestController : 首先我们使用的是 Spring 4 的新注解 @RestController 注解. </p>
+<p>此注解避免了每个方法都要加上 @ResponseBody 注解。也就是说 @RestController 自己戴上了 @ResponseBody 注解, 看以看作是</p>
+<p> @Controller 和 @ResponseBody 的结合体。</p>
+<p>@RequestBody : 如果方法参数被 @RequestBody 注解，Spring 将绑定 HTTP 请求体到那个参数上。如果那样做，Spring 将根据请求中的 ACCEPT 或者 Content-Type header（私下）使用 <a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#rest-message-conversion" target="_blank" rel="noopener">HTTP Message converters</a> 来将 http 请求体转化为 domain 对象。</p>
+<p>@ResponseBody : 如果方法加上了 @ResponseBody 注解，Spring 返回值到响应体。如果这样做的话，Spring 将根据请求中的 Content-Type header（私下）使用 <a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#rest-message-conversion" target="_blank" rel="noopener">HTTP Message converters</a> 来将 domain 对象转换为响应体。</p>
+<p>ResponseEntity 是一个真实数据. 它代表了整个 HTTP 响应（response）. 它的好处是你可以控制任何对象放到它内部。</p>
+<p>你可以指定状态码、头信息和响应体。它包含你想要构建 HTTP Response 的信息。</p>
+<p>@PathVariable 此注解意味着一个方法参数应该绑定到一个 url 模板变量 [在’{}’里的一个] 中</p>
+<p>一般来说你，要实现 REST API in Spring 4 需要了解 @RestController , @RequestBody, ResponseEntity 和 @PathVariable 这些注解 . 另外, spring 也提供了一些支持类帮助你实现一些可定制化的东西。</p>
+<p>MediaType : 带着 @RequestMapping 注解, 通过特殊的控制器方法你可以额外指定, MediaType 来生产或者消耗。</p>
+<h3 id="发布和测试此-API"><a href="#发布和测试此-API" class="headerlink" title="发布和测试此 API"></a><a></a>发布和测试此 API</h3><p> <a href="http://localhost:8080/Spring4MVCCRUDRestService" target="_blank" rel="noopener">http://localhost:8080/Spring4MVCCRUDRestService</a>.<br>想要测试此 API，我将使用 POSTMAN 这个外部客户端，接下来我们也将写我们自己的客户端。1. 获取所有用户</p>
+<p>打开 POSTMAN 工具，选择请求类型为 GET，指明 uri<img src="http://p4lmrb1gp.bkt.clouddn.com/20180525_simpread-Spring_MVC_4_RESTFul_Web_Services_CRUD_例子（带源码）【这才是_restful，超经典】_-_CSDN_博客/image1" alt=""></p>
+<p>注意：我们没有指明任何 HTTP 头。点击 发送，将接收到所有用户的列表<br><img src="http://p4lmrb1gp.bkt.clouddn.com/20180525_simpread-Spring_MVC_4_RESTFul_Web_Services_CRUD_例子（带源码）【这才是_restful，超经典】_-_CSDN_博客/image2" alt=""></p>
+<p>也要注意 HTTP 200 响应。<img src="http://p4lmrb1gp.bkt.clouddn.com/20180525_simpread-Spring_MVC_4_RESTFul_Web_Services_CRUD_例子（带源码）【这才是_restful，超经典】_-_CSDN_博客/image3" alt=""></p>
+<p>你也许好奇为什么此响应通过 JSON 字符串发送的，在响应里的 Content-Type 头说明了这个。因为我们添加了 JACKSON</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">    &lt;groupId&gt;com.fasterxml.jackson.core&lt;/groupId&gt;</span><br><span class="line">    &lt;artifactId&gt;jackson-databind&lt;/artifactId&gt;</span><br><span class="line">    &lt;version&gt;2.5.3&lt;/version&gt;</span><br><span class="line">&lt;/dependency</span><br></pre></td></tr></table></figure>
+<p>因为 Spring 在类路径发现了这个库，它调用了内置的 <a href="http://docs.spring.io/spring/docs/current/spring-framework-reference/htmlsingle/#rest-message-conversion" target="_blank" rel="noopener">MappingJackson2HttpMessageConverter</a> 转换器将响应（对象集合）转换为 JSON 格式。 Spring 内置转换器的好处是，大部分情况下只要把库放到类路径，即可完成转换。当然了有时候我们也需要<br>采用我们的 API。比如，如果我们像也提供 XML 格式的话，我们需要对 User 类加上 JAXB 注解。<br>2. 获取单个用户</p>
+<p>GET 方式 指定 /user/1<br><img src="http://p4lmrb1gp.bkt.clouddn.com/20180525_simpread-Spring_MVC_4_RESTFul_Web_Services_CRUD_例子（带源码）【这才是_restful，超经典】_-_CSDN_博客/image4" alt=""><br>现在试着发送一个带有错误识别码的 GET 请求，将收到一个 HTTP 404<img src="http://p4lmrb1gp.bkt.clouddn.com/20180525_simpread-Spring_MVC_4_RESTFul_Web_Services_CRUD_例子（带源码）【这才是_restful，超经典】_-_CSDN_博客/image5" alt=""></p>
+<p>3. 创建一个 User<br>选择 POST 方法，指明 uri /user/ 指明 POSTMAN Body 选项卡，选择 application/json 类型<img src="http://p4lmrb1gp.bkt.clouddn.com/20180525_simpread-Spring_MVC_4_RESTFul_Web_Services_CRUD_例子（带源码）【这才是_restful，超经典】_-_CSDN_博客/image6" alt=""><br> 你要注意 POSTMAN 自动添加了 Content-Type 头信息<br><img src="http://p4lmrb1gp.bkt.clouddn.com/20180525_simpread-Spring_MVC_4_RESTFul_Web_Services_CRUD_例子（带源码）【这才是_restful，超经典】_-_CSDN_博客/image7" alt=""></p>
+<p>记住： Accept header 包含 client 能给识别的类型。 Content-Type header 表示数据的实际类型。<br>点击发送以后 将收到 HTTP 200 没有响应体（api 里面没有在响应体发送任何东西）<img src="http://p4lmrb1gp.bkt.clouddn.com/20180525_simpread-Spring_MVC_4_RESTFul_Web_Services_CRUD_例子（带源码）【这才是_restful，超经典】_-_CSDN_博客/image8" alt=""></p>
+<p>你可以查询新创建的用户<img src="http://p4lmrb1gp.bkt.clouddn.com/20180525_simpread-Spring_MVC_4_RESTFul_Web_Services_CRUD_例子（带源码）【这才是_restful，超经典】_-_CSDN_博客/image9" alt=""></p>
+<p>这是实现 REST 的普通实现方式。但是也没人阻止你为 POST 或者 PUT 方式响应体里发送内容。但是这还是 REST 的 API？值得怀疑。不管怎样，我们试着创建同一个用户时，你将获得 HTTP 冲突的响应。<img src="http://p4lmrb1gp.bkt.clouddn.com/20180525_simpread-Spring_MVC_4_RESTFul_Web_Services_CRUD_例子（带源码）【这才是_restful，超经典】_-_CSDN_博客/image10" alt=""></p>
+<p>4. 更新用户<br>发送一个 HTTP PUT 请求来更新用户。<img src="http://p4lmrb1gp.bkt.clouddn.com/20180525_simpread-Spring_MVC_4_RESTFul_Web_Services_CRUD_例子（带源码）【这才是_restful，超经典】_-_CSDN_博客/image11" alt=""><br>注意：这次我们接收到了响应体。这是因为在控制器的方法实现里我们发送了数据。再次强调，有的人也许不在响应体里面发送更新的详情，只发送位置头（和创建用户一样）。5. 删除用户<br><img src="http://p4lmrb1gp.bkt.clouddn.com/20180525_simpread-Spring_MVC_4_RESTFul_Web_Services_CRUD_例子（带源码）【这才是_restful，超经典】_-_CSDN_博客/image12" alt=""><br>6 删除所有用户<img src="http://p4lmrb1gp.bkt.clouddn.com/20180525_simpread-Spring_MVC_4_RESTFul_Web_Services_CRUD_例子（带源码）【这才是_restful，超经典】_-_CSDN_博客/image13" alt=""><br>7. 删除用户后验证<img src="http://p4lmrb1gp.bkt.clouddn.com/20180525_simpread-Spring_MVC_4_RESTFul_Web_Services_CRUD_例子（带源码）【这才是_restful，超经典】_-_CSDN_博客/image14" alt=""></p>
+<h2 id="根据-RestTemplate-写-REST-Client"><a href="#根据-RestTemplate-写-REST-Client" class="headerlink" title="根据 RestTemplate 写 REST Client"></a><a></a>根据 RestTemplate 写 REST Client</h2><p>Postman 是测试 Rest Api 的超好用的工具，但是如果你想完整的消化 REST，可以尝试自己写一个。最出名的 Http 客户端是 HttpClient（ Apache HttpComponents ）。但是用它来访问 REST service 则相对少见。Spring 的 <code>RestTemplate随之出现。RestTemplate 提供了高级方法，来响应者6种主要的HTTP方法。</code><br><code>HTTP 方法和对应的 RestTemplate方法:</code> </p>
+<ul>
+<li>HTTP GET : getForObject, getForEntity</li>
+<li>HTTP PUT : put(String url, Object request, String…​urlVariables)</li>
+<li>HTTP DELETE : delete</li>
+<li>HTTP POST : postForLocation(String url, Object request, String…​ urlVariables), postForObject(String url, Object request, ClassresponseType, String…​ uriVariables)</li>
+<li>HTTP HEAD : headForHeaders(String url, String…​ urlVariables)</li>
+<li>HTTP OPTIONS : optionsForAllow(String url, String…​ urlVariables)</li>
+<li>HTTP PATCH and others : exchange execute</li>
+</ul>
+<p>定义 Rest client , 定义 REST services </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.websystique.springmvc;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> java.net.URI;</span><br><span class="line"><span class="keyword">import</span> java.util.LinkedHashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> org.springframework.web.client.RestTemplate;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> com.websystique.springmvc.model.User;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SpringRestTestClient</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> String REST_SERVICE_URI = <span class="string">"http://localhost:8080/Spring4MVCCRUDRestService"</span>;</span><br><span class="line">     </span><br><span class="line">    <span class="comment">/* GET */</span></span><br><span class="line">    <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">listAllUsers</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Testing listAllUsers API-----------"</span>);</span><br><span class="line">         </span><br><span class="line">        RestTemplate restTemplate = <span class="keyword">new</span> RestTemplate();</span><br><span class="line">        List&lt;LinkedHashMap&lt;String, Object&gt;&gt; usersMap = restTemplate.getForObject(REST_SERVICE_URI+<span class="string">"/user/"</span>, List.class);</span><br><span class="line">         </span><br><span class="line">        <span class="keyword">if</span>(usersMap!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">for</span>(LinkedHashMap&lt;String, Object&gt; map : usersMap)&#123;</span><br><span class="line">                System.out.println(<span class="string">"User : id="</span>+map.get(<span class="string">"id"</span>)+<span class="string">", Name="</span>+map.get(<span class="string">"name"</span>)+<span class="string">", Age="</span>+map.get(<span class="string">"age"</span>)+<span class="string">", Salary="</span>+map.get(<span class="string">"salary"</span>));;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            System.out.println(<span class="string">"No user exist----------"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    <span class="comment">/* GET */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">getUser</span><span class="params">()</span></span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Testing getUser API----------"</span>);</span><br><span class="line">        RestTemplate restTemplate = <span class="keyword">new</span> RestTemplate();</span><br><span class="line">        User user = restTemplate.getForObject(REST_SERVICE_URI+<span class="string">"/user/1"</span>, User.class);</span><br><span class="line">        System.out.println(user);</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    <span class="comment">/* POST */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">createUser</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Testing create User API----------"</span>);</span><br><span class="line">        RestTemplate restTemplate = <span class="keyword">new</span> RestTemplate();</span><br><span class="line">        User user = <span class="keyword">new</span> User(<span class="number">0</span>,<span class="string">"Sarah"</span>,<span class="number">51</span>,<span class="number">134</span>);</span><br><span class="line">        URI uri = restTemplate.postForLocation(REST_SERVICE_URI+<span class="string">"/user/"</span>, user, User.class);</span><br><span class="line">        System.out.println(<span class="string">"Location : "</span>+uri.toASCIIString());</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">/* PUT */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">updateUser</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Testing update User API----------"</span>);</span><br><span class="line">        RestTemplate restTemplate = <span class="keyword">new</span> RestTemplate();</span><br><span class="line">        User user  = <span class="keyword">new</span> User(<span class="number">1</span>,<span class="string">"Tomy"</span>,<span class="number">33</span>, <span class="number">70000</span>);</span><br><span class="line">        restTemplate.put(REST_SERVICE_URI+<span class="string">"/user/1"</span>, user);</span><br><span class="line">        System.out.println(user);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="comment">/* DELETE */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">deleteUser</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Testing delete User API----------"</span>);</span><br><span class="line">        RestTemplate restTemplate = <span class="keyword">new</span> RestTemplate();</span><br><span class="line">        restTemplate.delete(REST_SERVICE_URI+<span class="string">"/user/3"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">    <span class="comment">/* DELETE */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">deleteAllUsers</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Testing all delete Users API----------"</span>);</span><br><span class="line">        RestTemplate restTemplate = <span class="keyword">new</span> RestTemplate();</span><br><span class="line">        restTemplate.delete(REST_SERVICE_URI+<span class="string">"/user/"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String args[])</span></span>&#123;</span><br><span class="line">        listAllUsers();</span><br><span class="line">        getUser();</span><br><span class="line">        createUser();</span><br><span class="line">        listAllUsers();</span><br><span class="line">        updateUser();</span><br><span class="line">        listAllUsers();</span><br><span class="line">        deleteUser();</span><br><span class="line">        listAllUsers();</span><br><span class="line">        deleteAllUsers();</span><br><span class="line">        listAllUsers();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>重启服务器，运行上面的程序。下面是输出：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">Testing listAllUsers API-----------</span><br><span class="line">User : id=1, Name=Sam, Age=30, Salary=70000.0</span><br><span class="line">User : id=2, Name=Tom, Age=40, Salary=50000.0</span><br><span class="line">User : id=3, Name=Jerome, Age=45, Salary=30000.0</span><br><span class="line">User : id=4, Name=Silvia, Age=50, Salary=40000.0</span><br><span class="line">Testing getUser API----------</span><br><span class="line">User [id=1, name=Sam, age=30, salary=70000.0]</span><br><span class="line">Testing create User API----------</span><br><span class="line">Location : http://localhost:8080/Spring4MVCCRUDRestService/user/5</span><br><span class="line">Testing listAllUsers API-----------</span><br><span class="line">User : id=1, Name=Sam, Age=30, Salary=70000.0</span><br><span class="line">User : id=2, Name=Tom, Age=40, Salary=50000.0</span><br><span class="line">User : id=3, Name=Jerome, Age=45, Salary=30000.0</span><br><span class="line">User : id=4, Name=Silvia, Age=50, Salary=40000.0</span><br><span class="line">User : id=5, Name=Sarah, Age=51, Salary=134.0</span><br><span class="line">Testing update User API----------</span><br><span class="line">User [id=1, name=Tomy, age=33, salary=70000.0]</span><br><span class="line">Testing listAllUsers API-----------</span><br><span class="line">User : id=1, Name=Tomy, Age=33, Salary=70000.0</span><br><span class="line">User : id=2, Name=Tom, Age=40, Salary=50000.0</span><br><span class="line">User : id=3, Name=Jerome, Age=45, Salary=30000.0</span><br><span class="line">User : id=4, Name=Silvia, Age=50, Salary=40000.0</span><br><span class="line">User : id=5, Name=Sarah, Age=51, Salary=134.0</span><br><span class="line">Testing delete User API----------</span><br><span class="line">Testing listAllUsers API-----------</span><br><span class="line">User : id=1, Name=Tomy, Age=33, Salary=70000.0</span><br><span class="line">User : id=2, Name=Tom, Age=40, Salary=50000.0</span><br><span class="line">User : id=4, Name=Silvia, Age=50, Salary=40000.0</span><br><span class="line">User : id=5, Name=Sarah, Age=51, Salary=134.0</span><br><span class="line">Testing all delete Users API----------</span><br><span class="line">Testing listAllUsers API-----------</span><br><span class="line">No user exist----------</span><br></pre></td></tr></table></figure>
+<p>完整的例子<img src="http://p4lmrb1gp.bkt.clouddn.com/20180525_simpread-Spring_MVC_4_RESTFul_Web_Services_CRUD_例子（带源码）【这才是_restful，超经典】_-_CSDN_博客/image15" alt=""></p>
+<h3 id="更新-pom-xml-添加项目依赖"><a href="#更新-pom-xml-添加项目依赖" class="headerlink" title="更新 pom.xml 添加项目依赖"></a><a></a>更新 pom.xml 添加项目依赖</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">project</span> <span class="attr">xmlns</span>=<span class="string">"http://maven.apache.org/POM/4.0.0"</span> <span class="attr">xmlns:xsi</span>=<span class="string">"http://www.w3.org/2001/XMLSchema-instance"</span></span></span><br><span class="line"><span class="tag">  <span class="attr">xsi:schemaLocation</span>=<span class="string">"http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">modelVersion</span>&gt;</span>4.0.0<span class="tag">&lt;/<span class="name">modelVersion</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.websystique.springmvc<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>Spring4MVCCRUDRestService<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">packaging</span>&gt;</span>war<span class="tag">&lt;/<span class="name">packaging</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">version</span>&gt;</span>1.0.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">name</span>&gt;</span>Spring4MVCCRUDRestService Maven Webapp<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">    <span class="tag">&lt;<span class="name">properties</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">springframework.version</span>&gt;</span>4.2.0.RELEASE<span class="tag">&lt;/<span class="name">springframework.version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">jackson.version</span>&gt;</span>2.5.3<span class="tag">&lt;/<span class="name">jackson.version</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">properties</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">    <span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-webmvc<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;springframework.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.springframework<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>spring-tx<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;springframework.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>com.fasterxml.jackson.core<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>jackson-databind<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>$&#123;jackson.version&#125;<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>javax.servlet<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>javax.servlet-api<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.1.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line">             </span><br><span class="line">    <span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">    <span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">pluginManagement</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-compiler-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">source</span>&gt;</span>1.7<span class="tag">&lt;/<span class="name">source</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">target</span>&gt;</span>1.7<span class="tag">&lt;/<span class="name">target</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-war-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">version</span>&gt;</span>2.4<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">warSourceDirectory</span>&gt;</span>src/main/webapp<span class="tag">&lt;/<span class="name">warSourceDirectory</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">warName</span>&gt;</span>Spring4MVCCRUDRestService<span class="tag">&lt;/<span class="name">warName</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">failOnMissingWebXml</span>&gt;</span>false<span class="tag">&lt;/<span class="name">failOnMissingWebXml</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">pluginManagement</span>&gt;</span></span><br><span class="line"> </span><br><span class="line">        <span class="tag">&lt;<span class="name">finalName</span>&gt;</span>Spring4MVCCRUDRestService<span class="tag">&lt;/<span class="name">finalName</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">project</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="User-Service"><a href="#User-Service" class="headerlink" title="User Service"></a><a></a>User Service</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.websystique.springmvc.service;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> com.websystique.springmvc.model.User;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">UserService</span> </span>&#123;</span><br><span class="line">     </span><br><span class="line">    <span class="function">User <span class="title">findById</span><span class="params">(<span class="keyword">long</span> id)</span></span>;</span><br><span class="line">     </span><br><span class="line">    <span class="function">User <span class="title">findByName</span><span class="params">(String name)</span></span>;</span><br><span class="line">     </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">saveUser</span><span class="params">(User user)</span></span>;</span><br><span class="line">     </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">updateUser</span><span class="params">(User user)</span></span>;</span><br><span class="line">     </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">deleteUserById</span><span class="params">(<span class="keyword">long</span> id)</span></span>;</span><br><span class="line"> </span><br><span class="line">    <span class="function">List&lt;User&gt; <span class="title">findAllUsers</span><span class="params">()</span></span>; </span><br><span class="line">     </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">deleteAllUsers</span><span class="params">()</span></span>;</span><br><span class="line">     </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">isUserExist</span><span class="params">(User user)</span></span>;</span><br><span class="line">     </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Model-（模型）类"><a href="#Model-（模型）类" class="headerlink" title="Model （模型）类"></a><a></a>Model （模型）类</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.websystique.springmvc.model;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">User</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">long</span> id;</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> age;</span><br><span class="line">     </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">double</span> salary;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">()</span></span>&#123;</span><br><span class="line">        id=<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">User</span><span class="params">(<span class="keyword">long</span> id, String name, <span class="keyword">int</span> age, <span class="keyword">double</span> salary)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">        <span class="keyword">this</span>.salary = salary;</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">long</span> <span class="title">getId</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> id;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setId</span><span class="params">(<span class="keyword">long</span> id)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getAge</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> age;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setAge</span><span class="params">(<span class="keyword">int</span> age)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">double</span> <span class="title">getSalary</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> salary;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSalary</span><span class="params">(<span class="keyword">double</span> salary)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.salary = salary;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">hashCode</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">final</span> <span class="keyword">int</span> prime = <span class="number">31</span>;</span><br><span class="line">        <span class="keyword">int</span> result = <span class="number">1</span>;</span><br><span class="line">        result = prime * result + (<span class="keyword">int</span>) (id ^ (id &gt;&gt;&gt; <span class="number">32</span>));</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">equals</span><span class="params">(Object obj)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span> == obj)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">if</span> (obj == <span class="keyword">null</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">if</span> (getClass() != obj.getClass())</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        User other = (User) obj;</span><br><span class="line">        <span class="keyword">if</span> (id != other.id)</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">toString</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"User [id="</span> + id + <span class="string">", name="</span> + name + <span class="string">", age="</span> + age</span><br><span class="line">                + <span class="string">", salary="</span> + salary + <span class="string">"]"</span>;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>配置类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.websystique.springmvc.configuration;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.ComponentScan;</span><br><span class="line"><span class="keyword">import</span> org.springframework.context.annotation.Configuration;</span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.config.annotation.EnableWebMvc;</span><br><span class="line"> </span><br><span class="line"><span class="meta">@Configuration</span></span><br><span class="line"><span class="meta">@EnableWebMvc</span></span><br><span class="line"><span class="meta">@ComponentScan</span>(basePackages = <span class="string">"com.websystique.springmvc"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorldConfiguration</span> </span>&#123;</span><br><span class="line">     </span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>初始化类</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.websystique.springmvc.configuration;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorldInitializer</span> <span class="keyword">extends</span> <span class="title">AbstractAnnotationConfigDispatcherServletInitializer</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Class&lt;?&gt;[] getRootConfigClasses() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Class[] &#123; HelloWorldConfiguration.class &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Class&lt;?&gt;[] getServletConfigClasses() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> String[] getServletMappings() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> String[] &#123; <span class="string">"/"</span> &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="为你的-REST-API-添加-CORS-支持"><a href="#为你的-REST-API-添加-CORS-支持" class="headerlink" title="为你的 REST API 添加 CORS 支持"></a><a></a>为你的 REST API 添加 CORS 支持</h3><p>当访问 REST API 时，你可能需要面对 “同源策略” 问题。错误如下：” No ‘Access-Control-Allow-Origin’ header is present on the requested resource. Origin ‘<a href="http://127.0.0.1:8080′" target="_blank" rel="noopener">http://127.0.0.1:8080′</a> is therefore not allowed access.” OR<br>” XMLHttpRequest cannot load <a href="http://abc.com/bla" target="_blank" rel="noopener">http://abc.com/bla</a>. Origin <a href="http://localhost:12345" target="_blank" rel="noopener">http://localhost:12345</a> is not allowed by Access-Control-Allow-Origin.”</p>
+<p>一般来说，在服务器端，我们在响应中返回额外的 CORS 访问控制头，实现跨域链接。用 Spring 的话，我么可以写一个简单的过滤器为每个响应添加 CORS 特征头。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.websystique.springmvc.configuration;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> java.io.IOException;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> javax.servlet.Filter;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.FilterChain;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.FilterConfig;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletException;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletRequest;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.ServletResponse;</span><br><span class="line"><span class="keyword">import</span> javax.servlet.http.HttpServletResponse;</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">CORSFilter</span> <span class="keyword">implements</span> <span class="title">Filter</span> </span>&#123;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">doFilter</span><span class="params">(ServletRequest req, ServletResponse res, FilterChain chain)</span> <span class="keyword">throws</span> IOException, ServletException </span>&#123;</span><br><span class="line">        System.out.println(<span class="string">"Filtering on..........................................................."</span>);</span><br><span class="line">        HttpServletResponse response = (HttpServletResponse) res;</span><br><span class="line">        response.setHeader(<span class="string">"Access-Control-Allow-Origin"</span>, <span class="string">"*"</span>);</span><br><span class="line">        response.setHeader(<span class="string">"Access-Control-Allow-Methods"</span>, <span class="string">"POST, GET, PUT, OPTIONS, DELETE"</span>);</span><br><span class="line">        response.setHeader(<span class="string">"Access-Control-Max-Age"</span>, <span class="string">"3600"</span>);</span><br><span class="line">        response.setHeader(<span class="string">"Access-Control-Allow-Headers"</span>, <span class="string">"x-requested-with"</span>);</span><br><span class="line">        chain.doFilter(req, res);</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">(FilterConfig filterConfig)</span> </span>&#123;&#125;</span><br><span class="line"> </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span> </span>&#123;&#125;</span><br><span class="line"> </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>需要将其添加在 Spring 配置中：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> com.websystique.springmvc.configuration;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> javax.servlet.Filter;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">import</span> org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;</span><br><span class="line"> </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HelloWorldInitializer</span> <span class="keyword">extends</span> <span class="title">AbstractAnnotationConfigDispatcherServletInitializer</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Class&lt;?&gt;[] getRootConfigClasses() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> Class[] &#123; HelloWorldConfiguration.class &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Class&lt;?&gt;[] getServletConfigClasses() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line">   </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> String[] getServletMappings() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> String[] &#123; <span class="string">"/"</span> &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> Filter[] getServletFilters() &#123;</span><br><span class="line">        Filter [] singleton = &#123; <span class="keyword">new</span> CORSFilter()&#125;;</span><br><span class="line">        <span class="keyword">return</span> singleton;</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>源码下载：<a href="http://websystique.com/?smd_process_download=1&amp;download_id=1689" target="_blank" rel="noopener">http://websystique.com/?smd_process_download=1&amp;download_id=1689</a>源码（带 CORS）下载：<a href="http://websystique.com/?smd_process_download=1&amp;download_id=1890" target="_blank" rel="noopener">http://websystique.com/?smd_process_download=1&amp;download_id=1890</a><br>特别说明：<strong>此系列教程有的童鞋下载下来运行 经常 404 或者改成 xml 方式以后</strong>缺少 <a href="http://blog.csdn.net/chenleixing/article/details/45024501" target="_blank" rel="noopener">org.springframework.web.context.ContextLoaderServlet</a> 等<br>参见：<a href="http://blog.csdn.net/w605283073/article/details/52126347" target="_blank" rel="noopener">http://blog.csdn.net/w605283073/article/details/52126347</a></p>
+<hr>
+<blockquote>
+<p>参考：<br>Spring MVC 4 RESTFul Web Services CRUD例子（带源码）【这才是restful，超经典】 - CSDN博客<br><a href="https://blog.csdn.net/w605283073/article/details/51338765" target="_blank" rel="noopener">https://blog.csdn.net/w605283073/article/details/51338765</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+
+     
+    
+      <div>
+        
+    <div style="text-align:center;color: #ccc;font-size:14px;">
+        ------ 本文结束<i class="fa fa-paw"></i>感谢您的阅读 ------</div>
+
+      </div>
+    
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    CloudPai
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://cloudpai.site/2018/05/24/2018-05-24-2/" title="springmvc restful 教程">http://cloudpai.site/2018/05/24/2018-05-24-2/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SpringMVC/" rel="tag"><i class="fa fa-tag"></i> SpringMVC</a>
+          
+            <a href="/tags/Restful/" rel="tag"><i class="fa fa-tag"></i> Restful</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/24/2018-05-24-1/" rel="next" title="从Spring-Session源码看Session机制的实现细节">
+                <i class="fa fa-chevron-left"></i> 从Spring-Session源码看Session机制的实现细节
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/25/2018-05-25/" rel="prev" title="Redisson实现分布式锁原理">
+                Redisson实现分布式锁原理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+
+
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg"
+                alt="CloudPai" />
+            
+              <p class="site-author-name" itemprop="name">CloudPai</p>
+              <p class="site-description motion-element" itemprop="description">加油(๑•̀ㅂ•́)و✧加油</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">236</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+
+<div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=240 src="//music.163.com/outchain/player?type=0&id=2113726971&auto=0&height=430"></iframe>
+</div>
+<!-- 459004290 -->
+
+
+
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">118</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CloudPai" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:liupai024@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.douban.com/people/57965969/doulists/all" target="_blank" title="豆瓣">
+                      
+                        <i class="fa fa-fw fa-book"></i>豆瓣</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/cloudPai/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-edit"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.dlut.edu.cn/" title="DUT" target="_blank">DUT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bupt.edu.cn/" title="BUPT" target="_blank">BUPT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://campus.alibaba.com/index.htm" title="Alibaba Group" target="_blank">Alibaba Group</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#简短-amp-快速介绍-REST"><span class="nav-text">简短 &amp; 快速介绍 REST</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于-Rest-的-Controller（控制器）"><span class="nav-text">基于 Rest 的 Controller（控制器）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#发布和测试此-API"><span class="nav-text">发布和测试此 API</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#根据-RestTemplate-写-REST-Client"><span class="nav-text">根据 RestTemplate 写 REST Client</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#更新-pom-xml-添加项目依赖"><span class="nav-text">更新 pom.xml 添加项目依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#User-Service"><span class="nav-text">User Service</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Model-（模型）类"><span class="nav-text">Model （模型）类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为你的-REST-API-添加-CORS-支持"><span class="nav-text">为你的 REST API 添加 CORS 支持</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CloudPai</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">915.3k</span>
+  
+</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv">  </span>
+</span>
+</div>
+
+
+
+
+
+
+
+  <div class="theme-info">&#12288;主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://cloudpai.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://cloudpai.site/2018/05/24/2018-05-24-2/';
+          this.page.identifier = '2018/05/24/2018-05-24-2/';
+          this.page.title = 'springmvc restful 教程';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cloudpai.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!-- <!-- <script src="https://cdn.bootcss.com/aplayer/1.6.0/APlayer.min.js"></script>
+
+<script src="https://api.i-meto.com/music/player.js"></script> --> -->
+  
+  <!--移动端判断，是否引入背景-->
+  <script>
+  var browser={  
+      versions:function(){   
+             var u = navigator.userAgent, app = navigator.appVersion;   
+             return {//移动终端浏览器版本信息
+                  trident: u.indexOf('Trident') > -1, //IE内核
+                  presto: u.indexOf('Presto') > -1, //opera内核
+                  webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                  gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                  mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                  ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                  android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                  iPhone: u.indexOf('iPhone') > -1 , //是否为iPhone或者QQHD浏览器
+                  iPad: u.indexOf('iPad') > -1, //是否iPad
+                  webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+              };  
+           }(),  
+           language:(navigator.browserLanguage || navigator.language).toLowerCase()  
+  }   
+    if(browser.versions.mobile || browser.versions.ios || browser.versions.android ||   
+      browser.versions.iPhone || browser.versions.iPad){        
+               
+    }else{
+    document.write("<script type=\'text/javascript\'  src=\'/js/src/particle.js\'><\/script>");
+    }
+  </script>
+
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":-80,"vOffset":-50},"mobile":{"show":false,"scale":0.2},"react":{"opacityDefault":1,"opacityOnHover":0.2}});</script></body>
+</html>

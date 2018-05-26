@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Jackson," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="CloudPai" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="1.JacksonJackson 是一种 JSON API，也是最流行，速度最快的 JSON API。Jackson 的在线 API 文档可以在 http://wiki.fasterxml.com/JacksonInFiveMinutes 中找到。Jackson 的源代码托管在：https://github.com/FasterXML/jackson。 Jackson 提供了两种不同的 JSON">
+<meta name="keywords" content="Jackson">
+<meta property="og:type" content="article">
+<meta property="og:title" content="objectmapper详解">
+<meta property="og:url" content="http://cloudpai.site/2018/05/24/2018-05-24/index.html">
+<meta property="og:site_name" content="CloudPai">
+<meta property="og:description" content="1.JacksonJackson 是一种 JSON API，也是最流行，速度最快的 JSON API。Jackson 的在线 API 文档可以在 http://wiki.fasterxml.com/JacksonInFiveMinutes 中找到。Jackson 的源代码托管在：https://github.com/FasterXML/jackson。 Jackson 提供了两种不同的 JSON">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-24T12:05:25.484Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="objectmapper详解">
+<meta name="twitter:description" content="1.JacksonJackson 是一种 JSON API，也是最流行，速度最快的 JSON API。Jackson 的在线 API 文档可以在 http://wiki.fasterxml.com/JacksonInFiveMinutes 中找到。Jackson 的源代码托管在：https://github.com/FasterXML/jackson。 Jackson 提供了两种不同的 JSON">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'TZAS2SFOJR',
+      apiKey: 'e2a9cd036eede8026382b302001ec261',
+      indexName: 'cloudpai_blogs_search',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cloudpai.site/2018/05/24/2018-05-24/"/>
+
+
+
+
+
+  <title>objectmapper详解 | CloudPai</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-114643720-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CloudPai</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/05/24/2018-05-24/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CloudPai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudPai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">objectmapper详解</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-24T19:40:42+08:00">
+                2018-05-24
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-05-24T20:05:25+08:00">
+                2018-05-24
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/24/2018-05-24/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/05/24/2018-05-24/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  878
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="1-Jackson"><a href="#1-Jackson" class="headerlink" title="1.Jackson"></a>1.Jackson</h1><p>Jackson 是一种 JSON API，也是最流行，速度最快的 JSON API。Jackson 的在线 API 文档可以在 <a href="http://wiki.fasterxml.com/JacksonInFiveMinutes" target="_blank" rel="noopener">http://wiki.fasterxml.com/JacksonInFiveMinutes</a> 中找到。Jackson 的源代码托管在：<a href="https://github.com/FasterXML/jackson" target="_blank" rel="noopener">https://github.com/FasterXML/jackson</a>。 Jackson 提供了两种不同的 JSON 解析器：</p>
+<ol>
+<li>ObjectMapper：把 JSON 解析到自定义的 Java 类中，或者解析到一个 Jackson 指定的树形结构中（Tree model）。</li>
+<li>Jackson JsonParser：一种 “拉式”（pull）解析器，每次解析一组 JSON 数据。<iframe id="tmp_downloadhelper_iframe" style="display: none;"></iframe>
+
+</li>
+</ol>
+<p>Jackson 也包含了两种不同的 JSON 生成器：</p>
+<ol>
+<li>ObjectMapper：把自定义的 Java 类，或者一个 Jackson 指定的树形结构生成为 JSON 文件。</li>
+<li>Jackson JsonGenerator：每次只生成一组 JSON 数据。</li>
+</ol>
+<h1 id="2-ObjectMapper"><a href="#2-ObjectMapper" class="headerlink" title="2.ObjectMapper"></a><a></a>2.ObjectMapper</h1><h2 id="2-1ObjectMapper-解析-JSON"><a href="#2-1ObjectMapper-解析-JSON" class="headerlink" title="2.1ObjectMapper 解析 JSON"></a><a></a>2.1ObjectMapper 解析 JSON</h2><p>com.fasterxml.jackson.databind.ObjectMapper 在 Jackson Databind 中。ObjectMapper 可以从 String，File，InputStream，URL，自定义的 Java 类中读取 JSON，ObjectMapper 中的重载方法 readValue() 实现了这些功能。下面看从 String 读取；</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">readFromString</span><span class="params">()</span></span>&#123;</span><br><span class="line">	String carJson =  <span class="string">"&#123; \"brand\" : \"Mercedes\","</span> +</span><br><span class="line">					<span class="string">"  \"doors\" : 5,"</span> +</span><br><span class="line">					<span class="string">"  \"owners\" : [\"John\", \"Jack\", \"Jill\"],"</span> +</span><br><span class="line">					<span class="string">"  \"nestedObject\" : &#123; \"field\" : \"value\" &#125; &#125;"</span>;</span><br><span class="line"></span><br><span class="line">	ObjectMapper objectMapper = <span class="keyword">new</span> ObjectMapper();</span><br><span class="line"></span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		<span class="comment">// Read JSON from a Reader instance.</span></span><br><span class="line"><span class="comment">//            Reader reader = new StringReader(carJson);</span></span><br><span class="line"><span class="comment">//            JsonNode node = objectMapper.readValue(reader, JsonNode.class);</span></span><br><span class="line">		JsonNode node = objectMapper.readValue(carJson, JsonNode.class);</span><br><span class="line"></span><br><span class="line">		JsonNode brandNode = node.get(<span class="string">"brand"</span>);</span><br><span class="line">		String brand = brandNode.asText();</span><br><span class="line">		System.out.println(<span class="string">"brand = "</span> + brand);</span><br><span class="line"></span><br><span class="line">		JsonNode doorsNode = node.get(<span class="string">"doors"</span>);</span><br><span class="line">		Integer doors = doorsNode.asInt();</span><br><span class="line">		System.out.println(<span class="string">"doors = "</span> + doors);</span><br><span class="line"></span><br><span class="line">		JsonNode owners = node.get(<span class="string">"owners"</span>);</span><br><span class="line">		JsonNode johnNode = owners.get(<span class="number">0</span>);</span><br><span class="line">		String owner = johnNode.asText();</span><br><span class="line">		System.out.println(<span class="string">"john = "</span> + owner);</span><br><span class="line"></span><br><span class="line">		JsonNode nestNode = node.get(<span class="string">"nestedObject"</span>);</span><br><span class="line">		JsonNode fieldNode = nestNode.get(<span class="string">"field"</span>);</span><br><span class="line">		String field = fieldNode.asText();</span><br><span class="line">		System.out.println(<span class="string">"field = "</span> + field);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>ObjectMapper 如果解析 JSON 到 Java 类，那么这个 Java 类必须是简单的 POJO，这个 POJO 的 User 的代码就不贴了：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">readToPOJO</span><span class="params">()</span><span class="keyword">throws</span> IOException</span>&#123;</span><br><span class="line"></span><br><span class="line">        String json = <span class="string">"&#123; \"name\": \"Gatsby\","</span></span><br><span class="line">                    + <span class="string">"  \"gender\": \"MALE\","</span></span><br><span class="line">                    + <span class="string">"  \"age\": 24"</span></span><br><span class="line">                    + <span class="string">"&#125;"</span>;</span><br><span class="line">        ObjectMapper objectMapper = <span class="keyword">new</span> ObjectMapper();</span><br><span class="line"></span><br><span class="line">        <span class="keyword">try</span>&#123;</span><br><span class="line">            User user = objectMapper.readValue(json, User.class);</span><br><span class="line">            System.out.print(user.toString());</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>下面 ObjectMapper 从 File 中解析 JSON 的例子，至于 URL 等就不一一列举了： car.json 文件：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"brand"</span>: <span class="string">"Mercedes"</span>,</span><br><span class="line">  <span class="attr">"doors"</span>: <span class="number">5</span>,</span><br><span class="line">  <span class="attr">"owner"</span>: &#123;</span><br><span class="line">    <span class="attr">"first"</span>: <span class="string">"Gatsby"</span>,</span><br><span class="line">    <span class="attr">"last"</span>: <span class="string">"Newton"</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">"component"</span>: [<span class="string">"engine"</span>, <span class="string">"brake"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>示例代码：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">readFromFile</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">try</span> &#123;</span><br><span class="line">		String path = <span class="string">"F:\\Codes\\IDEA\\Tools\\data\\json\\car.json"</span>;</span><br><span class="line">		<span class="comment">// Read JSON from an local file.</span></span><br><span class="line"><span class="comment">//            File file = new File(path);</span></span><br><span class="line">		<span class="comment">// Read JSON from an InputStream.</span></span><br><span class="line">		InputStream input = <span class="keyword">new</span> FileInputStream(path);</span><br><span class="line">		ObjectMapper objectMapper = <span class="keyword">new</span> ObjectMapper();</span><br><span class="line">		JsonNode node = objectMapper.readValue(input, JsonNode.class);</span><br><span class="line"></span><br><span class="line">		JsonNode brandNode = node.get(<span class="string">"brand"</span>);</span><br><span class="line">		String brand = brandNode.asText();</span><br><span class="line">		System.out.println(<span class="string">"brand = "</span> + brand);</span><br><span class="line"></span><br><span class="line">		JsonNode doorsNode = node.get(<span class="string">"doors"</span>);</span><br><span class="line">		Integer doors = doorsNode.asInt();</span><br><span class="line">		System.out.println(<span class="string">"doors = "</span> + doors);</span><br><span class="line"></span><br><span class="line">		JsonNode ownerNode = node.get(<span class="string">"owner"</span>);</span><br><span class="line">		JsonNode nameNode = ownerNode.get(<span class="string">"first"</span>);</span><br><span class="line">		String first = nameNode.asText();</span><br><span class="line">		System.out.println(<span class="string">"first = "</span> + first);</span><br><span class="line"></span><br><span class="line">		JsonNode comsNode = node.get(<span class="string">"component"</span>);</span><br><span class="line">		JsonNode comNode = comsNode.get(<span class="number">0</span>);</span><br><span class="line">		String component = comNode.asText();</span><br><span class="line">		System.out.println(<span class="string">"component = "</span> + component);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-2ObjectMapper-生成-JSON"><a href="#2-2ObjectMapper-生成-JSON" class="headerlink" title="2.2ObjectMapper 生成 JSON"></a><a></a>2.2ObjectMapper 生成 JSON</h2><p>和解析 JSON 一样，ObjectMapper 也可以把 JSON 生成到 String，自定义的 Java 类，File 中。如生成到 String 中：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">writeToString</span><span class="params">()</span></span>&#123;</span><br><span class="line">	Car car = <span class="keyword">new</span> Car(<span class="string">"BMW"</span>, <span class="number">4</span>, <span class="keyword">new</span> Car.Owner(<span class="string">"Gatsby"</span>, <span class="string">"Newton"</span>), <span class="keyword">new</span> String[]&#123;<span class="string">"engine"</span>, <span class="string">"brake"</span>&#125;);</span><br><span class="line"></span><br><span class="line">	ObjectMapper objectMapper = <span class="keyword">new</span> ObjectMapper();</span><br><span class="line"></span><br><span class="line">	<span class="keyword">try</span>&#123;</span><br><span class="line">		String json = objectMapper.writeValueAsString(car);</span><br><span class="line">		System.out.println(json);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>生成到 File 中：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">writeToFile</span><span class="params">()</span><span class="keyword">throws</span> IOException</span>&#123;</span><br><span class="line">	Car car = <span class="keyword">new</span> Car(<span class="string">"BMW"</span>, <span class="number">4</span>, <span class="keyword">new</span> Car.Owner(<span class="string">"Gatsby"</span>, <span class="string">"Newton"</span>), <span class="keyword">new</span> String[]&#123;<span class="string">"engine"</span>, <span class="string">"brake"</span>&#125;);</span><br><span class="line"></span><br><span class="line">	ObjectMapper objectMapper = <span class="keyword">new</span> ObjectMapper();</span><br><span class="line">	OutputStream outputStream = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">try</span>&#123;</span><br><span class="line">		outputStream = <span class="keyword">new</span> FileOutputStream(<span class="keyword">new</span> File(<span class="string">"F:\\Codes\\IDEA\\Tools\\data\\json\\out\\out.json"</span>));</span><br><span class="line">		objectMapper.writeValue(outputStream, car);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">catch</span> (Exception e)&#123;</span><br><span class="line">		e.printStackTrace();</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">finally</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> (outputStream != <span class="keyword">null</span>)&#123;</span><br><span class="line">			outputStream.close();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>例子的源代码托管在：<a href="https://github.com/GatsbyNewton/jackson" target="_blank" rel="noopener">https://github.com/GatsbyNewton/jackson</a> 参考文献： <a href="Jackson">http://wiki.fasterxml.com/JacksonInFiveMinutes Jackson</a> 官方教程示例<br><a href="Jackson">http://wiki.fasterxml.com/JacksonJavaDocs Jackson</a> 在线 API 文档</p>
+
+      
+    </div>
+    
+    
+    
+
+
+     
+    
+      <div>
+        
+    <div style="text-align:center;color: #ccc;font-size:14px;">
+        ------ 本文结束<i class="fa fa-paw"></i>感谢您的阅读 ------</div>
+
+      </div>
+    
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    CloudPai
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://cloudpai.site/2018/05/24/2018-05-24/" title="objectmapper详解">http://cloudpai.site/2018/05/24/2018-05-24/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Jackson/" rel="tag"><i class="fa fa-tag"></i> Jackson</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/22/2018-05-22/" rel="next" title="微服务">
+                <i class="fa fa-chevron-left"></i> 微服务
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/24/2018-05-24-1/" rel="prev" title="从Spring-Session源码看Session机制的实现细节">
+                从Spring-Session源码看Session机制的实现细节 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+
+
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg"
+                alt="CloudPai" />
+            
+              <p class="site-author-name" itemprop="name">CloudPai</p>
+              <p class="site-description motion-element" itemprop="description">加油(๑•̀ㅂ•́)و✧加油</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">236</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+
+<div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=240 src="//music.163.com/outchain/player?type=0&id=2113726971&auto=0&height=430"></iframe>
+</div>
+<!-- 459004290 -->
+
+
+
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">118</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CloudPai" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:liupai024@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.douban.com/people/57965969/doulists/all" target="_blank" title="豆瓣">
+                      
+                        <i class="fa fa-fw fa-book"></i>豆瓣</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/cloudPai/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-edit"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.dlut.edu.cn/" title="DUT" target="_blank">DUT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bupt.edu.cn/" title="BUPT" target="_blank">BUPT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://campus.alibaba.com/index.htm" title="Alibaba Group" target="_blank">Alibaba Group</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-Jackson"><span class="nav-text">1.Jackson</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-ObjectMapper"><span class="nav-text">2.ObjectMapper</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1ObjectMapper-解析-JSON"><span class="nav-text">2.1ObjectMapper 解析 JSON</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2ObjectMapper-生成-JSON"><span class="nav-text">2.2ObjectMapper 生成 JSON</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CloudPai</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">915.3k</span>
+  
+</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv">  </span>
+</span>
+</div>
+
+
+
+
+
+
+
+  <div class="theme-info">&#12288;主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://cloudpai.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://cloudpai.site/2018/05/24/2018-05-24/';
+          this.page.identifier = '2018/05/24/2018-05-24/';
+          this.page.title = 'objectmapper详解';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cloudpai.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!-- <!-- <script src="https://cdn.bootcss.com/aplayer/1.6.0/APlayer.min.js"></script>
+
+<script src="https://api.i-meto.com/music/player.js"></script> --> -->
+  
+  <!--移动端判断，是否引入背景-->
+  <script>
+  var browser={  
+      versions:function(){   
+             var u = navigator.userAgent, app = navigator.appVersion;   
+             return {//移动终端浏览器版本信息
+                  trident: u.indexOf('Trident') > -1, //IE内核
+                  presto: u.indexOf('Presto') > -1, //opera内核
+                  webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                  gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                  mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                  ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                  android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                  iPhone: u.indexOf('iPhone') > -1 , //是否为iPhone或者QQHD浏览器
+                  iPad: u.indexOf('iPad') > -1, //是否iPad
+                  webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+              };  
+           }(),  
+           language:(navigator.browserLanguage || navigator.language).toLowerCase()  
+  }   
+    if(browser.versions.mobile || browser.versions.ios || browser.versions.android ||   
+      browser.versions.iPhone || browser.versions.iPad){        
+               
+    }else{
+    document.write("<script type=\'text/javascript\'  src=\'/js/src/particle.js\'><\/script>");
+    }
+  </script>
+
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":-80,"vOffset":-50},"mobile":{"show":false,"scale":0.2},"react":{"opacityDefault":1,"opacityOnHover":0.2}});</script></body>
+</html>

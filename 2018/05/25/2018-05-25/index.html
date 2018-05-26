@@ -1,0 +1,1353 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/favicon.ico?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Redisson," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="CloudPai" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Redis 分布式锁流程图 Redis 分布式锁优化版流程图 Redisson 分布式锁之前的基于注解的锁有一种锁是基本 redis 的分布式锁，锁的实现我是基于 redisson 组件提供的 RLock，这篇来看看 redisson 是如何实现锁的。 不同版本实现锁的机制并不相同引用的 redisson 最近发布的版本 3.2.3，不同的版本可能实现锁的机制并不相同，早期版本好像是采用简单的">
+<meta name="keywords" content="Redisson">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Redisson实现分布式锁原理">
+<meta property="og:url" content="http://cloudpai.site/2018/05/25/2018-05-25/index.html">
+<meta property="og:site_name" content="CloudPai">
+<meta property="og:description" content="Redis 分布式锁流程图 Redis 分布式锁优化版流程图 Redisson 分布式锁之前的基于注解的锁有一种锁是基本 redis 的分布式锁，锁的实现我是基于 redisson 组件提供的 RLock，这篇来看看 redisson 是如何实现锁的。 不同版本实现锁的机制并不相同引用的 redisson 最近发布的版本 3.2.3，不同的版本可能实现锁的机制并不相同，早期版本好像是采用简单的">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180520195754.png">
+<meta property="og:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180520195951.png">
+<meta property="og:updated_time" content="2018-05-25T13:26:18.121Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Redisson实现分布式锁原理">
+<meta name="twitter:description" content="Redis 分布式锁流程图 Redis 分布式锁优化版流程图 Redisson 分布式锁之前的基于注解的锁有一种锁是基本 redis 的分布式锁，锁的实现我是基于 redisson 组件提供的 RLock，这篇来看看 redisson 是如何实现锁的。 不同版本实现锁的机制并不相同引用的 redisson 最近发布的版本 3.2.3，不同的版本可能实现锁的机制并不相同，早期版本好像是采用简单的">
+<meta name="twitter:image" content="http://p4lmrb1gp.bkt.clouddn.com/20180520195754.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"always","offset":12,"b2t":false,"scrollpercent":false,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: 'TZAS2SFOJR',
+      apiKey: 'e2a9cd036eede8026382b302001ec261',
+      indexName: 'cloudpai_blogs_search',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://cloudpai.site/2018/05/25/2018-05-25/"/>
+
+
+
+
+
+  <title>Redisson实现分布式锁原理 | CloudPai</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-114643720-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">CloudPai</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">个人博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            时间轴
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://cloudpai.site/2018/05/25/2018-05-25/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="CloudPai">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="CloudPai">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Redisson实现分布式锁原理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-25T21:13:59+08:00">
+                2018-05-25
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">更新于&#58;</span>
+              
+              <time title="更新于" itemprop="dateModified" datetime="2018-05-25T21:26:18+08:00">
+                2018-05-25
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/05/25/2018-05-25/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2018/05/25/2018-05-25/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2,217
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  10
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="Redis-分布式锁流程图"><a href="#Redis-分布式锁流程图" class="headerlink" title="Redis 分布式锁流程图"></a>Redis 分布式锁流程图</h2><p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180520195754.png" alt=""></p>
+<h2 id="Redis-分布式锁优化版流程图"><a href="#Redis-分布式锁优化版流程图" class="headerlink" title="Redis 分布式锁优化版流程图"></a>Redis 分布式锁优化版流程图</h2><p><img src="http://p4lmrb1gp.bkt.clouddn.com/20180520195951.png" alt=""></p>
+<h2 id="Redisson-分布式锁"><a href="#Redisson-分布式锁" class="headerlink" title="Redisson 分布式锁"></a>Redisson 分布式锁</h2><p>之前的<a href="http://www.cnblogs.com/ASPNET2008/p/6308868.html" target="_blank" rel="noopener">基于注解的锁</a>有一种锁是基本 redis 的分布式锁，锁的实现我是基于 redisson 组件提供的 RLock，这篇来看看 redisson 是如何实现锁的。</p>
+<h3 id="不同版本实现锁的机制并不相同"><a href="#不同版本实现锁的机制并不相同" class="headerlink" title="不同版本实现锁的机制并不相同"></a>不同版本实现锁的机制并不相同</h3><p>引用的 redisson 最近发布的版本 3.2.3，不同的版本可能实现锁的机制并不相同，早期版本好像是采用简单的 setnx，getset 等常规命令来配置完成，而后期由于 redis 支持了脚本 Lua 变更了实现原理。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;dependency&gt;</span><br><span class="line">	&lt;groupId&gt;org.redisson&lt;/groupId&gt;</span><br><span class="line">	&lt;artifactId&gt;redisson&lt;/artifactId&gt;</span><br><span class="line">	&lt;version&gt;3.2.3&lt;/version&gt;</span><br><span class="line">&lt;/dependency&gt;</span><br></pre></td></tr></table></figure>
+<p>setnx 需要配合 getset 以及事务来完成，这样才能比较好的避免死锁问题，而新版本由于支持 lua 脚本，可以避免使用事务以及操作多个 redis 命令，语义表达更加清晰一些。</p>
+<h3 id="RLock-接口的特点"><a href="#RLock-接口的特点" class="headerlink" title="RLock 接口的特点"></a>RLock 接口的特点</h3><h4 id="继承标准接口-Lock"><a href="#继承标准接口-Lock" class="headerlink" title="继承标准接口 Lock"></a>继承标准接口 Lock</h4><p>拥有标准锁接口的所有特性，比如 lock,unlock,trylock 等等。</p>
+<h4 id="扩展标准接口-Lock"><a href="#扩展标准接口-Lock" class="headerlink" title="扩展标准接口 Lock"></a>扩展标准接口 Lock</h4><p>扩展了很多方法，常用的主要有：强制锁释放，带有效期的锁, 还有一组异步的方法。其中前面两个方法主要是解决标准 lock 可能造成的死锁问题。比如某个线程获取到锁之后，线程所在机器死机，此时获取了锁的线程无法正常释放锁导致其余的等待锁的线程一直等待下去。</p>
+<h4 id="可重入机制"><a href="#可重入机制" class="headerlink" title="可重入机制"></a>可重入机制</h4><p>各版本实现有差异，可重入主要考虑的是性能，同一线程在未释放锁时如果再次申请锁资源不需要走申请流程，只需要将已经获取的锁继续返回并且记录上已经重入的次数即可，与 jdk 里面的 ReentrantLock 功能类似。重入次数靠 hincrby 命令来配合使用，详细的参数下面的代码。</p>
+<blockquote>
+<p>怎么判断是同一线程？<br>redisson 的方案是，RedissonLock 实例的一个 guid 再加当前线程的 id, 通过 getLockName 返回</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">public class RedissonLock extends RedissonExpirable implements RLock &#123;</span><br><span class="line"></span><br><span class="line">    final UUID id;</span><br><span class="line">    protected RedissonLock(CommandExecutor commandExecutor, String name, UUID id) &#123;</span><br><span class="line">        super(commandExecutor, name);</span><br><span class="line">        this.internalLockLeaseTime = TimeUnit.SECONDS.toMillis(30L);</span><br><span class="line">        this.commandExecutor = commandExecutor;</span><br><span class="line">        this.id = id;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    String getLockName(long threadId) &#123;</span><br><span class="line">        return this.id + &quot;:&quot; + threadId;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="RLock-获取锁的两种场景"><a href="#RLock-获取锁的两种场景" class="headerlink" title="RLock 获取锁的两种场景"></a>RLock 获取锁的两种场景</h3><p>这里拿 tryLock 的源码来看：tryAcquire 方法是申请锁并返回锁有效期还剩余的时间，如果为空说明锁未被其它线程申请直接获取并返回，如果获取到时间，则进入等待竞争逻辑。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">public boolean tryLock(long waitTime, long leaseTime, TimeUnit unit) throws InterruptedException &#123;</span><br><span class="line">        long time = unit.toMillis(waitTime);</span><br><span class="line">        long current = System.currentTimeMillis();</span><br><span class="line">        final long threadId = Thread.currentThread().getId();</span><br><span class="line">        Long ttl = this.tryAcquire(leaseTime, unit);</span><br><span class="line">        if(ttl == null) &#123;</span><br><span class="line">            //直接获取到锁</span><br><span class="line">            return true;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            //有竞争的后续看</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="无竞争，直接获取锁"><a href="#无竞争，直接获取锁" class="headerlink" title="无竞争，直接获取锁"></a>无竞争，直接获取锁</h4><p>先看下首先获取锁并释放锁背后的 redis 都在做什么，可以利用 redis 的 monitor 来在后台监控 redis 的执行情况。当我们在方法了增加 @RequestLockable 之后，其实就是调用 lock 以及 unlock，下面是 redis 命令：</p>
+<ul>
+<li>加锁<br>由于高版本的 redis 支持 lua 脚本，所以 redisson 也对其进行了支持，采用了脚本模式，不熟悉 lua 脚本的可以去查找下。执行 lua 命令的逻辑如下：</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;T&gt; RFuture&lt;T&gt; tryLockInnerAsync(long leaseTime, TimeUnit unit, long threadId, RedisStrictCommand&lt;T&gt; command) &#123;</span><br><span class="line">        this.internalLockLeaseTime = unit.toMillis(leaseTime);</span><br><span class="line">        return this.commandExecutor.evalWriteAsync(this.getName(), LongCodec.INSTANCE, command, &quot;if (redis.call(\&apos;exists\&apos;, KEYS[1]) == 0) then redis.call(\&apos;hset\&apos;, KEYS[1], ARGV[2], 1); redis.call(\&apos;pexpire\&apos;, KEYS[1], ARGV[1]); return nil; end; if (redis.call(\&apos;hexists\&apos;, KEYS[1], ARGV[2]) == 1) then redis.call(\&apos;hincrby\&apos;, KEYS[1], ARGV[2], 1); redis.call(\&apos;pexpire\&apos;, KEYS[1], ARGV[1]); return nil; end; return redis.call(\&apos;pttl\&apos;, KEYS[1]);&quot;, Collections.singletonList(this.getName()), new Object[]&#123;Long.valueOf(this.internalLockLeaseTime), this.getLockName(threadId)&#125;);</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>加锁的流程：</p>
+<ol>
+<li>判断 lock 键是否存在，不存在直接调用 hset 存储当前线程信息并且设置过期时间, 返回 nil，告诉客户端直接获取到锁。</li>
+<li>判断 lock 键是否存在，存在则将重入次数加 1，并重新设置过期时间，返回 nil，告诉客户端直接获取到锁。</li>
+<li>被其它线程已经锁定，返回锁有效期的剩余时间，告诉客户端需要等待。</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&quot;EVAL&quot; </span><br><span class="line">&quot;if (redis.call(&apos;exists&apos;, KEYS[1]) == 0) then </span><br><span class="line">redis.call(&apos;hset&apos;, KEYS[1], ARGV[2], 1); </span><br><span class="line">redis.call(&apos;pexpire&apos;, KEYS[1], ARGV[1]); </span><br><span class="line">return nil; end; </span><br><span class="line"></span><br><span class="line">if (redis.call(&apos;hexists&apos;, KEYS[1], ARGV[2]) == 1) then </span><br><span class="line">redis.call(&apos;hincrby&apos;, KEYS[1], ARGV[2], 1); </span><br><span class="line">redis.call(&apos;pexpire&apos;, KEYS[1], ARGV[1]); </span><br><span class="line">return nil; end; </span><br><span class="line"></span><br><span class="line">return redis.call(&apos;pttl&apos;, KEYS[1]);&quot;</span><br><span class="line"></span><br><span class="line"> &quot;1&quot; &quot;lock.com.csp.product.api.service.ProductAppService.searchProductByPage#0&quot; </span><br><span class="line"> &quot;1000&quot; &quot;346e1eb8-5bfd-4d49-9870-042df402f248:21&quot;</span><br></pre></td></tr></table></figure>
+<p>上面的 lua 脚本会转换成真正的 redis 命令，下面的是经过 lua 脚本运算之后实际执行的 redis 命令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1486642677.053488 [0 lua] &quot;exists&quot; &quot;lock.com.csp.product.api.service.ProductAppService.searchProductByPage#0&quot;</span><br><span class="line">1486642677.053515 [0 lua] &quot;hset&quot; &quot;lock.com.csp.product.api.service.ProductAppService.searchProductByPage#0&quot; </span><br><span class="line">&quot;346e1eb8-5bfd-4d49-9870-042df402f248:21&quot; &quot;1&quot;</span><br><span class="line">1486642677.053540 [0 lua] &quot;pexpire&quot; &quot;lock.com.csp.product.api.service.ProductAppService.searchProductByPage#0&quot; &quot;1000&quot;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>解锁<br>解锁的流程看起来复杂些：</li>
+</ul>
+<ol>
+<li>如果 lock 键不存在，发消息说锁已经可用</li>
+<li>如果锁不是被当前线程锁定，则返回 nil</li>
+<li>由于支持可重入，在解锁时将重入次数需要减 1</li>
+<li>如果计算后的重入次数 &gt; 0，则重新设置过期时间</li>
+<li>如果计算后的重入次数 &lt;=0，则发消息说锁已经可用</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&quot;EVAL&quot; </span><br><span class="line">&quot;if (redis.call(&apos;exists&apos;, KEYS[1]) == 0) then</span><br><span class="line"> redis.call(&apos;publish&apos;, KEYS[2], ARGV[1]);</span><br><span class="line"> return 1; end;</span><br><span class="line">if (redis.call(&apos;hexists&apos;, KEYS[1], ARGV[3]) == 0) then </span><br><span class="line">return nil;end; </span><br><span class="line">local counter = redis.call(&apos;hincrby&apos;, KEYS[1], ARGV[3], -1); </span><br><span class="line">if (counter &gt; 0) then redis.call(&apos;pexpire&apos;, KEYS[1], ARGV[2]); return 0; </span><br><span class="line">else redis.call(&apos;del&apos;, KEYS[1]); redis.call(&apos;publish&apos;, KEYS[2], ARGV[1]); return 1; end; </span><br><span class="line">return nil;&quot;</span><br><span class="line">&quot;2&quot; &quot;lock.com.csp.product.api.service.ProductAppService.searchProductByPage#0&quot; </span><br><span class="line">&quot;redisson_lock__channel:&#123;lock.com.csp.product.api.service.ProductAppService.searchProductByPage#0&#125;&quot;</span><br><span class="line"> &quot;0&quot; &quot;1000&quot;</span><br><span class="line"> &quot;346e1eb8-5bfd-4d49-9870-042df402f248:21&quot;</span><br></pre></td></tr></table></figure>
+<p>无竞争情况下解锁 redis 命令：<br>主要是发送一个解锁的消息，以此唤醒等待队列中的线程重新竞争锁。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">1486642678.493691 [0 lua] &quot;exists&quot; &quot;lock.com.csp.product.api.service.ProductAppService.searchProductByPage#0&quot;</span><br><span class="line">1486642678.493712 [0 lua] &quot;publish&quot; &quot;redisson_lock__channel:&#123;lock.com.csp.product.api.service.ProductAppService.searchProductByPage#0&#125;&quot; &quot;0&quot;</span><br></pre></td></tr></table></figure>
+<h4 id="有竞争，等待"><a href="#有竞争，等待" class="headerlink" title="有竞争，等待"></a>有竞争，等待</h4><p>有竞争的情况在 redis 端的 lua 脚本是相同的，只是不同的条件执行不同的 redis 命令，复杂的在 redisson 的源码上。当通过 tryAcquire 发现锁被其它线程申请时，需要进入等待竞争逻辑中。</p>
+<ul>
+<li>this.await 返回 false，说明等待时间已经超出获取锁最大等待时间，取消订阅并返回获取锁失败</li>
+<li>this.await 返回 true，进入循环尝试获取锁。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line">public boolean tryLock(long waitTime, long leaseTime, TimeUnit unit) throws InterruptedException &#123;</span><br><span class="line">        long time = unit.toMillis(waitTime);</span><br><span class="line">        long current = System.currentTimeMillis();</span><br><span class="line">        final long threadId = Thread.currentThread().getId();</span><br><span class="line">        Long ttl = this.tryAcquire(leaseTime, unit);</span><br><span class="line">        if(ttl == null) &#123;</span><br><span class="line">            return true;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            //重点是这段</span><br><span class="line">            time -= System.currentTimeMillis() - current;</span><br><span class="line">            if(time &lt;= 0L) &#123;</span><br><span class="line">                return false;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                current = System.currentTimeMillis();</span><br><span class="line">                final RFuture subscribeFuture = this.subscribe(threadId);</span><br><span class="line">                if(!this.await(subscribeFuture, time, TimeUnit.MILLISECONDS)) &#123;</span><br><span class="line">                    if(!subscribeFuture.cancel(false)) &#123;</span><br><span class="line">                        subscribeFuture.addListener(new FutureListener() &#123;</span><br><span class="line">                            public void operationComplete(Future&lt;RedissonLockEntry&gt; future) throws Exception &#123;</span><br><span class="line">                                if(subscribeFuture.isSuccess()) &#123;</span><br><span class="line">                                    RedissonLock.this.unsubscribe(subscribeFuture, threadId);</span><br><span class="line">                                &#125;</span><br><span class="line"></span><br><span class="line">                            &#125;</span><br><span class="line">                        &#125;);</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                    return false;</span><br><span class="line">                &#125; else &#123;</span><br><span class="line">                    boolean var16;</span><br><span class="line">                    try &#123;</span><br><span class="line">                        time -= System.currentTimeMillis() - current;</span><br><span class="line">                        if(time &lt;= 0L) &#123;</span><br><span class="line">                            boolean currentTime1 = false;</span><br><span class="line">                            return currentTime1;</span><br><span class="line">                        &#125;</span><br><span class="line"></span><br><span class="line">                        do &#123;</span><br><span class="line">                            long currentTime = System.currentTimeMillis();</span><br><span class="line">                            ttl = this.tryAcquire(leaseTime, unit);</span><br><span class="line">                            if(ttl == null) &#123;</span><br><span class="line">                                var16 = true;</span><br><span class="line">                                return var16;</span><br><span class="line">                            &#125;</span><br><span class="line"></span><br><span class="line">                            time -= System.currentTimeMillis() - currentTime;</span><br><span class="line">                            if(time &lt;= 0L) &#123;</span><br><span class="line">                                var16 = false;</span><br><span class="line">                                return var16;</span><br><span class="line">                            &#125;</span><br><span class="line"></span><br><span class="line">                            currentTime = System.currentTimeMillis();</span><br><span class="line">                            if(ttl.longValue() &gt;= 0L &amp;&amp; ttl.longValue() &lt; time) &#123;</span><br><span class="line">                                this.getEntry(threadId).getLatch().tryAcquire(ttl.longValue(), TimeUnit.MILLISECONDS);</span><br><span class="line">                            &#125; else &#123;</span><br><span class="line">                                this.getEntry(threadId).getLatch().tryAcquire(time, TimeUnit.MILLISECONDS);</span><br><span class="line">                            &#125;</span><br><span class="line"></span><br><span class="line">                            time -= System.currentTimeMillis() - currentTime;</span><br><span class="line">                        &#125; while(time &gt; 0L);</span><br><span class="line"></span><br><span class="line">                        var16 = false;</span><br><span class="line">                    &#125; finally &#123;</span><br><span class="line">                        this.unsubscribe(subscribeFuture, threadId);</span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                    return var16;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>循环尝试一般有如下几种方法：</p>
+<ol>
+<li>while 循环，一次接着一次的尝试，这个方法的缺点是会造成大量无效的锁申请。</li>
+<li>Thread.sleep，在上面的 while 方案中增加睡眠时间以降低锁申请次数，缺点是这个睡眠的时间设置比较难控制。</li>
+<li>基于信息量，当锁被其它资源占用时，当前线程订阅锁的释放事件，一旦锁释放会发消息通知待等待的锁进行竞争，有效的解决了无效的锁申请情况。核心逻辑是 this.getEntry(threadId).getLatch().tryAcquire，this.getEntry(threadId).getLatch() 返回的是一个信号量，有兴趣可以再研究研究。</li>
+</ol>
+<h3 id="redisson-依赖"><a href="#redisson-依赖" class="headerlink" title="redisson 依赖"></a>redisson 依赖</h3><p>由于 redisson 不光是针对锁，提供了很多客户端操作 redis 的方法，所以会依赖一些其它的框架，比如 netty，如果只是简单的使用锁也可以自己去实现。</p>
+<hr>
+<blockquote>
+<p>参考：<br>redisson实现分布式锁原理 - min.jiang - 博客园<br><a href="http://www.cnblogs.com/ASPNET2008/p/6385249.html" target="_blank" rel="noopener">http://www.cnblogs.com/ASPNET2008/p/6385249.html</a></p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+
+     
+    
+      <div>
+        
+    <div style="text-align:center;color: #ccc;font-size:14px;">
+        ------ 本文结束<i class="fa fa-paw"></i>感谢您的阅读 ------</div>
+
+      </div>
+    
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    CloudPai
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://cloudpai.site/2018/05/25/2018-05-25/" title="Redisson实现分布式锁原理">http://cloudpai.site/2018/05/25/2018-05-25/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Redisson/" rel="tag"><i class="fa fa-tag"></i> Redisson</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/24/2018-05-24-2/" rel="next" title="springmvc restful 教程">
+                <i class="fa fa-chevron-left"></i> springmvc restful 教程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/25/2018-05-25-1/" rel="prev" title="Redisson实现分布式锁原理">
+                Redisson实现分布式锁原理 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+
+
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="http://p4lmrb1gp.bkt.clouddn.com/君名-squashed.jpg"
+                alt="CloudPai" />
+            
+              <p class="site-author-name" itemprop="name">CloudPai</p>
+              <p class="site-description motion-element" itemprop="description">加油(๑•̀ㅂ•́)و✧加油</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">236</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+
+<div id="music163player">
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=280 height=240 src="//music.163.com/outchain/player?type=0&id=2113726971&auto=0&height=430"></iframe>
+</div>
+<!-- 459004290 -->
+
+
+
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">118</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/CloudPai" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:liupai024@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.douban.com/people/57965969/doulists/all" target="_blank" title="豆瓣">
+                      
+                        <i class="fa fa-fw fa-book"></i>豆瓣</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.zhihu.com/people/cloudPai/activities" target="_blank" title="知乎">
+                      
+                        <i class="fa fa-fw fa-edit"></i>知乎</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.dlut.edu.cn/" title="DUT" target="_blank">DUT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.bupt.edu.cn/" title="BUPT" target="_blank">BUPT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://campus.alibaba.com/index.htm" title="Alibaba Group" target="_blank">Alibaba Group</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-分布式锁流程图"><span class="nav-text">Redis 分布式锁流程图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redis-分布式锁优化版流程图"><span class="nav-text">Redis 分布式锁优化版流程图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Redisson-分布式锁"><span class="nav-text">Redisson 分布式锁</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#不同版本实现锁的机制并不相同"><span class="nav-text">不同版本实现锁的机制并不相同</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RLock-接口的特点"><span class="nav-text">RLock 接口的特点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#继承标准接口-Lock"><span class="nav-text">继承标准接口 Lock</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#扩展标准接口-Lock"><span class="nav-text">扩展标准接口 Lock</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可重入机制"><span class="nav-text">可重入机制</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RLock-获取锁的两种场景"><span class="nav-text">RLock 获取锁的两种场景</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#无竞争，直接获取锁"><span class="nav-text">无竞争，直接获取锁</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#有竞争，等待"><span class="nav-text">有竞争，等待</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#redisson-依赖"><span class="nav-text">redisson 依赖</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">CloudPai</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">915.3k</span>
+  
+</div>
+
+
+
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv">  </span>
+</span>
+</div>
+
+
+
+
+
+
+
+  <div class="theme-info">&#12288;主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://cloudpai.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://cloudpai.site/2018/05/25/2018-05-25/';
+          this.page.identifier = '2018/05/25/2018-05-25/';
+          this.page.title = 'Redisson实现分布式锁原理';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://cloudpai.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+  <!-- <!-- <script src="https://cdn.bootcss.com/aplayer/1.6.0/APlayer.min.js"></script>
+
+<script src="https://api.i-meto.com/music/player.js"></script> --> -->
+  
+  <!--移动端判断，是否引入背景-->
+  <script>
+  var browser={  
+      versions:function(){   
+             var u = navigator.userAgent, app = navigator.appVersion;   
+             return {//移动终端浏览器版本信息
+                  trident: u.indexOf('Trident') > -1, //IE内核
+                  presto: u.indexOf('Presto') > -1, //opera内核
+                  webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                  gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                  mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                  ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                  android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                  iPhone: u.indexOf('iPhone') > -1 , //是否为iPhone或者QQHD浏览器
+                  iPad: u.indexOf('iPad') > -1, //是否iPad
+                  webApp: u.indexOf('Safari') == -1 //是否web应该程序，没有头部与底部
+              };  
+           }(),  
+           language:(navigator.browserLanguage || navigator.language).toLowerCase()  
+  }   
+    if(browser.versions.mobile || browser.versions.ios || browser.versions.android ||   
+      browser.versions.iPhone || browser.versions.iPad){        
+               
+    }else{
+    document.write("<script type=\'text/javascript\'  src=\'/js/src/particle.js\'><\/script>");
+    }
+  </script>
+
+  
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"model":{"scale":1,"hHeadPos":0.5,"vHeadPos":0.618,"jsonPath":"/live2dw/assets/tororo.model.json"},"display":{"superSample":2,"width":150,"height":300,"position":"right","hOffset":-80,"vOffset":-50},"mobile":{"show":false,"scale":0.2},"react":{"opacityDefault":1,"opacityOnHover":0.2}});</script></body>
+</html>
